@@ -17,6 +17,8 @@ import {
   IconButton,
   VStack,
   Flex,
+  useColorMode,
+  Divider,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 
@@ -61,6 +63,8 @@ import {
   HighlightsTestimonialItem,
 } from "components/highlights";
 
+import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
+
 const Home: NextPage = () => {
   return (
     <Box>
@@ -70,14 +74,14 @@ const Home: NextPage = () => {
       />
       <Box>
         <HeroSection />
-
+        <AboutUsSection />
         <HighlightsSection />
 
         <FeaturesSection />
 
         <TestimonialsSection />
 
-        <PricingSection />
+        {/* <PricingSection /> */}
 
         <FaqSection />
       </Box>
@@ -86,39 +90,59 @@ const Home: NextPage = () => {
 };
 
 const HeroSection: React.FC = () => {
+  const img =
+    "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.xl" pt={{ base: 40, lg: 60 }} pb="40">
-        <Stack direction={{ base: "column", lg: "row" }} alignItems="center">
+      <Container maxW="container.2xl" pt={{ base: 40, lg: 20 }} pb="40">
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          alignItems="flex-start"
+        >
           <Hero
             id="home"
             justifyContent="flex-start"
             px="0"
             title={
               <FallInPlace>
-                Build beautiful
-                <Br /> software faster
+                Imagineering digital success
+                <Br /> for your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
-                Saas UI is a <Em>React component library</Em>
-                <Br /> that doesn&apos;t get in your way and helps you <Br />{" "}
-                build intuitive SaaS products with speed.
+                A software development partner with{" "}
+                <Em>various collaboration options</Em>
+                <Br /> Tech Emulsion provides a tailored selection of
+                outsourcing methods that can be adjusted to your present
+                requirements and expanded as your business expands. Regardless
+                of whether you’re a newcomer to IT outsourcing or someone
+                skilled in overseeing extensive software development groups,{" "}
+                <Br /> Tech Emulsion is here to guide you in determining the
+                optimal strategy for bringing your ideas to life. We work
+                together to develop effective technical answers and back your
+                ongoing progress.
               </FallInPlace>
             }
           >
             <FallInPlace delay={0.8}>
-              <HStack pt="4" pb="12" spacing="8">
-                <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
+              <HStack pt="4" pb="6" spacing="8">
+                {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
               </HStack>
 
               <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink colorScheme="primary" size="lg" href="/signup">
-                  Sign Up
-                </ButtonLink>
                 <ButtonLink
+                  size="lg"
+                  href="/signup"
+                  sx={{
+                    bg: "#004c4c !important",
+                    color: "white !important",
+                  }}
+                >
+                  Explore Portfolio
+                </ButtonLink>
+                {/* <ButtonLink
                   size="lg"
                   href="https://demo.saas-ui.dev"
                   variant="outline"
@@ -136,7 +160,7 @@ const HeroSection: React.FC = () => {
                   }
                 >
                   View demo
-                </ButtonLink>
+                </ButtonLink> */}
               </ButtonGroup>
             </FallInPlace>
           </Hero>
@@ -151,14 +175,11 @@ const HeroSection: React.FC = () => {
           >
             <FallInPlace delay={1}>
               <Box overflow="hidden" height="100%">
-                <Image
-                  src="/static/screenshots/list.png"
-                  layout="fixed"
-                  width={1200}
+                <img
+                  src={img}
+                  width={800}
                   height={762}
                   alt="Screenshot of a ListPage in Saas UI Pro"
-                  quality="75"
-                  priority
                 />
               </Box>
             </FallInPlace>
@@ -166,7 +187,7 @@ const HeroSection: React.FC = () => {
         </Stack>
       </Container>
 
-      <Features
+      {/* <Features
         id="benefits"
         columns={[1, 2, 4]}
         iconSize={4}
@@ -206,114 +227,358 @@ const HeroSection: React.FC = () => {
           },
         ]}
         reveal={FallInPlace}
-      />
+      /> */}
+    </Box>
+  );
+};
+
+const AboutUsSection = () => {
+  const { colorMode } = useColorMode();
+
+  return (
+    <Box id="about">
+      <Container maxW="container.2xl" py="5" mb="20">
+        <Stack direction={["column", null, "row"]} spacing="8">
+          <Box flex="1">
+            <Heading
+              as="h2"
+              size="lg"
+              color={colorMode === "dark" ? "white" : "#004c4c"}
+              sx={{
+                textTransform: "uppercase",
+              }}
+            >
+              About us
+            </Heading>
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                fontSize: "3rem",
+              }}
+            >
+              Better design,
+              <Br /> better experience
+            </Heading>
+            <Text color="muted" fontSize="lg" mt="4">
+              We believe that building a product should be fun and rewarding.
+              Our mission is to provide you with the best tools to make that
+              happen.
+            </Text>
+          </Box>
+          <Box flex="1">
+            <Heading
+              as="h1"
+              fontWeight={600}
+              sx={{
+                fontSize: "2rem",
+              }}
+            >
+              Connect With Us
+            </Heading>
+            <Text color="muted" fontSize="lg" mt="4">
+              We believe that building a product should be fun and rewarding.
+              Our mission is to provide you with the best tools to make that
+              happen.
+            </Text>
+            {/* social links */}
+            <HStack mt="8" spacing="4">
+              <Link href="https://twitter.com/saas_js">
+                <Icon
+                  as={FiTwitter}
+                  boxSize="10"
+                  color="gray.500"
+                  sx={{
+                    padding: "10px",
+                    borderRadius: "50%",
+                    border: "1px solid #004c4c",
+                    ":hover": {
+                      bg: "#004c4c",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+              <Link href="https://facebook.com/saas-js">
+                <Icon
+                  as={FiFacebook}
+                  boxSize="10"
+                  color="gray.500"
+                  sx={{
+                    padding: "10px",
+                    borderRadius: "50%",
+                    border: "1px solid #004c4c",
+                    ":hover": {
+                      bg: "#004c4c",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+              <Link
+                href="
+              https://instagram.com/saas-js"
+              >
+                <Icon
+                  as={FiInstagram}
+                  boxSize="10"
+                  color="gray.500"
+                  sx={{
+                    padding: "10px",
+                    borderRadius: "50%",
+                    border: "1px solid #004c4c",
+                    ":hover": {
+                      bg: "#004c4c",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+              <Link
+                href="
+              https://linkedin.com/saas-js"
+              >
+                <Icon
+                  as={FiLinkedin}
+                  boxSize="10"
+                  color="gray.500"
+                  sx={{
+                    padding: "6px",
+                    borderRadius: "46%",
+                    border: "1px solid #004c4c",
+                    ":hover": {
+                      bg: "#004c4c",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+            </HStack>
+          </Box>
+        </Stack>
+      </Container>
     </Box>
   );
 };
 
 const HighlightsSection = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
-
+  const { colorMode } = useColorMode();
+  const HighlightsItems = [
+    {
+      title: "Core components",
+      description:
+        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
+      image:
+        "https://cdn.educba.com/academy/wp-content/uploads/2018/12/What-is-Software-Development-3.jpg",
+    },
+    {
+      title: "Core components",
+      description:
+        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9FfhtPsXcSWbQmfHqTkve3DmOHZI_2Gc8uk-h0YMaLIs0vW1xDWaD06X47FLBhA116PE&usqp=CAU",
+    },
+    {
+      title: "Core components",
+      description:
+        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROCOFpKHTPDru2q1BCvSheKmglmnEE6XRdGw&s",
+    },
+  ];
   return (
-    <Highlights>
-      <HighlightsItem colSpan={[1, null, 2]} title="Core components">
-        <VStack alignItems="flex-start" spacing="8">
-          <Text color="muted" fontSize="xl">
-            Get started for free with <Em>30+ open source components</Em>.
-            Including authentication screens with Clerk, Supabase and Magic.
-            Fully functional forms with React Hook Form. Data tables with React
-            Table.
-          </Text>
-
-          <Flex
-            rounded="full"
-            borderWidth="1px"
-            flexDirection="row"
-            alignItems="center"
-            py="1"
-            ps="8"
-            pe="2"
-            bg="primary.900"
-            _dark={{ bg: "gray.900" }}
-          >
-            <Box>
-              <Text color="yellow.400" display="inline">
-                yarn add
-              </Text>{" "}
-              <Text color="cyan.300" display="inline">
-                @saas-ui/react
-              </Text>
-            </Box>
-            <IconButton
-              icon={hasCopied ? <FiCheck /> : <FiCopy />}
-              aria-label="Copy install command"
-              onClick={onCopy}
-              variant="ghost"
-              ms="4"
-              isRound
-              color="white"
-            />
-          </Flex>
-        </VStack>
-      </HighlightsItem>
-      <HighlightsItem title="Solid foundations">
-        <Text color="muted" fontSize="lg">
-          We don&apos;t like to re-invent the wheel, neither should you. We
-          selected the most productive and established tools in the scene and
-          build Saas UI on top of it.
-        </Text>
-      </HighlightsItem>
-      <HighlightsTestimonialItem
-        name="Renata Alink"
-        description="Founder"
-        avatar="/static/images/avatar.jpg"
-        gradient={["pink.200", "purple.500"]}
-      >
-        “Saas UI helped us set up a beautiful modern UI in no time. It saved us
-        hundreds of hours in development time and allowed us to focus on
-        business logic for our specific use-case from the start.”
-      </HighlightsTestimonialItem>
-      <HighlightsItem
-        colSpan={[1, null, 2]}
-        title="Start your next idea two steps ahead"
-      >
-        <Text color="muted" fontSize="lg">
-          We took care of all your basic frontend needs, so you can start
-          building functionality that makes your product unique.
-        </Text>
-        <Wrap mt="8">
-          {[
-            "authentication",
-            "navigation",
-            "crud",
-            "settings",
-            "multi-tenancy",
-            "layouts",
-            "billing",
-            "a11y testing",
-            "server-side rendering",
-            "documentation",
-            "onboarding",
-            "storybooks",
-            "theming",
-            "upselling",
-            "unit testing",
-            "feature flags",
-            "responsiveness",
-          ].map((value) => (
-            <Tag
-              key={value}
-              variant="subtle"
-              colorScheme="purple"
-              rounded="full"
-              px="3"
+    <Box id="services">
+      <Container maxW="container.2xl" py="5" mb="20">
+        <Divider />
+        <BackgroundGradient height="100%" zIndex="-1" />
+        <Box
+          display={{ base: "block", md: "flex" }}
+          px="15"
+          mt={10}
+          justifyContent={"space-between"}
+        >
+          <Box>
+            <Heading
+              as="h2"
+              size="lg"
+              color={colorMode === "dark" ? "white" : "#004c4c"}
+              sx={{
+                textTransform: "uppercase",
+              }}
             >
-              {value}
-            </Tag>
+              What We Do
+            </Heading>
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                fontSize: {
+                  base: "2rem",
+                  md: "3rem",
+                },
+                width: {
+                  base: "100%",
+                  md: "70%",
+                },
+              }}
+            >
+              We help to build clients their dream projects
+            </Heading>
+          </Box>
+
+          {/* Explore services */}
+          <ButtonGroup
+            spacing={4}
+            display="flex"
+            justifyContent={["flex-start", null, "flex-end"]}
+            width={["100%", null, "auto"]}
+            alignItems="end"
+            mt="4"
+          >
+            <ButtonLink
+              size="lg"
+              href="/services"
+              sx={{
+                bg: " none",
+                fontSize: "1.5rem",
+                color: colorMode === "light" ? "#004c4c !important" : "white",
+                textDecoration: "underline",
+                ":hover": {
+                  bg: "none",
+                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  textDecoration: "none",
+                },
+              }}
+            >
+              Explore Services
+            </ButtonLink>
+          </ButtonGroup>
+        </Box>
+
+        <Highlights>
+          {HighlightsItems?.map((item, index) => (
+            <HighlightsItem colSpan={[1, null, 2]} title={""} padding={0}>
+              <img
+                src={item.image}
+                alt="hero"
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "fill",
+                  borderRadius: "8px",
+                }}
+              />
+              <Box p="8" borderRadius="8px" mt="4" boxShadow="md" w="100%">
+                <Heading
+                  as="h2"
+                  size="lg"
+                  sx={{
+                    textTransform: "uppercase",
+                    py: "6",
+                  }}
+                >
+                  {item.title}
+                </Heading>
+                <VStack alignItems="flex-start" spacing="8">
+                  <Text color="muted" fontSize="xl">
+                    {item.description}
+                  </Text>
+
+                  {/* <Flex
+              rounded="full"
+              borderWidth="1px"
+              flexDirection="row"
+              alignItems="center"
+              py="1"
+              ps="8"
+              pe="2"
+              bg="primary.900"
+              _dark={{ bg: "gray.900" }}
+            >
+              <Box>
+                <Text color="yellow.400" display="inline">
+                  yarn add
+                </Text>{" "}
+                <Text color="cyan.300" display="inline">
+                  @saas-ui/react
+                </Text>
+              </Box>
+              <IconButton
+                icon={hasCopied ? <FiCheck /> : <FiCopy />}
+                aria-label="Copy install command"
+                onClick={onCopy}
+                variant="ghost"
+                ms="4"
+                isRound
+                color="white"
+              />
+            </Flex> */}
+                </VStack>
+              </Box>
+            </HighlightsItem>
           ))}
-        </Wrap>
-      </HighlightsItem>
-    </Highlights>
+
+          {/* <HighlightsItem colSpan={[1, null, 2]} title="Core components">
+          <Text color="muted" fontSize="lg">
+            We don&apos;t like to re-invent the wheel, neither should you. We
+            selected the most productive and established tools in the scene and
+            build Saas UI on top of it.
+          </Text>
+        </HighlightsItem>
+        <HighlightsTestimonialItem
+          name="Renata Alink"
+          description="Founder"
+          avatar="/static/images/avatar.jpg"
+          gradient={["pink.200", "purple.500"]}
+        >
+          “Saas UI helped us set up a beautiful modern UI in no time. It saved
+          us hundreds of hours in development time and allowed us to focus on
+          business logic for our specific use-case from the start.”
+        </HighlightsTestimonialItem>
+        <HighlightsItem
+          colSpan={[1, null, 2]}
+          title="Start your next idea two steps ahead"
+        >
+          <Text color="muted" fontSize="lg">
+            We took care of all your basic frontend needs, so you can start
+            building functionality that makes your product unique.
+          </Text>
+          <Wrap mt="8">
+            {[
+              "authentication",
+              "navigation",
+              "crud",
+              "settings",
+              "multi-tenancy",
+              "layouts",
+              "billing",
+              "a11y testing",
+              "server-side rendering",
+              "documentation",
+              "onboarding",
+              "storybooks",
+              "theming",
+              "upselling",
+              "unit testing",
+              "feature flags",
+              "responsiveness",
+            ].map((value) => (
+              <Tag
+                key={value}
+                variant="subtle"
+                colorScheme="purple"
+                rounded="full"
+                px="3"
+              >
+                {value}
+              </Tag>
+            ))}
+          </Wrap>
+        </HighlightsItem> */}
+        </Highlights>
+      </Container>
+    </Box>
   );
 };
 
@@ -464,16 +729,16 @@ const FaqSection = () => {
 
 export default Home;
 
-export async function getStaticProps() {
-  return {
-    props: {
-      announcement: {
-        title: "Support us by becoming a stargazer! 🚀 ",
-        description:
-          '<img src="https://img.shields.io/github/stars/saas-js/saas-ui.svg?style=social&label=Star" />',
-        href: "https://github.com/saas-js/saas-ui",
-        action: false,
-      },
-    },
-  };
-}
+// export async function getStaticProps() {
+//   return {
+//     props: {
+//       announcement: {
+//         title: "Support us by becoming a stargazer! 🚀 ",
+//         description:
+//           '<img src="https://img.shields.io/github/stars/saas-js/saas-ui.svg?style=social&label=Star" />',
+//         href: "https://github.com/saas-js/saas-ui",
+//         action: false,
+//       },
+//     },
+//   };
+// }

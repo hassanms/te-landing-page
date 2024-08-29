@@ -12,10 +12,13 @@ import { useScrollSpy } from "hooks/use-scrollspy";
 import { MobileNavButton } from "components/mobile-nav";
 import { MobileNavContent } from "components/mobile-nav";
 import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/react";
 
 import ThemeToggle from "./theme-toggle";
 
 const Navigation: React.FC = () => {
+  const { colorMode } = useColorMode();
+  console.log(colorMode);
   const mobileNav = useDisclosure();
   const router = useRouter();
   const activeId = useScrollSpy(
@@ -35,7 +38,7 @@ const Navigation: React.FC = () => {
 
   return (
     <HStack spacing="2" flexShrink={0}>
-      {siteConfig.header.links.map(({ href, id, ...props }, i) => {
+      {siteConfig.header.links.map(({ href, id, variant, ...props }, i) => {
         return (
           <NavLink
             display={["none", null, "block"]}
@@ -48,6 +51,16 @@ const Navigation: React.FC = () => {
               )
             }
             {...props}
+            sx={{
+              background: variant === "varient" ? "#185651" : "",
+              color: variant === "varient" ? "white" : "",
+              "&:hover": {
+                color:
+                  variant === "varient" || colorMode === "dark"
+                    ? "white"
+                    : "#185651",
+              },
+            }}
           >
             {props.label}
           </NavLink>

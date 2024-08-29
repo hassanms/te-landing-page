@@ -24,6 +24,7 @@ const siteConfig = {
         label: "Services",
       },
       {
+        id: "portfolio",
         label: "Portfolio",
       },
       {

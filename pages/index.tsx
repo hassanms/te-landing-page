@@ -76,7 +76,7 @@ const Home: NextPage = () => {
         <HeroSection />
         <AboutUsSection />
         <HighlightsSection />
-
+        <Portfolio />
         <FeaturesSection />
 
         <TestimonialsSection />
@@ -459,6 +459,230 @@ const HighlightsSection = () => {
         <Highlights>
           {HighlightsItems?.map((item, index) => (
             <HighlightsItem colSpan={[1, null, 2]} title={""} padding={0}>
+              <img
+                src={item.image}
+                alt="hero"
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "fill",
+                  borderRadius: "8px",
+                }}
+              />
+              <Box p="8" borderRadius="8px" mt="4" boxShadow="md" w="100%">
+                <Heading
+                  as="h2"
+                  size="lg"
+                  sx={{
+                    textTransform: "uppercase",
+                    py: "6",
+                  }}
+                >
+                  {item.title}
+                </Heading>
+                <VStack alignItems="flex-start" spacing="8">
+                  <Text color="muted" fontSize="xl">
+                    {item.description}
+                  </Text>
+
+                  {/* <Flex
+              rounded="full"
+              borderWidth="1px"
+              flexDirection="row"
+              alignItems="center"
+              py="1"
+              ps="8"
+              pe="2"
+              bg="primary.900"
+              _dark={{ bg: "gray.900" }}
+            >
+              <Box>
+                <Text color="yellow.400" display="inline">
+                  yarn add
+                </Text>{" "}
+                <Text color="cyan.300" display="inline">
+                  @saas-ui/react
+                </Text>
+              </Box>
+              <IconButton
+                icon={hasCopied ? <FiCheck /> : <FiCopy />}
+                aria-label="Copy install command"
+                onClick={onCopy}
+                variant="ghost"
+                ms="4"
+                isRound
+                color="white"
+              />
+            </Flex> */}
+                </VStack>
+              </Box>
+            </HighlightsItem>
+          ))}
+
+          {/* <HighlightsItem colSpan={[1, null, 2]} title="Core components">
+          <Text color="muted" fontSize="lg">
+            We don&apos;t like to re-invent the wheel, neither should you. We
+            selected the most productive and established tools in the scene and
+            build Saas UI on top of it.
+          </Text>
+        </HighlightsItem>
+        <HighlightsTestimonialItem
+          name="Renata Alink"
+          description="Founder"
+          avatar="/static/images/avatar.jpg"
+          gradient={["pink.200", "purple.500"]}
+        >
+          “Saas UI helped us set up a beautiful modern UI in no time. It saved
+          us hundreds of hours in development time and allowed us to focus on
+          business logic for our specific use-case from the start.”
+        </HighlightsTestimonialItem>
+        <HighlightsItem
+          colSpan={[1, null, 2]}
+          title="Start your next idea two steps ahead"
+        >
+          <Text color="muted" fontSize="lg">
+            We took care of all your basic frontend needs, so you can start
+            building functionality that makes your product unique.
+          </Text>
+          <Wrap mt="8">
+            {[
+              "authentication",
+              "navigation",
+              "crud",
+              "settings",
+              "multi-tenancy",
+              "layouts",
+              "billing",
+              "a11y testing",
+              "server-side rendering",
+              "documentation",
+              "onboarding",
+              "storybooks",
+              "theming",
+              "upselling",
+              "unit testing",
+              "feature flags",
+              "responsiveness",
+            ].map((value) => (
+              <Tag
+                key={value}
+                variant="subtle"
+                colorScheme="purple"
+                rounded="full"
+                px="3"
+              >
+                {value}
+              </Tag>
+            ))}
+          </Wrap>
+        </HighlightsItem> */}
+        </Highlights>
+      </Container>
+    </Box>
+  );
+};
+const Portfolio = () => {
+  const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
+  const { colorMode } = useColorMode();
+  const HighlightsItems = [
+    {
+      title: "Core components",
+      description:
+        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
+      image:
+        "https://agency.demo.nextjstemplates.com/images/portfolio/portfolio-01.jpg",
+    },
+    {
+      title: "Core components",
+      description:
+        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
+      image:
+        "https://agency.demo.nextjstemplates.com/images/portfolio/portfolio-02.jpg",
+    },
+    {
+      title: "Core components",
+      description:
+        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
+      image:
+        "https://agency.demo.nextjstemplates.com/images/portfolio/portfolio-03.jpg",
+    },
+  ];
+  return (
+    <Box id="portfolio">
+      <Container maxW="container.2xl" py="5" mb="20">
+        <Divider />
+        <BackgroundGradient height="100%" zIndex="-1" />
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={"4"}
+          mt={10}
+        >
+          <Heading
+            as="h2"
+            size="lg"
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+          >
+            Creative Portfolio
+          </Heading>
+          <Heading
+            as="h1"
+            mt="2"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+
+              fontSize: {
+                base: "2rem",
+                md: "3rem",
+              },
+              width: "100%",
+            }}
+          >
+            Recent Works
+          </Heading>
+          <Text
+            color="muted"
+            fontSize="xl"
+            fontWeight={"500"}
+            mt="4"
+            width={"60%"}
+            align={"center"}
+          >
+            We believe that building a product should be fun and rewarding. Our
+            mission is to provide you with the best tools to make that happen.
+          </Text>
+          <Button
+            size="lg"
+            mt={"10"}
+            bg={"#004c4c"}
+            sx={{
+              fontSize: "1rem",
+              color: "white",
+              borderRadius: "30px",
+              padding: "0.5rem 1.8rem",
+              "&:hover": {
+                bg: "#004c4c",
+              },
+            }}
+          >
+            All
+          </Button>
+        </Box>
+
+        {/* Explore services */}
+        <Highlights>
+          {HighlightsItems?.map((item, index) => (
+            <HighlightsItem
+              colSpan={[1, null, 3]}
+              gap={"4"}
+              title={""}
+              padding={0}
+              border={"none"}
+            >
               <img
                 src={item.image}
                 alt="hero"

@@ -33,7 +33,7 @@ const siteConfig = {
       },
       {
         label: "Get a Quote",
-        href: "/signup",
+        href: "#",
         variant: "varient",
       },
     ],

@@ -141,7 +141,7 @@ const HeroSection: React.FC = () => {
               <ButtonGroup spacing={4} alignItems="center">
                 <ButtonLink
                   size="lg"
-                  href="/signup"
+                  href=""
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
@@ -464,7 +464,12 @@ const HighlightsSection = () => {
 
         <Highlights>
           {HighlightsItems?.map((item, index) => (
-            <HighlightsItem colSpan={[1, null, 2]} title={""} padding={0}>
+            <HighlightsItem
+              key={index}
+              colSpan={[1, null, 2]}
+              title={""}
+              padding={0}
+            >
               <img
                 src={item.image}
                 alt="hero"
@@ -682,6 +687,7 @@ const Portfolio = () => {
         <Highlights>
           {HighlightsItems?.map((item, index) => (
             <HighlightsItem
+              key={index}
               colSpan={[1, null, 3]}
               gap={"4"}
               title={""}
@@ -1198,7 +1204,80 @@ const TestimonialsSection = () => {
 };
 
 const Team = () => {
-  return <Teams />;
+  const { colorMode } = useColorMode();
+  return (
+    <Box id="services">
+      <Container maxW="container.2xl" py="5">
+        <Divider />
+        <Box
+          display={{ base: "block", md: "flex" }}
+          px="15"
+          mt={10}
+          justifyContent={"space-between"}
+        >
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="100%"
+          >
+            <Heading
+              as="h2"
+              size="lg"
+              color={colorMode === "dark" ? "white" : "#004c4c"}
+              sx={{
+                textTransform: "uppercase",
+              }}
+            >
+              TEAM
+            </Heading>
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                fontSize: {
+                  base: "2rem",
+                  md: "3rem",
+                },
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              Our Awesome Team
+            </Heading>
+            <Text
+              color="gray.400"
+              fontSize="xl"
+              fontWeight={"500"}
+              mt="4"
+              width={"60%"}
+              align={"center"}
+            >
+              There are many variations of passages of Lorem Ipsum available but
+              the majority have suffered alteration in some form.
+            </Text>
+          </Box>
+
+          {/* Explore services */}
+        </Box>
+        <Grid
+          templateColumns={["repeat(1, 1fr)", null, "repeat(3, 1fr)"]}
+          gap={6}
+          mt="14"
+          w="100%"
+        >
+          <Teams />
+          <Teams />
+          <Teams />
+        </Grid>
+      </Container>
+    </Box>
+  );
 };
 
 const PricingSection = () => {

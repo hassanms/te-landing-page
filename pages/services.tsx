@@ -13,7 +13,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Highlights, HighlightsItem } from "components/highlights";
 import { FaChevronRight } from "react-icons/fa";
 
-const services = () => {
+const Services = () => {
   const { colorMode } = useColorMode();
 
   const HighlightsItems = [
@@ -73,7 +73,7 @@ const services = () => {
             </Text>
           </Box>
 
-          {/* Explore services */}
+          {/* Explore Services */}
           <VStack
             spacing={4}
             display="flex"
@@ -121,7 +121,12 @@ const services = () => {
 
         <Highlights>
           {HighlightsItems?.map((item, index) => (
-            <HighlightsItem colSpan={[1, null, 2]} title={""} padding={0}>
+            <HighlightsItem
+              key={index}
+              colSpan={[1, null, 2]}
+              title={""}
+              padding={0}
+            >
               <img
                 src={item.image}
                 alt="hero"
@@ -245,4 +250,4 @@ const services = () => {
   );
 };
 
-export default services;
+export default Services;

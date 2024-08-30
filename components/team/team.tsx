@@ -18,17 +18,17 @@ const Teams = () => {
         sx={{
           paddingBottom: {
             base: "80%",
-            md: "40%",
-            lg: "30%",
-            xl: "20%",
+            md: "140%",
+            lg: "120%",
+            xl: "100%",
           },
           paddingTop: "0px",
           height: "0",
           width: {
             base: "80%",
-            md: "50%",
-            lg: "30%",
-            xl: "20%",
+            md: "100%",
+            lg: "100%",
+            xl: "80%",
           },
           position: "relative",
           overflow: "hidden",

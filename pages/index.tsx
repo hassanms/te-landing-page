@@ -19,6 +19,10 @@ import {
   Flex,
   useColorMode,
   Divider,
+  Grid,
+  Avatar,
+  Img,
+  Input,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 
@@ -52,6 +56,7 @@ import { Pricing } from "components/pricing/pricing";
 
 import { ButtonLink } from "components/button-link/button-link";
 import { Testimonial, Testimonials } from "components/testimonials";
+import Teams from "components/team/team";
 
 import faq from "data/faq";
 import testimonials from "data/testimonials";
@@ -64,6 +69,7 @@ import {
 } from "components/highlights";
 
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { FaLinkedin } from "react-icons/fa";
 
 const Home: NextPage = () => {
   return (
@@ -77,13 +83,14 @@ const Home: NextPage = () => {
         <AboutUsSection />
         <HighlightsSection />
         <Portfolio />
-        <FeaturesSection />
+        <SocialProofSection />
+        {/* <FeaturesSection /> */}
 
         <TestimonialsSection />
-
+        <Team />
         {/* <PricingSection /> */}
 
-        <FaqSection />
+        {/* <FaqSection /> */}
       </Box>
     </Box>
   );
@@ -389,9 +396,8 @@ const HighlightsSection = () => {
   ];
   return (
     <Box id="services">
-      <Container maxW="container.2xl" py="5" mb="20">
+      <Container maxW="container.2xl" py="5">
         <Divider />
-        <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}
           px="15"
@@ -611,7 +617,6 @@ const Portfolio = () => {
     <Box id="portfolio">
       <Container maxW="container.2xl" py="5" mb="20">
         <Divider />
-        <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -806,6 +811,261 @@ const Portfolio = () => {
   );
 };
 
+const SocialProofSection = () => {
+  const { colorMode } = useColorMode();
+  const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
+  return (
+    <Box
+      id="social-proof"
+      py="20"
+      bg="#004c4c"
+      color="white"
+      textAlign="center"
+      height={[null, null, "500px"]}
+    >
+      <Container maxW="container.2xl">
+        <Box
+          position={"relative"}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="4"
+        >
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+          >
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+
+                fontSize: {
+                  base: "2rem",
+                  md: "3rem",
+                },
+                width: "100%",
+              }}
+            >
+              Some of Our Happy Clients
+            </Heading>
+            <Text
+              color="gray.400"
+              fontSize="xl"
+              fontWeight={"500"}
+              mt="4"
+              width={"60%"}
+              align={"center"}
+            >
+              There are many variations of passages of Lorem Ipsum available but
+              the majority have suffered alteration in some form.
+            </Text>
+            <Grid
+              templateColumns={["repeat(2, 1fr)", null, "repeat(4, 1fr)"]}
+              gap={6}
+              mt="14"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "muted",
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <FaLinkedin
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    color: "gray.400",
+                  }}
+                />
+                LinkedIn
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "muted",
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <FaLinkedin
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    color: "gray.400",
+                  }}
+                />
+                LinkedIn
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "muted",
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <FaLinkedin
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    color: "gray.400",
+                  }}
+                />
+                LinkedIn
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "muted",
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <FaLinkedin
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    color: "gray.400",
+                  }}
+                />
+                LinkedIn
+              </Box>
+            </Grid>
+          </Box>
+          {/* Absolute Subscrite newletter with imput and subscribe button  */}
+          <Box
+            position={"absolute"}
+            top={"100%"}
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            gap={"4"}
+            mt={"20"}
+            width={"90%"}
+            sx={{
+              // background image with gradient
+              backgroundImage:
+                "linear-gradient(to right, #003c4c, #002c4c, #005c4c)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              padding: "30px",
+              borderRadius: "20px",
+              boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Heading
+              as="h2"
+              mt={"10"}
+              color={"white"}
+              sx={{
+                fontSize: {
+                  base: "1.5rem",
+                  md: "2rem",
+                },
+                width: "70%",
+              }}
+            >
+              Subscribe our newsletter to receive future updates
+            </Heading>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={"4"}
+              mt={"10"}
+              width={[null, null, "60%"]}
+              position={"relative"}
+            >
+              <Input
+                placeholder="Enter your email"
+                sx={{
+                  width: "100%",
+                  padding: {
+                    base: "1.5rem 1.5rem",
+                    md: "40px",
+                  },
+
+                  borderRadius: "40px",
+                  fontSize: {
+                    base: "1rem",
+                    md: "1.5rem",
+                  },
+
+                  bg: "#66b2b2",
+                }}
+              />
+              <Button
+                position={[null, null, "absolute"]}
+                zIndex={"1"}
+                top={"10%"}
+                right={"2%"}
+                size="lg"
+                bg={"white"}
+                sx={{
+                  fontSize: {
+                    base: "1rem",
+                    md: "1.5rem",
+                  },
+
+                  color: "#004c4c",
+                  borderRadius: "30px",
+                  padding: {
+                    base: "0.5rem 1.8rem",
+                    md: "2rem 2rem",
+                  },
+
+                  boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.5)",
+                  "&:hover": {
+                    bg: "#004c4c",
+                    color: "white",
+                  },
+                }}
+              >
+                Subscribe Now
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
+  );
+};
+
 const FeaturesSection = () => {
   return (
     <Features
@@ -935,6 +1195,10 @@ const TestimonialsSection = () => {
       </>
     </Testimonials>
   );
+};
+
+const Team = () => {
+  return <Teams />;
 };
 
 const PricingSection = () => {

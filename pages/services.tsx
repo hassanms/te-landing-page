@@ -132,14 +132,7 @@ const services = () => {
                   borderRadius: "8px",
                 }}
               />
-              <Box
-                p="8"
-                bg="white"
-                borderRadius="8px"
-                mt="4"
-                boxShadow="md"
-                w="100%"
-              >
+              <Box p="8" borderRadius="8px" mt="4" boxShadow="md" w="100%">
                 <Heading
                   as="h2"
                   size="lg"

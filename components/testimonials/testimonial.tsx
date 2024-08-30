@@ -2,6 +2,7 @@ import {
   Avatar,
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   CardProps,
   Heading,
@@ -9,10 +10,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
-import { FaTwitter } from "react-icons/fa";
+import { FaLaughWink, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 export interface TestimonialProps extends CardProps {
   name: string;
+  company: string;
   description: React.ReactNode;
   avatar: string;
   href?: string;
@@ -23,6 +25,7 @@ export const Testimonial = ({
   name,
   description,
   avatar,
+  company,
   href,
   children,
   ...rest
@@ -30,12 +33,19 @@ export const Testimonial = ({
   return (
     <Card position="relative" {...rest}>
       <CardHeader display="flex" flexDirection="row" alignItems="center">
-        <Avatar name={name} src={avatar} size="sm" bg="transparent" />
-        <Stack spacing="1" ms="4">
-          <Heading size="sm">{name}</Heading>
-          <Text color="muted" size="xs">
-            {description}
-          </Text>
+        <Stack
+          spacing="3"
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+        >
+          <FaLinkedinIn
+            size="2em"
+            style={{
+              color: "#0077b5",
+            }}
+          />
+          <Heading size="sm">{company}</Heading>
         </Stack>
       </CardHeader>
       <CardBody>
@@ -47,6 +57,15 @@ export const Testimonial = ({
           </Link>
         )}
       </CardBody>
+      <CardFooter display="flex" flexDirection="row" alignItems="center">
+        <Avatar name={name} src={avatar} size="sm" bg="transparent" />
+        <Stack spacing="1" ms="4">
+          <Heading size="sm">{name}</Heading>
+          <Text color="muted" size="xs">
+            {description}
+          </Text>
+        </Stack>
+      </CardFooter>
     </Card>
   );
 };

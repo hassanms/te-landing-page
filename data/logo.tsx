@@ -3,11 +3,15 @@ import {
   chakra,
   HTMLChakraProps,
   Text,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
+import lightLogo from "../public/assets/logo/logo.png";
+import darkLogo from "../public/assets/logo/logo (1).png";
 
 export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
   const color = useColorModeValue("#231f20", "#fff");
+  const { colorMode } = useColorMode();
   return (
     <Box
       sx={{
@@ -18,12 +22,17 @@ export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
       }}
     >
       <img
-        src="https://ca.slack-edge.com/T03GTEP0VHP-U04ESJG2S2J-784d9253e312-512"
+        src={
+          colorMode === "light"
+            ? "/assets/logo/logo.png"
+            : "/assets/logo/logo (1).png"
+        }
         alt="Logo"
         style={{
-          width: "40px",
-          height: "40px",
-          borderRadius: "50%",
+          width: "100px",
+          height: "30px",
+          objectFit: "contain",
+          fontSize: "0.25rem",
         }}
       />
     </Box>

@@ -31,6 +31,7 @@ import { Hero } from "components/hero";
 import { Link, Br } from "@saas-ui/react";
 import { Em } from "components/typography";
 import { NextjsLogo, ChakraLogo } from "components/logos";
+import bipCards from "../components/Bipcards";
 import {
   FiArrowRight,
   FiBox,
@@ -170,6 +171,50 @@ const HeroSection: React.FC = () => {
                 </ButtonLink> */}
               </ButtonGroup>
             </FallInPlace>
+            <VStack
+              flex="1"
+              spacing="2"
+              alignItems="flex-start"
+              display={{ base: "none", lg: "flex" }}
+              mt="10"
+            >
+              <Text
+                fontSize="sm"
+                color="muted"
+                fontWeight="medium"
+                maxW="lg"
+                textAlign="left"
+                display={"flex"}
+                alignItems={"center"}
+                width={"100%"}
+              >
+                Trusted By the Best{"  "}
+                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
+              </Text>
+              <FallInPlace delay={0.6}>
+                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                  <img
+                    src="/assets/clients/Atarim.svg"
+                    width={100}
+                    height={262}
+                    alt="Screenshot of a ListPage in Saas UI Pro"
+                  />
+                  <img
+                    src="/assets/clients/krypto_labs_logo.jpeg"
+                    width={100}
+                    height={262}
+                    alt="Screenshot of a ListPage in Saas UI Pro"
+                  />
+                  <img
+                    src="/assets/clients/farmin-logo-dark.png"
+                    width={100}
+                    height={462}
+                    style={{ objectFit: "contain" }}
+                    alt="Screenshot of a ListPage in Saas UI Pro"
+                  />
+                </Box>
+              </FallInPlace>
+            </VStack>
           </Hero>
           <Box
             height="600px"
@@ -834,7 +879,7 @@ const SocialProofSection = () => {
       bg="#008080"
       color="white"
       textAlign="center"
-      height={[null, null, "500px"]}
+      height={[null, null, null]}
     >
       <Container maxW="container.xl">
         <Box
@@ -881,8 +926,8 @@ const SocialProofSection = () => {
               the majority have suffered alteration in some form.
             </Text>
             <Grid
-              templateColumns={["repeat(2, 1fr)", null, "repeat(4, 1fr)"]}
-              gap={6}
+              templateColumns={["repeat(2, 1fr)", null, "repeat(4, 1fr 1fr)"]}
+              gap={10}
               mt="14"
               justifyContent="center"
               alignItems="center"
@@ -900,14 +945,14 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/Artis.png"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
               </Box>
               <Box
                 sx={{
@@ -923,14 +968,53 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/Atarim.svg"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
+              </Box>
+              {/* <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <bipCards />
+              </Box> */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/POPCARD_4.png_v=1718360510&width=370"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
               </Box>
               <Box
                 sx={{
@@ -946,14 +1030,14 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/Sprintzeal_Logo.webp"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
               </Box>
               <Box
                 sx={{
@@ -969,14 +1053,175 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/crystal_ball.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/farmin-logo-dark.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/ibatu.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/jarvis-logo.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/krypto_labs_logo.jpeg"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/logo-black-small.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/republic_power_logo.jpeg"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
               </Box>
             </Grid>
           </Box>

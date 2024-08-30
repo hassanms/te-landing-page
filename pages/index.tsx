@@ -84,13 +84,13 @@ const Home: NextPage = () => {
         <HighlightsSection />
         <Portfolio />
         <SocialProofSection />
-        {/* <FeaturesSection /> */}
+        <FeaturesSection />
 
         <TestimonialsSection />
         <Team />
         {/* <PricingSection /> */}
 
-        {/* <FaqSection /> */}
+        <FaqSection />
       </Box>
     </Box>
   );
@@ -102,7 +102,7 @@ const HeroSection: React.FC = () => {
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.2xl" pt={{ base: 40, lg: 20 }} pb="40">
+      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
         <Stack
           direction={{ base: "column", lg: "row" }}
           alignItems="flex-start"
@@ -194,7 +194,7 @@ const HeroSection: React.FC = () => {
         </Stack>
       </Container>
 
-      {/* <Features
+      <Features
         id="benefits"
         columns={[1, 2, 4]}
         iconSize={4}
@@ -234,7 +234,7 @@ const HeroSection: React.FC = () => {
           },
         ]}
         reveal={FallInPlace}
-      /> */}
+      />
     </Box>
   );
 };
@@ -244,7 +244,7 @@ const AboutUsSection = () => {
 
   return (
     <Box id="about">
-      <Container maxW="container.2xl" py="5" mb="20">
+      <Container maxW="container.xl" py="5" mb="20">
         <Stack direction={["column", null, "row"]} spacing="8">
           <Box flex="1">
             <Heading
@@ -396,7 +396,7 @@ const HighlightsSection = () => {
   ];
   return (
     <Box id="services">
-      <Container maxW="container.2xl" py="5">
+      <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -421,7 +421,7 @@ const HighlightsSection = () => {
               sx={{
                 fontSize: {
                   base: "2rem",
-                  md: "3rem",
+                  md: "2rem",
                 },
                 width: {
                   base: "100%",
@@ -485,14 +485,13 @@ const HighlightsSection = () => {
                   as="h2"
                   size="lg"
                   sx={{
-                    textTransform: "uppercase",
                     py: "6",
                   }}
                 >
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="xl">
+                  <Text color="muted" fontSize="lg">
                     {item.description}
                   </Text>
 
@@ -536,57 +535,65 @@ const HighlightsSection = () => {
             selected the most productive and established tools in the scene and
             build Saas UI on top of it.
           </Text>
-        </HighlightsItem>
-        <HighlightsTestimonialItem
-          name="Renata Alink"
-          description="Founder"
-          avatar="/static/images/avatar.jpg"
-          gradient={["pink.200", "purple.500"]}
-        >
-          “Saas UI helped us set up a beautiful modern UI in no time. It saved
-          us hundreds of hours in development time and allowed us to focus on
-          business logic for our specific use-case from the start.”
-        </HighlightsTestimonialItem>
-        <HighlightsItem
-          colSpan={[1, null, 2]}
-          title="Start your next idea two steps ahead"
-        >
-          <Text color="muted" fontSize="lg">
-            We took care of all your basic frontend needs, so you can start
-            building functionality that makes your product unique.
-          </Text>
-          <Wrap mt="8">
-            {[
-              "authentication",
-              "navigation",
-              "crud",
-              "settings",
-              "multi-tenancy",
-              "layouts",
-              "billing",
-              "a11y testing",
-              "server-side rendering",
-              "documentation",
-              "onboarding",
-              "storybooks",
-              "theming",
-              "upselling",
-              "unit testing",
-              "feature flags",
-              "responsiveness",
-            ].map((value) => (
-              <Tag
-                key={value}
-                variant="subtle"
-                colorScheme="purple"
-                rounded="full"
-                px="3"
-              >
-                {value}
-              </Tag>
-            ))}
-          </Wrap>
         </HighlightsItem> */}
+          <HighlightsTestimonialItem
+            name="Renata Alink"
+            description="Founder"
+            avatar="/static/images/avatar.jpg"
+            gradient={["pink.200", "purple.500"]}
+            company="Tech Emulsion"
+            colSpan={[1, null, 2]}
+          >
+            “Saas UI helped us set up a beautiful modern UI in no time. It saved
+            us hundreds of hours in development time and allowed us to focus on
+            business logic for our specific use-case from the start.”
+          </HighlightsTestimonialItem>
+          <HighlightsItem
+            colSpan={[1, null, 2, 3, 4]}
+            title="Start your next idea two steps ahead"
+          >
+            <Text color="muted" fontSize="lg">
+              We took care of all your basic frontend needs, so you can start
+              building functionality that makes your product unique.
+            </Text>
+            <Wrap mt="8">
+              {[
+                "authentication",
+                "navigation",
+                "crud",
+                "settings",
+                "multi-tenancy",
+                "layouts",
+                "billing",
+                "a11y testing",
+                "server-side rendering",
+                "documentation",
+                "onboarding",
+                "storybooks",
+                "theming",
+                "upselling",
+                "unit testing",
+                "feature flags",
+                "responsiveness",
+              ].map((value) => (
+                <Tag
+                  key={value}
+                  variant="subtle"
+                  rounded="full"
+                  px="3"
+                  sx={{
+                    bg: "#b2d8d8",
+                    color: "#004c4c",
+                    "&:hover": {
+                      bg: "#66b2b2",
+                    },
+                  }}
+                >
+                  {value}
+                </Tag>
+              ))}
+            </Wrap>
+          </HighlightsItem>
         </Highlights>
       </Container>
     </Box>
@@ -620,7 +627,7 @@ const Portfolio = () => {
   ];
   return (
     <Box id="portfolio">
-      <Container maxW="container.2xl" py="5" mb="20">
+      <Container maxW="container.xl" py="5" mb="20">
         <Divider />
         <Box
           display={"flex"}
@@ -647,7 +654,7 @@ const Portfolio = () => {
 
               fontSize: {
                 base: "2rem",
-                md: "3rem",
+                md: "2rem",
               },
               width: "100%",
             }}
@@ -656,7 +663,7 @@ const Portfolio = () => {
           </Heading>
           <Text
             color="muted"
-            fontSize="xl"
+            fontSize="lg"
             fontWeight={"500"}
             mt="4"
             width={"60%"}
@@ -716,7 +723,7 @@ const Portfolio = () => {
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="xl">
+                  <Text color="muted" fontSize="lg">
                     {item.description}
                   </Text>
 
@@ -822,14 +829,14 @@ const SocialProofSection = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   return (
     <Box
-      id="social-proof"
+      id="social"
       py="20"
-      bg="#004c4c"
+      bg="#008080"
       color="white"
       textAlign="center"
       height={[null, null, "500px"]}
     >
-      <Container maxW="container.2xl">
+      <Container maxW="container.xl">
         <Box
           position={"relative"}
           display="flex"
@@ -855,7 +862,7 @@ const SocialProofSection = () => {
 
                 fontSize: {
                   base: "2rem",
-                  md: "3rem",
+                  md: "2rem",
                 },
                 width: "100%",
               }}
@@ -864,7 +871,7 @@ const SocialProofSection = () => {
             </Heading>
             <Text
               color="gray.400"
-              fontSize="xl"
+              fontSize="lg"
               fontWeight={"500"}
               mt="4"
               width={"60%"}
@@ -885,7 +892,7 @@ const SocialProofSection = () => {
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -907,7 +914,8 @@ const SocialProofSection = () => {
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
+
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -929,7 +937,8 @@ const SocialProofSection = () => {
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
+
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -951,7 +960,8 @@ const SocialProofSection = () => {
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
+
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -983,8 +993,7 @@ const SocialProofSection = () => {
             width={"90%"}
             sx={{
               // background image with gradient
-              backgroundImage:
-                "linear-gradient(to right, #003c4c, #002c4c, #005c4c)",
+              backgroundColor: "#004c4c",
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -1075,6 +1084,7 @@ const SocialProofSection = () => {
 const FeaturesSection = () => {
   return (
     <Features
+      mt={250}
       id="features"
       title={
         <Heading
@@ -1207,7 +1217,7 @@ const Team = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
-      <Container maxW="container.2xl" py="5">
+      <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -1239,7 +1249,7 @@ const Team = () => {
               sx={{
                 fontSize: {
                   base: "2rem",
-                  md: "3rem",
+                  md: "2rem",
                 },
                 width: "100%",
                 display: "flex",
@@ -1252,7 +1262,7 @@ const Team = () => {
             </Heading>
             <Text
               color="gray.400"
-              fontSize="xl"
+              fontSize="lg"
               fontWeight={"500"}
               mt="4"
               width={"60%"}

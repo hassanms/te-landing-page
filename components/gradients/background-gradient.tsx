@@ -1,7 +1,7 @@
 import { Box, useTheme, useColorModeValue } from "@chakra-ui/react";
 
 export const BackgroundGradient = ({ hideOverlay, ...props }: any) => {
-  const customColors = ["#b2d8d8", "#66b2b2", "#008080", "#006666", "#004c4c"];
+  const customColors = ["#004c4c", "#66b2b2", "#008080", "#006666", "#b2d8d8"];
 
   let fallbackBackground = `radial-gradient(at top left, ${customColors[0]} 10%, transparent 80%), 
                             radial-gradient(at bottom, ${customColors[1]} 0%, transparent 70%), 

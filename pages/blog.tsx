@@ -2,9 +2,24 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-
 import { compareDesc, format, parseISO } from "date-fns";
-
+const allPosts = [
+  {
+    title: "Welcome to the blog",
+    date: "2022-01-01",
+    url: "/blog/welcome-to-the-blog",
+  },
+  {
+    title: "Introducing Contentlayer",
+    date: "2022-01-02",
+    url: "/blog/introducing-contentlayer",
+  },
+  {
+    title: "How to use Contentlayer",
+    date: "2022-01-03",
+    url: "/blog/how-to-use-contentlayer",
+  },
+];
 const Blog: NextPage = ({ posts }: any) => {
   return (
     <div className="mx-auto max-w-2xl py-16 text-center">
@@ -38,9 +53,9 @@ function PostCard(post) {
 
 export default Blog;
 
-// export async function getStaticProps() {
-//   const posts = allPosts.sort((a, b) => {
-//     return compareDesc(new Date(a.date), new Date(b.date))
-//   })
-//   return { props: { posts } }
-// }
+export async function getStaticProps() {
+  const posts = allPosts.sort((a, b) => {
+    return compareDesc(new Date(a.date), new Date(b.date));
+  });
+  return { props: { posts } };
+}

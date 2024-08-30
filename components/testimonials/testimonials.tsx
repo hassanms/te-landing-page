@@ -24,7 +24,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
   const { children, title, columns = [1, null, 2], ...rest } = props;
   const { colorMode } = useColorMode();
   return (
-    <Section {...rest} mt={250}>
+    <Section {...rest}>
       <Heading
         as="h2"
         size="lg"
@@ -41,7 +41,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
       </Heading>
       <Heading
         as="h1"
-        mt="2"
+        mt="5"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -49,7 +49,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
 
           fontSize: {
             base: "2rem",
-            md: "3rem",
+            md: "2rem",
           },
           width: "100%",
         }}
@@ -58,9 +58,9 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
       </Heading>
       <Text
         color="muted"
-        fontSize="xl"
+        fontSize="lg"
         fontWeight={"500"}
-        mt="4"
+        mt="5"
         width={"60%"}
         align={"center"}
         justifyItems={"center"}

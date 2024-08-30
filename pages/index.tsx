@@ -31,6 +31,7 @@ import { Hero } from "components/hero";
 import { Link, Br } from "@saas-ui/react";
 import { Em } from "components/typography";
 import { NextjsLogo, ChakraLogo } from "components/logos";
+import bipCards from "../components/Bipcards";
 import {
   FiArrowRight,
   FiBox,
@@ -84,13 +85,13 @@ const Home: NextPage = () => {
         <HighlightsSection />
         <Portfolio />
         <SocialProofSection />
-        {/* <FeaturesSection /> */}
+        <FeaturesSection />
 
         <TestimonialsSection />
         <Team />
         {/* <PricingSection /> */}
 
-        {/* <FaqSection /> */}
+        <FaqSection />
       </Box>
     </Box>
   );
@@ -102,7 +103,7 @@ const HeroSection: React.FC = () => {
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.2xl" pt={{ base: 40, lg: 20 }} pb="40">
+      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
         <Stack
           direction={{ base: "column", lg: "row" }}
           alignItems="flex-start"
@@ -170,6 +171,50 @@ const HeroSection: React.FC = () => {
                 </ButtonLink> */}
               </ButtonGroup>
             </FallInPlace>
+            <VStack
+              flex="1"
+              spacing="2"
+              alignItems="flex-start"
+              display={{ base: "none", lg: "flex" }}
+              mt="10"
+            >
+              <Text
+                fontSize="sm"
+                color="muted"
+                fontWeight="medium"
+                maxW="lg"
+                textAlign="left"
+                display={"flex"}
+                alignItems={"center"}
+                width={"100%"}
+              >
+                Trusted By the Best{"  "}
+                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
+              </Text>
+              <FallInPlace delay={0.6}>
+                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                  <img
+                    src="/assets/clients/Atarim.svg"
+                    width={100}
+                    height={262}
+                    alt="Screenshot of a ListPage in Saas UI Pro"
+                  />
+                  <img
+                    src="/assets/clients/krypto_labs_logo.jpeg"
+                    width={100}
+                    height={262}
+                    alt="Screenshot of a ListPage in Saas UI Pro"
+                  />
+                  <img
+                    src="/assets/clients/farmin-logo-dark.png"
+                    width={100}
+                    height={462}
+                    style={{ objectFit: "contain" }}
+                    alt="Screenshot of a ListPage in Saas UI Pro"
+                  />
+                </Box>
+              </FallInPlace>
+            </VStack>
           </Hero>
           <Box
             height="600px"
@@ -194,7 +239,7 @@ const HeroSection: React.FC = () => {
         </Stack>
       </Container>
 
-      {/* <Features
+      <Features
         id="benefits"
         columns={[1, 2, 4]}
         iconSize={4}
@@ -234,7 +279,7 @@ const HeroSection: React.FC = () => {
           },
         ]}
         reveal={FallInPlace}
-      /> */}
+      />
     </Box>
   );
 };
@@ -244,7 +289,7 @@ const AboutUsSection = () => {
 
   return (
     <Box id="about">
-      <Container maxW="container.2xl" py="5" mb="20">
+      <Container maxW="container.xl" py="5" mb="20">
         <Stack direction={["column", null, "row"]} spacing="8">
           <Box flex="1">
             <Heading
@@ -396,7 +441,7 @@ const HighlightsSection = () => {
   ];
   return (
     <Box id="services">
-      <Container maxW="container.2xl" py="5">
+      <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -421,7 +466,7 @@ const HighlightsSection = () => {
               sx={{
                 fontSize: {
                   base: "2rem",
-                  md: "3rem",
+                  md: "2rem",
                 },
                 width: {
                   base: "100%",
@@ -485,14 +530,13 @@ const HighlightsSection = () => {
                   as="h2"
                   size="lg"
                   sx={{
-                    textTransform: "uppercase",
                     py: "6",
                   }}
                 >
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="xl">
+                  <Text color="muted" fontSize="lg">
                     {item.description}
                   </Text>
 
@@ -536,57 +580,65 @@ const HighlightsSection = () => {
             selected the most productive and established tools in the scene and
             build Saas UI on top of it.
           </Text>
-        </HighlightsItem>
-        <HighlightsTestimonialItem
-          name="Renata Alink"
-          description="Founder"
-          avatar="/static/images/avatar.jpg"
-          gradient={["pink.200", "purple.500"]}
-        >
-          “Saas UI helped us set up a beautiful modern UI in no time. It saved
-          us hundreds of hours in development time and allowed us to focus on
-          business logic for our specific use-case from the start.”
-        </HighlightsTestimonialItem>
-        <HighlightsItem
-          colSpan={[1, null, 2]}
-          title="Start your next idea two steps ahead"
-        >
-          <Text color="muted" fontSize="lg">
-            We took care of all your basic frontend needs, so you can start
-            building functionality that makes your product unique.
-          </Text>
-          <Wrap mt="8">
-            {[
-              "authentication",
-              "navigation",
-              "crud",
-              "settings",
-              "multi-tenancy",
-              "layouts",
-              "billing",
-              "a11y testing",
-              "server-side rendering",
-              "documentation",
-              "onboarding",
-              "storybooks",
-              "theming",
-              "upselling",
-              "unit testing",
-              "feature flags",
-              "responsiveness",
-            ].map((value) => (
-              <Tag
-                key={value}
-                variant="subtle"
-                colorScheme="purple"
-                rounded="full"
-                px="3"
-              >
-                {value}
-              </Tag>
-            ))}
-          </Wrap>
         </HighlightsItem> */}
+          <HighlightsTestimonialItem
+            name="Renata Alink"
+            description="Founder"
+            avatar="/static/images/avatar.jpg"
+            gradient={["pink.200", "purple.500"]}
+            company="Tech Emulsion"
+            colSpan={[1, null, 2]}
+          >
+            “Saas UI helped us set up a beautiful modern UI in no time. It saved
+            us hundreds of hours in development time and allowed us to focus on
+            business logic for our specific use-case from the start.”
+          </HighlightsTestimonialItem>
+          <HighlightsItem
+            colSpan={[1, null, 2, 3, 4]}
+            title="Start your next idea two steps ahead"
+          >
+            <Text color="muted" fontSize="lg">
+              We took care of all your basic frontend needs, so you can start
+              building functionality that makes your product unique.
+            </Text>
+            <Wrap mt="8">
+              {[
+                "authentication",
+                "navigation",
+                "crud",
+                "settings",
+                "multi-tenancy",
+                "layouts",
+                "billing",
+                "a11y testing",
+                "server-side rendering",
+                "documentation",
+                "onboarding",
+                "storybooks",
+                "theming",
+                "upselling",
+                "unit testing",
+                "feature flags",
+                "responsiveness",
+              ].map((value) => (
+                <Tag
+                  key={value}
+                  variant="subtle"
+                  rounded="full"
+                  px="3"
+                  sx={{
+                    bg: "#b2d8d8",
+                    color: "#004c4c",
+                    "&:hover": {
+                      bg: "#66b2b2",
+                    },
+                  }}
+                >
+                  {value}
+                </Tag>
+              ))}
+            </Wrap>
+          </HighlightsItem>
         </Highlights>
       </Container>
     </Box>
@@ -620,7 +672,7 @@ const Portfolio = () => {
   ];
   return (
     <Box id="portfolio">
-      <Container maxW="container.2xl" py="5" mb="20">
+      <Container maxW="container.xl" py="5" mb="20">
         <Divider />
         <Box
           display={"flex"}
@@ -647,7 +699,7 @@ const Portfolio = () => {
 
               fontSize: {
                 base: "2rem",
-                md: "3rem",
+                md: "2rem",
               },
               width: "100%",
             }}
@@ -656,7 +708,7 @@ const Portfolio = () => {
           </Heading>
           <Text
             color="muted"
-            fontSize="xl"
+            fontSize="lg"
             fontWeight={"500"}
             mt="4"
             width={"60%"}
@@ -716,7 +768,7 @@ const Portfolio = () => {
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="xl">
+                  <Text color="muted" fontSize="lg">
                     {item.description}
                   </Text>
 
@@ -822,14 +874,14 @@ const SocialProofSection = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   return (
     <Box
-      id="social-proof"
+      id="social"
       py="20"
-      bg="#004c4c"
+      bg="#008080"
       color="white"
       textAlign="center"
-      height={[null, null, "500px"]}
+      height={[null, null, null]}
     >
-      <Container maxW="container.2xl">
+      <Container maxW="container.xl">
         <Box
           position={"relative"}
           display="flex"
@@ -855,7 +907,7 @@ const SocialProofSection = () => {
 
                 fontSize: {
                   base: "2rem",
-                  md: "3rem",
+                  md: "2rem",
                 },
                 width: "100%",
               }}
@@ -864,7 +916,7 @@ const SocialProofSection = () => {
             </Heading>
             <Text
               color="gray.400"
-              fontSize="xl"
+              fontSize="lg"
               fontWeight={"500"}
               mt="4"
               width={"60%"}
@@ -874,8 +926,8 @@ const SocialProofSection = () => {
               the majority have suffered alteration in some form.
             </Text>
             <Grid
-              templateColumns={["repeat(2, 1fr)", null, "repeat(4, 1fr)"]}
-              gap={6}
+              templateColumns={["repeat(2, 1fr)", null, "repeat(4, 1fr 1fr)"]}
+              gap={10}
               mt="14"
               justifyContent="center"
               alignItems="center"
@@ -885,7 +937,7 @@ const SocialProofSection = () => {
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -893,21 +945,22 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/Artis.png"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
               </Box>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
+
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -915,21 +968,61 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/Atarim.svg"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
+              </Box>
+              {/* <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <bipCards />
+              </Box> */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/POPCARD_4.png_v=1718360510&width=370"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
               </Box>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
+
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -937,21 +1030,22 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/Sprintzeal_Logo.webp"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
               </Box>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontSize: "1.5rem",
-                  color: "muted",
+                  color: "gray.400",
+
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -959,14 +1053,175 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <FaLinkedin
+                <img
+                  src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "gray.400",
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
                   }}
                 />
-                LinkedIn
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/crystal_ball.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/farmin-logo-dark.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/ibatu.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/jarvis-logo.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/krypto_labs_logo.jpeg"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/logo-black-small.png"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  color: "gray.400",
+
+                  cursor: "pointer",
+                  gap: "4",
+                  "&:hover": {
+                    color: "white",
+                  },
+                }}
+              >
+                <img
+                  src="/assets/clients/republic_power_logo.jpeg"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
               </Box>
             </Grid>
           </Box>
@@ -983,8 +1238,7 @@ const SocialProofSection = () => {
             width={"90%"}
             sx={{
               // background image with gradient
-              backgroundImage:
-                "linear-gradient(to right, #003c4c, #002c4c, #005c4c)",
+              backgroundColor: "#004c4c",
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -1075,6 +1329,7 @@ const SocialProofSection = () => {
 const FeaturesSection = () => {
   return (
     <Features
+      mt={250}
       id="features"
       title={
         <Heading
@@ -1207,7 +1462,7 @@ const Team = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
-      <Container maxW="container.2xl" py="5">
+      <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -1239,7 +1494,7 @@ const Team = () => {
               sx={{
                 fontSize: {
                   base: "2rem",
-                  md: "3rem",
+                  md: "2rem",
                 },
                 width: "100%",
                 display: "flex",
@@ -1252,7 +1507,7 @@ const Team = () => {
             </Heading>
             <Text
               color="gray.400"
-              fontSize="xl"
+              fontSize="lg"
               fontWeight={"500"}
               mt="4"
               width={"60%"}

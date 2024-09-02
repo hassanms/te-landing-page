@@ -30,6 +30,7 @@ import { FallInPlace } from "components/motion/fall-in-place";
 import { Hero } from "components/hero";
 import { Link, Br } from "@saas-ui/react";
 import { Em } from "components/typography";
+import InnerElementBG from "components/InnerElementBG";
 import { NextjsLogo, ChakraLogo } from "components/logos";
 import bipCards from "../components/Bipcards";
 import {
@@ -71,8 +72,18 @@ import {
 
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa";
+import Contact from "components/Contact";
 
 const Home: NextPage = () => {
+  const [mount, setMount] = React.useState(false);
+
+  React.useEffect(() => {
+    setMount(true);
+  }, []);
+
+  if (!mount) {
+    return null;
+  }
   return (
     <Box>
       <SEO
@@ -92,6 +103,7 @@ const Home: NextPage = () => {
         {/* <PricingSection /> */}
 
         <FaqSection />
+        <Contact />
       </Box>
     </Box>
   );
@@ -142,7 +154,7 @@ const HeroSection: React.FC = () => {
               <ButtonGroup spacing={4} alignItems="center">
                 <ButtonLink
                   size="lg"
-                  href=""
+                  href="#portfolio"
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
@@ -237,49 +249,48 @@ const HeroSection: React.FC = () => {
             </FallInPlace>
           </Box>
         </Stack>
+        <Features
+          id="benefits"
+          columns={[1, 2, 4]}
+          iconSize={4}
+          innerWidth="container.xl"
+          pt="20"
+          features={[
+            {
+              title: "Accessible",
+              icon: FiSmile,
+              description: "All components strictly follow WAI-ARIA standards.",
+              iconPosition: "left",
+              delay: 0.6,
+            },
+            {
+              title: "Themable",
+              icon: FiSliders,
+              description:
+                "Fully customize all components to your brand with theme support and style props.",
+              iconPosition: "left",
+              delay: 0.8,
+            },
+            {
+              title: "Composable",
+              icon: FiGrid,
+              description:
+                "Compose components to fit your needs and mix them together to create new ones.",
+              iconPosition: "left",
+              delay: 1,
+            },
+            {
+              title: "Productive",
+              icon: FiThumbsUp,
+              description:
+                "Designed to reduce boilerplate and fully typed, build your product at speed.",
+              iconPosition: "left",
+              delay: 1.1,
+            },
+          ]}
+          reveal={FallInPlace}
+        />
       </Container>
-
-      <Features
-        id="benefits"
-        columns={[1, 2, 4]}
-        iconSize={4}
-        innerWidth="container.xl"
-        pt="20"
-        features={[
-          {
-            title: "Accessible",
-            icon: FiSmile,
-            description: "All components strictly follow WAI-ARIA standards.",
-            iconPosition: "left",
-            delay: 0.6,
-          },
-          {
-            title: "Themable",
-            icon: FiSliders,
-            description:
-              "Fully customize all components to your brand with theme support and style props.",
-            iconPosition: "left",
-            delay: 0.8,
-          },
-          {
-            title: "Composable",
-            icon: FiGrid,
-            description:
-              "Compose components to fit your needs and mix them together to create new ones.",
-            iconPosition: "left",
-            delay: 1,
-          },
-          {
-            title: "Productive",
-            icon: FiThumbsUp,
-            description:
-              "Designed to reduce boilerplate and fully typed, build your product at speed.",
-            iconPosition: "left",
-            delay: 1.1,
-          },
-        ]}
-        reveal={FallInPlace}
-      />
     </Box>
   );
 };
@@ -290,7 +301,11 @@ const AboutUsSection = () => {
   return (
     <Box id="about">
       <Container maxW="container.xl" py="5" mb="20">
-        <Stack direction={["column", null, "row"]} spacing="8">
+        <Stack
+          direction={["column", null, "row"]}
+          spacing="8"
+          ml={{ base: 0, lg: 4 }}
+        >
           <Box flex="1">
             <Heading
               as="h2"
@@ -408,6 +423,66 @@ const AboutUsSection = () => {
             </HStack>
           </Box>
         </Stack>
+        <Highlights>
+          <HighlightsTestimonialItem
+            name="Renata Alink"
+            description="Founder"
+            avatar="/static/images/avatar.jpg"
+            gradient={["pink.200", "purple.500"]}
+            company="Tech Emulsion"
+            colSpan={[1, null, 2]}
+          >
+            “Saas UI helped us set up a beautiful modern UI in no time. It saved
+            us hundreds of hours in development time and allowed us to focus on
+            business logic for our specific use-case from the start.”
+          </HighlightsTestimonialItem>
+          <HighlightsItem
+            colSpan={[1, null, 2, 3, 4]}
+            title="Start your next idea two steps ahead"
+          >
+            <Text color="muted" fontSize="lg">
+              We took care of all your basic frontend needs, so you can start
+              building functionality that makes your product unique.
+            </Text>
+            <Wrap mt="8">
+              {[
+                "authentication",
+                "navigation",
+                "crud",
+                "settings",
+                "multi-tenancy",
+                "layouts",
+                "billing",
+                "a11y testing",
+                "server-side rendering",
+                "documentation",
+                "onboarding",
+                "storybooks",
+                "theming",
+                "upselling",
+                "unit testing",
+                "feature flags",
+                "responsiveness",
+              ].map((value) => (
+                <Tag
+                  key={value}
+                  variant="subtle"
+                  rounded="full"
+                  px="3"
+                  sx={{
+                    bg: "#b2d8d8",
+                    color: "#004c4c",
+                    "&:hover": {
+                      bg: "#66b2b2",
+                    },
+                  }}
+                >
+                  {value}
+                </Tag>
+              ))}
+            </Wrap>
+          </HighlightsItem>
+        </Highlights>
       </Container>
     </Box>
   );
@@ -445,7 +520,7 @@ const HighlightsSection = () => {
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
-          px="15"
+          px="4"
           mt={10}
           justifyContent={"space-between"}
         >
@@ -581,7 +656,7 @@ const HighlightsSection = () => {
             build Saas UI on top of it.
           </Text>
         </HighlightsItem> */}
-          <HighlightsTestimonialItem
+          {/* <HighlightsTestimonialItem
             name="Renata Alink"
             description="Founder"
             avatar="/static/images/avatar.jpg"
@@ -638,7 +713,7 @@ const HighlightsSection = () => {
                 </Tag>
               ))}
             </Wrap>
-          </HighlightsItem>
+          </HighlightsItem> */}
         </Highlights>
       </Container>
     </Box>
@@ -876,7 +951,7 @@ const SocialProofSection = () => {
     <Box
       id="social"
       py="20"
-      bg="#008080"
+      bg="#004c4c"
       color="white"
       textAlign="center"
       height={[null, null, null]}
@@ -1238,7 +1313,7 @@ const SocialProofSection = () => {
             width={"90%"}
             sx={{
               // background image with gradient
-              backgroundColor: "#004c4c",
+              backgroundColor: "#008080",
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -1287,11 +1362,12 @@ const SocialProofSection = () => {
                   },
 
                   bg: "#66b2b2",
+                  zIndex: "1000000",
                 }}
               />
               <Button
                 position={[null, null, "absolute"]}
-                zIndex={"1"}
+                zIndex={"10000000"}
                 top={"10%"}
                 right={"2%"}
                 size="lg"
@@ -1319,6 +1395,15 @@ const SocialProofSection = () => {
                 Subscribe Now
               </Button>
             </Box>
+            <Box
+              display={{ base: "none", md: "none", lg: "none", xl: "block" }}
+              position={"absolute"}
+              top={"0"}
+              left={"0"}
+              width={"100%"}
+            >
+              <InnerElementBG />
+            </Box>
           </Box>
         </Box>
       </Container>
@@ -1329,7 +1414,7 @@ const SocialProofSection = () => {
 const FeaturesSection = () => {
   return (
     <Features
-      mt={250}
+      mt={300}
       id="features"
       title={
         <Heading
@@ -1444,6 +1529,7 @@ const TestimonialsSection = () => {
       title={testimonials.title}
       columns={[1, 2, 3]}
       innerWidth="container.xl"
+      ml={{ base: 0, lg: 10 }}
     >
       <>
         {columns.map((column, i) => (
@@ -1466,70 +1552,80 @@ const Team = () => {
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
-          px="15"
-          mt={10}
-          justifyContent={"space-between"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          width={"100%"}
         >
           <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap="4"
-            width="100%"
+            display={{ base: "block", md: "flex" }}
+            px="15"
+            mt={10}
+            justifyContent={"space-between"}
           >
-            <Heading
-              as="h2"
-              size="lg"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
-              sx={{
-                textTransform: "uppercase",
-              }}
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="4"
+              width="100%"
             >
-              TEAM
-            </Heading>
-            <Heading
-              as="h1"
-              mt="2"
-              sx={{
-                fontSize: {
-                  base: "2rem",
-                  md: "2rem",
-                },
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              Our Awesome Team
-            </Heading>
-            <Text
-              color="gray.400"
-              fontSize="lg"
-              fontWeight={"500"}
-              mt="4"
-              width={"60%"}
-              align={"center"}
-            >
-              There are many variations of passages of Lorem Ipsum available but
-              the majority have suffered alteration in some form.
-            </Text>
-          </Box>
+              <Heading
+                as="h2"
+                size="lg"
+                color={colorMode === "dark" ? "white" : "#004c4c"}
+                sx={{
+                  textTransform: "uppercase",
+                }}
+              >
+                TEAM
+              </Heading>
+              <Heading
+                as="h1"
+                mt="2"
+                sx={{
+                  fontSize: {
+                    base: "2rem",
+                    md: "2rem",
+                  },
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                Our Awesome Team
+              </Heading>
+              <Text
+                color="gray.400"
+                fontSize="lg"
+                fontWeight={"500"}
+                mt="4"
+                width={"60%"}
+                align={"center"}
+              >
+                There are many variations of passages of Lorem Ipsum available
+                but the majority have suffered alteration in some form.
+              </Text>
+            </Box>
 
-          {/* Explore services */}
+            {/* Explore services */}
+          </Box>
+          <Grid
+            templateColumns={["repeat(1, 1fr)", null, "repeat(4, 1fr)"]}
+            gap={{ base: 4, md: 0 }}
+            mt="14"
+            w="100%"
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Teams />
+            <Teams />
+            <Teams />
+            <Teams />
+          </Grid>
         </Box>
-        <Grid
-          templateColumns={["repeat(1, 1fr)", null, "repeat(3, 1fr)"]}
-          gap={6}
-          mt="14"
-          w="100%"
-        >
-          <Teams />
-          <Teams />
-          <Teams />
-        </Grid>
       </Container>
     </Box>
   );

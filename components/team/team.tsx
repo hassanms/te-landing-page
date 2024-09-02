@@ -9,8 +9,6 @@ const Teams = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: "4",
-        width: "100%",
       }}
     >
       <Box
@@ -19,8 +17,8 @@ const Teams = () => {
           paddingBottom: {
             base: "80%",
             md: "140%",
-            lg: "120%",
-            xl: "100%",
+            lg: "140%",
+            xl: "120%",
           },
           paddingTop: "0px",
           height: "0",
@@ -28,7 +26,7 @@ const Teams = () => {
             base: "80%",
             md: "100%",
             lg: "100%",
-            xl: "80%",
+            xl: "90%",
           },
           position: "relative",
           overflow: "hidden",
@@ -60,10 +58,10 @@ const Teams = () => {
         <Box
           sx={{
             top: {
-              base: "80%",
-              md: "80%",
+              base: "60%",
+              md: "70%",
             },
-            bottom: "3rem",
+            bottom: "10rem",
             width: "90%",
             textAlign: "center",
             backgroundColor: "white",

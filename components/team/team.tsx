@@ -14,6 +14,7 @@ const Teams = () => {
       <Box
         className="relative aspect-[149/182] overflow-hidden rounded-lg"
         sx={{
+          marginLeft: "0.5rem",
           paddingBottom: {
             base: "80%",
             md: "140%",

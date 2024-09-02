@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
+import { Logo } from "components/layout/logo";
 import { FaLaughWink, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 export interface TestimonialProps extends CardProps {
@@ -39,12 +40,7 @@ export const Testimonial = ({
           flexDirection="row"
           alignItems="center"
         >
-          <FaLinkedinIn
-            size="2em"
-            style={{
-              color: "#0077b5",
-            }}
-          />
+          <Logo />
           <Heading size="sm">{company}</Heading>
         </Stack>
       </CardHeader>

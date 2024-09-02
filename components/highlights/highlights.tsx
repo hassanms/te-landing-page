@@ -109,8 +109,9 @@ export const Highlights: React.FC<SectionProps> = (props) => {
     >
       <Grid
         templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(6, 1fr)" }}
-        gap={8}
+        gap={6}
         position="relative"
+        ml={{ base: 0, lg: "-12px" }}
       >
         {children}
       </Grid>

@@ -18,31 +18,46 @@ const Services = () => {
 
   const HighlightsItems = [
     {
-      title: "Core components",
+      title: "Next-Gen SaaS Development",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://cdn.educba.com/academy/wp-content/uploads/2018/12/What-is-Software-Development-3.jpg",
+        "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",
+      image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
     },
     {
-      title: "Core components",
+      title: "Innovative Website Development",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9FfhtPsXcSWbQmfHqTkve3DmOHZI_2Gc8uk-h0YMaLIs0vW1xDWaD06X47FLBhA116PE&usqp=CAU",
+        "From concept to launch, we create responsive and visually stunning websites that captivate your audience and drive business growth.",
+      image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
     },
     {
-      title: "Core components",
+      title: "Custom Chrome Extensions",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROCOFpKHTPDru2q1BCvSheKmglmnEE6XRdGw&s",
+        "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives",
+      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+    },
+    {
+      title: "Expert DevOps Solutions",
+      description:
+        "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases",
+      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+    },
+    {
+      title: "Generative AI Integration",
+      description:
+        "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency",
+      image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
+    },
+    {
+      title: "QA Testing & Automation",
+      description:
+        "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision",
+      image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
     },
   ];
 
   return (
     <Box>
-      <Container maxW="container.2xl" py="20" mb="20">
+      <Container maxW="container.xl" py="20" mb="20">
         <Divider />
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
@@ -137,7 +152,7 @@ const Services = () => {
                   borderRadius: "8px",
                 }}
               />
-              <Box p="8" borderRadius="8px" mt="4" boxShadow="md" w="100%">
+              <Box p="8" borderRadius="8px" mt="4" w="100%">
                 <Heading
                   as="h2"
                   size="lg"

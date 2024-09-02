@@ -110,14 +110,16 @@ const Home: NextPage = () => {
 };
 
 const HeroSection: React.FC = () => {
+  const { colorMode } = useColorMode();
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
+      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="20">
         <Stack
           direction={{ base: "column", lg: "row" }}
+          justifyContent={{ base: "center", lg: "space-between" }}
           alignItems="flex-start"
         >
           <Hero
@@ -132,17 +134,10 @@ const HeroSection: React.FC = () => {
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
-                A software development partner with{" "}
-                <Em>various collaboration options</Em>
-                <Br /> Tech Emulsion provides a tailored selection of
-                outsourcing methods that can be adjusted to your present
-                requirements and expanded as your business expands. Regardless
-                of whether you’re a newcomer to IT outsourcing or someone
-                skilled in overseeing extensive software development groups,{" "}
-                <Br /> Tech Emulsion is here to guide you in determining the
-                optimal strategy for bringing your ideas to life. We work
-                together to develop effective technical answers and back your
-                ongoing progress.
+                Empowering businesses with next-gen{" "}
+                <Em> SaaS, web, and AI solutions</Em> driving innovation and
+                excellence through tailored technology strategies that propel
+                your brand to new heights.
               </FallInPlace>
             }
           >
@@ -229,67 +224,71 @@ const HeroSection: React.FC = () => {
             </VStack>
           </Hero>
           <Box
-            height="600px"
-            position="absolute"
             display={{ base: "none", lg: "block" }}
-            left={{ lg: "60%", xl: "55%" }}
-            width="80vw"
-            maxW="1100px"
-            margin="0 auto"
+            mt={{ base: "20", lg: "20" }}
+            mr={{ base: 0, lg: 3 }}
           >
             <FallInPlace delay={1}>
               <Box overflow="hidden" height="100%">
-                <img
-                  src={img}
-                  width={800}
-                  height={762}
-                  alt="Screenshot of a ListPage in Saas UI Pro"
-                />
+                <img src={img} alt="Screenshot of a ListPage in Saas UI Pro" />
               </Box>
             </FallInPlace>
           </Box>
         </Stack>
-        <Features
-          id="benefits"
-          columns={[1, 2, 4]}
-          iconSize={4}
-          innerWidth="container.xl"
-          pt="20"
-          features={[
-            {
-              title: "Accessible",
-              icon: FiSmile,
-              description: "All components strictly follow WAI-ARIA standards.",
-              iconPosition: "left",
-              delay: 0.6,
-            },
-            {
-              title: "Themable",
-              icon: FiSliders,
-              description:
-                "Fully customize all components to your brand with theme support and style props.",
-              iconPosition: "left",
-              delay: 0.8,
-            },
-            {
-              title: "Composable",
-              icon: FiGrid,
-              description:
-                "Compose components to fit your needs and mix them together to create new ones.",
-              iconPosition: "left",
-              delay: 1,
-            },
-            {
-              title: "Productive",
-              icon: FiThumbsUp,
-              description:
-                "Designed to reduce boilerplate and fully typed, build your product at speed.",
-              iconPosition: "left",
-              delay: 1.1,
-            },
-          ]}
-          reveal={FallInPlace}
-        />
+        <Box flex="1">
+          <Heading
+            as="h2"
+            size="lg"
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            sx={{
+              textTransform: "uppercase",
+            }}
+          >
+            Our core values
+          </Heading>
+          <Features
+            id="benefits"
+            columns={[1, 2, 4]}
+            iconSize={4}
+            innerWidth="container.xl"
+            pt="20"
+            features={[
+              {
+                title: "Client-Centric Excellence",
+                icon: FiSliders,
+                description:
+                  "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
+                iconPosition: "left",
+                delay: 0.8,
+              },
+              {
+                title: "Innovative Problem Solving",
+                icon: FiGrid,
+                description:
+                  "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
+                iconPosition: "left",
+                delay: 1,
+              },
+              {
+                title: "Clear and Effective Communication",
+                icon: FiThumbsUp,
+                description:
+                  "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
+                iconPosition: "left",
+                delay: 1.1,
+              },
+              {
+                title: "Accountability and Ownership",
+                icon: FiSmile,
+                description:
+                  "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
+                iconPosition: "left",
+                delay: 0.6,
+              },
+            ]}
+            reveal={FallInPlace}
+          />
+        </Box>
       </Container>
     </Box>
   );
@@ -303,7 +302,7 @@ const AboutUsSection = () => {
       <Container maxW="container.xl" py="5" mb="20">
         <Stack
           direction={["column", null, "row"]}
-          spacing="8"
+          spacing="4"
           ml={{ base: 0, lg: 4 }}
         >
           <Box flex="1">
@@ -425,16 +424,16 @@ const AboutUsSection = () => {
         </Stack>
         <Highlights>
           <HighlightsTestimonialItem
-            name="Renata Alink"
-            description="Founder"
-            avatar="/static/images/avatar.jpg"
+            name="Zain Ul Abideen"
+            description="Co-Founder & CTO"
+            avatar="/assets/zain.png"
             gradient={["pink.200", "purple.500"]}
             company="Tech Emulsion"
             colSpan={[1, null, 2]}
           >
-            “Saas UI helped us set up a beautiful modern UI in no time. It saved
-            us hundreds of hours in development time and allowed us to focus on
-            business logic for our specific use-case from the start.”
+            “Your challenges fuel our creativity and determination. We’re
+            dedicated to delivering exceptional results that exceed
+            expectations.”
           </HighlightsTestimonialItem>
           <HighlightsItem
             colSpan={[1, null, 2, 3, 4]}
@@ -446,23 +445,24 @@ const AboutUsSection = () => {
             </Text>
             <Wrap mt="8">
               {[
-                "authentication",
-                "navigation",
-                "crud",
-                "settings",
-                "multi-tenancy",
-                "layouts",
-                "billing",
-                "a11y testing",
-                "server-side rendering",
-                "documentation",
-                "onboarding",
-                "storybooks",
-                "theming",
-                "upselling",
-                "unit testing",
-                "feature flags",
-                "responsiveness",
+                "SaaS Development",
+                "DevOps",
+                "Web Application",
+                "Web Development",
+                "Full-Stack Development",
+                "Front-End Development",
+                "Back-End Development",
+                "QA Testing & Automation",
+                "Mobile App Development",
+                "Amazon Web Services",
+                "RESTful API",
+                "Google Chrome Extension",
+                "API Integration",
+                "App Development",
+                "Chatbots Development",
+                "AI App Development",
+                "Artificial Intelligence",
+                "Machine Learning",
               ].map((value) => (
                 <Tag
                   key={value}
@@ -493,25 +493,40 @@ const HighlightsSection = () => {
   const { colorMode } = useColorMode();
   const HighlightsItems = [
     {
-      title: "Core components",
+      title: "Next-Gen SaaS Development",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://cdn.educba.com/academy/wp-content/uploads/2018/12/What-is-Software-Development-3.jpg",
+        "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",
+      image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
     },
     {
-      title: "Core components",
+      title: "Innovative Website Development",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9FfhtPsXcSWbQmfHqTkve3DmOHZI_2Gc8uk-h0YMaLIs0vW1xDWaD06X47FLBhA116PE&usqp=CAU",
+        "From concept to launch, we create responsive and visually stunning websites that captivate your audience and drive business growth.",
+      image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
     },
     {
-      title: "Core components",
+      title: "Custom Chrome Extensions",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROCOFpKHTPDru2q1BCvSheKmglmnEE6XRdGw&s",
+        "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives",
+      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+    },
+    {
+      title: "Expert DevOps Solutions",
+      description:
+        "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases",
+      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+    },
+    {
+      title: "Generative AI Integration",
+      description:
+        "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency",
+      image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
+    },
+    {
+      title: "QA Testing & Automation",
+      description:
+        "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision",
+      image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
     },
   ];
   return (
@@ -600,7 +615,7 @@ const HighlightsSection = () => {
                   borderRadius: "8px",
                 }}
               />
-              <Box p="8" borderRadius="8px" mt="4" boxShadow="md" w="100%">
+              <Box px="4" py="6" borderRadius="8px" mt="4" w="100%">
                 <Heading
                   as="h2"
                   size="lg"
@@ -820,6 +835,7 @@ const Portfolio = () => {
               title={""}
               padding={0}
               border={"none"}
+              boxShadow={"none"}
             >
               <img
                 src={item.image}
@@ -831,13 +847,13 @@ const Portfolio = () => {
                   borderRadius: "8px",
                 }}
               />
-              <Box p="8" borderRadius="8px" mt="4" boxShadow="md" w="100%">
+              <Box px="2" py="4" borderRadius="8px" mt="4" w="100%">
                 <Heading
                   as="h2"
                   size="lg"
                   sx={{
                     textTransform: "uppercase",
-                    py: "6",
+                    py: "2",
                   }}
                 >
                   {item.title}
@@ -956,7 +972,7 @@ const SocialProofSection = () => {
       textAlign="center"
       height={[null, null, null]}
     >
-      <Container maxW="container.xl">
+      <Container maxW="container.xl" py="5" mb="20">
         <Box
           position={"relative"}
           display="flex"
@@ -1310,7 +1326,8 @@ const SocialProofSection = () => {
             alignItems={"center"}
             gap={"4"}
             mt={"20"}
-            width={"90%"}
+            width={"97.5%"}
+            ml={"0.3%"}
             sx={{
               // background image with gradient
               backgroundColor: "#008080",
@@ -1525,22 +1542,30 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <Testimonials
-      title={testimonials.title}
-      columns={[1, 2, 3]}
-      innerWidth="container.xl"
-      ml={{ base: 0, lg: 10 }}
-    >
-      <>
-        {columns.map((column, i) => (
-          <Stack key={i} spacing="8">
-            {column.map((t, i) => (
-              <Testimonial key={i} {...t} />
-            ))}
-          </Stack>
-        ))}
-      </>
-    </Testimonials>
+    <Box position="relative" overflow="hidden">
+      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          alignItems="flex-start"
+        >
+          <Testimonials
+            title={testimonials.title}
+            columns={[1, 2, 3]}
+            innerWidth="container.xl"
+          >
+            <>
+              {columns.map((column, i) => (
+                <Stack key={i}>
+                  {column.map((t, i) => (
+                    <Testimonial key={i} {...t} />
+                  ))}
+                </Stack>
+              ))}
+            </>
+          </Testimonials>
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 

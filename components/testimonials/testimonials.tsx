@@ -24,7 +24,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
   const { children, title, columns = [1, null, 2], ...rest } = props;
   const { colorMode } = useColorMode();
   return (
-    <Section {...rest}>
+    <Section {...rest} padding={0}>
       <Heading
         as="h2"
         size="lg"
@@ -75,7 +75,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
         There are many variations of passages of Lorem Ipsum available but the
         majority have suffered alteration in some form.
       </Text>
-      <SimpleGrid columns={columns} spacing="8" mt={20}>
+      <SimpleGrid columns={columns} spacing="2" mt={20}>
         {children}
       </SimpleGrid>
     </Section>

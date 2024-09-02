@@ -80,7 +80,7 @@ const Login: NextPage = () => {
                 <Text color="muted" fontSize="sm">
                   By signing up you agree to our{" "}
                   <Link href={siteConfig.termsUrl} color="white">
-                    Terms of Service
+                    Terms of Service{""}
                   </Link>{" "}
                   and{" "}
                   <Link href={siteConfig.privacyUrl} color="white">

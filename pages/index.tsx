@@ -483,9 +483,9 @@ const AboutUsSection = () => {
             </CardHeader>
             <CardBody>
               <Text color="white" fontSize="lg">
-                "We believe that building a product should be fun and rewarding.
-                Our mission is to provide you with the best tools to make that
-                happen."
+                &quot;We believe that building a product should be fun and
+                rewarding. Our mission is to provide you with the best tools to
+                make that happen.&quot;
               </Text>
             </CardBody>
           </Card>

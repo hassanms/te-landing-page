@@ -81,6 +81,7 @@ import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
+import Atarim from "components/icons/Atarim";
 
 const Home: NextPage = () => {
   const [mount, setMount] = React.useState(false);
@@ -208,12 +209,16 @@ const HeroSection: React.FC = () => {
               </Text>
               <FallInPlace delay={0.6}>
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
-                  <img
-                    src="/assets/clients/Atarim.svg"
-                    width={100}
-                    height={262}
-                    alt="Screenshot of a ListPage in Saas UI Pro"
-                  />
+                  {colorMode === "dark" ? (
+                    <img
+                      src="/assets/clients/Atarim.svg"
+                      width={100}
+                      height={262}
+                      alt="Screenshot of a ListPage in Saas UI Pro"
+                    />
+                  ) : (
+                    <Atarim />
+                  )}
                   <img
                     src="/assets/clients/krypto_labs_logo.jpeg"
                     width={100}

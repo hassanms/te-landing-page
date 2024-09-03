@@ -1,6 +1,6 @@
 import React from "react";
 
-const firstIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+const FirstIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg
       version="1.0"
@@ -77,4 +77,4 @@ const firstIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   );
 };
 
-export default firstIcon;
+export default FirstIcon;

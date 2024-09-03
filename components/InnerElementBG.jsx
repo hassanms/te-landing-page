@@ -5,7 +5,7 @@ const InnerElementBG = () => {
     <svg
       width="1118"
       height="286"
-      viewBox="0 0 818 256"
+      viewBox="00 30 718 256"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       class="mx-auto"

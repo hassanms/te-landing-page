@@ -23,6 +23,10 @@ import {
   Avatar,
   Img,
   Input,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 
@@ -73,6 +77,10 @@ import {
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa";
 import Contact from "components/Contact";
+import FirstIcon from "components/icons/firstIcon";
+import Innovation from "components/icons/Inovation";
+import EffectiveCommunication from "components/icons/EffectiveCommunication";
+import OwnerShipd from "components/icons/OwnerShipd";
 
 const Home: NextPage = () => {
   const [mount, setMount] = React.useState(false);
@@ -116,7 +124,7 @@ const HeroSection: React.FC = () => {
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="20">
+      <Container maxW="container.xl" pt={{ base: 20, lg: 20 }} pb="20">
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
@@ -235,60 +243,6 @@ const HeroSection: React.FC = () => {
             </FallInPlace>
           </Box>
         </Stack>
-        <Box flex="1">
-          <Heading
-            as="h2"
-            size="lg"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
-            sx={{
-              textTransform: "uppercase",
-            }}
-          >
-            Our core values
-          </Heading>
-          <Features
-            id="benefits"
-            columns={[1, 2, 4]}
-            iconSize={4}
-            innerWidth="container.xl"
-            pt="20"
-            features={[
-              {
-                title: "Client-Centric Excellence",
-                icon: FiSliders,
-                description:
-                  "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
-                iconPosition: "left",
-                delay: 0.8,
-              },
-              {
-                title: "Innovative Problem Solving",
-                icon: FiGrid,
-                description:
-                  "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
-                iconPosition: "left",
-                delay: 1,
-              },
-              {
-                title: "Clear and Effective Communication",
-                icon: FiThumbsUp,
-                description:
-                  "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
-                iconPosition: "left",
-                delay: 1.1,
-              },
-              {
-                title: "Accountability and Ownership",
-                icon: FiSmile,
-                description:
-                  "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
-                iconPosition: "left",
-                delay: 0.6,
-              },
-            ]}
-            reveal={FallInPlace}
-          />
-        </Box>
       </Container>
     </Box>
   );
@@ -299,16 +253,16 @@ const AboutUsSection = () => {
 
   return (
     <Box id="about">
-      <Container maxW="container.xl" py="5" mb="20">
+      <Container maxW="container.xl" py="5" mb="5">
         <Stack
           direction={["column", null, "row"]}
           spacing="4"
-          ml={{ base: 0, lg: 4 }}
+          ml={{ base: 4, lg: 4 }}
         >
           <Box flex="1">
             <Heading
               as="h2"
-              size="lg"
+              size="md"
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
@@ -320,7 +274,7 @@ const AboutUsSection = () => {
               as="h1"
               mt="2"
               sx={{
-                fontSize: "3rem",
+                fontSize: "2rem",
               }}
             >
               Better design,
@@ -422,21 +376,122 @@ const AboutUsSection = () => {
             </HStack>
           </Box>
         </Stack>
+        <Box flex="1" mt={20}>
+          <Heading
+            as="h2"
+            size="md"
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            sx={{
+              textTransform: "uppercase",
+            }}
+            ml={4}
+          >
+            Our core values
+          </Heading>
+          <Features
+            id="benefits"
+            columns={[1, 2, 4]}
+            iconSize={4}
+            innerWidth="container.xl"
+            pt="10"
+            pb={0}
+            mb={-5}
+            features={[
+              {
+                title: "Client-Centric Excellence",
+                icon: FirstIcon,
+                description:
+                  "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
+                iconPosition: "left",
+                delay: 0.8,
+              },
+              {
+                title: "Innovative Problem Solving",
+                icon: Innovation,
+                description:
+                  "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
+                iconPosition: "left",
+                delay: 1,
+              },
+              {
+                title: "Clear and Effective Communication",
+                icon: EffectiveCommunication,
+                description:
+                  "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
+                iconPosition: "left",
+                delay: 1.1,
+              },
+              {
+                title: "Accountability and Ownership",
+                icon: OwnerShipd,
+                description:
+                  "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
+                iconPosition: "left",
+                delay: 0.6,
+              },
+            ]}
+            reveal={FallInPlace}
+          />
+        </Box>
+
         <Highlights>
-          <HighlightsTestimonialItem
+          {/* <HighlightsTestimonialItem
             name="Zain Ul Abideen"
             description="Co-Founder & CTO"
             avatar="/assets/zain.png"
             gradient={["pink.200", "purple.500"]}
-            company="Tech Emulsion"
+            company=""
             colSpan={[1, null, 2]}
           >
             “Your challenges fuel our creativity and determination. We’re
             dedicated to delivering exceptional results that exceed
             expectations.”
-          </HighlightsTestimonialItem>
+          </HighlightsTestimonialItem> */}
+
+          <Card
+            position="relative"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            bgGradient={`linear(to-br,#b2d8d8, #66b2b2, #008080, #006666 ,  #004c4c)`}
+            boxShadow="none"
+            border={"none"}
+            borderRadius="lg"
+            overflow="hidden"
+          >
+            <CardHeader display="flex" flexDirection="row" alignItems="center">
+              <Avatar
+                name="Zain Ul Abideen"
+                src="/assets/zain.png"
+                size="lg"
+                bg="transparent"
+              />
+              <Stack spacing="1" ms="4">
+                <Heading
+                  size="sm"
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  Zain Ul Abideen
+                </Heading>
+                <Text color="white" size="xs">
+                  Co-Founder & CTO
+                </Text>
+              </Stack>
+            </CardHeader>
+            <CardBody>
+              <Text color="white" fontSize="lg">
+                "We believe that building a product should be fun and rewarding.
+                Our mission is to provide you with the best tools to make that
+                happen."
+              </Text>
+            </CardBody>
+          </Card>
+
           <HighlightsItem
-            colSpan={[1, null, 2, 3, 4]}
+            colSpan={[1, null, 2, 3, 3]}
             title="Start your next idea two steps ahead"
           >
             <Text color="muted" fontSize="lg">
@@ -508,13 +563,13 @@ const HighlightsSection = () => {
       title: "Custom Chrome Extensions",
       description:
         "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives",
-      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
     },
     {
       title: "Expert DevOps Solutions",
       description:
         "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases",
-      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
     },
     {
       title: "Generative AI Integration",
@@ -542,7 +597,7 @@ const HighlightsSection = () => {
           <Box>
             <Heading
               as="h2"
-              size="lg"
+              size="md"
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
@@ -612,17 +667,10 @@ const HighlightsSection = () => {
                   width: "100%",
                   height: "300px",
                   objectFit: "fill",
-                  borderRadius: "8px",
                 }}
               />
-              <Box px="4" py="6" borderRadius="8px" mt="4" w="100%">
-                <Heading
-                  as="h2"
-                  size="lg"
-                  sx={{
-                    py: "6",
-                  }}
-                >
+              <Box px="4" py="6" borderRadius="8px" w="100%">
+                <Heading as="h2" size="lg" mb={4}>
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
@@ -774,8 +822,11 @@ const Portfolio = () => {
         >
           <Heading
             as="h2"
-            size="lg"
+            size="md"
             color={colorMode === "dark" ? "white" : "#004c4c"}
+            sx={{
+              textTransform: "uppercase",
+            }}
           >
             Creative Portfolio
           </Heading>
@@ -830,32 +881,36 @@ const Portfolio = () => {
           {HighlightsItems?.map((item, index) => (
             <HighlightsItem
               key={index}
-              colSpan={[1, null, 3]}
-              gap={"4"}
+              colSpan={[1, null, 2]}
+              gap={"0"}
+              padding={"4"}
               title={""}
-              padding={0}
               border={"none"}
-              boxShadow={"none"}
+              width={{
+                base: "100%",
+                md: "100%",
+                lg: "100%",
+                xl: "592px",
+              }}
             >
               <img
                 src={item.image}
                 alt="hero"
                 style={{
                   width: "100%",
-                  height: "300px",
                   objectFit: "fill",
-                  borderRadius: "8px",
                 }}
               />
-              <Box px="2" py="4" borderRadius="8px" mt="4" w="100%">
-                <Heading
-                  as="h2"
-                  size="lg"
-                  sx={{
-                    textTransform: "uppercase",
-                    py: "2",
-                  }}
-                >
+              <Box
+                w="100%"
+                px={{
+                  base: "0",
+                  md: "16",
+                  lg: "0",
+                }}
+                pt={"4"}
+              >
+                <Heading as="h2" size="lg" mb={4}>
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
@@ -1326,7 +1381,7 @@ const SocialProofSection = () => {
             alignItems={"center"}
             gap={"4"}
             mt={"20"}
-            width={"97.5%"}
+            width={"97.8%"}
             ml={"0.3%"}
             sx={{
               // background image with gradient
@@ -1334,14 +1389,13 @@ const SocialProofSection = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              padding: "30px",
+              paddingY: "60px",
               borderRadius: "20px",
               boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
             }}
           >
             <Heading
               as="h2"
-              mt={"10"}
               color={"white"}
               sx={{
                 fontSize: {

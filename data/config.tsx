@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
 import { NextSeoProps } from "next-seo";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";
 
@@ -47,16 +47,21 @@ const siteConfig = {
     ),
     links: [
       {
-        href: "mailto:hello@saas-ui.dev",
-        label: "Contact",
+        href: "httpa://facebook.com/saas-js",
+        label: <FaFacebook size="20" />,
       },
       {
+        href: "https://linkedin.com/saas-js",
+        label: <FaLinkedin size="20" />,
+      },
+
+      {
         href: "https://twitter.com/saas_js",
-        label: <FaTwitter size="14" />,
+        label: <FaTwitter size="20" />,
       },
       {
         href: "https://github.com/saas-js/saas-ui",
-        label: <FaGithub size="14" />,
+        label: <FaGithub size="20" />,
       },
     ],
   },

@@ -147,11 +147,15 @@ const Contact = () => {
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
-                  gap="10"
+                  gap="6"
                   width={{ base: "100%", md: "70%" }}
+                  px={{ base: 4, lg: 0 }}
                 >
                   <Box
-                    display={{ base: "block", md: "flex" }}
+                    display={{
+                      base: "block",
+                      md: "flex",
+                    }}
                     flexDirection={["column", "row"]}
                     justifyContent="center"
                     alignItems="center"
@@ -163,22 +167,24 @@ const Contact = () => {
                   >
                     <Input
                       type="text"
-                      placeholder="Name"
+                      placeholder="Enter your name"
                       sx={{
-                        padding: "1rem",
-                        borderBottom: "1px solid gray.400",
-                        borderTop: "none",
-                        borderLeft: "none",
-                        borderRight: "none",
+                        padding: "2rem",
+                        border: "none",
+                        fontWeight: 500,
+                        color: "gray.500",
+                        fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
-                          borderBottom: "1px solid #004c4c",
+                          borderBottom: "2px solid #004c4c",
                           color: "none",
                         },
                         mb: {
                           base: 8,
                           md: 0,
                         },
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                       }}
                       value={formData.name}
                       onChange={(e) => {
@@ -190,18 +196,24 @@ const Contact = () => {
                     />
                     <Input
                       type="text"
-                      placeholder="Company"
+                      placeholder="Company (optional)"
                       sx={{
-                        padding: "1rem",
-                        borderBottom: "1px solid gray.400",
-                        borderTop: "none",
-                        borderLeft: "none",
-                        borderRight: "none",
+                        padding: "2rem",
+                        border: "none",
+                        fontWeight: 500,
+                        color: "gray.500",
+                        fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
-                          borderBottom: "1px solid #004c4c",
+                          borderBottom: "2px solid #004c4c",
                           color: "none",
                         },
+                        mb: {
+                          base: 8,
+                          md: 0,
+                        },
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                       }}
                       value={formData.company}
                       onChange={(e) => {
@@ -222,22 +234,24 @@ const Contact = () => {
                   >
                     <Input
                       type="email"
-                      placeholder="Email"
+                      placeholder="Enter your email"
                       sx={{
-                        padding: "1rem",
-                        borderBottom: "1px solid gray.400",
-                        borderTop: "none",
-                        borderLeft: "none",
-                        borderRight: "none",
+                        padding: "2rem",
+                        border: "none",
+                        fontWeight: 500,
+                        color: "gray.500",
+                        fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
-                          borderBottom: "1px solid #004c4c",
+                          borderBottom: "2px solid #004c4c",
                           color: "none",
                         },
                         mb: {
                           base: 8,
                           md: 0,
                         },
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                       }}
                       value={formData.email}
                       onChange={(e) => {
@@ -251,16 +265,22 @@ const Contact = () => {
                       type="tel"
                       placeholder="Phone"
                       sx={{
-                        padding: "1rem",
-                        borderBottom: "1px solid gray.400",
-                        borderTop: "none",
-                        borderLeft: "none",
-                        borderRight: "none",
+                        padding: "2rem",
+                        border: "none",
+                        fontWeight: 500,
+                        color: "gray.500",
+                        fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
-                          borderBottom: "1px solid #004c4c",
+                          borderBottom: "2px solid #004c4c",
                           color: "none",
                         },
+                        mb: {
+                          base: 8,
+                          md: 0,
+                        },
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                       }}
                       value={formData.phone}
                       onChange={(e) => {
@@ -274,16 +294,23 @@ const Contact = () => {
                   <Textarea
                     placeholder="Message"
                     sx={{
-                      padding: "1rem",
-                      borderBottom: "1px solid gray.400",
-                      borderTop: "none",
-                      borderLeft: "none",
-                      borderRight: "none",
+                      padding: "2rem",
+                      border: "none",
+                      color: "gray.500",
+                      fontWeight: 500,
+                      fontSize: "1rem",
+                      minHeight: "200px",
                       borderRadius: "none",
                       _focusVisible: {
-                        borderBottom: "1px solid #004c4c",
+                        borderBottom: "2px solid #004c4c",
                         color: "none",
                       },
+                      mb: {
+                        base: 8,
+                        md: 0,
+                      },
+                      backgroundColor:
+                        colorMode === "dark" ? "gray.700" : "gray.50",
                     }}
                     value={formData.message}
                     onChange={(e) => {
@@ -305,7 +332,7 @@ const Contact = () => {
                     }}
                     onClick={(e) => handleSubmit(e)}
                   >
-                    Submit
+                    Send Message
                   </Button>
                 </Box>
               </Box>

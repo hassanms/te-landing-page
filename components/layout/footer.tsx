@@ -10,7 +10,12 @@ import {
   Grid,
   List,
   ListItem,
+  Divider,
+  useColorMode,
 } from "@chakra-ui/react";
+import { Br } from "@saas-ui/react";
+import Layout from "components/FooterLayout/layout-1";
+import LayoutBottom from "components/FooterLayout/LayoutBottom";
 
 import siteConfig from "data/config";
 import Link from "next/link";
@@ -26,18 +31,28 @@ interface LinkProps {
   color?: string;
   _hover?: any;
   textDecoration?: string;
+  sx?: any;
 }
 
 export const Footer: React.FC<FooterProps> = (props) => {
-  const { columns = 3, ...rest } = props;
+  const { columns = 2, ...rest } = props;
+  const { colorMode } = useColorMode();
   return (
     <Box
       bg="#004c4c"
       // _dark={{ bg: "gray.900" }}
       {...rest}
       // make at the bottom
+      position={"relative"}
     >
-      <Container maxW="container.xl" px="10" py="8">
+      <Container
+        maxW="container.xl"
+        px="10"
+        py="10"
+        display={"flex"}
+        flexDirection={"column"}
+        gap={"5rem"}
+      >
         <SimpleGrid columns={[1, 2, columns, columns]} spacing="8">
           <Stack spacing="2">
             <Stack alignItems="flex-start">
@@ -101,11 +116,13 @@ export const Footer: React.FC<FooterProps> = (props) => {
             spacing={[2, 2, 8, 32]}
             display={"flex"}
             flexDirection={["column", "column", "row", "row"]}
+            justifyContent={"center"}
+            alignItems={"flex-start"}
           >
             <Stack spacing="8">
               <Stack alignItems="flex-start" spacing="4">
                 <Text fontSize="2xl" color="white" whiteSpace={"nowrap"}>
-                  What I Do?
+                  What We Do?
                 </Text>
                 <HStack
                   spacing="4"
@@ -185,74 +202,20 @@ export const Footer: React.FC<FooterProps> = (props) => {
               </Stack>
             </Stack>
             {/* News */}
-            <Stack spacing="8" alignItems="flex-start">
-              <Text fontSize="2xl" color="white">
-                News
-              </Text>
-              <HStack
-                spacing="4"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <List
-                  style={{
-                    listStyleType: "none",
-                    padding: 0,
-                    margin: 0,
-                  }}
-                  spacing={2}
-                >
-                  <ListItem
-                    sx={{
-                      color: "silver",
-                      fontSize: "16px",
-                      cursor: "pointer",
-                      "&:hover": {
-                        color: "white",
-                        transition: "color .2s ease-in",
-                      },
-                    }}
-                  >
-                    Blog
-                  </ListItem>
-                  <ListItem
-                    sx={{
-                      color: "silver",
-                      fontSize: "16px",
-                      cursor: "pointer",
-                      "&:hover": {
-                        color: "white",
-                        transition: "color .2s ease-in",
-                      },
-                    }}
-                  >
-                    Events
-                  </ListItem>
-                  <ListItem
-                    sx={{
-                      color: "silver",
-                      fontSize: "16px",
-                      cursor: "pointer",
-                      "&:hover": {
-                        color: "white",
-                        transition: "color .2s ease-in",
-                      },
-                    }}
-                  >
-                    Press
-                  </ListItem>
-                </List>
-              </HStack>
-            </Stack>
             {/* Quick Links */}
-            <Stack spacing="8" alignItems="flex-start">
+            <Stack
+              spacing="4"
+              alignItems="flex-start"
+              mt={{
+                base: "10",
+                md: "0",
+                lg: "0",
+              }}
+            >
               <Text fontSize="2xl" color="white" whiteSpace={"nowrap"}>
                 Quick Links
               </Text>
               <HStack
-                spacing="4"
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -309,15 +272,56 @@ export const Footer: React.FC<FooterProps> = (props) => {
               </HStack>
             </Stack>
           </Stack>
-          <HStack justify="flex-end" spacing="4" alignSelf="flex-end">
-            {siteConfig.footer?.links?.map(({ href, label }) => (
-              <FooterLink key={href} href={href}>
-                {label}
-              </FooterLink>
-            ))}
-          </HStack>
         </SimpleGrid>
+        <Stack spacing="8" alignItems="flex-start">
+          <Divider
+            orientation="horizontal"
+            color="white"
+            sx={{
+              width: "100%",
+              height: "1px",
+              backgroundColor: "#007777",
+              border: "none",
+            }}
+          />
+          <Stack
+            spacing="8"
+            alignItems="center"
+            justify={"center"}
+            width={"100%"}
+            display={"flex"}
+            flexDirection={"column"}
+          >
+            <HStack justify="center" spacing="4" alignSelf="center" mt={8}>
+              {siteConfig.footer?.links?.map(({ href, label }) => (
+                <FooterLink key={href} href={href}>
+                  <Text
+                    sx={{
+                      padding: "5px",
+                      borderRadius: "50%",
+                      border: "1px solid #004c4c",
+                      backgroundColor: "#b2d8d8",
+                      color: colorMode === "dark" ? "black" : "black",
+                      "&:hover": {
+                        color: "white",
+                        transition: "color .2s ease-in",
+                        backgroundColor: "#006666",
+                      },
+                    }}
+                  >
+                    {label}
+                  </Text>
+                </FooterLink>
+              ))}
+            </HStack>
+            <Text fontSize="sm" color="silver">
+              Techemulsion company is a registered company in the United States
+            </Text>
+          </Stack>
+        </Stack>
       </Container>
+      <Layout />
+      <LayoutBottom />
     </Box>
   );
 };
@@ -350,8 +354,8 @@ export const FooterLink: React.FC<LinkProps> = (props) => {
       fontSize="sm"
       textDecoration="none"
       _hover={{
+        bg: "white",
         color: "white",
-        transition: "color .2s ease-in",
       }}
       {...rest}
     >

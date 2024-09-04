@@ -63,7 +63,12 @@ export const Feature: React.FC<FeatureProps> = (props) => {
   return (
     <Stack sx={styles.container} direction={direction}>
       {icon && (
-        <Circle sx={styles.icon}>
+        <Circle
+          sx={{
+            backgroundColor: "#b2d8d8",
+            p: "1",
+          }}
+        >
           <Icon as={icon} boxSize={iconSize} />
         </Circle>
       )}

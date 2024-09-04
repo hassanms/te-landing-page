@@ -25,7 +25,7 @@ export const HighlightsItem: React.FC<HighlightBoxProps> = (props) => {
     <GridItem
       as={Card}
       borderRadius="md"
-      p="8"
+      p="4"
       flex="1 0"
       alignItems="flex-start"
       spacing="8"
@@ -108,7 +108,7 @@ export const Highlights: React.FC<SectionProps> = (props) => {
       {...rest}
     >
       <Grid
-        templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(6, 1fr)" }}
+        templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
         gap={6}
         position="relative"
         ml={{ base: 0, lg: "-12px" }}

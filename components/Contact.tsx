@@ -172,7 +172,7 @@ const Contact = () => {
                         padding: "2rem",
                         border: "none",
                         fontWeight: 500,
-                        color: "gray.500",
+                        color: colorMode === "dark" ? "white" : "gray.00",
                         fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
@@ -201,7 +201,7 @@ const Contact = () => {
                         padding: "2rem",
                         border: "none",
                         fontWeight: 500,
-                        color: "gray.500",
+                        color: colorMode === "dark" ? "white" : "gray.00",
                         fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
@@ -239,7 +239,7 @@ const Contact = () => {
                         padding: "2rem",
                         border: "none",
                         fontWeight: 500,
-                        color: "gray.500",
+                        color: colorMode === "dark" ? "white" : "gray.00",
                         fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
@@ -268,7 +268,7 @@ const Contact = () => {
                         padding: "2rem",
                         border: "none",
                         fontWeight: 500,
-                        color: "gray.500",
+                        color: colorMode === "dark" ? "white" : "gray.00",
                         fontSize: "1rem",
                         borderRadius: "none",
                         _focusVisible: {
@@ -296,7 +296,7 @@ const Contact = () => {
                     sx={{
                       padding: "2rem",
                       border: "none",
-                      color: "gray.500",
+                      color: colorMode === "dark" ? "white" : "gray.700",
                       fontWeight: 500,
                       fontSize: "1rem",
                       minHeight: "200px",

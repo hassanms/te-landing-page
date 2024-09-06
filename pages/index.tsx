@@ -72,6 +72,7 @@ import {
   Highlights,
   HighlightsItem,
   HighlightsTestimonialItem,
+  HighlightsWhatWeDo,
 } from "components/highlights";
 
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
@@ -257,7 +258,7 @@ const AboutUsSection = () => {
   const { colorMode } = useColorMode();
 
   return (
-    <Box id="about">
+    <Box id="about" sx={{ scrollMarginTop: "60px" }}>
       <Container maxW="container.xl" py="5" mb="5">
         <Stack
           direction={["column", null, "row"]}
@@ -590,7 +591,7 @@ const HighlightsSection = () => {
     },
   ];
   return (
-    <Box id="services">
+    <Box id="services" sx={{ scrollMarginTop: "60px" }}>
       <Container maxW="container.xl" py="5">
         <Divider />
         <Box
@@ -657,7 +658,7 @@ const HighlightsSection = () => {
           </ButtonGroup>
         </Box>
 
-        <Highlights>
+        <HighlightsWhatWeDo>
           {HighlightsItems?.map((item, index) => (
             <HighlightsItem
               key={index}
@@ -782,7 +783,7 @@ const HighlightsSection = () => {
               ))}
             </Wrap>
           </HighlightsItem> */}
-        </Highlights>
+        </HighlightsWhatWeDo>
       </Container>
     </Box>
   );
@@ -814,7 +815,7 @@ const Portfolio = () => {
     },
   ];
   return (
-    <Box id="portfolio">
+    <Box id="portfolio" sx={{ scrollMarginTop: "60px" }}>
       <Container maxW="container.xl" py="5" mb="20">
         <Divider />
         <Box
@@ -1076,12 +1077,19 @@ const SocialProofSection = () => {
               There are many variations of passages of Lorem Ipsum available but
               the majority have suffered alteration in some form.
             </Text>
+
             <Grid
-              templateColumns={["repeat(2, 1fr)", null, "repeat(4, 1fr 1fr)"]}
+              templateColumns={[
+                "repeat(2, 1fr)",
+                null,
+                "repeat(4, 1fr 1fr)",
+                "repeat(6, 1fr 1fr)",
+              ]}
               gap={10}
               mt="14"
               justifyContent="center"
               alignItems="center"
+              // continous scroll
             >
               <Box
                 sx={{

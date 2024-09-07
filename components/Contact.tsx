@@ -85,7 +85,7 @@ const Contact = () => {
               >
                 <Heading
                   as="h2"
-                  size="lg"
+                  size="md"
                   color={colorMode === "dark" ? "white" : "#004c4c"}
                   sx={{
                     textTransform: "uppercase",

@@ -43,6 +43,14 @@ const Navigation: React.FC = () => {
           <NavLink
             display={["none", null, "block"]}
             href={href || `/#${id}`}
+            onClick={(e) => {
+              if (href) return;
+              e.preventDefault();
+              const el = document.getElementById(id as string);
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             key={i}
             isActive={
               !!(

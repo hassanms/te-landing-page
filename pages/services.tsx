@@ -10,7 +10,11 @@ import {
 } from "@chakra-ui/react";
 import { ButtonLink } from "components/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import { Highlights, HighlightsItem } from "components/highlights";
+import {
+  Highlights,
+  HighlightsItem,
+  HighlightsWhatWeDo,
+} from "components/highlights";
 import { FaChevronRight } from "react-icons/fa";
 
 const Services = () => {
@@ -33,13 +37,13 @@ const Services = () => {
       title: "Custom Chrome Extensions",
       description:
         "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives",
-      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
     },
     {
       title: "Expert DevOps Solutions",
       description:
         "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases",
-      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
     },
     {
       title: "Generative AI Integration",
@@ -58,7 +62,6 @@ const Services = () => {
   return (
     <Box>
       <Container maxW="container.xl" py="20" mb="20">
-        <Divider />
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -67,14 +70,8 @@ const Services = () => {
           justifyContent={"space-between"}
         >
           <Box>
-            <Heading
-              as="h2"
-              size="lg"
-              sx={{
-                textTransform: "uppercase",
-              }}
-            >
-              Service Page
+            <Heading as="h2" size="lg">
+              Services Page
             </Heading>
             <Text
               color="muted"
@@ -134,7 +131,7 @@ const Services = () => {
           </VStack>
         </Box>
 
-        <Highlights>
+        <HighlightsWhatWeDo>
           {HighlightsItems?.map((item, index) => (
             <HighlightsItem
               key={index}
@@ -149,15 +146,13 @@ const Services = () => {
                   width: "100%",
                   height: "300px",
                   objectFit: "fill",
-                  borderRadius: "8px",
                 }}
               />
-              <Box p="8" borderRadius="8px" mt="4" w="100%">
+              <Box px="4" pb="6" borderRadius="8px" w="100%">
                 <Heading
                   as="h2"
                   size="lg"
                   sx={{
-                    textTransform: "uppercase",
                     py: "6",
                   }}
                 >
@@ -259,7 +254,7 @@ const Services = () => {
           ))}
         </Wrap>
       </HighlightsItem> */}
-        </Highlights>
+        </HighlightsWhatWeDo>
       </Container>
     </Box>
   );

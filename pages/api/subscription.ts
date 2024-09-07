@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        const { name, company, email, phone, message } = req.body;
+        const { email } = req.body;
 
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
@@ -23,13 +23,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const mailOptions = {
             from: process.env.SMTP_FROM,
             to: process.env.SMTP_TO,
-            subject: `Contact form submission from ${name}`,
+            subject: `Subscription form submission`,
             text: `
-        Name: ${name}
-        Company: ${company}
+            User has subscribed to the newsletter with the following email address:
         Email: ${email}
-        Phone: ${phone}
-        Message: ${message}
       `,
         };
 

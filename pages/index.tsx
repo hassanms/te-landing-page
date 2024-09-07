@@ -27,6 +27,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 
@@ -76,7 +77,11 @@ import {
 } from "components/highlights";
 
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
-import { FaLinkedin } from "react-icons/fa";
+import {
+  FaArrowCircleLeft,
+  FaArrowCircleRight,
+  FaLinkedin,
+} from "react-icons/fa";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
@@ -1597,6 +1602,28 @@ const FeaturesSection = () => {
 };
 
 const TestimonialsSection = () => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const isSmall = useBreakpointValue({ base: true, md: false });
+  const { colorMode } = useColorMode();
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? testimonials.items.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {
@@ -1608,29 +1635,176 @@ const TestimonialsSection = () => {
     );
   }, []);
 
-  return (
-    <Box position="relative" overflow="hidden">
-      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
-        <Stack
-          direction={{ base: "column", lg: "row" }}
-          alignItems="flex-start"
-        >
-          <Testimonials
-            title={testimonials.title}
-            columns={[1, 2, 3]}
-            innerWidth="container.xl"
+  if (isSmall) {
+    return (
+      <Box position="relative" overflow="hidden">
+        <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
+          <Stack
+            direction={{ base: "column", lg: "row" }}
+            alignItems="flex-start"
           >
-            <>
-              {columns.map((column, i) => (
-                <Stack key={i}>
-                  {column.map((t, i) => (
-                    <Testimonial key={i} {...t} />
-                  ))}
-                </Stack>
-              ))}
-            </>
-          </Testimonials>
-        </Stack>
+            <Testimonials
+              title={testimonials.title}
+              columns={[1, 2, 3]}
+              innerWidth="container.xl"
+            >
+              <>
+                {columns.map((column, i) => (
+                  <Stack key={i}>
+                    {column.map((t, i) => (
+                      <Testimonial key={i} {...t} />
+                    ))}
+                  </Stack>
+                ))}
+              </>
+            </Testimonials>
+          </Stack>
+        </Container>
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      id="testimonials"
+      py="20"
+      color="white"
+      textAlign="center"
+      height={[null, null, null]}
+    >
+      <Container maxW="container.xl" py="5" mb="20">
+        <Box
+          display="flex"
+          flexDirection={"column"}
+          justifyContent="center"
+          alignItems="center"
+          gap="4"
+          sx={{
+            // add transition upo changing the testimonial
+            transition: "all 0.5s ease",
+          }}
+        >
+          <Box mb={20}>
+            <Heading
+              as="h2"
+              size="lg"
+              color={colorMode === "dark" ? "white" : "#004c4c"}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+                textTransform: "uppercase",
+              }}
+            >
+              TESTIMONIALS
+            </Heading>
+            <Heading
+              as="h1"
+              mt="5"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                color: colorMode === "dark" ? "white" : "black",
+                fontSize: {
+                  base: "2rem",
+                  md: "2rem",
+                },
+                width: "100%",
+              }}
+            >
+              Hear From Our Clients
+            </Heading>
+            <Text
+              color="muted"
+              fontSize="lg"
+              fontWeight={"500"}
+              mt="5"
+              width={"60%"}
+              align={"center"}
+              justifyItems={"center"}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+
+                width: "100%",
+              }}
+            >
+              There are many variations of passages of Lorem Ipsum available but
+              the majority have suffered alteration in some form.
+            </Text>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection={"row"}
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              width: "100%",
+              padding: "0px",
+              margin: "0px",
+            }}
+          >
+            {/* Previous button */}
+            <Button
+              onClick={handlePrev}
+              variant="contained"
+              sx={{
+                mr: 2,
+                color: "gray.300",
+                ":hover": {
+                  bg: "none",
+                  color: "#004c4c",
+                },
+              }}
+            >
+              <FaArrowCircleLeft
+                style={{
+                  width: "30px",
+                  height: "30px",
+                }}
+              />
+            </Button>
+            <Box
+              style={{
+                // transion effect on changing the testimonial
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                transition: "all 0.5s ease",
+                animation: `${
+                  currentIndex % 2 === 0 ? "fadeOut" : "fadeIn"
+                } 0.5s`,
+              }}
+            >
+              {/* Testimonial item */}
+              <Testimonial {...testimonials.items[currentIndex]} />
+            </Box>
+
+            {/* Next button */}
+            <Button
+              onClick={handleNext}
+              variant="contained"
+              sx={{
+                ml: 2,
+                color: "gray.300",
+                ":hover": {
+                  bg: "none",
+                  color: "#004c4c",
+                },
+              }}
+            >
+              <FaArrowCircleRight
+                style={{
+                  width: "30px",
+                  height: "30px",
+                }}
+              />
+            </Button>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );
@@ -1705,8 +1879,13 @@ const Team = () => {
             {/* Explore services */}
           </Box>
           <Grid
-            templateColumns={["repeat(1, 1fr)", null, "repeat(4, 1fr)"]}
-            gap={{ base: 4, md: 0 }}
+            templateColumns={[
+              "repeat(1, 1fr)",
+              null,
+              "repeat(2, 1fr)",
+              "repeat(4, 1fr)",
+            ]}
+            gap={{ base: 4, md: 4, lg: 4, xl: 0 }}
             mt="14"
             w="100%"
             justifyContent={"center"}

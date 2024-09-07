@@ -32,7 +32,7 @@ export const Testimonial = ({
   ...rest
 }: TestimonialProps) => {
   return (
-    <Card position="relative" {...rest}>
+    <Card position="relative" {...rest} maxWidth={{ base: "100%", md: "50%" }}>
       <CardHeader display="flex" flexDirection="row" alignItems="center">
         <Stack
           spacing="3"

@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 
-const Teams = () => {
+const Teams = ({ image, name, role }) => {
   return (
     <Box
       sx={{
@@ -40,21 +40,18 @@ const Teams = () => {
       >
         <img
           alt="Jackie Sanders"
-          loading="lazy"
-          decoding="async"
-          data-nimg="fill"
           className="w-full object-cover object-center"
           style={{
             position: "absolute",
-            height: "100%",
             width: "100%",
             left: "0",
             top: "0",
             right: "0",
             bottom: "0",
+            objectFit: "cover",
             color: "transparent",
           }}
-          src="https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fteam%2Fimage-01.jpg&w=1080&q=75"
+          src={image}
         />
         <Box
           sx={{
@@ -65,7 +62,7 @@ const Teams = () => {
             bottom: "10rem",
             width: "90%",
             textAlign: "center",
-            backgroundColor: "white",
+            backgroundColor: "#d3f0f0",
             position: "absolute",
             borderRadius: "0.5rem",
           }}
@@ -74,9 +71,9 @@ const Teams = () => {
             style={{
               overflow: "hidden",
               borderRadius: "0.5rem",
-              backgroundColor: "white",
               position: "relative",
               padding: "0.5rem",
+              backgroundColor: "#e1f0f0",
             }}
           >
             <h3
@@ -87,13 +84,13 @@ const Teams = () => {
                 color: "#004c4c",
               }}
             >
-              Jackie Sanders
+              {name}
             </h3>
             <p
               className="text-sm text-body-color"
               style={{ fontSize: "0.875rem", color: "#333" }}
             >
-              UI/UX Designer
+              {role}
             </p>
             <div>
               <span

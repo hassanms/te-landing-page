@@ -97,6 +97,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub } from "react-icons/ai";
+import HeroSectionImage from "components/HeroSectionImage";
 
 const Home: NextPage = () => {
   return (
@@ -252,6 +253,7 @@ const HeroSection: React.FC = () => {
               <Box overflow="hidden" height="100%">
                 <img src={img} alt="Screenshot of a ListPage in Saas UI Pro" />
               </Box>
+              {/* <HeroSectionImage /> */}
             </FallInPlace>
           </Box>
         </Stack>
@@ -786,25 +788,35 @@ const Portfolio = () => {
   const { colorMode } = useColorMode();
   const HighlightsItems = [
     {
-      title: "Core components",
+      title: "Farmin – AI-based Remote Sensing App",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://agency.demo.nextjstemplates.com/images/portfolio/portfolio-01.jpg",
+        "The SaaS application is designed to detect and recognize different types of objects in satellite images, for example cars, houses, airplanes, boats, etc. The back end is coded in Python (Django). Various computer vision techniques (using OpenCV) and different deep learning models like YOLO are used in the back-end pipeline.",
+      image: "/assets/portfolio/farmin.avif",
     },
     {
-      title: "Core components",
+      title: "Atarim – A SaaS tool for visual collaboration",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://agency.demo.nextjstemplates.com/images/portfolio/portfolio-02.jpg",
+        "Instantly comment on any design, from websites to graphics. Manage at scale and integrate your stack. Just click on any part to leave feedback and say goodbye to endless email/Slack Chains.",
+      image: "/assets/portfolio/atarim.png",
     },
     {
-      title: "Core components",
+      title:
+        "Artis – Blockchain-powered SaaS to help artists copyright their work",
       description:
-        "Get started for free with 30+ open source components. Including authentication screens with Clerk, Supabase and Magic. Fully functional forms with React Hook Form. Data tables with React Table.",
-      image:
-        "https://agency.demo.nextjstemplates.com/images/portfolio/portfolio-03.jpg",
+        "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
+      image: "/assets/portfolio/Artis.png",
+    },
+    {
+      title: "Bipcards – Elevate Online Presence with Genuine Reviews",
+      description:
+        "Bipcards.com is a platform designed to help businesses enhance their online presence by collecting and showcasing genuine customer reviews. It aims to build trust and credibility through verified feedback.",
+      image: "/assets/portfolio/bipcards.png",
+    },
+    {
+      title: "Popcard – dashboard for managing review cards",
+      description:
+        "Popcard is a dashboard for managing review cards. It allows users to create, edit, and delete review cards, as well as view and manage the reviews associated with each card.",
+      image: "/assets/portfolio/Artis.png",
     },
   ];
   return (
@@ -897,6 +909,7 @@ const Portfolio = () => {
                 alt="hero"
                 style={{
                   width: "100%",
+                  height: "400px",
                   objectFit: "fill",
                 }}
               />
@@ -1573,7 +1586,7 @@ const TestimonialsSection = () => {
           <Box mb={20}>
             <Heading
               as="h2"
-              size="lg"
+              size="md"
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 display: "flex",
@@ -1699,6 +1712,38 @@ const TestimonialsSection = () => {
 
 const Team = () => {
   const { colorMode } = useColorMode();
+  const images = [
+    {
+      image: "/assets/team/hamid.png",
+      name: "Hamid Ali",
+      role: "Full Stack Developer",
+    },
+    {
+      image: "/assets/team/javed.png",
+      name: "Javed Iqbal",
+      role: "Full Stack Developer",
+    },
+    {
+      image: "/assets/team/qazi.png",
+      name: "Qazi Yahya",
+      role: "Full Stack Developer",
+    },
+    {
+      image: "/assets/team/talha.png",
+      name: "Muhammad Talha",
+      role: "MERN Stack Developer",
+    },
+    {
+      image: "/assets/team/yahya.png",
+      name: "Yahya Naeem",
+      role: "Full Stack Developer",
+    },
+    {
+      image: "/assets/team/saud.png",
+      name: "Saud Iftekhar",
+      role: "SQA Engineer",
+    },
+  ];
   return (
     <Box id="services">
       <Container maxW="container.xl" py="5">
@@ -1725,7 +1770,7 @@ const Team = () => {
             >
               <Heading
                 as="h2"
-                size="lg"
+                size="md"
                 color={colorMode === "dark" ? "white" : "#004c4c"}
                 sx={{
                   textTransform: "uppercase",
@@ -1778,10 +1823,14 @@ const Team = () => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <Teams />
-            <Teams />
-            <Teams />
-            <Teams />
+            {images?.map((image, index) => (
+              <Teams
+                key={index}
+                name={image.name}
+                role={image.role}
+                image={image.image}
+              />
+            ))}
           </Grid>
         </Box>
       </Container>

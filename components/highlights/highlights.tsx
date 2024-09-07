@@ -118,3 +118,30 @@ export const Highlights: React.FC<SectionProps> = (props) => {
     </Section>
   );
 };
+
+export const HighlightsWhatWeDo: React.FC<SectionProps> = (props) => {
+  const { children, ...rest } = props;
+
+  return (
+    <Section
+      innerWidth="container.xl"
+      position="relative"
+      overflow="hidden"
+      {...rest}
+    >
+      <Grid
+        templateColumns={{
+          base: "repeat(1, 1fr)",
+          md: "repeat(4, 1fr)",
+          lg: "repeat(4, 1fr)",
+          xl: "repeat(6, 1fr)",
+        }}
+        gap={6}
+        position="relative"
+        ml={{ base: 0, lg: "-12px" }}
+      >
+        {children}
+      </Grid>
+    </Section>
+  );
+};

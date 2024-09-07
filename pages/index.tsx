@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
@@ -28,6 +30,7 @@ import {
   CardBody,
   CardFooter,
   useBreakpointValue,
+  Toast,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 
@@ -45,6 +48,7 @@ import {
   FiCode,
   FiCopy,
   FiFlag,
+  FiGithub,
   FiGrid,
   FiLock,
   FiSearch,
@@ -81,6 +85,7 @@ import {
   FaArrowCircleLeft,
   FaArrowCircleRight,
   FaLinkedin,
+  FaLinkedinIn,
 } from "react-icons/fa";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
@@ -88,17 +93,12 @@ import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
 import Atarim from "components/icons/Atarim";
+import axios from "axios";
+import toast from "react-hot-toast";
+import NewsLetter from "components/NewsLetter";
+import { AiFillGithub } from "react-icons/ai";
 
 const Home: NextPage = () => {
-  const [mount, setMount] = React.useState(false);
-
-  React.useEffect(() => {
-    setMount(true);
-  }, []);
-
-  if (!mount) {
-    return null;
-  }
   return (
     <Box>
       <SEO
@@ -107,6 +107,7 @@ const Home: NextPage = () => {
       />
       <Box>
         <HeroSection />
+
         <AboutUsSection />
         <HighlightsSection />
         <Portfolio />
@@ -131,7 +132,7 @@ const HeroSection: React.FC = () => {
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.xl" pt={{ base: 20, lg: 20 }} pb="20">
+      <Container maxW="container.xl" pt={{ base: 20, lg: 20 }}>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
@@ -197,7 +198,7 @@ const HeroSection: React.FC = () => {
               flex="1"
               spacing="2"
               alignItems="flex-start"
-              display={{ base: "none", lg: "flex" }}
+              display={{ base: "flex", lg: "flex" }}
               mt="10"
             >
               <Text
@@ -263,12 +264,15 @@ const AboutUsSection = () => {
   const { colorMode } = useColorMode();
 
   return (
-    <Box id="about" sx={{ scrollMarginTop: "60px" }}>
+    <Box id="about" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
+        <Divider />
+
         <Stack
           direction={["column", null, "row"]}
           spacing="4"
           ml={{ base: 4, lg: 4 }}
+          mt={10}
         >
           <Box flex="1">
             <Heading
@@ -314,9 +318,9 @@ const AboutUsSection = () => {
             </Text>
             {/* social links */}
             <HStack mt="8" spacing="4">
-              <Link href="https://twitter.com/saas_js">
+              <Link href="https://www.linkedin.com/company/tech-emulsion/">
                 <Icon
-                  as={FiTwitter}
+                  as={FiLinkedin}
                   boxSize="10"
                   color="gray.500"
                   sx={{
@@ -330,6 +334,7 @@ const AboutUsSection = () => {
                   }}
                 />
               </Link>
+
               <Link href="https://facebook.com/saas-js">
                 <Icon
                   as={FiFacebook}
@@ -346,36 +351,14 @@ const AboutUsSection = () => {
                   }}
                 />
               </Link>
-              <Link
-                href="
-              https://instagram.com/saas-js"
-              >
+              <Link href="https://github.com/hassanms">
                 <Icon
-                  as={FiInstagram}
+                  as={AiFillGithub}
                   boxSize="10"
                   color="gray.500"
                   sx={{
                     padding: "10px",
                     borderRadius: "50%",
-                    border: "1px solid #004c4c",
-                    ":hover": {
-                      bg: "#004c4c",
-                      color: "white",
-                    },
-                  }}
-                />
-              </Link>
-              <Link
-                href="
-              https://linkedin.com/saas-js"
-              >
-                <Icon
-                  as={FiLinkedin}
-                  boxSize="10"
-                  color="gray.500"
-                  sx={{
-                    padding: "6px",
-                    borderRadius: "46%",
                     border: "1px solid #004c4c",
                     ":hover": {
                       bg: "#004c4c",
@@ -465,7 +448,7 @@ const AboutUsSection = () => {
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
-            bgGradient={`linear(to-br,#b2d8d8, #66b2b2, #008080, #006666 ,  #004c4c)`}
+            bgGradient={`linear(to-br,  #004c4c,#006666 , #008080, #66b2b2,  #b2d8d8)`}
             boxShadow="none"
             border={"none"}
             borderRadius="lg"
@@ -596,7 +579,12 @@ const HighlightsSection = () => {
     },
   ];
   return (
-    <Box id="services" sx={{ scrollMarginTop: "60px" }}>
+    <Box
+      id="services"
+      sx={{
+        scrollMarginTop: "50px",
+      }}
+    >
       <Container maxW="container.xl" py="5">
         <Divider />
         <Box
@@ -820,7 +808,7 @@ const Portfolio = () => {
     },
   ];
   return (
-    <Box id="portfolio" sx={{ scrollMarginTop: "60px" }}>
+    <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="20">
         <Divider />
         <Box
@@ -1028,7 +1016,7 @@ const Portfolio = () => {
 
 const SocialProofSection = () => {
   const { colorMode } = useColorMode();
-  const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
+
   return (
     <Box
       id="social"
@@ -1390,110 +1378,7 @@ const SocialProofSection = () => {
             </Grid>
           </Box>
           {/* Absolute Subscrite newletter with imput and subscribe button  */}
-          <Box
-            position={"absolute"}
-            top={"100%"}
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            gap={"4"}
-            mt={"20"}
-            width={"97.8%"}
-            ml={"0.3%"}
-            sx={{
-              // background image with gradient
-              backgroundColor: "#008080",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              paddingY: "60px",
-              borderRadius: "20px",
-              boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Heading
-              as="h2"
-              color={"white"}
-              sx={{
-                fontSize: {
-                  base: "1.5rem",
-                  md: "2rem",
-                },
-                width: "70%",
-              }}
-            >
-              Subscribe our newsletter to receive future updates
-            </Heading>
-            <Box
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              gap={"4"}
-              mt={"10"}
-              width={[null, null, "60%"]}
-              position={"relative"}
-            >
-              <Input
-                placeholder="Enter your email"
-                sx={{
-                  width: "100%",
-                  padding: {
-                    base: "1.5rem 1.5rem",
-                    md: "40px",
-                  },
-
-                  borderRadius: "40px",
-                  fontSize: {
-                    base: "1rem",
-                    md: "1.5rem",
-                  },
-
-                  bg: "#66b2b2",
-                  zIndex: "1000000",
-                }}
-              />
-              <Button
-                position={[null, null, "absolute"]}
-                zIndex={"10000000"}
-                top={"10%"}
-                right={"2%"}
-                size="lg"
-                bg={"white"}
-                sx={{
-                  fontSize: {
-                    base: "1rem",
-                    md: "1.5rem",
-                  },
-
-                  color: "#004c4c",
-                  borderRadius: "30px",
-                  padding: {
-                    base: "0.5rem 1.8rem",
-                    md: "2rem 2rem",
-                  },
-
-                  boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.5)",
-                  "&:hover": {
-                    bg: "#004c4c",
-                    color: "white",
-                  },
-                }}
-              >
-                Subscribe Now
-              </Button>
-            </Box>
-            <Box
-              display={{ base: "none", md: "none", lg: "none", xl: "block" }}
-              position={"absolute"}
-              top={"0"}
-              left={"0"}
-              width={"100%"}
-            >
-              <InnerElementBG />
-            </Box>
-          </Box>
+          <NewsLetter />
         </Box>
       </Container>
     </Box>
@@ -1527,6 +1412,7 @@ const FeaturesSection = () => {
       align="left"
       columns={[1, 2, 3]}
       iconSize={4}
+      margin={10}
       features={[
         {
           title: "Components.",
@@ -1769,13 +1655,14 @@ const TestimonialsSection = () => {
             </Button>
             <Box
               style={{
-                // transion effect on changing the testimonial
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
                 animation: `${
-                  currentIndex % 2 === 0 ? "fadeOut" : "fadeIn"
+                  currentIndex % 2 === 0 || currentIndex % 3 === 0
+                    ? "fadeOut"
+                    : "fadeIn"
                 } 0.5s`,
               }}
             >

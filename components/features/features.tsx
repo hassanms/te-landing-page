@@ -12,6 +12,7 @@ import {
   useMultiStyleConfig,
   ThemingProps,
   SystemProps,
+  useColorMode,
 } from "@chakra-ui/react";
 
 import { Section, SectionTitle, SectionTitleProps } from "components/section";
@@ -32,6 +33,7 @@ export interface FeaturesProps
   reveal?: React.FC<any>;
   iconSize?: SystemProps["boxSize"];
   innerWidth?: SystemProps["maxW"];
+  margin?: number;
 }
 
 export interface FeatureProps {
@@ -43,6 +45,7 @@ export interface FeatureProps {
   ip?: "left" | "top";
   variant?: string;
   delay?: number;
+  margin?: number;
 }
 
 export const Feature: React.FC<FeatureProps> = (props) => {
@@ -54,9 +57,10 @@ export const Feature: React.FC<FeatureProps> = (props) => {
     iconSize = 8,
     ip,
     variant,
+    margin = 8,
   } = props;
   const styles = useMultiStyleConfig("Feature", { variant });
-
+  const { colorMode } = useColorMode();
   const pos = iconPosition || ip;
   const direction = pos === "left" ? "row" : "column";
 
@@ -65,11 +69,14 @@ export const Feature: React.FC<FeatureProps> = (props) => {
       {icon && (
         <Circle
           sx={{
-            backgroundColor: "#b2d8d8",
-            p: "1",
+            backgroundColor: colorMode === "dark" ? "#66b2b2" : "#d9ebeb",
+            p: "2",
+            marginTop: `${margin}px`,
+            marginRight: "20px",
+            marginBottom: "10px",
           }}
         >
-          <Icon as={icon} boxSize={iconSize} />
+          <Icon as={icon} boxSize={iconSize} color={"#004c4c"} />
         </Circle>
       )}
       <Box>
@@ -91,6 +98,7 @@ export const Features: React.FC<FeaturesProps> = (props) => {
     iconSize = 8,
     aside,
     reveal: Wrap = Revealer,
+    margin,
     ...rest
   } = props;
 
@@ -115,7 +123,12 @@ export const Features: React.FC<FeaturesProps> = (props) => {
             {features.map((feature, i) => {
               return (
                 <Wrap key={i} delay={feature.delay}>
-                  <Feature iconSize={iconSize} {...feature} ip={ip} />
+                  <Feature
+                    iconSize={iconSize}
+                    margin={margin}
+                    {...feature}
+                    ip={ip}
+                  />
                 </Wrap>
               );
             })}

@@ -2,15 +2,13 @@ export default {
   title: "Loved by tech people",
   items: [
     {
-      company: "SaaS UI Inc.", // Company name
+      company: "Artis", // Company name
       children: (
         <>
-          “Saas UI allows me to build beautiful and functional UI super fast.
-          The components are very well thought out and the Next.js starter kit
-          saved me at least 100 hours of work.”
+          “Excellent team. Highly skilled. Communicates in flawless English. I am continuing to work with them as they delivers the required results.”
         </>
       ),
-      name: "Eelco Wiersma",
+      name: "Martin Kuner",
       description: "Founder Saas UI",
       avatar: "/static/images/avatar3.jpg",
     },

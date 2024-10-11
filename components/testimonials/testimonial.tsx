@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
 import { Logo } from "components/layout/logo";
-import { FaLaughWink, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 export interface TestimonialProps extends CardProps {
   name: string;

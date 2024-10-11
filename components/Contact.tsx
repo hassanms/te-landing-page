@@ -91,7 +91,7 @@ const Contact = () => {
                     textTransform: "uppercase",
                   }}
                 >
-                  CONTACT
+                  Contact Us
                 </Heading>
                 <Heading
                   as="h1"
@@ -108,7 +108,7 @@ const Contact = () => {
                     justifyContent: "center",
                   }}
                 >
-                  Have an Project in Mind?
+                  Have an Idea? We Can Help You Build It.
                 </Heading>
                 <Text
                   color="gray.400"
@@ -118,8 +118,9 @@ const Contact = () => {
                   width={"60%"}
                   align={"center"}
                 >
-                  There are many variations of passages of Lorem Ipsum available
-                  but the majority have suffered alteration in some form.
+                  Got an idea you're excited about? We're here to help you turn it into reality.
+                  Our team of experts is ready to collaborate with you, providing the support and expertise needed to bring your vision to life.
+                  Contact us today to get started on your project!
                 </Text>
               </Box>
 
@@ -183,8 +184,10 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor:
-                          colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        _placeholder: {
+                          color: colorMode === "dark" ? "gray.400" : "gray.500",
+                        },
                       }}
                       value={formData.name}
                       onChange={(e) => {
@@ -212,8 +215,10 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor:
-                          colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        _placeholder: {
+                          color: colorMode === "dark" ? "gray.400" : "gray.500",
+                        },
                       }}
                       value={formData.company}
                       onChange={(e) => {
@@ -250,8 +255,10 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor:
-                          colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        _placeholder: {
+                          color: colorMode === "dark" ? "gray.400" : "gray.500",
+                        },
                       }}
                       value={formData.email}
                       onChange={(e) => {
@@ -279,8 +286,10 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor:
-                          colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        _placeholder: {
+                          color: colorMode === "dark" ? "gray.400" : "gray.500",
+                        },
                       }}
                       value={formData.phone}
                       onChange={(e) => {

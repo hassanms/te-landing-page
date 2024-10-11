@@ -36,9 +36,9 @@ import { SEO } from "components/seo/seo";
 
 import { FallInPlace } from "components/motion/fall-in-place";
 import { Hero } from "components/hero";
-import { Link, Br } from "@saas-ui/react";
+import { Br } from "@saas-ui/react";
+import { Link } from "@chakra-ui/react";
 import { Em } from "components/typography";
-import InnerElementBG from "components/InnerElementBG";
 import { NextjsLogo, ChakraLogo } from "components/logos";
 import bipCards from "../components/Bipcards";
 import {
@@ -92,19 +92,22 @@ import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
-import Atarim from "components/icons/Atarim";
 import axios from "axios";
 import toast from "react-hot-toast";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub } from "react-icons/ai";
 import HeroSectionImage from "components/HeroSectionImage";
+import OutsourceIcon from "components/icons/Outsource";
+import StaffIcon from "components/icons/Staff";
+import ContractorsIcon from "components/icons/Contractors";
+import TeamsIcon from "components/icons/Teams";
 
 const Home: NextPage = () => {
   return (
     <Box>
       <SEO
-        title="Saas UI Landingspage"
-        description="Free SaaS landingspage starter kit"
+        title="Tech Emulsion | Imagineering Digital Transformation"
+        description="Imagineering digital transformation for your business"
       />
       <Box>
         <HeroSection />
@@ -113,10 +116,11 @@ const Home: NextPage = () => {
         <HighlightsSection />
         <Portfolio />
         <SocialProofSection />
-        <FeaturesSection />
 
         <TestimonialsSection />
-        <Team />
+        <FeaturesSection />
+
+        {/* <Team /> */}
         {/* <PricingSection /> */}
 
         <FaqSection />
@@ -145,7 +149,10 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Imagineering digital success
+                Imagineering <Br />
+                <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
+                  digital transformation
+                </Em>
                 <Br /> for your business
               </FallInPlace>
             }
@@ -218,28 +225,38 @@ const HeroSection: React.FC = () => {
               <FallInPlace delay={0.6}>
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
                   {colorMode === "dark" ? (
-                    <img
-                      src="/assets/clients/Atarim.svg"
-                      width={100}
-                      height={262}
-                      alt="Screenshot of a ListPage in Saas UI Pro"
-                    />
+                    <>
+                      <Image
+                        src="/assets/clients/atarim-white.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                      />
+                      <Image
+                        src="/assets/clients/farmin-white.png"
+                        width={100}
+                        height={100}
+                        style={{ objectFit: "contain" }}
+                        alt="Farmin logo"
+                      />
+                    </>
                   ) : (
-                    <Atarim />
+                    <>
+                      <Image
+                        src="/assets/clients/atarim.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                      />
+                      <Image
+                        src="/assets/clients/farmin-dark.png"
+                        width={100}
+                        height={100}
+                        style={{ objectFit: "contain" }}
+                        alt="Farmin logo"
+                      />
+                    </>
                   )}
-                  <img
-                    src="/assets/clients/krypto_labs_logo.jpeg"
-                    width={100}
-                    height={262}
-                    alt="Screenshot of a ListPage in Saas UI Pro"
-                  />
-                  <img
-                    src="/assets/clients/farmin-logo-dark.png"
-                    width={100}
-                    height={462}
-                    style={{ objectFit: "contain" }}
-                    alt="Screenshot of a ListPage in Saas UI Pro"
-                  />
                 </Box>
               </FallInPlace>
             </VStack>
@@ -267,7 +284,7 @@ const AboutUsSection = () => {
 
   return (
     <Box id="about" sx={{ scrollMarginTop: "50px" }}>
-      <Container maxW="container.xl" py="5" mb="5">
+      <Container maxW="container.xl" py="5">
         <Divider />
 
         <Stack
@@ -294,13 +311,14 @@ const AboutUsSection = () => {
                 fontSize: "2rem",
               }}
             >
-              Better design,
-              <Br /> better experience
+              Impactful Product Design,
+              <Br /> Memorable Experience
             </Heading>
             <Text color="muted" fontSize="lg" mt="4">
-              We believe that building a product should be fun and rewarding.
-              Our mission is to provide you with the best tools to make that
-              happen.
+              We believe that collaboration is key, working closely with you to
+              craft tailored solutions. Our mission is to guide you with the
+              best tools and personalized support, ensuring a rewarding journey
+              from concept to completion.
             </Text>
           </Box>
           <Box flex="1">
@@ -314,20 +332,23 @@ const AboutUsSection = () => {
               Connect With Us
             </Heading>
             <Text color="muted" fontSize="lg" mt="4">
-              We believe that building a product should be fun and rewarding.
-              Our mission is to provide you with the best tools to make that
-              happen.
+              We'd love to hear from you! Reach out to us for any inquiries,
+              feedback, or support. Our team is here to assist you and ensure
+              you have the best experience.
             </Text>
             {/* social links */}
             <HStack mt="8" spacing="4">
-              <Link href="https://www.linkedin.com/company/tech-emulsion/">
+              <Link
+                href="https://www.linkedin.com/company/tech-emulsion/"
+                isExternal
+              >
                 <Icon
                   as={FiLinkedin}
                   boxSize="10"
                   color="gray.500"
                   sx={{
                     padding: "10px",
-                    borderRadius: "50%",
+                    borderRadius: "20%",
                     border: "1px solid #004c4c",
                     ":hover": {
                       bg: "#004c4c",
@@ -337,14 +358,14 @@ const AboutUsSection = () => {
                 />
               </Link>
 
-              <Link href="https://facebook.com/saas-js">
+              <Link href="https://www.facebook.com/emulsiontech/" isExternal>
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
                   color="gray.500"
                   sx={{
                     padding: "10px",
-                    borderRadius: "50%",
+                    borderRadius: "20%",
                     border: "1px solid #004c4c",
                     ":hover": {
                       bg: "#004c4c",
@@ -353,14 +374,14 @@ const AboutUsSection = () => {
                   }}
                 />
               </Link>
-              <Link href="https://github.com/hassanms">
+              <Link href="https://github.com/hassanms" isExternal>
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
                   color="gray.500"
                   sx={{
                     padding: "10px",
-                    borderRadius: "50%",
+                    borderRadius: "20%",
                     border: "1px solid #004c4c",
                     ":hover": {
                       bg: "#004c4c",
@@ -382,46 +403,46 @@ const AboutUsSection = () => {
             }}
             ml={4}
           >
-            Our core values
+            How We Empower Your Business
           </Heading>
           <Features
             id="benefits"
             columns={[1, 2, 4]}
-            iconSize={4}
+            iconSize={6}
             innerWidth="container.xl"
             pt="10"
             pb={0}
             mb={-5}
             features={[
               {
-                title: "Client-Centric Excellence",
-                icon: FirstIcon,
+                title: "Software Outsourcing",
+                icon: OutsourceIcon,
                 description:
-                  "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
+                  "We take full ownership of your software development, delivering high-quality solutions from start to finish, allowing you to focus on your core business.",
                 iconPosition: "left",
                 delay: 0.8,
               },
               {
-                title: "Innovative Problem Solving",
-                icon: Innovation,
+                title: "Staff Augmentation",
+                icon: StaffIcon,
                 description:
-                  "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
+                  "Seamlessly expand your team with our pre-vetted developers, saving you the hassle of recruitment, training, and onboarding.",
                 iconPosition: "left",
                 delay: 1,
               },
               {
-                title: "Clear and Effective Communication",
-                icon: EffectiveCommunication,
+                title: "Dedicated Teams",
+                icon: TeamsIcon,
                 description:
-                  "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
+                  "Accelerate your projects by integrating a fully functional and dedicated team into your development process for faster results.",
                 iconPosition: "left",
                 delay: 1.1,
               },
               {
-                title: "Accountability and Ownership",
-                icon: OwnerShipd,
+                title: "Offshore Contractors",
+                icon: ContractorsIcon,
                 description:
-                  "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
+                  "Leverage our global talent pool to hire experienced offshore contractors, providing cost-effective, high-quality development services tailored to your needs.",
                 iconPosition: "left",
                 delay: 0.6,
               },
@@ -450,7 +471,7 @@ const AboutUsSection = () => {
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
-            bgGradient={`linear(to-br,  #004c4c,#006666 , #008080, #66b2b2,  #b2d8d8)`}
+            bgGradient={`linear(to-br, #b2d8d8, #006666 , #004c4c)`}
             boxShadow="none"
             border={"none"}
             borderRadius="lg"
@@ -479,20 +500,22 @@ const AboutUsSection = () => {
             </CardHeader>
             <CardBody>
               <Text color="white" fontSize="lg">
-                &quot;We believe that building a product should be fun and
-                rewarding. Our mission is to provide you with the best tools to
-                make that happen.&quot;
+                &quot;We are committed to delivering exceptional products,
+                achieving outstanding results, and driving significant revenue
+                growth for our clients.&quot;
               </Text>
             </CardBody>
           </Card>
 
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}
-            title="Start your next idea two steps ahead"
+            title="Areas We Specialize In"
           >
             <Text color="muted" fontSize="lg">
-              We took care of all your basic frontend needs, so you can start
-              building functionality that makes your product unique.
+              Our team specializes in delivering innovative software solutions
+              using a wide range of modern technologies. From SaaS and
+              full-stack development to AI and machine learning, we provide
+              scalable, customized services to meet your business needs.
             </Text>
             <Wrap mt="8">
               {[
@@ -521,10 +544,10 @@ const AboutUsSection = () => {
                   rounded="full"
                   px="3"
                   sx={{
-                    bg: "#b2d8d8",
-                    color: "#004c4c",
+                    bg: "#185651",
+                    color: "#fff",
                     "&:hover": {
-                      bg: "#66b2b2",
+                      bg: "#004c4c",
                     },
                   }}
                 >
@@ -783,12 +806,13 @@ const HighlightsSection = () => {
     </Box>
   );
 };
+
 const Portfolio = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const HighlightsItems = [
     {
-      title: "Farmin – AI-based Remote Sensing App",
+      title: "Farmin – AI based Remote Sensing App",
       description:
         "The SaaS application is designed to detect and recognize different types of objects in satellite images, for example cars, houses, airplanes, boats, etc. The back end is coded in Python (Django). Various computer vision techniques (using OpenCV) and different deep learning models like YOLO are used in the back-end pipeline.",
       image: "/assets/portfolio/farmin.avif",
@@ -800,28 +824,31 @@ const Portfolio = () => {
       image: "/assets/portfolio/atarim.png",
     },
     {
-      title:
-        "Artis – Blockchain-powered SaaS to help artists copyright their work",
-      description:
-        "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
-      image: "/assets/portfolio/Artis.png",
-    },
-    {
       title: "Bipcards – Elevate Online Presence with Genuine Reviews",
       description:
         "Bipcards.com is a platform designed to help businesses enhance their online presence by collecting and showcasing genuine customer reviews. It aims to build trust and credibility through verified feedback.",
       image: "/assets/portfolio/bipcards.png",
     },
     {
-      title: "Popcard – dashboard for managing review cards",
+      title: "Popcard – SaaS for managing review cards",
       description:
         "Popcard is a dashboard for managing review cards. It allows users to create, edit, and delete review cards, as well as view and manage the reviews associated with each card.",
+      image: "/assets/portfolio/popcard.png",
+    },
+    {
+      title:
+        "Artis – Blockchain powered SaaS to help artists copyright their work",
+      description:
+        "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
       image: "/assets/portfolio/Artis.png",
     },
   ];
   return (
-    <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
-      <Container maxW="container.xl" py="5" mb="20">
+    <Box
+      id="portfolio"
+      sx={{ scrollMarginTop: "50px" }}
+    >
+      <Container maxW="container.xl" py="5" mb="5">
         <Divider />
         <Box
           display={"flex"}
@@ -848,7 +875,6 @@ const Portfolio = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-
               fontSize: {
                 base: "2rem",
                 md: "2rem",
@@ -866,8 +892,9 @@ const Portfolio = () => {
             width={"60%"}
             align={"center"}
           >
-            We believe that building a product should be fun and rewarding. Our
-            mission is to provide you with the best tools to make that happen.
+            Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
+            project highlights our dedication to quality and creativity.
+            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.
           </Text>
           <Button
             size="lg"
@@ -904,13 +931,15 @@ const Portfolio = () => {
                 xl: "592px",
               }}
             >
-              <img
+              <Image
                 src={item.image}
                 alt="hero"
+                width={592}
+                height={400}
                 style={{
-                  width: "100%",
-                  height: "400px",
-                  objectFit: "fill",
+                  // width: "100%",
+                  // height: "400px",
+                  objectFit: "none",
                 }}
               />
               <Box
@@ -1038,6 +1067,7 @@ const SocialProofSection = () => {
       color="white"
       textAlign="center"
       height={[null, null, null]}
+      mb="200"
     >
       <Container maxW="container.xl" py="5" mb="20">
         <Box
@@ -1070,7 +1100,7 @@ const SocialProofSection = () => {
                 width: "100%",
               }}
             >
-              Some of Our Happy Clients
+              Trusted by Leading Brands
             </Heading>
             <Text
               color="gray.400"
@@ -1080,8 +1110,11 @@ const SocialProofSection = () => {
               width={"60%"}
               align={"center"}
             >
-              There are many variations of passages of Lorem Ipsum available but
-              the majority have suffered alteration in some form.
+              We’re proud to have worked with a diverse range of clients across
+              industries, delivering impactful solutions that drive results. Our
+              clients trust us for our commitment to quality, innovation, and
+              lasting partnerships, helping them achieve their digital goals
+              with ease.
             </Text>
 
             <Grid
@@ -1110,13 +1143,16 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/Artis.png"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  // style={{
+                  //   width: "80px",
+                  //   height: "80px",
+                  //   objectFit: "contain",
+                  // }}
+                  alt="Artis"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1133,13 +1169,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/Atarim.svg"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Atarim"
+                  width={80}
+                  height={80}
                 />
               </Box>
               {/* <Box
@@ -1172,13 +1206,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/POPCARD_4.png_v=1718360510&width=370"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Popcard"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1195,13 +1227,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/Sprintzeal_Logo.webp"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Sprintzeal"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1218,13 +1248,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Bai"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1241,13 +1269,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/crystal_ball.png"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Crystal Ball"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1264,13 +1290,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/farmin-logo-dark.png"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Farmin"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1279,7 +1303,6 @@ const SocialProofSection = () => {
                   alignItems: "center",
                   fontSize: "1.5rem",
                   color: "gray.400",
-
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -1287,13 +1310,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/ibatu.png"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Ibatu"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1310,13 +1331,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/jarvis-logo.png"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Jarvis"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1333,13 +1352,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/krypto_labs_logo.jpeg"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Krypto Labs"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1356,13 +1373,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/logo-black-small.png"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Logo Black"
+                  width={80}
+                  height={80}
                 />
               </Box>
               <Box
@@ -1371,7 +1386,6 @@ const SocialProofSection = () => {
                   alignItems: "center",
                   fontSize: "1.5rem",
                   color: "gray.400",
-
                   cursor: "pointer",
                   gap: "4",
                   "&:hover": {
@@ -1379,13 +1393,11 @@ const SocialProofSection = () => {
                   },
                 }}
               >
-                <img
+                <Image
                   src="/assets/clients/republic_power_logo.jpeg"
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                  }}
+                  alt="Republic Power"
+                  width={80}
+                  height={80}
                 />
               </Box>
             </Grid>
@@ -1424,7 +1436,7 @@ const FeaturesSection = () => {
       }
       align="left"
       columns={[1, 2, 3]}
-      iconSize={4}
+      iconSize={6}
       margin={10}
       features={[
         {
@@ -1571,7 +1583,8 @@ const TestimonialsSection = () => {
       textAlign="center"
       height={[null, null, null]}
     >
-      <Container maxW="container.xl" py="5" mb="20">
+      <Container maxW="container.xl" py="5" mb="5">
+        <Divider />
         <Box
           display="flex"
           flexDirection={"column"}
@@ -1582,6 +1595,7 @@ const TestimonialsSection = () => {
             // add transition upo changing the testimonial
             transition: "all 0.5s ease",
           }}
+          mt={10}
         >
           <Box mb={20}>
             <Heading
@@ -1620,19 +1634,11 @@ const TestimonialsSection = () => {
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
-              width={"60%"}
+              width={"100%"}
               align={"center"}
-              justifyItems={"center"}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-
-                width: "100%",
-              }}
             >
-              There are many variations of passages of Lorem Ipsum available but
-              the majority have suffered alteration in some form.
+              Discover what our clients have to say about their experiences with us.
+              Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.
             </Text>
           </Box>
           <Box
@@ -1706,6 +1712,84 @@ const TestimonialsSection = () => {
           </Box>
         </Box>
       </Container>
+
+      <Box flex="1" mt={20}>
+        <Heading
+          as="h2"
+          size="md"
+          color={colorMode === "dark" ? "white" : "#004c4c"}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+            textTransform: "uppercase",
+          }}
+        >
+          Reason behind our success
+        </Heading>
+        <Heading
+          as="h1"
+          mt="5"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: colorMode === "dark" ? "white" : "black",
+            fontSize: {
+              base: "2rem",
+              md: "2rem",
+            },
+            width: "100%",
+          }}
+        >
+          Our Core Values
+        </Heading>
+        <Features
+          id="benefits"
+          columns={[1, 2, 4]}
+          iconSize={6}
+          innerWidth="container.xl"
+          pt="10"
+          pb={0}
+          mb={-5}
+          features={[
+            {
+              title: "Client-Centric Excellence",
+              icon: FirstIcon,
+              description:
+                "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
+              iconPosition: "left",
+              delay: 0.5,
+            },
+            {
+              title: "Innovative Problem Solving",
+              icon: Innovation,
+              description:
+                "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
+              iconPosition: "left",
+              delay: 1,
+            },
+            {
+              title: "Clear & Effective Communication",
+              icon: EffectiveCommunication,
+              description:
+                "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
+              iconPosition: "left",
+              delay: 1.1,
+            },
+            {
+              title: "Accountability & Ownership",
+              icon: OwnerShipd,
+              description:
+                "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
+              iconPosition: "left",
+              delay: 0.6,
+            },
+          ]}
+          reveal={FallInPlace}
+        />
+      </Box>
     </Box>
   );
 };

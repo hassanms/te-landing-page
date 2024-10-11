@@ -1,19 +1,14 @@
 import NextLink from "next/link";
 import {
-  Box,
   Container,
   Flex,
   HStack,
   Icon,
-  LinkBox,
-  LinkOverlay,
-  useColorModeValue,
   Button,
 } from "@chakra-ui/react";
 import {
   Banner,
   BannerActions,
-  BannerContent,
   BannerDescription,
   BannerTitle,
 } from "@saas-ui/react";

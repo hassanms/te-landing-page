@@ -5,27 +5,29 @@ const faq = {
   // description: '',
   items: [
     {
-      q: 'How many products can I use Saas UI Pro for?',
-      a: (
-        <>
-          The single license can be used for one commercial application or SaaS
-          product and unlimited internal tools. You can buy as many licenses as
-          you need. <br /> The unlimited license does not have any restrictions.
-        </>
-      ),
+      q: 'What services does Tech Emulsion offer?',
+      a: "Tech Emulsion offers four engagement models: project outsourcing, staff augmentation, dedicated teams, and offshore contractors.",
     },
     {
-      q: 'Can I use Saas UI Pro for client work?',
-      a: "Yes, that's totally up to you, as long as it fits the license you purchase.",
+      q: 'Does Tech Emulsion offer a free consultation?',
+      a: "Yes, we offer a free consultation to discuss your project and determine the best fit for your needs.",
     },
     {
-      q: 'Can I use Saas UI Pro for Open Source projects?',
-      a: 'No currently not. A large part of Saas UI is already released under MIT license. We try to give back to the community as much as possible.',
+      q: 'Does Tech Emulsion sign NDA?',
+      a: "Yes, we take confidentiality seriously and will sign an NDA to protect your intellectual property.",
     },
     {
-      q: 'Does Saas UI include Figma, Sketch or other design files?',
-      a: 'No, Saas UI does not include any design assets. Maintaining design resources costs a lot of extra effort. We believe small teams can move much faster by designing directly in code, with help of Storybooks.',
+      q: 'How do Tech Emulsion approach challenging projects?',
+      a: 'We have a team of highly skilled developers who are capable of handling any project. We have a proven track record of delivering projects on time and within budget.',
     },
+    {
+      q: 'How do you determine best fit?',
+      a: 'We take the time to understand your business and your goals. We then work with you to determine the best fit for your project.',
+    },
+    {
+      q: 'What industry does Tech Emulsion specialize in?',
+      a: 'We have experience working with clients in a wide range of industries, including SaaS, project management, internet businesses, industrial automation, and more.',
+    }
   ],
 }
 

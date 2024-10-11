@@ -332,9 +332,9 @@ const AboutUsSection = () => {
               Connect With Us
             </Heading>
             <Text color="muted" fontSize="lg" mt="4">
-              We'd love to hear from you! Reach out to us for any inquiries,
+              {`We'd love to hear from you! Reach out to us for any inquiries,
               feedback, or support. Our team is here to assist you and ensure
-              you have the best experience.
+              you have the best experience.`}
             </Text>
             {/* social links */}
             <HStack mt="8" spacing="4">
@@ -892,9 +892,9 @@ const Portfolio = () => {
             width={"60%"}
             align={"center"}
           >
-            Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
+            {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
             project highlights our dedication to quality and creativity.
-            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.
+            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
           </Text>
           <Button
             size="lg"
@@ -1637,8 +1637,8 @@ const TestimonialsSection = () => {
               width={"100%"}
               align={"center"}
             >
-              Discover what our clients have to say about their experiences with us.
-              Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.
+              {`Discover what our clients have to say about their experiences with us.
+              Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.`}
             </Text>
           </Box>
           <Box

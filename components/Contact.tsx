@@ -118,9 +118,9 @@ const Contact = () => {
                   width={"60%"}
                   align={"center"}
                 >
-                  Got an idea you're excited about? We're here to help you turn it into reality.
+                  {`Got an idea you're excited about? We're here to help you turn it into reality.
                   Our team of experts is ready to collaborate with you, providing the support and expertise needed to bring your vision to life.
-                  Contact us today to get started on your project!
+                  Contact us today to get started on your project!`}
                 </Text>
               </Box>
 

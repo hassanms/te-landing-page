@@ -844,10 +844,7 @@ const Portfolio = () => {
     },
   ];
   return (
-    <Box
-      id="portfolio"
-      sx={{ scrollMarginTop: "50px" }}
-    >
+    <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
         <Divider />
         <Box
@@ -931,17 +928,68 @@ const Portfolio = () => {
                 xl: "592px",
               }}
             >
-              <Image
-                src={item.image}
-                alt="hero"
-                width={592}
-                height={400}
-                style={{
-                  // width: "100%",
-                  // height: "400px",
-                  objectFit: "none",
+              <Box
+                sx={{
+                  // position: "relative",
+                  // top: "0",
+                  // left: "0",
+                  width: "100%",
+                  backgroundImage:
+                    colorMode === "dark"
+                      ? "url('/assets/background/pattern.jpg')"
+                      : "url('/assets/background/light-pattern.jpg')",
+                  // colorMode === "dark" ? "#004c4c" : "#b2d8d8",
+                  height: "350px",
+                  // backGround gradient
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                 }}
-              />
+              >
+                {/* {colorMode === "dark" ? (
+                  <Image
+                    src="/assets/background/pattern.jpg"
+                    alt="hero"
+                    width={592}
+                    height={400}
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <Image
+                    src="/assets/background/light-pattern.jpg"
+                    alt="hero"
+                    width={592}
+                    height={400}
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                )} */}
+                <Box
+                  sx={
+                    {
+                      // position: "absolute",
+                      // top: "10",
+                      // left: "0",
+                    }
+                  }
+                >
+                  <Image
+                    src={item.image}
+                    alt="hero"
+                    width={502}
+                    height={300}
+                    style={{
+                      width: "100%",
+                      height: "300px",
+                      objectFit: "contain",
+                      marginTop: 25,
+                    }}
+                  />
+                </Box>
+              </Box>
               <Box
                 w="100%"
                 px={{

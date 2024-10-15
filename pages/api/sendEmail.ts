@@ -5,6 +5,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         const { name, company, email, phone, message } = req.body;
 
+        if (
+            !name ||
+            !company ||
+            !email ||
+            !phone ||
+            !message
+        ) {
+            return res.status(422).json({
+                message:
+                    'Invalid input. Please fill in all fields.'
+            });
+        }
+
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: process.env.SMTP_PORT,
@@ -24,13 +37,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             from: process.env.SMTP_FROM,
             to: process.env.SMTP_TO,
             subject: `Contact form submission from ${name}`,
-            text: `
-        Name: ${name}
-        Company: ${company}
-        Email: ${email}
-        Phone: ${phone}
-        Message: ${message}
-      `,
+            html: `
+            <div
+            style="
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            "
+            >
+            
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Company:</strong> ${company}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Message:</strong> ${message}</p>
+            </div>
+            `,
         };
 
         try {

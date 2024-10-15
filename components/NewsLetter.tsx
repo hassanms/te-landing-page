@@ -9,19 +9,24 @@ const NewsLetter = () => {
   const [formData, setFormData] = React.useState({
     email: "",
   });
+  const [loading, setLoading] = React.useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     if (!formData.email) {
       toast.error("Please enter your email");
+      setLoading(false);
       return;
     }
     try {
       await axios.post("/api/subscription", formData);
       toast.success("Subscribed successfully");
       setFormData({ email: "" });
+      setLoading(false);
     } catch (error) {
       console.error("Failed to send Subscription email:", error);
       toast.error("Failed to send Subscription email");
+      setLoading(false);
     }
   };
   return (
@@ -129,8 +134,9 @@ const NewsLetter = () => {
             },
           }}
           onClick={handleSubmit}
+          disabled={loading}
         >
-          Subscribe Now
+          {loading ? "Subscribing..." : "Subscribe Now"}
         </Button>
       </Box>
       <Box

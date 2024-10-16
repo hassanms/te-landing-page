@@ -54,7 +54,7 @@ export const Feature: React.FC<FeatureProps> = (props) => {
     description,
     icon,
     iconPosition,
-    iconSize = 8,
+    iconSize = 4,
     ip,
     variant,
     margin = 8,
@@ -71,6 +71,7 @@ export const Feature: React.FC<FeatureProps> = (props) => {
           sx={{
             backgroundColor: colorMode === "dark" ? "#66b2b2" : "#d9ebeb",
             p: "2",
+
             marginTop: `${margin}px`,
             marginRight: "20px",
             marginBottom: "10px",
@@ -79,8 +80,14 @@ export const Feature: React.FC<FeatureProps> = (props) => {
           <Icon as={icon} boxSize={iconSize} color={"#004c4c"} />
         </Circle>
       )}
-      <Box>
-        <Heading sx={styles.title}>{title}</Heading>
+      <Box sx={styles.content} textAlign={pos === "left" ? "left" : "center"}>
+        <Heading
+          sx={styles.title}
+          size="md"
+          color={colorMode === "dark" ? "white" : "#004c4c"}
+        >
+          {title}
+        </Heading>
         <Text sx={styles.description}>{description}</Text>
       </Box>
     </Stack>
@@ -95,7 +102,7 @@ export const Features: React.FC<FeaturesProps> = (props) => {
     columns = [1, 2, 3],
     spacing = 8,
     align: alignProp = "center",
-    iconSize = 8,
+    iconSize = 4,
     aside,
     reveal: Wrap = Revealer,
     margin,

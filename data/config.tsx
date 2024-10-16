@@ -32,6 +32,10 @@ const siteConfig = {
         id: "social",
       },
       {
+        label: "Tech Stack",
+        id: "tech",
+      },
+      {
         label: "Get a Quote",
         href: "/contact",
         variant: "varient",

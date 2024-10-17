@@ -102,6 +102,11 @@ import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
 import TeamsIcon from "components/icons/Teams";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData1 from "../public/assets/Animation/screen.json";
+import animationData2 from "../public/assets/Animation/mobile.json";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   return (
@@ -130,9 +135,24 @@ const Home: NextPage = () => {
     </Box>
   );
 };
+type LottieAnimationData = Record<string, any>;
 
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const [currentAnimation, setCurrentAnimation] =
+    useState<LottieAnimationData>(animationData1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAnimation((prevAnimation) =>
+        prevAnimation === animationData1 ? animationData2 : animationData1
+      );
+    }, 3000); // Switch every 3 seconds
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return (
@@ -265,13 +285,21 @@ const HeroSection: React.FC = () => {
           <Box
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
-            mr={{ base: 0, lg: 3 }}
+            mr={{ base: 0, lg: 0 }}
+            w={{ base: "100%", lg: "50%" }}
           >
             <FallInPlace delay={1}>
-              <Box overflow="hidden" height="100%">
-                <img src={img} alt="Screenshot of a ListPage in Saas UI Pro" />
+              <Box overflow="hidden">
+                <Player
+                  autoplay
+                  loop
+                  src={currentAnimation} // Toggle between animations
+                  style={{
+                    height: "70%",
+                    width: "70%",
+                  }}
+                />
               </Box>
-              {/* <HeroSectionImage /> */}
             </FallInPlace>
           </Box>
         </Stack>

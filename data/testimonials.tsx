@@ -12,7 +12,65 @@ export default {
       ),
       name: "Martin Kuner",
       description: "Founder Saas UI",
-      avatar: "",
+      avatar: "/assets/clients/images/martin.jpg",
+    },
+    {
+      company: "Atarim", // Company name
+      name: "Vito Pelag",
+      description: "Frontend Engineer",
+      avatar: "/assets/clients/images/vito.jpg",
+      children: <>“Thank you for the good job and quick support!.”</>,
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "Luke Cook",
+      description: "Frontend Engineer",
+      avatar: "/assets/clients/images/look.jpg",
+      children: (
+        <>
+          “Tech Emulsion worked with us for three years, delivering outstanding
+          results. Due to internal changes, we had to end the contract, but
+          their hard work and dedication were always evident. I highly recommend
+          them for any future projects.”
+        </>
+      ),
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "Shah Mohiuddin",
+      description: "Frontend Engineer",
+      avatar: "/assets/clients/images/shah.jpg",
+      children: (
+        <>
+          “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
+          that all of my future projects are going to them. Highly
+          recommended!.”
+        </>
+      ),
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "ALi AlHammadi",
+      description: "Frontend Engineer",
+      avatar: "/assets/clients/images/hammadi.jpg",
+      children: (
+        <>
+          “Very impressive work, good vision and understanding of the full
+          requirement with knowledge. Glad to work with you!.”
+        </>
+      ),
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "Anum Sheraz",
+      description: "Frontend Engineer",
+      avatar: "/assets/clients/images/sheraz.jpg",
+      children: (
+        <>
+          “Tech Emulsion can work on different application technologies and is
+          capable of learning quickly.”
+        </>
+      ),
     },
     {
       company: "Next.js Starter Kit", // Company name
@@ -128,64 +186,7 @@ export default {
         </>
       ),
     },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Alberto Vazquez",
-      description: "Frontend Engineer",
-      avatar: "",
-      children: <>“Thank you for the good job and quick support!.”</>,
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Alberto Vazquez",
-      description: "Frontend Engineer",
-      avatar: "",
-      children: (
-        <>
-          “Tech Emulsion worked with us for three years, delivering outstanding
-          results. Due to internal changes, we had to end the contract, but
-          their hard work and dedication were always evident. I highly recommend
-          them for any future projects.”
-        </>
-      ),
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Alberto Vazquez",
-      description: "Frontend Engineer",
-      avatar: "",
-      children: (
-        <>
-          “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
-          that all of my future projects are going to them. Highly
-          recommended!.”
-        </>
-      ),
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Alberto Vazquez",
-      description: "Frontend Engineer",
-      avatar: "",
-      children: (
-        <>
-          “Very impressive work, good vision and understanding of the full
-          requirement with knowledge. Glad to work with you!.”
-        </>
-      ),
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Alberto Vazquez",
-      description: "Frontend Engineer",
-      avatar: "",
-      children: (
-        <>
-          “Tech Emulsion can work on different application technologies and is
-          capable of learning quickly.”
-        </>
-      ),
-    },
+
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",

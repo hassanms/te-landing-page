@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
 import { Logo } from "components/layout/logo";
@@ -32,6 +33,7 @@ export const Testimonial = ({
   children,
   ...rest
 }: TestimonialProps) => {
+  const { colorMode } = useColorMode();
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   return (
     <Card
@@ -60,8 +62,15 @@ export const Testimonial = ({
           </Link>
         )}
       </CardBody>
-      <CardFooter display="flex" flexDirection="row" alignItems="center">
-        <Avatar name={name} src={avatar} size="lg" bg="transparent" />
+      <CardFooter
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        sx={{
+          color: colorMode === "dark" ? "white" : "#004c4c",
+        }}
+      >
+        <Avatar src={avatar} size="lg" bg={"#004c4c"} />
         <Stack spacing="1" ms="4">
           <Heading size="sm">{name}</Heading>
           <Text color="muted" size="xs">

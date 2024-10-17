@@ -280,7 +280,7 @@ const HeroSection: React.FC = () => {
   );
 };
 
-const AboutUsSection = () => {
+const AboutUsSection: React.FC = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -563,7 +563,7 @@ const AboutUsSection = () => {
   );
 };
 
-const HighlightsSection = () => {
+const HighlightsSection: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const HighlightsItems = [
@@ -808,7 +808,7 @@ const HighlightsSection = () => {
   );
 };
 
-const Portfolio = () => {
+const Portfolio: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const HighlightsItems = [
@@ -1105,7 +1105,7 @@ const Portfolio = () => {
   );
 };
 
-const SocialProofSection = () => {
+const SocialProofSection: React.FC = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -1751,7 +1751,7 @@ const SocialProofSection = () => {
   );
 };
 
-const FeaturesSection = () => {
+const FeaturesSection: React.FC = () => {
   return (
     <Features
       id="features"
@@ -1852,7 +1852,7 @@ const FeaturesSection = () => {
   );
 };
 
-const TestimonialsSection = () => {
+const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   const { colorMode } = useColorMode();
@@ -1878,7 +1878,7 @@ const TestimonialsSection = () => {
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {
-        columns[i % 3].push(t);
+        columns[i % 2 || i % 3].push(t);
 
         return columns;
       },
@@ -2162,7 +2162,7 @@ const TestimonialsSection = () => {
   );
 };
 
-const TechnologySection = () => {
+const TechnologySection: React.FC = () => {
   const { colorMode } = useColorMode();
 
   const [currentTab, setCurrentTab] = React.useState("frontend");
@@ -2548,7 +2548,7 @@ const TechnologySection = () => {
   );
 };
 
-const Team = () => {
+const Team: React.FC = () => {
   const { colorMode } = useColorMode();
   const images = [
     {
@@ -2676,7 +2676,7 @@ const Team = () => {
   );
 };
 
-const PricingSection = () => {
+const PricingSection: React.FC = () => {
   return (
     <Pricing {...pricing}>
       <Text p="8" textAlign="center" color="muted">
@@ -2686,7 +2686,7 @@ const PricingSection = () => {
   );
 };
 
-const FaqSection = () => {
+const FaqSection: React.FC = () => {
   return (
     <>
       <Divider />

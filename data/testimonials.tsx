@@ -12,13 +12,13 @@ export default {
       ),
       name: "Martin Kuner",
       description: "Founder Saas UI",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
     },
     {
       company: "Next.js Starter Kit", // Company name
       name: "Caroline Yahaya",
       description: "Fullstack Developer",
-      avatar: "/static/images/avatar2.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion is an excellent development team. Highly skilled and
@@ -31,7 +31,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “I highly recommend Tech Emulsion for any computer vision-related
@@ -46,7 +46,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion delivered exactly what I needed to make a business
@@ -58,7 +58,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion was very professional, fast, and efficient. I recommend
@@ -70,7 +70,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion provided an intelligent solution and quick response.”
@@ -81,7 +81,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion was a very enthusiastic team that took up the job at
@@ -94,7 +94,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion delivered really good work. They worked on a dartboard
@@ -108,7 +108,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion delivered good work on this project, and I enjoyed
@@ -120,7 +120,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion is very knowledgeable and answered all questions,
@@ -132,14 +132,14 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: <>“Thank you for the good job and quick support!.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion worked with us for three years, delivering outstanding
@@ -153,7 +153,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
@@ -166,7 +166,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Very impressive work, good vision and understanding of the full
@@ -178,7 +178,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion can work on different application technologies and is
@@ -190,7 +190,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “They delivered the work before the deadline and with really good
@@ -203,7 +203,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Defined the architecture for a proof-of-concept project using AWS
@@ -217,7 +217,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Awesome help. Very friendly, helpful, and great programming skills.
@@ -229,7 +229,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Perfect, another fantastic job as usual! I really like Tech
@@ -243,7 +243,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion has done an excellent job. Thank you very much for your
@@ -255,7 +255,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “The team is exceptional. I would highly recommend them to anyone.
@@ -270,7 +270,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Working with Tech Emulsion was great. They gave me some insight about
@@ -287,7 +287,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Great communication and very professional in what they do. Very
@@ -299,7 +299,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion was a pleasure to work with. Although we knew that
@@ -311,21 +311,21 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: <>“Great in what they do and a very good communicator.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: <>“Tech Emulsion is very knowledgeable and very responsive.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “They are always up for changes and provide great suggestions. Looking
@@ -338,7 +338,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “They are one of the best out there. Don't hesitate to work with
@@ -350,14 +350,14 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: <>“Great job. Very communicative. Always available.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Tech Emulsion was very helpful and very patient. The delivery time
@@ -373,7 +373,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Very communicative team. Worked diligently to understand the needs of
@@ -386,7 +386,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “They are immensely intelligent, communicative, and efficient. I
@@ -399,7 +399,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “Great job! Competent and great in understanding and planning the
@@ -411,7 +411,7 @@ export default {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
       description: "Frontend Engineer",
-      avatar: "/static/images/avatar3.jpg",
+      avatar: "",
       children: (
         <>
           “They are so professional and really understand the requirements very

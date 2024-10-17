@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         if (
             !name ||
-            !company ||
             !email ||
             !phone ||
             !message
@@ -31,8 +30,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         });
 
-        console.log("transporter", transporter);
-
         const mailOptions = {
             from: process.env.SMTP_FROM,
             to: process.env.SMTP_TO,
@@ -51,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             >
             
             <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Company:</strong> ${company}</p>
+            <p><strong>Company:</strong> ${company ? company : ""}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Message:</strong> ${message}</p>

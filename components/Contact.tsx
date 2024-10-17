@@ -229,7 +229,7 @@ const Contact = () => {
                           color: "none",
                         },
                         mb: {
-                          base: 8,
+                          base: 2,
                           md: 0,
                         },
                         backgroundColor:

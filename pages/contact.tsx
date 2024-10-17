@@ -36,8 +36,12 @@ const Contacts = () => {
               mt="4"
               width={["auto", null, "80%"]}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-              eius velit dicta, et distinctio error facilis
+              Whether you're looking for innovative software solutions, need to
+              scale your development team, or want to discuss your next big
+              project, we’d love to hear from you! At Tech Emulsion, we are
+              dedicated to delivering exceptional results in web development,
+              SaaS solutions, Chrome extensions, QA testing, cloud services, and
+              artificial intelligence.
             </Text>
           </Box>
 
@@ -84,6 +88,7 @@ const Contacts = () => {
                 ml="2"
                 sx={{
                   color: colorMode === "light" ? "#004c4c !important" : "white",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Contact Page

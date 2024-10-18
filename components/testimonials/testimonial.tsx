@@ -8,6 +8,8 @@ import {
   Heading,
   Stack,
   Text,
+  useBreakpointValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
 import { Logo } from "components/layout/logo";
@@ -31,8 +33,15 @@ export const Testimonial = ({
   children,
   ...rest
 }: TestimonialProps) => {
+  const { colorMode } = useColorMode();
+  const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   return (
-    <Card position="relative" {...rest} maxWidth={{ base: "100%", md: "50%" }}>
+    <Card
+      position="relative"
+      {...rest}
+      maxWidth={{ base: "100%", md: "100%" }}
+      width={{ base: "100%", md: "100%" }}
+    >
       <CardHeader display="flex" flexDirection="row" alignItems="center">
         <Stack
           spacing="3"
@@ -44,7 +53,7 @@ export const Testimonial = ({
           <Heading size="sm">{company}</Heading>
         </Stack>
       </CardHeader>
-      <CardBody>
+      <CardBody width={isSmall ? "100%" : "600px"}>
         {children}
 
         {href && (
@@ -53,8 +62,15 @@ export const Testimonial = ({
           </Link>
         )}
       </CardBody>
-      <CardFooter display="flex" flexDirection="row" alignItems="center">
-        <Avatar name={name} src={avatar} size="lg" bg="transparent" />
+      <CardFooter
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        sx={{
+          color: colorMode === "dark" ? "white" : "#004c4c",
+        }}
+      >
+        <Avatar src={avatar} size="lg" bg={"#004c4c"} />
         <Stack spacing="1" ms="4">
           <Heading size="sm">{name}</Heading>
           <Text color="muted" size="xs">

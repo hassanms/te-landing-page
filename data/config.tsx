@@ -32,6 +32,10 @@ const siteConfig = {
         id: "social",
       },
       {
+        label: "Tech Stack",
+        id: "tech",
+      },
+      {
         label: "Get a Quote",
         href: "/contact",
         variant: "varient",
@@ -47,20 +51,20 @@ const siteConfig = {
     ),
     links: [
       {
-        href: "httpa://facebook.com/saas-js",
+        href: "https://www.facebook.com/emulsiontech/",
         label: <FaFacebook size="20" />,
       },
       {
-        href: "https://linkedin.com/saas-js",
+        href: "https://www.linkedin.com/company/tech-emulsion/",
         label: <FaLinkedin size="20" />,
       },
 
+      // {
+      //   href: "https://twitter.com/saas_js",
+      //   label: <FaTwitter size="20" />,
+      // },
       {
-        href: "https://twitter.com/saas_js",
-        label: <FaTwitter size="20" />,
-      },
-      {
-        href: "https://github.com/saas-js/saas-ui",
+        href: "https://github.com/hassanms",
         label: <FaGithub size="20" />,
       },
     ],

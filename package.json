@@ -16,6 +16,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fontsource/inter": "^4.5.15",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
     "@saas-ui/auth": "^3.0.6",
     "@saas-ui/react": "^2.7.2",
     "@svgr/webpack": "^7.0.0",

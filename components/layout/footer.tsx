@@ -19,6 +19,7 @@ import LayoutBottom from "components/FooterLayout/LayoutBottom";
 
 import siteConfig from "data/config";
 import Link from "next/link";
+import { FaPhone, FaWhatsapp, FaWhatsappSquare } from "react-icons/fa";
 
 export interface FooterProps extends BoxProps {
   columns?: number;
@@ -75,16 +76,42 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     listStyleType: "none",
                     padding: 0,
                     margin: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.2rem",
                   }}
                 >
                   <ListItem
                     style={{
                       color: "silver",
                       fontSize: "16px",
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
                     {" "}
-                    +1 234 567 89
+                    <FaWhatsapp
+                      style={{
+                        marginRight: "10px",
+                      }}
+                    />{" "}
+                    +66 947 060 139
+                  </ListItem>
+                  <ListItem
+                    style={{
+                      color: "silver",
+                      fontSize: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    {" "}
+                    <FaPhone
+                      style={{
+                        marginRight: "10px",
+                      }}
+                    />{" "}
+                    +92 334 555 9140
                   </ListItem>
                   <ListItem
                     style={{
@@ -100,7 +127,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                    1234 North Avenue, New York, NY 12345
+                    Shiekh Yaseen Tower, university road Tehkal Peshawar,
+                    Pakistan
                   </ListItem>
                 </List>
               </HStack>

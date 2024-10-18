@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  CircularProgress,
   Container,
   Divider,
   Heading,
@@ -29,19 +30,31 @@ const Contact = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios
         .post("/api/sendEmail", formData)
         .then((res) => {
           console.log(res);
+          setFormData({
+            name: "",
+            company: "",
+            email: "",
+            phone: "",
+            message: "",
+          });
+          setLoading(false);
+          toast.success("Message sent successfully");
         })
         .catch((error) => {
           console.error("Failed to send message:", error);
-          toast.success("Message sent successfully");
+          toast.error(error.response.data.message);
+          setLoading(false);
         });
-      toast.success("Message sent successfully");
       setFormData({
         name: "",
         company: "",
@@ -49,9 +62,11 @@ const Contact = () => {
         phone: "",
         message: "",
       });
+      setLoading(false);
     } catch (error) {
       console.error("Failed to send message:", error);
       toast.error("Failed to send message");
+      setLoading(false);
     }
   };
 
@@ -184,7 +199,8 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                         _placeholder: {
                           color: colorMode === "dark" ? "gray.400" : "gray.500",
                         },
@@ -196,10 +212,11 @@ const Contact = () => {
                           name: e.target.value,
                         });
                       }}
+                      errorBorderColor="red.500"
                     />
                     <Input
                       type="text"
-                      placeholder="Company (optional)"
+                      placeholder="Company"
                       sx={{
                         padding: "2rem",
                         border: "none",
@@ -212,10 +229,11 @@ const Contact = () => {
                           color: "none",
                         },
                         mb: {
-                          base: 8,
+                          base: 2,
                           md: 0,
                         },
-                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                         _placeholder: {
                           color: colorMode === "dark" ? "gray.400" : "gray.500",
                         },
@@ -255,7 +273,8 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                         _placeholder: {
                           color: colorMode === "dark" ? "gray.400" : "gray.500",
                         },
@@ -286,7 +305,8 @@ const Contact = () => {
                           base: 8,
                           md: 0,
                         },
-                        backgroundColor: colorMode === "dark" ? "gray.700" : "gray.50",
+                        backgroundColor:
+                          colorMode === "dark" ? "gray.700" : "gray.50",
                         _placeholder: {
                           color: colorMode === "dark" ? "gray.400" : "gray.500",
                         },
@@ -340,8 +360,17 @@ const Contact = () => {
                       },
                     }}
                     onClick={(e) => handleSubmit(e)}
+                    disabled={loading}
                   >
-                    Send Message
+                    {loading ? (
+                      <CircularProgress
+                        isIndeterminate
+                        color="white"
+                        size={7}
+                      />
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </Box>
               </Box>

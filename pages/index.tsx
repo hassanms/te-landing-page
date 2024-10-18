@@ -31,12 +31,13 @@ import {
   CardFooter,
   useBreakpointValue,
   Toast,
+  GridItem,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
-
+import { Logo2 } from "components/logo2";
 import { FallInPlace } from "components/motion/fall-in-place";
 import { Hero } from "components/hero";
-import { Br } from "@saas-ui/react";
+import { Br, ChevronLeftIcon, ChevronRightIcon } from "@saas-ui/react";
 import { Link } from "@chakra-ui/react";
 import { Em } from "components/typography";
 import { NextjsLogo, ChakraLogo } from "components/logos";
@@ -101,6 +102,11 @@ import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
 import TeamsIcon from "components/icons/Teams";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animationData1 from "../public/assets/Animation/screen.json";
+import animationData2 from "../public/assets/Animation/mobile.json";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   return (
@@ -118,20 +124,35 @@ const Home: NextPage = () => {
         <SocialProofSection />
 
         <TestimonialsSection />
-        <FeaturesSection />
+        {/* <FeaturesSection /> */}
 
         {/* <Team /> */}
         {/* <PricingSection /> */}
-
+        <TechnologySection />
         <FaqSection />
         <Contact />
       </Box>
     </Box>
   );
 };
+type LottieAnimationData = Record<string, any>;
 
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const [currentAnimation, setCurrentAnimation] =
+    useState<LottieAnimationData>(animationData1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAnimation((prevAnimation) =>
+        prevAnimation === animationData1 ? animationData2 : animationData1
+      );
+    }, 3000); // Switch every 3 seconds
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return (
@@ -264,13 +285,21 @@ const HeroSection: React.FC = () => {
           <Box
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
-            mr={{ base: 0, lg: 3 }}
+            mr={{ base: 0, lg: 0 }}
+            w={{ base: "100%", lg: "50%" }}
           >
             <FallInPlace delay={1}>
-              <Box overflow="hidden" height="100%">
-                <img src={img} alt="Screenshot of a ListPage in Saas UI Pro" />
+              <Box overflow="hidden">
+                <Player
+                  autoplay
+                  loop
+                  src={currentAnimation} // Toggle between animations
+                  style={{
+                    height: "70%",
+                    width: "70%",
+                  }}
+                />
               </Box>
-              {/* <HeroSectionImage /> */}
             </FallInPlace>
           </Box>
         </Stack>
@@ -279,7 +308,7 @@ const HeroSection: React.FC = () => {
   );
 };
 
-const AboutUsSection = () => {
+const AboutUsSection: React.FC = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -408,7 +437,7 @@ const AboutUsSection = () => {
           <Features
             id="benefits"
             columns={[1, 2, 4]}
-            iconSize={6}
+            iconSize={3}
             innerWidth="container.xl"
             pt="10"
             pb={0}
@@ -562,7 +591,7 @@ const AboutUsSection = () => {
   );
 };
 
-const HighlightsSection = () => {
+const HighlightsSection: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const HighlightsItems = [
@@ -807,7 +836,7 @@ const HighlightsSection = () => {
   );
 };
 
-const Portfolio = () => {
+const Portfolio: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const HighlightsItems = [
@@ -844,10 +873,7 @@ const Portfolio = () => {
     },
   ];
   return (
-    <Box
-      id="portfolio"
-      sx={{ scrollMarginTop: "50px" }}
-    >
+    <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
         <Divider />
         <Box
@@ -931,17 +957,68 @@ const Portfolio = () => {
                 xl: "592px",
               }}
             >
-              <Image
-                src={item.image}
-                alt="hero"
-                width={592}
-                height={400}
-                style={{
-                  // width: "100%",
-                  // height: "400px",
-                  objectFit: "none",
+              <Box
+                sx={{
+                  // position: "relative",
+                  // top: "0",
+                  // left: "0",
+                  width: "100%",
+                  backgroundImage:
+                    colorMode === "dark"
+                      ? "url('/assets/background/pattern.jpg')"
+                      : "url('/assets/background/light-pattern.jpg')",
+                  // colorMode === "dark" ? "#004c4c" : "#b2d8d8",
+                  height: "350px",
+                  // backGround gradient
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                 }}
-              />
+              >
+                {/* {colorMode === "dark" ? (
+                  <Image
+                    src="/assets/background/pattern.jpg"
+                    alt="hero"
+                    width={592}
+                    height={400}
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <Image
+                    src="/assets/background/light-pattern.jpg"
+                    alt="hero"
+                    width={592}
+                    height={400}
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                )} */}
+                <Box
+                  sx={
+                    {
+                      // position: "absolute",
+                      // top: "10",
+                      // left: "0",
+                    }
+                  }
+                >
+                  <Image
+                    src={item.image}
+                    alt="hero"
+                    width={502}
+                    height={300}
+                    style={{
+                      width: "100%",
+                      height: "300px",
+                      objectFit: "contain",
+                      marginTop: 25,
+                    }}
+                  />
+                </Box>
+              </Box>
               <Box
                 w="100%"
                 px={{
@@ -1056,7 +1133,7 @@ const Portfolio = () => {
   );
 };
 
-const SocialProofSection = () => {
+const SocialProofSection: React.FC = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -1118,288 +1195,580 @@ const SocialProofSection = () => {
             </Text>
 
             <Grid
+              display="grid"
               templateColumns={[
                 "repeat(2, 1fr)",
                 null,
+                "repeat(2, 1fr 1fr)",
                 "repeat(4, 1fr 1fr)",
-                "repeat(6, 1fr 1fr)",
               ]}
               gap={10}
               mt="14"
-              justifyContent="center"
-              alignItems="center"
-              // continous scroll
+              justifyItems="center" // Center each grid item horizontally
+              alignItems="center" // Center each grid item vertically
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
               >
-                <Image
-                  src="/assets/clients/Artis.png"
-                  // style={{
-                  //   width: "80px",
-                  //   height: "80px",
-                  //   objectFit: "contain",
-                  // }}
-                  alt="Artis"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/Atarim.svg"
-                  alt="Atarim"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/Artis.png"
+                    // style={{
+                    //   width: "120px",
+                    //   height: "120px",
+                    //   objectFit: "contain",
+                    // }}
+                    alt="Artis"
+                    width={60}
+                    height={60}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
               >
-                <bipCards />
-              </Box> */}
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/POPCARD_4.png_v=1718360510&width=370"
-                  alt="Popcard"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/Atarim.svg"
+                    alt="Atarim"
+                    width={60}
+                    height={60}
+                    style={{
+                      height: "1120px",
+                      width: "1120px",
+                    }}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
               >
-                <Image
-                  src="/assets/clients/Sprintzeal_Logo.webp"
-                  alt="Sprintzeal"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
-                  alt="Bai"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/crystal_ball.png"
-                  alt="Crystal Ball"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/teadit.png"
+                    alt="Atarim"
+                    width={90}
+                    height={90}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/farmin-logo-dark.png"
-                  alt="Farmin"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/ibatu.png"
-                  alt="Ibatu"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Logo2 />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
               >
-                <Image
-                  src="/assets/clients/jarvis-logo.png"
-                  alt="Jarvis"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
-              >
-                <Image
-                  src="/assets/clients/krypto_labs_logo.jpeg"
-                  alt="Krypto Labs"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    width: "120px",
+                    height: "120px",
 
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/POPCARD_4.png_v=1718360510&width=370"
+                    alt="Popcard"
+                    width={120}
+                    height={120}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
               >
-                <Image
-                  src="/assets/clients/logo-black-small.png"
-                  alt="Logo Black"
-                  width={80}
-                  height={80}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                  color: "gray.400",
-                  cursor: "pointer",
-                  gap: "4",
-                  "&:hover": {
-                    color: "white",
-                  },
-                }}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/Sprintzeal_Logo.webp"
+                    alt="Sprintzeal"
+                    width={120}
+                    height={120}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
               >
-                <Image
-                  src="/assets/clients/republic_power_logo.jpeg"
-                  alt="Republic Power"
-                  width={80}
-                  height={80}
-                />
-              </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    // "&:hover": {
+                    //   color: "white",
+                    //   transform: "scale(1.1)",
+                    //   transition: "all 0.3s ease",
+                    //   boxShadow: "0 0 10px white",
+                    // },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+                    alt="Bai"
+                    width={60}
+                    height={60}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    width: "120px",
+                    height: "120px",
+
+                    backgroundColor: "#b2d8d8",
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/crystal_ball.png"
+                    alt="Crystal Ball"
+                    width={60}
+                    height={60}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/farmin-white.png"
+                    alt="Farmin"
+                    width={90}
+                    height={90}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/ibatu.png"
+                    alt="Ibatu"
+                    width={90}
+                    height={90}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/jarvis-logo.png"
+                    alt="Jarvis"
+                    width={120}
+                    height={120}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/krypto_labs_logo.jpeg"
+                    alt="Krypto Labs"
+                    width={120}
+                    height={120}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/podcast-beacon-logo.png"
+                    alt="Krypto Labs"
+                    width={120}
+                    height={120}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/logo-black-small.png"
+                    alt="Logo Black"
+                    width={90}
+                    height={90}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    fontSize: "1.5rem",
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/Logo_IPG.jpg"
+                    alt="Logo Black"
+                    width={90}
+                    height={90}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/republic_power_logo.jpeg"
+                    alt="Republic Power"
+                    width={70}
+                    height={70}
+                  />
+                </Box>
+              </GridItem>
             </Grid>
           </Box>
           {/* Absolute Subscrite newletter with imput and subscribe button  */}
@@ -1410,10 +1779,9 @@ const SocialProofSection = () => {
   );
 };
 
-const FeaturesSection = () => {
+const FeaturesSection: React.FC = () => {
   return (
     <Features
-      mt={300}
       id="features"
       title={
         <Heading
@@ -1512,9 +1880,9 @@ const FeaturesSection = () => {
   );
 };
 
-const TestimonialsSection = () => {
+const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const isSmall = useBreakpointValue({ base: true, md: false });
+  const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   const { colorMode } = useColorMode();
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -1538,7 +1906,7 @@ const TestimonialsSection = () => {
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {
-        columns[i % 3].push(t);
+        columns[i % 2 || i % 3].push(t);
 
         return columns;
       },
@@ -1549,14 +1917,23 @@ const TestimonialsSection = () => {
   if (isSmall) {
     return (
       <Box position="relative" overflow="hidden">
-        <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
+        <Container
+          maxW="container.xl"
+          pt={{ base: 40, md: 40, lg: 20 }}
+          pb="40"
+        >
           <Stack
-            direction={{ base: "column", lg: "row" }}
+            direction={{
+              base: "column",
+              md: "column",
+              lg: "column",
+              xl: "row",
+            }}
             alignItems="flex-start"
           >
             <Testimonials
               title={testimonials.title}
-              columns={[1, 2, 3]}
+              columns={[1, 1, 1, 2, 3]}
               innerWidth="container.xl"
             >
               <>
@@ -1644,28 +2021,38 @@ const TestimonialsSection = () => {
           <Box
             display="flex"
             flexDirection={"row"}
-            justifyContent="center"
+            justifyContent="space-between"
             alignItems="center"
             sx={{
               width: "100%",
               padding: "0px",
               margin: "0px",
             }}
+            width={"100%"}
+            height={"50vh"}
           >
             {/* Previous button */}
             <Button
               onClick={handlePrev}
               variant="contained"
               sx={{
-                mr: 2,
-                color: "gray.300",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                ml: 2,
+                background: "gray.300",
+                color: "gray.800",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
                 ":hover": {
-                  bg: "none",
-                  color: "#004c4c",
+                  bg: "#004c4c",
+                  color: "white",
+                  fontWeight: "bold",
                 },
               }}
             >
-              <FaArrowCircleLeft
+              <ChevronLeftIcon
                 style={{
                   width: "30px",
                   height: "30px",
@@ -1694,15 +2081,24 @@ const TestimonialsSection = () => {
               onClick={handleNext}
               variant="contained"
               sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+
                 ml: 2,
-                color: "gray.300",
+                background: "gray.300",
+                color: "gray.800",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
                 ":hover": {
-                  bg: "none",
-                  color: "#004c4c",
+                  bg: "#004c4c",
+                  color: "white",
+                  fontWeight: "bold",
                 },
               }}
             >
-              <FaArrowCircleRight
+              <ChevronRightIcon
                 style={{
                   width: "30px",
                   height: "30px",
@@ -1794,7 +2190,393 @@ const TestimonialsSection = () => {
   );
 };
 
-const Team = () => {
+const TechnologySection: React.FC = () => {
+  const { colorMode } = useColorMode();
+
+  const [currentTab, setCurrentTab] = React.useState("frontend");
+
+  const Frontend = () => {
+    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    return (
+      <Container maxW="container.xl" py="5" mb="5">
+        <FallInPlace delay={0.4}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="100%"
+            mt={32}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="4"
+              width="100%"
+            >
+              <Box
+                display="flex"
+                flexDirection={isSMall ? "column" : "row"}
+                justifyContent="center"
+                alignItems="center"
+                gap="10"
+                width="100%"
+              >
+                <Image
+                  src="/assets/tech/react.png"
+                  alt="React"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/next.png"
+                  alt="Next.js"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/redux.png"
+                  alt="Redux"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/mui.png"
+                  alt="Chakra UI"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/typescript.png"
+                  alt="Apollo"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/graphql.png"
+                  alt="GraphQL"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/javascript.png"
+                  alt="GraphQL"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/tailwind.png"
+                  alt="GraphQL"
+                  width={100}
+                  height={100}
+                />
+              </Box>
+            </Box>
+          </Box>
+        </FallInPlace>
+      </Container>
+    );
+  };
+
+  const Backend = () => {
+    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    return (
+      <Container maxW="container.xl" py="5" mb="5">
+        <FallInPlace delay={0.4}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="100%"
+            mt={32}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="4"
+              width="100%"
+            >
+              <Box
+                display="flex"
+                flexDirection={isSMall ? "column" : "row"}
+                justifyContent="center"
+                alignItems="center"
+                gap="10"
+                width="100%"
+              >
+                <Image
+                  src="/assets/tech/nodejs.png"
+                  alt="Node.js"
+                  width={160}
+                  height={160}
+                />
+                <Image
+                  src="/assets/tech/express.png"
+                  alt="Express"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/mongo.png"
+                  alt="MongoDB"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/mysql.png"
+                  alt="MySQL"
+                  width={100}
+                  height={100}
+                />
+                {/* <Image
+                src="/assets/tech/docker.png"
+                alt="Docker"
+                width={100}
+                height={100}
+              /> */}
+                {/* <Image
+                src="/assets/tech/kubernetes.png"
+                alt="Kubernetes"
+                width={100}
+                height={100}
+              /> */}
+                {/* <Image
+                src="/assets/tech/aws.png"
+                alt="AWS"
+                width={100}
+                height={100}
+              /> */}
+                <Image
+                  src="/assets/tech/rails.png"
+                  alt="AWS"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/ruby.png"
+                  alt="AWS"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/python.png"
+                  alt="AWS"
+                  width={100}
+                  height={100}
+                />
+              </Box>
+            </Box>
+          </Box>
+        </FallInPlace>
+      </Container>
+    );
+  };
+
+  const DevOps = () => {
+    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    return (
+      <Container maxW="container.xl" py="5" mb="5">
+        <FallInPlace delay={0.4}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="100%"
+            mt={32}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="4"
+              width="100%"
+            >
+              <Box
+                display="flex"
+                flexDirection={isSMall ? "column" : "row"}
+                justifyContent="center"
+                alignItems="center"
+                gap="10"
+                width="100%"
+              >
+                <Image
+                  src="/assets/tech/docker.png"
+                  alt="Docker"
+                  width={100}
+                  height={100}
+                />
+                {/* <Image
+                src="/assets/tech/kubernetes.png"
+                alt="Kubernetes"
+                width={100}
+                height={100}
+              /> */}
+                <Image
+                  src="/assets/tech/aws.png"
+                  alt="AWS"
+                  width={100}
+                  height={100}
+                />
+                {/* <Image
+                src="/assets/tech/azure.png"
+                alt="Azure"
+                width={100}
+                height={100}
+              /> */}
+                {/* <Image
+                src="/assets/tech/jenkins.png"
+                alt="Jenkins"
+                width={100}
+                height={100}
+              /> */}
+                <Image
+                  src="/assets/tech/gitlab.png"
+                  alt="Gitlab"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/github.png"
+                  alt="Github"
+                  width={100}
+                  height={100}
+                />
+                {/* <Image
+                src="/assets/tech/bitbucket.png"
+                alt="Bitbucket"
+                width={100}
+                height={100}
+              /> */}
+              </Box>
+            </Box>
+          </Box>
+        </FallInPlace>
+      </Container>
+    );
+  };
+
+  return (
+    <Box
+      id="tech"
+      pb="10"
+      mt={10}
+      color="white"
+      textAlign="center"
+      height={["100%", "100%", "90vh"]}
+      bg={colorMode === "dark" ? "gray.800" : ""}
+    >
+      <Divider />
+      <Container maxW="container.xl" py="5" mb="5">
+        <Box flex="1" mt={20}>
+          <Heading
+            as="h2"
+            size="md"
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+              textTransform: "uppercase",
+            }}
+          >
+            Tech Stack
+          </Heading>
+          <Heading
+            as="h1"
+            mt="5"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: colorMode === "dark" ? "white" : "black",
+              fontSize: {
+                base: "2rem",
+                md: "2rem",
+              },
+              width: "100%",
+            }}
+          >
+            Technologies We Use
+          </Heading>
+
+          <Box
+            mt={10}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="100%"
+          >
+            <Button
+              size="lg"
+              mt={"10"}
+              bg={currentTab === "frontend" ? "#004c4c" : "gray.300"}
+              sx={{
+                fontSize: "1rem",
+                color: currentTab === "frontend" ? "white" : "gray.800",
+                borderRadius: "30px",
+                padding: "0.5rem 1.8rem",
+                "&:hover": {
+                  bg: currentTab === "frontend" ? "#004c4c" : "gray.300",
+                },
+              }}
+              onClick={() => setCurrentTab("frontend")}
+            >
+              Frontend
+            </Button>
+            <Button
+              size="lg"
+              mt={"10"}
+              bg={currentTab === "backend" ? "#004c4c" : "gray.300"}
+              sx={{
+                fontSize: "1rem",
+                color: currentTab === "backend" ? "white" : "gray.800",
+                borderRadius: "30px",
+                padding: "0.5rem 1.8rem",
+                "&:hover": {
+                  bg: currentTab === "backend" ? "#004c4c" : "gray.300",
+                },
+              }}
+              onClick={() => setCurrentTab("backend")}
+            >
+              Backend
+            </Button>
+            <Button
+              size="lg"
+              mt={"10"}
+              bg={currentTab === "devops" ? "#004c4c" : "gray.300"}
+              sx={{
+                fontSize: "1rem",
+                color: currentTab === "devops" ? "white" : "gray.800",
+                borderRadius: "30px",
+                padding: "0.5rem 1.8rem",
+                "&:hover": {
+                  bg: currentTab === "devops" ? "#004c4c" : "gray.300",
+                },
+              }}
+              onClick={() => setCurrentTab("devops")}
+            >
+              DevOps
+            </Button>
+          </Box>
+          {currentTab === "frontend" && <Frontend />}
+          {currentTab === "backend" && <Backend />}
+          {currentTab === "devops" && <DevOps />}
+        </Box>
+      </Container>
+    </Box>
+  );
+};
+
+const Team: React.FC = () => {
   const { colorMode } = useColorMode();
   const images = [
     {
@@ -1922,7 +2704,7 @@ const Team = () => {
   );
 };
 
-const PricingSection = () => {
+const PricingSection: React.FC = () => {
   return (
     <Pricing {...pricing}>
       <Text p="8" textAlign="center" color="muted">
@@ -1932,8 +2714,14 @@ const PricingSection = () => {
   );
 };
 
-const FaqSection = () => {
-  return <Faq {...faq} />;
+const FaqSection: React.FC = () => {
+  return (
+    <>
+      <Divider />
+
+      <Faq {...faq} />
+    </>
+  );
 };
 
 export default Home;

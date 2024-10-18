@@ -71,7 +71,7 @@ export const Testimonial = ({
         }}
       >
         <Avatar src={avatar} size="lg" bg={"#004c4c"} />
-        <Stack spacing="1" ms="4">
+        <Stack spacing="1" ms="4" textAlign={{ base: "center", md: "left" }}>
           <Heading size="sm">{name}</Heading>
           <Text color="muted" size="xs">
             {description}

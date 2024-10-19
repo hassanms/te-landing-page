@@ -57,6 +57,12 @@ const Services = () => {
         "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision",
       image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
     },
+    {
+      title: "Automation Solutions",
+      description:
+        "Streamline your business processes with our cutting-edge automation services. We design and implement automated workflows to enhance productivity, reduce manual errors, and optimize efficiency.",
+      image: "/assets/whatWeDo/automation.png",
+    },
   ];
 
   return (

@@ -617,26 +617,32 @@ const HighlightsSection: React.FC = () => {
     {
       title: "Custom Chrome Extensions",
       description:
-        "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives",
+        "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives.",
       image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
     },
     {
       title: "Expert DevOps Solutions",
       description:
-        "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases",
+        "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases.",
       image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
     },
     {
       title: "Generative AI Integration",
       description:
-        "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency",
+        "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency.",
       image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
     },
     {
       title: "QA Testing & Automation",
       description:
-        "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision",
+        "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision.",
       image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
+    },
+    {
+      title: "Automation Solutions",
+      description:
+        "Streamline your business processes with our cutting-edge automation services. We design and implement automated workflows to enhance productivity, reduce manual errors, and optimize efficiency.",
+      image: "/assets/whatWeDo/automation.png",
     },
   ];
   return (

@@ -1,33 +1,66 @@
-import { Box, Button, Heading, Input, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Input,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
 import InnerElementBG from "./InnerElementBG";
+import * as Yup from "yup";
+
+const emailSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+});
 
 const NewsLetter = () => {
   const { colorMode } = useColorMode();
-  const [formData, setFormData] = React.useState({
-    email: "",
-  });
+  const [formData, setFormData] = React.useState({ email: "" });
   const [loading, setLoading] = React.useState(false);
+  const [errors, setErrors] = React.useState({ email: "" });
+
+  const validateField = async (name: string, value: string) => {
+    try {
+      await emailSchema.validateAt(name, { [name]: value });
+      setErrors({ ...errors, [name]: "" });
+    } catch (error: any) {
+      setErrors({ ...errors, [name]: error.message });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    if (!formData.email) {
-      toast.error("Please enter your email");
-      setLoading(false);
-      return;
-    }
+
     try {
+      await emailSchema.validate(formData, { abortEarly: false });
+
       await axios.post("/api/subscription", formData);
       toast.success("Subscribed successfully");
       setFormData({ email: "" });
-      setLoading(false);
-    } catch (error) {
-      console.error("Failed to send Subscription email:", error);
-      toast.error("Failed to send Subscription email");
+    } catch (validationError) {
+      if (validationError instanceof Yup.ValidationError) {
+        const validationErrors: any = {};
+        validationError.inner.forEach((err) => {
+          if (err.path) validationErrors[err.path] = err.message;
+        });
+        setErrors(validationErrors);
+      } else {
+        toast.error("Failed to send Subscription email");
+      }
+    } finally {
       setLoading(false);
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
   return (
     <Box
@@ -104,13 +137,24 @@ const NewsLetter = () => {
           type="email"
           placeholder="Enter your email"
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={handleChange}
           required={true}
         />
+        {errors.email && (
+          <Text
+            color="#FFAE42"
+            fontSize="18px"
+            textAlign={"left"}
+            mt={"-10px"}
+            marginLeft={"10px"}
+          >
+            {errors.email}
+          </Text>
+        )}
         <Button
           position={[null, null, "absolute"]}
           zIndex={"10000000"}
-          top={"12%"}
+          top={errors.email ? "8%" : "12%"}
           right={"2%"}
           size="lg"
           bg={"white"}
@@ -119,14 +163,12 @@ const NewsLetter = () => {
               base: "1rem",
               md: "1.1rem",
             },
-
             color: "#004c4c",
             borderRadius: "30px",
             padding: {
               base: "0.5rem",
               md: "1rem 1.2rem",
             },
-
             boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.5)",
             "&:hover": {
               bg: "#004c4c",
@@ -139,6 +181,7 @@ const NewsLetter = () => {
           {loading ? "Subscribing..." : "Subscribe Now"}
         </Button>
       </Box>
+
       <Box
         display="block"
         position={"absolute"}

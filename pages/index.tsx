@@ -141,15 +141,14 @@ const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentAnimation, setCurrentAnimation] =
     useState<LottieAnimationData>(animationData1);
-
+  const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentAnimation((prevAnimation) =>
         prevAnimation === animationData1 ? animationData2 : animationData1
       );
-    }, 3000); // Switch every 3 seconds
+    }, 10000);
 
-    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
@@ -264,7 +263,7 @@ const HeroSection: React.FC = () => {
                   ) : (
                     <>
                       <Image
-                        src="/assets/clients/atarim.svg"
+                        src="/assets/clients/Atarim.svg"
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -286,7 +285,7 @@ const HeroSection: React.FC = () => {
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", lg: "50%" }}
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
           >
             <FallInPlace delay={1}>
               <Box overflow="hidden">
@@ -1199,7 +1198,8 @@ const SocialProofSection: React.FC = () => {
               templateColumns={[
                 "repeat(2, 1fr)",
                 null,
-                "repeat(2, 1fr 1fr)",
+                "repeat(2, 1fr)",
+                "repeat(5, 1fr)",
                 "repeat(4, 1fr 1fr)",
               ]}
               gap={10}
@@ -1376,7 +1376,7 @@ const SocialProofSection: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/assets/clients/POPCARD_4.png_v=1718360510&width=370"
+                    src="/assets/clients/POPCARD_4.png"
                     alt="Popcard"
                     width={120}
                     height={120}
@@ -1973,6 +1973,8 @@ const TestimonialsSection: React.FC = () => {
             transition: "all 0.5s ease",
           }}
           mt={10}
+          w={"95%"}
+          marginLeft={"20px"}
         >
           <Box mb={20}>
             <Heading
@@ -2056,6 +2058,7 @@ const TestimonialsSection: React.FC = () => {
                 style={{
                   width: "30px",
                   height: "30px",
+                  marginRight: 3,
                 }}
               />
             </Button>
@@ -2102,90 +2105,90 @@ const TestimonialsSection: React.FC = () => {
                 style={{
                   width: "30px",
                   height: "30px",
+                  marginLeft: 3,
                 }}
               />
             </Button>
           </Box>
         </Box>
+        <Box flex="1" mt={20}>
+          <Heading
+            as="h2"
+            size="md"
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+              textTransform: "uppercase",
+            }}
+          >
+            Reason behind our success
+          </Heading>
+          <Heading
+            as="h1"
+            mt="5"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: colorMode === "dark" ? "white" : "black",
+              fontSize: {
+                base: "2rem",
+                md: "2rem",
+              },
+              width: "100%",
+            }}
+          >
+            Our Core Values
+          </Heading>
+          <Features
+            id="benefits"
+            columns={[1, 2, 4]}
+            iconSize={6}
+            innerWidth="container.xl"
+            pt="10"
+            pb={0}
+            mb={-5}
+            features={[
+              {
+                title: "Client-Centric Excellence",
+                icon: FirstIcon,
+                description:
+                  "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
+                iconPosition: "left",
+                delay: 0.5,
+              },
+              {
+                title: "Innovative Problem Solving",
+                icon: Innovation,
+                description:
+                  "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
+                iconPosition: "left",
+                delay: 1,
+              },
+              {
+                title: "Clear & Effective Communication",
+                icon: EffectiveCommunication,
+                description:
+                  "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
+                iconPosition: "left",
+                delay: 1.1,
+              },
+              {
+                title: "Accountability & Ownership",
+                icon: OwnerShipd,
+                description:
+                  "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
+                iconPosition: "left",
+                delay: 0.6,
+              },
+            ]}
+            reveal={FallInPlace}
+          />
+        </Box>
       </Container>
-
-      <Box flex="1" mt={20}>
-        <Heading
-          as="h2"
-          size="md"
-          color={colorMode === "dark" ? "white" : "#004c4c"}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-            textTransform: "uppercase",
-          }}
-        >
-          Reason behind our success
-        </Heading>
-        <Heading
-          as="h1"
-          mt="5"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: colorMode === "dark" ? "white" : "black",
-            fontSize: {
-              base: "2rem",
-              md: "2rem",
-            },
-            width: "100%",
-          }}
-        >
-          Our Core Values
-        </Heading>
-        <Features
-          id="benefits"
-          columns={[1, 2, 4]}
-          iconSize={6}
-          innerWidth="container.xl"
-          pt="10"
-          pb={0}
-          mb={-5}
-          features={[
-            {
-              title: "Client-Centric Excellence",
-              icon: FirstIcon,
-              description:
-                "We prioritize your success by deeply understanding your needs, delivering solutions that exceed expectations, and building lasting partnerships.",
-              iconPosition: "left",
-              delay: 0.5,
-            },
-            {
-              title: "Innovative Problem Solving",
-              icon: Innovation,
-              description:
-                "We approach every challenge with creativity and expertise, turning obstacles into opportunities for your business to thrive.",
-              iconPosition: "left",
-              delay: 1,
-            },
-            {
-              title: "Clear & Effective Communication",
-              icon: EffectiveCommunication,
-              description:
-                "We believe in straightforward, precise communication, ensuring clarity in every interaction and decision-making process.",
-              iconPosition: "left",
-              delay: 1.1,
-            },
-            {
-              title: "Accountability & Ownership",
-              icon: OwnerShipd,
-              description:
-                "We take full responsibility for our work, committed to delivering quality and integrity in everything we do.",
-              iconPosition: "left",
-              delay: 0.6,
-            },
-          ]}
-          reveal={FallInPlace}
-        />
-      </Box>
     </Box>
   );
 };
@@ -2231,7 +2234,11 @@ const TechnologySection: React.FC = () => {
                   height={100}
                 />
                 <Image
-                  src="/assets/tech/next.png"
+                  src={
+                    colorMode === "dark"
+                      ? "/assets/tech/nextjs-white.png"
+                      : "/assets/tech/next.png"
+                  }
                   alt="Next.js"
                   width={100}
                   height={100}

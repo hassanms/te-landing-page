@@ -268,7 +268,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       },
                     }}
                   >
-                    <Link href="#about">About</Link>
+                    <Link href="/#about">About</Link>
                   </ListItem>
                   <ListItem
                     sx={{

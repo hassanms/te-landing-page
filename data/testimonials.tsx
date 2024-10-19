@@ -11,84 +11,14 @@ export default {
         </>
       ),
       name: "Martin Kuner",
-      description: "Founder Saas UI",
+      description: "",
       avatar: "/assets/clients/images/martin.jpg",
     },
-    {
-      company: "Atarim", // Company name
-      name: "Vito Pelag",
-      description: "Frontend Engineer",
-      avatar: "/assets/clients/images/vito.jpg",
-      children: <>“Thank you for the good job and quick support!.”</>,
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Luke Cook",
-      description: "Frontend Engineer",
-      avatar: "/assets/clients/images/look.jpg",
-      children: (
-        <>
-          “Tech Emulsion worked with us for three years, delivering outstanding
-          results. Due to internal changes, we had to end the contract, but
-          their hard work and dedication were always evident. I highly recommend
-          them for any future projects.”
-        </>
-      ),
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Shah Mohiuddin",
-      description: "Frontend Engineer",
-      avatar: "/assets/clients/images/shah.jpg",
-      children: (
-        <>
-          “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
-          that all of my future projects are going to them. Highly
-          recommended!.”
-        </>
-      ),
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "ALi AlHammadi",
-      description: "Frontend Engineer",
-      avatar: "/assets/clients/images/hammadi.jpg",
-      children: (
-        <>
-          “Very impressive work, good vision and understanding of the full
-          requirement with knowledge. Glad to work with you!.”
-        </>
-      ),
-    },
-    {
-      company: "Frontend Corp", // Company name
-      name: "Anum Sheraz",
-      description: "Frontend Engineer",
-      avatar: "/assets/clients/images/sheraz.jpg",
-      children: (
-        <>
-          “Tech Emulsion can work on different application technologies and is
-          capable of learning quickly.”
-        </>
-      ),
-    },
-    {
-      company: "Next.js Starter Kit", // Company name
-      name: "Caroline Yahaya",
-      description: "Fullstack Developer",
-      avatar: "",
-      children: (
-        <>
-          “Tech Emulsion is an excellent development team. Highly skilled and
-          communicates in flawless English. I am continuing to work with them as
-          they consistently deliver the required results..”
-        </>
-      ),
-    },
+
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -103,7 +33,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -115,7 +45,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -127,7 +57,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -138,7 +68,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -151,7 +81,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -165,7 +95,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -177,7 +107,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -190,7 +120,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -201,9 +131,80 @@ export default {
       ),
     },
     {
+      company: "Atarim", // Company name
+      name: "Vito Pelag",
+      description: "",
+      avatar: "/assets/clients/images/vito.jpg",
+      children: <>“Thank you for the good job and quick support!.”</>,
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "Luke Cook",
+      description: "",
+      avatar: "/assets/clients/images/look.jpg",
+      children: (
+        <>
+          “Tech Emulsion worked with us for three years, delivering outstanding
+          results. Due to internal changes, we had to end the contract, but
+          their hard work and dedication were always evident. I highly recommend
+          them for any future projects.”
+        </>
+      ),
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "Shah Mohiuddin",
+      description: "",
+      avatar: "/assets/clients/images/shah.jpg",
+      children: (
+        <>
+          “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
+          that all of my future projects are going to them. Highly
+          recommended!.”
+        </>
+      ),
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "ALi AlHammadi",
+      description: "",
+      avatar: "/assets/clients/images/hammadi.jpg",
+      children: (
+        <>
+          “Very impressive work, good vision and understanding of the full
+          requirement with knowledge. Glad to work with you!.”
+        </>
+      ),
+    },
+    {
+      company: "Frontend Corp", // Company name
+      name: "Anum Sheraz",
+      description: "",
+      avatar: "/assets/clients/images/sheraz.jpg",
+      children: (
+        <>
+          “Tech Emulsion can work on different application technologies and is
+          capable of learning quickly.”
+        </>
+      ),
+    },
+    {
+      company: "Next.js Starter Kit", // Company name
+      name: "Caroline Yahaya",
+      description: "",
+      avatar: "",
+      children: (
+        <>
+          “Tech Emulsion is an excellent development team. Highly skilled and
+          communicates in flawless English. I am continuing to work with them as
+          they consistently deliver the required results..”
+        </>
+      ),
+    },
+    {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -217,7 +218,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -229,7 +230,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -243,7 +244,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -255,7 +256,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -270,7 +271,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -287,7 +288,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -299,7 +300,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -311,21 +312,21 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: <>“Great in what they do and a very good communicator.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: <>“Tech Emulsion is very knowledgeable and very responsive.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -338,7 +339,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -350,14 +351,14 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: <>“Great job. Very communicative. Always available.”</>,
     },
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -373,7 +374,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -386,7 +387,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -399,7 +400,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>
@@ -411,7 +412,7 @@ export default {
     {
       company: "Frontend Corp", // Company name
       name: "Alberto Vazquez",
-      description: "Frontend Engineer",
+      description: "",
       avatar: "",
       children: (
         <>

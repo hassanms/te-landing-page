@@ -288,7 +288,7 @@ const Contact = () => {
                       }}
                     />
                     <Input
-                      type="tel"
+                      type="number"
                       placeholder="Phone"
                       sx={{
                         padding: "2rem",

@@ -32,12 +32,19 @@ import {
   useBreakpointValue,
   Toast,
   GridItem,
+  Fade,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 import { Logo2 } from "components/logo2";
 import { FallInPlace } from "components/motion/fall-in-place";
 import { Hero } from "components/hero";
-import { Br, ChevronLeftIcon, ChevronRightIcon } from "@saas-ui/react";
+import {
+  Br,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+} from "@saas-ui/react";
 import { Link } from "@chakra-ui/react";
 import { Em } from "components/typography";
 import { NextjsLogo, ChakraLogo } from "components/logos";
@@ -130,6 +137,7 @@ const Home: NextPage = () => {
         {/* <PricingSection /> */}
         <TechnologySection />
         <FaqSection />
+        <Divider />
         <Contact />
       </Box>
     </Box>
@@ -1883,6 +1891,7 @@ const FeaturesSection: React.FC = () => {
 const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
+  const [showMore, setShowMore] = React.useState(false);
   const { colorMode } = useColorMode();
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -1920,7 +1929,8 @@ const TestimonialsSection: React.FC = () => {
         <Container
           maxW="container.xl"
           pt={{ base: 40, md: 40, lg: 20 }}
-          pb="40"
+          pb="20"
+          id="testimonials"
         >
           <Stack
             direction={{
@@ -1936,22 +1946,105 @@ const TestimonialsSection: React.FC = () => {
               columns={[1, 1, 1, 2, 3]}
               innerWidth="container.xl"
             >
-              <>
-                {columns.map((column, i) => (
-                  <Stack key={i}>
-                    {column.map((t, i) => (
-                      <Testimonial key={i} {...t} />
+              {!showMore ? (
+                <>
+                  {columns
+                    ?.map((column) => column.slice(0, 1))
+                    .map((column, i) => (
+                      <Stack key={i}>
+                        {column.map((t, i) => (
+                          <Testimonial key={i} {...t} />
+                        ))}
+                      </Stack>
                     ))}
-                  </Stack>
-                ))}
-              </>
+                  <Link
+                    href="#testimonials"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Button
+                      onClick={() => {
+                        setShowMore(true);
+                      }}
+                      sx={{
+                        fontSize: "1.2rem",
+                        marginTop: "2rem",
+                        padding: "30px",
+                        background: "transparent",
+                        color: colorMode === "dark" ? "white" : "#004c4c",
+                        boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Show more
+                      <ChevronDownIcon
+                        style={{
+                          width: "25px",
+                          height: "25px",
+                          marginLeft: 3,
+                          marginTop: 2,
+                          color: colorMode === "dark" ? "white" : "#004c4c",
+                        }}
+                      />
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <FallInPlace delay={0.8}>
+                    {columns?.map((column, i) => (
+                      <Stack key={i}>
+                        {column.map((t, i) => (
+                          <Testimonial key={i} {...t} />
+                        ))}
+                      </Stack>
+                    ))}
+                  </FallInPlace>
+                  <Link
+                    href="#testimonials"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Button
+                      onClick={() => {
+                        setShowMore(false);
+                      }}
+                      sx={{
+                        fontSize: "1.2rem",
+                        marginTop: "2rem",
+                        padding: "30px",
+                        background: "transparent",
+                        color: colorMode === "dark" ? "white" : "#004c4c",
+                        boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Show less
+                      <ChevronUpIcon
+                        style={{
+                          width: "25px",
+                          height: "25px",
+                          marginLeft: 3,
+                          marginTop: 2,
+                          color: colorMode === "dark" ? "white" : "#004c4c",
+                        }}
+                      />
+                    </Button>
+                  </Link>
+                </>
+              )}
             </Testimonials>
           </Stack>
         </Container>
       </Box>
     );
   }
-
   return (
     <Box
       id="testimonials"
@@ -1976,7 +2069,7 @@ const TestimonialsSection: React.FC = () => {
           w={"95%"}
           marginLeft={"20px"}
         >
-          <Box mb={20}>
+          <Box mb={5}>
             <Heading
               as="h2"
               size="md"
@@ -2195,6 +2288,7 @@ const TestimonialsSection: React.FC = () => {
 
 const TechnologySection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
 
   const [currentTab, setCurrentTab] = React.useState("frontend");
 
@@ -2208,8 +2302,9 @@ const TechnologySection: React.FC = () => {
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="100%"
-            mt={32}
+            width="70%"
+            mt={10}
+            marginLeft={"20%"}
           >
             <Box
               display="flex"
@@ -2220,8 +2315,13 @@ const TechnologySection: React.FC = () => {
               width="100%"
             >
               <Box
-                display="flex"
-                flexDirection={isSMall ? "column" : "row"}
+                display={"grid"}
+                gridTemplateColumns={[
+                  "1fr",
+                  "1fr 1fr",
+                  "1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr",
+                ]}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2236,12 +2336,12 @@ const TechnologySection: React.FC = () => {
                 <Image
                   src={
                     colorMode === "dark"
-                      ? "/assets/tech/nextjs-white.png"
-                      : "/assets/tech/next.png"
+                      ? "/assets/tech/next.png"
+                      : "/assets/tech/nextjs-white.png"
                   }
                   alt="Next.js"
-                  width={100}
-                  height={100}
+                  width={colorMode === "dark" ? 120 : 100}
+                  height={colorMode === "dark" ? 120 : 100}
                 />
                 <Image
                   src="/assets/tech/redux.png"
@@ -2297,8 +2397,9 @@ const TechnologySection: React.FC = () => {
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="100%"
-            mt={32}
+            width="70%"
+            mt={10}
+            marginLeft={"20%"}
           >
             <Box
               display="flex"
@@ -2309,8 +2410,13 @@ const TechnologySection: React.FC = () => {
               width="100%"
             >
               <Box
-                display="flex"
-                flexDirection={isSMall ? "column" : "row"}
+                display={"grid"}
+                gridTemplateColumns={[
+                  "1fr",
+                  "1fr 1fr",
+                  "1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr",
+                ]}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2335,10 +2441,22 @@ const TechnologySection: React.FC = () => {
                   height={100}
                 />
                 <Image
+                  src="/assets/tech/postgresql.png"
+                  alt="MongoDB"
+                  width={80}
+                  height={80}
+                />
+                <Image
                   src="/assets/tech/mysql.png"
                   alt="MySQL"
                   width={100}
                   height={100}
+                />
+                <Image
+                  src="/assets/tech/django.png"
+                  alt="MySQL"
+                  width={80}
+                  height={80}
                 />
                 {/* <Image
                 src="/assets/tech/docker.png"
@@ -2371,6 +2489,12 @@ const TechnologySection: React.FC = () => {
                   height={100}
                 />
                 <Image
+                  src="/assets/tech/nest.png"
+                  alt="AWS"
+                  width={100}
+                  height={100}
+                />
+                <Image
                   src="/assets/tech/python.png"
                   alt="AWS"
                   width={100}
@@ -2394,8 +2518,9 @@ const TechnologySection: React.FC = () => {
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="100%"
-            mt={32}
+            width="70%"
+            mt={10}
+            marginLeft={isSMall ? "20%" : "28%"}
           >
             <Box
               display="flex"
@@ -2406,8 +2531,13 @@ const TechnologySection: React.FC = () => {
               width="100%"
             >
               <Box
-                display="flex"
-                flexDirection={isSMall ? "column" : "row"}
+                display={"grid"}
+                gridTemplateColumns={[
+                  "1fr",
+                  "1fr 1fr",
+                  "1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr",
+                ]}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2428,8 +2558,8 @@ const TechnologySection: React.FC = () => {
                 <Image
                   src="/assets/tech/aws.png"
                   alt="AWS"
-                  width={100}
-                  height={100}
+                  width={80}
+                  height={80}
                 />
                 {/* <Image
                 src="/assets/tech/azure.png"
@@ -2469,6 +2599,80 @@ const TechnologySection: React.FC = () => {
     );
   };
 
+  const AI = () => {
+    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    return (
+      <Container maxW="container.xl" py="5" mb="5">
+        <FallInPlace delay={0.4}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="70%"
+            mt={10}
+            marginLeft={isSMall ? "20%" : "27%"}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="4"
+              width="100%"
+            >
+              <Box
+                display={"grid"}
+                gridTemplateColumns={[
+                  "1fr",
+                  "1fr 1fr",
+                  "1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr",
+                ]}
+                justifyContent="center"
+                alignItems="center"
+                gap="10"
+                width="100%"
+              >
+                <Image
+                  src="/assets/tech/tensorflow.png"
+                  alt="TensorFlow"
+                  width={160}
+                  height={160}
+                />
+                <Image
+                  src="/assets/tech/pytorch.png"
+                  alt="PyTorch"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/openai.png"
+                  alt="OpenAI"
+                  width={100}
+                  height={100}
+                />
+
+                <Image
+                  src="/assets/tech/keras.png"
+                  alt="Keras"
+                  width={100}
+                  height={100}
+                />
+                {/* <Image
+                  src="/assets/tech/nlp.png"
+                  alt="Natural Language Processing"
+                  width={100}
+                  height={100}
+                /> */}
+              </Box>
+            </Box>
+          </Box>
+        </FallInPlace>
+      </Container>
+    );
+  };
+
   return (
     <Box
       id="tech"
@@ -2476,7 +2680,7 @@ const TechnologySection: React.FC = () => {
       mt={10}
       color="white"
       textAlign="center"
-      height={["100%", "100%", "90vh"]}
+      height={["100%", "100%", "100%"]}
       bg={colorMode === "dark" ? "gray.800" : ""}
     >
       <Divider />
@@ -2527,7 +2731,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "frontend" ? "#004c4c" : "gray.300"}
               sx={{
-                fontSize: "1rem",
+                fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "frontend" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -2544,7 +2748,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "backend" ? "#004c4c" : "gray.300"}
               sx={{
-                fontSize: "1rem",
+                fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "backend" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -2561,7 +2765,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "devops" ? "#004c4c" : "gray.300"}
               sx={{
-                fontSize: "1rem",
+                fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "devops" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -2573,10 +2777,28 @@ const TechnologySection: React.FC = () => {
             >
               DevOps
             </Button>
+            <Button
+              size="lg"
+              mt={"10"}
+              bg={currentTab === "AI" ? "#004c4c" : "gray.300"}
+              sx={{
+                fontSize: isSMall ? "0.8rem" : "1rem",
+                color: currentTab === "AI" ? "white" : "gray.800",
+                borderRadius: "30px",
+                padding: "0.5rem 1.8rem",
+                "&:hover": {
+                  bg: currentTab === "AI" ? "#004c4c" : "gray.300",
+                },
+              }}
+              onClick={() => setCurrentTab("AI")}
+            >
+              AI
+            </Button>
           </Box>
           {currentTab === "frontend" && <Frontend />}
           {currentTab === "backend" && <Backend />}
           {currentTab === "devops" && <DevOps />}
+          {currentTab === "AI" && <AI />}
         </Box>
       </Container>
     </Box>

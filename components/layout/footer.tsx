@@ -127,8 +127,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                    Shiekh Yaseen Tower, university road Tehkal Peshawar,
-                    Pakistan
+                    Shiekh Yaseen Trade Centre, University road, Peshawar
                   </ListItem>
                 </List>
               </HStack>
@@ -147,7 +146,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             justifyContent={"center"}
             alignItems={"flex-start"}
           >
-            <Stack spacing="8">
+            {/* <Stack spacing="8">
               <Stack alignItems="flex-start" spacing="4">
                 <Text fontSize="2xl" color="white" whiteSpace={"nowrap"}>
                   What We Do?
@@ -228,7 +227,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </List>
                 </HStack>
               </Stack>
-            </Stack>
+            </Stack> */}
             {/* News */}
             {/* Quick Links */}
             <Stack

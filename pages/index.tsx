@@ -2001,13 +2001,18 @@ const TestimonialsSection: React.FC = () => {
               ) : (
                 <>
                   <FallInPlace delay={0.8}>
-                    {columns?.map((column, i) => (
-                      <Stack key={i}>
-                        {column.map((t, i) => (
-                          <Testimonial key={i} {...t} />
-                        ))}
-                      </Stack>
-                    ))}
+                    <Box
+                      height={showMore ? "800px" : "auto"}
+                      overflow={showMore ? "auto" : ""}
+                    >
+                      {columns?.map((column, i) => (
+                        <Stack key={i}>
+                          {column.map((t, i) => (
+                            <Testimonial key={i} {...t} />
+                          ))}
+                        </Stack>
+                      ))}
+                    </Box>
                   </FallInPlace>
                   <Link
                     href="#testimonials"
@@ -2075,7 +2080,7 @@ const TestimonialsSection: React.FC = () => {
           w={"95%"}
           marginLeft={"20px"}
         >
-          <Box mb={5}>
+          <Box mb={5} maxW={"60%"}>
             <Heading
               as="h2"
               size="md"
@@ -2112,6 +2117,7 @@ const TestimonialsSection: React.FC = () => {
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
+              justifyContent={"center"}
               width={"100%"}
               align={"center"}
             >
@@ -2310,7 +2316,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={"20%"}
+            marginLeft={"15%"}
           >
             <Box
               display="flex"
@@ -2323,7 +2329,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -2394,7 +2400,7 @@ const TechnologySection: React.FC = () => {
   };
 
   const Backend = () => {
-    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    const isSMall = useBreakpointValue({ base: true, md: false, lg: false });
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
@@ -2405,7 +2411,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={"20%"}
+            marginLeft={!isSMall ? "20%" : "15%"}
           >
             <Box
               display="flex"
@@ -2418,7 +2424,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -2539,7 +2545,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -2630,7 +2636,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",

@@ -131,17 +131,17 @@ export default {
       ),
     },
     {
-      company: "Atarim", // Company name
-      name: "Vito Pelag",
+      company: "front-end corp",
+      name: "Alberto Vazquez",
       description: "",
-      avatar: "/assets/clients/images/vito.jpg",
+      avatar: "",
       children: <>“Thank you for the good job and quick support!.”</>,
     },
     {
-      company: "Frontend Corp", // Company name
-      name: "Luke Cook",
+      company: "Atarim", // Company name
+      name: "Luke Cook Vito Pelag",
       description: "",
-      avatar: "/assets/clients/images/look.jpg",
+      avatar: "/assets/clients/images/vito.jpg",
       children: (
         <>
           “Tech Emulsion worked with us for three years, delivering outstanding
@@ -153,9 +153,9 @@ export default {
     },
     {
       company: "Frontend Corp", // Company name
-      name: "Shah Mohiuddin",
+      name: "Luke Cook",
       description: "",
-      avatar: "/assets/clients/images/shah.jpg",
+      avatar: "/assets/clients/images/look.jpg",
       children: (
         <>
           “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
@@ -166,9 +166,9 @@ export default {
     },
     {
       company: "Frontend Corp", // Company name
-      name: "ALi AlHammadi",
+      name: "Shah Mohiuddin",
       description: "",
-      avatar: "/assets/clients/images/hammadi.jpg",
+      avatar: "/assets/clients/images/shah.jpg",
       children: (
         <>
           “Very impressive work, good vision and understanding of the full
@@ -178,9 +178,9 @@ export default {
     },
     {
       company: "Frontend Corp", // Company name
-      name: "Anum Sheraz",
+      name: "ALi AlHammadi",
       description: "",
-      avatar: "/assets/clients/images/sheraz.jpg",
+      avatar: "/assets/clients/images/hammadi.jpg",
       children: (
         <>
           “Tech Emulsion can work on different application technologies and is
@@ -189,10 +189,10 @@ export default {
       ),
     },
     {
-      company: "Next.js Starter Kit", // Company name
-      name: "Caroline Yahaya",
+      company: "Frontend Corp", // Company name
+      name: "Anum Sheraz",
       description: "",
-      avatar: "",
+      avatar: "/assets/clients/images/sheraz.jpg",
       children: (
         <>
           “Tech Emulsion is an excellent development team. Highly skilled and

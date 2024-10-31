@@ -2316,7 +2316,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={"15%"}
+            marginLeft={!isSMall ? "15%" : "10%"}
           >
             <Box
               display="flex"
@@ -2532,7 +2532,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={isSMall ? "20%" : "28%"}
+            marginLeft={isSMall ? "15%" : "28%"}
           >
             <Box
               display="flex"
@@ -2623,7 +2623,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={isSMall ? "20%" : "27%"}
+            marginLeft={isSMall ? "12%" : "27%"}
           >
             <Box
               display="flex"

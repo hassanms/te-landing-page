@@ -15,6 +15,7 @@ import {
   HighlightsItem,
   HighlightsWhatWeDo,
 } from "components/highlights";
+import Head from "next/head";
 import { FaChevronRight } from "react-icons/fa";
 
 const Services = () => {
@@ -67,6 +68,13 @@ const Services = () => {
 
   return (
     <Box>
+      <Head>
+        <title>Services - Tech Emulsion</title>
+        <meta
+          name="description"
+          content="Tech Emulsion offers a range of innovative services, including SaaS development, website development, Chrome extensions, DevOps solutions, generative AI integration, QA testing, and automation solutions."
+        />
+      </Head>
       <Container maxW="container.xl" py="20" mb="20">
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box

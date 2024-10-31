@@ -10,6 +10,7 @@ import {
 import { ButtonLink } from "components/button-link";
 import Contact from "components/Contact";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import Head from "next/head";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -17,6 +18,13 @@ const Contacts = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
+      <Head>
+        <title>Contact Us - Tech Emulsion</title>
+        <meta
+          name="description"
+          content="Get in touch with Tech Emulsion for your next project. We specialize in web development, SaaS solutions, Chrome extensions, QA testing, cloud services, and artificial intelligence."
+        />
+      </Head>
       <Container maxW="container.xl" py="20">
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box

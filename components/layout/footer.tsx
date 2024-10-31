@@ -81,22 +81,29 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     gap: "0.2rem",
                   }}
                 >
-                  <ListItem
-                    style={{
-                      color: "silver",
-                      fontSize: "16px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
+                  <a
+                    href="https://wa.me/66947060139"
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    {" "}
-                    <FaWhatsapp
+                    <ListItem
                       style={{
-                        marginRight: "10px",
+                        color: "silver",
+                        fontSize: "16px",
+                        display: "flex",
+                        cursor: "pointer",
+                        alignItems: "center",
                       }}
-                    />{" "}
-                    +66 947 060 139
-                  </ListItem>
+                    >
+                      {" "}
+                      <FaWhatsapp
+                        style={{
+                          marginRight: "10px",
+                        }}
+                      />{" "}
+                      +66 947 060 139
+                    </ListItem>
+                  </a>
                   <ListItem
                     style={{
                       color: "silver",
@@ -294,6 +301,19 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     }}
                   >
                     <Link href="/contact">Contact</Link>
+                  </ListItem>
+                  <ListItem
+                    sx={{
+                      color: "silver",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "white",
+                        transition: "color .2s ease-in",
+                      },
+                    }}
+                  >
+                    <Link href="/our-story">Our Story</Link>
                   </ListItem>
                 </List>
               </HStack>

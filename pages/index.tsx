@@ -114,10 +114,18 @@ import animationData1 from "../public/assets/Animation/screen.json";
 import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
     <Box>
+      <Head>
+        <title>Tech Emulsion | Imagineering Digital Transformation</title>
+        <meta
+          name="description"
+          content="Imagineering digital transformation for your business"
+        />
+      </Head>
       <SEO
         title="Tech Emulsion | Imagineering Digital Transformation"
         description="Imagineering digital transformation for your business"
@@ -607,42 +615,49 @@ const HighlightsSection: React.FC = () => {
       description:
         "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",
       image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+      alt: "Next-Gen SaaS Development",
     },
     {
       title: "Innovative Website Development",
       description:
         "From concept to launch, we create responsive and visually stunning websites that captivate your audience and drive business growth.",
       image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
+      alt: "Innovative Website Development",
     },
     {
       title: "Custom Chrome Extensions",
       description:
         "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives.",
       image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+      alt: "Custom Chrome Extensions",
     },
     {
       title: "Expert DevOps Solutions",
       description:
         "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases.",
       image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+      alt: "Expert DevOps Solutions",
     },
     {
       title: "Generative AI Integration",
       description:
         "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency.",
       image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
+      alt: "Generative AI Integration",
     },
     {
       title: "QA Testing & Automation",
       description:
         "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision.",
       image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
+      alt: "QA Testing & Automation",
     },
     {
       title: "Automation Solutions",
       description:
         "Streamline your business processes with our cutting-edge automation services. We design and implement automated workflows to enhance productivity, reduce manual errors, and optimize efficiency.",
       image: "/assets/whatWeDo/automation.png",
+      alt: "Automation Solutions",
     },
   ];
   return (
@@ -728,7 +743,7 @@ const HighlightsSection: React.FC = () => {
             >
               <img
                 src={item.image}
-                alt="hero"
+                alt={item.alt}
                 style={{
                   width: "100%",
                   height: "300px",
@@ -858,24 +873,28 @@ const Portfolio: React.FC = () => {
       description:
         "The SaaS application is designed to detect and recognize different types of objects in satellite images, for example cars, houses, airplanes, boats, etc. The back end is coded in Python (Django). Various computer vision techniques (using OpenCV) and different deep learning models like YOLO are used in the back-end pipeline.",
       image: "/assets/portfolio/farmin.avif",
+      alt: "Farmin – AI based Remote Sensing App",
     },
     {
       title: "Atarim – A SaaS tool for visual collaboration",
       description:
         "Instantly comment on any design, from websites to graphics. Manage at scale and integrate your stack. Just click on any part to leave feedback and say goodbye to endless email/Slack Chains.",
       image: "/assets/portfolio/atarim.png",
+      alt: "Atarim – A SaaS tool for visual collaboration",
     },
     {
       title: "Bipcards – Elevate Online Presence with Genuine Reviews",
       description:
         "Bipcards.com is a platform designed to help businesses enhance their online presence by collecting and showcasing genuine customer reviews. It aims to build trust and credibility through verified feedback.",
       image: "/assets/portfolio/bipcards.png",
+      alt: "Bipcards – Elevate Online Presence with Genuine Reviews",
     },
     {
       title: "Popcard – SaaS for managing review cards",
       description:
         "Popcard is a dashboard for managing review cards. It allows users to create, edit, and delete review cards, as well as view and manage the reviews associated with each card.",
       image: "/assets/portfolio/popcard.png",
+      alt: "Popcard – SaaS for managing review cards",
     },
     {
       title:
@@ -883,6 +902,7 @@ const Portfolio: React.FC = () => {
       description:
         "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
       image: "/assets/portfolio/Artis.png",
+      alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },
   ];
   return (
@@ -1020,7 +1040,7 @@ const Portfolio: React.FC = () => {
                 >
                   <Image
                     src={item.image}
-                    alt="hero"
+                    alt={item.alt}
                     width={502}
                     height={300}
                     style={{
@@ -1329,7 +1349,7 @@ const SocialProofSection: React.FC = () => {
                 >
                   <Image
                     src="/assets/clients/teadit.png"
-                    alt="Atarim"
+                    alt="Teadit"
                     width={90}
                     height={90}
                   />
@@ -2001,13 +2021,18 @@ const TestimonialsSection: React.FC = () => {
               ) : (
                 <>
                   <FallInPlace delay={0.8}>
-                    {columns?.map((column, i) => (
-                      <Stack key={i}>
-                        {column.map((t, i) => (
-                          <Testimonial key={i} {...t} />
-                        ))}
-                      </Stack>
-                    ))}
+                    <Box
+                      height={showMore ? "800px" : "auto"}
+                      overflow={showMore ? "auto" : ""}
+                    >
+                      {columns?.map((column, i) => (
+                        <Stack key={i}>
+                          {column.map((t, i) => (
+                            <Testimonial key={i} {...t} />
+                          ))}
+                        </Stack>
+                      ))}
+                    </Box>
                   </FallInPlace>
                   <Link
                     href="#testimonials"
@@ -2075,7 +2100,7 @@ const TestimonialsSection: React.FC = () => {
           w={"95%"}
           marginLeft={"20px"}
         >
-          <Box mb={5}>
+          <Box mb={5} maxW={"60%"}>
             <Heading
               as="h2"
               size="md"
@@ -2112,6 +2137,7 @@ const TestimonialsSection: React.FC = () => {
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
+              justifyContent={"center"}
               width={"100%"}
               align={"center"}
             >
@@ -2310,7 +2336,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={"20%"}
+            marginLeft={!isSMall ? "15%" : "10%"}
           >
             <Box
               display="flex"
@@ -2323,7 +2349,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -2394,7 +2420,7 @@ const TechnologySection: React.FC = () => {
   };
 
   const Backend = () => {
-    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    const isSMall = useBreakpointValue({ base: true, md: false, lg: false });
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
@@ -2405,7 +2431,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={"20%"}
+            marginLeft={!isSMall ? "20%" : "15%"}
           >
             <Box
               display="flex"
@@ -2418,7 +2444,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -2526,7 +2552,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={isSMall ? "20%" : "28%"}
+            marginLeft={isSMall ? "15%" : "28%"}
           >
             <Box
               display="flex"
@@ -2539,7 +2565,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -2617,7 +2643,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={isSMall ? "20%" : "27%"}
+            marginLeft={isSMall ? "12%" : "27%"}
           >
             <Box
               display="flex"
@@ -2630,7 +2656,7 @@ const TechnologySection: React.FC = () => {
               <Box
                 display={"grid"}
                 gridTemplateColumns={[
-                  "1fr",
+                  "1fr 1fr",
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",

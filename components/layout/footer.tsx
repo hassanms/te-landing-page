@@ -302,6 +302,19 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   >
                     <Link href="/contact">Contact</Link>
                   </ListItem>
+                  <ListItem
+                    sx={{
+                      color: "silver",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "white",
+                        transition: "color .2s ease-in",
+                      },
+                    }}
+                  >
+                    <Link href="/our-story">Our Story</Link>
+                  </ListItem>
                 </List>
               </HStack>
             </Stack>

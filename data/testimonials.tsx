@@ -139,7 +139,7 @@ export default {
     },
     {
       company: "Atarim", // Company name
-      name: "Luke Cook Vito Pelag",
+      name: "Vito Pelag",
       description: "",
       avatar: "/assets/clients/images/vito.jpg",
       children: (

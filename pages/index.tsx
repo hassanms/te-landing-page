@@ -563,36 +563,44 @@ const AboutUsSection: React.FC = () => {
                 h="320px"
                 className="shining-card"
               >
-                <CardHeader
-                  display="flex"
-                  flexDirection="row"
-                  gap="4"
-                  className={`fade-card ${isFlipping ? "fade-out" : "fade-in"}`}
-                >
-                  <Avatar
-                    src={currentCard.avatar}
-                    size="lg"
-                    bg="transparent"
+                <FallInPlace delay={0.8}>
+                  <CardHeader
+                    display="flex"
+                    flexDirection="row"
+                    gap="4"
                     className={`fade-card ${
                       isFlipping ? "fade-out" : "fade-in"
                     }`}
-                  />
-                  <Stack spacing="1" mt="4">
-                    <Heading size="sm" color="white">
-                      {currentCard.name}
-                    </Heading>
-                    <Text color="white" size="xs">
-                      {currentCard.designation}
+                  >
+                    <Avatar
+                      src={currentCard.avatar}
+                      size="lg"
+                      bg="transparent"
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
+                    />
+                    <Stack spacing="1" mt="4">
+                      <Heading size="sm" color="white">
+                        {currentCard.name}
+                      </Heading>
+                      <Text color="white" size="xs">
+                        {currentCard.designation}
+                      </Text>
+                    </Stack>
+                  </CardHeader>
+                </FallInPlace>
+                <FallInPlace delay={0.8}>
+                  <CardBody
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
+                  >
+                    <Text color="white" fontSize="lg" textAlign="center">
+                      "{currentCard.description}"
                     </Text>
-                  </Stack>
-                </CardHeader>
-                <CardBody
-                  className={`fade-card ${isFlipping ? "fade-out" : "fade-in"}`}
-                >
-                  <Text color="white" fontSize="lg" textAlign="center">
-                    "{currentCard.description}"
-                  </Text>
-                </CardBody>
+                  </CardBody>
+                </FallInPlace>
               </Card>
             </Box>
           </Box>

@@ -325,6 +325,44 @@ const HeroSection: React.FC = () => {
 
 const AboutUsSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFlipping(true);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+        setIsFlipping(false);
+      }, 0);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const cardData = [
+    {
+      id: 1,
+      name: "Zain Ul Abideen",
+      designation: "Co-Founder & CTO",
+      avatar: "/assets/zain.png",
+      gradient: ["pink.200", "purple.500"],
+      company: "",
+      description:
+        "We are committed to delivering exceptional products, achieving outstanding results, and driving significant revenue growth for our clients.",
+    },
+    {
+      id: 2,
+      name: "Hassan M. Siddiqui",
+      designation: "Co-Founder & CEO",
+      avatar: "/assets/hassan.png",
+      gradient: ["pink.200", "purple.500"],
+      company: "",
+      description:
+        "At Tech Emulsion, we don’t just create software; we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
+    },
+  ];
+  const currentCard = cardData[currentIndex];
 
   return (
     <Box id="about" sx={{ scrollMarginTop: "50px" }}>
@@ -509,47 +547,63 @@ const AboutUsSection: React.FC = () => {
             expectations.”
           </HighlightsTestimonialItem> */}
 
-          <Card
-            position="relative"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            bgGradient={`linear(to-br, #b2d8d8, #006666 , #004c4c)`}
-            boxShadow="none"
-            border={"none"}
-            borderRadius="lg"
-            overflow="hidden"
-          >
-            <CardHeader display="flex" flexDirection="row" alignItems="center">
-              <Avatar
-                name="Zain Ul Abideen"
-                src="/assets/zain.png"
-                size="lg"
-                bg="transparent"
-              />
-              <Stack spacing="1" ms="4">
-                <Heading
-                  size="sm"
-                  sx={{
-                    color: "white",
-                  }}
-                >
-                  Zain Ul Abideen
-                </Heading>
-                <Text color="white" size="xs">
-                  Co-Founder & CTO
-                </Text>
-              </Stack>
-            </CardHeader>
-            <CardBody>
-              <Text color="white" fontSize="lg">
-                &quot;We are committed to delivering exceptional products,
-                achieving outstanding results, and driving significant revenue
-                growth for our clients.&quot;
-              </Text>
-            </CardBody>
-          </Card>
+          <Box>
+            <Box key={currentCard.id}>
+              <Card
+                position="relative"
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                bgGradient={`linear(to-br, #b2d8d8, #006666 , #004c4c)`}
+                boxShadow="none"
+                border={"none"}
+                borderRadius="lg"
+                overflow="hidden"
+                h="320px"
+                className="shining-card"
+              >
+                <FallInPlace delay={0.8}>
+                  <CardHeader
+                    display="flex"
+                    flexDirection="row"
+                    gap="4"
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
+                  >
+                    <Avatar
+                      src={currentCard.avatar}
+                      size="lg"
+                      bg="transparent"
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
+                    />
+                    <Stack spacing="1" mt="4">
+                      <Heading size="sm" color="white">
+                        {currentCard.name}
+                      </Heading>
+                      <Text color="white" size="xs">
+                        {currentCard.designation}
+                      </Text>
+                    </Stack>
+                  </CardHeader>
+                </FallInPlace>
+                <FallInPlace delay={0.8}>
+                  <CardBody
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
+                  >
+                    <Text color="white" fontSize="lg" textAlign="center">
+                      "{currentCard.description}"
+                    </Text>
+                  </CardBody>
+                </FallInPlace>
+              </Card>
+            </Box>
+          </Box>
 
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}

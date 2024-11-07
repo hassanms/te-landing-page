@@ -6,6 +6,7 @@ import { Layout } from "components/layout";
 
 import theme from "../theme";
 import { Toaster } from "components/Toaster";
+import "./global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { announcement, header, footer } = pageProps;

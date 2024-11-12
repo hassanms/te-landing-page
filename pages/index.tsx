@@ -115,6 +115,7 @@ import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
 import { useEffect } from "react";
 import Head from "next/head";
+import Script from "next/script";
 
 const Home: NextPage = () => {
   return (
@@ -125,7 +126,25 @@ const Home: NextPage = () => {
           name="description"
           content="Imagineering digital transformation for your business"
         />
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
       </Head>
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          // @ts-ignore
+          Calendly.initBadgeWidget({
+            url: "https://calendly.com/hassanms/30min",
+            text: "Schedule time with me",
+            color: "#004c4c",
+            textColor: "#ffffff",
+          });
+        }}
+      />
+
       <SEO
         title="Tech Emulsion | Imagineering Digital Transformation"
         description="Imagineering digital transformation for your business"
@@ -335,7 +354,7 @@ const AboutUsSection: React.FC = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
         setIsFlipping(false);
       }, 0);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -353,7 +372,7 @@ const AboutUsSection: React.FC = () => {
     },
     {
       id: 2,
-      name: "Hassan M. Siddiqui",
+      name: "Hassan M. Saddique",
       designation: "Co-Founder & CEO",
       avatar: "/assets/hassan.png",
       gradient: ["pink.200", "purple.500"],

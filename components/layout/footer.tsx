@@ -302,7 +302,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   >
                     <Link href="/contact">Contact</Link>
                   </ListItem>
-                  <ListItem
+                  {/* <ListItem
                     sx={{
                       color: "silver",
                       fontSize: "16px",
@@ -314,7 +314,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     }}
                   >
                     <Link href="/our-story">Our Story</Link>
-                  </ListItem>
+                  </ListItem> */}
                 </List>
               </HStack>
             </Stack>

@@ -40,11 +40,11 @@ const siteConfig = {
         href: "/contact",
         variant: "varient",
       },
-      {
-        label: "Our Story",
-        href: "/our-story",
-        variant: "varient",
-      },
+      // {
+      //   label: "Our Story",
+      //   href: "/our-story",
+      //   variant: "varient",
+      // },
     ],
   },
   footer: {

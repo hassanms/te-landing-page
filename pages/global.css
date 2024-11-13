@@ -4,12 +4,12 @@
 
 .fade-out {
   opacity: 0;
-  transition: opacity 0.8s ease-out;
+  transition: opacity 1s ease-out;
 }
 
 .fade-in {
   opacity: 1;
-  transition: opacity 0.8s ease-in;
+  transition: opacity 1s ease-in;
 }
 .shining-card::before {
   content: "";

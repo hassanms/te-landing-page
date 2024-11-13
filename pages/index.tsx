@@ -138,7 +138,7 @@ const Home: NextPage = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/30min",
-            text: "Schedule time with me",
+            text: "Talk to Our CEO",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -378,7 +378,7 @@ const AboutUsSection: React.FC = () => {
       gradient: ["pink.200", "purple.500"],
       company: "",
       description:
-        "At Tech Emulsion, we don’t just create software; we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
+        "At Tech Emulsion, we don’t just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
     },
   ];
   const currentCard = cardData[currentIndex];
@@ -1048,133 +1048,74 @@ const Portfolio: React.FC = () => {
 
         {/* Explore services */}
         <Highlights>
-          {HighlightsItems?.map((item, index) => (
-            <HighlightsItem
-              key={index}
-              colSpan={[1, null, 2]}
-              gap={"0"}
-              padding={"4"}
-              title={""}
-              border={"none"}
-              width={{
-                base: "100%",
-                md: "100%",
-                lg: "100%",
-                xl: "592px",
-              }}
-            >
-              <Box
-                sx={{
-                  // position: "relative",
-                  // top: "0",
-                  // left: "0",
-                  width: "100%",
-                  backgroundImage:
-                    colorMode === "dark"
-                      ? "url('/assets/background/pattern.jpg')"
-                      : "url('/assets/background/light-pattern.jpg')",
-                  // colorMode === "dark" ? "#004c4c" : "#b2d8d8",
-                  height: "350px",
-                  // backGround gradient
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                {/* {colorMode === "dark" ? (
-                  <Image
-                    src="/assets/background/pattern.jpg"
-                    alt="hero"
-                    width={592}
-                    height={400}
-                    style={{
-                      objectFit: "contain",
-                    }}
-                  />
-                ) : (
-                  <Image
-                    src="/assets/background/light-pattern.jpg"
-                    alt="hero"
-                    width={592}
-                    height={400}
-                    style={{
-                      objectFit: "contain",
-                    }}
-                  />
-                )} */}
-                <Box
-                  sx={
-                    {
-                      // position: "absolute",
-                      // top: "10",
-                      // left: "0",
-                    }
-                  }
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    width={502}
-                    height={300}
-                    style={{
-                      width: "100%",
-                      height: "300px",
-                      objectFit: "contain",
-                      marginTop: 25,
-                    }}
-                  />
-                </Box>
-              </Box>
-              <Box
-                w="100%"
-                px={{
-                  base: "0",
-                  md: "16",
-                  lg: "0",
-                }}
-                pt={"4"}
-              >
-                <Heading as="h2" size="lg" mb={4}>
-                  {item.title}
-                </Heading>
-                <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="lg">
-                    {item.description}
-                  </Text>
+          {HighlightsItems?.map((item, index) => {
+            const href = item.title.includes("Farmin")
+              ? "/work/case-study-farmin"
+              : item.title.includes("Atarim")
+              ? "/work/case-study-atarim"
+              : item.title.includes("Bipcards")
+              ? "/work/case-study-bipcards"
+              : item.title.includes("Popcard")
+              ? "/work/case-study-popcard"
+              : item.title.includes("Artis")
+              ? "/work/case-study-artis"
+              : "/work/default-case-study"; // Fallback URL
 
-                  {/* <Flex
-              rounded="full"
-              borderWidth="1px"
-              flexDirection="row"
-              alignItems="center"
-              py="1"
-              ps="8"
-              pe="2"
-              bg="primary.900"
-              _dark={{ bg: "gray.900" }}
-            >
-              <Box>
-                <Text color="yellow.400" display="inline">
-                  yarn add
-                </Text>{" "}
-                <Text color="cyan.300" display="inline">
-                  @saas-ui/react
-                </Text>
-              </Box>
-              <IconButton
-                icon={hasCopied ? <FiCheck /> : <FiCopy />}
-                aria-label="Copy install command"
-                onClick={onCopy}
-                variant="ghost"
-                ms="4"
-                isRound
-                color="white"
-              />
-            </Flex> */}
-                </VStack>
-              </Box>
-            </HighlightsItem>
-          ))}
+            // Logging for debugging
+            console.log("Item title:", item.title, "Href:", href);
+
+            return (
+              <HighlightsItem key={index} colSpan={[1, null, 2]}>
+                <Link
+                  // href={href}
+                  _hover={{ textDecoration: "none" }}
+                  gap="0"
+                  title=""
+                  border="none"
+                >
+                  <Box
+                    sx={{
+                      width: "100%",
+                      backgroundImage:
+                        colorMode === "dark"
+                          ? "url('/assets/background/pattern.jpg')"
+                          : "url('/assets/background/light-pattern.jpg')",
+                      height: "350px",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      py: 1,
+                    }}
+                  >
+                    <Box>
+                      <Image
+                        src={item.image}
+                        alt={item.alt}
+                        width={502}
+                        height={300}
+                        style={{
+                          width: "100%",
+                          height: "300px",
+                          objectFit: "contain",
+                          marginTop: 25,
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                  <Box w="100%" px={{ base: "0", md: "16", lg: "0" }} pt="4">
+                    <Heading as="h2" size="lg" mb={4}>
+                      {item.title}
+                    </Heading>
+                    <VStack alignItems="flex-start" spacing="8">
+                      <Text color="muted" fontSize="lg">
+                        {item.description}
+                      </Text>
+                    </VStack>
+                  </Box>
+                </Link>
+              </HighlightsItem>
+            );
+          })}
 
           {/* <HighlightsItem colSpan={[1, null, 2]} title="Core components">
           <Text color="muted" fontSize="lg">

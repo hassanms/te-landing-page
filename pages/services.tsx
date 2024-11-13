@@ -16,6 +16,7 @@ import {
   HighlightsWhatWeDo,
 } from "components/highlights";
 import Head from "next/head";
+import Script from "next/script";
 import { FaChevronRight } from "react-icons/fa";
 
 const Services = () => {
@@ -74,7 +75,24 @@ const Services = () => {
           name="description"
           content="Tech Emulsion offers a range of innovative services, including SaaS development, website development, Chrome extensions, DevOps solutions, generative AI integration, QA testing, and automation solutions."
         />
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
       </Head>
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          // @ts-ignore
+          Calendly.initBadgeWidget({
+            url: "https://calendly.com/hassanms/30min",
+            text: "Talk to Our CEO",
+            color: "#004c4c",
+            textColor: "#ffffff",
+          });
+        }}
+      />
       <Container maxW="container.xl" py="20" mb="20">
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box

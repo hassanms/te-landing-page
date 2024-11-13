@@ -35,16 +35,16 @@ const siteConfig = {
         label: "Tech Stack",
         id: "tech",
       },
+      // {
+      //   label: "Our Story",
+      //   href: "/our-story",
+      //   id: "tech",
+      // },
       {
         label: "Get a Quote",
         href: "/contact",
         variant: "varient",
       },
-      // {
-      //   label: "Our Story",
-      //   href: "/our-story",
-      //   variant: "varient",
-      // },
     ],
   },
   footer: {

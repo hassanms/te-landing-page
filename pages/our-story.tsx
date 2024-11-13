@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import Head from "next/head";
+import Script from "next/script";
 
 const OurStory: React.FC = () => {
   const isSmallScreen = useBreakpointValue({
@@ -28,7 +29,24 @@ const OurStory: React.FC = () => {
           name="description"
           content="Learn about the journey of Tech Emulsion, from its inception to becoming a leading digital transformation agency."
         />
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
       </Head>
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          // @ts-ignore
+          Calendly.initBadgeWidget({
+            url: "https://calendly.com/hassanms/30min",
+            text: "Schedule time with me",
+            color: "#004c4c",
+            textColor: "#ffffff",
+          });
+        }}
+      />
       <Container maxW="container.xl" pt={{ base: 40, md: 40, lg: 20 }} pb="20">
         <BackgroundGradient height="100%" zIndex="-1" />{" "}
         <Flex

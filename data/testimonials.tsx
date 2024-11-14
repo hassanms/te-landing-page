@@ -16,7 +16,7 @@ export default {
     },
 
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -31,7 +31,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -43,7 +43,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -55,7 +55,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -66,7 +66,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -79,7 +79,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -93,7 +93,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -105,7 +105,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -118,7 +118,7 @@ export default {
     },
 
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -152,7 +152,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Luke Cook",
       description: "",
       avatar: "/assets/clients/images/look.jpg",
@@ -165,7 +165,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Shah Mohiuddin",
       description: "",
       avatar: "/assets/clients/images/shah.jpg",
@@ -177,7 +177,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "ALi AlHammadi",
       description: "",
       avatar: "/assets/clients/images/hammadi.jpg",
@@ -189,7 +189,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Anum Sheraz",
       description: "",
       avatar: "/assets/clients/images/sheraz.jpg",
@@ -202,7 +202,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -216,7 +216,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -228,7 +228,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -242,7 +242,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -254,7 +254,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -269,7 +269,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -286,7 +286,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -298,7 +298,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -310,21 +310,21 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
       children: <>“Great in what they do and a very good communicator.”</>,
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
       children: <>“Tech Emulsion is very knowledgeable and very responsive.”</>,
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -337,7 +337,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -349,14 +349,14 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
       children: <>“Great job. Very communicative. Always available.”</>,
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -372,7 +372,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -385,7 +385,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -398,7 +398,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",
@@ -410,7 +410,7 @@ export default {
       ),
     },
     {
-      company: "Frontend Corp", // Company name
+      company: "", // Company name
       name: "Alberto Vazquez",
       description: "",
       avatar: "",

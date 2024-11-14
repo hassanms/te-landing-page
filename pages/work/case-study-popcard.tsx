@@ -26,8 +26,8 @@ const CaseStudyPopcard = () => {
         onLoad={() => {
           // @ts-ignore
           Calendly.initBadgeWidget({
-            url: "https://calendly.com/hassanms/30min",
-            text: "Schedule time with me",
+            url: "https://calendly.com/hassanms/discovery-call",
+            text: "Talk to Our CEO",
             color: "#004c4c",
             textColor: "#ffffff",
           });

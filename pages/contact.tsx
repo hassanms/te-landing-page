@@ -29,6 +29,10 @@ const Contacts = () => {
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
+        ></Script>
       </Head>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
@@ -36,13 +40,20 @@ const Contacts = () => {
         onLoad={() => {
           // @ts-ignore
           Calendly.initBadgeWidget({
-            url: "https://calendly.com/hassanms/30min",
+            url: "https://calendly.com/hassanms/discovery-call",
             text: "Talk to Our CEO",
             color: "#004c4c",
             textColor: "#ffffff",
           });
         }}
       />
+      <Script id="google-analytics">
+        {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DJFC9CERLF')`}
+      </Script>
       <Container maxW="container.xl" py="20">
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box

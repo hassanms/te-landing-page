@@ -11,6 +11,7 @@ import { ButtonLink } from "components/button-link";
 import Contact from "components/Contact";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import Head from "next/head";
+import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -24,7 +25,24 @@ const Contacts = () => {
           name="description"
           content="Get in touch with Tech Emulsion for your next project. We specialize in web development, SaaS solutions, Chrome extensions, QA testing, cloud services, and artificial intelligence."
         />
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
       </Head>
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          // @ts-ignore
+          Calendly.initBadgeWidget({
+            url: "https://calendly.com/hassanms/30min",
+            text: "Talk to Our CEO",
+            color: "#004c4c",
+            textColor: "#ffffff",
+          });
+        }}
+      />
       <Container maxW="container.xl" py="20">
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box

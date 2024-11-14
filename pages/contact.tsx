@@ -29,11 +29,11 @@ const Contacts = () => {
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-        ></Script>
       </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
+      ></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -73,12 +73,12 @@ const Contacts = () => {
               mt="4"
               width={["auto", null, "80%"]}
             >
-              Whether you're looking for innovative software solutions, need to
-              scale your development team, or want to discuss your next big
-              project, we’d love to hear from you! At Tech Emulsion, we are
-              dedicated to delivering exceptional results in web development,
-              SaaS solutions, Chrome extensions, QA testing, cloud services, and
-              artificial intelligence.
+              Whether you&apos;re looking for innovative software solutions,
+              need to scale your development team, or want to discuss your next
+              big project, we&apos;d love to hear from you! At Tech Emulsion, we
+              are dedicated to delivering exceptional results in web
+              development, SaaS solutions, Chrome extensions, QA testing, cloud
+              services, and artificial intelligence.
             </Text>
           </Box>
 

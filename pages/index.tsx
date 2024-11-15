@@ -135,10 +135,6 @@ const Home: NextPage = () => {
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-        ></Script>
       </Head>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
@@ -632,7 +628,7 @@ const AboutUsSection: React.FC = () => {
                     }`}
                   >
                     <Text color="white" fontSize="lg" textAlign="center">
-                      "{currentCard.description}"
+                      &quot;{currentCard.description}&quot;
                     </Text>
                   </CardBody>
                 </FallInPlace>
@@ -958,30 +954,30 @@ const Portfolio: React.FC = () => {
   const { colorMode } = useColorMode();
   const HighlightsItems = [
     {
-      title: "Farmin – AI based Remote Sensing App",
+      title: "Farmin – AI-Powered Satellite Image Detection SaaS",
       description:
-        "The SaaS application is designed to detect and recognize different types of objects in satellite images, for example cars, houses, airplanes, boats, etc. The back end is coded in Python (Django). Various computer vision techniques (using OpenCV) and different deep learning models like YOLO are used in the back-end pipeline.",
+        "Tech Emulsion built Farmin, an AI-powered SaaS for satellite image analysis. Using Mapbox, YOLO models, and OpenCV, it detects objects like cars, ships, and oil spills. We added change detection, a data annotation tool, and deployed it on AWS, enabling real-time insights and scalable remote sensing.",
       image: "/assets/portfolio/farmin.avif",
-      alt: "Farmin – AI based Remote Sensing App",
+      alt: "Farmin – AI-Powered Satellite Image Detection SaaS",
     },
     {
-      title: "Atarim – A SaaS tool for visual collaboration",
+      title: "Atarim – A SaaS tool for visual collaboration & project mgmt",
       description:
-        "Instantly comment on any design, from websites to graphics. Manage at scale and integrate your stack. Just click on any part to leave feedback and say goodbye to endless email/Slack Chains.",
+        "Tech Emulsion transformed WPFeedback into Atarim, a scalable SaaS platform for visual collaboration on any website. With new features, a Chrome extension, custom scraping, AWS scaling, and performance optimizations, we helped Atarim secure $500K funding and expand to a universal project management tool.",
       image: "/assets/portfolio/atarim.png",
-      alt: "Atarim – A SaaS tool for visual collaboration",
+      alt: "Atarim – A SaaS tool for visual collaboration & project mgmt",
     },
     {
       title: "Bipcards – Elevate Online Presence with Genuine Reviews",
       description:
-        "Bipcards.com is a platform designed to help businesses enhance their online presence by collecting and showcasing genuine customer reviews. It aims to build trust and credibility through verified feedback.",
+        "Tech Emulsion developed a SaaS platform for Bipcards.com, enabling businesses to collect customer reviews via programmable NFC cards and QR codes. Customers benefit from a flexible subscription model, real-time analytics, and easy card programming, while sales reps streamline onboarding, enhancing engagement and efficiency.",
       image: "/assets/portfolio/bipcards.png",
       alt: "Bipcards – Elevate Online Presence with Genuine Reviews",
     },
     {
       title: "Popcard – SaaS for managing review cards",
       description:
-        "Popcard is a dashboard for managing review cards. It allows users to create, edit, and delete review cards, as well as view and manage the reviews associated with each card.",
+        "Tech Emulsion developed a SaaS for PopCard.io, enabling businesses to manage locations, teams, and customer reviews via NFC cards and QR codes. Features included secure authentication with social logins, analytics, leaderboards, and Stripe subscriptions, enhancing engagement and revenue.",
       image: "/assets/portfolio/popcard.png",
       alt: "Popcard – SaaS for managing review cards",
     },
@@ -992,6 +988,14 @@ const Portfolio: React.FC = () => {
         "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
+    },
+    {
+      title:
+        "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
+      description:
+        "Tech Emulsion developed JarvisReach, a SaaS for LinkedIn prospecting, enabling efficient data extraction, filtering, and automated email outreach. With subscription flexibility, team leaderboards, and admin analytics, JarvisReach streamlines lead management and boosts user productivity.",
+      image: "/assets/portfolio/jarvis.png",
+      alt: "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
     },
   ];
   return (
@@ -1075,7 +1079,9 @@ const Portfolio: React.FC = () => {
               ? "/work/case-study-popcard"
               : item.title.includes("Artis")
               ? "/work/case-study-artis"
-              : "/work/default-case-study"; // Fallback URL
+              : item.title.includes("JarvisReach")
+              ? "/work/case-study-jarvisreach"
+              : null;
 
             // Logging for debugging
             console.log("Item title:", item.title, "Href:", href);
@@ -1083,7 +1089,7 @@ const Portfolio: React.FC = () => {
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
                 <Link
-                  // href={href}
+                  href={href || "/"}
                   _hover={{ textDecoration: "none" }}
                   gap="0"
                   title=""

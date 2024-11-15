@@ -33,11 +33,11 @@ const OurStory: React.FC = () => {
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-        ></Script>
       </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
+      ></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"

@@ -2843,7 +2843,7 @@ const TechnologySection: React.FC = () => {
                   height={100}
                 />
                 <Image
-                  src="/assets/tech/lang_logo.png"
+                  src="/assets/tech/langgrapg.png"
                   alt="langgraph"
                   width={100}
                   height={100}

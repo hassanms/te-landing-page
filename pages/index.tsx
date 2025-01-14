@@ -2660,7 +2660,7 @@ const TechnologySection: React.FC = () => {
                   height={100}
                 />
                 <Image
-                  src="/assets/tech/fastapi_logo.jpg"
+                  src="/assets/tech/fastapi.jpg"
                   alt="Fast Api"
                   width={100}
                   height={100}

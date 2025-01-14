@@ -696,7 +696,7 @@ const HighlightsSection: React.FC = () => {
       title: "AI-Powered Agent Solutions",
       description:
         "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
-      image: "/assets/whatWeDo/aiagents_img.jpg",
+      image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
       alt: "AI-Powered Agent Solutions",
     }, 
     {
@@ -1005,7 +1005,7 @@ const Portfolio: React.FC = () => {
       title: "Alifa App – Client Engagement and AI-Driven Sales SaaS",
       description:
         "Tech Emulsion developed Alifa App to help sales reps manage client interactions with ease. It enables Zoom meeting creation, dynamic proposal sharing with hyperlinks, and automated client chats using RAG. With AI agents for web monitoring, data extraction, and web searches, it automates tasks and enhances client engagement, delivering a seamless and scalable sales solution.",
-      image: "/assets/portfolio/alifa_project.png",
+      image: "/assets/portfolio/alifa.PNG",
       alt: "Alifa App – AI-Driven Client Interaction SaaS",
     }, 
     {
@@ -1019,7 +1019,7 @@ const Portfolio: React.FC = () => {
       title: "RAG – Retrieval-Augmented Generation Application",
       description:
         "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
-      image: "/assets/portfolio/rag_project.png",
+      image: "/assets/portfolio/raggenai.png",
       alt: "RAG – AI-Powered Document Querying Application",
     }
      
@@ -1897,7 +1897,7 @@ const SocialProofSection: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/assets/clients/alifa.png"
+                    src="/assets/clients/alifa.PNG"
                     alt="Republic Power"
                     width={70}
                     height={70}
@@ -2776,7 +2776,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="70%"
             mt={10}
-            marginLeft={isSMall ? "12%" : "27%"}
+            marginLeft={isSMall ? "20%" : "15%"}
           >
             <Box
               display="flex"
@@ -2793,7 +2793,6 @@ const TechnologySection: React.FC = () => {
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
                 ]}
                 justifyContent="center"
                 alignItems="center"
@@ -2827,7 +2826,55 @@ const TechnologySection: React.FC = () => {
                 />
                 <Image
                   src="/assets/tech/huggingface_logo.png"
-                  alt="Hugging Face"
+                  alt="Huggingface"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/crew_logo.png"
+                  alt="Crew"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/langchain_logo.png"
+                  alt="langchain"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/lang_logo.png"
+                  alt="langgraph"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/pinecorn_logo.png"
+                  alt="pinecorn"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/langsmith_logo.png"
+                  alt="langsmith"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/chroma_logo.png"
+                  alt="chroma"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/meta_llma.png"
+                  alt="meta_llma"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/Anthropic_logo.png"
+                  alt="Anthropic"
                   width={100}
                   height={100}
                 />

@@ -32,7 +32,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Samantha White",
       description: "",
       avatar: "",
       children: (
@@ -44,7 +44,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Nicholas Harris",
       description: "",
       avatar: "",
       children: (
@@ -56,7 +56,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Lauren Clark",
       description: "",
       avatar: "",
       children: (
@@ -67,7 +67,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Megan Robinson",
       description: "",
       avatar: "",
       children: (
@@ -80,7 +80,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Brandon Hall",
       description: "",
       avatar: "",
       children: (
@@ -94,7 +94,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Rachel Adams",
       description: "",
       avatar: "",
       children: (
@@ -106,7 +106,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Zachary Moore",
       description: "",
       avatar: "",
       children: (
@@ -119,7 +119,7 @@ export default {
 
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Victoria Campbell",
       description: "",
       avatar: "",
       children: (
@@ -132,7 +132,7 @@ export default {
     },
     {
       company: "front-end corp",
-      name: "Alberto Vazquez",
+      name: "Benjamin Phillips",
       description: "",
       avatar: "",
       children: <>“Thank you for the good job and quick support!.”</>,
@@ -153,7 +153,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Luke Cook",
+      name: "Amanda Baker",
       description: "",
       avatar: "/assets/clients/images/look.jpg",
       children: (
@@ -203,7 +203,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Dylan Kelly",
       description: "",
       avatar: "",
       children: (
@@ -217,7 +217,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Ethan Wright",
       description: "",
       avatar: "",
       children: (
@@ -229,7 +229,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Alexis Green",
       description: "",
       avatar: "",
       children: (
@@ -243,7 +243,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Tyler Scott",
       description: "",
       avatar: "",
       children: (
@@ -255,7 +255,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Olivia King",
       description: "",
       avatar: "",
       children: (
@@ -270,7 +270,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "James Parker",
       description: "",
       avatar: "",
       children: (
@@ -287,7 +287,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Abigail Turner",
       description: "",
       avatar: "",
       children: (
@@ -299,7 +299,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Jacob Ross",
       description: "",
       avatar: "",
       children: (
@@ -311,21 +311,21 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Chloe Sanders",
       description: "",
       avatar: "",
       children: <>“Great in what they do and a very good communicator.”</>,
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "William Foster",
       description: "",
       avatar: "",
       children: <>“Tech Emulsion is very knowledgeable and very responsive.”</>,
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Madison Rivera",
       description: "",
       avatar: "",
       children: (
@@ -338,7 +338,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Logan Morgan",
       description: "",
       avatar: "",
       children: (
@@ -350,14 +350,14 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Isabella Collins",
       description: "",
       avatar: "",
       children: <>“Great job. Very communicative. Always available.”</>,
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Elijah Perry",
       description: "",
       avatar: "",
       children: (
@@ -373,7 +373,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Owen Russell",
       description: "",
       avatar: "",
       children: (
@@ -386,7 +386,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Scarlett Patterson",
       description: "",
       avatar: "",
       children: (
@@ -399,7 +399,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Blake Howard",
       description: "",
       avatar: "",
       children: (
@@ -411,7 +411,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Alberto Vazquez",
+      name: "Nora Butler",
       description: "",
       avatar: "",
       children: (

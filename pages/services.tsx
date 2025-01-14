@@ -27,7 +27,7 @@ const Services = () => {
       title: "AI-Powered Agent Solutions",
       description:
         "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
-      image: "/assets/whatWeDo/aiagents_img.jpg",
+      image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
       alt: "AI-Powered Agent Solutions",
     },   
     {

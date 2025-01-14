@@ -2843,19 +2843,19 @@ const TechnologySection: React.FC = () => {
                   height={100}
                 />
                 <Image
-                  src="/assets/tech/langgrapg.png"
+                  src="/assets/tech/langgrapg.PNG"
                   alt="langgraph"
                   width={100}
                   height={100}
                 />
                 <Image
-                  src="/assets/tech/pinecorn_logo.png"
+                  src="/assets/tech/pinecorn.PNG"
                   alt="pinecorn"
                   width={100}
                   height={100}
                 />
                 <Image
-                  src="/assets/tech/langsmith_logo.png"
+                  src="/assets/tech/langsmith.PNG"
                   alt="langsmith"
                   width={100}
                   height={100}

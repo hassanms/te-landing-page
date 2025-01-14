@@ -599,17 +599,15 @@ const AboutUsSection: React.FC = () => {
                     display="flex"
                     flexDirection="row"
                     gap="4"
-                    className={`fade-card ${
-                      isFlipping ? "fade-out" : "fade-in"
-                    }`}
+                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
+                      }`}
                   >
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
-                      className={`fade-card ${
-                        isFlipping ? "fade-out" : "fade-in"
-                      }`}
+                      className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
+                        }`}
                     />
                     <Stack spacing="1" mt="4">
                       <Heading size="sm" color="white">
@@ -623,9 +621,8 @@ const AboutUsSection: React.FC = () => {
                 </FallInPlace>
                 <FallInPlace delay={0.8}>
                   <CardBody
-                    className={`fade-card ${
-                      isFlipping ? "fade-out" : "fade-in"
-                    }`}
+                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
+                      }`}
                   >
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
@@ -695,6 +692,13 @@ const HighlightsSection: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const HighlightsItems = [
+    {
+      title: "AI-Powered Agent Solutions",
+      description:
+        "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
+      image: "/assets/whatWeDo/aiagents_img.jpg",
+      alt: "AI-Powered Agent Solutions",
+    }, 
     {
       title: "Next-Gen SaaS Development",
       description:
@@ -997,6 +1001,28 @@ const Portfolio: React.FC = () => {
       image: "/assets/portfolio/jarvis.png",
       alt: "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
     },
+    {
+      title: "Alifa App – Client Engagement and AI-Driven Sales SaaS",
+      description:
+        "Tech Emulsion developed Alifa App to help sales reps manage client interactions with ease. It enables Zoom meeting creation, dynamic proposal sharing with hyperlinks, and automated client chats using RAG. With AI agents for web monitoring, data extraction, and web searches, it automates tasks and enhances client engagement, delivering a seamless and scalable sales solution.",
+      image: "/assets/portfolio/alifa_project.png",
+      alt: "Alifa App – AI-Driven Client Interaction SaaS",
+    }, 
+    {
+      title: "MoodTube Extension – AI-Powered YouTube Video Search by Mood",
+      description:
+        "MoodTube allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings with models like all-mpnet-base-v2, and stores them in PGVector. Semantic search retrieves videos matching the selected mood, offering personalized video recommendations.",
+      image: "/assets/portfolio/moodtube.png",
+      alt: "MoodTube – AI-Powered Video Search by Mood"
+    },    
+    {
+      title: "RAG – Retrieval-Augmented Generation Application",
+      description:
+        "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
+      image: "/assets/portfolio/rag_project.png",
+      alt: "RAG – AI-Powered Document Querying Application",
+    }
+     
   ];
   return (
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
@@ -1072,16 +1098,22 @@ const Portfolio: React.FC = () => {
             const href = item.title.includes("Farmin")
               ? "/work/case-study-farmin"
               : item.title.includes("Atarim")
-              ? "/work/case-study-atarim"
-              : item.title.includes("Bipcards")
-              ? "/work/case-study-bipcards"
-              : item.title.includes("Popcard")
-              ? "/work/case-study-popcard"
-              : item.title.includes("Artis")
-              ? "/work/case-study-artis"
-              : item.title.includes("JarvisReach")
-              ? "/work/case-study-jarvisreach"
-              : null;
+                ? "/work/case-study-atarim"
+                : item.title.includes("Bipcards")
+                  ? "/work/case-study-bipcards"
+                  : item.title.includes("Popcard")
+                    ? "/work/case-study-popcard"
+                    : item.title.includes("Artis")
+                      ? "/work/case-study-artis"
+                      : item.title.includes("JarvisReach")
+                        ? "/work/case-study-jarvisreach"
+                        : item.title.includes("Alifa")
+                        ? "/work/case-study-jarvisreach"
+                        : item.title.includes("GenAi")
+                        ? "/work/case-study-jarvisreach"
+                        : item.title.includes("Moodtube")
+                        ? "/work/case-study-jarvisreach"
+                        : null;
 
             // Logging for debugging
             console.log("Item title:", item.title, "Href:", href);
@@ -1839,6 +1871,72 @@ const SocialProofSection: React.FC = () => {
                   />
                 </Box>
               </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/alifa.png"
+                    alt="Republic Power"
+                    width={70}
+                    height={70}
+                  />
+                </Box>
+              </GridItem>
+              <GridItem
+                display="flex"
+                justifyContent="center" // Center the content horizontally inside the grid item
+                alignItems="center" // Center the content vertically inside the grid item
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center", // Center content horizontally inside the Box
+                    alignItems: "center", // Center content vertically inside the Box
+                    flexDirection: "column", // Ensure content stacks vertically
+
+                    color: "gray.400",
+                    padding: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#b2d8d8",
+                    width: "120px",
+                    height: "120px",
+                    cursor: "pointer",
+                    gap: "4",
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/assets/clients/moodtube_img.png"
+                    alt="Republic Power"
+                    width={70}
+                    height={70}
+                  />
+                </Box>
+              </GridItem>
             </Grid>
           </Box>
           {/* Absolute Subscrite newletter with imput and subscribe button  */}
@@ -2229,11 +2327,10 @@ const TestimonialsSection: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
-                animation: `${
-                  currentIndex % 2 === 0 || currentIndex % 3 === 0
+                animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
                     ? "fadeOut"
                     : "fadeIn"
-                } 0.5s`,
+                  } 0.5s`,
               }}
             >
               {/* Testimonial item */}
@@ -2510,7 +2607,7 @@ const TechnologySection: React.FC = () => {
                 />
                 <Image
                   src="/assets/tech/postgresql.png"
-                  alt="MongoDB"
+                  alt="postgresql"
                   width={80}
                   height={80}
                 />
@@ -2522,49 +2619,49 @@ const TechnologySection: React.FC = () => {
                 />
                 <Image
                   src="/assets/tech/django.png"
-                  alt="MySQL"
+                  alt="Django"
                   width={80}
                   height={80}
                 />
-                {/* <Image
-                src="/assets/tech/docker.png"
-                alt="Docker"
-                width={100}
-                height={100}
-              /> */}
-                {/* <Image
-                src="/assets/tech/kubernetes.png"
-                alt="Kubernetes"
-                width={100}
-                height={100}
-              /> */}
-                {/* <Image
-                src="/assets/tech/aws.png"
-                alt="AWS"
-                width={100}
-                height={100}
-              /> */}
                 <Image
                   src="/assets/tech/rails.png"
-                  alt="AWS"
+                  alt="Rails"
                   width={100}
                   height={100}
                 />
                 <Image
                   src="/assets/tech/ruby.png"
-                  alt="AWS"
+                  alt="Ruby"
                   width={100}
                   height={100}
                 />
                 <Image
                   src="/assets/tech/nest.png"
-                  alt="AWS"
+                  alt="Nest"
                   width={100}
                   height={100}
                 />
                 <Image
                   src="/assets/tech/python.png"
-                  alt="AWS"
+                  alt="Python"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/elasticsearch_logo.png"
+                  alt="Elasticsearch"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/redis_logo.png"
+                  alt="Redis"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/fastapi_logo.jpg"
+                  alt="Fast Api"
                   width={100}
                   height={100}
                 />
@@ -2696,6 +2793,7 @@ const TechnologySection: React.FC = () => {
                   "1fr 1fr",
                   "1fr 1fr 1fr",
                   "1fr 1fr 1fr 1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
                 ]}
                 justifyContent="center"
                 alignItems="center"
@@ -2705,8 +2803,8 @@ const TechnologySection: React.FC = () => {
                 <Image
                   src="/assets/tech/tensorflow.png"
                   alt="TensorFlow"
-                  width={160}
-                  height={160}
+                  width={100}
+                  height={100}
                 />
                 <Image
                   src="/assets/tech/pytorch.png"
@@ -2727,12 +2825,87 @@ const TechnologySection: React.FC = () => {
                   width={100}
                   height={100}
                 />
-                {/* <Image
-                  src="/assets/tech/nlp.png"
-                  alt="Natural Language Processing"
+                <Image
+                  src="/assets/tech/huggingface_logo.png"
+                  alt="Hugging Face"
                   width={100}
                   height={100}
-                /> */}
+                />
+              </Box>
+            </Box>
+          </Box>
+        </FallInPlace>
+      </Container>
+    );
+  };
+
+  const NoCodeAutomation = () => {
+    const isSMall = useBreakpointValue({ base: true, md: true, lg: false });
+    return (
+      <Container maxW="container.xl" py="5" mb="5">
+        <FallInPlace delay={0.4}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap="4"
+            width="70%"
+            mt={10}
+            marginLeft={isSMall ? "15%" : "28%"}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="4"
+              width="100%"
+            >
+              <Box
+                display={"grid"}
+                gridTemplateColumns={[
+                  "1fr 1fr",
+                  "1fr 1fr",
+                  "1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+                  "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+                ]}
+                justifyContent="center"
+                alignItems="center"
+                gap="10"
+                width="100%"
+              >
+                <Image
+                  src="/assets/tech/uipath_logo.png"
+                  alt="UI Path"
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src="/assets/tech/make_logo.png"
+                  alt="Make"
+                  width={100}
+                  height={100}
+                />
+                 <Image
+                  src="/assets/tech/zapier_logo.png"
+                  alt="Zapier"
+                  width={100}
+                  height={100}
+                />
+                 <Image
+                  src="/assets/tech/n8n_logo.jpg"
+                  alt="n8n"
+                  width={100}
+                  height={100}
+                />
+                 <Image
+                  src="/assets/tech/framer_logo.png"
+                  alt="Framer"
+                  width={80}
+                  height={80}
+                />
               </Box>
             </Box>
           </Box>
@@ -2862,11 +3035,29 @@ const TechnologySection: React.FC = () => {
             >
               AI
             </Button>
+            <Button
+              size="lg"
+              mt={"10"}
+              bg={currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300"}
+              sx={{
+                fontSize: isSMall ? "0.8rem" : "1rem",
+                color: currentTab === "noCodeAutomation" ? "white" : "gray.800",
+                borderRadius: "30px",
+                padding: "0.5rem 1.8rem",
+                "&:hover": {
+                  bg: currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
+                },
+              }}
+              onClick={() => setCurrentTab("noCodeAutomation")}
+            >
+              No Code Automation
+            </Button>
           </Box>
           {currentTab === "frontend" && <Frontend />}
           {currentTab === "backend" && <Backend />}
           {currentTab === "devops" && <DevOps />}
           {currentTab === "AI" && <AI />}
+          {currentTab === "noCodeAutomation" && <NoCodeAutomation />}
         </Box>
       </Container>
     </Box>

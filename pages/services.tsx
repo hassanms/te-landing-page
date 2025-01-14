@@ -24,6 +24,13 @@ const Services = () => {
 
   const HighlightsItems = [
     {
+      title: "AI-Powered Agent Solutions",
+      description:
+        "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
+      image: "/assets/whatWeDo/aiagents_img.jpg",
+      alt: "AI-Powered Agent Solutions",
+    },   
+    {
       title: "Next-Gen SaaS Development",
       description:
         "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",

@@ -5,15 +5,15 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 
-const CaseStudyArtis = () => {
+const CaseStudyRagGenai = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Alifa - Tech Emulsion</title>
+        <title>Case Study: RAG Based Customized ChatBot - Tech Emulsion</title>
         <meta
           name="description"
-          content="Learn how Tech Emulsion helped Alifa, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
+          // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -75,8 +75,8 @@ const CaseStudyArtis = () => {
           >
             <Box>
               <Image
-                src="/assets/portfolio/alifa.png"
-                alt="Alifa"
+                src="/assets/portfolio/raggenai.png"
+                alt="RAG Based Customized ChatBot"
                 width={502}
                 height={300}
                 style={{
@@ -97,7 +97,7 @@ const CaseStudyArtis = () => {
               width={"100%"}
               align={"center"}
             >
-              Alifa – Case Study
+              RAG Based Customized ChatBot – Case Study
             </Text>
             <Text
               color={
@@ -107,10 +107,10 @@ const CaseStudyArtis = () => {
               mt="4"
               width={["auto", null, "60%"]}
             >
-              Alifa is a client engagement and AI-driven sales SaaS (Software as a Service) 
-              application. It is designed to help sales representatives
-               manage and streamline client interactions, offering features to enhance productivity,
-              automate tasks, and integrate artificial intelligence (AI) for improved client engagement.
+              The project is an AI-powered Retrieval-Augmented Generation (RAG) application that allows users 
+              to upload PDF documents, ask questions about their content, and receive accurate, context-aware 
+              answers by utilizing OpenAI's language models, embeddings, and a vector database for efficient 
+              document retrieval.
             </Text>
           </Box>
         </Box>
@@ -119,4 +119,4 @@ const CaseStudyArtis = () => {
   );
 };
 
-export default CaseStudyArtis;
+export default CaseStudyRagGenai;

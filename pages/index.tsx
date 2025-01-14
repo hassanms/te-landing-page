@@ -693,11 +693,11 @@ const HighlightsSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const HighlightsItems = [
     {
-      title: "AI-Powered Agent Solutions",
+      title: "Agentic AI Engineering",
       description:
         "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
       image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
-      alt: "AI-Powered Agent Solutions",
+      alt: "Agentic AI Engineering",
     }, 
     {
       title: "Next-Gen SaaS Development",
@@ -836,7 +836,7 @@ const HighlightsSection: React.FC = () => {
                 style={{
                   width: "100%",
                   height: "300px",
-                  objectFit: "fill",
+                  objectFit: item.title === "Agentic AI Engineering"? "cover" : "fill",
                 }}
               />
               <Box px="4" py="6" borderRadius="8px" w="100%">
@@ -1016,7 +1016,7 @@ const Portfolio: React.FC = () => {
       alt: "MoodTube – AI-Powered Video Search by Mood"
     },    
     {
-      title: "RAG – Retrieval-Augmented Generation Application",
+      title: "RAG Based Customized ChatBot",
       description:
         "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
       image: "/assets/portfolio/raggenai.png",
@@ -1108,11 +1108,11 @@ const Portfolio: React.FC = () => {
                       : item.title.includes("JarvisReach")
                         ? "/work/case-study-jarvisreach"
                         : item.title.includes("Alifa")
-                        ? "/work/case-study-jarvisreach"
-                        : item.title.includes("GenAi")
-                        ? "/work/case-study-jarvisreach"
-                        : item.title.includes("Moodtube")
-                        ? "/work/case-study-jarvisreach"
+                        ? "/work/case-study-alifa"
+                        : item.title.includes("RAG")
+                        ? "/work/case-study-genai"
+                        : item.title.includes("MoodTube")
+                        ? "/work/case-study-moodtube"
                         : null;
 
             // Logging for debugging

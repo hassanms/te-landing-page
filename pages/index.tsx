@@ -2465,9 +2465,8 @@ const TechnologySection: React.FC = () => {
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="70%"
+            width="100%"
             mt={10}
-            marginLeft={!isSMall ? "15%" : "10%"}
           >
             <Box
               display="flex"
@@ -2476,15 +2475,11 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
+              maxWidth={"900px"}
             >
               <Box
-                display={"grid"}
-                gridTemplateColumns={[
-                  "1fr 1fr",
-                  "1fr 1fr",
-                  "1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr",
-                ]}
+                display={"flex"}
+                flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2518,10 +2513,10 @@ const TechnologySection: React.FC = () => {
                     height={100}
                   />
                 </Tooltip>
-                <Tooltip label="Chakra UI" placement="top">
+                <Tooltip label="Material UI" placement="top">
                   <Image
                     src="/assets/tech/mui.png"
-                    alt="Chakra UI"
+                    alt="Material UI"
                     width={100}
                     height={100}
                   />
@@ -2572,14 +2567,13 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-          <Box
+        <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="70%"
+            width="100%"
             mt={10}
-            marginLeft={!isSMall ? "20%" : "15%"}
           >
             <Box
               display="flex"
@@ -2588,15 +2582,11 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
+              maxWidth={"900px"}
             >
               <Box
-                display={"grid"}
-                gridTemplateColumns={[
-                  "1fr 1fr",
-                  "1fr 1fr",
-                  "1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr",
-                ]}
+                display={"flex"}
+                flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2606,8 +2596,8 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src="/assets/tech/nodejs.png"
                     alt="Node.js"
-                    width={160}
-                    height={160}
+                    width={100}
+                    height={100}
                   />
                 </Tooltip>
                 <Tooltip label="Express" placement="top">
@@ -2630,8 +2620,8 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src="/assets/tech/postgresql.png"
                     alt="postgresql"
-                    width={80}
-                    height={80}
+                    width={100}
+                    height={100}
                   />
                 </Tooltip>
                 <Tooltip label="MySQL" placement="top">
@@ -2646,7 +2636,7 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src="/assets/tech/django.png"
                     alt="Django"
-                    width={80}
+                    width={100}
                     height={80}
                   />
                 </Tooltip>
@@ -2720,14 +2710,13 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-          <Box
+        <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="70%"
+            width="100%"
             mt={10}
-            marginLeft={isSMall ? "15%" : "28%"}
           >
             <Box
               display="flex"
@@ -2736,15 +2725,11 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
+              maxWidth={"900px"}
             >
               <Box
-                display={"grid"}
-                gridTemplateColumns={[
-                  "1fr 1fr",
-                  "1fr 1fr",
-                  "1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr",
-                ]}
+                display={"flex"}
+                flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2762,8 +2747,8 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src="/assets/tech/aws.png"
                     alt="AWS"
-                    width={80}
-                    height={80}
+                    width={100}
+                    height={100}
                   />
                 </Tooltip>
                 <Tooltip label="GitLab" placement="top">
@@ -2797,14 +2782,13 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-          <Box
+        <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="70%"
+            width="100%"
             mt={10}
-            marginLeft={isSMall ? "20%" : "15%"}
           >
             <Box
               display="flex"
@@ -2813,15 +2797,11 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
+              maxWidth={"900px"}
             >
               <Box
-                display={"grid"}
-                gridTemplateColumns={[
-                  "1fr 1fr",
-                  "1fr 1fr",
-                  "1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr",
-                ]}
+                display={"flex"}
+                flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
@@ -2945,14 +2925,13 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-          <Box
+         <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             gap="4"
-            width="70%"
+            width="100%"
             mt={10}
-            marginLeft={isSMall ? "15%" : "28%"}
           >
             <Box
               display="flex"
@@ -2961,23 +2940,17 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
+              maxWidth={"900px"}
             >
               <Box
-                display={"grid"}
-                gridTemplateColumns={[
-                  "1fr 1fr",
-                  "1fr 1fr",
-                  "1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-                  "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-                ]}
+                display={"flex"}
+                flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
                 width="100%"
               >
-                <Tooltip label="UI Path" placement="top">
+                <Tooltip label="UI Path" placement="top"> 
                   <Image
                     src="/assets/tech/uipath_logo.png"
                     alt="UI Path"
@@ -2987,7 +2960,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Make" placement="top">
                   <Image
-                    src="/assets/tech/make_logo.png"
+                    src="/assets/tech/make_logo.jpg"
                     alt="Make"
                     width={100}
                     height={100}
@@ -3013,8 +2986,8 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src="/assets/tech/framer_logo.png"
                     alt="Framer"
-                    width={80}
-                    height={80}
+                    width={100}
+                    height={100}
                   />
                 </Tooltip>
 
@@ -3078,6 +3051,8 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
+            flexWrap={"wrap"}
+            minWidth={"380px"}
           >
             <Button
               size="lg"
@@ -3093,6 +3068,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("frontend")}
+              minWidth={"72px"}
             >
               Frontend
             </Button>
@@ -3110,6 +3086,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("backend")}
+              minWidth={"72px"}
             >
               Backend
             </Button>
@@ -3127,6 +3104,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("devops")}
+              minWidth={"72px"}
             >
               DevOps
             </Button>
@@ -3159,6 +3137,7 @@ const TechnologySection: React.FC = () => {
                 "&:hover": {
                   bg: currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
                 },
+                minWidth:"140px"
               }}
               onClick={() => setCurrentTab("noCodeAutomation")}
             >

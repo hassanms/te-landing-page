@@ -2567,7 +2567,7 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-        <Box
+          <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
@@ -2710,7 +2710,7 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-        <Box
+          <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
@@ -2782,7 +2782,7 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-        <Box
+          <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
@@ -2911,7 +2911,14 @@ const TechnologySection: React.FC = () => {
                     height={100}
                   />
                 </Tooltip>
-
+                <Tooltip label="UI Path" placement="top">
+                  <Image
+                    src="/assets/tech/uipath_logo.png"
+                    alt="UI Path"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
               </Box>
             </Box>
           </Box>
@@ -2925,7 +2932,7 @@ const TechnologySection: React.FC = () => {
     return (
       <Container maxW="container.xl" py="5" mb="5">
         <FallInPlace delay={0.4}>
-         <Box
+          <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
@@ -2950,14 +2957,6 @@ const TechnologySection: React.FC = () => {
                 gap="10"
                 width="100%"
               >
-                <Tooltip label="UI Path" placement="top"> 
-                  <Image
-                    src="/assets/tech/uipath_logo.png"
-                    alt="UI Path"
-                    width={100}
-                    height={100}
-                  />
-                </Tooltip>
                 <Tooltip label="Make" placement="top">
                   <Image
                     src="/assets/tech/make_logo.jpg"
@@ -3137,7 +3136,7 @@ const TechnologySection: React.FC = () => {
                 "&:hover": {
                   bg: currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
                 },
-                minWidth:"140px"
+                minWidth: "140px"
               }}
               onClick={() => setCurrentTab("noCodeAutomation")}
             >

@@ -33,6 +33,7 @@ import {
   Toast,
   GridItem,
   Fade,
+  Tooltip,
 } from "@chakra-ui/react";
 import { SEO } from "components/seo/seo";
 import { Logo2 } from "components/logo2";
@@ -698,7 +699,7 @@ const HighlightsSection: React.FC = () => {
         "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
       image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
       alt: "Agentic AI Engineering",
-    }, 
+    },
     {
       title: "Next-Gen SaaS Development",
       description:
@@ -836,7 +837,7 @@ const HighlightsSection: React.FC = () => {
                 style={{
                   width: "100%",
                   height: "300px",
-                  objectFit: item.title === "Agentic AI Engineering"? "cover" : "fill",
+                  objectFit: item.title === "Agentic AI Engineering" ? "cover" : "fill",
                 }}
               />
               <Box px="4" py="6" borderRadius="8px" w="100%">
@@ -1007,14 +1008,14 @@ const Portfolio: React.FC = () => {
         "Tech Emulsion developed Alifa App to help sales reps manage client interactions with ease. It enables Zoom meeting creation, dynamic proposal sharing with hyperlinks, and automated client chats using RAG. With AI agents for web monitoring, data extraction, and web searches, it automates tasks and enhances client engagement, delivering a seamless and scalable sales solution.",
       image: "/assets/portfolio/file.jpg",
       alt: "Alifa App – AI-Driven Client Interaction SaaS",
-    }, 
+    },
     {
       title: "MoodTube Extension – AI-Powered YouTube Video Search by Mood",
       description:
         "MoodTube allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings with models like all-mpnet-base-v2, and stores them in PGVector. Semantic search retrieves videos matching the selected mood, offering personalized video recommendations.",
       image: "/assets/portfolio/moodtube.png",
       alt: "MoodTube – AI-Powered Video Search by Mood"
-    },    
+    },
     {
       title: "RAG Based Customized ChatBot",
       description:
@@ -1022,7 +1023,7 @@ const Portfolio: React.FC = () => {
       image: "/assets/portfolio/raggenai.png",
       alt: "RAG – AI-Powered Document Querying Application",
     }
-     
+
   ];
   return (
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
@@ -1108,15 +1109,12 @@ const Portfolio: React.FC = () => {
                       : item.title.includes("JarvisReach")
                         ? "/work/case-study-jarvisreach"
                         : item.title.includes("Alifa")
-                        ? "/work/case-study-alifa"
-                        : item.title.includes("RAG")
-                        ? "/work/case-study-genai"
-                        : item.title.includes("MoodTube")
-                        ? "/work/case-study-moodtube"
-                        : null;
-
-            // Logging for debugging
-            console.log("Item title:", item.title, "Href:", href);
+                          ? "/work/case-study-alifa"
+                          : item.title.includes("RAG")
+                            ? "/work/case-study-genai"
+                            : item.title.includes("MoodTube")
+                              ? "/work/case-study-moodtube"
+                              : null;
 
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
@@ -2328,8 +2326,8 @@ const TestimonialsSection: React.FC = () => {
                 alignItems: "center",
                 transition: "all 0.5s ease",
                 animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
-                    ? "fadeOut"
-                    : "fadeIn"
+                  ? "fadeOut"
+                  : "fadeIn"
                   } 0.5s`,
               }}
             >
@@ -2492,59 +2490,76 @@ const TechnologySection: React.FC = () => {
                 gap="10"
                 width="100%"
               >
-                <Image
-                  src="/assets/tech/react.png"
-                  alt="React"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src={
-                    colorMode === "dark"
-                      ? "/assets/tech/next.png"
-                      : "/assets/tech/nextjs-white.png"
-                  }
-                  alt="Next.js"
-                  width={colorMode === "dark" ? 120 : 100}
-                  height={colorMode === "dark" ? 120 : 100}
-                />
-                <Image
-                  src="/assets/tech/redux.png"
-                  alt="Redux"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/mui.png"
-                  alt="Chakra UI"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/typescript.png"
-                  alt="Apollo"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/graphql.png"
-                  alt="GraphQL"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/javascript.png"
-                  alt="GraphQL"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/tailwind.png"
-                  alt="GraphQL"
-                  width={100}
-                  height={100}
-                />
+                <Tooltip label="React" placement="top">
+                  <Image
+                    src="/assets/tech/react.png"
+                    alt="React"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Next.js" placement="top">
+                  <Image
+                    src={
+                      colorMode === "dark"
+                        ? "/assets/tech/next.png"
+                        : "/assets/tech/nextjs-white.png"
+                    }
+                    alt="Next.js"
+                    width={colorMode === "dark" ? 120 : 100}
+                    height={colorMode === "dark" ? 120 : 100}
+                  />
+                </Tooltip>
+                <Tooltip label="Redux" placement="top">
+                  <Image
+                    src="/assets/tech/redux.png"
+                    alt="Redux"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Chakra UI" placement="top">
+                  <Image
+                    src="/assets/tech/mui.png"
+                    alt="Chakra UI"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="TypeScript" placement="top">
+                  <Image
+                    src="/assets/tech/typescript.png"
+                    alt="TypeScript"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="GraphQL" placement="top">
+                  <Image
+                    src="/assets/tech/graphql.png"
+                    alt="GraphQL"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="JavaScript" placement="top">
+                  <Image
+                    src="/assets/tech/javascript.png"
+                    alt="JavaScript"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Tailwind CSS" placement="top">
+                  <Image
+                    src="/assets/tech/tailwind.png"
+                    alt="Tailwind CSS"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
               </Box>
+
             </Box>
           </Box>
         </FallInPlace>
@@ -2587,85 +2602,112 @@ const TechnologySection: React.FC = () => {
                 gap="10"
                 width="100%"
               >
-                <Image
-                  src="/assets/tech/nodejs.png"
-                  alt="Node.js"
-                  width={160}
-                  height={160}
-                />
-                <Image
-                  src="/assets/tech/express.png"
-                  alt="Express"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/mongo.png"
-                  alt="MongoDB"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/postgresql.png"
-                  alt="postgresql"
-                  width={80}
-                  height={80}
-                />
-                <Image
-                  src="/assets/tech/mysql.png"
-                  alt="MySQL"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/django.png"
-                  alt="Django"
-                  width={80}
-                  height={80}
-                />
-                <Image
-                  src="/assets/tech/rails.png"
-                  alt="Rails"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/ruby.png"
-                  alt="Ruby"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/nest.png"
-                  alt="Nest"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/python.png"
-                  alt="Python"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/elasticsearch_logo.png"
-                  alt="Elasticsearch"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/redis_logo.png"
-                  alt="Redis"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/fastapi.jpg"
-                  alt="Fast Api"
-                  width={100}
-                  height={100}
-                />
+                <Tooltip label="Node.js" placement="top">
+                  <Image
+                    src="/assets/tech/nodejs.png"
+                    alt="Node.js"
+                    width={160}
+                    height={160}
+                  />
+                </Tooltip>
+                <Tooltip label="Express" placement="top">
+                  <Image
+                    src="/assets/tech/express.png"
+                    alt="Express"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="MongoDB" placement="top">
+                  <Image
+                    src="/assets/tech/mongo.png"
+                    alt="MongoDB"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="PostgreSQL" placement="top">
+                  <Image
+                    src="/assets/tech/postgresql.png"
+                    alt="postgresql"
+                    width={80}
+                    height={80}
+                  />
+                </Tooltip>
+                <Tooltip label="MySQL" placement="top">
+                  <Image
+                    src="/assets/tech/mysql.png"
+                    alt="MySQL"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Django" placement="top">
+                  <Image
+                    src="/assets/tech/django.png"
+                    alt="Django"
+                    width={80}
+                    height={80}
+                  />
+                </Tooltip>
+                <Tooltip label="Rails" placement="top">
+                  <Image
+                    src="/assets/tech/rails.png"
+                    alt="Rails"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Ruby" placement="top">
+                  <Image
+                    src="/assets/tech/ruby.png"
+                    alt="Ruby"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Nest" placement="top">
+                  <Image
+                    src="/assets/tech/nest.png"
+                    alt="Nest"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Python" placement="top">
+                  <Image
+                    src="/assets/tech/python.png"
+                    alt="Python"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Elasticsearch" placement="top">
+                  <Image
+                    src="/assets/tech/elasticsearch_logo.png"
+                    alt="Elasticsearch"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Redis" placement="top">
+                  <Image
+                    src="/assets/tech/redis_logo.png"
+                    alt="Redis"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Fast API" placement="top">
+                  <Image
+                    src="/assets/tech/fastapi.png"
+                    alt="Fast API"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
               </Box>
+
             </Box>
           </Box>
         </FallInPlace>
@@ -2708,54 +2750,40 @@ const TechnologySection: React.FC = () => {
                 gap="10"
                 width="100%"
               >
-                <Image
-                  src="/assets/tech/docker.png"
-                  alt="Docker"
-                  width={100}
-                  height={100}
-                />
-                {/* <Image
-                src="/assets/tech/kubernetes.png"
-                alt="Kubernetes"
-                width={100}
-                height={100}
-              /> */}
-                <Image
-                  src="/assets/tech/aws.png"
-                  alt="AWS"
-                  width={80}
-                  height={80}
-                />
-                {/* <Image
-                src="/assets/tech/azure.png"
-                alt="Azure"
-                width={100}
-                height={100}
-              /> */}
-                {/* <Image
-                src="/assets/tech/jenkins.png"
-                alt="Jenkins"
-                width={100}
-                height={100}
-              /> */}
-                <Image
-                  src="/assets/tech/gitlab.png"
-                  alt="Gitlab"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/github.png"
-                  alt="Github"
-                  width={100}
-                  height={100}
-                />
-                {/* <Image
-                src="/assets/tech/bitbucket.png"
-                alt="Bitbucket"
-                width={100}
-                height={100}
-              /> */}
+                <Tooltip label="Docker" placement="top">
+                  <Image
+                    src="/assets/tech/docker.png"
+                    alt="Docker"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="AWS" placement="top">
+                  <Image
+                    src="/assets/tech/aws.png"
+                    alt="AWS"
+                    width={80}
+                    height={80}
+                  />
+                </Tooltip>
+                <Tooltip label="GitLab" placement="top">
+                  <Image
+                    src="/assets/tech/gitlab.png"
+                    alt="GitLab"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="GitHub" placement="top">
+                  <Image
+                    src="/assets/tech/github.png"
+                    alt="GitHub"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+
+
               </Box>
             </Box>
           </Box>
@@ -2799,85 +2827,111 @@ const TechnologySection: React.FC = () => {
                 gap="10"
                 width="100%"
               >
-                <Image
-                  src="/assets/tech/tensorflow.png"
-                  alt="TensorFlow"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/pytorch.png"
-                  alt="PyTorch"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/openai.png"
-                  alt="OpenAI"
-                  width={100}
-                  height={100}
-                />
+                <Tooltip label="TensorFlow" placement="top">
+                  <Image
+                    src="/assets/tech/tensorflow.png"
+                    alt="TensorFlow"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="PyTorch" placement="top">
+                  <Image
+                    src="/assets/tech/pytorch.png"
+                    alt="PyTorch"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="OpenAI" placement="top">
+                  <Image
+                    src="/assets/tech/openai.png"
+                    alt="OpenAI"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Keras" placement="top">
+                  <Image
+                    src="/assets/tech/keras.png"
+                    alt="Keras"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Huggingface" placement="top">
+                  <Image
+                    src="/assets/tech/huggingface_logo.png"
+                    alt="Huggingface"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Crew" placement="top">
+                  <Image
+                    src="/assets/tech/crew_logo.png"
+                    alt="Crew"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="LangChain" placement="top">
+                  <Image
+                    src="/assets/tech/langchain_logo.png"
+                    alt="LangChain"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="LangGraph" placement="top">
+                  <Image
+                    src="/assets/tech/langgrapg.PNG"
+                    alt="LangGraph"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Pinecone" placement="top">
+                  <Image
+                    src="/assets/tech/pinecorn.PNG"
+                    alt="Pinecone"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="LangSmith" placement="top">
+                  <Image
+                    src="/assets/tech/langsmith.PNG"
+                    alt="LangSmith"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Chroma" placement="top">
+                  <Image
+                    src="/assets/tech/chroma_logo.png"
+                    alt="Chroma"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Meta LLaMA" placement="top">
+                  <Image
+                    src="/assets/tech/meta_llma.png"
+                    alt="Meta LLaMA"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Anthropic" placement="top">
+                  <Image
+                    src="/assets/tech/Anthropic_logo.png"
+                    alt="Anthropic"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
 
-                <Image
-                  src="/assets/tech/keras.png"
-                  alt="Keras"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/huggingface_logo.png"
-                  alt="Huggingface"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/crew_logo.png"
-                  alt="Crew"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/langchain_logo.png"
-                  alt="langchain"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/langgrapg.PNG"
-                  alt="langgraph"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/pinecorn.PNG"
-                  alt="pinecorn"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/langsmith.PNG"
-                  alt="langsmith"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/chroma_logo.png"
-                  alt="chroma"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/meta_llma.png"
-                  alt="meta_llma"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/Anthropic_logo.png"
-                  alt="Anthropic"
-                  width={100}
-                  height={100}
-                />
               </Box>
             </Box>
           </Box>
@@ -2923,36 +2977,47 @@ const TechnologySection: React.FC = () => {
                 gap="10"
                 width="100%"
               >
-                <Image
-                  src="/assets/tech/uipath_logo.png"
-                  alt="UI Path"
-                  width={100}
-                  height={100}
-                />
-                <Image
-                  src="/assets/tech/make_logo.png"
-                  alt="Make"
-                  width={100}
-                  height={100}
-                />
-                 <Image
-                  src="/assets/tech/zapier_logo.png"
-                  alt="Zapier"
-                  width={100}
-                  height={100}
-                />
-                 <Image
-                  src="/assets/tech/n8n_logo.jpg"
-                  alt="n8n"
-                  width={100}
-                  height={100}
-                />
-                 <Image
-                  src="/assets/tech/framer_logo.png"
-                  alt="Framer"
-                  width={80}
-                  height={80}
-                />
+                <Tooltip label="UI Path" placement="top">
+                  <Image
+                    src="/assets/tech/uipath_logo.png"
+                    alt="UI Path"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Make" placement="top">
+                  <Image
+                    src="/assets/tech/make_logo.png"
+                    alt="Make"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Zapier" placement="top">
+                  <Image
+                    src="/assets/tech/zapier_logo.png"
+                    alt="Zapier"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="n8n" placement="top">
+                  <Image
+                    src="/assets/tech/n8n_logo.jpg"
+                    alt="n8n"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
+                <Tooltip label="Framer" placement="top">
+                  <Image
+                    src="/assets/tech/framer_logo.png"
+                    alt="Framer"
+                    width={80}
+                    height={80}
+                  />
+                </Tooltip>
+
               </Box>
             </Box>
           </Box>

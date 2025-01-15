@@ -1005,7 +1005,7 @@ const Portfolio: React.FC = () => {
       title: "Alifa App – Client Engagement and AI-Driven Sales SaaS",
       description:
         "Tech Emulsion developed Alifa App to help sales reps manage client interactions with ease. It enables Zoom meeting creation, dynamic proposal sharing with hyperlinks, and automated client chats using RAG. With AI agents for web monitoring, data extraction, and web searches, it automates tasks and enhances client engagement, delivering a seamless and scalable sales solution.",
-      image: "/assets/portfolio/alifaapp.png",
+      image: "/assets/portfolio/file.jpg",
       alt: "Alifa App – AI-Driven Client Interaction SaaS",
     }, 
     {

@@ -75,7 +75,7 @@ const CaseStudyArtis = () => {
           >
             <Box>
               <Image
-                src="/assets/portfolio/alifa.png"
+                src="/assets/portfolio/alifaapp.png"
                 alt="Alifa"
                 width={502}
                 height={300}

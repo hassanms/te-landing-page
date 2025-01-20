@@ -153,7 +153,7 @@ export default {
     },
     {
       company: "", // Company name
-      name: "Amanda Baker",
+      name: "Luke Cook",
       description: "",
       avatar: "/assets/clients/images/look.jpg",
       children: (

@@ -1191,7 +1191,7 @@ const Portfolio: React.FC = () => {
       title:
         "Artis – Blockchain powered SaaS to help artists copyright their work",
       description:
-        "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
+        "Artis is an AI-driven platform that acts as a personalized creative support team, analyzing an artist’s style to provide tailored advice and marketing strategies. It leverages blockchain to create tamper-proof digital certificates, ensuring ownership protection and simplifying copyright processes. The platform helps artists connect with audiences, facilitating secure sales and brand growth. Artis caters to artists, musicians, writers, inventors, collectors, and businesses. Its goal is to make creativity secure, accessible, and profitable.",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },
@@ -1535,7 +1535,7 @@ const SocialProofSection: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/assets/clients/Artis.png"
+                    src="/assets/clients/Artis-logo.png"
                     // style={{
                     //   width: "120px",
                     //   height: "120px",

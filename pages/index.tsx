@@ -115,6 +115,7 @@ import animationData1 from "../public/assets/Animation/screen.json";
 import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
 
@@ -200,9 +201,205 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.play().catch((err) => console.error("Video play error:", err));
+  }, []);
+
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
-  return (
+  return colorMode === "dark" ? (
+    <Box
+      position="relative"
+      overflow="hidden"
+      display="grid"
+      gridTemplateColumns="1fr"
+      gridTemplateRows="1fr"
+      placeItems="center"
+    >
+      {/* <BackgroundGradient height="100%" zIndex="-1" /> */}
+      <Box
+        gridColumn="1 / -1"
+        gridRow="1 / -1"
+        height="100%"
+        width="100%"
+        display="grid"
+        zIndex="-1"
+      >
+        <video
+          src="/assets/Animation/hero-video.mp4"
+          ref={videoRef}
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          // playsInline={true}
+          preload="auto"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            maxWidth: "100%",
+          }}
+        />
+      </Box>
+      <Container
+        maxW="container.xl"
+        pt={{ base: 20, lg: 0 }}
+        gridColumn="1 / -1"
+        gridRow="1 / -1"
+        zIndex={1}
+      >
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justifyContent={{ base: "center", lg: "space-between" }}
+          alignItems="flex-start"
+        >
+          <Hero
+            id="home"
+            justifyContent="flex-start"
+            px="0"
+            title={
+              <FallInPlace>
+                Imagineering <Br />
+                <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
+                  digital transformation
+                </Em>
+                <Br /> for your business
+              </FallInPlace>
+            }
+            description={
+              <FallInPlace delay={0.4} fontWeight="medium">
+                Empowering businesses with next-gen{" "}
+                <Em> SaaS, web, and AI solutions</Em> driving innovation and
+                excellence through tailored technology strategies that propel
+                your brand to new heights.
+              </FallInPlace>
+            }
+          >
+            <FallInPlace delay={0.8}>
+              <HStack pt="4" pb="6" spacing="8">
+                {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
+              </HStack>
+
+              <ButtonGroup spacing={4} alignItems="center">
+                <ButtonLink
+                  size="lg"
+                  href="#portfolio"
+                  sx={{
+                    bg: "#004c4c !important",
+                    color: "white !important",
+                  }}
+                >
+                  Explore Portfolio
+                </ButtonLink>
+                {/* <ButtonLink
+                  size="lg"
+                  href="https://demo.saas-ui.dev"
+                  variant="outline"
+                  rightIcon={
+                    <Icon
+                      as={FiArrowRight}
+                      sx={{
+                        transitionProperty: "common",
+                        transitionDuration: "normal",
+                        ".chakra-button:hover &": {
+                          transform: "translate(5px)",
+                        },
+                      }}
+                    />
+                  }
+                >
+                  View demo
+                </ButtonLink> */}
+              </ButtonGroup>
+            </FallInPlace>
+            <VStack
+              flex="1"
+              spacing="2"
+              alignItems="flex-start"
+              display={{ base: "flex", lg: "flex" }}
+              mt="10"
+            >
+              <Text
+                fontSize="sm"
+                color="muted"
+                fontWeight="medium"
+                maxW="lg"
+                textAlign="left"
+                display={"flex"}
+                alignItems={"center"}
+                width={"100%"}
+              >
+                Trusted By the Best{"  "}
+                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
+              </Text>
+              <FallInPlace delay={0.6}>
+                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                  {colorMode === "dark" ? (
+                    <>
+                      <Image
+                        src="/assets/clients/atarim-white.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                      />
+                      <Image
+                        src="/assets/clients/farmin-white.png"
+                        width={100}
+                        height={100}
+                        style={{ objectFit: "contain" }}
+                        alt="Farmin logo"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Image
+                        src="/assets/clients/Atarim.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                      />
+                      <Image
+                        src="/assets/clients/farmin-dark.png"
+                        width={100}
+                        height={100}
+                        style={{ objectFit: "contain" }}
+                        alt="Farmin logo"
+                      />
+                    </>
+                  )}
+                </Box>
+              </FallInPlace>
+            </VStack>
+          </Hero>
+          <Box
+            display={{ base: "none", lg: "block" }}
+            mt={{ base: "20", lg: "20" }}
+            mr={{ base: 0, lg: 0 }}
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
+          >
+            <FallInPlace delay={1}>
+              <Box overflow="hidden">
+                {/*   <Player
+                  autoplay
+                  loop
+                  src={currentAnimation} // Toggle between animations
+                  style={{
+                    height: "70%",
+                    width: "70%",
+                  }}
+                /> */}
+              </Box>
+            </FallInPlace>
+          </Box>
+        </Stack>
+      </Container>
+    </Box>
+  ) : (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
       <Container maxW="container.xl" pt={{ base: 20, lg: 20 }}>
@@ -600,15 +797,17 @@ const AboutUsSection: React.FC = () => {
                     display="flex"
                     flexDirection="row"
                     gap="4"
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
                   >
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
-                      className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                        }`}
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
                     />
                     <Stack spacing="1" mt="4">
                       <Heading size="sm" color="white">
@@ -622,8 +821,9 @@ const AboutUsSection: React.FC = () => {
                 </FallInPlace>
                 <FallInPlace delay={0.8}>
                   <CardBody
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
                   >
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
@@ -837,7 +1037,8 @@ const HighlightsSection: React.FC = () => {
                 style={{
                   width: "100%",
                   height: "300px",
-                  objectFit: item.title === "Agentic AI Engineering" ? "cover" : "fill",
+                  objectFit:
+                    item.title === "Agentic AI Engineering" ? "cover" : "fill",
                 }}
               />
               <Box px="4" py="6" borderRadius="8px" w="100%">
@@ -1014,7 +1215,7 @@ const Portfolio: React.FC = () => {
       description:
         "MoodTube allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings with models like all-mpnet-base-v2, and stores them in PGVector. Semantic search retrieves videos matching the selected mood, offering personalized video recommendations.",
       image: "/assets/portfolio/moodtube.png",
-      alt: "MoodTube – AI-Powered Video Search by Mood"
+      alt: "MoodTube – AI-Powered Video Search by Mood",
     },
     {
       title: "RAG Based Customized ChatBot",
@@ -1022,8 +1223,7 @@ const Portfolio: React.FC = () => {
         "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
       image: "/assets/portfolio/raggenai.png",
       alt: "RAG – AI-Powered Document Querying Application",
-    }
-
+    },
   ];
   return (
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
@@ -1099,22 +1299,22 @@ const Portfolio: React.FC = () => {
             const href = item.title.includes("Farmin")
               ? "/work/case-study-farmin"
               : item.title.includes("Atarim")
-                ? "/work/case-study-atarim"
-                : item.title.includes("Bipcards")
-                  ? "/work/case-study-bipcards"
-                  : item.title.includes("Popcard")
-                    ? "/work/case-study-popcard"
-                    : item.title.includes("Artis")
-                      ? "/work/case-study-artis"
-                      : item.title.includes("JarvisReach")
-                        ? "/work/case-study-jarvisreach"
-                        : item.title.includes("Alifa")
-                          ? "/work/case-study-alifa"
-                          : item.title.includes("RAG")
-                            ? "/work/case-study-genai"
-                            : item.title.includes("MoodTube")
-                              ? "/work/case-study-moodtube"
-                              : null;
+              ? "/work/case-study-atarim"
+              : item.title.includes("Bipcards")
+              ? "/work/case-study-bipcards"
+              : item.title.includes("Popcard")
+              ? "/work/case-study-popcard"
+              : item.title.includes("Artis")
+              ? "/work/case-study-artis"
+              : item.title.includes("JarvisReach")
+              ? "/work/case-study-jarvisreach"
+              : item.title.includes("Alifa")
+              ? "/work/case-study-alifa"
+              : item.title.includes("RAG")
+              ? "/work/case-study-genai"
+              : item.title.includes("MoodTube")
+              ? "/work/case-study-moodtube"
+              : null;
 
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
@@ -2325,10 +2525,11 @@ const TestimonialsSection: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
-                animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
-                  ? "fadeOut"
-                  : "fadeIn"
-                  } 0.5s`,
+                animation: `${
+                  currentIndex % 2 === 0 || currentIndex % 3 === 0
+                    ? "fadeOut"
+                    : "fadeIn"
+                } 0.5s`,
               }}
             >
               {/* Testimonial item */}
@@ -2554,7 +2755,6 @@ const TechnologySection: React.FC = () => {
                   />
                 </Tooltip>
               </Box>
-
             </Box>
           </Box>
         </FallInPlace>
@@ -2697,7 +2897,6 @@ const TechnologySection: React.FC = () => {
                   />
                 </Tooltip>
               </Box>
-
             </Box>
           </Box>
         </FallInPlace>
@@ -2767,8 +2966,6 @@ const TechnologySection: React.FC = () => {
                     height={100}
                   />
                 </Tooltip>
-
-
               </Box>
             </Box>
           </Box>
@@ -2989,7 +3186,6 @@ const TechnologySection: React.FC = () => {
                     height={100}
                   />
                 </Tooltip>
-
               </Box>
             </Box>
           </Box>
@@ -3134,9 +3330,10 @@ const TechnologySection: React.FC = () => {
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
+                  bg:
+                    currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
                 },
-                minWidth: "140px"
+                minWidth: "140px",
               }}
               onClick={() => setCurrentTab("noCodeAutomation")}
             >

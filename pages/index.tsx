@@ -163,7 +163,7 @@ const Home: NextPage = () => {
         title="Tech Emulsion | Imagineering Digital Transformation"
         description="Imagineering digital transformation for your business"
       />
-      <Box>
+      <Box height="100%" width="100%" overflow="hidden">
         <HeroSection />
 
         <AboutUsSection />

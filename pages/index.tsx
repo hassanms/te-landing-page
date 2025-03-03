@@ -265,9 +265,10 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineering <Br />
-                <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
+                {/* <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
                   digital transformation
-                </Em>
+                </Em> */}
+                <Em style={{ color: "#66B2B2" }}>digital transformation</Em>
                 <Br /> for your business
               </FallInPlace>
             }
@@ -339,39 +340,21 @@ const HeroSection: React.FC = () => {
               </Text>
               <FallInPlace delay={0.6}>
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
-                  {colorMode === "dark" ? (
-                    <>
-                      <Image
-                        src="/assets/clients/atarim-white.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                      />
-                      <Image
-                        src="/assets/clients/farmin-white.png"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                        alt="Farmin logo"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <Image
-                        src="/assets/clients/Atarim.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                      />
-                      <Image
-                        src="/assets/clients/farmin-dark.png"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                        alt="Farmin logo"
-                      />
-                    </>
-                  )}
+                  <>
+                    <Image
+                      src="/assets/clients/atarim-white.svg"
+                      width={100}
+                      height={100}
+                      alt="Atarim logo"
+                    />
+                    <Image
+                      src="/assets/clients/farmin-white.png"
+                      width={100}
+                      height={100}
+                      style={{ objectFit: "contain" }}
+                      alt="Farmin logo"
+                    />
+                  </>
                 </Box>
               </FallInPlace>
             </VStack>
@@ -415,9 +398,10 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineering <Br />
-                <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
+                {/* <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
                   digital transformation
-                </Em>
+                </Em> */}
+                <Em style={{ color: "#004C4C" }}>digital transformation</Em>
                 <Br /> for your business
               </FallInPlace>
             }
@@ -489,39 +473,21 @@ const HeroSection: React.FC = () => {
               </Text>
               <FallInPlace delay={0.6}>
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
-                  {colorMode === "dark" ? (
-                    <>
-                      <Image
-                        src="/assets/clients/atarim-white.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                      />
-                      <Image
-                        src="/assets/clients/farmin-white.png"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                        alt="Farmin logo"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <Image
-                        src="/assets/clients/Atarim.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                      />
-                      <Image
-                        src="/assets/clients/farmin-dark.png"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                        alt="Farmin logo"
-                      />
-                    </>
-                  )}
+                  <>
+                    <Image
+                      src="/assets/clients/Atarim.svg"
+                      width={100}
+                      height={100}
+                      alt="Atarim logo"
+                    />
+                    <Image
+                      src="/assets/clients/farmin-dark.png"
+                      width={100}
+                      height={100}
+                      style={{ objectFit: "contain" }}
+                      alt="Farmin logo"
+                    />
+                  </>
                 </Box>
               </FallInPlace>
             </VStack>

@@ -274,10 +274,12 @@ const HeroSection: React.FC = () => {
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
-                Empowering businesses with next-gen{" "}
-                <Em> SaaS, web, and AI solutions</Em> driving innovation and
-                excellence through tailored technology strategies that propel
-                your brand to new heights.
+                <Em>
+                  {" "}
+                  Empowering businesses with next-gen SaaS, web, and AI
+                  solutions driving innovation and excellence through tailored
+                  technology strategies that propel your brand to new heights.
+                </Em>
               </FallInPlace>
             }
           >
@@ -407,10 +409,12 @@ const HeroSection: React.FC = () => {
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
-                Empowering businesses with next-gen{" "}
-                <Em> SaaS, web, and AI solutions</Em> driving innovation and
-                excellence through tailored technology strategies that propel
-                your brand to new heights.
+                <Em>
+                  {" "}
+                  Empowering businesses with next-gen SaaS, web, and AI
+                  solutions driving innovation and excellence through tailored
+                  technology strategies that propel your brand to new heights.
+                </Em>
               </FallInPlace>
             }
           >
@@ -1157,7 +1161,7 @@ const Portfolio: React.FC = () => {
       title:
         "Artis – Blockchain powered SaaS to help artists copyright their work",
       description:
-        "Artis is an AI-driven platform that acts as a personalized creative support team, analyzing an artist’s style to provide tailored advice and marketing strategies. It leverages blockchain to create tamper-proof digital certificates, ensuring ownership protection and simplifying copyright processes. The platform helps artists connect with audiences, facilitating secure sales and brand growth. Artis caters to artists, musicians, writers, inventors, collectors, and businesses. Its goal is to make creativity secure, accessible, and profitable.",
+        "Artis is an AI-driven platform that analyzes an artist’s style to offer tailored advice and marketing strategies. It uses blockchain for secure ownership protection and copyright management. The platform connects artists with audiences, enabling secure sales and brand growth. Artis supports creators across various fields, making creativity secure, accessible, and profitable.",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },

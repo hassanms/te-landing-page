@@ -566,7 +566,7 @@ const AboutUsSection: React.FC = () => {
   return (
     <Box id="about" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5">
-        <Divider />
+        {/*<Divider /> */}
 
         <Stack
           direction={["column", null, "row"]}

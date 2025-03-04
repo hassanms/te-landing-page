@@ -1162,7 +1162,7 @@ const Portfolio: React.FC = () => {
       title:
         "Artis – Blockchain powered SaaS to help artists copyright their work",
       description:
-        "Artis is an AI-driven platform that analyzes an artist’s style to offer tailored advice and marketing strategies. It uses blockchain for secure ownership protection and copyright management. The platform connects artists with audiences, enabling secure sales and brand growth. Artis supports creators across various fields, making creativity secure, accessible, and profitable.",
+        "Artis is an AI-driven platform that analyzes an artist’s style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },

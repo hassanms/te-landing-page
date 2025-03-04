@@ -1513,8 +1513,8 @@ const SocialProofSection: React.FC = () => {
                     //   objectFit: "contain",
                     // }}
                     alt="Artis"
-                    width={60}
-                    height={60}
+                    width={63}
+                    height={70}
                   />
                 </Box>
               </GridItem>
@@ -1757,8 +1757,8 @@ const SocialProofSection: React.FC = () => {
                   <Image
                     src="/assets/clients/crystal_ball.png"
                     alt="Crystal Ball"
-                    width={60}
-                    height={60}
+                    width={50}
+                    height={50}
                   />
                 </Box>
               </GridItem>
@@ -2002,8 +2002,8 @@ const SocialProofSection: React.FC = () => {
                   <Image
                     src="/assets/clients/Logo_IPG.jpg"
                     alt="Logo Black"
-                    width={90}
-                    height={90}
+                    width={60}
+                    height={60}
                   />
                 </Box>
               </GridItem>
@@ -2035,8 +2035,8 @@ const SocialProofSection: React.FC = () => {
                   <Image
                     src="/assets/clients/republic_power_logo.jpeg"
                     alt="Republic Power"
-                    width={70}
-                    height={70}
+                    width={50}
+                    height={50}
                   />
                 </Box>
               </GridItem>

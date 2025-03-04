@@ -28,6 +28,7 @@ export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
             : "/assets/logo/logo (1).png"
         }
         alt="Logo"
+        loading="lazy"
         style={{
           width: "100px",
           height: "30px",

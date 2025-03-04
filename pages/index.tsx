@@ -237,7 +237,8 @@ const HeroSection: React.FC = () => {
           loop={true}
           muted={true}
           // playsInline={true}
-          preload="auto"
+          // preload="auto"
+          preload="none"
           style={{
             width: "100%",
             height: "100%",

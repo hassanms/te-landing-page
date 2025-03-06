@@ -135,11 +135,15 @@ const CaseStudyAlifa = () => {
                 mt="4"
                 width={["auto", null, "100%"]}
               >
-                Alifa is a cutting-edge client engagement and AI-driven sales SaaS (Software as a Service) platform designed to
-                empower sales representatives by streamlining client interactions. By integrating advanced artificial intelligence
-                (AI) capabilities, Alifa enhances productivity, automates repetitive tasks, and facilitates personalized client engagement.
-                The platform is tailored to meet the unique demands of modern sales teams, offering tools to improve efficiency and boost
-                customer satisfaction.
+                Alifa is a cutting-edge client engagement and AI-driven sales
+                SaaS (Software as a Service) platform designed to empower sales
+                representatives by streamlining client interactions. By
+                integrating advanced artificial intelligence (AI) capabilities,
+                Alifa enhances productivity, automates repetitive tasks, and
+                facilitates personalized client engagement. The platform is
+                tailored to meet the unique demands of modern sales teams,
+                offering tools to improve efficiency and boost customer
+                satisfaction.
               </Text>
             </Box>
           </Box>
@@ -158,7 +162,8 @@ const CaseStudyAlifa = () => {
                 color: colorMode === "dark" ? "white" : "#004c4c",
               }}
             >
-              Developing Alifa – A Comprehensive SaaS Platform for Client Engagement and AI-Driven Sales Analytics
+              Developing Alifa – A Comprehensive SaaS Platform for Client
+              Engagement and AI-Driven Sales Analytics
             </Text>
 
             <Text
@@ -184,10 +189,15 @@ const CaseStudyAlifa = () => {
                 color: colorMode === "dark" ? "white" : "gray.600",
               }}
             >
-              Alifa is a cutting-edge client engagement and AI-driven sales SaaS (Software as a Service) platform designed to empower
-              sales representatives by streamlining client interactions. By integrating advanced artificial intelligence (AI) capabilities,
-              Alifa enhances productivity, automates repetitive tasks, and facilitates personalized client engagement. The platform is
-              tailored to meet the unique demands of modern sales teams, offering tools to improve efficiency and boost customer satisfaction.
+              Alifa is a cutting-edge client engagement and AI-driven sales SaaS
+              (Software as a Service) platform designed to empower sales
+              representatives by streamlining client interactions. By
+              integrating advanced artificial intelligence (AI) capabilities,
+              Alifa enhances productivity, automates repetitive tasks, and
+              facilitates personalized client engagement. The platform is
+              tailored to meet the unique demands of modern sales teams,
+              offering tools to improve efficiency and boost customer
+              satisfaction.
             </Text>
 
             <Text
@@ -212,10 +222,13 @@ const CaseStudyAlifa = () => {
                 color: colorMode === "dark" ? "white" : "gray.600",
               }}
             >
-              Alifa needed a robust SaaS solution to address the challenges of managing client interactions, scaling AI-driven sales tools, and
-              supporting multiple agents in a dynamic, real-time environment. The platform required advanced multi-agent architectures for parallel execution,
-              integration with diverse tools and APIs, and state management to maintain contextual awareness across conversations. Key challenges included:
-
+              Alifa needed a robust SaaS solution to address the challenges of
+              managing client interactions, scaling AI-driven sales tools, and
+              supporting multiple agents in a dynamic, real-time environment.
+              The platform required advanced multi-agent architectures for
+              parallel execution, integration with diverse tools and APIs, and
+              state management to maintain contextual awareness across
+              conversations. Key challenges included:
             </Text>
 
             <Text
@@ -240,9 +253,11 @@ const CaseStudyAlifa = () => {
                 color: colorMode === "dark" ? "white" : "gray.600",
               }}
             >
-              Tech Emulsion developed a feature-rich SaaS platform tailored to Alifa’s specific requirements.
-              The platform leverages LangGraph, a state-of-the-art framework for implementing multi-agent architectures,
-              enabling seamless interaction and task execution. Key features include:
+              Tech Emulsion developed a feature-rich SaaS platform tailored to
+              Alifa’s specific requirements. The platform leverages LangGraph, a
+              state-of-the-art framework for implementing multi-agent
+              architectures, enabling seamless interaction and task execution.
+              Key features include:
             </Text>
 
             <Box pl={5} mb={4}>
@@ -257,7 +272,9 @@ const CaseStudyAlifa = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Real-Time Analytics:</strong>
                     <span>
-                      A centralized dashboard provides admins and sales representatives with insights into performance metrics, customer engagement, and team productivity.
+                      A centralized dashboard provides admins and sales
+                      representatives with insights into performance metrics,
+                      customer engagement, and team productivity.
                     </span>
                   </Box>
                 </ListItem>
@@ -271,7 +288,9 @@ const CaseStudyAlifa = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Multi-Agent Parallelism</strong>
                     <span>
-                      Handling thousands of agents simultaneously, each with independent states, to enhance scalability and responsiveness.
+                      Handling thousands of agents simultaneously, each with
+                      independent states, to enhance scalability and
+                      responsiveness.
                     </span>
                   </Box>
                 </ListItem>
@@ -285,7 +304,9 @@ const CaseStudyAlifa = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>AI-Driven Tools:</strong>
                     <span>
-                      Features like Google search integration, web scraping, and business information retrieval automate repetitive tasks, freeing up time for strategic activities.
+                      Features like Google search integration, web scraping, and
+                      business information retrieval automate repetitive tasks,
+                      freeing up time for strategic activities.
                     </span>
                   </Box>
                 </ListItem>
@@ -299,7 +320,8 @@ const CaseStudyAlifa = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Seamless User Experience</strong>
                     <span>
-                      Ensuring an intuitive interface for admins, sales representatives, and customers.
+                      Ensuring an intuitive interface for admins, sales
+                      representatives, and customers.
                     </span>
                   </Box>
                 </ListItem>
@@ -313,7 +335,8 @@ const CaseStudyAlifa = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>AI Integration</strong>
                     <span>
-                      Leveraging cutting-edge AI technologies to automate tasks throught AI agents and RAG.
+                      Leveraging cutting-edge AI technologies to automate tasks
+                      throught AI agents and RAG.
                     </span>
                   </Box>
                 </ListItem>
@@ -321,6 +344,7 @@ const CaseStudyAlifa = () => {
             </Box>
             <Box
               sx={{
+                position: "relative",
                 width: "100%",
                 py: 10,
                 display: "flex",
@@ -330,10 +354,14 @@ const CaseStudyAlifa = () => {
                 textAlign: "center",
               }}
             >
+              <FaQuoteLeft
+                size={10}
+                style={{ position: "absolute", left: "15%", top: 40 }}
+              />
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
-                  fontSize: "4xl",
+                  fontSize: { base: "md", lg: "4xl" },
                   fontWeight: "normal",
                   lineHeight: "1.5",
                   letterSpacing: "normal",
@@ -343,14 +371,21 @@ const CaseStudyAlifa = () => {
                   width: "60%",
                 }}
               >
-                <FaQuoteLeft
+                {/* <FaQuoteLeft
                   size={60}
                   style={{ marginRight: 10, marginTop: -10 }}
-                />
-                Tech Emulsion transformed Alifa’s vision into an intuitive, scalable platform that addresses modern sales challenges.
-                With advanced AI features and a user-friendly design, Alifa is well-positioned to lead in client engagement and sales analytics.
-                <FaQuoteRight size={60} />
+                /> */}
+                Tech Emulsion transformed Alifa’s vision into an intuitive,
+                scalable platform that addresses modern sales challenges. With
+                advanced AI features and a user-friendly design, Alifa is
+                well-positioned to lead in client engagement and sales
+                analytics.
+                {/* <FaQuoteRight size={60} /> */}
               </Text>
+              <FaQuoteRight
+                size={10}
+                style={{ position: "absolute", right: "2%", bottom: 42 }}
+              />
               <Text fontSize="2xl" fontWeight="bold" color="gray.600" mt={5}>
                 – Suliman, CEO of Alifa
               </Text>
@@ -379,13 +414,18 @@ const CaseStudyAlifa = () => {
                 color: colorMode === "dark" ? "white" : "gray.600",
               }}
             >
-              Alifa's SaaS platform has revolutionized client engagement by leveraging AI-driven agents to streamline sales processes.
-              Sales teams can easily connect their Zoom and Google Calendar accounts to schedule meetings with clients and send proposals,
-              complete with embedded hyperlinks. The platform has boosted team productivity through advanced analytics and performance tracking,
-              enabling organizations to scale and handle thousands of interactions seamlessly. Additionally, it has expanded its
-              global reach with multi-language and multi-currency support, while optimizing operational efficiency through
-              automated subscription management, real-time analytics, and seamless integration with cutting-edge tools
-              and APIs.
+              Alifa's SaaS platform has revolutionized client engagement by
+              leveraging AI-driven agents to streamline sales processes. Sales
+              teams can easily connect their Zoom and Google Calendar accounts
+              to schedule meetings with clients and send proposals, complete
+              with embedded hyperlinks. The platform has boosted team
+              productivity through advanced analytics and performance tracking,
+              enabling organizations to scale and handle thousands of
+              interactions seamlessly. Additionally, it has expanded its global
+              reach with multi-language and multi-currency support, while
+              optimizing operational efficiency through automated subscription
+              management, real-time analytics, and seamless integration with
+              cutting-edge tools and APIs.
             </Text>
 
             {/* <Box mt={16} px="5">

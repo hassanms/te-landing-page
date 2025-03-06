@@ -90,10 +90,24 @@ const CaseStudyAtarim = () => {
               />
             </Box>
             <Box
-              position="absolute"
-              bottom="-15%"
-              left="50%"
-              transform="translate(-50%, -50%)"
+              // position="absolute"
+              // bottom="-15%"
+              // left="50%"
+              // transform="translate(-50%, -50%)"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+              borderRadius="md"
+              // width=
+              p={5}
+              boxShadow="md"
+              // mt={{ base: "-350px", md: "-100px" }} // Adjust margin for responsiveness
+              mt={{ base: "-35vh", md: "-12vh", lg: "-10vh" }}
+              maxWidth={{ base: "90%", lg: "50%" }}
+              width={{ base: "90%", lg: "50%" }}
+              height={{ base: "90%", lg: "50%" }}
               sx={{
                 backgroundImage:
                   colorMode === "dark"
@@ -382,6 +396,7 @@ const CaseStudyAtarim = () => {
             </Box>
             <Box
               sx={{
+                position: "relative",
                 width: "100%",
                 py: 10,
                 display: "flex",
@@ -391,10 +406,14 @@ const CaseStudyAtarim = () => {
                 textAlign: "center",
               }}
             >
+              <FaQuoteLeft
+                size={10}
+                style={{ position: "absolute", left: "15%", top: 40 }}
+              />
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
-                  fontSize: "4xl",
+                  fontSize: { base: "lg", lg: "4xl" },
                   fontWeight: "normal",
                   lineHeight: "1.5",
                   letterSpacing: "normal",
@@ -402,18 +421,18 @@ const CaseStudyAtarim = () => {
                   color: colorMode === "dark" ? "white" : "gray.600",
                   display: "flex",
                   width: "60%",
+                  // width: { base: "90%", md: "70%", lg: "60%" },
                 }}
               >
-                <FaQuoteLeft
-                  size={60}
-                  style={{ marginRight: 10, marginTop: -10 }}
-                />
                 Tech Emulsion worked with us for four years, delivering
                 outstanding results. Due to internal changes, we had to end the
                 contract, but their hard work and dedication were always
                 evident. I highly recommend them for any future projects.
-                <FaQuoteRight size={60} />
               </Text>
+              <FaQuoteRight
+                size={10}
+                style={{ position: "absolute", right: "22%", bottom: 40 }}
+              />
             </Box>
             <Text
               fontSize="4xl"

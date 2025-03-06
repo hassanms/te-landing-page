@@ -106,7 +106,7 @@ import OwnerShipd from "components/icons/OwnerShipd";
 import axios from "axios";
 import toast from "react-hot-toast";
 import NewsLetter from "components/NewsLetter";
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import HeroSectionImage from "components/HeroSectionImage";
 import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
@@ -669,6 +669,22 @@ const AboutUsSection: React.FC = () => {
               <Link href="https://github.com/hassanms" isExternal>
                 <Icon
                   as={AiFillGithub}
+                  boxSize="10"
+                  color="gray.500"
+                  sx={{
+                    padding: "10px",
+                    borderRadius: "20%",
+                    border: "1px solid #004c4c",
+                    ":hover": {
+                      bg: "#004c4c",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+              <Link href="https://www.youtube.com/@TechEmulsion" isExternal>
+                <Icon
+                  as={AiFillYoutube}
                   boxSize="10"
                   color="gray.500"
                   sx={{

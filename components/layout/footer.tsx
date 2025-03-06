@@ -134,7 +134,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                    Shiekh Yaseen Trade Centre, University road, Peshawar
+                    Shiekh Yaseen Trade Centre, University Road, Peshawar
                   </ListItem>
                 </List>
               </HStack>
@@ -302,7 +302,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   >
                     <Link href="/contact">Contact</Link>
                   </ListItem>
-                  {/* <ListItem
+                  <ListItem
                     sx={{
                       color: "silver",
                       fontSize: "16px",
@@ -313,8 +313,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       },
                     }}
                   >
-                    <Link href="/our-story">Our Story</Link>
-                  </ListItem> */}
+                    <Link href="/portfolio">Portfolio</Link>
+                  </ListItem>
                 </List>
               </HStack>
             </Stack>
@@ -341,7 +341,12 @@ export const Footer: React.FC<FooterProps> = (props) => {
           >
             <HStack justify="center" spacing="4" alignSelf="center" mt={8}>
               {siteConfig.footer?.links?.map(({ href, label }) => (
-                <FooterLink key={href} href={href}>
+                <FooterLink
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Text
                     sx={{
                       padding: "5px",
@@ -362,7 +367,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
               ))}
             </HStack>
             <Text fontSize="sm" color="silver">
-              Techemulsion company is a registered company in the United States
+              Tech Emulsion company is a registered company in the United States
             </Text>
           </Stack>
         </Stack>

@@ -220,9 +220,10 @@ const HeroSection: React.FC = () => {
       display="grid"
       gridTemplateColumns="1fr"
       gridTemplateRows="1fr"
-      placeItems="center"
+      // placeItems="center"
+      overflow="hidden"
     >
-      {/* <BackgroundGradient height="100%" zIndex="-1" /> */}
+      <BackgroundGradient height="100%" zIndex="-1" />
       <Box
         gridColumn="1 / -1"
         gridRow="1 / -1"
@@ -230,6 +231,7 @@ const HeroSection: React.FC = () => {
         width="100%"
         display="grid"
         zIndex="-1"
+        mb={{ base: "0px", lg: "-120px" }}
       >
         <video
           src="/assets/Animation/hero-video.mp4"
@@ -250,7 +252,7 @@ const HeroSection: React.FC = () => {
       </Box>
       <Container
         maxW="container.xl"
-        pt={{ base: 20, lg: 0 }}
+        pt={{ base: 20, lg: 20 }}
         gridColumn="1 / -1"
         gridRow="1 / -1"
         zIndex={1}
@@ -278,9 +280,13 @@ const HeroSection: React.FC = () => {
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
                   {" "}
-                  Empowering businesses with next-gen SaaS, web, and AI
-                  solutions driving innovation and excellence through tailored
-                  technology strategies that propel your brand to new heights.
+                  Empowering businesses with next-gen{" "}
+                  <Em style={{ color: "#66B2B2" }}>
+                    {" "}
+                    SaaS, web, and AI solutions{" "}
+                  </Em>{" "}
+                  driving innovation and excellence through tailored technology
+                  strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
             }
@@ -413,9 +419,12 @@ const HeroSection: React.FC = () => {
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
                   {" "}
-                  Empowering businesses with next-gen SaaS, web, and AI
-                  solutions driving innovation and excellence through tailored
-                  technology strategies that propel your brand to new heights.
+                  Empowering businesses with next-gen{" "}
+                  <Em style={{ color: "#66B2B2" }}>
+                    SaaS, web, and AI solutions
+                  </Em>
+                  driving innovation and excellence through tailored technology
+                  strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
             }
@@ -1201,6 +1210,86 @@ const Portfolio: React.FC = () => {
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
         <Divider />
+
+        <Box
+          display={{ base: "block", md: "flex" }}
+          px="4"
+          mt={10}
+          justifyContent={"space-between"}
+        >
+          <Box>
+            <Heading
+              as="h2"
+              size="md"
+              color={colorMode === "dark" ? "white" : "#004c4c"}
+              sx={{
+                textTransform: "uppercase",
+              }}
+            >
+              Creative Portfolio
+            </Heading>
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                fontSize: {
+                  base: "2rem",
+                  md: "2rem",
+                },
+                width: {
+                  base: "100%",
+                  md: "70%",
+                },
+              }}
+            >
+              Recent Works
+            </Heading>
+
+            {/* for small text  */}
+
+            <Text
+              color="muted"
+              fontSize="lg"
+              fontWeight={"500"}
+              mt="4"
+              width={"60%"}
+              align={"left"}
+            >
+              {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
+            project highlights our dedication to quality and creativity.
+            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
+            </Text>
+          </Box>
+
+          {/* Explore services */}
+          <ButtonGroup
+            spacing={4}
+            display="flex"
+            justifyContent={["flex-start", null, "flex-end"]}
+            width={["100%", null, "auto"]}
+            alignItems="end"
+            mt="4"
+          >
+            <ButtonLink
+              size="lg"
+              href="/portfolio"
+              sx={{
+                bg: " none",
+                fontSize: "1.5rem",
+                color: colorMode === "light" ? "#004c4c !important" : "white",
+                textDecoration: "underline",
+                ":hover": {
+                  bg: "none",
+                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  textDecoration: "none",
+                },
+              }}
+            >
+              Explore Portfolio
+            </ButtonLink>
+          </ButtonGroup>
+        </Box>
+
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -1209,44 +1298,6 @@ const Portfolio: React.FC = () => {
           gap={"4"}
           mt={10}
         >
-          <Heading
-            as="h2"
-            size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
-            sx={{
-              textTransform: "uppercase",
-            }}
-          >
-            Creative Portfolio
-          </Heading>
-          <Heading
-            as="h1"
-            mt="2"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              fontSize: {
-                base: "2rem",
-                md: "2rem",
-              },
-              width: "100%",
-            }}
-          >
-            Recent Works
-          </Heading>
-          <Text
-            color="muted"
-            fontSize="lg"
-            fontWeight={"500"}
-            mt="4"
-            width={"60%"}
-            align={"center"}
-          >
-            {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
-            project highlights our dedication to quality and creativity.
-            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
-          </Text>
           <Button
             size="lg"
             mt={"10"}
@@ -1564,163 +1615,189 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Image
-            src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
-            alt="Bai"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/crystal_ball.png"
-            alt="Crystal Ball"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/farmin-white.png"
-            alt="Farmin"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/ibatu.png"
-            alt="Ibatu"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/jarvis-logo.png"
-            alt="Jarvis"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/krypto-labs.png"
-            alt="Krypto Labs"
-            width={120}
-            height={120}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "100px",
-              width: "120px",
-            }}
-          />
-          <Image
-            src="/assets/clients/podcast-beacon-logo.png"
-            alt="Krypto Labs"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/logo-black-small.png"
-            alt="Logo Black"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/Logo_IPG.jpg"
-            alt="Logo Black"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/republic_power_logo.jpeg"
-            alt="Republic Power"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/alifa.PNG"
-            alt="Republic Power"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/moodtube_img.png"
-            alt="Republic Power"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Logo2 />
+          <Tooltip label="Bai App" hasArrow>
+            <Image
+              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              alt="Bai"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Crystal Ball" hasArrow>
+            <Image
+              src="/assets/clients/crystal_ball.png"
+              alt="Crystal Ball"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Farmin App" hasArrow>
+            <Image
+              src="/assets/clients/farmin-white.png"
+              alt="Farmin"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Ibatu App" hasArrow>
+            <Image
+              src="/assets/clients/ibatu.png"
+              alt="Ibatu"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Jarvis App" hasArrow>
+            <Image
+              src="/assets/clients/jarvis-logo.png"
+              alt="Jarvis"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Krypto Labs App" hasArrow>
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "100px",
+                width: "120px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Podcast-Beacon App" hasArrow>
+            <Image
+              src="/assets/clients/podcast-beacon-logo.png"
+              alt="Krypto Labs"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Logo Black App" hasArrow>
+            <Image
+              src="/assets/clients/logo-black-small.png"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="IPG App" hasArrow>
+            <Image
+              src="/assets/clients/Logo_IPG.jpg"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Republic Power App" hasArrow>
+            <Image
+              src="/assets/clients/republic_power_logo.jpeg"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Alifa App" hasArrow>
+            <Image
+              src="/assets/clients/alifa.PNG"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Moodtube Extension" hasArrow>
+            <Image
+              src="/assets/clients/moodtube_img.png"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bipcards App" hasArrow>
+            <Logo2 />
+          </Tooltip>
         </Box>
         <Box
           display="flex"
@@ -1809,163 +1886,189 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Image
-            src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
-            alt="Bai"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/crystal_ball.png"
-            alt="Crystal Ball"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/farmin-white.png"
-            alt="Farmin"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/ibatu.png"
-            alt="Ibatu"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/jarvis-logo.png"
-            alt="Jarvis"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/krypto-labs.png"
-            alt="Krypto Labs"
-            width={120}
-            height={120}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "100px",
-              width: "120px",
-            }}
-          />
-          <Image
-            src="/assets/clients/podcast-beacon-logo.png"
-            alt="Krypto Labs"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/logo-black-small.png"
-            alt="Logo Black"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/Logo_IPG.jpg"
-            alt="Logo Black"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/republic_power_logo.jpeg"
-            alt="Republic Power"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/alifa.PNG"
-            alt="Republic Power"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Image
-            src="/assets/clients/moodtube_img.png"
-            alt="Republic Power"
-            width={80}
-            height={80}
-            loading="eager"
-            decoding="async"
-            style={{
-              height: "fit-content",
-              maxHeight: "50px",
-              width: "auto",
-            }}
-          />
-          <Logo2 />
+          <Tooltip label="Bai App" hasArrow>
+            <Image
+              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              alt="Bai"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Crystal Ball" hasArrow>
+            <Image
+              src="/assets/clients/crystal_ball.png"
+              alt="Crystal Ball"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Farmin App" hasArrow>
+            <Image
+              src="/assets/clients/farmin-white.png"
+              alt="Farmin"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Ibatu App" hasArrow>
+            <Image
+              src="/assets/clients/ibatu.png"
+              alt="Ibatu"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Jarvis App" hasArrow>
+            <Image
+              src="/assets/clients/jarvis-logo.png"
+              alt="Jarvis"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Krypto Labs App" hasArrow>
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "100px",
+                width: "120px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Podcast-Beacon App" hasArrow>
+            <Image
+              src="/assets/clients/podcast-beacon-logo.png"
+              alt="Krypto Labs"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Logo Black App" hasArrow>
+            <Image
+              src="/assets/clients/logo-black-small.png"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="IPG App" hasArrow>
+            <Image
+              src="/assets/clients/Logo_IPG.jpg"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Republic Power App" hasArrow>
+            <Image
+              src="/assets/clients/republic_power_logo.jpeg"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Alifa AI App" hasArrow>
+            <Image
+              src="/assets/clients/alifa.PNG"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Moodtube Extension" hasArrow>
+            <Image
+              src="/assets/clients/moodtube_img.png"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bipcards App" hasArrow>
+            <Logo2 />
+          </Tooltip>
         </Box>
       </Box>
       {/* added a margin of -10 */}

@@ -1,7 +1,13 @@
 import { Button } from "@chakra-ui/react";
 import { Link } from "@saas-ui/react";
 import { NextSeoProps } from "next-seo";
-import { FaFacebook, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";
 
@@ -71,6 +77,10 @@ const siteConfig = {
       {
         href: "https://github.com/hassanms",
         label: <FaGithub size="20" />,
+      },
+      {
+        href: "https://www.youtube.com/@TechEmulsion",
+        label: <FaYoutube size="20" />,
       },
     ],
   },

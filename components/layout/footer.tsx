@@ -341,12 +341,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
           >
             <HStack justify="center" spacing="4" alignSelf="center" mt={8}>
               {siteConfig.footer?.links?.map(({ href, label }) => (
-                <FooterLink
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <FooterLink key={href} href={href}>
                   <Text
                     sx={{
                       padding: "5px",
@@ -402,6 +397,9 @@ export const FooterLink: React.FC<LinkProps> = (props) => {
   const { children, ...rest } = props;
   return (
     <Link
+      target="_blank"
+      rel="noopener noreferrer"
+      // isExternal
       color="muted"
       fontSize="sm"
       textDecoration="none"

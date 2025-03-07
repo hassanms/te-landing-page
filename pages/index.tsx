@@ -233,22 +233,24 @@ const HeroSection: React.FC = () => {
         zIndex="-1"
         mb={{ base: "0px", lg: "-120px" }}
       >
-        <video
-          src="/assets/Animation/hero-video.mp4"
-          ref={videoRef}
-          autoPlay={true}
-          loop={true}
-          muted={true}
-          // playsInline={true}
-          // preload="auto"
-          preload="none"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            maxWidth: "100%",
-          }}
-        />
+        <FallInPlace delay={1}>
+          <video
+            src="/assets/Animation/hero-video.mp4"
+            ref={videoRef}
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            // playsInline={true}
+            // preload="auto"
+            preload="none"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              maxWidth: "100%",
+            }}
+          />
+        </FallInPlace>
       </Box>
       <Container
         maxW="container.xl"

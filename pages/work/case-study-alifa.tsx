@@ -84,7 +84,7 @@ const CaseStudyAlifa = () => {
                 width={1200}
                 height={300}
                 style={{
-                  width: "60vw",
+                  width: "100vw",
                   height: "100vh",
                   marginTop: 45,
                   objectFit: "contain",
@@ -92,10 +92,24 @@ const CaseStudyAlifa = () => {
               />
             </Box>
             <Box
-              position="absolute"
-              bottom="-15%"
-              left="50%"
-              transform="translate(-50%, -50%)"
+              // position="absolute"
+              // bottom="-15%"
+              // left="50%"
+              // transform="translate(-50%, -50%)"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+              borderRadius="md"
+              // width=
+              p={5}
+              boxShadow="md"
+              // mt={{ base: "-40px", md: "-100px" }} // Adjust margin for responsiveness
+              mt={{ base: "-40vh", md: "-15vh", lg: "-15vh" }}
+              maxWidth={{ base: "90%", lg: "50%" }}
+              width={{ base: "90%", lg: "50%" }}
+              height={{ base: "90%", lg: "50%" }}
               sx={{
                 backgroundImage:
                   colorMode === "dark"
@@ -384,7 +398,7 @@ const CaseStudyAlifa = () => {
               </Text>
               <FaQuoteRight
                 size={10}
-                style={{ position: "absolute", right: "2%", bottom: 42 }}
+                style={{ position: "absolute", right: "20%", bottom: 34 }}
               />
               <Text fontSize="2xl" fontWeight="bold" color="gray.600" mt={5}>
                 – Suliman, CEO of Alifa

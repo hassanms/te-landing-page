@@ -84,7 +84,7 @@ const CaseStudyBipcards = () => {
                 width={1200}
                 height={300}
                 style={{
-                  width: "60vw",
+                  width: "100vw",
                   height: "100vh",
                   marginTop: 45,
                   objectFit: "contain",
@@ -92,10 +92,24 @@ const CaseStudyBipcards = () => {
               />
             </Box>
             <Box
-              position="absolute"
-              bottom="-15%"
-              left="50%"
-              transform="translate(-50%, -50%)"
+              // position="absolute"
+              // bottom="-15%"
+              // left="50%"
+              // transform="translate(-50%, -50%)"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+              borderRadius="md"
+              // width=
+              p={5}
+              boxShadow="md"
+              // mt={{ base: "-40px", md: "-100px" }} // Adjust margin for responsiveness
+              mt={{ base: "-40vh", md: "-15vh", lg: "-15vh" }}
+              maxWidth={{ base: "90%", lg: "50%" }}
+              width={{ base: "90%", lg: "50%" }}
+              height={{ base: "90%", lg: "50%" }}
               sx={{
                 backgroundImage:
                   colorMode === "dark"
@@ -531,6 +545,7 @@ const CaseStudyBipcards = () => {
             </Box>
             <Box
               sx={{
+                position: "relative",
                 width: "100%",
                 py: 10,
                 display: "flex",
@@ -540,10 +555,14 @@ const CaseStudyBipcards = () => {
                 textAlign: "center",
               }}
             >
+              <FaQuoteLeft
+                size={10}
+                style={{ position: "absolute", left: "15%", top: 40 }}
+              />
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
-                  fontSize: "4xl",
+                  fontSize: { base: "md", lg: "4xl" },
                   fontWeight: "normal",
                   lineHeight: "1.5",
                   letterSpacing: "normal",
@@ -553,18 +572,26 @@ const CaseStudyBipcards = () => {
                   width: "60%",
                 }}
               >
-                <FaQuoteLeft
-                  size={60}
-                  style={{ marginRight: 10, marginTop: -10 }}
-                />
                 Tech Emulsion transformed our vision into a powerful platform
                 that not only meets our current needs but is scalable for future
                 growth. Their expertise in integrating complex features into an
                 intuitive interface has significantly improved our operational
                 efficiency and global reach.
-                <FaQuoteRight size={60} />
               </Text>
-              <Text fontSize="2xl" fontWeight="bold" color="gray.600" mt={5}>
+              <FaQuoteRight
+                size={10}
+                style={{ position: "absolute", right: "20%", bottom: 32 }}
+              />
+              <Text
+                sx={{
+                  fontSize: { base: "md", lg: "4xl" },
+                  fontWeight: "bold",
+
+                  color: "gray.600",
+
+                  mt: "5",
+                }}
+              >
                 – Alex, CEO of Bipcards.com
               </Text>
             </Box>

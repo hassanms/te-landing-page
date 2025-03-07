@@ -240,6 +240,7 @@ const HeroSection: React.FC = () => {
             autoPlay={true}
             loop={true}
             muted={true}
+            loading="eager"
             // playsInline={true}
             // preload="auto"
             preload="none"

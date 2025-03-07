@@ -221,7 +221,6 @@ const HeroSection: React.FC = () => {
       gridTemplateColumns="1fr"
       gridTemplateRows="1fr"
       // placeItems="center"
-      overflow="hidden"
     >
       <BackgroundGradient height="100%" zIndex="-1" />
       <Box
@@ -240,7 +239,7 @@ const HeroSection: React.FC = () => {
             autoPlay={true}
             loop={true}
             muted={true}
-            loading="eager"
+            // loading="eager"
             // playsInline={true}
             // preload="auto"
             preload="none"

@@ -1815,7 +1815,20 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip>
           <Tooltip label="Bipcards App" hasArrow>
-            <Logo2 />
+            {/* <Logo2 /> */}
+            <Image
+              src="/assets/clients/bipcards.png"
+              alt="Republic Power"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "100px",
+                width: "120px",
+              }}
+            />
           </Tooltip>
         </Box>
         <Box
@@ -2086,7 +2099,20 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip>
           <Tooltip label="Bipcards App" hasArrow>
-            <Logo2 />
+            {/* <Logo2 /> */}
+            <Image
+              src="/assets/clients/bipcards.png"
+              alt="Republic Power"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "100px",
+                width: "120px",
+              }}
+            />
           </Tooltip>
         </Box>
       </Box>

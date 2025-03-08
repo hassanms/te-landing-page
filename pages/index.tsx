@@ -281,11 +281,14 @@ const HeroSection: React.FC = () => {
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  {" "}
                   Empowering businesses with next-gen{" "}
-                  <Em style={{ color: "#66B2B2" }}>
-                    {" "}
-                    SaaS, web, and AI solutions{" "}
+                  <Em
+                    style={{
+                      color: "#66B2B2",
+                      fontWeight: "900",
+                    }}
+                  >
+                    SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
@@ -420,11 +423,15 @@ const HeroSection: React.FC = () => {
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  {" "}
                   Empowering businesses with next-gen{" "}
-                  <Em style={{ color: "#66B2B2" }}>
+                  <Em
+                    style={{
+                      color: "#004C4C",
+                      fontWeight: "900",
+                    }}
+                  >
                     SaaS, web, and AI solutions
-                  </Em>
+                  </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
@@ -1579,8 +1586,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "30px",
+                width: "100px",
                 cursor: "pointer",
               }}
             />
@@ -1611,7 +1618,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1627,7 +1634,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1643,8 +1650,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1660,6 +1668,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1673,8 +1682,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1690,6 +1700,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1705,6 +1716,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1712,14 +1724,15 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={120}
-              height={120}
+              width={3200}
+              height={3200}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
                 maxHeight: "100px",
                 width: "120px",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1735,6 +1748,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1748,8 +1762,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1763,8 +1778,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1778,8 +1794,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "35px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1795,6 +1812,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1810,6 +1828,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1818,14 +1837,15 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/bipcards.png"
               alt="Republic Power"
-              width={120}
-              height={120}
+              width={220}
+              height={212}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "100px",
+                maxHeight: "70px",
                 width: "120px",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1863,8 +1883,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "30px",
+                width: "100px",
                 cursor: "pointer",
               }}
             />
@@ -1895,7 +1915,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1911,7 +1931,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1927,8 +1947,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1944,6 +1965,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1957,8 +1979,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1974,6 +1997,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1989,6 +2013,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -1996,14 +2021,15 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={120}
-              height={120}
+              width={3200}
+              height={3200}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
                 maxHeight: "100px",
                 width: "120px",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2019,6 +2045,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2032,8 +2059,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2047,8 +2075,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2062,8 +2091,9 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "35px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2079,6 +2109,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2094,6 +2125,7 @@ const SocialProofSection: React.FC = () => {
                 height: "fit-content",
                 maxHeight: "50px",
                 width: "auto",
+                cursor: "pointer",
               }}
             />
           </Tooltip>
@@ -2102,14 +2134,15 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/bipcards.png"
               alt="Republic Power"
-              width={120}
-              height={120}
+              width={220}
+              height={212}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "100px",
+                maxHeight: "70px",
                 width: "120px",
+                cursor: "pointer",
               }}
             />
           </Tooltip>

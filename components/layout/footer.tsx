@@ -313,7 +313,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       },
                     }}
                   >
-                    <Link href="/portfolio">Portfolio</Link>
+                    {/* <Link href="/portfolio">Portfolio</Link> */}
                   </ListItem>
                 </List>
               </HStack>

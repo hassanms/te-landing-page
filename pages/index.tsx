@@ -1277,8 +1277,8 @@ const Portfolio: React.FC = () => {
               fontSize="lg"
               fontWeight={"500"}
               mt="4"
-              width={"60%"}
-              align={"left"}
+              width={{ base: "100%", md: "60%" }}
+              textAlign="left"
             >
               {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
             project highlights our dedication to quality and creativity.
@@ -1310,7 +1310,7 @@ const Portfolio: React.FC = () => {
                 },
               }}
             >
-              Explore Portfolio
+              {/* Explore Portfolio */}
             </ButtonLink>
           </ButtonGroup>
         </Box>
@@ -1535,8 +1535,9 @@ const SocialProofSection: React.FC = () => {
             fontSize="lg"
             fontWeight={"500"}
             mt="4"
-            width={"60%"}
-            align={"center"}
+            px="10"
+            width={{ base: "100%", md: "60%" }}
+            textAlign="center"
           >
             We’re proud to have worked with a diverse range of clients across
             industries, delivering impactful solutions that drive results. Our
@@ -1558,7 +1559,7 @@ const SocialProofSection: React.FC = () => {
           width="50%"
           justifyContent="space-around"
           alignItems="center"
-          animation={`${scrollAnimation} 45s infinite linear`}
+          animation={`${scrollAnimation} 75s infinite linear`}
         >
           <Tooltip label="Artis App" hasArrow>
             <Image
@@ -1570,8 +1571,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "80px",
+                width: "82px",
                 cursor: "pointer",
               }}
             />
@@ -1586,7 +1587,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "40px",
                 width: "100px",
                 cursor: "pointer",
               }}
@@ -1618,7 +1619,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
+                maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1634,7 +1635,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1650,7 +1651,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1667,7 +1668,7 @@ const SocialProofSection: React.FC = () => {
               style={{
                 height: "fit-content",
                 maxHeight: "50px",
-                width: "auto",
+                width: "60px",
                 cursor: "pointer",
               }}
             />
@@ -1740,14 +1741,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/podcast-beacon-logo.png"
               alt="Krypto Labs"
-              width={80}
-              height={80}
+              width={568}
+              height={211}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "120px",
+                width: "120px",
                 cursor: "pointer",
               }}
             />
@@ -1762,7 +1763,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1778,7 +1779,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1788,14 +1789,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/republic_power_logo.jpeg"
               alt="Republic Power"
-              width={80}
+              width={200}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "35px",
-                width: "auto",
+                maxHeight: "50px",
+                width: "90px",
                 cursor: "pointer",
               }}
             />
@@ -1826,28 +1827,16 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "80px",
                 width: "auto",
                 cursor: "pointer",
               }}
             />
           </Tooltip>
           <Tooltip label="Bipcards App" hasArrow>
-            {/* <Logo2 /> */}
-            <Image
-              src="/assets/clients/bipcards.png"
-              alt="Republic Power"
-              width={220}
-              height={212}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "70px",
-                width: "120px",
-                cursor: "pointer",
-              }}
-            />
+            <Box>
+              <Logo2 />
+            </Box>
           </Tooltip>
         </Box>
         <Box
@@ -1855,7 +1844,7 @@ const SocialProofSection: React.FC = () => {
           width="50%"
           justifyContent="space-around"
           alignItems="center"
-          animation={`${scrollAnimation} 45s infinite linear`}
+          animation={`${scrollAnimation} 75s infinite linear`}
         >
           <Tooltip label="Artis App" hasArrow>
             <Image
@@ -1867,8 +1856,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "80px",
+                width: "82px",
                 cursor: "pointer",
               }}
             />
@@ -1883,7 +1872,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "40px",
                 width: "100px",
                 cursor: "pointer",
               }}
@@ -1915,7 +1904,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
+                maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1931,7 +1920,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1947,7 +1936,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1964,7 +1953,7 @@ const SocialProofSection: React.FC = () => {
               style={{
                 height: "fit-content",
                 maxHeight: "50px",
-                width: "auto",
+                width: "60px",
                 cursor: "pointer",
               }}
             />
@@ -2037,14 +2026,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/podcast-beacon-logo.png"
               alt="Krypto Labs"
-              width={80}
-              height={80}
+              width={568}
+              height={211}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "120px",
+                width: "120px",
                 cursor: "pointer",
               }}
             />
@@ -2059,7 +2048,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -2075,7 +2064,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "30px",
+                maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -2085,14 +2074,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/republic_power_logo.jpeg"
               alt="Republic Power"
-              width={80}
+              width={200}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "35px",
-                width: "auto",
+                maxHeight: "50px",
+                width: "90px",
                 cursor: "pointer",
               }}
             />
@@ -2123,28 +2112,16 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "80px",
                 width: "auto",
                 cursor: "pointer",
               }}
             />
           </Tooltip>
-          <Tooltip label="Bipcards App" hasArrow>
-            {/* <Logo2 /> */}
-            <Image
-              src="/assets/clients/bipcards.png"
-              alt="Republic Power"
-              width={220}
-              height={212}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "70px",
-                width: "120px",
-                cursor: "pointer",
-              }}
-            />
+          <Tooltip label="Bipcards App">
+            <Box>
+              <Logo2 />
+            </Box>
           </Tooltip>
         </Box>
       </Box>

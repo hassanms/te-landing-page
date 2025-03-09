@@ -1574,8 +1574,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "80px",
-                maxWidth: "80px",
+                maxHeight: "90px",
+                maxWidth: "90px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
@@ -1751,9 +1751,9 @@ const SocialProofSection: React.FC = () => {
           <Tooltip label="Podcast-Beacon App" hasArrow>
             <Image
               src="/assets/clients/podcast-beacon-logo.png"
-              alt="Krypto Labs"
+              alt="Podcast-Beacon"
               width={568}
-              height={211}
+              height={311}
               loading="eager"
               decoding="async"
               style={{
@@ -1761,9 +1761,9 @@ const SocialProofSection: React.FC = () => {
                 // maxHeight: "120px",
                 // width: "120px",
                 // cursor: "pointer",
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "140px",
-                maxWidth: "120px",
+                objectFit: "cover", // Ensures proper aspect ratio
+                maxHeight: "260px",
+                maxWidth: "140px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
@@ -1875,8 +1875,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "80px",
-                maxWidth: "80px",
+                maxHeight: "90px",
+                maxWidth: "90px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
@@ -2052,9 +2052,9 @@ const SocialProofSection: React.FC = () => {
           <Tooltip label="Podcast-Beacon App" hasArrow>
             <Image
               src="/assets/clients/podcast-beacon-logo.png"
-              alt="Krypto Labs"
+              alt="Podcast-Beacon"
               width={568}
-              height={211}
+              height={311}
               loading="eager"
               decoding="async"
               style={{
@@ -2062,9 +2062,9 @@ const SocialProofSection: React.FC = () => {
                 // maxHeight: "120px",
                 // width: "120px",
                 // cursor: "pointer",
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "120px",
-                maxWidth: "120px",
+                objectFit: "cover", // Ensures proper aspect ratio
+                maxHeight: "260px",
+                maxWidth: "140px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",

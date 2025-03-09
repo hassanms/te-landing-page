@@ -2148,8 +2148,8 @@ const SocialProofSection: React.FC = () => {
                 objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "80px",
                 maxWidth: "80px",
-                width: "auto",
-                height: "auto",
+                // width: "auto",
+                // height: "auto",
                 cursor: "pointer",
               }}
             />

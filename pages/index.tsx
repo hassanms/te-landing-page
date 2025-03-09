@@ -1273,6 +1273,7 @@ const Portfolio: React.FC = () => {
             {/* for small text  */}
 
             <Text
+              py="4"
               color="muted"
               fontSize="lg"
               fontWeight={"500"}
@@ -1534,6 +1535,8 @@ const SocialProofSection: React.FC = () => {
             color="gray.400"
             fontSize="lg"
             fontWeight={"500"}
+            justifyContent={"center"}
+            alignItems={"center"}
             mt="4"
             px="10"
             width={{ base: "100%", md: "60%" }}
@@ -1563,16 +1566,18 @@ const SocialProofSection: React.FC = () => {
         >
           <Tooltip label="Artis App" hasArrow>
             <Image
-              src="/assets/clients/Artis-logo.png"
+              src="/assets/clients/Artis-lab.png"
               alt="Artis"
               width={80}
               height={80}
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "80px",
-                width: "82px",
+                maxWidth: "80px",
+                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -1603,7 +1608,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "60px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1667,8 +1672,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "60px",
+                maxHeight: "40px",
+                width: "40px",
                 cursor: "pointer",
               }}
             />
@@ -1730,9 +1735,15 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
-                maxHeight: "100px",
-                width: "120px",
+                // height: "fit-content",
+                // maxHeight: "100px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "120px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -1746,9 +1757,15 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
-                maxHeight: "120px",
-                width: "120px",
+                // height: "fit-content",
+                // maxHeight: "120px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "140px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -1826,15 +1843,17 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "80px",
+                maxWidth: "80px",
                 width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
           </Tooltip>
           <Tooltip label="Bipcards App" hasArrow>
-            <Box>
+            <Box cursor="pointer">
               <Logo2 />
             </Box>
           </Tooltip>
@@ -1848,16 +1867,18 @@ const SocialProofSection: React.FC = () => {
         >
           <Tooltip label="Artis App" hasArrow>
             <Image
-              src="/assets/clients/Artis-logo.png"
+              src="/assets/clients/Artis-lab.png"
               alt="Artis"
               width={80}
               height={80}
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "80px",
-                width: "82px",
+                maxWidth: "80px",
+                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -1888,7 +1909,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "60px",
                 width: "auto",
                 cursor: "pointer",
               }}
@@ -1952,8 +1973,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "60px",
+                maxHeight: "40px",
+                width: "40px",
                 cursor: "pointer",
               }}
             />
@@ -2015,9 +2036,15 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
-                maxHeight: "100px",
-                width: "120px",
+                // height: "fit-content",
+                // maxHeight: "100px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "120px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -2031,9 +2058,15 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
+                // height: "fit-content",
+                // maxHeight: "120px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "120px",
-                width: "120px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -2112,14 +2145,17 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "80px",
+                maxWidth: "80px",
                 width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
           </Tooltip>
           <Tooltip label="Bipcards App">
-            <Box>
+            <Box cursor="pointer">
               <Logo2 />
             </Box>
           </Tooltip>
@@ -2474,8 +2510,9 @@ const TestimonialsSection: React.FC = () => {
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
+              px="10"
               justifyContent={"center"}
-              width={"100%"}
+              width={{ base: "100%", md: "100%" }}
               align={"center"}
             >
               {`Discover what our clients have to say about their experiences with us.

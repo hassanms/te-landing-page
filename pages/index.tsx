@@ -1761,7 +1761,7 @@ const SocialProofSection: React.FC = () => {
                 // maxHeight: "120px",
                 // width: "120px",
                 // cursor: "pointer",
-                // objectFit: "contain", // Ensures proper aspect ratio
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "140px",
                 maxWidth: "120px",
                 width: "auto",
@@ -2040,7 +2040,7 @@ const SocialProofSection: React.FC = () => {
                 // maxHeight: "100px",
                 // width: "120px",
                 // cursor: "pointer",
-                // objectFit: "contain", // Ensures proper aspect ratio
+                objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "120px",
                 maxWidth: "120px",
                 width: "auto",

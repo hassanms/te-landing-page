@@ -1730,8 +1730,8 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={3200}
-              height={3200}
+              width={80}
+              height={80}
               loading="eager"
               decoding="async"
               style={{
@@ -1761,7 +1761,7 @@ const SocialProofSection: React.FC = () => {
                 // maxHeight: "120px",
                 // width: "120px",
                 // cursor: "pointer",
-                objectFit: "contain", // Ensures proper aspect ratio
+                // objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "140px",
                 maxWidth: "120px",
                 width: "auto",
@@ -2031,8 +2031,8 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={3200}
-              height={3200}
+              width={80}
+              height={80}
               loading="eager"
               decoding="async"
               style={{
@@ -2040,7 +2040,7 @@ const SocialProofSection: React.FC = () => {
                 // maxHeight: "100px",
                 // width: "120px",
                 // cursor: "pointer",
-                objectFit: "contain", // Ensures proper aspect ratio
+                // objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "120px",
                 maxWidth: "120px",
                 width: "auto",

@@ -187,6 +187,13 @@ const Home: NextPage = () => {
 };
 type LottieAnimationData = Record<string, any>;
 
+// animation for video
+// const fadeAnimation = keyframes`
+//   0% { opacity: 1; }
+//   90% { opacity: 1; }
+//   100% { opacity: 0; }
+// `;
+
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentAnimation, setCurrentAnimation] =
@@ -241,13 +248,13 @@ const HeroSection: React.FC = () => {
             muted={true}
             // loading="eager"
             // playsInline={true}
-            // preload="auto"
-            preload="none"
+            preload="auto"
             style={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
               maxWidth: "100%",
+              // animation: `${fadeAnimation} 5s linear infinite`,
             }}
           />
         </FallInPlace>
@@ -1575,7 +1582,7 @@ const SocialProofSection: React.FC = () => {
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
                 maxHeight: "100px",
-                maxWidth: "90px",
+                maxWidth: "100px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
@@ -1586,14 +1593,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/Atarim.svg"
               alt="Atarim"
-              width={0}
-              height={0}
+              width={150}
+              height={60}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
-                width: "100px",
+                maxHeight: "60px",
+                width: "150px",
                 cursor: "pointer",
               }}
             />
@@ -1602,14 +1609,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/teadit.png"
               alt="teadit"
-              width={80}
+              width={130}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "60px",
-                width: "auto",
+                maxHeight: "70px",
+                width: "130px",
                 cursor: "pointer",
               }}
             />
@@ -1672,8 +1679,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
-                width: "40px",
+                maxHeight: "50px",
+                width: "50px",
                 cursor: "pointer",
               }}
             />
@@ -1768,46 +1775,23 @@ const SocialProofSection: React.FC = () => {
             </Box>
           </Tooltip>
 
-          {/* <Tooltip label="Podcast-Beacon App" hasArrow>
+          <Tooltip label="Podcast-Beacon App" hasArrow>
             <Image
-              src="/assets/clients/podcast-beacon-logo.png"
+              src="/assets/clients/Podcast-Beacon.png"
               alt="Podcast-Beacon"
-              width={568}
-              height={311}
+              width={150}
+              height={150}
               loading="eager"
               decoding="async"
               style={{
-                // height: "fit-content",
-                // maxHeight: "120px",
-                // width: "120px",
-                // cursor: "pointer",
-                objectFit: "cover", // Ensures proper aspect ratio
-                maxHeight: "260px",
-                maxWidth: "140px",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "150px",
+                maxWidth: "150px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
               }}
             />
-          </Tooltip> */}
-          <Tooltip label="Podcast-Beacon App" hasArrow>
-            <Box display="inline-block">
-              <Image
-                src="/assets/clients/podcast-beacon-logo.png"
-                alt="Podcast-Beacon"
-                width={140} // Reduce width slightly to prevent stretching
-                height={60} // Increase height for better proportion
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  // objectFit: "cover", // Keeps proportions correct
-                  width: "140px", // Ensures it expands properly
-                  height: "60px",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
           </Tooltip>
 
           <Tooltip label="Logo Black App" hasArrow>
@@ -1852,7 +1836,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "60px",
                 width: "90px",
                 cursor: "pointer",
               }}
@@ -1927,14 +1911,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/Atarim.svg"
               alt="Atarim"
-              width={0}
-              height={0}
+              width={150}
+              height={60}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
-                width: "100px",
+                maxHeight: "60px",
+                width: "150px",
                 cursor: "pointer",
               }}
             />
@@ -1943,14 +1927,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/teadit.png"
               alt="teadit"
-              width={80}
+              width={130}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "60px",
-                width: "auto",
+                maxHeight: "80px",
+                width: "130px",
                 cursor: "pointer",
               }}
             />
@@ -2013,8 +1997,8 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
-                width: "40px",
+                maxHeight: "50px",
+                width: "50px",
                 cursor: "pointer",
               }}
             />
@@ -2109,46 +2093,23 @@ const SocialProofSection: React.FC = () => {
             </Box>
           </Tooltip>
 
-          {/* <Tooltip label="Podcast-Beacon App" hasArrow>
+          <Tooltip label="Podcast-Beacon App" hasArrow>
             <Image
-              src="/assets/clients/podcast-beacon-logo.png"
+              src="/assets/clients/Podcast-Beacon.png"
               alt="Podcast-Beacon"
-              width={568}
-              height={311}
+              width={150}
+              height={150}
               loading="eager"
               decoding="async"
               style={{
-                // height: "fit-content",
-                // maxHeight: "120px",
-                // width: "120px",
-                // cursor: "pointer",
-                objectFit: "cover", // Ensures proper aspect ratio
-                maxHeight: "260px",
-                maxWidth: "140px",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "150px",
+                maxWidth: "150px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
               }}
             />
-          </Tooltip> */}
-          <Tooltip label="Podcast-Beacon App" hasArrow>
-            <Box display="inline-block">
-              <Image
-                src="/assets/clients/podcast-beacon-logo.png"
-                alt="Podcast-Beacon"
-                width={140} // Reduce width slightly to prevent stretching
-                height={60} // Increase height for better proportion
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  // objectFit: "cover", // Keeps proportions correct
-                  width: "140px", // Ensures it expands properly
-                  height: "60px",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
           </Tooltip>
 
           <Tooltip label="Logo Black App" hasArrow>
@@ -2193,7 +2154,7 @@ const SocialProofSection: React.FC = () => {
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "60px",
                 width: "90px",
                 cursor: "pointer",
               }}

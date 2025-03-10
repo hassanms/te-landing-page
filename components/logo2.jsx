@@ -2,8 +2,8 @@ export const Logo2 = () => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <svg
-        width="25"
-        height="28"
+        width="75"
+        height="75"
         viewBox="0 0 45 28"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

@@ -1568,13 +1568,13 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/Artis-lab.png"
               alt="Artis"
-              width={80}
-              height={80}
+              width={100}
+              height={100}
               loading="eager"
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "90px",
+                maxHeight: "100px",
                 maxWidth: "90px",
                 width: "auto",
                 height: "auto",
@@ -1726,12 +1726,12 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Krypto Labs App" hasArrow>
+          {/* <Tooltip label="Krypto Labs App" hasArrow>
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={80}
-              height={80}
+              width={120}
+              height={120}
               loading="eager"
               decoding="async"
               style={{
@@ -1747,8 +1747,28 @@ const SocialProofSection: React.FC = () => {
                 cursor: "pointer",
               }}
             />
+          </Tooltip> */}
+          <Tooltip label="Krypto Labs App" hasArrow>
+            <Box display="inline-block">
+              <Image
+                src="/assets/clients/krypto-labs.png"
+                alt="Krypto Labs"
+                width={180} // Increased width
+                height={100} // Increased height
+                loading="eager"
+                decoding="async"
+                style={{
+                  display: "block",
+                  objectFit: "cover", // Keeps proportions correct
+                  width: "180px", // Ensures it expands properly
+                  height: "100px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
           </Tooltip>
-          <Tooltip label="Podcast-Beacon App" hasArrow>
+
+          {/* <Tooltip label="Podcast-Beacon App" hasArrow>
             <Image
               src="/assets/clients/podcast-beacon-logo.png"
               alt="Podcast-Beacon"
@@ -1769,7 +1789,27 @@ const SocialProofSection: React.FC = () => {
                 cursor: "pointer",
               }}
             />
+          </Tooltip> */}
+          <Tooltip label="Podcast-Beacon App" hasArrow>
+            <Box display="inline-block">
+              <Image
+                src="/assets/clients/podcast-beacon-logo.png"
+                alt="Podcast-Beacon"
+                width={140} // Reduce width slightly to prevent stretching
+                height={60} // Increase height for better proportion
+                loading="eager"
+                decoding="async"
+                style={{
+                  display: "block",
+                  // objectFit: "cover", // Keeps proportions correct
+                  width: "140px", // Ensures it expands properly
+                  height: "60px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
           </Tooltip>
+
           <Tooltip label="Logo Black App" hasArrow>
             <Image
               src="/assets/clients/logo-black-small.png"
@@ -1869,14 +1909,14 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/Artis-lab.png"
               alt="Artis"
-              width={80}
-              height={80}
+              width={100}
+              height={100}
               loading="eager"
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "90px",
-                maxWidth: "90px",
+                maxHeight: "100px",
+                maxWidth: "100px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
@@ -2027,12 +2067,12 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Krypto Labs App" hasArrow>
+          {/* <Tooltip label="Krypto Labs App" hasArrow>
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={80}
-              height={80}
+              width={120}
+              height={120}
               loading="eager"
               decoding="async"
               style={{
@@ -2048,8 +2088,28 @@ const SocialProofSection: React.FC = () => {
                 cursor: "pointer",
               }}
             />
+          </Tooltip> */}
+          <Tooltip label="Krypto Labs App" hasArrow>
+            <Box display="inline-block">
+              <Image
+                src="/assets/clients/krypto-labs.png"
+                alt="Krypto Labs"
+                width={180} // Increased width
+                height={100} // Increased height
+                loading="eager"
+                decoding="async"
+                style={{
+                  display: "block",
+                  objectFit: "cover", // Keeps proportions correct
+                  width: "180px", // Ensures it expands properly
+                  height: "100px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
           </Tooltip>
-          <Tooltip label="Podcast-Beacon App" hasArrow>
+
+          {/* <Tooltip label="Podcast-Beacon App" hasArrow>
             <Image
               src="/assets/clients/podcast-beacon-logo.png"
               alt="Podcast-Beacon"
@@ -2070,7 +2130,27 @@ const SocialProofSection: React.FC = () => {
                 cursor: "pointer",
               }}
             />
+          </Tooltip> */}
+          <Tooltip label="Podcast-Beacon App" hasArrow>
+            <Box display="inline-block">
+              <Image
+                src="/assets/clients/podcast-beacon-logo.png"
+                alt="Podcast-Beacon"
+                width={140} // Reduce width slightly to prevent stretching
+                height={60} // Increase height for better proportion
+                loading="eager"
+                decoding="async"
+                style={{
+                  display: "block",
+                  // objectFit: "cover", // Keeps proportions correct
+                  width: "140px", // Ensures it expands properly
+                  height: "60px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
           </Tooltip>
+
           <Tooltip label="Logo Black App" hasArrow>
             <Image
               src="/assets/clients/logo-black-small.png"

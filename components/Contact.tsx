@@ -72,7 +72,7 @@ const Contact = () => {
 
   return (
     <Box position="relative" overflow="hidden">
-      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} pb="40">
+      <Container maxW="container.xl" pt={{ base: 40, lg: 20 }} >
         <Stack
           direction={{ base: "column", lg: "row" }}
           alignItems="flex-start"

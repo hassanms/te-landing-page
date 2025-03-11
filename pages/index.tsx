@@ -1562,7 +1562,7 @@ const SocialProofSection: React.FC = () => {
           alignItems="center"
           animation={`${scrollAnimation} 75s infinite linear`}
         >
-          <Tooltip label="Artis App" hasArrow>
+          <Tooltip label="Artis" hasArrow>
             <Image
               src="/assets/clients/Artis-lab.png"
               alt="Artis"
@@ -1582,7 +1582,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Atarim" hasArrow>
             <Image
-              src="/assets/clients/Atarim.svg"
+              src="/assets/clients/atarim-white.svg"
               alt="Atarim"
               width={150}
               height={60}
@@ -1596,7 +1596,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Teadit App" hasArrow>
+          <Tooltip label="Teadit" hasArrow>
             <Image
               src="/assets/clients/teadit.png"
               alt="teadit"
@@ -1612,7 +1612,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Popcard App" hasArrow>
+          <Tooltip label="Popcard" hasArrow>
             <Image
               src="/assets/clients/POPCARD_4.png"
               alt="POPCARD"
@@ -1628,7 +1628,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Sprintzeal App" hasArrow>
+          <Tooltip label="Sprintzeal" hasArrow>
             <Image
               src="/assets/clients/Sprintzeal_Logo.webp"
               alt="Sprintzeal"
@@ -1644,7 +1644,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Bai App" hasArrow>
+          <Tooltip label="Bai" hasArrow>
             <Image
               src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
               alt="Bai"
@@ -1676,7 +1676,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Farmin App" hasArrow>
+          <Tooltip label="Farmin" hasArrow>
             <Image
               src="/assets/clients/farmin-white.png"
               alt="Farmin"
@@ -1692,7 +1692,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Ibatu App" hasArrow>
+          <Tooltip label="Ibatu" hasArrow>
             <Image
               src="/assets/clients/ibatu.png"
               alt="Ibatu"
@@ -1708,7 +1708,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Jarvis App" hasArrow>
+          <Tooltip label="Jarvis" hasArrow>
             <Image
               src="/assets/clients/jarvis-logo.png"
               alt="Jarvis"
@@ -1746,7 +1746,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip> */}
-          <Tooltip label="Krypto Labs App" hasArrow>
+          <Tooltip label="Krypto Labs" hasArrow>
             <Box display="inline-block">
               <Image
                 src="/assets/clients/krypto-labs.png"
@@ -1766,7 +1766,7 @@ const SocialProofSection: React.FC = () => {
             </Box>
           </Tooltip>
 
-          <Tooltip label="Podcast-Beacon App" hasArrow>
+          <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
               src="/assets/clients/Podcast-Beacon.png"
               alt="Podcast-Beacon"
@@ -1785,7 +1785,7 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip>
 
-          <Tooltip label="Logo Black App" hasArrow>
+          <Tooltip label="Logo Black" hasArrow>
             <Image
               src="/assets/clients/logo-black-small.png"
               alt="Logo Black"
@@ -1801,7 +1801,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="IPG App" hasArrow>
+          <Tooltip label="IPG" hasArrow>
             <Image
               src="/assets/clients/Logo_IPG.jpg"
               alt="Logo Black"
@@ -1817,7 +1817,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Republic Power App" hasArrow>
+          <Tooltip label="Republic Power" hasArrow>
             <Image
               src="/assets/clients/republic_power_logo.jpeg"
               alt="Republic Power"
@@ -1833,7 +1833,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Alifa App" hasArrow>
+          <Tooltip label="Alifa" hasArrow>
             <Image
               src="/assets/clients/alifa.PNG"
               alt="Republic Power"
@@ -1867,7 +1867,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Bipcards App" hasArrow>
+          <Tooltip label="Bipcards" hasArrow>
             <Box cursor="pointer">
               <Logo2 />
             </Box>
@@ -1880,7 +1880,7 @@ const SocialProofSection: React.FC = () => {
           alignItems="center"
           animation={`${scrollAnimation} 75s infinite linear`}
         >
-          <Tooltip label="Artis App" hasArrow>
+          <Tooltip label="Artis" hasArrow>
             <Image
               src="/assets/clients/Artis-lab.png"
               alt="Artis"
@@ -1900,7 +1900,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Atarim" hasArrow>
             <Image
-              src="/assets/clients/Atarim.svg"
+              src="/assets/clients/atarim-white.svg"
               alt="Atarim"
               width={150}
               height={60}
@@ -1914,7 +1914,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Teadit App" hasArrow>
+          <Tooltip label="Teadit" hasArrow>
             <Image
               src="/assets/clients/teadit.png"
               alt="teadit"
@@ -1930,7 +1930,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Popcard App" hasArrow>
+          <Tooltip label="Popcard" hasArrow>
             <Image
               src="/assets/clients/POPCARD_4.png"
               alt="POPCARD"
@@ -1946,7 +1946,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Sprintzeal App" hasArrow>
+          <Tooltip label="Sprintzeal" hasArrow>
             <Image
               src="/assets/clients/Sprintzeal_Logo.webp"
               alt="Sprintzeal"
@@ -1962,7 +1962,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Bai App" hasArrow>
+          <Tooltip label="Bai" hasArrow>
             <Image
               src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
               alt="Bai"
@@ -1994,7 +1994,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Farmin App" hasArrow>
+          <Tooltip label="Farmin" hasArrow>
             <Image
               src="/assets/clients/farmin-white.png"
               alt="Farmin"
@@ -2010,7 +2010,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Ibatu App" hasArrow>
+          <Tooltip label="Ibatu" hasArrow>
             <Image
               src="/assets/clients/ibatu.png"
               alt="Ibatu"
@@ -2026,7 +2026,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Jarvis App" hasArrow>
+          <Tooltip label="Jarvis" hasArrow>
             <Image
               src="/assets/clients/jarvis-logo.png"
               alt="Jarvis"
@@ -2064,7 +2064,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip> */}
-          <Tooltip label="Krypto Labs App" hasArrow>
+          <Tooltip label="Krypto Labs" hasArrow>
             <Box display="inline-block">
               <Image
                 src="/assets/clients/krypto-labs.png"
@@ -2084,7 +2084,7 @@ const SocialProofSection: React.FC = () => {
             </Box>
           </Tooltip>
 
-          <Tooltip label="Podcast-Beacon App" hasArrow>
+          <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
               src="/assets/clients/Podcast-Beacon.png"
               alt="Podcast-Beacon"
@@ -2103,7 +2103,7 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip>
 
-          <Tooltip label="Logo Black App" hasArrow>
+          <Tooltip label="Logo Black" hasArrow>
             <Image
               src="/assets/clients/logo-black-small.png"
               alt="Logo Black"
@@ -2119,7 +2119,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="IPG App" hasArrow>
+          <Tooltip label="IPG" hasArrow>
             <Image
               src="/assets/clients/Logo_IPG.jpg"
               alt="Logo Black"
@@ -2135,7 +2135,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Republic Power App" hasArrow>
+          <Tooltip label="Republic Power" hasArrow>
             <Image
               src="/assets/clients/republic_power_logo.jpeg"
               alt="Republic Power"
@@ -2151,7 +2151,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Alifa AI App" hasArrow>
+          <Tooltip label="Alifa" hasArrow>
             <Image
               src="/assets/clients/alifa.PNG"
               alt="Republic Power"
@@ -2186,7 +2186,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Bipcards App">
+          <Tooltip label="Bipcards">
             <Box cursor="pointer">
               <Logo2 />
             </Box>

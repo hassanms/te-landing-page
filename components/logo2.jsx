@@ -2,8 +2,8 @@ export const Logo2 = () => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <svg
-        width="75"
-        height="75"
+        width="70"
+        height="70"
         viewBox="0 0 45 28"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -322,7 +322,8 @@ export const Logo2 = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: "1.2rem",
+          // fontSize: "1.2rem",
+          fontSize: "2.2rem",
           fontWeight: "bold",
           color: "rgb(99, 102, 241)",
         }}

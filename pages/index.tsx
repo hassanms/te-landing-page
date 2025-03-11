@@ -187,12 +187,6 @@ const Home: NextPage = () => {
 };
 type LottieAnimationData = Record<string, any>;
 
-// animation for video
-// const fadeAnimation = keyframes`
-//   0% { opacity: 1; }
-//   90% { opacity: 1; }
-//   100% { opacity: 0; }
-// `;
 
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
@@ -227,7 +221,7 @@ const HeroSection: React.FC = () => {
       display="grid"
       gridTemplateColumns="1fr"
       gridTemplateRows="1fr"
-      // placeItems="center"
+    // placeItems="center"
     >
       <BackgroundGradient height="100%" zIndex="-1" />
       <Box
@@ -810,17 +804,15 @@ const AboutUsSection: React.FC = () => {
                     display="flex"
                     flexDirection="row"
                     gap="4"
-                    className={`fade-card ${
-                      isFlipping ? "fade-out" : "fade-in"
-                    }`}
+                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
+                      }`}
                   >
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
-                      className={`fade-card ${
-                        isFlipping ? "fade-out" : "fade-in"
-                      }`}
+                      className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
+                        }`}
                     />
                     <Stack spacing="1" mt="4">
                       <Heading size="sm" color="white">
@@ -834,9 +826,8 @@ const AboutUsSection: React.FC = () => {
                 </FallInPlace>
                 <FallInPlace delay={0.8}>
                   <CardBody
-                    className={`fade-card ${
-                      isFlipping ? "fade-out" : "fade-in"
-                    }`}
+                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
+                      }`}
                   >
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
@@ -1355,22 +1346,22 @@ const Portfolio: React.FC = () => {
             const href = item.title.includes("Farmin")
               ? "/work/case-study-farmin"
               : item.title.includes("Atarim")
-              ? "/work/case-study-atarim"
-              : item.title.includes("Bipcards")
-              ? "/work/case-study-bipcards"
-              : item.title.includes("Popcard")
-              ? "/work/case-study-popcard"
-              : item.title.includes("Artis")
-              ? "/work/case-study-artis"
-              : item.title.includes("JarvisReach")
-              ? "/work/case-study-jarvisreach"
-              : item.title.includes("Alifa")
-              ? "/work/case-study-alifa"
-              : item.title.includes("RAG")
-              ? "/work/case-study-genai"
-              : item.title.includes("MoodTube")
-              ? "/work/case-study-moodtube"
-              : null;
+                ? "/work/case-study-atarim"
+                : item.title.includes("Bipcards")
+                  ? "/work/case-study-bipcards"
+                  : item.title.includes("Popcard")
+                    ? "/work/case-study-popcard"
+                    : item.title.includes("Artis")
+                      ? "/work/case-study-artis"
+                      : item.title.includes("JarvisReach")
+                        ? "/work/case-study-jarvisreach"
+                        : item.title.includes("Alifa")
+                          ? "/work/case-study-alifa"
+                          : item.title.includes("RAG")
+                            ? "/work/case-study-genai"
+                            : item.title.includes("MoodTube")
+                              ? "/work/case-study-moodtube"
+                              : null;
 
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
@@ -2608,11 +2599,10 @@ const TestimonialsSection: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
-                animation: `${
-                  currentIndex % 2 === 0 || currentIndex % 3 === 0
-                    ? "fadeOut"
-                    : "fadeIn"
-                } 0.5s`,
+                animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
+                  ? "fadeOut"
+                  : "fadeIn"
+                  } 0.5s`,
               }}
             >
               {/* Testimonial item */}

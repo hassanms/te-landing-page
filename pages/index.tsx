@@ -233,7 +233,7 @@ const HeroSection: React.FC = () => {
         zIndex="-1"
         mb={{ base: "0px", lg: "-120px" }}
       >
-        <FallInPlace delay={1}>
+        <FallInPlace delay={0.2}>
           <video
             src="/assets/Animation/hero-video.mp4"
             ref={videoRef}

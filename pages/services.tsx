@@ -2,16 +2,15 @@ import {
   Box,
   ButtonGroup,
   Container,
-  Divider,
   Heading,
   Text,
   useColorMode,
   VStack,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import { ButtonLink } from "components/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import {
-  Highlights,
   HighlightsItem,
   HighlightsWhatWeDo,
 } from "components/highlights";
@@ -29,7 +28,7 @@ const Services = () => {
         "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
       image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
       alt: "Agentic AI Engineering",
-    },   
+    },
     {
       title: "Next-Gen SaaS Development",
       description:
@@ -189,13 +188,15 @@ const Services = () => {
               title={""}
               padding={0}
             >
-              <img
+              <Image
                 src={item.image}
                 alt="hero"
+                width={1200}
+                height={300}
                 style={{
                   width: "100%",
                   height: "300px",
-                  objectFit: item.title === "Agentic AI Engineering"? "cover" : "fill",
+                  objectFit: item.title === "Agentic AI Engineering" ? "cover" : "fill",
                 }}
               />
               <Box px="4" pb="6" borderRadius="8px" w="100%">

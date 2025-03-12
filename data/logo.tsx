@@ -6,8 +6,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import lightLogo from "../public/assets/logo/logo.png";
-import darkLogo from "../public/assets/logo/logo (1).png";
+import Image from "next/image";
 
 export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
   const color = useColorModeValue("#231f20", "#fff");
@@ -21,16 +20,17 @@ export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
         textDecoration: "none",
       }}
     >
-      <img
+      <Image
         src={
           colorMode === "light"
             ? "/assets/logo/logo.png"
             : "/assets/logo/logo (1).png"
         }
         alt="Logo"
+        loading="eager"
+        width={100}
+        height={30}
         style={{
-          width: "100px",
-          height: "30px",
           objectFit: "contain",
           fontSize: "0.25rem",
         }}

@@ -24,17 +24,14 @@ import {
   Grid,
   Avatar,
   Img,
-  Input,
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   useBreakpointValue,
-  Toast,
-  GridItem,
-  Fade,
   Tooltip,
 } from "@chakra-ui/react";
+// new import for animation
+import { keyframes } from "@emotion/react";
 import { SEO } from "components/seo/seo";
 import { Logo2 } from "components/logo2";
 import { FallInPlace } from "components/motion/fall-in-place";
@@ -48,23 +45,13 @@ import {
 } from "@saas-ui/react";
 import { Link } from "@chakra-ui/react";
 import { Em } from "components/typography";
-import { NextjsLogo, ChakraLogo } from "components/logos";
-import bipCards from "../components/Bipcards";
 import {
-  FiArrowRight,
   FiBox,
-  FiCheck,
   FiCode,
-  FiCopy,
   FiFlag,
-  FiGithub,
-  FiGrid,
   FiLock,
   FiSearch,
-  FiSliders,
-  FiSmile,
   FiTerminal,
-  FiThumbsUp,
   FiToggleLeft,
   FiTrendingUp,
   FiUserPlus,
@@ -89,23 +76,14 @@ import {
   HighlightsWhatWeDo,
 } from "components/highlights";
 
-import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
-import {
-  FaArrowCircleLeft,
-  FaArrowCircleRight,
-  FaLinkedin,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FiFacebook, FiLinkedin } from "react-icons/fi";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
-import axios from "axios";
-import toast from "react-hot-toast";
 import NewsLetter from "components/NewsLetter";
-import { AiFillGithub } from "react-icons/ai";
-import HeroSectionImage from "components/HeroSectionImage";
+import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
@@ -115,6 +93,7 @@ import animationData1 from "../public/assets/Animation/screen.json";
 import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
 
@@ -162,9 +141,8 @@ const Home: NextPage = () => {
         title="Tech Emulsion | Imagineering Digital Transformation"
         description="Imagineering digital transformation for your business"
       />
-      <Box>
+      <Box height="100%" width="100%" overflow="hidden">
         <HeroSection />
-
         <AboutUsSection />
         <HighlightsSection />
         <Portfolio />
@@ -185,6 +163,7 @@ const Home: NextPage = () => {
 };
 type LottieAnimationData = Record<string, any>;
 
+
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentAnimation, setCurrentAnimation] =
@@ -200,12 +179,63 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.play().catch((err) => console.error("Video play error:", err));
+  }, []);
+
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
-  return (
-    <Box position="relative" overflow="hidden">
+  return colorMode === "dark" ? (
+    <Box
+      position="relative"
+      overflow="hidden"
+      display="grid"
+      gridTemplateColumns="1fr"
+      gridTemplateRows="1fr"
+    // placeItems="center"
+    >
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.xl" pt={{ base: 20, lg: 20 }}>
+      <Box
+        gridColumn="1 / -1"
+        gridRow="1 / -1"
+        height="100%"
+        width="100%"
+        display="grid"
+        zIndex="-1"
+        mb={{ base: "0px", lg: "-120px" }}
+      >
+        <FallInPlace delay={0.2}>
+          <video
+            src="/assets/Animation/hero-video.mp4"
+            ref={videoRef}
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            // loading="eager"
+            // playsInline={true}
+            preload="auto"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              maxWidth: "100%",
+              // animation: `${fadeAnimation} 5s linear infinite`,
+            }}
+          />
+        </FallInPlace>
+      </Box>
+      <Container
+        maxW="container.xl"
+        pt={{ base: 20, lg: 20 }}
+        gridColumn="1 / -1"
+        gridRow="1 / -1"
+        zIndex={1}
+      >
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
@@ -218,18 +248,28 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineering <Br />
-                <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
+                {/* <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
                   digital transformation
-                </Em>
+                </Em> */}
+                <Em style={{ color: "#66B2B2" }}>digital transformation</Em>
                 <Br /> for your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
-                Empowering businesses with next-gen{" "}
-                <Em> SaaS, web, and AI solutions</Em> driving innovation and
-                excellence through tailored technology strategies that propel
-                your brand to new heights.
+                <Em>
+                  Empowering businesses with next-gen{" "}
+                  <Em
+                    style={{
+                      color: "#66B2B2",
+                      fontWeight: "900",
+                    }}
+                  >
+                    SaaS, web, and AI solutions
+                  </Em>{" "}
+                  driving innovation and excellence through tailored technology
+                  strategies that propel your brand to new heights.
+                </Em>
               </FallInPlace>
             }
           >
@@ -249,25 +289,7 @@ const HeroSection: React.FC = () => {
                 >
                   Explore Portfolio
                 </ButtonLink>
-                {/* <ButtonLink
-                  size="lg"
-                  href="https://demo.saas-ui.dev"
-                  variant="outline"
-                  rightIcon={
-                    <Icon
-                      as={FiArrowRight}
-                      sx={{
-                        transitionProperty: "common",
-                        transitionDuration: "normal",
-                        ".chakra-button:hover &": {
-                          transform: "translate(5px)",
-                        },
-                      }}
-                    />
-                  }
-                >
-                  View demo
-                </ButtonLink> */}
+
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -292,39 +314,145 @@ const HeroSection: React.FC = () => {
               </Text>
               <FallInPlace delay={0.6}>
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
-                  {colorMode === "dark" ? (
-                    <>
-                      <Image
-                        src="/assets/clients/atarim-white.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                      />
-                      <Image
-                        src="/assets/clients/farmin-white.png"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                        alt="Farmin logo"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <Image
-                        src="/assets/clients/Atarim.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                      />
-                      <Image
-                        src="/assets/clients/farmin-dark.png"
-                        width={100}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                        alt="Farmin logo"
-                      />
-                    </>
-                  )}
+                  <>
+                    <Image
+                      src="/assets/clients/atarim-white.svg"
+                      width={100}
+                      height={100}
+                      alt="Atarim logo"
+                    />
+                    <Image
+                      src="/assets/clients/farmin-white.png"
+                      width={100}
+                      height={100}
+                      style={{ objectFit: "contain" }}
+                      alt="Farmin logo"
+                    />
+                  </>
+                </Box>
+              </FallInPlace>
+            </VStack>
+          </Hero>
+          <Box
+            display={{ base: "none", lg: "block" }}
+            mt={{ base: "20", lg: "20" }}
+            mr={{ base: 0, lg: 0 }}
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
+          >
+            <FallInPlace delay={1}>
+              <Box overflow="hidden">
+                {/*   <Player
+                  autoplay
+                  loop
+                  src={currentAnimation} // Toggle between animations
+                  style={{
+                    height: "70%",
+                    width: "70%",
+                  }}
+                /> */}
+              </Box>
+            </FallInPlace>
+          </Box>
+        </Stack>
+      </Container>
+    </Box>
+  ) : (
+    <Box position="relative" overflow="hidden">
+      <BackgroundGradient height="100%" zIndex="-1" />
+      <Container maxW="container.xl" pt={{ base: 20, lg: 20 }}>
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justifyContent={{ base: "center", lg: "space-between" }}
+          alignItems="flex-start"
+        >
+          <Hero
+            id="home"
+            justifyContent="flex-start"
+            px="0"
+            title={
+              <FallInPlace>
+                Imagineering <Br />
+                {/* <Em color={colorMode === "dark" ? "#66B2B2" : "#004C4C"}>
+                  digital transformation
+                </Em> */}
+                <Em style={{ color: "#004C4C" }}>digital transformation</Em>
+                <Br /> for your business
+              </FallInPlace>
+            }
+            description={
+              <FallInPlace delay={0.4} fontWeight="medium">
+                <Em>
+                  Empowering businesses with next-gen{" "}
+                  <Em
+                    style={{
+                      color: "#004C4C",
+                      fontWeight: "900",
+                    }}
+                  >
+                    SaaS, web, and AI solutions
+                  </Em>{" "}
+                  driving innovation and excellence through tailored technology
+                  strategies that propel your brand to new heights.
+                </Em>
+              </FallInPlace>
+            }
+          >
+            <FallInPlace delay={0.8}>
+              <HStack pt="4" pb="6" spacing="8">
+                {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
+              </HStack>
+
+              <ButtonGroup spacing={4} alignItems="center">
+                <ButtonLink
+                  size="lg"
+                  href="#portfolio"
+                  sx={{
+                    bg: "#004c4c !important",
+                    color: "white !important",
+                  }}
+                >
+                  Explore Portfolio
+                </ButtonLink>
+
+              </ButtonGroup>
+            </FallInPlace>
+            <VStack
+              flex="1"
+              spacing="2"
+              alignItems="flex-start"
+              display={{ base: "flex", lg: "flex" }}
+              mt="10"
+            >
+              <Text
+                fontSize="sm"
+                color="muted"
+                fontWeight="medium"
+                maxW="lg"
+                textAlign="left"
+                display={"flex"}
+                alignItems={"center"}
+                width={"100%"}
+              >
+                Trusted By the Best{"  "}
+                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
+              </Text>
+              <FallInPlace delay={0.6}>
+                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                  <>
+                    <Image
+                      src="/assets/clients/Atarim.svg"
+                      width={100}
+                      height={100}
+                      alt="Atarim logo"
+                    />
+                    <Image
+                      src="/assets/clients/farmin-dark.png"
+                      width={100}
+                      height={100}
+                      style={{ objectFit: "contain" }}
+                      alt="Farmin logo"
+                    />
+                  </>
                 </Box>
               </FallInPlace>
             </VStack>
@@ -399,7 +527,7 @@ const AboutUsSection: React.FC = () => {
   return (
     <Box id="about" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5">
-        <Divider />
+        {/*<Divider /> */}
 
         <Stack
           direction={["column", null, "row"]}
@@ -491,6 +619,22 @@ const AboutUsSection: React.FC = () => {
               <Link href="https://github.com/hassanms" isExternal>
                 <Icon
                   as={AiFillGithub}
+                  boxSize="10"
+                  color="gray.500"
+                  sx={{
+                    padding: "10px",
+                    borderRadius: "20%",
+                    border: "1px solid #004c4c",
+                    ":hover": {
+                      bg: "#004c4c",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+              <Link href="https://www.youtube.com/@TechEmulsion" isExternal>
+                <Icon
+                  as={AiFillYoutube}
                   boxSize="10"
                   color="gray.500"
                   sx={{
@@ -831,13 +975,16 @@ const HighlightsSection: React.FC = () => {
               title={""}
               padding={0}
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.alt}
+                width={1200}
+                height={300}
                 style={{
                   width: "100%",
                   height: "300px",
-                  objectFit: item.title === "Agentic AI Engineering" ? "cover" : "fill",
+                  objectFit:
+                    item.title === "Agentic AI Engineering" ? "cover" : "fill",
                 }}
               />
               <Box px="4" py="6" borderRadius="8px" w="100%">
@@ -990,7 +1137,7 @@ const Portfolio: React.FC = () => {
       title:
         "Artis – Blockchain powered SaaS to help artists copyright their work",
       description:
-        "Artis helps artists register copyrights for their creative work quickly and easily. We use the Ethereum blockchain and the Polygon platform to keep these copyrights secure, using the latest web technologies.",
+        "Artis is an AI-driven platform that analyzes an artist’s style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },
@@ -1014,7 +1161,7 @@ const Portfolio: React.FC = () => {
       description:
         "MoodTube allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings with models like all-mpnet-base-v2, and stores them in PGVector. Semantic search retrieves videos matching the selected mood, offering personalized video recommendations.",
       image: "/assets/portfolio/moodtube.png",
-      alt: "MoodTube – AI-Powered Video Search by Mood"
+      alt: "MoodTube – AI-Powered Video Search by Mood",
     },
     {
       title: "RAG Based Customized ChatBot",
@@ -1022,13 +1169,93 @@ const Portfolio: React.FC = () => {
         "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
       image: "/assets/portfolio/raggenai.png",
       alt: "RAG – AI-Powered Document Querying Application",
-    }
-
+    },
   ];
   return (
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
         <Divider />
+
+        <Box
+          display={{ base: "block", md: "flex" }}
+          px="4"
+          mt={10}
+          justifyContent={"space-between"}
+        >
+          <Box>
+            <Heading
+              as="h2"
+              size="md"
+              color={colorMode === "dark" ? "white" : "#004c4c"}
+              sx={{
+                textTransform: "uppercase",
+              }}
+            >
+              Creative Portfolio
+            </Heading>
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                fontSize: {
+                  base: "2rem",
+                  md: "2rem",
+                },
+                width: {
+                  base: "100%",
+                  md: "70%",
+                },
+              }}
+            >
+              Recent Works
+            </Heading>
+
+            {/* for small text  */}
+
+            <Text
+              py="4"
+              color="muted"
+              fontSize="lg"
+              fontWeight={"500"}
+              mt="4"
+              width={{ base: "100%", md: "60%" }}
+              textAlign="left"
+            >
+              {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
+            project highlights our dedication to quality and creativity.
+            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
+            </Text>
+          </Box>
+
+          {/* Explore services */}
+          <ButtonGroup
+            spacing={4}
+            display="flex"
+            justifyContent={["flex-start", null, "flex-end"]}
+            width={["100%", null, "auto"]}
+            alignItems="end"
+            mt="4"
+          >
+            <ButtonLink
+              size="lg"
+              href="/portfolio"
+              sx={{
+                bg: " none",
+                fontSize: "1.5rem",
+                color: colorMode === "light" ? "#004c4c !important" : "white",
+                textDecoration: "underline",
+                ":hover": {
+                  bg: "none",
+                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  textDecoration: "none",
+                },
+              }}
+            >
+              {/* Explore Portfolio */}
+            </ButtonLink>
+          </ButtonGroup>
+        </Box>
+
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -1037,44 +1264,6 @@ const Portfolio: React.FC = () => {
           gap={"4"}
           mt={10}
         >
-          <Heading
-            as="h2"
-            size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
-            sx={{
-              textTransform: "uppercase",
-            }}
-          >
-            Creative Portfolio
-          </Heading>
-          <Heading
-            as="h1"
-            mt="2"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              fontSize: {
-                base: "2rem",
-                md: "2rem",
-              },
-              width: "100%",
-            }}
-          >
-            Recent Works
-          </Heading>
-          <Text
-            color="muted"
-            fontSize="lg"
-            fontWeight={"500"}
-            mt="4"
-            width={"60%"}
-            align={"center"}
-          >
-            {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
-            project highlights our dedication to quality and creativity.
-            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
-          </Text>
           <Button
             size="lg"
             mt={"10"}
@@ -1231,6 +1420,9 @@ const Portfolio: React.FC = () => {
     </Box>
   );
 };
+const scrollAnimation = keyframes`
+0% { transform: translateX(0); }
+100% { transform: translateX(-100%); }`;
 
 const SocialProofSection: React.FC = () => {
   const { colorMode } = useColorMode();
@@ -1245,7 +1437,708 @@ const SocialProofSection: React.FC = () => {
       height={[null, null, null]}
       mb="200"
     >
-      <Container maxW="container.xl" py="5" mb="20">
+      <Box
+        position={"relative"}
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        gap="4"
+        py="5"
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="4"
+        >
+          <Heading
+            as="h1"
+            mt="2"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+
+              fontSize: {
+                base: "2rem",
+                md: "2rem",
+              },
+              width: "100%",
+            }}
+          >
+            Trusted by Leading Brands
+          </Heading>
+
+          <Text
+            color="gray.400"
+            fontSize="lg"
+            fontWeight={"500"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            mt="4"
+            px="10"
+            width={{ base: "100%", md: "60%" }}
+            textAlign="center"
+          >
+            We’re proud to have worked with a diverse range of clients across
+            industries, delivering impactful solutions that drive results. Our
+            clients trust us for our commitment to quality, innovation, and
+            lasting partnerships, helping them achieve their digital goals with
+            ease.
+          </Text>
+        </Box>
+      </Box>
+      <Box
+        display="flex"
+        width="480%"
+        minWidth="4300px"
+        whiteSpace="nowrap"
+        overflow="hidden"
+      >
+        <Box
+          display="flex"
+          width="50%"
+          justifyContent="space-around"
+          alignItems="center"
+          animation={`${scrollAnimation} 75s infinite linear`}
+          gap={{ base: "13px", lg: "0" }}
+        >
+          <Tooltip label="Artis" hasArrow>
+            <Image
+              src="/assets/clients/Artis-lab.png"
+              alt="Artis"
+              width={100}
+              height={100}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "100px",
+                maxWidth: "100px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Atarim" hasArrow>
+            <Image
+              src="/assets/clients/atarim-white.svg"
+              alt="Atarim"
+              width={150}
+              height={60}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "150px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Teadit" hasArrow>
+            <Image
+              src="/assets/clients/teadit.png"
+              alt="teadit"
+              width={130}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "70px",
+                width: "130px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Popcard" hasArrow>
+            <Image
+              src="/assets/clients/POPCARD_4.png"
+              alt="POPCARD"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Sprintzeal" hasArrow>
+            <Image
+              src="/assets/clients/Sprintzeal_Logo.webp"
+              alt="Sprintzeal"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bai" hasArrow>
+            <Image
+              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              alt="Bai"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Crystal Ball" hasArrow>
+            <Image
+              src="/assets/clients/crystal_ball.png"
+              alt="Crystal Ball"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "50px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Farmin" hasArrow>
+            <Image
+              src="/assets/clients/farmin-white.png"
+              alt="Farmin"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "30px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Ibatu" hasArrow>
+            <Image
+              src="/assets/clients/ibatu.png"
+              alt="Ibatu"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Jarvis" hasArrow>
+            <Image
+              src="/assets/clients/jarvis-logo.png"
+              alt="Jarvis"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          {/* <Tooltip label="Krypto Labs App" hasArrow>
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                // height: "fit-content",
+                // maxHeight: "100px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "120px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip> */}
+          <Tooltip label="Krypto Labs" hasArrow>
+            <Box display="inline-block">
+              <Image
+                src="/assets/clients/krypto-labs.png"
+                alt="Krypto Labs"
+                width={180} // Increased width
+                height={100} // Increased height
+                loading="eager"
+                decoding="async"
+                style={{
+                  display: "block",
+                  objectFit: "cover", // Keeps proportions correct
+                  width: "180px", // Ensures it expands properly
+                  height: "100px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
+          </Tooltip>
+
+          <Tooltip label="Podcast-Beacon" hasArrow>
+            <Image
+              src="/assets/clients/Podcast-Beacon.png"
+              alt="Podcast-Beacon"
+              width={150}
+              height={150}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "150px",
+                maxWidth: "150px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+
+          <Tooltip label="Logo Black" hasArrow>
+            <Image
+              src="/assets/clients/logo-black-small.png"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="IPG" hasArrow>
+            <Image
+              src="/assets/clients/Logo_IPG.jpg"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Republic Power" hasArrow>
+            <Image
+              src="/assets/clients/republic_power_logo.jpeg"
+              alt="Republic Power"
+              width={200}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "90px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Alifa" hasArrow>
+            <Image
+              src="/assets/clients/alifa.PNG"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Moodtube Extension" hasArrow>
+            <Image
+              src="/assets/clients/moodtube_img.png"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "80px",
+                maxWidth: "80px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bipcards" hasArrow>
+            <Box cursor="pointer">
+              <Logo2 />
+            </Box>
+          </Tooltip>
+        </Box>
+        <Box
+          display="flex"
+          width="50%"
+          justifyContent="space-around"
+          alignItems="center"
+          gap={{ base: "13px", lg: "0" }}
+          animation={`${scrollAnimation} 75s infinite linear`}
+        >
+          <Tooltip label="Artis" hasArrow>
+            <Image
+              src="/assets/clients/Artis-lab.png"
+              alt="Artis"
+              width={100}
+              height={100}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "100px",
+                maxWidth: "100px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Atarim" hasArrow>
+            <Image
+              src="/assets/clients/atarim-white.svg"
+              alt="Atarim"
+              width={150}
+              height={60}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "150px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Teadit" hasArrow>
+            <Image
+              src="/assets/clients/teadit.png"
+              alt="teadit"
+              width={130}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "80px",
+                width: "130px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Popcard" hasArrow>
+            <Image
+              src="/assets/clients/POPCARD_4.png"
+              alt="POPCARD"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Sprintzeal" hasArrow>
+            <Image
+              src="/assets/clients/Sprintzeal_Logo.webp"
+              alt="Sprintzeal"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bai" hasArrow>
+            <Image
+              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              alt="Bai"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Crystal Ball" hasArrow>
+            <Image
+              src="/assets/clients/crystal_ball.png"
+              alt="Crystal Ball"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "50px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Farmin" hasArrow>
+            <Image
+              src="/assets/clients/farmin-white.png"
+              alt="Farmin"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "30px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Ibatu" hasArrow>
+            <Image
+              src="/assets/clients/ibatu.png"
+              alt="Ibatu"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Jarvis" hasArrow>
+            <Image
+              src="/assets/clients/jarvis-logo.png"
+              alt="Jarvis"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          {/* <Tooltip label="Krypto Labs App" hasArrow>
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                // height: "fit-content",
+                // maxHeight: "100px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "120px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip> */}
+          <Tooltip label="Krypto Labs" hasArrow>
+            <Box display="inline-block">
+              <Image
+                src="/assets/clients/krypto-labs.png"
+                alt="Krypto Labs"
+                width={180} // Increased width
+                height={100} // Increased height
+                loading="eager"
+                decoding="async"
+                style={{
+                  display: "block",
+                  objectFit: "cover", // Keeps proportions correct
+                  width: "180px", // Ensures it expands properly
+                  height: "100px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
+          </Tooltip>
+
+          <Tooltip label="Podcast-Beacon" hasArrow>
+            <Image
+              src="/assets/clients/Podcast-Beacon.png"
+              alt="Podcast-Beacon"
+              width={150}
+              height={150}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "150px",
+                maxWidth: "150px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+
+          <Tooltip label="Logo Black" hasArrow>
+            <Image
+              src="/assets/clients/logo-black-small.png"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="IPG" hasArrow>
+            <Image
+              src="/assets/clients/Logo_IPG.jpg"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Republic Power" hasArrow>
+            <Image
+              src="/assets/clients/republic_power_logo.jpeg"
+              alt="Republic Power"
+              width={200}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "90px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Alifa" hasArrow>
+            <Image
+              src="/assets/clients/alifa.PNG"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Moodtube Extension" hasArrow>
+            <Image
+              src="/assets/clients/moodtube_img.png"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "80px",
+                maxWidth: "80px",
+                // width: "auto",
+                // height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bipcards">
+            <Box cursor="pointer">
+              <Logo2 />
+            </Box>
+          </Tooltip>
+        </Box>
+      </Box>
+      {/* added a margin of -10 */}
+      <Container maxW="container.xl" pb="5" pt="0" mb="20" mt="-10">
         <Box
           position={"relative"}
           display="flex"
@@ -1254,689 +2147,13 @@ const SocialProofSection: React.FC = () => {
           alignItems="center"
           gap="4"
         >
-          <Box
+          {/* <Box
             display="flex"
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
             gap="4"
-          >
-            <Heading
-              as="h1"
-              mt="2"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-
-                fontSize: {
-                  base: "2rem",
-                  md: "2rem",
-                },
-                width: "100%",
-              }}
-            >
-              Trusted by Leading Brands
-            </Heading>
-            <Text
-              color="gray.400"
-              fontSize="lg"
-              fontWeight={"500"}
-              mt="4"
-              width={"60%"}
-              align={"center"}
-            >
-              We’re proud to have worked with a diverse range of clients across
-              industries, delivering impactful solutions that drive results. Our
-              clients trust us for our commitment to quality, innovation, and
-              lasting partnerships, helping them achieve their digital goals
-              with ease.
-            </Text>
-
-            <Grid
-              display="grid"
-              templateColumns={[
-                "repeat(2, 1fr)",
-                null,
-                "repeat(2, 1fr)",
-                "repeat(5, 1fr)",
-                "repeat(4, 1fr 1fr)",
-              ]}
-              gap={10}
-              mt="14"
-              justifyItems="center" // Center each grid item horizontally
-              alignItems="center" // Center each grid item vertically
-            >
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/Artis.png"
-                    // style={{
-                    //   width: "120px",
-                    //   height: "120px",
-                    //   objectFit: "contain",
-                    // }}
-                    alt="Artis"
-                    width={60}
-                    height={60}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/Atarim.svg"
-                    alt="Atarim"
-                    width={60}
-                    height={60}
-                    style={{
-                      height: "1120px",
-                      width: "1120px",
-                    }}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/teadit.png"
-                    alt="Teadit"
-                    width={90}
-                    height={90}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Logo2 />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    width: "120px",
-                    height: "120px",
-
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/POPCARD_4.png"
-                    alt="Popcard"
-                    width={120}
-                    height={120}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/Sprintzeal_Logo.webp"
-                    alt="Sprintzeal"
-                    width={120}
-                    height={120}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    // "&:hover": {
-                    //   color: "white",
-                    //   transform: "scale(1.1)",
-                    //   transition: "all 0.3s ease",
-                    //   boxShadow: "0 0 10px white",
-                    // },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
-                    alt="Bai"
-                    width={60}
-                    height={60}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    width: "120px",
-                    height: "120px",
-
-                    backgroundColor: "#b2d8d8",
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/crystal_ball.png"
-                    alt="Crystal Ball"
-                    width={60}
-                    height={60}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/farmin-white.png"
-                    alt="Farmin"
-                    width={90}
-                    height={90}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/ibatu.png"
-                    alt="Ibatu"
-                    width={90}
-                    height={90}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/jarvis-logo.png"
-                    alt="Jarvis"
-                    width={120}
-                    height={120}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/krypto_labs_logo.jpeg"
-                    alt="Krypto Labs"
-                    width={120}
-                    height={120}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/podcast-beacon-logo.png"
-                    alt="Krypto Labs"
-                    width={120}
-                    height={120}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/logo-black-small.png"
-                    alt="Logo Black"
-                    width={90}
-                    height={90}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    fontSize: "1.5rem",
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/Logo_IPG.jpg"
-                    alt="Logo Black"
-                    width={90}
-                    height={90}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/republic_power_logo.jpeg"
-                    alt="Republic Power"
-                    width={70}
-                    height={70}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/alifa.PNG"
-                    alt="Republic Power"
-                    width={70}
-                    height={70}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem
-                display="flex"
-                justifyContent="center" // Center the content horizontally inside the grid item
-                alignItems="center" // Center the content vertically inside the grid item
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center", // Center content horizontally inside the Box
-                    alignItems: "center", // Center content vertically inside the Box
-                    flexDirection: "column", // Ensure content stacks vertically
-
-                    color: "gray.400",
-                    padding: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#b2d8d8",
-                    width: "120px",
-                    height: "120px",
-                    cursor: "pointer",
-                    gap: "4",
-                    "&:hover": {
-                      color: "white",
-                    },
-                  }}
-                >
-                  <Image
-                    src="/assets/clients/moodtube_img.png"
-                    alt="Republic Power"
-                    width={70}
-                    height={70}
-                  />
-                </Box>
-              </GridItem>
-            </Grid>
-          </Box>
+          ></Box> */}
           {/* Absolute Subscrite newletter with imput and subscribe button  */}
           <NewsLetter />
         </Box>
@@ -2269,8 +2486,9 @@ const TestimonialsSection: React.FC = () => {
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
+              px="10"
               justifyContent={"center"}
-              width={"100%"}
+              width={{ base: "100%", md: "100%" }}
               align={"center"}
             >
               {`Discover what our clients have to say about their experiences with us.
@@ -2554,7 +2772,6 @@ const TechnologySection: React.FC = () => {
                   />
                 </Tooltip>
               </Box>
-
             </Box>
           </Box>
         </FallInPlace>
@@ -2697,7 +2914,6 @@ const TechnologySection: React.FC = () => {
                   />
                 </Tooltip>
               </Box>
-
             </Box>
           </Box>
         </FallInPlace>
@@ -2767,8 +2983,6 @@ const TechnologySection: React.FC = () => {
                     height={100}
                   />
                 </Tooltip>
-
-
               </Box>
             </Box>
           </Box>
@@ -2989,7 +3203,6 @@ const TechnologySection: React.FC = () => {
                     height={100}
                   />
                 </Tooltip>
-
               </Box>
             </Box>
           </Box>
@@ -3134,9 +3347,10 @@ const TechnologySection: React.FC = () => {
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
+                  bg:
+                    currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
                 },
-                minWidth: "140px"
+                minWidth: "140px",
               }}
               onClick={() => setCurrentTab("noCodeAutomation")}
             >

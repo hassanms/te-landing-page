@@ -13,7 +13,7 @@ const CaseStudyMoodtube = () => {
         <title>Case Study: Moodtube - Tech Emulsion</title>
         <meta
           name="description"
-          // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
+        // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -44,7 +44,7 @@ const CaseStudyMoodtube = () => {
 
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.xl" py="20">
+      <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}

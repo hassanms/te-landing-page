@@ -55,18 +55,17 @@ const CaseStudyFarmin = () => {
 
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.8xl" py="10">
+      <Container maxW="container.8xl" py={{ base: "0", md: "20", lg: "5" }}>
         <Box
           display={{ base: "block", md: "flex" }}
           // px="15"
           justifyContent={"space-between"}
-          mb={10}
         >
           <Box
             sx={{
               position: "relative",
               width: "100%",
-              py: 1,
+              py: { base: 0, md: 4, lg: 1 },
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -90,10 +89,24 @@ const CaseStudyFarmin = () => {
               />
             </Box>
             <Box
-              position="absolute"
-              bottom="-15%"
-              left="50%"
-              transform="translate(-50%, -50%)"
+              // position="absolute"
+              // bottom="-15%"
+              // left="50%"
+              // transform="translate(-50%, -50%)"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+              borderRadius="md"
+              // width=
+              p={5}
+              boxShadow="md"
+              // mt={{ base: "-40px", md: "-100px" }} // Adjust margin for responsiveness
+              mt={{ base: "-40vh", md: "-15vh", lg: "-15vh" }}
+              maxWidth={{ base: "90%", lg: "50%" }}
+              width={{ base: "90%", lg: "50%" }}
+              height={{ base: "90%", lg: "50%" }}
               sx={{
                 backgroundImage:
                   colorMode === "dark"
@@ -142,7 +155,7 @@ const CaseStudyFarmin = () => {
             </Box>
           </Box>
         </Box>
-        <Container maxW="container.xl" py="20">
+        <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
           <BackgroundGradient height="100%" zIndex="-1" />
 
           {/* Case Study Content */}
@@ -342,6 +355,7 @@ const CaseStudyFarmin = () => {
             </Box>
             <Box
               sx={{
+                position: "relative",
                 width: "100%",
                 py: 10,
                 display: "flex",
@@ -352,10 +366,14 @@ const CaseStudyFarmin = () => {
                 textAlign: "center",
               }}
             >
+              <FaQuoteLeft
+                size={10}
+                style={{ position: "absolute", left: "15%", top: 40 }}
+              />
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
-                  fontSize: "4xl",
+                  fontSize: { base: "md", lg: "4xl" },
                   fontWeight: "normal",
                   lineHeight: "1.5",
                   letterSpacing: "normal",
@@ -365,11 +383,13 @@ const CaseStudyFarmin = () => {
                   width: "60%",
                 }}
               >
-                <FaQuoteLeft size={30} style={{ marginRight: 10 }} />
                 Tech Emulsion can work on different application technologies and
                 is capable of adapting quickly to changing needs.
-                <FaQuoteRight size={30} style={{ marginLeft: 10 }} />
               </Text>
+              <FaQuoteRight
+                size={10}
+                style={{ position: "absolute", right: "20%", bottom: 40 }}
+              />
             </Box>
             <Text
               fontSize="4xl"

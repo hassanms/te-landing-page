@@ -44,7 +44,7 @@ const CaseStudyArtis = () => {
 
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.xl" py="20">
+      <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -107,12 +107,19 @@ const CaseStudyArtis = () => {
               mt="4"
               width={["auto", null, "60%"]}
             >
-              Artis is a leading SaaS company that provides a platform for
-              businesses to manage their customer relationships. They needed a
-              custom software solution to scale their operations and improve
-              customer satisfaction. Tech Emulsion built a custom CRM system
-              that integrated with their existing tools, providing a seamless
-              experience for their team and customers.
+              Artis is an AI-driven platform that functions as a personalised
+              creative support team, analysing an artist's style and preferences
+              to offer tailored advice, marketing strategies, and suggestions
+              for showcasing and selling their work. Utilising blockchain
+              technology, Artis ensures ownership protection by creating
+              tamper-proof digital certificates and unique fingerprints for each
+              creation, safeguarding intellectual property while simplifying
+              copyright and patent processes. The platform also boosts creators'
+              reach and revenue by connecting them with audiences, facilitating
+              secure sales, and enhancing their personal brand. Artis caters to
+              artists, musicians, writers, inventors, collectors, and
+              businesses, aiming to make creativity secure, accessible, and
+              profitable.
             </Text>
           </Box>
         </Box>

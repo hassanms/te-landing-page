@@ -51,7 +51,7 @@ const CaseStudyJarvisreach = () => {
   
     gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.8xl" py="10">
+      <Container maxW="container.8xl" py={{ base: "0", md: "20", lg: "5" }}>
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -63,7 +63,7 @@ const CaseStudyJarvisreach = () => {
             sx={{
               position: "relative",
               width: "100%",
-              py: 1,
+              py: { base: 0, md: 4, lg: 1 },
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -153,7 +153,7 @@ const CaseStudyJarvisreach = () => {
             </Box>
           </Box>
         </Box>
-        <Container maxW="container.xl" py="20">
+        <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
           <BackgroundGradient height="100%" zIndex="-1" />
 
           {/* Case Study Content */}

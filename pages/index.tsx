@@ -24,15 +24,10 @@ import {
   Grid,
   Avatar,
   Img,
-  Input,
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   useBreakpointValue,
-  Toast,
-  GridItem,
-  Fade,
   Tooltip,
 } from "@chakra-ui/react";
 // new import for animation
@@ -51,20 +46,12 @@ import {
 import { Link } from "@chakra-ui/react";
 import { Em } from "components/typography";
 import {
-  FiArrowRight,
   FiBox,
-  FiCheck,
   FiCode,
-  FiCopy,
   FiFlag,
-  FiGithub,
-  FiGrid,
   FiLock,
   FiSearch,
-  FiSliders,
-  FiSmile,
   FiTerminal,
-  FiThumbsUp,
   FiToggleLeft,
   FiTrendingUp,
   FiUserPlus,
@@ -89,20 +76,12 @@ import {
   HighlightsWhatWeDo,
 } from "components/highlights";
 
-import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi";
-import {
-  FaArrowCircleLeft,
-  FaArrowCircleRight,
-  FaLinkedin,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FiFacebook, FiLinkedin } from "react-icons/fi";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
-import axios from "axios";
-import toast from "react-hot-toast";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import OutsourceIcon from "components/icons/Outsource";
@@ -310,25 +289,7 @@ const HeroSection: React.FC = () => {
                 >
                   Explore Portfolio
                 </ButtonLink>
-                {/* <ButtonLink
-                  size="lg"
-                  href="https://demo.saas-ui.dev"
-                  variant="outline"
-                  rightIcon={
-                    <Icon
-                      as={FiArrowRight}
-                      sx={{
-                        transitionProperty: "common",
-                        transitionDuration: "normal",
-                        ".chakra-button:hover &": {
-                          transform: "translate(5px)",
-                        },
-                      }}
-                    />
-                  }
-                >
-                  View demo
-                </ButtonLink> */}
+
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -452,25 +413,7 @@ const HeroSection: React.FC = () => {
                 >
                   Explore Portfolio
                 </ButtonLink>
-                {/* <ButtonLink
-                  size="lg"
-                  href="https://demo.saas-ui.dev"
-                  variant="outline"
-                  rightIcon={
-                    <Icon
-                      as={FiArrowRight}
-                      sx={{
-                        transitionProperty: "common",
-                        transitionDuration: "normal",
-                        ".chakra-button:hover &": {
-                          transform: "translate(5px)",
-                        },
-                      }}
-                    />
-                  }
-                >
-                  View demo
-                </ButtonLink> */}
+
               </ButtonGroup>
             </FallInPlace>
             <VStack

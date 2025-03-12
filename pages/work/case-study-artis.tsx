@@ -44,7 +44,7 @@ const CaseStudyArtis = () => {
 
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.xl" py="20">
+      <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}

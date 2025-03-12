@@ -13,7 +13,7 @@ const CaseStudyRagGenai = () => {
         <title>Case Study: RAG Based Customized ChatBot - Tech Emulsion</title>
         <meta
           name="description"
-          // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
+        // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -44,7 +44,7 @@ const CaseStudyRagGenai = () => {
 
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.xl" py="20">
+      <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}
@@ -107,9 +107,9 @@ const CaseStudyRagGenai = () => {
               mt="4"
               width={["auto", null, "60%"]}
             >
-              The project is an AI-powered Retrieval-Augmented Generation (RAG) application that allows users 
-              to upload PDF documents, ask questions about their content, and receive accurate, context-aware 
-              answers by utilizing OpenAI's language models, embeddings, and a vector database for efficient 
+              The project is an AI-powered Retrieval-Augmented Generation (RAG) application that allows users
+              to upload PDF documents, ask questions about their content, and receive accurate, context-aware
+              answers by utilizing OpenAI's language models, embeddings, and a vector database for efficient
               document retrieval.
             </Text>
           </Box>

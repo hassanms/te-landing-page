@@ -50,8 +50,6 @@ import {
 } from "@saas-ui/react";
 import { Link } from "@chakra-ui/react";
 import { Em } from "components/typography";
-import { NextjsLogo, ChakraLogo } from "components/logos";
-import bipCards from "../components/Bipcards";
 import {
   FiArrowRight,
   FiBox,
@@ -107,7 +105,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
-import HeroSectionImage from "components/HeroSectionImage";
 import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
@@ -1035,9 +1032,11 @@ const HighlightsSection: React.FC = () => {
               title={""}
               padding={0}
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.alt}
+                width={1200}
+                height={300}
                 style={{
                   width: "100%",
                   height: "300px",
@@ -1561,6 +1560,7 @@ const SocialProofSection: React.FC = () => {
           justifyContent="space-around"
           alignItems="center"
           animation={`${scrollAnimation} 75s infinite linear`}
+          gap={{ base: "13px", lg: "0" }}
         >
           <Tooltip label="Artis" hasArrow>
             <Image
@@ -1878,6 +1878,7 @@ const SocialProofSection: React.FC = () => {
           width="50%"
           justifyContent="space-around"
           alignItems="center"
+          gap={{ base: "13px", lg: "0" }}
           animation={`${scrollAnimation} 75s infinite linear`}
         >
           <Tooltip label="Artis" hasArrow>

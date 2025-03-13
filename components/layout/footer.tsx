@@ -7,19 +7,17 @@ import {
   Stack,
   Flex,
   HStack,
-  Grid,
   List,
   ListItem,
   Divider,
   useColorMode,
 } from "@chakra-ui/react";
-import { Br } from "@saas-ui/react";
 import Layout from "components/FooterLayout/layout-1";
 import LayoutBottom from "components/FooterLayout/LayoutBottom";
 
 import siteConfig from "data/config";
 import Link from "next/link";
-import { FaPhone, FaWhatsapp, FaWhatsappSquare } from "react-icons/fa";
+import { FaPhone, FaWhatsapp } from "react-icons/fa";
 
 export interface FooterProps extends BoxProps {
   columns?: number;

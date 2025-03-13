@@ -1,8 +1,6 @@
 import {
   Box,
-  chakra,
   HTMLChakraProps,
-  Text,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";

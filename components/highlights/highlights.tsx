@@ -6,10 +6,8 @@ import {
   GridItem,
   GridItemProps,
   Heading,
-  Text,
   useColorModeValue,
   useTheme,
-  VStack,
 } from "@chakra-ui/react";
 import { transparentize } from "@chakra-ui/theme-tools";
 import { Section, SectionProps } from "components/section";
@@ -17,7 +15,7 @@ import { Testimonial, TestimonialProps } from "components/testimonials";
 
 export interface HighlightBoxProps
   extends GridItemProps,
-    Omit<CardProps, "title"> {}
+  Omit<CardProps, "title"> { }
 
 export const HighlightsItem: React.FC<HighlightBoxProps> = (props) => {
   const { children, title, ...rest } = props;

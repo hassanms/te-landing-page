@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
+import Image from "next/image";
 
 const Teams = ({ image, name, role }) => {
   return (
@@ -38,7 +39,7 @@ const Teams = ({ image, name, role }) => {
           justifyContent: "center",
         }}
       >
-        <img
+        <Image
           alt="Jackie Sanders"
           className="w-full object-cover object-center"
           style={{

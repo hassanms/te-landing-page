@@ -1,6 +1,5 @@
 import { Toaster as HotToaster } from "react-hot-toast";
 import { useTheme } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
 
 export const Toaster = () => {
   const theme = useTheme();

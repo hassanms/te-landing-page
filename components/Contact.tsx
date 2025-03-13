@@ -1,22 +1,16 @@
 import {
   Box,
   Button,
-  ButtonGroup,
   CircularProgress,
   Container,
-  Divider,
   Heading,
   Input,
   Stack,
   Text,
   Textarea,
   useColorMode,
-  VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { BackgroundGradient } from "./gradients/background-gradient";
-import { ButtonLink } from "./button-link";
-import { FaChevronRight } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 

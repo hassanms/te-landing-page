@@ -16,14 +16,11 @@ import {
   Wrap,
   Tag,
   useClipboard,
-  IconButton,
   VStack,
-  Flex,
   useColorMode,
   Divider,
   Grid,
   Avatar,
-  Img,
   Card,
   CardHeader,
   CardBody,
@@ -72,7 +69,6 @@ import pricing from "data/pricing";
 import {
   Highlights,
   HighlightsItem,
-  HighlightsTestimonialItem,
   HighlightsWhatWeDo,
 } from "components/highlights";
 
@@ -197,7 +193,6 @@ const HeroSection: React.FC = () => {
       display="grid"
       gridTemplateColumns="1fr"
       gridTemplateRows="1fr"
-    // placeItems="center"
     >
       <BackgroundGradient height="100%" zIndex="-1" />
       <Box
@@ -218,13 +213,12 @@ const HeroSection: React.FC = () => {
             muted={true}
             // loading="eager"
             // playsInline={true}
-            preload="auto"
+            preload="metadata"
             style={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
               maxWidth: "100%",
-              // animation: `${fadeAnimation} 5s linear infinite`,
             }}
           />
         </FallInPlace>
@@ -444,6 +438,7 @@ const HeroSection: React.FC = () => {
                       width={100}
                       height={100}
                       alt="Atarim logo"
+                      loading="eager"
                     />
                     <Image
                       src="/assets/clients/farmin-dark.png"

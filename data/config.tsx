@@ -61,11 +61,11 @@ const siteConfig = {
     links: [
       {
         href: "https://www.facebook.com/emulsiontech/",
-        label: <FaFacebook size="20" />,
+        label: <FaFacebook size="20" aria-label="Facebook" title="Facebook" />,
       },
       {
         href: "https://www.linkedin.com/company/tech-emulsion/",
-        label: <FaLinkedin size="20" />,
+        label: <FaLinkedin size="20" aria-label="LinkedIn" title="LinkedIn" />,
       },
 
       // {
@@ -74,11 +74,11 @@ const siteConfig = {
       // },
       {
         href: "https://github.com/hassanms",
-        label: <FaGithub size="20" />,
+        label: <FaGithub size="20" aria-label="GitHub" title="GitHub" />,
       },
       {
         href: "https://www.youtube.com/@TechEmulsion",
-        label: <FaYoutube size="20" />,
+        label: <FaYoutube size="20" aria-label="YouTube" title="YouTube" />,
       },
     ],
   },

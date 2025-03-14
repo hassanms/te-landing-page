@@ -4,7 +4,9 @@ const LayoutBottom = () => {
   return (
     <div
       className="-z-1 absolute bottom-0 left-0"
-      aria-label="shape"
+      // aria-label="shape"
+      role="presentation" // Marks it as decorative
+      aria-hidden="true"
       style={{
         position: "absolute",
         bottom: "0rem",

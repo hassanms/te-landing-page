@@ -175,14 +175,27 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVideoLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
 
-    video.play().catch((err) => console.error("Video play error:", err));
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
+
 
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
@@ -204,16 +217,16 @@ const HeroSection: React.FC = () => {
         zIndex="-1"
         mb={{ base: "0px", lg: "-120px" }}
       >
-        <FallInPlace delay={0.2}>
+        <FallInPlace delay={1}>
           <video
-            src="/assets/Animation/hero-video.mp4"
+            src={videoLoaded ? "/assets/Animation/hero-video.mp4" : ""}
             ref={videoRef}
             autoPlay={true}
             loop={true}
             muted={true}
             // loading="eager"
-            // playsInline={true}
-            preload="metadata"
+            playsInline={true}
+            preload="none"
             style={{
               width: "100%",
               height: "100%",
@@ -478,6 +491,29 @@ const HeroSection: React.FC = () => {
   );
 };
 
+const cardData = [
+  {
+    id: 1,
+    name: "Zain Ul Abideen",
+    designation: "Co-Founder & CTO",
+    avatar: "/assets/zain.png",
+    gradient: ["pink.200", "purple.500"],
+    company: "",
+    description:
+      "We are committed to delivering exceptional products, achieving outstanding results, and driving significant revenue growth for our clients.",
+  },
+  {
+    id: 2,
+    name: "Hassan M. Saddique",
+    designation: "Co-Founder & CEO",
+    avatar: "/assets/hassan.png",
+    gradient: ["pink.200", "purple.500"],
+    company: "",
+    description:
+      "At Tech Emulsion, we don’t just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
+  },
+];
+
 const AboutUsSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -495,28 +531,7 @@ const AboutUsSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const cardData = [
-    {
-      id: 1,
-      name: "Zain Ul Abideen",
-      designation: "Co-Founder & CTO",
-      avatar: "/assets/zain.png",
-      gradient: ["pink.200", "purple.500"],
-      company: "",
-      description:
-        "We are committed to delivering exceptional products, achieving outstanding results, and driving significant revenue growth for our clients.",
-    },
-    {
-      id: 2,
-      name: "Hassan M. Saddique",
-      designation: "Co-Founder & CEO",
-      avatar: "/assets/hassan.png",
-      gradient: ["pink.200", "purple.500"],
-      company: "",
-      description:
-        "At Tech Emulsion, we don’t just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
-    },
-  ];
+
   const currentCard = cardData[currentIndex];
 
   return (
@@ -578,6 +593,7 @@ const AboutUsSection: React.FC = () => {
               <Link
                 href="https://www.linkedin.com/company/tech-emulsion/"
                 isExternal
+                aria-label="Visit Tech Emulsion on LinkedIn"
               >
                 <Icon
                   as={FiLinkedin}
@@ -595,7 +611,9 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
 
-              <Link href="https://www.facebook.com/emulsiontech/" isExternal>
+              <Link href="https://www.facebook.com/emulsiontech/" isExternal
+                aria-label="Visit Tech Emulsion on Facebook"
+              >
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
@@ -611,7 +629,9 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://github.com/hassanms" isExternal>
+              <Link href="https://github.com/hassanms" isExternal
+                aria-label="Visit Hassan's GitHub profile"
+              >
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
@@ -627,7 +647,9 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://www.youtube.com/@TechEmulsion" isExternal>
+              <Link href="https://www.youtube.com/@TechEmulsion" isExternal
+                aria-label="Visit Tech Emulsion on YouTube"
+              >
                 <Icon
                   as={AiFillYoutube}
                   boxSize="10"
@@ -804,21 +826,22 @@ const AboutUsSection: React.FC = () => {
                 "Artificial Intelligence",
                 "Machine Learning",
               ].map((value) => (
-                <Tag
-                  key={value}
-                  variant="subtle"
-                  rounded="full"
-                  px="3"
-                  sx={{
-                    bg: "#185651",
-                    color: "#fff",
-                    "&:hover": {
-                      bg: "#004c4c",
-                    },
-                  }}
-                >
-                  {value}
-                </Tag>
+                <li key={value}>
+                  <Tag
+                    variant="subtle"
+                    rounded="full"
+                    px="3"
+                    sx={{
+                      bg: "#185651",
+                      color: "#fff",
+                      "&:hover": {
+                        bg: "#004c4c",
+                      },
+                    }}
+                  >
+                    {value}
+                  </Tag>
+                </li>
               ))}
             </Wrap>
           </HighlightsItem>
@@ -1223,7 +1246,7 @@ const Portfolio: React.FC = () => {
           </Box>
 
           {/* Explore services */}
-          <ButtonGroup
+          {/* <ButtonGroup
             spacing={4}
             display="flex"
             justifyContent={["flex-start", null, "flex-end"]}
@@ -1246,9 +1269,9 @@ const Portfolio: React.FC = () => {
                 },
               }}
             >
-              {/* Explore Portfolio */}
+              Explore Portfolio
             </ButtonLink>
-          </ButtonGroup>
+          </ButtonGroup> */}
         </Box>
 
         <Box

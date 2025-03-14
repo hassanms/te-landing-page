@@ -1,4 +1,5 @@
 import {
+  VisuallyHidden,
   Box,
   BoxProps,
   SimpleGrid,
@@ -7,19 +8,17 @@ import {
   Stack,
   Flex,
   HStack,
-  Grid,
   List,
   ListItem,
   Divider,
   useColorMode,
 } from "@chakra-ui/react";
-import { Br } from "@saas-ui/react";
 import Layout from "components/FooterLayout/layout-1";
 import LayoutBottom from "components/FooterLayout/LayoutBottom";
 
 import siteConfig from "data/config";
 import Link from "next/link";
-import { FaPhone, FaWhatsapp, FaWhatsappSquare } from "react-icons/fa";
+import { FaPhone, FaWhatsapp } from "react-icons/fa";
 
 export interface FooterProps extends BoxProps {
   columns?: number;
@@ -72,6 +71,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
               >
                 {/* ul li */}
                 <List
+                  role="list"
                   style={{
                     listStyleType: "none",
                     padding: 0,
@@ -81,60 +81,32 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     gap: "0.2rem",
                   }}
                 >
-                  <a
-                    href="https://wa.me/66947060139"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <ListItem
-                      style={{
-                        color: "silver",
-                        fontSize: "16px",
-                        display: "flex",
-                        cursor: "pointer",
-                        alignItems: "center",
-                      }}
-                    >
-                      {" "}
-                      <FaWhatsapp
-                        style={{
-                          marginRight: "10px",
-                        }}
-                      />{" "}
-                      +66 947 060 139
-                    </ListItem>
-                  </a>
-                  <ListItem
-                    style={{
-                      color: "silver",
-                      fontSize: "16px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    {" "}
-                    <FaPhone
-                      style={{
-                        marginRight: "10px",
-                      }}
-                    />{" "}
-                    +92 334 555 9140
+                  <ListItem role="listitem">
+                    <a href="https://wa.me/66947060139" target="_blank" rel="noreferrer">
+                      <HStack>
+                        <FaWhatsapp style={{ marginRight: "2px", color: "silver" }} />
+                        <Text color="silver" fontSize="16px">
+                          +66 947 060 139
+                        </Text>
+                      </HStack>
+                    </a>
                   </ListItem>
-                  <ListItem
-                    style={{
-                      color: "silver",
-                      fontSize: "16px",
-                    }}
-                  >
-                    info@techemulsion.com
+
+                  <ListItem role="listitem">
+                    <HStack>
+                      <FaPhone style={{ marginRight: "2px", color: "silver" }} />
+                      <Text color="silver" fontSize="16px">+92 334 555 9140</Text>
+                    </HStack>
                   </ListItem>
-                  <ListItem
-                    style={{
-                      color: "silver",
-                      fontSize: "16px",
-                    }}
-                  >
-                    Shiekh Yaseen Trade Centre, University Road, Peshawar
+
+                  <ListItem role="listitem">
+                    <Text color="silver" fontSize="16px">info@techemulsion.com</Text>
+                  </ListItem>
+
+                  <ListItem role="listitem">
+                    <Text color="silver" fontSize="16px">
+                      Shiekh Yaseen Trade Centre, University Road, Peshawar
+                    </Text>
                   </ListItem>
                 </List>
               </HStack>
@@ -341,7 +313,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
           >
             <HStack justify="center" spacing="4" alignSelf="center" mt={8}>
               {siteConfig.footer?.links?.map(({ href, label }) => (
-                <FooterLink key={href} href={href}>
+                <FooterLink key={href} href={href} aria-label={label.props["aria-label"]}>
                   <Text
                     sx={{
                       padding: "5px",
@@ -357,6 +329,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     }}
                   >
                     {label}
+                    <VisuallyHidden>{label.props["aria-label"]}</VisuallyHidden>
                   </Text>
                 </FooterLink>
               ))}

@@ -2,7 +2,6 @@ import {
   chakra,
   HTMLChakraProps,
   Text,
-  TextProps,
   useColorModeValue,
 } from '@chakra-ui/react'
 

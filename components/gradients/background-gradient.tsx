@@ -1,4 +1,4 @@
-import { Box, useTheme, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 export const BackgroundGradient = ({ hideOverlay, ...props }: any) => {
   const customColors = ["#004c4c", "#66b2b2", "#008080", "#006666", "#b2d8d8"];

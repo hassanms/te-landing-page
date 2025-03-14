@@ -1,13 +1,7 @@
 import {
   Box,
-  BoxProps,
-  Button,
-  Center,
-  CenterProps,
   CloseButton,
   Flex,
-  Grid,
-  GridItem,
   HStack,
   IconButton,
   IconButtonProps,
@@ -19,7 +13,6 @@ import {
 } from '@chakra-ui/react'
 import { AnimatePresence, motion, useElementScroll } from 'framer-motion'
 import useRouteChanged from 'hooks/use-route-changed'
-// import { getRoutes } from '@/layouts/mdx'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import * as React from 'react'
@@ -72,7 +65,7 @@ interface MobileNavContentProps {
 }
 
 export function MobileNavContent(props: MobileNavContentProps) {
-  const { isOpen, onClose = () => {} } = props
+  const { isOpen, onClose = () => { } } = props
   const closeBtnRef = React.useRef<HTMLButtonElement>(null)
   const { pathname } = useRouter()
   const bgColor = useColorModeValue('whiteAlpha.900', 'blackAlpha.900')

@@ -4,7 +4,9 @@ const Layout = () => {
   return (
     <div
       className="-z-1 absolute right-3 top-3"
-      aria-label="shape"
+      // aria-label="shape"
+      role="presentation" // Marks it as decorative
+      aria-hidden="true"
       style={{
         position: "absolute",
         right: "1rem",

@@ -11,7 +11,7 @@ import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
-export interface HeaderProps extends Omit<BoxProps, "children"> {}
+export interface HeaderProps extends Omit<BoxProps, "children"> { }
 
 export const Header = (props: HeaderProps) => {
   const ref = React.useRef<HTMLHeadingElement>(null);

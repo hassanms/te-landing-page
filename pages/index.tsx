@@ -107,6 +107,13 @@ const Home: NextPage = () => {
           name="description"
           content="Imagineering digital transformation for your business"
         />
+          {/* Open Graph (OG) Meta Tags for Social Media Previews */}
+        <meta property="og:title" content="Tech Emulsion | Imagineering Digital Transformation" />
+        <meta property="og:description" content="Tech Emulsion Always provide innovative digital transformation solutions." />
+        <meta property="og:image" content="https://techemulsion.com/static/favicons/android-chrome-192x192.png" />
+        <meta property="og:url" content="https://techemulsion.com/" />
+        <meta property="og:type" content="website" />
+
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"

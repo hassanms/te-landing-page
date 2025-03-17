@@ -124,8 +124,10 @@ const Contact = () => {
                   fontSize="lg"
                   fontWeight={"500"}
                   mt="4"
-                  width={"60%"}
-                  align={"center"}
+                  width={{base: "100%",lg:"60%"}}
+                  textAlign="center"
+                  alignItems="center"
+                  px="2"
                 >
                   {`Got an idea you're excited about? We're here to help you turn it into reality.
                   Our team of experts is ready to collaborate with you, providing the support and expertise needed to bring your vision to life.

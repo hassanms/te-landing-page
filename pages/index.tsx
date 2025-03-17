@@ -1511,17 +1511,16 @@ const SocialProofSection: React.FC = () => {
       <Box
         display="flex"
         width="480%"
-        minWidth="4300px"
+        minWidth={{base: "6300px", lg:"4300px"}}
         whiteSpace="nowrap"
         overflow="hidden"
       >
         <Box
           display="flex"
-          width="50%"
+          width={{base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
           animation={`${scrollAnimation} 75s infinite linear`}
-          gap={{ base: "13px", lg: "0" }}
         >
           <Tooltip label="Artis" hasArrow>
             <Image
@@ -1708,7 +1707,7 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-            <Box display="inline-block">
+      
               <Image
                 src="/assets/clients/krypto-labs.png"
                 alt="Krypto Labs"
@@ -1724,7 +1723,6 @@ const SocialProofSection: React.FC = () => {
                   cursor: "pointer",
                 }}
               />
-            </Box>
           </Tooltip>
 
           <Tooltip label="Podcast-Beacon" hasArrow>
@@ -1836,10 +1834,10 @@ const SocialProofSection: React.FC = () => {
         </Box>
         <Box
           display="flex"
-          width="50%"
+          width={{base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
-          gap={{ base: "13px", lg: "0" }}
+          
           animation={`${scrollAnimation} 75s infinite linear`}
         >
           <Tooltip label="Artis" hasArrow>
@@ -2027,7 +2025,7 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-            <Box display="inline-block">
+           
               <Image
                 src="/assets/clients/krypto-labs.png"
                 alt="Krypto Labs"
@@ -2043,7 +2041,7 @@ const SocialProofSection: React.FC = () => {
                   cursor: "pointer",
                 }}
               />
-            </Box>
+          
           </Tooltip>
 
           <Tooltip label="Podcast-Beacon" hasArrow>

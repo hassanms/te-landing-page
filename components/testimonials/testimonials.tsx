@@ -65,12 +65,12 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-
+          px:"2",
           width: "100%",
+          textAlign:"center",
         }}
       >
-        There are many variations of passages of Lorem Ipsum available but the
-        majority have suffered alteration in some form.
+        Discover what our clients have to say about their experiences with us. Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.
       </Text>
       <SimpleGrid columns={columns} spacing="2" mt={20}>
         {children}

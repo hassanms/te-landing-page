@@ -182,25 +182,12 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setVideoLoaded(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
+    const video = videoRef.current;
+    if (!video) return;
+    video.play().catch((err) => console.error("Video play error:", err));
   }, []);
 
 
@@ -226,7 +213,7 @@ const HeroSection: React.FC = () => {
       >
         <FallInPlace delay={1}>
           <video
-            src={videoLoaded ? "/assets/Animation/hero-video.mp4" : ""}
+             src="/assets/Animation/hero-video.mp4"
             ref={videoRef}
             autoPlay={true}
             loop={true}

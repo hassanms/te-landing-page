@@ -107,10 +107,21 @@ const Home: NextPage = () => {
           name="description"
           content="Imagineering digital transformation for your business"
         />
-          {/* Open Graph (OG) Meta Tags for Social Media Previews */}
-        <meta property="og:title" content="Tech Emulsion | Imagineering Digital Transformation" />
-        <meta property="og:description" content="Tech Emulsion Always provide innovative digital transformation solutions." />
-        <meta property="og:image" content="https://techemulsion.com/static/favicons/android-chrome-192x192.png" />
+        {/* Open Graph (OG) Meta Tags for Social Media Previews */}
+        <meta
+          property="og:title"
+          content="Tech Emulsion | Imagineering Digital Transformation"
+        />
+        <meta
+          property="og:description"
+          content="Tech Emulsion Always provide innovative digital transformation solutions."
+        />
+        <meta
+          property="og:image"
+          content="https://techemulsion.com/static/favicons/android-chrome-192x192.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://techemulsion.com/" />
         <meta property="og:type" content="website" />
 
@@ -166,7 +177,6 @@ const Home: NextPage = () => {
 };
 type LottieAnimationData = Record<string, any>;
 
-
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentAnimation, setCurrentAnimation] =
@@ -190,7 +200,6 @@ const HeroSection: React.FC = () => {
     video.play().catch((err) => console.error("Video play error:", err));
   }, []);
 
-
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return colorMode === "dark" ? (
@@ -213,7 +222,7 @@ const HeroSection: React.FC = () => {
       >
         <FallInPlace delay={1}>
           <video
-             src="/assets/Animation/hero-video.mp4"
+            src="/assets/Animation/hero-video.mp4"
             ref={videoRef}
             autoPlay={true}
             loop={true}
@@ -290,7 +299,6 @@ const HeroSection: React.FC = () => {
                 >
                   Explore Portfolio
                 </ButtonLink>
-
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -414,7 +422,6 @@ const HeroSection: React.FC = () => {
                 >
                   Explore Portfolio
                 </ButtonLink>
-
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -525,7 +532,6 @@ const AboutUsSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-
   const currentCard = cardData[currentIndex];
 
   return (
@@ -605,7 +611,9 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
 
-              <Link href="https://www.facebook.com/emulsiontech/" isExternal
+              <Link
+                href="https://www.facebook.com/emulsiontech/"
+                isExternal
                 aria-label="Visit Tech Emulsion on Facebook"
               >
                 <Icon
@@ -623,7 +631,9 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://github.com/hassanms" isExternal
+              <Link
+                href="https://github.com/hassanms"
+                isExternal
                 aria-label="Visit Hassan's GitHub profile"
               >
                 <Icon
@@ -641,7 +651,9 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://www.youtube.com/@TechEmulsion" isExternal
+              <Link
+                href="https://www.youtube.com/@TechEmulsion"
+                isExternal
                 aria-label="Visit Tech Emulsion on YouTube"
               >
                 <Icon
@@ -755,15 +767,17 @@ const AboutUsSection: React.FC = () => {
                     display="flex"
                     flexDirection="row"
                     gap="4"
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
                   >
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
-                      className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                        }`}
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
                     />
                     <Stack spacing="1" mt="4">
                       <Heading size="sm" color="white">
@@ -777,8 +791,9 @@ const AboutUsSection: React.FC = () => {
                 </FallInPlace>
                 <FallInPlace delay={0.8}>
                   <CardBody
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}
                   >
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
@@ -1300,22 +1315,22 @@ const Portfolio: React.FC = () => {
             const href = item.title.includes("Farmin")
               ? "/work/case-study-farmin"
               : item.title.includes("Atarim")
-                ? "/work/case-study-atarim"
-                : item.title.includes("Bipcards")
-                  ? "/work/case-study-bipcards"
-                  : item.title.includes("Popcard")
-                    ? "/work/case-study-popcard"
-                    : item.title.includes("Artis")
-                      ? "/work/case-study-artis"
-                      : item.title.includes("JarvisReach")
-                        ? "/work/case-study-jarvisreach"
-                        : item.title.includes("Alifa")
-                          ? "/work/case-study-alifa"
-                          : item.title.includes("RAG")
-                            ? "/work/case-study-genai"
-                            : item.title.includes("MoodTube")
-                              ? "/work/case-study-moodtube"
-                              : null;
+              ? "/work/case-study-atarim"
+              : item.title.includes("Bipcards")
+              ? "/work/case-study-bipcards"
+              : item.title.includes("Popcard")
+              ? "/work/case-study-popcard"
+              : item.title.includes("Artis")
+              ? "/work/case-study-artis"
+              : item.title.includes("JarvisReach")
+              ? "/work/case-study-jarvisreach"
+              : item.title.includes("Alifa")
+              ? "/work/case-study-alifa"
+              : item.title.includes("RAG")
+              ? "/work/case-study-genai"
+              : item.title.includes("MoodTube")
+              ? "/work/case-study-moodtube"
+              : null;
 
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
@@ -1505,13 +1520,13 @@ const SocialProofSection: React.FC = () => {
       <Box
         display="flex"
         width="480%"
-        minWidth={{base: "6300px", lg:"4300px"}}
+        minWidth={{ base: "6300px", lg: "4300px" }}
         whiteSpace="nowrap"
         overflow="hidden"
       >
         <Box
           display="flex"
-          width={{base: "100%", lg: "50%" }}
+          width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
           animation={`${scrollAnimation} 75s infinite linear`}
@@ -1701,22 +1716,21 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-      
-              <Image
-                src="/assets/clients/krypto-labs.png"
-                alt="Krypto Labs"
-                width={180} // Increased width
-                height={100} // Increased height
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  objectFit: "cover", // Keeps proportions correct
-                  width: "180px", // Ensures it expands properly
-                  height: "100px",
-                  cursor: "pointer",
-                }}
-              />
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={180} // Increased width
+              height={100} // Increased height
+              loading="eager"
+              decoding="async"
+              style={{
+                display: "block",
+                objectFit: "cover", // Keeps proportions correct
+                width: "180px", // Ensures it expands properly
+                height: "100px",
+                cursor: "pointer",
+              }}
+            />
           </Tooltip>
 
           <Tooltip label="Podcast-Beacon" hasArrow>
@@ -1828,10 +1842,9 @@ const SocialProofSection: React.FC = () => {
         </Box>
         <Box
           display="flex"
-          width={{base: "100%", lg: "50%" }}
+          width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
-          
           animation={`${scrollAnimation} 75s infinite linear`}
         >
           <Tooltip label="Artis" hasArrow>
@@ -2019,23 +2032,21 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-           
-              <Image
-                src="/assets/clients/krypto-labs.png"
-                alt="Krypto Labs"
-                width={180} // Increased width
-                height={100} // Increased height
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  objectFit: "cover", // Keeps proportions correct
-                  width: "180px", // Ensures it expands properly
-                  height: "100px",
-                  cursor: "pointer",
-                }}
-              />
-          
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={180} // Increased width
+              height={100} // Increased height
+              loading="eager"
+              decoding="async"
+              style={{
+                display: "block",
+                objectFit: "cover", // Keeps proportions correct
+                width: "180px", // Ensures it expands properly
+                height: "100px",
+                cursor: "pointer",
+              }}
+            />
           </Tooltip>
 
           <Tooltip label="Podcast-Beacon" hasArrow>
@@ -2553,10 +2564,11 @@ const TestimonialsSection: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
-                animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
-                  ? "fadeOut"
-                  : "fadeIn"
-                  } 0.5s`,
+                animation: `${
+                  currentIndex % 2 === 0 || currentIndex % 3 === 0
+                    ? "fadeOut"
+                    : "fadeIn"
+                } 0.5s`,
               }}
             >
               {/* Testimonial item */}

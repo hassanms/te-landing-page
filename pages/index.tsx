@@ -84,7 +84,7 @@ import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
 import TeamsIcon from "components/icons/Teams";
-import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
 import animationData1 from "../public/assets/Animation/screen.json";
 import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
@@ -93,13 +93,17 @@ import { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
 
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false },
+);
+
 const Home: NextPage = () => {
   return (
     <Box>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
 
       <Head>
         <title>Tech Emulsion | Imagineering Digital Transformation</title>
@@ -107,10 +111,19 @@ const Home: NextPage = () => {
           name="description"
           content="Imagineering digital transformation for your business"
         />
-          {/* Open Graph (OG) Meta Tags for Social Media Previews */}
-        <meta property="og:title" content="Tech Emulsion | Imagineering Digital Transformation" />
-        <meta property="og:description" content="Tech Emulsion Always provide innovative digital transformation solutions." />
-        <meta property="og:image" content="https://techemulsion.com/static/favicons/android-chrome-192x192.png" />
+        {/* Open Graph (OG) Meta Tags for Social Media Previews */}
+        <meta
+          property="og:title"
+          content="Tech Emulsion | Imagineering Digital Transformation"
+        />
+        <meta
+          property="og:description"
+          content="Tech Emulsion Always provide innovative digital transformation solutions."
+        />
+        <meta
+          property="og:image"
+          content="https://techemulsion.com/static/favicons/android-chrome-192x192.png"
+        />
         <meta property="og:url" content="https://techemulsion.com/" />
         <meta property="og:type" content="website" />
 
@@ -166,7 +179,6 @@ const Home: NextPage = () => {
 };
 type LottieAnimationData = Record<string, any>;
 
-
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentAnimation, setCurrentAnimation] =
@@ -175,7 +187,7 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentAnimation((prevAnimation) =>
-        prevAnimation === animationData1 ? animationData2 : animationData1
+        prevAnimation === animationData1 ? animationData2 : animationData1,
       );
     }, 10000);
 
@@ -190,7 +202,6 @@ const HeroSection: React.FC = () => {
     video.play().catch((err) => console.error("Video play error:", err));
   }, []);
 
-
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return colorMode === "dark" ? (
@@ -199,8 +210,7 @@ const HeroSection: React.FC = () => {
       overflow="hidden"
       display="grid"
       gridTemplateColumns="1fr"
-      gridTemplateRows="1fr"
-    >
+      gridTemplateRows="1fr">
       <BackgroundGradient height="100%" zIndex="-1" />
       <Box
         gridColumn="1 / -1"
@@ -209,11 +219,10 @@ const HeroSection: React.FC = () => {
         width="100%"
         display="grid"
         zIndex="-1"
-        mb={{ base: "0px", lg: "-120px" }}
-      >
+        mb={{ base: "0px", lg: "-120px" }}>
         <FallInPlace delay={1}>
           <video
-             src="/assets/Animation/hero-video.mp4"
+            src="/assets/Animation/hero-video.mp4"
             ref={videoRef}
             autoPlay={true}
             loop={true}
@@ -235,13 +244,11 @@ const HeroSection: React.FC = () => {
         pt={{ base: 20, lg: 20 }}
         gridColumn="1 / -1"
         gridRow="1 / -1"
-        zIndex={1}
-      >
+        zIndex={1}>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
-          alignItems="flex-start"
-        >
+          alignItems="flex-start">
           <Hero
             id="home"
             justifyContent="flex-start"
@@ -264,16 +271,14 @@ const HeroSection: React.FC = () => {
                     style={{
                       color: "#66B2B2",
                       fontWeight: "900",
-                    }}
-                  >
+                    }}>
                     SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
-            }
-          >
+            }>
             <FallInPlace delay={0.8}>
               <HStack pt="4" pb="6" spacing="8">
                 {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
@@ -286,11 +291,9 @@ const HeroSection: React.FC = () => {
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
-                  }}
-                >
+                  }}>
                   Explore Portfolio
                 </ButtonLink>
-
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -298,8 +301,7 @@ const HeroSection: React.FC = () => {
               spacing="2"
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
-              mt="10"
-            >
+              mt="10">
               <Text
                 fontSize="sm"
                 color="muted"
@@ -308,8 +310,7 @@ const HeroSection: React.FC = () => {
                 textAlign="left"
                 display={"flex"}
                 alignItems={"center"}
-                width={"100%"}
-              >
+                width={"100%"}>
                 Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
@@ -338,8 +339,7 @@ const HeroSection: React.FC = () => {
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
-          >
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
             <FallInPlace delay={1}>
               <Box overflow="hidden">
                 {/*   <Player
@@ -364,8 +364,7 @@ const HeroSection: React.FC = () => {
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
-          alignItems="flex-start"
-        >
+          alignItems="flex-start">
           <Hero
             id="home"
             justifyContent="flex-start"
@@ -388,16 +387,14 @@ const HeroSection: React.FC = () => {
                     style={{
                       color: "#004C4C",
                       fontWeight: "900",
-                    }}
-                  >
+                    }}>
                     SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
-            }
-          >
+            }>
             <FallInPlace delay={0.8}>
               <HStack pt="4" pb="6" spacing="8">
                 {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
@@ -410,11 +407,9 @@ const HeroSection: React.FC = () => {
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
-                  }}
-                >
+                  }}>
                   Explore Portfolio
                 </ButtonLink>
-
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -422,8 +417,7 @@ const HeroSection: React.FC = () => {
               spacing="2"
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
-              mt="10"
-            >
+              mt="10">
               <Text
                 fontSize="sm"
                 color="muted"
@@ -432,8 +426,7 @@ const HeroSection: React.FC = () => {
                 textAlign="left"
                 display={"flex"}
                 alignItems={"center"}
-                width={"100%"}
-              >
+                width={"100%"}>
                 Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
@@ -463,8 +456,7 @@ const HeroSection: React.FC = () => {
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
-          >
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
             <FallInPlace delay={1}>
               <Box overflow="hidden">
                 <Player
@@ -504,7 +496,7 @@ const cardData = [
     gradient: ["pink.200", "purple.500"],
     company: "",
     description:
-      "At Tech Emulsion, we don’t just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
+      "At Tech Emulsion, we don't just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
   },
 ];
 
@@ -525,7 +517,6 @@ const AboutUsSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-
   const currentCard = cardData[currentIndex];
 
   return (
@@ -537,8 +528,7 @@ const AboutUsSection: React.FC = () => {
           direction={["column", null, "row"]}
           spacing="4"
           ml={{ base: 4, lg: 4 }}
-          mt={10}
-        >
+          mt={10}>
           <Box flex="1">
             <Heading
               as="h2"
@@ -546,8 +536,7 @@ const AboutUsSection: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               About us
             </Heading>
             <Heading
@@ -555,8 +544,7 @@ const AboutUsSection: React.FC = () => {
               mt="2"
               sx={{
                 fontSize: "2rem",
-              }}
-            >
+              }}>
               Impactful Product Design,
               <Br /> Memorable Experience
             </Heading>
@@ -573,8 +561,7 @@ const AboutUsSection: React.FC = () => {
               fontWeight={600}
               sx={{
                 fontSize: "2rem",
-              }}
-            >
+              }}>
               Connect With Us
             </Heading>
             <Text color="muted" fontSize="lg" mt="4">
@@ -587,8 +574,7 @@ const AboutUsSection: React.FC = () => {
               <Link
                 href="https://www.linkedin.com/company/tech-emulsion/"
                 isExternal
-                aria-label="Visit Tech Emulsion on LinkedIn"
-              >
+                aria-label="Visit Tech Emulsion on LinkedIn">
                 <Icon
                   as={FiLinkedin}
                   boxSize="10"
@@ -605,9 +591,10 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
 
-              <Link href="https://www.facebook.com/emulsiontech/" isExternal
-                aria-label="Visit Tech Emulsion on Facebook"
-              >
+              <Link
+                href="https://www.facebook.com/emulsiontech/"
+                isExternal
+                aria-label="Visit Tech Emulsion on Facebook">
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
@@ -623,9 +610,10 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://github.com/hassanms" isExternal
-                aria-label="Visit Hassan's GitHub profile"
-              >
+              <Link
+                href="https://github.com/hassanms"
+                isExternal
+                aria-label="Visit Hassan's GitHub profile">
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
@@ -641,9 +629,10 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://www.youtube.com/@TechEmulsion" isExternal
-                aria-label="Visit Tech Emulsion on YouTube"
-              >
+              <Link
+                href="https://www.youtube.com/@TechEmulsion"
+                isExternal
+                aria-label="Visit Tech Emulsion on YouTube">
                 <Icon
                   as={AiFillYoutube}
                   boxSize="10"
@@ -670,8 +659,7 @@ const AboutUsSection: React.FC = () => {
             sx={{
               textTransform: "uppercase",
             }}
-            ml={4}
-          >
+            ml={4}>
             How We Empower Your Business
           </Heading>
           <Features
@@ -729,9 +717,9 @@ const AboutUsSection: React.FC = () => {
             company=""
             colSpan={[1, null, 2]}
           >
-            “Your challenges fuel our creativity and determination. We’re
+            "Your challenges fuel our creativity and determination. We're
             dedicated to delivering exceptional results that exceed
-            expectations.”
+            expectations."
           </HighlightsTestimonialItem> */}
 
           <Box>
@@ -748,22 +736,22 @@ const AboutUsSection: React.FC = () => {
                 borderRadius="lg"
                 overflow="hidden"
                 h="320px"
-                className="shining-card"
-              >
+                className="shining-card">
                 <FallInPlace delay={0.8}>
                   <CardHeader
                     display="flex"
                     flexDirection="row"
                     gap="4"
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
-                  >
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}>
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
-                      className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                        }`}
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
                     />
                     <Stack spacing="1" mt="4">
                       <Heading size="sm" color="white">
@@ -777,9 +765,9 @@ const AboutUsSection: React.FC = () => {
                 </FallInPlace>
                 <FallInPlace delay={0.8}>
                   <CardBody
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
-                  >
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}>
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
                     </Text>
@@ -791,8 +779,7 @@ const AboutUsSection: React.FC = () => {
 
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}
-            title="Areas We Specialize In"
-          >
+            title="Areas We Specialize In">
             <Text color="muted" fontSize="lg">
               Our team specializes in delivering innovative software solutions
               using a wide range of modern technologies. From SaaS and
@@ -831,8 +818,7 @@ const AboutUsSection: React.FC = () => {
                       "&:hover": {
                         bg: "#004c4c",
                       },
-                    }}
-                  >
+                    }}>
                     {value}
                   </Tag>
                 </li>
@@ -911,16 +897,14 @@ const HighlightsSection: React.FC = () => {
       id="services"
       sx={{
         scrollMarginTop: "50px",
-      }}
-    >
+      }}>
       <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
           px="4"
           mt={10}
-          justifyContent={"space-between"}
-        >
+          justifyContent={"space-between"}>
           <Box>
             <Heading
               as="h2"
@@ -928,8 +912,7 @@ const HighlightsSection: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               What We Do
             </Heading>
             <Heading
@@ -944,8 +927,7 @@ const HighlightsSection: React.FC = () => {
                   base: "100%",
                   md: "70%",
                 },
-              }}
-            >
+              }}>
               We help to build clients their dream projects
             </Heading>
           </Box>
@@ -957,8 +939,7 @@ const HighlightsSection: React.FC = () => {
             justifyContent={["flex-start", null, "flex-end"]}
             width={["100%", null, "auto"]}
             alignItems="end"
-            mt="4"
-          >
+            mt="4">
             <ButtonLink
               size="lg"
               href="/services"
@@ -972,8 +953,7 @@ const HighlightsSection: React.FC = () => {
                   color: colorMode === "light" ? "#004c4c !important" : "white",
                   textDecoration: "none",
                 },
-              }}
-            >
+              }}>
               Explore Services
             </ButtonLink>
           </ButtonGroup>
@@ -985,8 +965,7 @@ const HighlightsSection: React.FC = () => {
               key={index}
               colSpan={[1, null, 2]}
               title={""}
-              padding={0}
-            >
+              padding={0}>
               <Image
                 src={item.image}
                 alt={item.alt}
@@ -1057,9 +1036,9 @@ const HighlightsSection: React.FC = () => {
             company="Tech Emulsion"
             colSpan={[1, null, 2]}
           >
-            “Saas UI helped us set up a beautiful modern UI in no time. It saved
+            "Saas UI helped us set up a beautiful modern UI in no time. It saved
             us hundreds of hours in development time and allowed us to focus on
-            business logic for our specific use-case from the start.”
+            business logic for our specific use-case from the start."
           </HighlightsTestimonialItem>
           <HighlightsItem
             colSpan={[1, null, 2, 3, 4]}
@@ -1149,7 +1128,7 @@ const Portfolio: React.FC = () => {
       title:
         "Artis – Blockchain powered SaaS to help artists copyright their work",
       description:
-        "Artis is an AI-driven platform that analyzes an artist’s style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
+        "Artis is an AI-driven platform that analyzes an artist's style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },
@@ -1192,8 +1171,7 @@ const Portfolio: React.FC = () => {
           display={{ base: "block", md: "flex" }}
           px="4"
           mt={10}
-          justifyContent={"space-between"}
-        >
+          justifyContent={"space-between"}>
           <Box>
             <Heading
               as="h2"
@@ -1201,8 +1179,7 @@ const Portfolio: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               Creative Portfolio
             </Heading>
             <Heading
@@ -1217,8 +1194,7 @@ const Portfolio: React.FC = () => {
                   base: "100%",
                   md: "70%",
                 },
-              }}
-            >
+              }}>
               Recent Works
             </Heading>
 
@@ -1231,8 +1207,7 @@ const Portfolio: React.FC = () => {
               fontWeight={"500"}
               mt="4"
               width={{ base: "100%", md: "60%" }}
-              textAlign="left"
-            >
+              textAlign="left">
               {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
             project highlights our dedication to quality and creativity.
             Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
@@ -1274,8 +1249,7 @@ const Portfolio: React.FC = () => {
           justifyContent={"center"}
           alignItems={"center"}
           gap={"4"}
-          mt={10}
-        >
+          mt={10}>
           <Button
             size="lg"
             mt={"10"}
@@ -1288,8 +1262,7 @@ const Portfolio: React.FC = () => {
               "&:hover": {
                 bg: "#004c4c",
               },
-            }}
-          >
+            }}>
             All
           </Button>
         </Box>
@@ -1300,22 +1273,22 @@ const Portfolio: React.FC = () => {
             const href = item.title.includes("Farmin")
               ? "/work/case-study-farmin"
               : item.title.includes("Atarim")
-                ? "/work/case-study-atarim"
-                : item.title.includes("Bipcards")
-                  ? "/work/case-study-bipcards"
-                  : item.title.includes("Popcard")
-                    ? "/work/case-study-popcard"
-                    : item.title.includes("Artis")
-                      ? "/work/case-study-artis"
-                      : item.title.includes("JarvisReach")
-                        ? "/work/case-study-jarvisreach"
-                        : item.title.includes("Alifa")
-                          ? "/work/case-study-alifa"
-                          : item.title.includes("RAG")
-                            ? "/work/case-study-genai"
-                            : item.title.includes("MoodTube")
-                              ? "/work/case-study-moodtube"
-                              : null;
+              ? "/work/case-study-atarim"
+              : item.title.includes("Bipcards")
+              ? "/work/case-study-bipcards"
+              : item.title.includes("Popcard")
+              ? "/work/case-study-popcard"
+              : item.title.includes("Artis")
+              ? "/work/case-study-artis"
+              : item.title.includes("JarvisReach")
+              ? "/work/case-study-jarvisreach"
+              : item.title.includes("Alifa")
+              ? "/work/case-study-alifa"
+              : item.title.includes("RAG")
+              ? "/work/case-study-genai"
+              : item.title.includes("MoodTube")
+              ? "/work/case-study-moodtube"
+              : null;
 
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
@@ -1324,8 +1297,7 @@ const Portfolio: React.FC = () => {
                   _hover={{ textDecoration: "none" }}
                   gap="0"
                   title=""
-                  border="none"
-                >
+                  border="none">
                   <Box
                     sx={{
                       width: "100%",
@@ -1338,8 +1310,7 @@ const Portfolio: React.FC = () => {
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                       py: 1,
-                    }}
-                  >
+                    }}>
                     <Box>
                       <Image
                         src={item.image}
@@ -1383,9 +1354,9 @@ const Portfolio: React.FC = () => {
           avatar="/static/images/avatar.jpg"
           gradient={["pink.200", "purple.500"]}
         >
-          “Saas UI helped us set up a beautiful modern UI in no time. It saved
+          "Saas UI helped us set up a beautiful modern UI in no time. It saved
           us hundreds of hours in development time and allowed us to focus on
-          business logic for our specific use-case from the start.”
+          business logic for our specific use-case from the start."
         </HighlightsTestimonialItem>
         <HighlightsItem
           colSpan={[1, null, 2]}
@@ -1447,8 +1418,7 @@ const SocialProofSection: React.FC = () => {
       color="white"
       textAlign="center"
       height={[null, null, null]}
-      mb="200"
-    >
+      mb="200">
       <Box
         position={"relative"}
         display="flex"
@@ -1456,15 +1426,13 @@ const SocialProofSection: React.FC = () => {
         justifyContent="center"
         alignItems="center"
         gap="4"
-        py="5"
-      >
+        py="5">
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          gap="4"
-        >
+          gap="4">
           <Heading
             as="h1"
             mt="2"
@@ -1478,8 +1446,7 @@ const SocialProofSection: React.FC = () => {
                 md: "2rem",
               },
               width: "100%",
-            }}
-          >
+            }}>
             Trusted by Leading Brands
           </Heading>
 
@@ -1492,9 +1459,8 @@ const SocialProofSection: React.FC = () => {
             mt="4"
             px="10"
             width={{ base: "100%", md: "60%" }}
-            textAlign="center"
-          >
-            We’re proud to have worked with a diverse range of clients across
+            textAlign="center">
+            We're proud to have worked with a diverse range of clients across
             industries, delivering impactful solutions that drive results. Our
             clients trust us for our commitment to quality, innovation, and
             lasting partnerships, helping them achieve their digital goals with
@@ -1505,17 +1471,15 @@ const SocialProofSection: React.FC = () => {
       <Box
         display="flex"
         width="480%"
-        minWidth={{base: "6300px", lg:"4300px"}}
+        minWidth={{ base: "6300px", lg: "4300px" }}
         whiteSpace="nowrap"
-        overflow="hidden"
-      >
+        overflow="hidden">
         <Box
           display="flex"
-          width={{base: "100%", lg: "50%" }}
+          width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
-          animation={`${scrollAnimation} 75s infinite linear`}
-        >
+          animation={`${scrollAnimation} 75s infinite linear`}>
           <Tooltip label="Artis" hasArrow>
             <Image
               src="/assets/clients/Artis-lab.png"
@@ -1701,22 +1665,21 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-      
-              <Image
-                src="/assets/clients/krypto-labs.png"
-                alt="Krypto Labs"
-                width={180} // Increased width
-                height={100} // Increased height
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  objectFit: "cover", // Keeps proportions correct
-                  width: "180px", // Ensures it expands properly
-                  height: "100px",
-                  cursor: "pointer",
-                }}
-              />
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={180} // Increased width
+              height={100} // Increased height
+              loading="eager"
+              decoding="async"
+              style={{
+                display: "block",
+                objectFit: "cover", // Keeps proportions correct
+                width: "180px", // Ensures it expands properly
+                height: "100px",
+                cursor: "pointer",
+              }}
+            />
           </Tooltip>
 
           <Tooltip label="Podcast-Beacon" hasArrow>
@@ -1828,12 +1791,10 @@ const SocialProofSection: React.FC = () => {
         </Box>
         <Box
           display="flex"
-          width={{base: "100%", lg: "50%" }}
+          width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
-          
-          animation={`${scrollAnimation} 75s infinite linear`}
-        >
+          animation={`${scrollAnimation} 75s infinite linear`}>
           <Tooltip label="Artis" hasArrow>
             <Image
               src="/assets/clients/Artis-lab.png"
@@ -2019,23 +1980,21 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-           
-              <Image
-                src="/assets/clients/krypto-labs.png"
-                alt="Krypto Labs"
-                width={180} // Increased width
-                height={100} // Increased height
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  objectFit: "cover", // Keeps proportions correct
-                  width: "180px", // Ensures it expands properly
-                  height: "100px",
-                  cursor: "pointer",
-                }}
-              />
-          
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={180} // Increased width
+              height={100} // Increased height
+              loading="eager"
+              decoding="async"
+              style={{
+                display: "block",
+                objectFit: "cover", // Keeps proportions correct
+                width: "180px", // Ensures it expands properly
+                height: "100px",
+                cursor: "pointer",
+              }}
+            />
           </Tooltip>
 
           <Tooltip label="Podcast-Beacon" hasArrow>
@@ -2155,8 +2114,7 @@ const SocialProofSection: React.FC = () => {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          gap="4"
-        >
+          gap="4">
           {/* <Box
             display="flex"
             flexDirection="column"
@@ -2181,8 +2139,7 @@ const FeaturesSection: React.FC = () => {
           lineHeight="short"
           fontSize={["2xl", null, "4xl"]}
           textAlign="left"
-          as="p"
-        >
+          as="p">
           Not your standard
           <Br /> dashboard template.
         </Heading>
@@ -2280,13 +2237,13 @@ const TestimonialsSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1
+      prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.items.length - 1 : prevIndex - 1
+      prevIndex === 0 ? testimonials.items.length - 1 : prevIndex - 1,
     );
   };
 
@@ -2304,7 +2261,7 @@ const TestimonialsSection: React.FC = () => {
 
         return columns;
       },
-      [[], [], []]
+      [[], [], []],
     );
   }, []);
 
@@ -2315,8 +2272,7 @@ const TestimonialsSection: React.FC = () => {
           maxW="container.xl"
           pt={{ base: 40, md: 40, lg: 20 }}
           pb="20"
-          id="testimonials"
-        >
+          id="testimonials">
           <Stack
             direction={{
               base: "column",
@@ -2324,13 +2280,11 @@ const TestimonialsSection: React.FC = () => {
               lg: "column",
               xl: "row",
             }}
-            alignItems="flex-start"
-          >
+            alignItems="flex-start">
             <Testimonials
               title={testimonials.title}
               columns={[1, 1, 1, 2, 3]}
-              innerWidth="container.xl"
-            >
+              innerWidth="container.xl">
               {!showMore ? (
                 <>
                   {columns
@@ -2348,8 +2302,7 @@ const TestimonialsSection: React.FC = () => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                    }}
-                  >
+                    }}>
                     <Button
                       onClick={() => {
                         setShowMore(true);
@@ -2362,8 +2315,7 @@ const TestimonialsSection: React.FC = () => {
                         color: colorMode === "dark" ? "white" : "#004c4c",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
-                      }}
-                    >
+                      }}>
                       Show more
                       <ChevronDownIcon
                         style={{
@@ -2382,8 +2334,7 @@ const TestimonialsSection: React.FC = () => {
                   <FallInPlace delay={0.8}>
                     <Box
                       height={showMore ? "800px" : "auto"}
-                      overflow={showMore ? "auto" : ""}
-                    >
+                      overflow={showMore ? "auto" : ""}>
                       {columns?.map((column, i) => (
                         <Stack key={i}>
                           {column.map((t, i) => (
@@ -2399,8 +2350,7 @@ const TestimonialsSection: React.FC = () => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                    }}
-                  >
+                    }}>
                     <Button
                       onClick={() => {
                         setShowMore(false);
@@ -2413,8 +2363,7 @@ const TestimonialsSection: React.FC = () => {
                         color: colorMode === "dark" ? "white" : "#004c4c",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
-                      }}
-                    >
+                      }}>
                       Show less
                       <ChevronUpIcon
                         style={{
@@ -2441,8 +2390,7 @@ const TestimonialsSection: React.FC = () => {
       py="20"
       color="white"
       textAlign="center"
-      height={[null, null, null]}
-    >
+      height={[null, null, null]}>
       <Container maxW="container.xl" py="5" mb="5">
         <Divider />
         <Box
@@ -2457,8 +2405,7 @@ const TestimonialsSection: React.FC = () => {
           }}
           mt={10}
           w={"95%"}
-          marginLeft={"20px"}
-        >
+          marginLeft={"20px"}>
           <Box mb={5} maxW={"60%"}>
             <Heading
               as="h2"
@@ -2470,8 +2417,7 @@ const TestimonialsSection: React.FC = () => {
                 alignItems: "center",
                 width: "100%",
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               TESTIMONIALS
             </Heading>
             <Heading
@@ -2487,8 +2433,7 @@ const TestimonialsSection: React.FC = () => {
                   md: "2rem",
                 },
                 width: "100%",
-              }}
-            >
+              }}>
               Hear From Our Clients
             </Heading>
             <Text
@@ -2499,8 +2444,7 @@ const TestimonialsSection: React.FC = () => {
               px="10"
               justifyContent={"center"}
               width={{ base: "100%", md: "100%" }}
-              align={"center"}
-            >
+              align={"center"}>
               {`Discover what our clients have to say about their experiences with us.
               Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.`}
             </Text>
@@ -2516,8 +2460,7 @@ const TestimonialsSection: React.FC = () => {
               margin: "0px",
             }}
             width={"100%"}
-            height={"50vh"}
-          >
+            height={"50vh"}>
             {/* Previous button */}
             <Button
               onClick={handlePrev}
@@ -2537,8 +2480,7 @@ const TestimonialsSection: React.FC = () => {
                   color: "white",
                   fontWeight: "bold",
                 },
-              }}
-            >
+              }}>
               <ChevronLeftIcon
                 style={{
                   width: "30px",
@@ -2553,12 +2495,12 @@ const TestimonialsSection: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
-                animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
-                  ? "fadeOut"
-                  : "fadeIn"
-                  } 0.5s`,
-              }}
-            >
+                animation: `${
+                  currentIndex % 2 === 0 || currentIndex % 3 === 0
+                    ? "fadeOut"
+                    : "fadeIn"
+                } 0.5s`,
+              }}>
               {/* Testimonial item */}
               <Testimonial {...testimonials.items[currentIndex]} />
             </Box>
@@ -2583,8 +2525,7 @@ const TestimonialsSection: React.FC = () => {
                   color: "white",
                   fontWeight: "bold",
                 },
-              }}
-            >
+              }}>
               <ChevronRightIcon
                 style={{
                   width: "30px",
@@ -2606,8 +2547,7 @@ const TestimonialsSection: React.FC = () => {
               alignItems: "center",
               width: "100%",
               textTransform: "uppercase",
-            }}
-          >
+            }}>
             Reason behind our success
           </Heading>
           <Heading
@@ -2623,8 +2563,7 @@ const TestimonialsSection: React.FC = () => {
                 md: "2rem",
               },
               width: "100%",
-            }}
-          >
+            }}>
             Our Core Values
           </Heading>
           <Features
@@ -2694,8 +2633,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -2703,16 +2641,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="React" placement="top">
                   <Image
                     src="/assets/tech/react.png"
@@ -2800,8 +2736,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -2809,16 +2744,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="Node.js" placement="top">
                   <Image
                     src="/assets/tech/nodejs.png"
@@ -2942,8 +2875,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -2951,16 +2883,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="Docker" placement="top">
                   <Image
                     src="/assets/tech/docker.png"
@@ -3012,8 +2942,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -3021,16 +2950,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="TensorFlow" placement="top">
                   <Image
                     src="/assets/tech/tensorflow.png"
@@ -3162,8 +3089,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -3171,16 +3097,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="Make" placement="top">
                   <Image
                     src="/assets/tech/make_logo.jpg"
@@ -3229,8 +3153,7 @@ const TechnologySection: React.FC = () => {
       color="white"
       textAlign="center"
       height={["100%", "100%", "100%"]}
-      bg={colorMode === "dark" ? "gray.800" : ""}
-    >
+      bg={colorMode === "dark" ? "gray.800" : ""}>
       <Divider />
       <Container maxW="container.xl" py="5" mb="5">
         <Box flex="1" mt={20}>
@@ -3244,8 +3167,7 @@ const TechnologySection: React.FC = () => {
               alignItems: "center",
               width: "100%",
               textTransform: "uppercase",
-            }}
-          >
+            }}>
             Tech Stack
           </Heading>
           <Heading
@@ -3261,8 +3183,7 @@ const TechnologySection: React.FC = () => {
                 md: "2rem",
               },
               width: "100%",
-            }}
-          >
+            }}>
             Technologies We Use
           </Heading>
 
@@ -3274,8 +3195,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="100%"
             flexWrap={"wrap"}
-            minWidth={"380px"}
-          >
+            minWidth={"380px"}>
             <Button
               size="lg"
               mt={"10"}
@@ -3290,8 +3210,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("frontend")}
-              minWidth={"72px"}
-            >
+              minWidth={"72px"}>
               Frontend
             </Button>
             <Button
@@ -3308,8 +3227,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("backend")}
-              minWidth={"72px"}
-            >
+              minWidth={"72px"}>
               Backend
             </Button>
             <Button
@@ -3326,8 +3244,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("devops")}
-              minWidth={"72px"}
-            >
+              minWidth={"72px"}>
               DevOps
             </Button>
             <Button
@@ -3343,8 +3260,7 @@ const TechnologySection: React.FC = () => {
                   bg: currentTab === "AI" ? "#004c4c" : "gray.300",
                 },
               }}
-              onClick={() => setCurrentTab("AI")}
-            >
+              onClick={() => setCurrentTab("AI")}>
               AI
             </Button>
             <Button
@@ -3362,8 +3278,7 @@ const TechnologySection: React.FC = () => {
                 },
                 minWidth: "140px",
               }}
-              onClick={() => setCurrentTab("noCodeAutomation")}
-            >
+              onClick={() => setCurrentTab("noCodeAutomation")}>
               No Code Automation
             </Button>
           </Box>
@@ -3420,30 +3335,26 @@ const Team: React.FC = () => {
           display={{ base: "block", md: "flex" }}
           flexDirection={"column"}
           justifyContent={"center"}
-          width={"100%"}
-        >
+          width={"100%"}>
           <Box
             display={{ base: "block", md: "flex" }}
             px="15"
             mt={10}
-            justifyContent={"space-between"}
-          >
+            justifyContent={"space-between"}>
             <Box
               display="flex"
               flexDirection="column"
               justifyContent="center"
               alignItems="center"
               gap="4"
-              width="100%"
-            >
+              width="100%">
               <Heading
                 as="h2"
                 size="md"
                 color={colorMode === "dark" ? "white" : "#004c4c"}
                 sx={{
                   textTransform: "uppercase",
-                }}
-              >
+                }}>
                 TEAM
               </Heading>
               <Heading
@@ -3459,8 +3370,7 @@ const Team: React.FC = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                }}
-              >
+                }}>
                 Our Awesome Team
               </Heading>
               <Text
@@ -3469,8 +3379,7 @@ const Team: React.FC = () => {
                 fontWeight={"500"}
                 mt="4"
                 width={"60%"}
-                align={"center"}
-              >
+                align={"center"}>
                 There are many variations of passages of Lorem Ipsum available
                 but the majority have suffered alteration in some form.
               </Text>
@@ -3489,8 +3398,7 @@ const Team: React.FC = () => {
             mt="14"
             w="100%"
             justifyContent={"center"}
-            alignItems={"center"}
-          >
+            alignItems={"center"}>
             {images?.map((image, index) => (
               <Teams
                 key={index}

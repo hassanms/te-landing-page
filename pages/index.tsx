@@ -296,7 +296,7 @@ const HeroSection: React.FC = () => {
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
                   <>
                     <Image
-                      src="/assets/clients/bubble.1.png"
+                      src="/assets/clients/Bubble.1.png"
                       width={110}
                       height={100}
                       alt="Bubble logo"
@@ -426,7 +426,7 @@ const HeroSection: React.FC = () => {
                 <Box overflow="hidden" height="100%" display="flex" gap="10">
                   <>
                     <Image
-                      src="/assets/clients/bubble.1.png"
+                      src="/assets/clients/Bubble.1.png"
                       width={110}
                       height={100}
                       alt="bubble logo"
@@ -1684,7 +1684,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Bubble" hasArrow>
             <Image
-              src="/assets/clients/bubble.io.png"
+              src="/assets/clients/Bubble.io.png"
               alt="Bubble"
               width={120}
               height={130}

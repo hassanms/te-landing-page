@@ -1,6 +1,6 @@
-import { ColorModeScript } from '@chakra-ui/react'
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
-import theme from '../theme'
+import { ColorModeScript } from "@chakra-ui/react";
+import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import theme from "../theme";
 
 export default class Document extends NextDocument {
   render() {
@@ -25,6 +25,10 @@ export default class Document extends NextDocument {
             href="/static/favicons/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/favicons/manifest.json" />
+          <link
+            rel="stylesheet"
+            href="https://assets.calendly.com/assets/external/widget.css"
+          />
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -32,6 +36,6 @@ export default class Document extends NextDocument {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }

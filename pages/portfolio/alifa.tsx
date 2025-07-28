@@ -1,26 +1,28 @@
 import {
   Box,
   Container,
-  SimpleGrid,
+  Image,
+  List,
+  ListItem,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import Head from "next/head";
-import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
-const CaseStudyJarvisreach = () => {
+const CaseStudyAlifa = () => {
   const { colorMode } = useColorMode();
+
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Jarvis - Tech Emulsion</title>
+        <title>Case Study: Alifa - Tech Emulsion</title>
         <meta
           name="description"
-          content="Learn how Tech Emulsion helped Jarvis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
+          content="Learn how Tech Emulsion helped Alifa, a leading SaaS company, scaled their operations and improved client satisfaction with custom software solutions."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -29,8 +31,7 @@ const CaseStudyJarvisreach = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -46,19 +47,17 @@ const CaseStudyJarvisreach = () => {
       />
       <Script id="google-analytics">
         {`window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-DJFC9CERLF')`}
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DJFC9CERLF')`}
       </Script>
       <Container maxW="container.8xl" py={{ base: "0", md: "20", lg: "5" }}>
-        <BackgroundGradient height="100%" zIndex="-1" />
         <Box
           display={{ base: "block", md: "flex" }}
           // px="15"
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box
             sx={{
               position: "relative",
@@ -70,12 +69,11 @@ const CaseStudyJarvisreach = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
-                src="/assets/portfolio/jarvis.png"
-                alt="Artis"
+                src="/assets/portfolio/file.jpg"
+                alt="Alifa"
                 width={1200}
                 height={300}
                 style={{
@@ -87,10 +85,6 @@ const CaseStudyJarvisreach = () => {
               />
             </Box>
             <Box
-              // position="absolute"
-              // bottom="-15%"
-              // left="50%"
-              // transform="translate(-50%, -50%)"
               display="flex"
               flexDirection="column"
               justifyContent="center"
@@ -122,8 +116,7 @@ const CaseStudyJarvisreach = () => {
                 borderRadius: "md",
                 p: 5,
                 boxShadow: "md",
-              }}
-            >
+              }}>
               <Text
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
@@ -132,9 +125,8 @@ const CaseStudyJarvisreach = () => {
                 fontWeight={"500"}
                 mt="4"
                 width={"100%"}
-                align={"center"}
-              >
-                JarvisReach – Case Study
+                align={"center"}>
+                Alifa – Case Study
               </Text>
               <Text
                 color={
@@ -142,13 +134,16 @@ const CaseStudyJarvisreach = () => {
                 }
                 fontSize="xl"
                 mt="4"
-                width={["auto", null, "100%"]}
-              >
-                Tech Emulsion developed JarvisReach, a SaaS for LinkedIn
-                prospecting, enabling efficient data extraction, filtering, and
-                automated email outreach. With subscription flexibility, team
-                leaderboards, and admin analytics, JarvisReach streamlines lead
-                management and boosts user productivity.
+                width={["auto", null, "100%"]}>
+                Alifa is a cutting-edge client engagement and AI-driven sales
+                SaaS (Software as a Service) platform designed to empower sales
+                representatives by streamlining client interactions. By
+                integrating advanced artificial intelligence (AI) capabilities,
+                Alifa enhances productivity, automates repetitive tasks, and
+                facilitates personalized client engagement. The platform is
+                tailored to meet the unique demands of modern sales teams,
+                offering tools to improve efficiency and boost customer
+                satisfaction.
               </Text>
             </Box>
           </Box>
@@ -165,10 +160,9 @@ const CaseStudyJarvisreach = () => {
               mb={10}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
-              Developing JarvisReach – A Comprehensive SaaS for LinkedIn
-              Prospecting and Outreach
+              }}>
+              Developing Alifa – A Comprehensive SaaS Platform for Client
+              Engagement and AI-Driven Sales Analytics
             </Text>
 
             <Text
@@ -177,8 +171,7 @@ const CaseStudyJarvisreach = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Client Background
             </Text>
             <Text
@@ -192,16 +185,16 @@ const CaseStudyJarvisreach = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              JarvisReach is a powerful SaaS application designed to streamline
-              LinkedIn prospecting and lead management. Aimed at users like
-              sales professionals, recruiters, and business developers, it
-              provides an efficient way to extract, manage, and engage with
-              LinkedIn prospects. By combining data extraction, filtering, and
-              automated outreach, JarvisReach addresses the core needs of
-              professionals who rely on LinkedIn as their primary source for
-              lead generation.
+              }}>
+              Alifa is a cutting-edge client engagement and AI-driven sales SaaS
+              (Software as a Service) platform designed to empower sales
+              representatives by streamlining client interactions. By
+              integrating advanced artificial intelligence (AI) capabilities,
+              Alifa enhances productivity, automates repetitive tasks, and
+              facilitates personalized client engagement. The platform is
+              tailored to meet the unique demands of modern sales teams,
+              offering tools to improve efficiency and boost customer
+              satisfaction.
             </Text>
 
             <Text
@@ -210,8 +203,7 @@ const CaseStudyJarvisreach = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Challenge
             </Text>
             <Text
@@ -224,18 +216,14 @@ const CaseStudyJarvisreach = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              The client wanted a solution that would transform the way users
-              interact with LinkedIn for lead generation. The main objectives
-              were to create a tool that could extract valuable prospect data,
-              manage leads effectively, automate email outreach, and ultimately
-              help users convert leads into opportunities without needing
-              multiple disconnected tools. It needed to support both individual
-              users and larger teams, ensuring scalability, security, and ease
-              of use. Additionally, the platform required robust account
-              management and flexible subscription models to cater to different
-              user needs.
+              }}>
+              Alifa needed a robust SaaS solution to address the challenges of
+              managing client interactions, scaling AI-driven sales tools, and
+              supporting multiple agents in a dynamic, real-time environment.
+              The platform required advanced multi-agent architectures for
+              parallel execution, integration with diverse tools and APIs, and
+              state management to maintain contextual awareness across
+              conversations. Key challenges included:
             </Text>
 
             <Text
@@ -244,8 +232,7 @@ const CaseStudyJarvisreach = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Solution
             </Text>
             <Text
@@ -258,78 +245,91 @@ const CaseStudyJarvisreach = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              Tech Emulsion developed JarvisReach as a fully-featured SaaS
-              platform with several advanced functionalities tailored to meet
-              the needs of LinkedIn prospectors:
+              }}>
+              Tech Emulsion developed a feature-rich SaaS platform tailored to
+              Alifa’s specific requirements. The platform leverages LangGraph, a
+              state-of-the-art framework for implementing multi-agent
+              architectures, enabling seamless interaction and task execution.
+              Key features include:
             </Text>
 
             <Box pl={5} mb={4}>
-              <Text
-                fontWeight="semibold"
-                fontSize={["xl", "2xl"]}
-                mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
-                Data Extraction and Enrichment
-              </Text>
-              <Text
-                mb={5}
-                fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
-                We developed a Chrome extension that allows users to extract
-                details directly from LinkedIn profiles. This includes contact
-                information such as emails and phone numbers when available.
-                Extracted data is saved within the JarvisReach dashboard, where
-                users can create and organize folders to efficiently manage
-                their prospect data.
-              </Text>
-
-              <Text
-                fontWeight="semibold"
-                fontSize={["xl", "2xl"]}
-                mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
-                Advanced Filtering and Search
-              </Text>
-              <Text
-                mb={5}
-                fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
-                To make the prospecting process more efficient, we implemented
-                advanced filtering options in the dashboard. Users can segment
-                prospects by criteria like date ranges, industry, location, job
-                title, or custom tags, allowing them to quickly identify
-                relevant leads and streamline their outreach.
-              </Text>
-
-              <Text
-                fontWeight="semibold"
-                fontSize={["xl", "2xl"]}
-                mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
-                Automated Email Outreach
-              </Text>
-              <Text
-                mb={5}
-                fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
-                JarvisReach includes an email outreach system that lets users
-                initiate direct communication from within the platform.
-                Personalized email sequences can be set up to send follow-ups at
-                specified intervals, ensuring consistent engagement with
-                prospects. The platform’s automated email feature allows users
-                to manage large volumes of outreach without manual follow-up
-                tracking.
-              </Text>
+              <List spacing={3} mt={5}>
+                <ListItem
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <strong>Real-Time Analytics:</strong>
+                    <span>
+                      A centralized dashboard provides admins and sales
+                      representatives with insights into performance metrics,
+                      customer engagement, and team productivity.
+                    </span>
+                  </Box>
+                </ListItem>
+                <ListItem
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <strong>Multi-Agent Parallelism</strong>
+                    <span>
+                      Handling thousands of agents simultaneously, each with
+                      independent states, to enhance scalability and
+                      responsiveness.
+                    </span>
+                  </Box>
+                </ListItem>
+                <ListItem
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <strong>AI-Driven Tools:</strong>
+                    <span>
+                      Features like Google search integration, web scraping, and
+                      business information retrieval automate repetitive tasks,
+                      freeing up time for strategic activities.
+                    </span>
+                  </Box>
+                </ListItem>
+                <ListItem
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <strong>Seamless User Experience</strong>
+                    <span>
+                      Ensuring an intuitive interface for admins, sales
+                      representatives, and customers.
+                    </span>
+                  </Box>
+                </ListItem>
+                <ListItem
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "flex-start",
+                  }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <strong>AI Integration</strong>
+                    <span>
+                      Leveraging cutting-edge AI technologies to automate tasks
+                      throught AI agents and RAG.
+                    </span>
+                  </Box>
+                </ListItem>
+              </List>
             </Box>
-
             <Box
               sx={{
                 position: "relative",
@@ -340,8 +340,7 @@ const CaseStudyJarvisreach = () => {
                 alignItems: "center",
                 flexDirection: "column",
                 textAlign: "center",
-              }}
-            >
+              }}>
               <FaQuoteLeft
                 size={10}
                 style={{ position: "absolute", left: "15%", top: 40 }}
@@ -357,41 +356,32 @@ const CaseStudyJarvisreach = () => {
                   color: colorMode === "dark" ? "white" : "gray.600",
                   display: "flex",
                   width: "60%",
-                }}
-              >
-                Tech Emulsion helped us bring JarvisReach to life. They built a
-                user-friendly SaaS that makes LinkedIn prospecting much easier.
-                Their work on features like automated email outreach and
-                flexible subscriptions was key to our success.
+                }}>
+                Tech Emulsion transformed Alifa’s vision into an intuitive,
+                scalable platform that addresses modern sales challenges. With
+                advanced AI features and a user-friendly design, Alifa is
+                well-positioned to lead in client engagement and sales
+                analytics.
               </Text>
               <FaQuoteRight
                 size={10}
-                style={{ position: "absolute", right: "20%", bottom: 32 }}
+                style={{ position: "absolute", right: "20%", bottom: 34 }}
               />
-              <Text
-                sx={{
-                  fontSize: { base: "md", lg: "4xl" },
-                  fontWeight: "bold",
-
-                  color: "gray.600",
-
-                  mt: "5",
-                }}
-              >
-                – Imran, Founder of JarvisReach
+              <Text fontSize="2xl" fontWeight="bold" color="gray.600" mt={5}>
+                – Suliman, CEO of Alifa
               </Text>
             </Box>
-
             <Text
               fontSize="4xl"
               fontWeight="bold"
               mb={2}
               mt={10}
-              sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-            >
+              sx={{
+                color: colorMode === "dark" ? "white" : "#004c4c",
+              }}>
+              {" "}
               Results
             </Text>
-
             <Text
               mb={10}
               sx={{
@@ -402,56 +392,23 @@ const CaseStudyJarvisreach = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              Streamlined Prospecting: JarvisReach enabled users to efficiently
-              extract and enrich LinkedIn data, reducing the time needed to find
-              and organize potential leads.
-              <br />
-              Enhanced Outreach: Automated email sequences and email
-              verification significantly improved engagement rates while
-              reducing manual effort.
-              <br />
-              Efficient Team Management: The team leaderboards and
-              location-specific management features helped organizations foster
-              healthy competition and boost team productivity.
-              <br />
-              Scalable Growth: The flexible subscription model allowed the
-              platform to cater to both individual users and teams, driving user
-              adoption and platform scalability.
+              }}>
+              Alifa's SaaS platform has revolutionized client engagement by
+              leveraging AI-driven agents to streamline sales processes. Sales
+              teams can easily connect their Zoom and Google Calendar accounts
+              to schedule meetings with clients and send proposals, complete
+              with embedded hyperlinks. The platform has boosted team
+              productivity through advanced analytics and performance tracking,
+              enabling organizations to scale and handle thousands of
+              interactions seamlessly. Additionally, it has expanded its global
+              reach with multi-language and multi-currency support, while
+              optimizing operational efficiency through automated subscription
+              management, real-time analytics, and seamless integration with
+              cutting-edge tools and APIs.
             </Text>
-            {/* <Box mt={16} px="5">
-              <Text fontSize="2xl" fontWeight="bold" mb={6} textAlign="center">
-                Visual Showcase
-              </Text>
-              <SimpleGrid columns={[1, 2, 3]} spacing={5}>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot1.png"
-                    alt="Atarim Platform Screenshot 1"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot2.png"
-                    alt="Atarim Platform Screenshot 2"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot3.png"
-                    alt="Atarim Platform Screenshot 3"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-              </SimpleGrid>
-            </Box> */}
           </Box>
+
+          {/* Visual Showcase / Gallery Section */}
 
           <Box
             sx={{
@@ -470,8 +427,7 @@ const CaseStudyJarvisreach = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Text
               mb={10}
               textAlign="center"
@@ -480,11 +436,10 @@ const CaseStudyJarvisreach = () => {
               }
               fontSize="xl"
               fontWeight="bold"
-              width={["auto", null, "60%"]}
-            >
-              Looking to develop an advanced SaaS solution that meets your
-              unique business needs? Contact Tech Emulsion today to transform
-              your vision into a reality.
+              width={["auto", null, "60%"]}>
+              Looking to elevate your business with a custom, scalable SaaS
+              solution? Contact Tech Emulsion today to turn your innovative
+              ideas into reality.
             </Text>
 
             <Box>
@@ -496,8 +451,7 @@ const CaseStudyJarvisreach = () => {
                 mb={10}
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-                }
-              >
+                }>
                 Let&apos;s discuss how we can help you achieve your business
                 goals.
               </Text>
@@ -521,16 +475,15 @@ const CaseStudyJarvisreach = () => {
                   backgroundClip: "padding-box",
                   backgroundColor: "rgba(255, 255, 255, 0.8)",
                   color: "#004c4c",
-                }}
-              >
+                }}>
                 Book a Call
               </Box>
             </Box>
           </Box>
-        </Container>
-      </Container>
+        </Container>{" "}
+      </Container>{" "}
     </Box>
   );
 };
 
-export default CaseStudyJarvisreach;
+export default CaseStudyAlifa;

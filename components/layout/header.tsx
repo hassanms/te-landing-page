@@ -11,7 +11,7 @@ import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
-export interface HeaderProps extends Omit<BoxProps, "children"> { }
+export interface HeaderProps extends Omit<BoxProps, "children"> {}
 
 export const Header = (props: HeaderProps) => {
   const ref = React.useRef<HTMLHeadingElement>(null);
@@ -20,7 +20,8 @@ export const Header = (props: HeaderProps) => {
 
   const { scrollY } = useScroll();
   React.useEffect(() => {
-    return scrollY.onChange(() => setY(scrollY.get()));
+    const unsubscribe = scrollY.on("change", (v) => setY(v));
+    return () => unsubscribe();
   }, [scrollY]);
 
   const bg = useColorModeValue("whiteAlpha.700", "rgba(29, 32, 37, 0.7)");

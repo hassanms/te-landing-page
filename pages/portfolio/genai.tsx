@@ -11,10 +11,7 @@ const CaseStudyRagGenai = () => {
     <Box id="services">
       <Head>
         <title>Case Study: RAG Based Customized ChatBot - Tech Emulsion</title>
-        <meta
-          name="description"
-        // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
+        <meta name="description" />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
@@ -22,8 +19,7 @@ const CaseStudyRagGenai = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -51,8 +47,7 @@ const CaseStudyRagGenai = () => {
           px="15"
           mt={10}
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box
             sx={{
               width: "100%",
@@ -71,8 +66,7 @@ const CaseStudyRagGenai = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
                 src="/assets/portfolio/raggenai.png"
@@ -95,8 +89,7 @@ const CaseStudyRagGenai = () => {
               fontWeight={"500"}
               mt="4"
               width={"100%"}
-              align={"center"}
-            >
+              align={"center"}>
               RAG Based Customized ChatBot – Case Study
             </Text>
             <Text
@@ -105,12 +98,12 @@ const CaseStudyRagGenai = () => {
               }
               fontSize="xl"
               mt="4"
-              width={["auto", null, "60%"]}
-            >
-              The project is an AI-powered Retrieval-Augmented Generation (RAG) application that allows users
-              to upload PDF documents, ask questions about their content, and receive accurate, context-aware
-              answers by utilizing OpenAI's language models, embeddings, and a vector database for efficient
-              document retrieval.
+              width={["auto", null, "60%"]}>
+              The project is an AI-powered Retrieval-Augmented Generation (RAG)
+              application that allows users to upload PDF documents, ask
+              questions about their content, and receive accurate, context-aware
+              answers by utilizing OpenAI's language models, embeddings, and a
+              vector database for efficient document retrieval.
             </Text>
           </Box>
         </Box>

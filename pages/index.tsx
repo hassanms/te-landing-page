@@ -84,7 +84,7 @@ import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
 import TeamsIcon from "components/icons/Teams";
-import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
 import animationData1 from "../public/assets/Animation/screen.json";
 import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
@@ -93,13 +93,17 @@ import { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
 
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false },
+);
+
 const Home: NextPage = () => {
   return (
     <Box>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
 
       <Head>
         <title>Tech Emulsion | Imagineering Digital Transformation</title>
@@ -107,17 +111,21 @@ const Home: NextPage = () => {
           name="description"
           content="Imagineering digital transformation for your business"
         />
-          {/* Open Graph (OG) Meta Tags for Social Media Previews */}
-        <meta property="og:title" content="Tech Emulsion | Imagineering Digital Transformation" />
-        <meta property="og:description" content="Tech Emulsion Always provide innovative digital transformation solutions." />
-        <meta property="og:image" content="https://techemulsion.com/static/favicons/android-chrome-192x192.png" />
+        {/* Open Graph (OG) Meta Tags for Social Media Previews */}
+        <meta
+          property="og:title"
+          content="Tech Emulsion | Imagineering Digital Transformation"
+        />
+        <meta
+          property="og:description"
+          content="Tech Emulsion Always provide innovative digital transformation solutions."
+        />
+        <meta
+          property="og:image"
+          content="https://techemulsion.com/static/favicons/android-chrome-192x192.png"
+        />
         <meta property="og:url" content="https://techemulsion.com/" />
         <meta property="og:type" content="website" />
-
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
       </Head>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
@@ -166,7 +174,6 @@ const Home: NextPage = () => {
 };
 type LottieAnimationData = Record<string, any>;
 
-
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const [currentAnimation, setCurrentAnimation] =
@@ -175,7 +182,7 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentAnimation((prevAnimation) =>
-        prevAnimation === animationData1 ? animationData2 : animationData1
+        prevAnimation === animationData1 ? animationData2 : animationData1,
       );
     }, 10000);
 
@@ -190,7 +197,6 @@ const HeroSection: React.FC = () => {
     video.play().catch((err) => console.error("Video play error:", err));
   }, []);
 
-
   const img =
     "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return colorMode === "dark" ? (
@@ -199,8 +205,7 @@ const HeroSection: React.FC = () => {
       overflow="hidden"
       display="grid"
       gridTemplateColumns="1fr"
-      gridTemplateRows="1fr"
-    >
+      gridTemplateRows="1fr">
       <BackgroundGradient height="100%" zIndex="-1" />
       <Box
         gridColumn="1 / -1"
@@ -209,18 +214,17 @@ const HeroSection: React.FC = () => {
         width="100%"
         display="grid"
         zIndex="-1"
-        mb={{ base: "0px", lg: "-120px" }}
-      >
+        mb={{ base: "0px", lg: "-120px" }}>
         <FallInPlace delay={1}>
           <video
-             src="/assets/Animation/hero-video.mp4"
+            src="/assets/Animation/hero-video.mp4"
             ref={videoRef}
             autoPlay={true}
             loop={true}
             muted={true}
             // loading="eager"
             playsInline={true}
-            preload="none"
+            preload="metadata"
             style={{
               width: "100%",
               height: "100%",
@@ -235,13 +239,11 @@ const HeroSection: React.FC = () => {
         pt={{ base: 20, lg: 20 }}
         gridColumn="1 / -1"
         gridRow="1 / -1"
-        zIndex={1}
-      >
+        zIndex={1}>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
-          alignItems="flex-start"
-        >
+          alignItems="flex-start">
           <Hero
             id="home"
             justifyContent="flex-start"
@@ -264,16 +266,14 @@ const HeroSection: React.FC = () => {
                     style={{
                       color: "#66B2B2",
                       fontWeight: "900",
-                    }}
-                  >
+                    }}>
                     SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
-            }
-          >
+            }>
             <FallInPlace delay={0.8}>
               <HStack pt="4" pb="6" spacing="8">
                 {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
@@ -282,15 +282,13 @@ const HeroSection: React.FC = () => {
               <ButtonGroup spacing={4} alignItems="center">
                 <ButtonLink
                   size="lg"
-                  href="#portfolio"
+                  href="/portfolio"
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
-                  }}
-                >
+                  }}>
                   Explore Portfolio
                 </ButtonLink>
-
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -298,8 +296,7 @@ const HeroSection: React.FC = () => {
               spacing="2"
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
-              mt="10"
-            >
+              mt="10">
               <Text
                 fontSize="sm"
                 color="muted"
@@ -308,26 +305,66 @@ const HeroSection: React.FC = () => {
                 textAlign="left"
                 display={"flex"}
                 alignItems={"center"}
-                width={"100%"}
-              >
+                width={"100%"}>
                 Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>
-                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  display="flex"
+                  gap="10"
+                  // overflow="hidden"
+                  // height="100%"
+                  // display="flex"
+                  // gap="10"
+                  // alignItems="center"
+                  // justifyContent="center"
+                >
                   <>
+                    <Image
+                      src="/assets/clients/bubble.1.png"
+                      width={110}
+                      height={100}
+                      alt="Bubble logo"
+                      style={{
+                        filter: "invert(1) brightness(2) contrast(1.2)",
+                        objectFit: "contain",
+                        marginBottom: "8px",
+                      }}
+                    />
+                    <Image
+                      src="/assets/clients/Pensa.webp"
+                      width={100}
+                      height={100}
+                      alt="Pensa logo"
+                      style={{
+                        objectFit: "contain",
+                        marginBottom: "2px",
+                      }}
+                    />
                     <Image
                       src="/assets/clients/atarim-white.svg"
                       width={100}
                       height={100}
                       alt="Atarim logo"
+                      style={{
+                        objectFit: "contain",
+                      }}
                     />
                     <Image
-                      src="/assets/clients/farmin-white.png"
-                      width={100}
-                      height={100}
-                      style={{ objectFit: "contain" }}
-                      alt="Farmin logo"
+                      src="/assets/clients/nearshore.png"
+                      width={140}
+                      height={180}
+                      alt="NearShore logo"
+                      style={{
+                        height: "contain",
+                        maxHeight: "140px",
+                        width: "180px",
+                        cursor: "pointer",
+                        marginTop: "10px",
+                      }}
                     />
                   </>
                 </Box>
@@ -338,8 +375,7 @@ const HeroSection: React.FC = () => {
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
-          >
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
             <FallInPlace delay={1}>
               <Box overflow="hidden">
                 {/*   <Player
@@ -364,8 +400,7 @@ const HeroSection: React.FC = () => {
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
-          alignItems="flex-start"
-        >
+          alignItems="flex-start">
           <Hero
             id="home"
             justifyContent="flex-start"
@@ -388,16 +423,14 @@ const HeroSection: React.FC = () => {
                     style={{
                       color: "#004C4C",
                       fontWeight: "900",
-                    }}
-                  >
+                    }}>
                     SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
-            }
-          >
+            }>
             <FallInPlace delay={0.8}>
               <HStack pt="4" pb="6" spacing="8">
                 {/* <NextjsLogo height="28px" /> <ChakraLogo height="20px" /> */}
@@ -406,15 +439,13 @@ const HeroSection: React.FC = () => {
               <ButtonGroup spacing={4} alignItems="center">
                 <ButtonLink
                   size="lg"
-                  href="#portfolio"
+                  href="/portfolio"
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
-                  }}
-                >
+                  }}>
                   Explore Portfolio
                 </ButtonLink>
-
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -422,8 +453,7 @@ const HeroSection: React.FC = () => {
               spacing="2"
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
-              mt="10"
-            >
+              mt="10">
               <Text
                 fontSize="sm"
                 color="muted"
@@ -432,28 +462,77 @@ const HeroSection: React.FC = () => {
                 textAlign="left"
                 display={"flex"}
                 alignItems={"center"}
-                width={"100%"}
-              >
+                width={"100%"}>
                 Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>
-                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  display="flex"
+                  gap="10"
+                  // overflow="hidden"
+                  // height="100%"
+                  // display="flex"
+                  // gap="10"
+                  // alignItems="center"
+                  // justifyContent="center"
+                  // flexWrap="wrap"
+                  // width="100%"
+                >
                   <>
+                    <Image
+                      src="/assets/clients/bubble.1.png"
+                      width={110}
+                      height={100}
+                      alt="bubble logo"
+                      loading="eager"
+                      style={{
+                        objectFit: "contain",
+                        marginBottom: "8px",
+                      }}
+                    />
+                    <Image
+                      src="/assets/clients/Pensa.webp"
+                      width={100}
+                      height={100}
+                      alt="Pensa logo"
+                      loading="eager"
+                      style={{
+                        objectFit: "contain",
+                        marginBottom: "2px",
+                      }}
+                    />
                     <Image
                       src="/assets/clients/Atarim.svg"
                       width={100}
                       height={100}
                       alt="Atarim logo"
                       loading="eager"
+                      style={{
+                        objectFit: "contain",
+                      }}
                     />
                     <Image
+                      src="/assets/clients/nearshore.png"
+                      width={140}
+                      height={100}
+                      alt="Nearshore logo"
+                      loading="eager"
+                      style={{
+                        filter: "invert(1) brightness(2) contrast(1.2)",
+                        objectFit: "contain",
+                        marginTop: "13px",
+                      }}
+                    />
+                    {/* <Image
                       src="/assets/clients/farmin-dark.png"
                       width={100}
                       height={100}
-                      style={{ objectFit: "contain" }}
+                      style={{ objectFit: "contain", height: "auto" }}
                       alt="Farmin logo"
-                    />
+                    /> */}
                   </>
                 </Box>
               </FallInPlace>
@@ -463,8 +542,7 @@ const HeroSection: React.FC = () => {
             display={{ base: "none", lg: "block" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
-          >
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
             <FallInPlace delay={1}>
               <Box overflow="hidden">
                 <Player
@@ -504,7 +582,7 @@ const cardData = [
     gradient: ["pink.200", "purple.500"],
     company: "",
     description:
-      "At Tech Emulsion, we don’t just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
+      "At Tech Emulsion, we don't just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
   },
 ];
 
@@ -525,7 +603,6 @@ const AboutUsSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-
   const currentCard = cardData[currentIndex];
 
   return (
@@ -537,8 +614,7 @@ const AboutUsSection: React.FC = () => {
           direction={["column", null, "row"]}
           spacing="4"
           ml={{ base: 4, lg: 4 }}
-          mt={10}
-        >
+          mt={10}>
           <Box flex="1">
             <Heading
               as="h2"
@@ -546,8 +622,7 @@ const AboutUsSection: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               About us
             </Heading>
             <Heading
@@ -555,8 +630,7 @@ const AboutUsSection: React.FC = () => {
               mt="2"
               sx={{
                 fontSize: "2rem",
-              }}
-            >
+              }}>
               Impactful Product Design,
               <Br /> Memorable Experience
             </Heading>
@@ -573,8 +647,7 @@ const AboutUsSection: React.FC = () => {
               fontWeight={600}
               sx={{
                 fontSize: "2rem",
-              }}
-            >
+              }}>
               Connect With Us
             </Heading>
             <Text color="muted" fontSize="lg" mt="4">
@@ -587,8 +660,7 @@ const AboutUsSection: React.FC = () => {
               <Link
                 href="https://www.linkedin.com/company/tech-emulsion/"
                 isExternal
-                aria-label="Visit Tech Emulsion on LinkedIn"
-              >
+                aria-label="Visit Tech Emulsion on LinkedIn">
                 <Icon
                   as={FiLinkedin}
                   boxSize="10"
@@ -605,9 +677,10 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
 
-              <Link href="https://www.facebook.com/emulsiontech/" isExternal
-                aria-label="Visit Tech Emulsion on Facebook"
-              >
+              <Link
+                href="https://www.facebook.com/emulsiontech/"
+                isExternal
+                aria-label="Visit Tech Emulsion on Facebook">
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
@@ -623,9 +696,10 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://github.com/hassanms" isExternal
-                aria-label="Visit Hassan's GitHub profile"
-              >
+              <Link
+                href="https://github.com/hassanms"
+                isExternal
+                aria-label="Visit Hassan's GitHub profile">
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
@@ -641,9 +715,10 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-              <Link href="https://www.youtube.com/@TechEmulsion" isExternal
-                aria-label="Visit Tech Emulsion on YouTube"
-              >
+              <Link
+                href="https://www.youtube.com/@TechEmulsion"
+                isExternal
+                aria-label="Visit Tech Emulsion on YouTube">
                 <Icon
                   as={AiFillYoutube}
                   boxSize="10"
@@ -670,8 +745,7 @@ const AboutUsSection: React.FC = () => {
             sx={{
               textTransform: "uppercase",
             }}
-            ml={4}
-          >
+            ml={4}>
             How We Empower Your Business
           </Heading>
           <Features
@@ -729,9 +803,9 @@ const AboutUsSection: React.FC = () => {
             company=""
             colSpan={[1, null, 2]}
           >
-            “Your challenges fuel our creativity and determination. We’re
+            "Your challenges fuel our creativity and determination. We're
             dedicated to delivering exceptional results that exceed
-            expectations.”
+            expectations."
           </HighlightsTestimonialItem> */}
 
           <Box>
@@ -748,22 +822,22 @@ const AboutUsSection: React.FC = () => {
                 borderRadius="lg"
                 overflow="hidden"
                 h="320px"
-                className="shining-card"
-              >
+                className="shining-card">
                 <FallInPlace delay={0.8}>
                   <CardHeader
                     display="flex"
                     flexDirection="row"
                     gap="4"
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
-                  >
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}>
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
-                      className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                        }`}
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
                     />
                     <Stack spacing="1" mt="4">
                       <Heading size="sm" color="white">
@@ -777,9 +851,9 @@ const AboutUsSection: React.FC = () => {
                 </FallInPlace>
                 <FallInPlace delay={0.8}>
                   <CardBody
-                    className={`fade-card ${isFlipping ? "fade-out" : "fade-in"
-                      }`}
-                  >
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}>
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
                     </Text>
@@ -791,8 +865,7 @@ const AboutUsSection: React.FC = () => {
 
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}
-            title="Areas We Specialize In"
-          >
+            title="Areas We Specialize In">
             <Text color="muted" fontSize="lg">
               Our team specializes in delivering innovative software solutions
               using a wide range of modern technologies. From SaaS and
@@ -831,8 +904,7 @@ const AboutUsSection: React.FC = () => {
                       "&:hover": {
                         bg: "#004c4c",
                       },
-                    }}
-                  >
+                    }}>
                     {value}
                   </Tag>
                 </li>
@@ -911,16 +983,14 @@ const HighlightsSection: React.FC = () => {
       id="services"
       sx={{
         scrollMarginTop: "50px",
-      }}
-    >
+      }}>
       <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
           px="4"
           mt={10}
-          justifyContent={"space-between"}
-        >
+          justifyContent={"space-between"}>
           <Box>
             <Heading
               as="h2"
@@ -928,8 +998,7 @@ const HighlightsSection: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               What We Do
             </Heading>
             <Heading
@@ -944,8 +1013,7 @@ const HighlightsSection: React.FC = () => {
                   base: "100%",
                   md: "70%",
                 },
-              }}
-            >
+              }}>
               We help to build clients their dream projects
             </Heading>
           </Box>
@@ -957,8 +1025,7 @@ const HighlightsSection: React.FC = () => {
             justifyContent={["flex-start", null, "flex-end"]}
             width={["100%", null, "auto"]}
             alignItems="end"
-            mt="4"
-          >
+            mt="4">
             <ButtonLink
               size="lg"
               href="/services"
@@ -972,8 +1039,7 @@ const HighlightsSection: React.FC = () => {
                   color: colorMode === "light" ? "#004c4c !important" : "white",
                   textDecoration: "none",
                 },
-              }}
-            >
+              }}>
               Explore Services
             </ButtonLink>
           </ButtonGroup>
@@ -985,8 +1051,7 @@ const HighlightsSection: React.FC = () => {
               key={index}
               colSpan={[1, null, 2]}
               title={""}
-              padding={0}
-            >
+              padding={0}>
               <Image
                 src={item.image}
                 alt={item.alt}
@@ -1057,9 +1122,9 @@ const HighlightsSection: React.FC = () => {
             company="Tech Emulsion"
             colSpan={[1, null, 2]}
           >
-            “Saas UI helped us set up a beautiful modern UI in no time. It saved
+            "Saas UI helped us set up a beautiful modern UI in no time. It saved
             us hundreds of hours in development time and allowed us to focus on
-            business logic for our specific use-case from the start.”
+            business logic for our specific use-case from the start."
           </HighlightsTestimonialItem>
           <HighlightsItem
             colSpan={[1, null, 2, 3, 4]}
@@ -1118,11 +1183,32 @@ const Portfolio: React.FC = () => {
   const { colorMode } = useColorMode();
   const HighlightsItems = [
     {
-      title: "Farmin – AI-Powered Satellite Image Detection SaaS",
+      title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
       description:
-        "Tech Emulsion built Farmin, an AI-powered SaaS for satellite image analysis. Using Mapbox, YOLO models, and OpenCV, it detects objects like cars, ships, and oil spills. We added change detection, a data annotation tool, and deployed it on AWS, enabling real-time insights and scalable remote sensing.",
-      image: "/assets/portfolio/farmin.avif",
-      alt: "Farmin – AI-Powered Satellite Image Detection SaaS",
+        "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
+      image: "/assets/portfolio/mic.jpg",
+      alt: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+    },
+    {
+      title: "Rack Room – Business resource management system",
+      description:
+        "Rackroom is a tailored, secure, and scalable application built for a single owner to manage their business's resources. It supports booking management with complex date/time calculations, client and engineer tracking, financial calculations, and automated SMS notifications via Twilio. The Gantt chart dashboard and event logs provide the owner with clear visibility and control. Built with a modern tech stack and a robust database schema, Rackroom is optimized for the owner's specific business needs, with flexibility for future enhancements.",
+      image: "/assets/portfolio/download.jpg",
+      alt: "Rack Room – Business resource management system",
+    },
+    {
+      title: "Content Compass – LinkedIn content analysis and inspiration tool",
+      description:
+        "This tool helps users get inspired by top LinkedIn creators and level up their own content game. Users can create a personalized dashboard by entering the LinkedIn profiles they want to follow. The system scrapes those profiles every 3 days (or on demand) and collects all types of post formats including text, carousels, videos, images, multi-image posts, reshared and reposted content. We analyze the posts using OpenAI's LLM to detect tone, writing patterns, common hooks, CTAs, and engagement trends. Users get insights into what works and why and can use the AI to generate similar posts based on their favorite creators. The AI suggests engaging hooks and helps users write complete posts tailored to their voice. A built-in analytics panel also compares tone and engagement across different creators to help users understand what content styles perform best. This will be offered on a subscription basis with no current limits on creators or post generations.",
+      image: "/assets/portfolio/linkedin.jpg",
+      alt: "Content Compass – LinkedIn content analysis and inspiration tool",
+    },
+    {
+      title: "SuperHeart – AI-powered nutrition tracking mobile app",
+      description:
+        "SuperHeart is a food coach in your pocket. It helps you choose meals that keep your heart happy. You can log meals by photo, words, or search. The app uses AI (smart computer brain) to guess food details. It shows calories and macros (big nutrients like protein, carbs, fats) right away. he dashboard tracks water, fiber, sugar and other targets for each day. Colored rings tell you what you still need or should limit. You can tap a meal for deeper facts and helpful notes. Reminders nudge you to eat, weigh in, or read small health tips. A profile page stores streaks, premium status, and account settings. Extra tabs show chat help and long-term progress. Everything runs in React Native, so one code serves iOS and Android. Supabase holds user data and handles sign-in and sync. This stack keeps costs low and updates fast.",
+      image: "/assets/portfolio/food.webp",
+      alt: "SuperHeart – AI-powered nutrition tracking mobile app",
     },
     {
       title: "Atarim – A SaaS tool for visual collaboration & project mgmt",
@@ -1132,55 +1218,12 @@ const Portfolio: React.FC = () => {
       alt: "Atarim – A SaaS tool for visual collaboration & project mgmt",
     },
     {
-      title: "Bipcards – Elevate Online Presence with Genuine Reviews",
-      description:
-        "Tech Emulsion developed a SaaS platform for Bipcards.com, enabling businesses to collect customer reviews via programmable NFC cards and QR codes. Customers benefit from a flexible subscription model, real-time analytics, and easy card programming, while sales reps streamline onboarding, enhancing engagement and efficiency.",
-      image: "/assets/portfolio/bipcards.png",
-      alt: "Bipcards – Elevate Online Presence with Genuine Reviews",
-    },
-    {
-      title: "Popcard – SaaS for managing review cards",
-      description:
-        "Tech Emulsion developed a SaaS for PopCard.io, enabling businesses to manage locations, teams, and customer reviews via NFC cards and QR codes. Features included secure authentication with social logins, analytics, leaderboards, and Stripe subscriptions, enhancing engagement and revenue.",
-      image: "/assets/portfolio/popcard.png",
-      alt: "Popcard – SaaS for managing review cards",
-    },
-    {
-      title:
-        "Artis – Blockchain powered SaaS to help artists copyright their work",
-      description:
-        "Artis is an AI-driven platform that analyzes an artist’s style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
-      image: "/assets/portfolio/Artis.png",
-      alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
-    },
-    {
       title:
         "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
       description:
         "Tech Emulsion developed JarvisReach, a SaaS for LinkedIn prospecting, enabling efficient data extraction, filtering, and automated email outreach. With subscription flexibility, team leaderboards, and admin analytics, JarvisReach streamlines lead management and boosts user productivity.",
       image: "/assets/portfolio/jarvis.png",
       alt: "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
-    },
-    {
-      title: "Alifa App – Client Engagement and AI-Driven Sales SaaS",
-      description:
-        "Tech Emulsion developed Alifa App to help sales reps manage client interactions with ease. It enables Zoom meeting creation, dynamic proposal sharing with hyperlinks, and automated client chats using RAG. With AI agents for web monitoring, data extraction, and web searches, it automates tasks and enhances client engagement, delivering a seamless and scalable sales solution.",
-      image: "/assets/portfolio/file.jpg",
-      alt: "Alifa App – AI-Driven Client Interaction SaaS",
-    },
-    {
-      title: "MoodTube Extension – AI-Powered YouTube Video Search by Mood",
-      description:
-        "MoodTube allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings with models like all-mpnet-base-v2, and stores them in PGVector. Semantic search retrieves videos matching the selected mood, offering personalized video recommendations.",
-      image: "/assets/portfolio/moodtube.png",
-      alt: "MoodTube – AI-Powered Video Search by Mood",
-    },
-    {
-      title: "RAG Based Customized ChatBot",
-      description:
-        "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
-      image: "/assets/portfolio/raggenai.png",
-      alt: "RAG – AI-Powered Document Querying Application",
     },
   ];
   return (
@@ -1192,8 +1235,7 @@ const Portfolio: React.FC = () => {
           display={{ base: "block", md: "flex" }}
           px="4"
           mt={10}
-          justifyContent={"space-between"}
-        >
+          justifyContent={"space-between"}>
           <Box>
             <Heading
               as="h2"
@@ -1201,8 +1243,7 @@ const Portfolio: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               Creative Portfolio
             </Heading>
             <Heading
@@ -1217,40 +1258,23 @@ const Portfolio: React.FC = () => {
                   base: "100%",
                   md: "70%",
                 },
-              }}
-            >
-              Recent Works
+              }}>
+              We showcase how we’ve turned clients' ideas into remarkable
+              realities
             </Heading>
-
-            {/* for small text  */}
-
-            <Text
-              py="4"
-              color="muted"
-              fontSize="lg"
-              fontWeight={"500"}
-              mt="4"
-              width={{ base: "100%", md: "60%" }}
-              textAlign="left"
-            >
-              {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
-            project highlights our dedication to quality and creativity.
-            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
-            </Text>
           </Box>
 
           {/* Explore services */}
-          {/* <ButtonGroup
+          <ButtonGroup
             spacing={4}
             display="flex"
             justifyContent={["flex-start", null, "flex-end"]}
             width={["100%", null, "auto"]}
             alignItems="end"
-            mt="4"
-          >
+            mt="4">
             <ButtonLink
               size="lg"
-              href="/portfolio"
+              href="/services"
               sx={{
                 bg: " none",
                 fontSize: "1.5rem",
@@ -1261,61 +1285,33 @@ const Portfolio: React.FC = () => {
                   color: colorMode === "light" ? "#004c4c !important" : "white",
                   textDecoration: "none",
                 },
-              }}
-            >
-              Explore Portfolio
+              }}>
+              Explore Services
             </ButtonLink>
-          </ButtonGroup> */}
-        </Box>
-
-        <Box
-          display={"flex"}
-          flexDirection={"column"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          gap={"4"}
-          mt={10}
-        >
-          <Button
-            size="lg"
-            mt={"10"}
-            bg={"#004c4c"}
-            sx={{
-              fontSize: "1rem",
-              color: "white",
-              borderRadius: "30px",
-              padding: "0.5rem 1.8rem",
-              "&:hover": {
-                bg: "#004c4c",
-              },
-            }}
-          >
-            All
-          </Button>
+          </ButtonGroup>
         </Box>
 
         {/* Explore services */}
         <Highlights>
-          {HighlightsItems?.map((item, index) => {
-            const href = item.title.includes("Farmin")
-              ? "/work/case-study-farmin"
-              : item.title.includes("Atarim")
-                ? "/work/case-study-atarim"
-                : item.title.includes("Bipcards")
-                  ? "/work/case-study-bipcards"
-                  : item.title.includes("Popcard")
-                    ? "/work/case-study-popcard"
-                    : item.title.includes("Artis")
-                      ? "/work/case-study-artis"
-                      : item.title.includes("JarvisReach")
-                        ? "/work/case-study-jarvisreach"
-                        : item.title.includes("Alifa")
-                          ? "/work/case-study-alifa"
-                          : item.title.includes("RAG")
-                            ? "/work/case-study-genai"
-                            : item.title.includes("MoodTube")
-                              ? "/work/case-study-moodtube"
-                              : null;
+          {HighlightsItems.map((item, index) => {
+            const href = item.title.includes("Atarim")
+              ? "/portfolio/atarim"
+              : item.title.includes("JarvisReach")
+              ? "/portfolio/jarvisreach"
+              : item.title.includes("Content Compass")
+              ? "/portfolio/contentcompass"
+              : item.title.includes("SuperHeart")
+              ? "/portfolio/superheart"
+              : item.title.includes("Rack Room")
+              ? "/portfolio/rackroom"
+              : item.title.includes("Podcast Beacon")
+              ? "/portfolio/podcastbeacon"
+              : null;
+
+            // Set objectFit for Rack Room, otherwise use "contain"
+            const objectFit = item.title.includes("Rack Room")
+              ? "cover"
+              : "contain";
 
             return (
               <HighlightsItem key={index} colSpan={[1, null, 2]}>
@@ -1324,8 +1320,7 @@ const Portfolio: React.FC = () => {
                   _hover={{ textDecoration: "none" }}
                   gap="0"
                   title=""
-                  border="none"
-                >
+                  border="none">
                   <Box
                     sx={{
                       width: "100%",
@@ -1338,8 +1333,9 @@ const Portfolio: React.FC = () => {
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                       py: 1,
-                    }}
-                  >
+                      // Only add px for Rack Room
+                      px: item.title.includes("Rack Room") ? 12 : 0,
+                    }}>
                     <Box>
                       <Image
                         src={item.image}
@@ -1349,7 +1345,7 @@ const Portfolio: React.FC = () => {
                         style={{
                           width: "100%",
                           height: "300px",
-                          objectFit: "contain",
+                          objectFit: objectFit,
                           marginTop: 25,
                         }}
                       />
@@ -1369,64 +1365,6 @@ const Portfolio: React.FC = () => {
               </HighlightsItem>
             );
           })}
-
-          {/* <HighlightsItem colSpan={[1, null, 2]} title="Core components">
-          <Text color="muted" fontSize="lg">
-            We don&apos;t like to re-invent the wheel, neither should you. We
-            selected the most productive and established tools in the scene and
-            build Saas UI on top of it.
-          </Text>
-        </HighlightsItem>
-        <HighlightsTestimonialItem
-          name="Renata Alink"
-          description="Founder"
-          avatar="/static/images/avatar.jpg"
-          gradient={["pink.200", "purple.500"]}
-        >
-          “Saas UI helped us set up a beautiful modern UI in no time. It saved
-          us hundreds of hours in development time and allowed us to focus on
-          business logic for our specific use-case from the start.”
-        </HighlightsTestimonialItem>
-        <HighlightsItem
-          colSpan={[1, null, 2]}
-          title="Start your next idea two steps ahead"
-        >
-          <Text color="muted" fontSize="lg">
-            We took care of all your basic frontend needs, so you can start
-            building functionality that makes your product unique.
-          </Text>
-          <Wrap mt="8">
-            {[
-              "authentication",
-              "navigation",
-              "crud",
-              "settings",
-              "multi-tenancy",
-              "layouts",
-              "billing",
-              "a11y testing",
-              "server-side rendering",
-              "documentation",
-              "onboarding",
-              "storybooks",
-              "theming",
-              "upselling",
-              "unit testing",
-              "feature flags",
-              "responsiveness",
-            ].map((value) => (
-              <Tag
-                key={value}
-                variant="subtle"
-                colorScheme="purple"
-                rounded="full"
-                px="3"
-              >
-                {value}
-              </Tag>
-            ))}
-          </Wrap>
-        </HighlightsItem> */}
         </Highlights>
       </Container>
     </Box>
@@ -1447,8 +1385,7 @@ const SocialProofSection: React.FC = () => {
       color="white"
       textAlign="center"
       height={[null, null, null]}
-      mb="200"
-    >
+      mb="200">
       <Box
         position={"relative"}
         display="flex"
@@ -1456,15 +1393,13 @@ const SocialProofSection: React.FC = () => {
         justifyContent="center"
         alignItems="center"
         gap="4"
-        py="5"
-      >
+        py="5">
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          gap="4"
-        >
+          gap="4">
           <Heading
             as="h1"
             mt="2"
@@ -1478,8 +1413,7 @@ const SocialProofSection: React.FC = () => {
                 md: "2rem",
               },
               width: "100%",
-            }}
-          >
+            }}>
             Trusted by Leading Brands
           </Heading>
 
@@ -1492,9 +1426,8 @@ const SocialProofSection: React.FC = () => {
             mt="4"
             px="10"
             width={{ base: "100%", md: "60%" }}
-            textAlign="center"
-          >
-            We’re proud to have worked with a diverse range of clients across
+            textAlign="center">
+            We're proud to have worked with a diverse range of clients across
             industries, delivering impactful solutions that drive results. Our
             clients trust us for our commitment to quality, innovation, and
             lasting partnerships, helping them achieve their digital goals with
@@ -1505,17 +1438,49 @@ const SocialProofSection: React.FC = () => {
       <Box
         display="flex"
         width="480%"
-        minWidth={{base: "6300px", lg:"4300px"}}
+        minWidth={{ base: "6300px", lg: "4300px" }}
         whiteSpace="nowrap"
-        overflow="hidden"
-      >
+        overflow="hidden">
         <Box
           display="flex"
-          width={{base: "100%", lg: "50%" }}
+          width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
-          animation={`${scrollAnimation} 75s infinite linear`}
-        >
+          animation={`${scrollAnimation} 75s infinite linear`}>
+          {/* <Tooltip label="Atarim" hasArrow>
+            <Image
+              src="/assets/clients/atarim-white.svg"
+              alt="Atarim"
+              width={150}
+              height={60}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "150px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip> */}
+
+          <Tooltip label="Teadit" hasArrow>
+            <Image
+              src="/assets/clients/teadit.png"
+              alt="teadit"
+              width={110}
+              height={60}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "110px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
           <Tooltip label="Artis" hasArrow>
             <Image
               src="/assets/clients/Artis-lab.png"
@@ -1534,35 +1499,21 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Atarim" hasArrow>
+          <Tooltip label="Sonara" hasArrow>
             <Image
-              src="/assets/clients/atarim-white.svg"
-              alt="Atarim"
-              width={150}
-              height={60}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "60px",
-                width: "150px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Teadit" hasArrow>
-            <Image
-              src="/assets/clients/teadit.png"
-              alt="teadit"
-              width={130}
+              src="/assets/clients/sonara.svg"
+              alt="Sonara"
+              width={100}
               height={80}
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
-                maxHeight: "70px",
-                width: "130px",
+                // filter: "invert(1) brightness(2) contrast(1.2)",
+                height: "cover",
+                maxHeight: "80px",
+                width: "100px",
                 cursor: "pointer",
+                marginTop: "11px",
               }}
             />
           </Tooltip>
@@ -1579,6 +1530,24 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Nearshore" hasArrow>
+            <Image
+              src="/assets/clients/nearshore.png"
+              alt="Pensa"
+              width={140}
+              height={180}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "contain",
+                maxHeight: "140px",
+                width: "180px",
+                cursor: "pointer",
+                marginTop: "10px",
               }}
             />
           </Tooltip>
@@ -1595,6 +1564,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                marginTop: "10px",
               }}
             />
           </Tooltip>
@@ -1646,6 +1616,23 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
+          <Tooltip label="Jarvis" hasArrow>
+            <Image
+              src="/assets/clients/jarvis-logo.png"
+              alt="Jarvis"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "120px",
+                width: "120px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
           <Tooltip label="Ibatu" hasArrow>
             <Image
               src="/assets/clients/ibatu.png"
@@ -1662,22 +1649,7 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Jarvis" hasArrow>
-            <Image
-              src="/assets/clients/jarvis-logo.png"
-              alt="Jarvis"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
+
           {/* <Tooltip label="Krypto Labs App" hasArrow>
             <Image
               src="/assets/clients/krypto-labs.png"
@@ -1701,24 +1673,23 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip> */}
           <Tooltip label="Krypto Labs" hasArrow>
-      
-              <Image
-                src="/assets/clients/krypto-labs.png"
-                alt="Krypto Labs"
-                width={180} // Increased width
-                height={100} // Increased height
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  objectFit: "cover", // Keeps proportions correct
-                  width: "180px", // Ensures it expands properly
-                  height: "100px",
-                  cursor: "pointer",
-                }}
-              />
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={180} // Increased width
+              height={120} // Increased height
+              loading="eager"
+              decoding="async"
+              style={{
+                display: "block",
+                objectFit: "cover", // Keeps proportions correct
+                width: "180px", // Ensures it expands properly
+                height: "120px",
+                cursor: "pointer",
+                marginTop: "5px",
+              }}
+            />
           </Tooltip>
-
           <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
               src="/assets/clients/Podcast-Beacon.png"
@@ -1737,7 +1708,22 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-
+          <Tooltip label="Pensa" hasArrow>
+            <Image
+              src="/assets/clients/Pensa.webp"
+              alt="Pensa"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "cover",
+                maxHeight: "120px",
+                width: "120",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
           <Tooltip label="Logo Black" hasArrow>
             <Image
               src="/assets/clients/logo-black-small.png"
@@ -1751,6 +1737,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
+                marginTop: "5px",
               }}
             />
           </Tooltip>
@@ -1767,77 +1754,30 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
+                marginTop: "5px",
               }}
             />
           </Tooltip>
-          <Tooltip label="Republic Power" hasArrow>
+          {/* <Tooltip label="Republic Power" hasArrow>
             <Image
               src="/assets/clients/republic_power_logo.jpeg"
               alt="Republic Power"
-              width={200}
-              height={80}
+              width={100}
+              height={60}
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
-                maxHeight: "60px",
-                width: "90px",
+                height: "contain",
+                maxHeight: "80px",
+                width: "100px",
                 cursor: "pointer",
               }}
             />
-          </Tooltip>
-          <Tooltip label="Alifa" hasArrow>
-            <Image
-              src="/assets/clients/alifa.PNG"
-              alt="Republic Power"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Moodtube Extension" hasArrow>
+          </Tooltip> */}
+          {/* <Tooltip label="Moodtube Extension" hasArrow>
             <Image
               src="/assets/clients/moodtube_img.png"
               alt="Republic Power"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "80px",
-                maxWidth: "80px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Bipcards" hasArrow>
-            <Box cursor="pointer">
-              <Logo2 />
-            </Box>
-          </Tooltip>
-        </Box>
-        <Box
-          display="flex"
-          width={{base: "100%", lg: "50%" }}
-          justifyContent="space-around"
-          alignItems="center"
-          
-          animation={`${scrollAnimation} 75s infinite linear`}
-        >
-          <Tooltip label="Artis" hasArrow>
-            <Image
-              src="/assets/clients/Artis-lab.png"
-              alt="Artis"
               width={100}
               height={100}
               loading="eager"
@@ -1849,38 +1789,52 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
+                marginTop: "10px",
               }}
             />
-          </Tooltip>
+          </Tooltip> */}
           <Tooltip label="Atarim" hasArrow>
             <Image
               src="/assets/clients/atarim-white.svg"
               alt="Atarim"
-              width={150}
-              height={60}
+              width={130}
+              height={40}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "60px",
-                width: "150px",
+                maxHeight: "40px",
+                width: "130px",
                 cursor: "pointer",
               }}
             />
           </Tooltip>
-          <Tooltip label="Teadit" hasArrow>
+          {/* <Tooltip label="Bipcards" hasArrow>
+            <Box cursor="pointer">
+              <Logo2 />
+            </Box>
+          </Tooltip> */}
+        </Box>
+        <Box
+          display="flex"
+          width={{ base: "100%", lg: "50%" }}
+          justifyContent="space-around"
+          alignItems="center"
+          animation={`${scrollAnimation} 75s infinite linear`}>
+          <Tooltip label="Sprintzeal" hasArrow>
             <Image
-              src="/assets/clients/teadit.png"
-              alt="teadit"
-              width={130}
+              src="/assets/clients/Sprintzeal_Logo.webp"
+              alt="Sprintzeal"
+              width={80}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "80px",
-                width: "130px",
+                maxHeight: "50px",
+                width: "auto",
                 cursor: "pointer",
+                marginTop: "10px",
               }}
             />
           </Tooltip>
@@ -1897,226 +1851,59 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                marginTop: "10px",
               }}
             />
           </Tooltip>
-          <Tooltip label="Sprintzeal" hasArrow>
+          <Tooltip label="Bubble" hasArrow>
             <Image
-              src="/assets/clients/Sprintzeal_Logo.webp"
-              alt="Sprintzeal"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Bai" hasArrow>
-            <Image
-              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
-              alt="Bai"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Crystal Ball" hasArrow>
-            <Image
-              src="/assets/clients/crystal_ball.png"
-              alt="Crystal Ball"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "50px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Farmin" hasArrow>
-            <Image
-              src="/assets/clients/farmin-white.png"
-              alt="Farmin"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "30px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Ibatu" hasArrow>
-            <Image
-              src="/assets/clients/ibatu.png"
-              alt="Ibatu"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Jarvis" hasArrow>
-            <Image
-              src="/assets/clients/jarvis-logo.png"
-              alt="Jarvis"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          {/* <Tooltip label="Krypto Labs App" hasArrow>
-            <Image
-              src="/assets/clients/krypto-labs.png"
-              alt="Krypto Labs"
+              src="/assets/clients/bubble.io.png"
+              alt="Bubble"
               width={120}
-              height={120}
+              height={130}
               loading="eager"
               decoding="async"
               style={{
-                // height: "fit-content",
-                // maxHeight: "100px",
-                // width: "120px",
-                // cursor: "pointer",
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "120px",
-                maxWidth: "120px",
-                width: "auto",
-                height: "auto",
+                // filter: "invert(1) brightness(2) contrast(1.2)",
+                height: "cover",
+                maxHeight: "110px",
+                width: "120",
                 cursor: "pointer",
-              }}
-            />
-          </Tooltip> */}
-          <Tooltip label="Krypto Labs" hasArrow>
-           
-              <Image
-                src="/assets/clients/krypto-labs.png"
-                alt="Krypto Labs"
-                width={180} // Increased width
-                height={100} // Increased height
-                loading="eager"
-                decoding="async"
-                style={{
-                  display: "block",
-                  objectFit: "cover", // Keeps proportions correct
-                  width: "180px", // Ensures it expands properly
-                  height: "100px",
-                  cursor: "pointer",
-                }}
-              />
-          
-          </Tooltip>
-
-          <Tooltip label="Podcast-Beacon" hasArrow>
-            <Image
-              src="/assets/clients/Podcast-Beacon.png"
-              alt="Podcast-Beacon"
-              width={150}
-              height={150}
-              loading="eager"
-              decoding="async"
-              style={{
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "150px",
-                maxWidth: "150px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
+                marginTop: "5px",
               }}
             />
           </Tooltip>
 
-          <Tooltip label="Logo Black" hasArrow>
+          <Tooltip label="Teadit" hasArrow>
             <Image
-              src="/assets/clients/logo-black-small.png"
-              alt="Logo Black"
-              width={80}
+              src="/assets/clients/teadit.png"
+              alt="teadit"
+              width={130}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "40px",
-                width: "auto",
+                maxHeight: "80px",
+                width: "130px",
                 cursor: "pointer",
               }}
             />
           </Tooltip>
-          <Tooltip label="IPG" hasArrow>
+          <Tooltip label="Artis" hasArrow>
             <Image
-              src="/assets/clients/Logo_IPG.jpg"
-              alt="Logo Black"
-              width={80}
-              height={80}
+              src="/assets/clients/Artis-lab.png"
+              alt="Artis"
+              width={100}
+              height={100}
               loading="eager"
               decoding="async"
               style={{
-                height: "fit-content",
-                maxHeight: "40px",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "100px",
+                maxWidth: "100px",
                 width: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Republic Power" hasArrow>
-            <Image
-              src="/assets/clients/republic_power_logo.jpeg"
-              alt="Republic Power"
-              width={200}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "60px",
-                width: "90px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Alifa" hasArrow>
-            <Image
-              src="/assets/clients/alifa.PNG"
-              alt="Republic Power"
-              width={80}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                height: "auto",
                 cursor: "pointer",
               }}
             />
@@ -2140,6 +1927,230 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
+          <Tooltip label="Bai" hasArrow>
+            <Image
+              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              alt="Bai"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Crystal Ball" hasArrow>
+            <Image
+              src="/assets/clients/crystal_ball.png"
+              alt="Crystal Ball"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "50px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Alifa" hasArrow>
+            <Image
+              src="/assets/clients/alifa.PNG"
+              alt="Alifa "
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "120px",
+                width: "120px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Farmin" hasArrow>
+            <Image
+              src="/assets/clients/farmin-white.png"
+              alt="Farmin"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "120px",
+                width: "120px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Jarvis" hasArrow>
+            <Image
+              src="/assets/clients/jarvis-logo.png"
+              alt="Jarvis"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "100px",
+                width: "100px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Ibatu" hasArrow>
+            <Image
+              src="/assets/clients/ibatu.png"
+              alt="Ibatu"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
+
+          {/* <Tooltip label="Krypto Labs App" hasArrow>
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                // height: "fit-content",
+                // maxHeight: "100px",
+                // width: "120px",
+                // cursor: "pointer",
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "120px",
+                maxWidth: "120px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip> */}
+          <Tooltip label="Krypto Labs" hasArrow>
+            <Image
+              src="/assets/clients/krypto-labs.png"
+              alt="Krypto Labs"
+              width={180} // Increased width
+              height={100} // Increased height
+              loading="eager"
+              decoding="async"
+              style={{
+                display: "block",
+                objectFit: "cover", // Keeps proportions correct
+                width: "180px", // Ensures it expands properly
+                height: "100px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Podcast-Beacon" hasArrow>
+            <Image
+              src="/assets/clients/Podcast-Beacon.png"
+              alt="Podcast-Beacon"
+              width={150}
+              height={150}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain", // Ensures proper aspect ratio
+                maxHeight: "150px",
+                maxWidth: "150px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+
+          <Tooltip label="Logo Black" hasArrow>
+            <Image
+              src="/assets/clients/logo-black-small.png"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="IPG" hasArrow>
+            <Image
+              src="/assets/clients/Logo_IPG.jpg"
+              alt="Logo Black"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Republic Power" hasArrow>
+            <Image
+              src="/assets/clients/republic_power_logo.jpeg"
+              alt="Republic Power"
+              width={120}
+              height={60}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "60px",
+                width: "120px",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Alifa" hasArrow>
+            <Image
+              src="/assets/clients/alifa.PNG"
+              alt="Republic Power"
+              width={100}
+              height={100}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "100px",
+                width: "100px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            />
+          </Tooltip>
           <Tooltip label="Bipcards">
             <Box cursor="pointer">
               <Logo2 />
@@ -2155,8 +2166,7 @@ const SocialProofSection: React.FC = () => {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          gap="4"
-        >
+          gap="4">
           {/* <Box
             display="flex"
             flexDirection="column"
@@ -2181,8 +2191,7 @@ const FeaturesSection: React.FC = () => {
           lineHeight="short"
           fontSize={["2xl", null, "4xl"]}
           textAlign="left"
-          as="p"
-        >
+          as="p">
           Not your standard
           <Br /> dashboard template.
         </Heading>
@@ -2280,13 +2289,13 @@ const TestimonialsSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1
+      prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.items.length - 1 : prevIndex - 1
+      prevIndex === 0 ? testimonials.items.length - 1 : prevIndex - 1,
     );
   };
 
@@ -2304,7 +2313,7 @@ const TestimonialsSection: React.FC = () => {
 
         return columns;
       },
-      [[], [], []]
+      [[], [], []],
     );
   }, []);
 
@@ -2315,8 +2324,7 @@ const TestimonialsSection: React.FC = () => {
           maxW="container.xl"
           pt={{ base: 40, md: 40, lg: 20 }}
           pb="20"
-          id="testimonials"
-        >
+          id="testimonials">
           <Stack
             direction={{
               base: "column",
@@ -2324,13 +2332,11 @@ const TestimonialsSection: React.FC = () => {
               lg: "column",
               xl: "row",
             }}
-            alignItems="flex-start"
-          >
+            alignItems="flex-start">
             <Testimonials
               title={testimonials.title}
               columns={[1, 1, 1, 2, 3]}
-              innerWidth="container.xl"
-            >
+              innerWidth="container.xl">
               {!showMore ? (
                 <>
                   {columns
@@ -2348,8 +2354,7 @@ const TestimonialsSection: React.FC = () => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                    }}
-                  >
+                    }}>
                     <Button
                       onClick={() => {
                         setShowMore(true);
@@ -2362,8 +2367,7 @@ const TestimonialsSection: React.FC = () => {
                         color: colorMode === "dark" ? "white" : "#004c4c",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
-                      }}
-                    >
+                      }}>
                       Show more
                       <ChevronDownIcon
                         style={{
@@ -2382,8 +2386,7 @@ const TestimonialsSection: React.FC = () => {
                   <FallInPlace delay={0.8}>
                     <Box
                       height={showMore ? "800px" : "auto"}
-                      overflow={showMore ? "auto" : ""}
-                    >
+                      overflow={showMore ? "auto" : ""}>
                       {columns?.map((column, i) => (
                         <Stack key={i}>
                           {column.map((t, i) => (
@@ -2399,8 +2402,7 @@ const TestimonialsSection: React.FC = () => {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                    }}
-                  >
+                    }}>
                     <Button
                       onClick={() => {
                         setShowMore(false);
@@ -2413,8 +2415,7 @@ const TestimonialsSection: React.FC = () => {
                         color: colorMode === "dark" ? "white" : "#004c4c",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
-                      }}
-                    >
+                      }}>
                       Show less
                       <ChevronUpIcon
                         style={{
@@ -2441,8 +2442,7 @@ const TestimonialsSection: React.FC = () => {
       py="20"
       color="white"
       textAlign="center"
-      height={[null, null, null]}
-    >
+      height={[null, null, null]}>
       <Container maxW="container.xl" py="5" mb="5">
         <Divider />
         <Box
@@ -2457,8 +2457,7 @@ const TestimonialsSection: React.FC = () => {
           }}
           mt={10}
           w={"95%"}
-          marginLeft={"20px"}
-        >
+          marginLeft={"20px"}>
           <Box mb={5} maxW={"60%"}>
             <Heading
               as="h2"
@@ -2470,8 +2469,7 @@ const TestimonialsSection: React.FC = () => {
                 alignItems: "center",
                 width: "100%",
                 textTransform: "uppercase",
-              }}
-            >
+              }}>
               TESTIMONIALS
             </Heading>
             <Heading
@@ -2487,8 +2485,7 @@ const TestimonialsSection: React.FC = () => {
                   md: "2rem",
                 },
                 width: "100%",
-              }}
-            >
+              }}>
               Hear From Our Clients
             </Heading>
             <Text
@@ -2499,8 +2496,7 @@ const TestimonialsSection: React.FC = () => {
               px="10"
               justifyContent={"center"}
               width={{ base: "100%", md: "100%" }}
-              align={"center"}
-            >
+              align={"center"}>
               {`Discover what our clients have to say about their experiences with us.
               Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.`}
             </Text>
@@ -2516,8 +2512,7 @@ const TestimonialsSection: React.FC = () => {
               margin: "0px",
             }}
             width={"100%"}
-            height={"50vh"}
-          >
+            height={"50vh"}>
             {/* Previous button */}
             <Button
               onClick={handlePrev}
@@ -2537,8 +2532,7 @@ const TestimonialsSection: React.FC = () => {
                   color: "white",
                   fontWeight: "bold",
                 },
-              }}
-            >
+              }}>
               <ChevronLeftIcon
                 style={{
                   width: "30px",
@@ -2553,12 +2547,12 @@ const TestimonialsSection: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 transition: "all 0.5s ease",
-                animation: `${currentIndex % 2 === 0 || currentIndex % 3 === 0
-                  ? "fadeOut"
-                  : "fadeIn"
-                  } 0.5s`,
-              }}
-            >
+                animation: `${
+                  currentIndex % 2 === 0 || currentIndex % 3 === 0
+                    ? "fadeOut"
+                    : "fadeIn"
+                } 0.5s`,
+              }}>
               {/* Testimonial item */}
               <Testimonial {...testimonials.items[currentIndex]} />
             </Box>
@@ -2583,8 +2577,7 @@ const TestimonialsSection: React.FC = () => {
                   color: "white",
                   fontWeight: "bold",
                 },
-              }}
-            >
+              }}>
               <ChevronRightIcon
                 style={{
                   width: "30px",
@@ -2606,8 +2599,7 @@ const TestimonialsSection: React.FC = () => {
               alignItems: "center",
               width: "100%",
               textTransform: "uppercase",
-            }}
-          >
+            }}>
             Reason behind our success
           </Heading>
           <Heading
@@ -2623,8 +2615,7 @@ const TestimonialsSection: React.FC = () => {
                 md: "2rem",
               },
               width: "100%",
-            }}
-          >
+            }}>
             Our Core Values
           </Heading>
           <Features
@@ -2694,8 +2685,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -2703,16 +2693,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="React" placement="top">
                   <Image
                     src="/assets/tech/react.png"
@@ -2800,8 +2788,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -2809,16 +2796,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="Node.js" placement="top">
                   <Image
                     src="/assets/tech/nodejs.png"
@@ -2942,8 +2927,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -2951,16 +2935,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="Docker" placement="top">
                   <Image
                     src="/assets/tech/docker.png"
@@ -3012,8 +2994,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -3021,16 +3002,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="TensorFlow" placement="top">
                   <Image
                     src="/assets/tech/tensorflow.png"
@@ -3162,8 +3141,7 @@ const TechnologySection: React.FC = () => {
             alignItems="center"
             gap="4"
             width="100%"
-            mt={10}
-          >
+            mt={10}>
             <Box
               display="flex"
               flexDirection="column"
@@ -3171,16 +3149,14 @@ const TechnologySection: React.FC = () => {
               alignItems="center"
               gap="4"
               width="100%"
-              maxWidth={"900px"}
-            >
+              maxWidth={"900px"}>
               <Box
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent="center"
                 alignItems="center"
                 gap="10"
-                width="100%"
-              >
+                width="100%">
                 <Tooltip label="Make" placement="top">
                   <Image
                     src="/assets/tech/make_logo.jpg"
@@ -3229,8 +3205,7 @@ const TechnologySection: React.FC = () => {
       color="white"
       textAlign="center"
       height={["100%", "100%", "100%"]}
-      bg={colorMode === "dark" ? "gray.800" : ""}
-    >
+      bg={colorMode === "dark" ? "gray.800" : ""}>
       <Divider />
       <Container maxW="container.xl" py="5" mb="5">
         <Box flex="1" mt={20}>
@@ -3244,8 +3219,7 @@ const TechnologySection: React.FC = () => {
               alignItems: "center",
               width: "100%",
               textTransform: "uppercase",
-            }}
-          >
+            }}>
             Tech Stack
           </Heading>
           <Heading
@@ -3261,8 +3235,7 @@ const TechnologySection: React.FC = () => {
                 md: "2rem",
               },
               width: "100%",
-            }}
-          >
+            }}>
             Technologies We Use
           </Heading>
 
@@ -3274,8 +3247,7 @@ const TechnologySection: React.FC = () => {
             gap="4"
             width="100%"
             flexWrap={"wrap"}
-            minWidth={"380px"}
-          >
+            minWidth={"380px"}>
             <Button
               size="lg"
               mt={"10"}
@@ -3290,8 +3262,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("frontend")}
-              minWidth={"72px"}
-            >
+              minWidth={"72px"}>
               Frontend
             </Button>
             <Button
@@ -3308,8 +3279,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("backend")}
-              minWidth={"72px"}
-            >
+              minWidth={"72px"}>
               Backend
             </Button>
             <Button
@@ -3326,8 +3296,7 @@ const TechnologySection: React.FC = () => {
                 },
               }}
               onClick={() => setCurrentTab("devops")}
-              minWidth={"72px"}
-            >
+              minWidth={"72px"}>
               DevOps
             </Button>
             <Button
@@ -3343,8 +3312,7 @@ const TechnologySection: React.FC = () => {
                   bg: currentTab === "AI" ? "#004c4c" : "gray.300",
                 },
               }}
-              onClick={() => setCurrentTab("AI")}
-            >
+              onClick={() => setCurrentTab("AI")}>
               AI
             </Button>
             <Button
@@ -3362,8 +3330,7 @@ const TechnologySection: React.FC = () => {
                 },
                 minWidth: "140px",
               }}
-              onClick={() => setCurrentTab("noCodeAutomation")}
-            >
+              onClick={() => setCurrentTab("noCodeAutomation")}>
               No Code Automation
             </Button>
           </Box>
@@ -3420,30 +3387,26 @@ const Team: React.FC = () => {
           display={{ base: "block", md: "flex" }}
           flexDirection={"column"}
           justifyContent={"center"}
-          width={"100%"}
-        >
+          width={"100%"}>
           <Box
             display={{ base: "block", md: "flex" }}
             px="15"
             mt={10}
-            justifyContent={"space-between"}
-          >
+            justifyContent={"space-between"}>
             <Box
               display="flex"
               flexDirection="column"
               justifyContent="center"
               alignItems="center"
               gap="4"
-              width="100%"
-            >
+              width="100%">
               <Heading
                 as="h2"
                 size="md"
                 color={colorMode === "dark" ? "white" : "#004c4c"}
                 sx={{
                   textTransform: "uppercase",
-                }}
-              >
+                }}>
                 TEAM
               </Heading>
               <Heading
@@ -3459,8 +3422,7 @@ const Team: React.FC = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                }}
-              >
+                }}>
                 Our Awesome Team
               </Heading>
               <Text
@@ -3469,8 +3431,7 @@ const Team: React.FC = () => {
                 fontWeight={"500"}
                 mt="4"
                 width={"60%"}
-                align={"center"}
-              >
+                align={"center"}>
                 There are many variations of passages of Lorem Ipsum available
                 but the majority have suffered alteration in some form.
               </Text>
@@ -3489,8 +3450,7 @@ const Team: React.FC = () => {
             mt="14"
             w="100%"
             justifyContent={"center"}
-            alignItems={"center"}
-          >
+            alignItems={"center"}>
             {images?.map((image, index) => (
               <Teams
                 key={index}

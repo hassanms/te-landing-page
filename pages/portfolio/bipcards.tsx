@@ -5,7 +5,6 @@ import {
   List,
   ListIcon,
   ListItem,
-  SimpleGrid,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
@@ -17,8 +16,6 @@ import { FaAsterisk, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const CaseStudyBipcards = () => {
   const { colorMode } = useColorMode();
-  const textColor = colorMode === "dark" ? "white" : "#004c4c";
-  const detailColor = colorMode === "dark" ? "white" : "gray.600";
 
   return (
     <Box id="services">
@@ -35,8 +32,7 @@ const CaseStudyBipcards = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -62,8 +58,7 @@ const CaseStudyBipcards = () => {
           display={{ base: "block", md: "flex" }}
           // px="15"
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box
             sx={{
               position: "relative",
@@ -75,8 +70,7 @@ const CaseStudyBipcards = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
                 src="/assets/portfolio/bipcards.png"
@@ -92,10 +86,6 @@ const CaseStudyBipcards = () => {
               />
             </Box>
             <Box
-              // position="absolute"
-              // bottom="-15%"
-              // left="50%"
-              // transform="translate(-50%, -50%)"
               display="flex"
               flexDirection="column"
               justifyContent="center"
@@ -127,8 +117,7 @@ const CaseStudyBipcards = () => {
                 borderRadius: "md",
                 p: 5,
                 boxShadow: "md",
-              }}
-            >
+              }}>
               <Text
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
@@ -137,8 +126,7 @@ const CaseStudyBipcards = () => {
                 fontWeight={"500"}
                 mt="4"
                 width={"100%"}
-                align={"center"}
-              >
+                align={"center"}>
                 Bipcards – Case Study
               </Text>
               <Text
@@ -147,8 +135,7 @@ const CaseStudyBipcards = () => {
                 }
                 fontSize="xl"
                 mt="4"
-                width={["auto", null, "100%"]}
-              >
+                width={["auto", null, "100%"]}>
                 Bipcards.com is a platform designed to help businesses enhance
                 their online presence by collecting and showcasing genuine
                 customer reviews. It aims to build trust and credibility through
@@ -169,8 +156,7 @@ const CaseStudyBipcards = () => {
               mb={10}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Developing Bipcards.com – A Comprehensive SaaS Platform for
               Streamlined Customer Reviews and Sales Analytics
             </Text>
@@ -181,8 +167,7 @@ const CaseStudyBipcards = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Client Background
             </Text>
             <Text
@@ -196,8 +181,7 @@ const CaseStudyBipcards = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               Bipcards.com is an innovative company providing customizable
               NFC-enabled cards designed to help businesses effortlessly direct
               customers to preferred review platforms such as Google, Yelp,
@@ -212,8 +196,7 @@ const CaseStudyBipcards = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Challenge
             </Text>
             <Text
@@ -226,8 +209,7 @@ const CaseStudyBipcards = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               As a WordPress plugin, WPFeedback had limitations, particularly
               around payment flexibility, collaboration scope (limited to
               WordPress sites), and scalability. It required a strategic
@@ -240,8 +222,7 @@ const CaseStudyBipcards = () => {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Advanced Analytics:</strong>
@@ -256,8 +237,7 @@ const CaseStudyBipcards = () => {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Sales and Inventory Management:</strong>
@@ -273,8 +253,7 @@ const CaseStudyBipcards = () => {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Global Support:</strong>
@@ -289,8 +268,7 @@ const CaseStudyBipcards = () => {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>User Management and Personalization:</strong>
@@ -305,8 +283,7 @@ const CaseStudyBipcards = () => {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Streamlined Sales Process:</strong>
@@ -325,8 +302,7 @@ const CaseStudyBipcards = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Solution
             </Text>
             <Text
@@ -339,8 +315,7 @@ const CaseStudyBipcards = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               Tech Emulsion developed a feature-rich SaaS platform tailored to
               meet Bipcards.com&apos;s complex needs:
             </Text>
@@ -352,8 +327,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Client Background
               </Text>
               <Text
@@ -361,8 +335,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 Bipcards.com is an innovative company providing customizable
                 NFC-enabled cards that allow businesses to effortlessly direct
                 customers to preferred review platforms like Google, Yelp,
@@ -381,8 +354,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Challenge
               </Text>
               <Text
@@ -390,8 +362,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 Bipcards.com needed a robust SaaS platform to enhance their
                 service offerings and manage complex operations efficiently. The
                 platform had to accommodate three distinct user roles: Admins,
@@ -412,8 +383,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Solution
               </Text>
               <Text
@@ -421,8 +391,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 Tech Emulsion developed a feature-rich SaaS platform tailored to
                 Bipcards.com&apos;s needs, focusing on scalability, user
                 experience, and operational efficiency. For Admins, we created a
@@ -450,8 +419,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Customers
               </Text>
               <Text
@@ -459,8 +427,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 Customers can access their own personalized analytics page,
                 mirroring the admin dashboard but focused on their business.
                 Insights into card performance, tap activity over time, and team
@@ -477,8 +444,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Sales Representatives
               </Text>
               <Text
@@ -486,8 +452,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 Sales Representatives benefit from unique payment links and QR
                 codes that automatically create customer accounts upon scanning.
                 This streamlined onboarding process reduces friction, and new
@@ -502,8 +467,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Advanced Features
               </Text>
               <Text
@@ -511,8 +475,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 Real-time analytics tracking with customizable time frames and
                 line charts provide a comprehensive view of user engagement.
                 Leaderboards enhance team productivity, and multi-language and
@@ -525,8 +488,7 @@ const CaseStudyBipcards = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 Technology and Integration
               </Text>
               <Text
@@ -534,8 +496,7 @@ const CaseStudyBipcards = () => {
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
+                }}>
                 The platform integrates seamlessly with Stripe for secure
                 subscriptions and payments. Additionally, fulfillment centers
                 are linked for automated order processing. The platform was
@@ -553,8 +514,7 @@ const CaseStudyBipcards = () => {
                 alignItems: "center",
                 flexDirection: "column",
                 textAlign: "center",
-              }}
-            >
+              }}>
               <FaQuoteLeft
                 size={10}
                 style={{ position: "absolute", left: "15%", top: 40 }}
@@ -570,8 +530,7 @@ const CaseStudyBipcards = () => {
                   color: colorMode === "dark" ? "white" : "gray.600",
                   display: "flex",
                   width: "60%",
-                }}
-              >
+                }}>
                 Tech Emulsion transformed our vision into a powerful platform
                 that not only meets our current needs but is scalable for future
                 growth. Their expertise in integrating complex features into an
@@ -590,8 +549,7 @@ const CaseStudyBipcards = () => {
                   color: "gray.600",
 
                   mt: "5",
-                }}
-              >
+                }}>
                 – Alex, CEO of Bipcards.com
               </Text>
             </Box>
@@ -602,8 +560,7 @@ const CaseStudyBipcards = () => {
               mt={10}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               {" "}
               Results
             </Text>
@@ -617,8 +574,7 @@ const CaseStudyBipcards = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               The new platform provided enhanced business insights for both
               admins and customers through detailed analytics, empowering them
               to make data-driven decisions. Streamlined sales processes allowed
@@ -632,38 +588,6 @@ const CaseStudyBipcards = () => {
               with multi-language and multi-currency support, allowing
               Bipcards.com to tap into new international markets.
             </Text>
-
-            {/* <Box mt={16} px="5">
-              <Text fontSize="2xl" fontWeight="bold" mb={6} textAlign="center">
-                Visual Showcase
-              </Text>
-              <SimpleGrid columns={[1, 2, 3]} spacing={5}>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot1.png"
-                    alt="Atarim Platform Screenshot 1"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot2.png"
-                    alt="Atarim Platform Screenshot 2"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot3.png"
-                    alt="Atarim Platform Screenshot 3"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-              </SimpleGrid>
-            </Box> */}
           </Box>
 
           {/* Visual Showcase / Gallery Section */}
@@ -685,8 +609,7 @@ const CaseStudyBipcards = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Text
               mb={10}
               textAlign="center"
@@ -695,8 +618,7 @@ const CaseStudyBipcards = () => {
               }
               fontSize="xl"
               fontWeight="bold"
-              width={["auto", null, "60%"]}
-            >
+              width={["auto", null, "60%"]}>
               Looking to elevate your business with a custom, scalable SaaS
               solution? Contact Tech Emulsion today to turn your innovative
               ideas into reality.
@@ -711,8 +633,7 @@ const CaseStudyBipcards = () => {
                 mb={10}
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-                }
-              >
+                }>
                 Let&apos;s discuss how we can help you achieve your business
                 goals.
               </Text>
@@ -736,8 +657,7 @@ const CaseStudyBipcards = () => {
                   backgroundClip: "padding-box",
                   backgroundColor: "rgba(255, 255, 255, 0.8)",
                   color: "#004c4c",
-                }}
-              >
+                }}>
                 Book a Call
               </Box>
             </Box>

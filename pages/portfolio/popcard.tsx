@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  SimpleGrid,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, Container, Text, useColorMode } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import Head from "next/head";
 import Image from "next/image";
@@ -29,8 +23,7 @@ const CaseStudyPopcard = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -57,8 +50,7 @@ const CaseStudyPopcard = () => {
           display={{ base: "block", md: "flex" }}
           // px="15"
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box
             sx={{
               position: "relative",
@@ -70,8 +62,7 @@ const CaseStudyPopcard = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
                 src="/assets/portfolio/popcard.png"
@@ -87,20 +78,14 @@ const CaseStudyPopcard = () => {
               />
             </Box>
             <Box
-              // position="absolute"
-              // bottom="-15%"
-              // left="50%"
-              // transform="translate(-50%, -50%)"
               display="flex"
               flexDirection="column"
               justifyContent="center"
               alignItems="center"
               textAlign="center"
               borderRadius="md"
-              // width=
               p={5}
               boxShadow="md"
-              // mt={{ base: "-40px", md: "-100px" }} // Adjust margin for responsiveness
               mt={{ base: "-40vh", md: "-15vh", lg: "-15vh" }}
               maxWidth={{ base: "90%", lg: "50%" }}
               width={{ base: "90%", lg: "50%" }}
@@ -122,8 +107,7 @@ const CaseStudyPopcard = () => {
                 borderRadius: "md",
                 p: 5,
                 boxShadow: "md",
-              }}
-            >
+              }}>
               <Text
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
@@ -132,8 +116,7 @@ const CaseStudyPopcard = () => {
                 fontWeight={"500"}
                 mt="4"
                 width={"100%"}
-                align={"center"}
-              >
+                align={"center"}>
                 Popcard – Case Study
               </Text>
               <Text
@@ -142,8 +125,7 @@ const CaseStudyPopcard = () => {
                 }
                 fontSize="xl"
                 mt="4"
-                width={["auto", null, "100%"]}
-              >
+                width={["auto", null, "100%"]}>
                 Tech Emulsion developed a SaaS for PopCard.io, enabling
                 businesses to manage locations, teams, and customer reviews via
                 NFC cards and QR codes. Features included secure authentication
@@ -165,8 +147,7 @@ const CaseStudyPopcard = () => {
               mb={10}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Case Study: Developing PopCard.io – A SaaS Platform for Seamless
               Digital Networking and Review Management
             </Text>
@@ -177,8 +158,7 @@ const CaseStudyPopcard = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Client Background
             </Text>
             <Text
@@ -192,8 +172,7 @@ const CaseStudyPopcard = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               PopCard.io is an innovative company offering digital business
               cards powered by NFC technology and QR codes. Their mission is to
               revolutionize how professionals network and how businesses manage
@@ -209,8 +188,7 @@ const CaseStudyPopcard = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Challenge
             </Text>
             <Text
@@ -223,8 +201,7 @@ const CaseStudyPopcard = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               PopCard.io aimed to develop a scalable SaaS platform that would: -
               Implement a Robust Authentication System: Provide secure user
               signup, login, and password recovery, including social login
@@ -250,8 +227,7 @@ const CaseStudyPopcard = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Solution
             </Text>
             <Text
@@ -264,8 +240,7 @@ const CaseStudyPopcard = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               Tech Emulsion developed a comprehensive SaaS platform tailored to
               PopCard.io&apos;s needs:
             </Text>
@@ -275,15 +250,13 @@ const CaseStudyPopcard = () => {
                 fontWeight="semibold"
                 fontSize={["xl", "2xl"]}
                 mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}>
                 Robust Authentication System
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}>
                 Secure signup, login, and password recovery functionalities,
                 with social login options for Google and Apple.
               </Text>
@@ -292,15 +265,13 @@ const CaseStudyPopcard = () => {
                 fontWeight="semibold"
                 fontSize={["xl", "2xl"]}
                 mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}>
                 Multi-Location Management
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}>
                 A location dashboard for adding and managing multiple locations,
                 with one free and additional locations available through a paid
                 subscription.
@@ -310,15 +281,13 @@ const CaseStudyPopcard = () => {
                 fontWeight="semibold"
                 fontSize={["xl", "2xl"]}
                 mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}>
                 Team Collaboration and Leaderboards
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}>
                 Separate team sections for each location with leaderboards to
                 track staff performance in collecting reviews.
               </Text>
@@ -327,15 +296,13 @@ const CaseStudyPopcard = () => {
                 fontWeight="semibold"
                 fontSize={["xl", "2xl"]}
                 mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}>
                 Advanced Statistics and Analytics
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}>
                 Detailed analytics showing key metrics for selected locations
                 over time, and generalized stats per location.
               </Text>
@@ -344,15 +311,13 @@ const CaseStudyPopcard = () => {
                 fontWeight="semibold"
                 fontSize={["xl", "2xl"]}
                 mb={2}
-                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}>
                 Subscription and Payment Integration
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
-                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}
-              >
+                sx={{ color: colorMode === "dark" ? "white" : "gray.600" }}>
                 Stripe integration for secure subscription payments, with user
                 options to manage plans and view billing history.
               </Text>
@@ -368,8 +333,7 @@ const CaseStudyPopcard = () => {
                 alignItems: "center",
                 flexDirection: "column",
                 textAlign: "center",
-              }}
-            >
+              }}>
               <FaQuoteLeft
                 size={10}
                 style={{ position: "absolute", left: "15%", top: 40 }}
@@ -385,8 +349,7 @@ const CaseStudyPopcard = () => {
                   color: colorMode === "dark" ? "white" : "gray.600",
                   display: "flex",
                   width: "60%",
-                }}
-              >
+                }}>
                 Tech Emulsion has been instrumental in elevating our platform.
                 Their expertise in developing user-friendly features like
                 multi-location management and team leaderboards has
@@ -404,8 +367,7 @@ const CaseStudyPopcard = () => {
               fontWeight="bold"
               mb={2}
               mt={10}
-              sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}
-            >
+              sx={{ color: colorMode === "dark" ? "white" : "#004c4c" }}>
               Results
             </Text>
             <Text
@@ -418,8 +380,7 @@ const CaseStudyPopcard = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               Enhanced User Experience: Users can easily sign up, log in, and
               recover passwords, with social logins for added convenience.
               Scalable Location Management: Businesses can manage multiple
@@ -430,37 +391,6 @@ const CaseStudyPopcard = () => {
               decisions. Revenue Growth: The subscription model has opened new
               revenue streams for PopCard.io, contributing to financial growth.
             </Text>
-            {/* <Box mt={16} px="5">
-              <Text fontSize="2xl" fontWeight="bold" mb={6} textAlign="center">
-                Visual Showcase
-              </Text>
-              <SimpleGrid columns={[1, 2, 3]} spacing={5}>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot1.png"
-                    alt="Atarim Platform Screenshot 1"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot2.png"
-                    alt="Atarim Platform Screenshot 2"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot3.png"
-                    alt="Atarim Platform Screenshot 3"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-              </SimpleGrid>
-            </Box> */}
           </Box>
           <Box
             sx={{
@@ -479,8 +409,7 @@ const CaseStudyPopcard = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Text
               mb={10}
               textAlign="center"
@@ -489,8 +418,7 @@ const CaseStudyPopcard = () => {
               }
               fontSize="xl"
               fontWeight="bold"
-              width={["auto", null, "60%"]}
-            >
+              width={["auto", null, "60%"]}>
               Ready to transform your innovative idea into a powerful SaaS
               solution? Contact Tech Emulsion today to turn your vision into
               reality.
@@ -505,8 +433,7 @@ const CaseStudyPopcard = () => {
                 mb={10}
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-                }
-              >
+                }>
                 Let&apos;s discuss how we can help you achieve your business
                 goals.
               </Text>
@@ -530,8 +457,7 @@ const CaseStudyPopcard = () => {
                   backgroundClip: "padding-box",
                   backgroundColor: "rgba(255, 255, 255, 0.8)",
                   color: "#004c4c",
-                }}
-              >
+                }}>
                 Book a Call
               </Box>
             </Box>

@@ -11,10 +11,7 @@ const CaseStudyMoodtube = () => {
     <Box id="services">
       <Head>
         <title>Case Study: Moodtube - Tech Emulsion</title>
-        <meta
-          name="description"
-        // content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
+        <meta name="description" />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
@@ -22,8 +19,7 @@ const CaseStudyMoodtube = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -51,8 +47,7 @@ const CaseStudyMoodtube = () => {
           px="15"
           mt={10}
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box
             sx={{
               width: "100%",
@@ -71,8 +66,7 @@ const CaseStudyMoodtube = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
                 src="/assets/portfolio/moodtube.png"
@@ -95,8 +89,7 @@ const CaseStudyMoodtube = () => {
               fontWeight={"500"}
               mt="4"
               width={"100%"}
-              align={"center"}
-            >
+              align={"center"}>
               Moodtube – Case Study
             </Text>
             <Text
@@ -105,12 +98,13 @@ const CaseStudyMoodtube = () => {
               }
               fontSize="xl"
               mt="4"
-              width={["auto", null, "60%"]}
-            >
-              MoodTube is a browser extension that allows users to search for YouTube videos based on specific moods,
-              such as "Happy," "Relaxed," or "Motivated." It leverages AI tools like LangChain, vector embeddings,
-              and vector databases to analyze and recommend videos that match the selected mood, providing a dynamic
-              and personalized video experience.
+              width={["auto", null, "60%"]}>
+              MoodTube is a browser extension that allows users to search for
+              YouTube videos based on specific moods, such as "Happy,"
+              "Relaxed," or "Motivated." It leverages AI tools like LangChain,
+              vector embeddings, and vector databases to analyze and recommend
+              videos that match the selected mood, providing a dynamic and
+              personalized video experience.
             </Text>
           </Box>
         </Box>

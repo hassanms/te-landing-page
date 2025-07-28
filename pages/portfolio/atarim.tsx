@@ -1,11 +1,9 @@
 import {
   Box,
-  CheckboxIcon,
   Container,
   List,
   ListIcon,
   ListItem,
-  SimpleGrid,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
@@ -16,15 +14,15 @@ import Script from "next/script";
 import React from "react";
 import { FaAsterisk, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
-const CaseStudyFarmin = () => {
+const CaseStudyAtarim = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Farmin - Tech Emulsion</title>
+        <title>Case Study: Atarim - Tech Emulsion</title>
         <meta
           name="description"
-          content="Learn how Tech Emulsion helped Farmin, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
+          content="Learn how Tech Emulsion helped Atarim, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -33,8 +31,8 @@ const CaseStudyFarmin = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
+
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -60,7 +58,7 @@ const CaseStudyFarmin = () => {
           display={{ base: "block", md: "flex" }}
           // px="15"
           justifyContent={"space-between"}
-        >
+          mb={10}>
           <Box
             sx={{
               position: "relative",
@@ -72,12 +70,11 @@ const CaseStudyFarmin = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
-                src="/assets/portfolio/farmin.avif"
-                alt="Farmin"
+                src="/assets/portfolio/atarim.png"
+                alt="Artis"
                 width={1200}
                 height={300}
                 style={{
@@ -89,10 +86,6 @@ const CaseStudyFarmin = () => {
               />
             </Box>
             <Box
-              // position="absolute"
-              // bottom="-15%"
-              // left="50%"
-              // transform="translate(-50%, -50%)"
               display="flex"
               flexDirection="column"
               justifyContent="center"
@@ -102,8 +95,8 @@ const CaseStudyFarmin = () => {
               // width=
               p={5}
               boxShadow="md"
-              // mt={{ base: "-40px", md: "-100px" }} // Adjust margin for responsiveness
-              mt={{ base: "-40vh", md: "-15vh", lg: "-15vh" }}
+              // mt={{ base: "-350px", md: "-100px" }} // Adjust margin for responsiveness
+              mt={{ base: "-35vh", md: "-12vh", lg: "-10vh" }}
               maxWidth={{ base: "90%", lg: "50%" }}
               width={{ base: "90%", lg: "50%" }}
               height={{ base: "90%", lg: "50%" }}
@@ -124,8 +117,7 @@ const CaseStudyFarmin = () => {
                 borderRadius: "md",
                 p: 5,
                 boxShadow: "md",
-              }}
-            >
+              }}>
               <Text
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
@@ -134,9 +126,8 @@ const CaseStudyFarmin = () => {
                 fontWeight={"500"}
                 mt="4"
                 width={"100%"}
-                align={"center"}
-              >
-                Farmin – Case Study
+                align={"center"}>
+                Atarim – Case Study
               </Text>
               <Text
                 color={
@@ -144,13 +135,10 @@ const CaseStudyFarmin = () => {
                 }
                 fontSize="xl"
                 mt="4"
-                width={["auto", null, "100%"]}
-              >
-                Tech Emulsion built Farmin, an AI-powered SaaS for satellite
-                image analysis. Using Mapbox, YOLO models, and OpenCV, it
-                detects objects like cars, ships, and oil spills. We added
-                change detection, a data annotation tool, and deployed it on
-                AWS, enabling real-time insights and scalable remote sensing.
+                width={["auto", null, "100%"]}>
+                Instantly comment on any design, from websites to graphics.
+                Manage at scale and integrate your stack. Just click on any part
+                to leave feedback and say goodbye to endless email/Slack chains.
               </Text>
             </Box>
           </Box>
@@ -167,9 +155,9 @@ const CaseStudyFarmin = () => {
               mb={10}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
-              Building Farmin – AI-Powered Satellite Image Detection Platform
+              }}>
+              Transforming WPFeedback into Atarim – A Complete SaaS
+              Collaboration Platform
             </Text>
 
             <Text
@@ -178,8 +166,7 @@ const CaseStudyFarmin = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Client Background
             </Text>
             <Text
@@ -193,13 +180,13 @@ const CaseStudyFarmin = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              Farmin is a cutting-edge SaaS platform designed for remote sensing
-              and object detection in satellite imagery. The platform leverages
-              AI to analyze environmental and infrastructure data, assisting
-              industries like agriculture, defense, and environmental
-              monitoring.
+              }}>
+              Atarim, formerly known as WPFeedback, started as a WordPress-based
+              feedback and collaboration tool, offering users a way to
+              communicate and provide visual feedback on WordPress websites.
+              However, with ambitious growth plans, Atarim needed to expand
+              beyond WordPress to become a versatile, SaaS-based collaboration
+              platform for any website type.
             </Text>
 
             <Text
@@ -208,8 +195,7 @@ const CaseStudyFarmin = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Challenge
             </Text>
             <Text
@@ -222,13 +208,12 @@ const CaseStudyFarmin = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              Farmin required a powerful, intuitive application capable of
-              identifying and tracking changes in satellite images, such as
-              vehicles, buildings, ships, and environmental hazards like oil
-              spills. The system also needed a robust data annotation tool for
-              continuous learning and seamless map integration for an intuitive
+              }}>
+              As a WordPress plugin, WPFeedback had limitations, particularly
+              around payment flexibility, collaboration scope (limited to
+              WordPress sites), and scalability. It required a strategic
+              transformation into a SaaS product with visual collaboration
+              across all web platforms, advanced infrastructure, and seamless
               user experience.
             </Text>
 
@@ -238,8 +223,7 @@ const CaseStudyFarmin = () => {
               mb={2}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               Solution
             </Text>
             <Text
@@ -252,11 +236,9 @@ const CaseStudyFarmin = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
-              Tech Emulsion developed a fully-featured web application that
-              integrated sophisticated AI and deep learning capabilities for
-              object detection, powered by Python and Django for the backend:
+              }}>
+              Tech Emulsion partnered with Atarim to overhaul the platform from
+              the ground up:
             </Text>
 
             <Box pl={5} mb={4}>
@@ -266,20 +248,18 @@ const CaseStudyFarmin = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
-                Mapbox Integration & Location Search:
+                mb={2}>
+                Transition to a SaaS Model:
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
-                We implemented Mapbox for accurate, responsive mapping and a
-                search function to locate areas by name and mark target
-                locations for monitoring.
+                }}>
+                Transformed WPFeedback into a SaaS platform, enabling visual
+                collaboration across all websites and shifting to a
+                subscription-based payment model.
               </Text>
 
               <Text
@@ -288,22 +268,18 @@ const CaseStudyFarmin = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 {" "}
-                AI-Driven Object Detection:
+                Chrome Extension Development:
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
-                Using OpenCV and YOLO-based deep learning models, the system
-                detects various objects—including cars, ships, buildings, and
-                oil spills—within satellite images, providing real-time,
-                actionable insights.
+                }}>
+                Developed a Chrome extension for feedback on various site types,
+                expanding Atarim&apos;s adaptability.
               </Text>
 
               <Text
@@ -312,22 +288,18 @@ const CaseStudyFarmin = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
-                Change Detection & Data Annotation Tool:
+                mb={2}>
+                Expanding Feature Set:
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
-                }}
-              >
-                We added a micro-frontend data annotation tool for customized
-                tagging and refinement of detection results, enhancing model
-                accuracy over time. Change detection features track
-                environmental and structural changes across different time
-                frames.
+                }}>
+                Enhanced project management with tools like kanban boards,
+                notifications, a WYSIWYG editor, and more, turning Atarim into a
+                complete project management and feedback solution.
               </Text>
 
               <Text
@@ -336,21 +308,60 @@ const CaseStudyFarmin = () => {
                 sx={{
                   color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-                mb={2}
-              >
+                mb={2}>
                 {" "}
-                AWS Deployment:
+                Automation & Integration:
               </Text>
               <Text
                 mb={5}
                 fontSize={["lg", "xl"]}
                 sx={{
                   color: colorMode === "dark" ? "white" : "gray.600",
+                }}>
+                Added workflow automation and integrations with Slack, Jira,
+                Asana, and other productivity tools.
+              </Text>
+
+              <Text
+                fontWeight="semibold"
+                fontSize={["xl", "2xl"]}
+                sx={{
+                  color: colorMode === "dark" ? "white" : "#004c4c",
                 }}
-              >
-                Leveraging EC2 and S3, we ensured a scalable, secure
-                infrastructure optimized for performance, facilitating seamless
-                access to vast satellite data and images.
+                mb={2}>
+                {" "}
+                Custom Scraping Solution:
+              </Text>
+              <Text
+                mb={5}
+                fontSize={["lg", "xl"]}
+                sx={{
+                  color: colorMode === "dark" ? "white" : "gray.600",
+                }}>
+                {" "}
+                Created a web scraping feature for collaborative editing on
+                external sites via a wildcard subdomain approach.
+              </Text>
+
+              <Text
+                fontWeight="semibold"
+                fontSize={["xl", "2xl"]}
+                sx={{
+                  color: colorMode === "dark" ? "white" : "#004c4c",
+                }}
+                mb={2}>
+                {" "}
+                Infrastructure Scaling:
+              </Text>
+              <Text
+                mb={5}
+                fontSize={["lg", "xl"]}
+                sx={{
+                  color: colorMode === "dark" ? "white" : "gray.600",
+                }}>
+                {" "}
+                Scaled the cloud infrastructure on AWS, with region-based load
+                balancing, auto-scaling, and enhanced monitoring.
               </Text>
             </Box>
             <Box
@@ -362,10 +373,8 @@ const CaseStudyFarmin = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
-                h: "100%",
                 textAlign: "center",
-              }}
-            >
+              }}>
               <FaQuoteLeft
                 size={10}
                 style={{ position: "absolute", left: "15%", top: 40 }}
@@ -373,7 +382,7 @@ const CaseStudyFarmin = () => {
               <Text
                 sx={{
                   whiteSpace: "pre-wrap",
-                  fontSize: { base: "md", lg: "4xl" },
+                  fontSize: { base: "lg", lg: "4xl" },
                   fontWeight: "normal",
                   lineHeight: "1.5",
                   letterSpacing: "normal",
@@ -381,14 +390,15 @@ const CaseStudyFarmin = () => {
                   color: colorMode === "dark" ? "white" : "gray.600",
                   display: "flex",
                   width: "60%",
-                }}
-              >
-                Tech Emulsion can work on different application technologies and
-                is capable of adapting quickly to changing needs.
+                }}>
+                Tech Emulsion worked with us for four years, delivering
+                outstanding results. Due to internal changes, we had to end the
+                contract, but their hard work and dedication were always
+                evident. I highly recommend them for any future projects.
               </Text>
               <FaQuoteRight
                 size={10}
-                style={{ position: "absolute", right: "20%", bottom: 40 }}
+                style={{ position: "absolute", right: "22%", bottom: 40 }}
               />
             </Box>
             <Text
@@ -398,8 +408,7 @@ const CaseStudyFarmin = () => {
               mt={10}
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
-              }}
-            >
+              }}>
               {" "}
               Results
             </Text>
@@ -413,79 +422,45 @@ const CaseStudyFarmin = () => {
                 letterSpacing: "normal",
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
-              }}
-            >
+              }}>
               <List spacing={3}>
                 <ListItem
                   sx={{
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
-                  Enhanced detection accuracy for objects like vehicles,
-                  buildings, and environmental hazards.
+                  Successfully launched Atarim as a SaaS, transforming the
+                  WordPress plugin into a scalable solution for universal web
+                  collaboration.
                 </ListItem>
                 <ListItem
                   sx={{
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
-                  Robust infrastructure, ensuring real-time access to satellite
-                  data.
+                  Helped secure $500K in funding by showcasing Atarim’s
+                  innovative infrastructure and expanded capabilities.
                 </ListItem>
                 <ListItem
                   sx={{
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                  }}
-                >
+                  }}>
                   <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
-                  Intuitive user experience with integrated mapping and
-                  customizable annotations, empowering users to monitor and
-                  respond to changes efficiently.
+                  Enhanced platform stability, decreasing latency and improving
+                  uptime through region-based load balancing and auto-scaling.
                 </ListItem>
               </List>
             </Text>
-            {/* <Box mt={16} px="5">
-              <Text fontSize="2xl" fontWeight="bold" mb={6} textAlign="center">
-                Visual Showcase
-              </Text>
-              {/* <SimpleGrid columns={[1, 2, 3]} spacing={5}>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot1.png"
-                    alt="Atarim Platform Screenshot 1"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot2.png"
-                    alt="Atarim Platform Screenshot 2"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-                <Box>
-                  <Image
-                    src="/assets/screenshots/screenshot3.png"
-                    alt="Atarim Platform Screenshot 3"
-                    width={500}
-                    height={300}
-                  />
-                </Box>
-              </SimpleGrid> 
-            </Box> */}
           </Box>
 
           {/* Visual Showcase / Gallery Section */}
+
           <Box
             sx={{
               width: "100%",
@@ -503,8 +478,7 @@ const CaseStudyFarmin = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Text
               mb={10}
               textAlign="center"
@@ -513,11 +487,10 @@ const CaseStudyFarmin = () => {
               }
               fontSize="xl"
               fontWeight="bold"
-              width={["auto", null, "60%"]}
-            >
-              Ready to bring AI-powered insights to your industry? Contact Tech
-              Emulsion for tailored solutions in satellite image detection and
-              analysis.
+              width={["auto", null, "60%"]}>
+              Discover how Tech Emulsion can revolutionize your product. Contact
+              us or book a call to explore innovative, scalable solutions for
+              your business.
             </Text>
 
             <Box>
@@ -529,8 +502,7 @@ const CaseStudyFarmin = () => {
                 mb={10}
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-                }
-              >
+                }>
                 Let&apos;s discuss how we can help you achieve your business
                 goals.
               </Text>
@@ -554,8 +526,7 @@ const CaseStudyFarmin = () => {
                   backgroundClip: "padding-box",
                   backgroundColor: "rgba(255, 255, 255, 0.8)",
                   color: "#004c4c",
-                }}
-              >
+                }}>
                 Book a Call
               </Box>
             </Box>
@@ -566,4 +537,4 @@ const CaseStudyFarmin = () => {
   );
 };
 
-export default CaseStudyFarmin;
+export default CaseStudyAtarim;

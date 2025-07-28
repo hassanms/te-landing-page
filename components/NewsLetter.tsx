@@ -11,11 +11,16 @@ import React from "react";
 import toast from "react-hot-toast";
 import InnerElementBG from "./InnerElementBG";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const emailSchema = Yup.object().shape({
   email: Yup.string()
+    .required("Email is required")
     .email("Invalid email address")
-    .required("Email is required"),
+    .matches(
+      /^[^@]+@[^@]+\.[^@]+$/,
+      "Email must contain a dot (.) after the @",
+    ),
 });
 
 const NewsLetter = () => {
@@ -23,8 +28,13 @@ const NewsLetter = () => {
   const [formData, setFormData] = React.useState({ email: "" });
   const [loading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState({ email: "" });
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const validateField = async (name: string, value: string) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Validate and clear error if valid
     try {
       await emailSchema.validateAt(name, { [name]: value });
       setErrors({ ...errors, [name]: "" });
@@ -32,6 +42,9 @@ const NewsLetter = () => {
       setErrors({ ...errors, [name]: error.message });
     }
   };
+
+  const handleFocus = (field: string) => setFocusedField(field);
+  const handleBlur = () => setFocusedField(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,6 +56,7 @@ const NewsLetter = () => {
       await axios.post("/api/subscription", formData);
       toast.success("Subscribed successfully");
       setFormData({ email: "" });
+      setErrors({ email: "" }); // <-- Clear error after success
     } catch (validationError) {
       if (validationError instanceof Yup.ValidationError) {
         const validationErrors: any = {};
@@ -50,6 +64,9 @@ const NewsLetter = () => {
           if (err.path) validationErrors[err.path] = err.message;
         });
         setErrors(validationErrors);
+
+        // Auto-hide error after 3 seconds
+        setTimeout(() => setErrors({ email: "" }), 3000);
       } else {
         toast.error("Failed to send Subscription email");
       }
@@ -58,10 +75,6 @@ const NewsLetter = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
   return (
     <Box
       position={"absolute"}
@@ -83,8 +96,7 @@ const NewsLetter = () => {
         paddingY: "60px",
         borderRadius: "5px",
         boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
-      }}
-    >
+      }}>
       <Heading
         as="h2"
         color={"white"}
@@ -97,8 +109,7 @@ const NewsLetter = () => {
             base: "90%",
             md: "60%",
           },
-        }}
-      >
+        }}>
         Subscribe our newsletter to receive future updates
       </Heading>
       <Box
@@ -113,8 +124,7 @@ const NewsLetter = () => {
           lg: "55%",
           xl: "45%",
         }}
-        color={"gray.100"}
-      >
+        color={"gray.100"}>
         <Input
           sx={{
             width: "100%",
@@ -139,15 +149,16 @@ const NewsLetter = () => {
           value={formData.email}
           onChange={handleChange}
           required={true}
+          onFocus={() => handleFocus("email")}
+          onBlur={handleBlur}
         />
-        {errors.email && (
+        {focusedField === "email" && errors.email && (
           <Text
-            color="#FFAE42"
+            color="red.500"
             fontSize="18px"
             textAlign={"left"}
             mt={"-10px"}
-            marginLeft={"10px"}
-          >
+            marginLeft={"10px"}>
             {errors.email}
           </Text>
         )}
@@ -176,8 +187,7 @@ const NewsLetter = () => {
             },
           }}
           onClick={handleSubmit}
-          disabled={loading}
-        >
+          disabled={loading}>
           {loading ? "Subscribing..." : "Subscribe Now"}
         </Button>
       </Box>
@@ -188,8 +198,7 @@ const NewsLetter = () => {
         top={"0"}
         left={"0"}
         width={"100%"}
-        overflow={"hidden"}
-      >
+        overflow={"hidden"}>
         <InnerElementBG />
       </Box>
     </Box>

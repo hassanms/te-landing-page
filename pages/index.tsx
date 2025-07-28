@@ -85,6 +85,7 @@ import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
 import TeamsIcon from "components/icons/Teams";
 import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import animationData1 from "../public/assets/Animation/screen.json";
 import animationData2 from "../public/assets/Animation/mobile.json";
 import { useState } from "react";
@@ -182,7 +183,7 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentAnimation((prevAnimation) =>
-        prevAnimation === animationData1 ? animationData2 : animationData1,
+        prevAnimation === animationData1 ? animationData2 : animationData1   
       );
     }, 10000);
 
@@ -206,6 +207,7 @@ const HeroSection: React.FC = () => {
       display="grid"
       gridTemplateColumns="1fr"
       gridTemplateRows="1fr">
+      gridTemplateRows="1fr">
       <BackgroundGradient height="100%" zIndex="-1" />
       <Box
         gridColumn="1 / -1"
@@ -215,8 +217,10 @@ const HeroSection: React.FC = () => {
         display="grid"
         zIndex="-1"
         mb={{ base: "0px", lg: "-120px" }}>
+        mb={{ base: "0px", lg: "-120px" }}>
         <FallInPlace delay={1}>
           <video
+            src="/assets/Animation/hero-video.mp4"
             src="/assets/Animation/hero-video.mp4"
             ref={videoRef}
             autoPlay={true}
@@ -240,9 +244,11 @@ const HeroSection: React.FC = () => {
         gridColumn="1 / -1"
         gridRow="1 / -1"
         zIndex={1}>
+        zIndex={1}>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
+          alignItems="flex-start">
           alignItems="flex-start">
           <Hero
             id="home"
@@ -267,12 +273,14 @@ const HeroSection: React.FC = () => {
                       color: "#66B2B2",
                       fontWeight: "900",
                     }}>
+                    }}>
                     SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
+            }>
             }>
             <FallInPlace delay={0.8}>
               <HStack pt="4" pb="6" spacing="8">
@@ -287,6 +295,7 @@ const HeroSection: React.FC = () => {
                     bg: "#004c4c !important",
                     color: "white !important",
                   }}>
+                  }}>
                   Explore Portfolio
                 </ButtonLink>
               </ButtonGroup>
@@ -297,6 +306,7 @@ const HeroSection: React.FC = () => {
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
               mt="10">
+              mt="10">
               <Text
                 fontSize="sm"
                 color="muted"
@@ -305,6 +315,7 @@ const HeroSection: React.FC = () => {
                 textAlign="left"
                 display={"flex"}
                 alignItems={"center"}
+                width={"100%"}>
                 width={"100%"}>
                 Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
@@ -376,6 +387,7 @@ const HeroSection: React.FC = () => {
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
             w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
             <FallInPlace delay={1}>
               <Box overflow="hidden">
                 {/*   <Player
@@ -401,6 +413,7 @@ const HeroSection: React.FC = () => {
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
           alignItems="flex-start">
+          alignItems="flex-start">
           <Hero
             id="home"
             justifyContent="flex-start"
@@ -424,12 +437,14 @@ const HeroSection: React.FC = () => {
                       color: "#004C4C",
                       fontWeight: "900",
                     }}>
+                    }}>
                     SaaS, web, and AI solutions
                   </Em>{" "}
                   driving innovation and excellence through tailored technology
                   strategies that propel your brand to new heights.
                 </Em>
               </FallInPlace>
+            }>
             }>
             <FallInPlace delay={0.8}>
               <HStack pt="4" pb="6" spacing="8">
@@ -444,6 +459,7 @@ const HeroSection: React.FC = () => {
                     bg: "#004c4c !important",
                     color: "white !important",
                   }}>
+                  }}>
                   Explore Portfolio
                 </ButtonLink>
               </ButtonGroup>
@@ -454,6 +470,7 @@ const HeroSection: React.FC = () => {
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
               mt="10">
+              mt="10">
               <Text
                 fontSize="sm"
                 color="muted"
@@ -462,6 +479,7 @@ const HeroSection: React.FC = () => {
                 textAlign="left"
                 display={"flex"}
                 alignItems={"center"}
+                width={"100%"}>
                 width={"100%"}>
                 Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
@@ -543,6 +561,7 @@ const HeroSection: React.FC = () => {
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
             w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
             <FallInPlace delay={1}>
               <Box overflow="hidden">
                 <Player
@@ -583,6 +602,7 @@ const cardData = [
     company: "",
     description:
       "At Tech Emulsion, we don't just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
+      "At Tech Emulsion, we don't just create software, we build AI-powered solutions that elevate business capabilities. We believe in turning complex challenges into growth opportunities for our clients.",
   },
 ];
 
@@ -615,6 +635,7 @@ const AboutUsSection: React.FC = () => {
           spacing="4"
           ml={{ base: 4, lg: 4 }}
           mt={10}>
+          mt={10}>
           <Box flex="1">
             <Heading
               as="h2"
@@ -623,6 +644,7 @@ const AboutUsSection: React.FC = () => {
               sx={{
                 textTransform: "uppercase",
               }}>
+              }}>
               About us
             </Heading>
             <Heading
@@ -630,6 +652,7 @@ const AboutUsSection: React.FC = () => {
               mt="2"
               sx={{
                 fontSize: "2rem",
+              }}>
               }}>
               Impactful Product Design,
               <Br /> Memorable Experience
@@ -648,6 +671,7 @@ const AboutUsSection: React.FC = () => {
               sx={{
                 fontSize: "2rem",
               }}>
+              }}>
               Connect With Us
             </Heading>
             <Text color="muted" fontSize="lg" mt="4">
@@ -660,6 +684,7 @@ const AboutUsSection: React.FC = () => {
               <Link
                 href="https://www.linkedin.com/company/tech-emulsion/"
                 isExternal
+                aria-label="Visit Tech Emulsion on LinkedIn">
                 aria-label="Visit Tech Emulsion on LinkedIn">
                 <Icon
                   as={FiLinkedin}
@@ -677,6 +702,10 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
 
+              <Link
+                href="https://www.facebook.com/emulsiontech/"
+                isExternal
+                aria-label="Visit Tech Emulsion on Facebook">
               <Link
                 href="https://www.facebook.com/emulsiontech/"
                 isExternal
@@ -700,6 +729,10 @@ const AboutUsSection: React.FC = () => {
                 href="https://github.com/hassanms"
                 isExternal
                 aria-label="Visit Hassan's GitHub profile">
+              <Link
+                href="https://github.com/hassanms"
+                isExternal
+                aria-label="Visit Hassan's GitHub profile">
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
@@ -715,6 +748,10 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
+              <Link
+                href="https://www.youtube.com/@TechEmulsion"
+                isExternal
+                aria-label="Visit Tech Emulsion on YouTube">
               <Link
                 href="https://www.youtube.com/@TechEmulsion"
                 isExternal
@@ -745,6 +782,7 @@ const AboutUsSection: React.FC = () => {
             sx={{
               textTransform: "uppercase",
             }}
+            ml={4}>
             ml={4}>
             How We Empower Your Business
           </Heading>
@@ -804,7 +842,9 @@ const AboutUsSection: React.FC = () => {
             colSpan={[1, null, 2]}
           >
             "Your challenges fuel our creativity and determination. We're
+            "Your challenges fuel our creativity and determination. We're
             dedicated to delivering exceptional results that exceed
+            expectations."
             expectations."
           </HighlightsTestimonialItem> */}
 
@@ -823,6 +863,7 @@ const AboutUsSection: React.FC = () => {
                 overflow="hidden"
                 h="320px"
                 className="shining-card">
+                className="shining-card">
                 <FallInPlace delay={0.8}>
                   <CardHeader
                     display="flex"
@@ -831,10 +872,16 @@ const AboutUsSection: React.FC = () => {
                     className={`fade-card ${
                       isFlipping ? "fade-out" : "fade-in"
                     }`}>
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}>
                     <Avatar
                       src={currentCard.avatar}
                       size="lg"
                       bg="transparent"
+                      className={`fade-card ${
+                        isFlipping ? "fade-out" : "fade-in"
+                      }`}
                       className={`fade-card ${
                         isFlipping ? "fade-out" : "fade-in"
                       }`}
@@ -854,6 +901,9 @@ const AboutUsSection: React.FC = () => {
                     className={`fade-card ${
                       isFlipping ? "fade-out" : "fade-in"
                     }`}>
+                    className={`fade-card ${
+                      isFlipping ? "fade-out" : "fade-in"
+                    }`}>
                     <Text color="white" fontSize="lg" textAlign="center">
                       &quot;{currentCard.description}&quot;
                     </Text>
@@ -865,6 +915,7 @@ const AboutUsSection: React.FC = () => {
 
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}
+            title="Areas We Specialize In">
             title="Areas We Specialize In">
             <Text color="muted" fontSize="lg">
               Our team specializes in delivering innovative software solutions
@@ -904,6 +955,7 @@ const AboutUsSection: React.FC = () => {
                       "&:hover": {
                         bg: "#004c4c",
                       },
+                    }}>
                     }}>
                     {value}
                   </Tag>
@@ -984,12 +1036,14 @@ const HighlightsSection: React.FC = () => {
       sx={{
         scrollMarginTop: "50px",
       }}>
+      }}>
       <Container maxW="container.xl" py="5">
         <Divider />
         <Box
           display={{ base: "block", md: "flex" }}
           px="4"
           mt={10}
+          justifyContent={"space-between"}>
           justifyContent={"space-between"}>
           <Box>
             <Heading
@@ -998,6 +1052,7 @@ const HighlightsSection: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
+              }}>
               }}>
               What We Do
             </Heading>
@@ -1014,6 +1069,7 @@ const HighlightsSection: React.FC = () => {
                   md: "70%",
                 },
               }}>
+              }}>
               We help to build clients their dream projects
             </Heading>
           </Box>
@@ -1025,6 +1081,7 @@ const HighlightsSection: React.FC = () => {
             justifyContent={["flex-start", null, "flex-end"]}
             width={["100%", null, "auto"]}
             alignItems="end"
+            mt="4">
             mt="4">
             <ButtonLink
               size="lg"
@@ -1040,6 +1097,7 @@ const HighlightsSection: React.FC = () => {
                   textDecoration: "none",
                 },
               }}>
+              }}>
               Explore Services
             </ButtonLink>
           </ButtonGroup>
@@ -1051,6 +1109,7 @@ const HighlightsSection: React.FC = () => {
               key={index}
               colSpan={[1, null, 2]}
               title={""}
+              padding={0}>
               padding={0}>
               <Image
                 src={item.image}
@@ -1123,7 +1182,9 @@ const HighlightsSection: React.FC = () => {
             colSpan={[1, null, 2]}
           >
             "Saas UI helped us set up a beautiful modern UI in no time. It saved
+            "Saas UI helped us set up a beautiful modern UI in no time. It saved
             us hundreds of hours in development time and allowed us to focus on
+            business logic for our specific use-case from the start."
             business logic for our specific use-case from the start."
           </HighlightsTestimonialItem>
           <HighlightsItem
@@ -1216,6 +1277,9 @@ const Portfolio: React.FC = () => {
         "Tech Emulsion transformed WPFeedback into Atarim, a scalable SaaS platform for visual collaboration on any website. With new features, a Chrome extension, custom scraping, AWS scaling, and performance optimizations, we helped Atarim secure $500K funding and expand to a universal project management tool.",
       image: "/assets/portfolio/atarim.png",
       alt: "Atarim – A SaaS tool for visual collaboration & project mgmt",
+        "Artis is an AI-driven platform that analyzes an artist's style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
+      image: "/assets/portfolio/Artis.png",
+      alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
     },
     {
       title:
@@ -1236,6 +1300,7 @@ const Portfolio: React.FC = () => {
           px="4"
           mt={10}
           justifyContent={"space-between"}>
+          justifyContent={"space-between"}>
           <Box>
             <Heading
               as="h2"
@@ -1243,6 +1308,7 @@ const Portfolio: React.FC = () => {
               color={colorMode === "dark" ? "white" : "#004c4c"}
               sx={{
                 textTransform: "uppercase",
+              }}>
               }}>
               Creative Portfolio
             </Heading>
@@ -1320,6 +1386,7 @@ const Portfolio: React.FC = () => {
                   _hover={{ textDecoration: "none" }}
                   gap="0"
                   title=""
+                  border="none">
                   border="none">
                   <Box
                     sx={{
@@ -1414,6 +1481,7 @@ const SocialProofSection: React.FC = () => {
               },
               width: "100%",
             }}>
+            }}>
             Trusted by Leading Brands
           </Heading>
 
@@ -1428,6 +1496,8 @@ const SocialProofSection: React.FC = () => {
             width={{ base: "100%", md: "60%" }}
             textAlign="center">
             We're proud to have worked with a diverse range of clients across
+            textAlign="center">
+            We're proud to have worked with a diverse range of clients across
             industries, delivering impactful solutions that drive results. Our
             clients trust us for our commitment to quality, innovation, and
             lasting partnerships, helping them achieve their digital goals with
@@ -1439,10 +1509,13 @@ const SocialProofSection: React.FC = () => {
         display="flex"
         width="480%"
         minWidth={{ base: "6300px", lg: "4300px" }}
+        minWidth={{ base: "6300px", lg: "4300px" }}
         whiteSpace="nowrap"
+        overflow="hidden">
         overflow="hidden">
         <Box
           display="flex"
+          width={{ base: "100%", lg: "50%" }}
           width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
@@ -1817,6 +1890,7 @@ const SocialProofSection: React.FC = () => {
         </Box>
         <Box
           display="flex"
+          width={{ base: "100%", lg: "50%" }}
           width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"

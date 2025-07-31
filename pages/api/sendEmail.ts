@@ -13,16 +13,20 @@ export default async function handler(
       });
     }
 
+    const port = Number(process.env.SMTP_PORT);
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
+      port,
+      secure: port === 465,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
       logger: true,
       debug: true,
+      tls: {
+    rejectUnauthorized: false, 
+  },
     });
 
     const mailOptions = {

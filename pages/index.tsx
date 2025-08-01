@@ -124,7 +124,7 @@ const Home: NextPage = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -236,24 +236,26 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Imagineering <Br />
-                <Em style={{ color: "#66B2B2" }}>digital transformation</Em>
+                Imagineer breakthrough <Br />
+                <Em style={{ color: "#66B2B2" }}>
+                  SaaS, Mobile Apps, and AI Agents{" "}
+                </Em>
                 <Br /> for your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  Empowering businesses with next-gen{" "}
+                  Tech Emulsion designs, builds, and scales{" "}
                   <Em
                     style={{
                       color: "#66B2B2",
                       fontWeight: "900",
                     }}>
-                    SaaS, web, and AI solutions
+                    SaaS, mobile experiences, and AI agents
                   </Em>{" "}
-                  driving innovation and excellence through tailored technology
-                  strategies that propel your brand to new heights.
+                  that streamline operations, delight users, and unlock new
+                  growth.
                 </Em>
               </FallInPlace>
             }>
@@ -263,15 +265,23 @@ const HeroSection: React.FC = () => {
               </HStack>
 
               <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink
+                <Button
                   size="lg"
-                  href="/portfolio"
+                  onClick={() => {
+                    // @ts-ignore
+                    if (window.Calendly) {
+                      // @ts-ignore
+                      window.Calendly.initPopupWidget({
+                        url: "https://calendly.com/hassanms/discovery-call",
+                      });
+                    }
+                  }}
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
                   }}>
-                  Explore Portfolio
-                </ButtonLink>
+                  Book a Discovery Call
+                </Button>
               </ButtonGroup>
             </FallInPlace>
             <VStack
@@ -366,24 +376,26 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Imagineering <Br />
-                <Em style={{ color: "#004C4C" }}>digital transformation</Em>
+                Imagineer breakthrough <Br />
+                <Em style={{ color: "#004C4C" }}>
+                  SaaS, Mobile Apps, and AI Agents{" "}
+                </Em>
                 <Br /> for your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  Empowering businesses with next-gen{" "}
+                  Tech Emulsion designs, builds, and scales{" "}
                   <Em
                     style={{
                       color: "#004C4C",
                       fontWeight: "900",
                     }}>
-                    SaaS, web, and AI solutions
+                    SaaS, mobile experiences, and AI agents
                   </Em>{" "}
-                  driving innovation and excellence through tailored technology
-                  strategies that propel your brand to new heights.
+                  that streamline operations, delight users, and unlock new
+                  growth.
                 </Em>
               </FallInPlace>
             }>
@@ -393,15 +405,23 @@ const HeroSection: React.FC = () => {
               </HStack>
 
               <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink
+                <Button
                   size="lg"
-                  href="#portfolio"
+                  onClick={() => {
+                    // @ts-ignore
+                    if (window.Calendly) {
+                      // @ts-ignore
+                      window.Calendly.initPopupWidget({
+                        url: "https://calendly.com/hassanms/discovery-call",
+                      });
+                    }
+                  }}
                   sx={{
                     bg: "#004c4c !important",
                     color: "white !important",
                   }}>
-                  Explore Portfolio
-                </ButtonLink>
+                  Book a Discovery Call
+                </Button>
               </ButtonGroup>
             </FallInPlace>
             <VStack

@@ -43,16 +43,14 @@ export const Footer: React.FC<FooterProps> = (props) => {
       // _dark={{ bg: "gray.900" }}
       {...rest}
       // make at the bottom
-      position={"relative"}
-    >
+      position={"relative"}>
       <Container
         maxW="container.xl"
         px="10"
         py="10"
         display={"flex"}
         flexDirection={"column"}
-        gap={"5rem"}
-      >
+        gap={"5rem"}>
         <SimpleGrid columns={[1, 2, columns, columns]} spacing="8">
           <Stack spacing="2">
             <Stack alignItems="flex-start">
@@ -67,8 +65,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                }}
-              >
+                }}>
                 {/* ul li */}
                 <List
                   role="list"
@@ -79,33 +76,43 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     display: "flex",
                     flexDirection: "column",
                     gap: "0.2rem",
-                  }}
-                >
+                  }}>
                   <ListItem role="listitem">
-                    <a href="https://wa.me/66947060139" target="_blank" rel="noreferrer">
+                    <a
+                      href="https://wa.me/66947060139"
+                      target="_blank"
+                      rel="noreferrer">
                       <HStack>
-                        <FaWhatsapp style={{ marginRight: "2px", color: "silver" }} />
+                        <FaWhatsapp
+                          style={{ marginRight: "2px", color: "silver" }}
+                        />
                         <Text color="silver" fontSize="16px">
-                          +66 947 060 139
+                          +923345559140
                         </Text>
                       </HStack>
                     </a>
                   </ListItem>
 
-                  <ListItem role="listitem">
+                  {/* <ListItem role="listitem">
                     <HStack>
-                      <FaPhone style={{ marginRight: "2px", color: "silver" }} />
-                      <Text color="silver" fontSize="16px">+92 334 555 9140</Text>
+                      <FaPhone
+                        style={{ marginRight: "2px", color: "silver" }}
+                      />
+                      <Text color="silver" fontSize="16px">
+                        +92 334 555 9140
+                      </Text>
                     </HStack>
-                  </ListItem>
+                  </ListItem> */}
 
                   <ListItem role="listitem">
-                    <Text color="silver" fontSize="16px">info@techemulsion.com</Text>
+                    <Text color="silver" fontSize="16px">
+                      contact@techemulsion.com
+                    </Text>
                   </ListItem>
 
                   <ListItem role="listitem">
                     <Text color="silver" fontSize="16px">
-                      Shiekh Yaseen Trade Centre, University Road, Peshawar
+                      Sheikh Yaseen Trade Centre, University Road, Peshawar
                     </Text>
                   </ListItem>
                 </List>
@@ -123,8 +130,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             display={"flex"}
             flexDirection={["column", "column", "row", "row"]}
             justifyContent={"center"}
-            alignItems={"flex-start"}
-          >
+            alignItems={"flex-start"}>
             {/* <Stack spacing="8">
               <Stack alignItems="flex-start" spacing="4">
                 <Text fontSize="2xl" color="white" whiteSpace={"nowrap"}>
@@ -216,8 +222,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                 base: "10",
                 md: "0",
                 lg: "0",
-              }}
-            >
+              }}>
               <Text fontSize="2xl" color="white" whiteSpace={"nowrap"}>
                 Quick Links
               </Text>
@@ -225,16 +230,14 @@ export const Footer: React.FC<FooterProps> = (props) => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                }}
-              >
+                }}>
                 <List
                   style={{
                     listStyleType: "none",
                     padding: 0,
                     margin: 0,
                   }}
-                  spacing={2}
-                >
+                  spacing={2}>
                   <ListItem
                     sx={{
                       color: "silver",
@@ -244,8 +247,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         color: "white",
                         transition: "color .2s ease-in",
                       },
-                    }}
-                  >
+                    }}>
                     <Link href="/#about">About</Link>
                   </ListItem>
                   <ListItem
@@ -257,8 +259,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         color: "white",
                         transition: "color .2s ease-in",
                       },
-                    }}
-                  >
+                    }}>
                     <Link href="/services">Services</Link>
                   </ListItem>
                   <ListItem
@@ -270,8 +271,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         color: "white",
                         transition: "color .2s ease-in",
                       },
-                    }}
-                  >
+                    }}>
                     <Link href="/contact">Contact</Link>
                   </ListItem>
                   <ListItem
@@ -283,9 +283,32 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         color: "white",
                         transition: "color .2s ease-in",
                       },
-                    }}
-                  >
+                    }}>
                     {/* <Link href="/portfolio">Portfolio</Link> */}
+                  </ListItem>
+                  <ListItem
+                    sx={{
+                      color: "silver",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "white",
+                        transition: "color .2s ease-in",
+                      },
+                    }}>
+                    <Link href="/terms-of-service">Terms of Service</Link>
+                  </ListItem>
+                  <ListItem
+                    sx={{
+                      color: "silver",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "white",
+                        transition: "color .2s ease-in",
+                      },
+                    }}>
+                    <Link href="/privacy-policy">Privacy Policy</Link>
                   </ListItem>
                 </List>
               </HStack>
@@ -309,11 +332,13 @@ export const Footer: React.FC<FooterProps> = (props) => {
             justify={"center"}
             width={"100%"}
             display={"flex"}
-            flexDirection={"column"}
-          >
+            flexDirection={"column"}>
             <HStack justify="center" spacing="4" alignSelf="center" mt={8}>
               {siteConfig.footer?.links?.map(({ href, label }) => (
-                <FooterLink key={href} href={href} aria-label={label.props["aria-label"]}>
+                <FooterLink
+                  key={href}
+                  href={href}
+                  aria-label={label.props["aria-label"]}>
                   <Text
                     sx={{
                       padding: "5px",
@@ -326,8 +351,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         transition: "color .2s ease-in",
                         backgroundColor: "#006666",
                       },
-                    }}
-                  >
+                    }}>
                     {label}
                     <VisuallyHidden>{label.props["aria-label"]}</VisuallyHidden>
                   </Text>
@@ -335,7 +359,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
               ))}
             </HStack>
             <Text fontSize="sm" color="silver">
-              Tech Emulsion company is a registered company in the United States
+              Tech Emulsion is a Private Limited company in Pakistan and an LLC
+              in the United States
             </Text>
           </Stack>
         </Stack>
@@ -380,8 +405,7 @@ export const FooterLink: React.FC<LinkProps> = (props) => {
         bg: "white",
         color: "white",
       }}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Link>
   );

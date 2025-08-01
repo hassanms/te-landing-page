@@ -14,8 +14,7 @@ export const Hero = ({ title, description, children, ...rest }: HeroProps) => {
             as="h1"
             textStyle="h1"
             textAlign="left"
-            fontSize={{ base: "2rem", md: "3rem" }}
-          >
+            fontSize={{ base: "2rem", md: "2.5rem" }}>
             {title}
           </Text>
           <Text
@@ -23,8 +22,7 @@ export const Hero = ({ title, description, children, ...rest }: HeroProps) => {
             textStyle="subtitle"
             align="left"
             color="gray.500"
-            _dark={{ color: "gray.400" }}
-          >
+            _dark={{ color: "gray.400" }}>
             {description}
           </Text>
         </VStack>

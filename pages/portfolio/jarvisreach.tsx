@@ -31,7 +31,7 @@ const CaseStudyJarvisreach = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });

@@ -32,8 +32,7 @@ const Contacts = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -41,7 +40,7 @@ const Contacts = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -61,8 +60,7 @@ const Contacts = () => {
           px="15"
           mt={10}
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box>
             <Heading as="h2" size="lg">
               Contact Page
@@ -71,8 +69,7 @@ const Contacts = () => {
               color="muted"
               fontSize="lg"
               mt="4"
-              width={["auto", null, "80%"]}
-            >
+              width={["auto", null, "80%"]}>
               Whether you&apos;re looking for innovative software solutions,
               need to scale your development team, or want to discuss your next
               big project, we&apos;d love to hear from you! At Tech Emulsion, we
@@ -89,8 +86,7 @@ const Contacts = () => {
             justifyContent={["flex-start", null, "flex-end"]}
             width={["100%", null, "auto"]}
             alignItems="end"
-            mt="4"
-          >
+            mt="4">
             <ButtonGroup
               style={{
                 backgroundColor: " none",
@@ -98,8 +94,7 @@ const Contacts = () => {
                 color: "muted",
                 display: "flex",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <ButtonLink
                 href="/"
                 size="lg"
@@ -110,8 +105,7 @@ const Contacts = () => {
                   "&:hover": {
                     bg: "none",
                   },
-                }}
-              >
+                }}>
                 Home
               </ButtonLink>
               <FaChevronRight
@@ -126,8 +120,7 @@ const Contacts = () => {
                 sx={{
                   color: colorMode === "light" ? "#004c4c !important" : "white",
                   whiteSpace: "nowrap",
-                }}
-              >
+                }}>
                 Contact Page
               </Text>
             </ButtonGroup>

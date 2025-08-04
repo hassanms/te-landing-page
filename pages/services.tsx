@@ -10,13 +10,11 @@ import {
 import Image from "next/image";
 import { ButtonLink } from "components/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import {
-  HighlightsItem,
-  HighlightsWhatWeDo,
-} from "components/highlights";
+import { HighlightsItem, HighlightsWhatWeDo } from "components/highlights";
 import Head from "next/head";
 import Script from "next/script";
 import { FaChevronRight } from "react-icons/fa";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 
 const Services = () => {
   const { colorMode } = useColorMode();
@@ -75,21 +73,36 @@ const Services = () => {
 
   return (
     <Box>
-      <Head>
-        <title>Services - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Tech Emulsion offers a range of innovative services, including SaaS development, website development, Chrome extensions, DevOps solutions, generative AI integration, QA testing, and automation solutions."
-        />
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
-      </Head>
+      <EnhancedSEO
+        title="Services - Tech Emulsion"
+        description="Tech Emulsion offers a range of innovative services, including SaaS development, website development, Chrome extensions, DevOps solutions, generative AI integration, QA testing, and automation solutions."
+        pageType="services"
+        serviceData={{
+          name: "Digital Transformation Services",
+          description:
+            "Comprehensive digital transformation services including AI solutions, custom software development, SaaS platforms, and automation solutions.",
+          serviceType: "Technology Services",
+        }}
+        faqData={{
+          questions: [
+            {
+              question:
+                "What types of SaaS platforms does Tech Emulsion develop?",
+              answer:
+                "Tech Emulsion develops various SaaS platforms including customer relationship management (CRM) systems, project management tools, e-commerce platforms, learning management systems, analytics dashboards, and industry-specific solutions.",
+            },
+            {
+              question:
+                "How does Tech Emulsion handle data security and privacy?",
+              answer:
+                "Tech Emulsion implements enterprise-grade security measures including data encryption, secure authentication systems, regular security audits, compliance with GDPR and other privacy regulations, and comprehensive backup and disaster recovery plans.",
+            },
+          ],
+        }}
+      />
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -97,7 +110,7 @@ const Services = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -116,8 +129,7 @@ const Services = () => {
           display={{ base: "block", md: "flex" }}
           px="15"
           mt={10}
-          justifyContent={"space-between"}
-        >
+          justifyContent={"space-between"}>
           <Box>
             <Heading as="h2" size="lg">
               Services Page
@@ -126,8 +138,7 @@ const Services = () => {
               color="muted"
               fontSize="lg"
               mt="4"
-              width={["70%", null, "auto"]}
-            >
+              width={["70%", null, "auto"]}>
               We believe that building a product should be fun and rewarding.
               Our mission is to provide you with the best tools to make that
               happen.
@@ -141,8 +152,7 @@ const Services = () => {
             justifyContent={["flex-start", null, "flex-end"]}
             width={["100%", null, "auto"]}
             alignItems="end"
-            mt="4"
-          >
+            mt="4">
             <ButtonGroup
               style={{
                 backgroundColor: " none",
@@ -150,8 +160,7 @@ const Services = () => {
                 color: "muted",
                 display: "flex",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <ButtonLink
                 href="/"
                 size="lg"
@@ -162,8 +171,7 @@ const Services = () => {
                   "&:hover": {
                     bg: "none",
                   },
-                }}
-              >
+                }}>
                 Home
               </ButtonLink>
               <FaChevronRight size={15} />
@@ -172,8 +180,7 @@ const Services = () => {
                 ml="2"
                 sx={{
                   color: colorMode === "light" ? "#004c4c !important" : "white",
-                }}
-              >
+                }}>
                 Services
               </Text>
             </ButtonGroup>
@@ -186,8 +193,7 @@ const Services = () => {
               key={index}
               colSpan={[1, null, 2]}
               title={""}
-              padding={0}
-            >
+              padding={0}>
               <Image
                 src={item.image}
                 alt="hero"
@@ -196,7 +202,8 @@ const Services = () => {
                 style={{
                   width: "100%",
                   height: "300px",
-                  objectFit: item.title === "Agentic AI Engineering" ? "cover" : "fill",
+                  objectFit:
+                    item.title === "Agentic AI Engineering" ? "cover" : "fill",
                 }}
               />
               <Box px="4" pb="6" borderRadius="8px" w="100%">
@@ -205,8 +212,7 @@ const Services = () => {
                   size="lg"
                   sx={{
                     py: "6",
-                  }}
-                >
+                  }}>
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">

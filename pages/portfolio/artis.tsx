@@ -22,8 +22,7 @@ const CaseStudyArtis = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -31,7 +30,7 @@ const CaseStudyArtis = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -51,8 +50,7 @@ const CaseStudyArtis = () => {
           px="15"
           mt={10}
           justifyContent={"space-between"}
-          mb={10}
-        >
+          mb={10}>
           <Box
             sx={{
               width: "100%",
@@ -71,8 +69,7 @@ const CaseStudyArtis = () => {
               flexDirection: "column",
               h: "100%",
               textAlign: "center",
-            }}
-          >
+            }}>
             <Box>
               <Image
                 src="/assets/portfolio/Artis.png"
@@ -95,8 +92,7 @@ const CaseStudyArtis = () => {
               fontWeight={"500"}
               mt="4"
               width={"100%"}
-              align={"center"}
-            >
+              align={"center"}>
               Artis – Case Study
             </Text>
             <Text
@@ -105,8 +101,7 @@ const CaseStudyArtis = () => {
               }
               fontSize="xl"
               mt="4"
-              width={["auto", null, "60%"]}
-            >
+              width={["auto", null, "60%"]}>
               Artis is an AI-driven platform that functions as a personalised
               creative support team, analysing an artist's style and preferences
               to offer tailored advice, marketing strategies, and suggestions

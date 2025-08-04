@@ -15,6 +15,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { HighlightsItem } from "components/highlights";
 import Head from "next/head";
 import Script from "next/script";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { FaChevronRight } from "react-icons/fa";
 import { SectionProps, Section } from "components/section";
 export const Highlights: React.FC<SectionProps> = (props) => {
@@ -147,17 +148,66 @@ const Services = () => {
 
   return (
     <Box>
-      <Head>
-        <title>Our Portfolio - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, blockchain solutions, and custom software development for global clients."
-        />
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
-      </Head>
+      <EnhancedSEO
+        title="Our Portfolio - Tech Emulsion"
+        description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, blockchain solutions, and custom software development for global clients."
+        pageType="portfolio"
+        portfolioData={{
+          title: "Tech Emulsion Portfolio",
+          description:
+            "A comprehensive collection of successful digital transformation projects and innovative technology solutions.",
+          dateCreated: "2020",
+          image:
+            "https://techemulsion.com/static/favicons/android-chrome-192x192.png",
+          url: "https://techemulsion.com/portfolio",
+          genre: "Technology Portfolio",
+          keywords: [
+            "AI solutions",
+            "custom software",
+            "SaaS platforms",
+            "mobile apps",
+            "blockchain",
+            "digital transformation",
+          ],
+        }}
+        faqData={{
+          questions: [
+            {
+              question: "What types of projects has Tech Emulsion completed?",
+              answer:
+                "Tech Emulsion has completed diverse projects including AI-powered video search platforms (MoodTube), RAG-based document querying systems, e-commerce platforms, mobile applications, blockchain solutions, and custom enterprise software.",
+            },
+            {
+              question: "Can I see examples of Tech Emulsion's work?",
+              answer:
+                "Yes, you can explore our portfolio section to see detailed case studies of our completed projects. Each portfolio item includes project descriptions, technologies used, challenges solved, and outcomes achieved.",
+            },
+          ],
+        }}
+        howToData={{
+          title: "How to explore Tech Emulsion's portfolio",
+          description:
+            "A step-by-step guide to viewing and understanding our project case studies.",
+          steps: [
+            {
+              name: "Visit the Portfolio Page",
+              text: "Go to the Tech Emulsion portfolio section from the main menu.",
+            },
+            {
+              name: "Browse Projects",
+              text: "Scroll through the list of featured projects and select one that interests you.",
+            },
+            {
+              name: "Read Case Study",
+              text: "Click on a project to view detailed descriptions, technologies used, and outcomes achieved.",
+            },
+            {
+              name: "Contact Us",
+              text: "If you have questions or want a similar solution, use the contact form to reach out.",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
@@ -168,7 +218,7 @@ const Services = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });

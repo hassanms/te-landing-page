@@ -79,7 +79,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   }}>
                   <ListItem role="listitem">
                     <a
-                      href="https://wa.me/66947060139"
+                      href="https://wa.me/+923345559140"
                       target="_blank"
                       rel="noreferrer">
                       <HStack>

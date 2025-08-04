@@ -28,7 +28,7 @@ import {
 } from "@chakra-ui/react";
 // new import for animation
 import { keyframes } from "@emotion/react";
-import { SEO } from "components/seo/seo";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { Logo2 } from "components/logo2";
 import { FallInPlace } from "components/motion/fall-in-place";
 import { Hero } from "components/hero";
@@ -138,9 +138,46 @@ const Home: NextPage = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      <SEO
+      <EnhancedSEO
         title="Tech Emulsion | Imagineering Digital Transformation"
         description="Imagineering digital transformation for your business"
+        pageType="home"
+        faqData={{
+          questions: [
+            {
+              question:
+                "What is digital transformation and how can Tech Emulsion help?",
+              answer:
+                "Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers. Tech Emulsion specializes in imagineering digital transformation through AI-powered solutions, custom software development, and innovative technology services.",
+            },
+            {
+              question: "What AI solutions does Tech Emulsion provide?",
+              answer:
+                "Tech Emulsion offers comprehensive AI solutions including custom AI applications, intelligent chatbots, machine learning models, natural language processing systems, computer vision applications, and predictive analytics.",
+            },
+            {
+              question: "How much does custom software development cost?",
+              answer:
+                "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models.",
+            },
+          ],
+        }}
+        howToData={{
+          title: "How to get started with Tech Emulsion",
+          description:
+            "A simple guide to begin your digital transformation journey.",
+          steps: [
+            { name: "Contact Us", text: "Reach out via our website or email." },
+            {
+              name: "Discovery Call",
+              text: "Schedule a free discovery call to discuss your needs.",
+            },
+            {
+              name: "Proposal & Onboarding",
+              text: "Receive a tailored proposal and start your project.",
+            },
+          ],
+        }}
       />
       <Box height="100%" width="100%" overflow="hidden">
         <HeroSection />

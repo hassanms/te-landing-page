@@ -40,7 +40,7 @@ const CaseStudyFarmin = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -209,7 +209,10 @@ const CaseStudyFarmin = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Link:</strong>
                     <span>
-                      <Link href="https://www.podbcn.com/">
+                      <Link
+                        href="https://www.podbcn.com/"
+                        target="_blank"
+                        rel="noopener noreferrer">
                         https://www.podbcn.com/
                       </Link>
                     </span>

@@ -36,8 +36,7 @@ const OurStory: React.FC = () => {
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      ></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -45,7 +44,7 @@ const OurStory: React.FC = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -65,8 +64,7 @@ const OurStory: React.FC = () => {
           align={isSmallScreen ? "center" : "start"}
           justify="center"
           p={6}
-          gap={8}
-        >
+          gap={8}>
           {/* Profile Section */}
           <Box maxW="800px">
             <Image
@@ -161,8 +159,7 @@ const OurStory: React.FC = () => {
               alignItems="center"
               mb={4}
               p={4}
-              borderRadius="md"
-            >
+              borderRadius="md">
               {/* Vertical Line with Gradient */}
               <Box
                 width="15px"
@@ -176,8 +173,7 @@ const OurStory: React.FC = () => {
                 fontSize="lg"
                 fontWeight="bold"
                 bgGradient="linear(to-r, teal.300, teal.500)"
-                bgClip="text"
-              >
+                bgClip="text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
                 ducimus asperiores dignissimos mollitia? Voluptate beatae
                 dignissimos veritatis placeat explicabo ducimus quod ipsum
@@ -204,8 +200,7 @@ const OurStory: React.FC = () => {
             display={{ base: "flex", lg: "flex" }}
             flexDirection="column"
             alignItems="center"
-            gap={4}
-          >
+            gap={4}>
             <Image
               src="/assets/whatWeDo/automation.png"
               alt="Agency Management Image"

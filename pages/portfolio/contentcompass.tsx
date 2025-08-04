@@ -41,7 +41,7 @@ const CaseStudyBipcards = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Our CEO",
+            text: "Talk to Sales",
             color: "#004c4c",
             textColor: "#ffffff",
           });
@@ -218,7 +218,10 @@ const CaseStudyBipcards = () => {
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <strong>Link:</strong>
                     <span>
-                      <Link href="http://content-compass.ai/">
+                      <Link
+                        href="http://content-compass.ai/"
+                        target="_blank"
+                        rel="noopener noreferrer">
                         http://content-compass.ai/
                       </Link>
                     </span>

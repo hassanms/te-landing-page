@@ -77,21 +77,65 @@ export default class Document extends NextDocument {
             content="/static/favicons/mstile-150x150.png"
           />
 
+          {/* Standard Meta Tags for SEO */}
+          <meta
+            name="description"
+            content="Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services. Get in touch now to fulfil all your digital needs."
+          />
+          <meta
+            name="keywords"
+            content="digital transformation, AI solutions, custom software development, technology services, business automation, web development, mobile apps, cloud solutions"
+          />
+          <meta name="author" content="Tech Emulsion" />
+          <meta name="robots" content="index, follow" />
+          <meta name="language" content="English" />
+          <meta name="revisit-after" content="7 days" />
+          <meta name="distribution" content="global" />
+          <meta name="rating" content="general" />
+
           {/* Open Graph Meta Tags for Social Media */}
           <meta property="og:type" content="website" />
+          <meta
+            property="og:title"
+            content="Tech Emulsion - Digital Transformation & AI Solutions"
+          />
+          <meta
+            property="og:description"
+            content="Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services. Get in touch now to fulfil all your digital needs."
+          />
+          <meta property="og:url" content="https://techemulsion.com" />
           <meta property="og:site_name" content="Tech Emulsion" />
           <meta
             property="og:image"
             content="/static/favicons/android-chrome-512x512.png"
           />
-          <meta property="og:image:width" content="512" />
-          <meta property="og:image:height" content="512" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta
+            property="og:image:alt"
+            content="Tech Emulsion - Digital Transformation & AI Solutions"
+          />
+          <meta property="og:locale" content="en_US" />
 
           {/* Twitter Card Meta Tags */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta
+            name="twitter:title"
+            content="Tech Emulsion - Digital Transformation & AI Solutions"
+          />
+          <meta
+            name="twitter:description"
+            content="Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services."
+          />
+          <meta name="twitter:site" content="@techemulsion" />
+          <meta name="twitter:creator" content="@techemulsion" />
+          <meta
             name="twitter:image"
             content="/static/favicons/android-chrome-512x512.png"
+          />
+          <meta
+            name="twitter:image:alt"
+            content="Tech Emulsion - Digital Transformation & AI Solutions"
           />
 
           {/* Preconnect for performance */}
@@ -106,6 +150,45 @@ export default class Document extends NextDocument {
           {/* DNS prefetch for external resources */}
           <link rel="dns-prefetch" href="//www.googletagmanager.com" />
           <link rel="dns-prefetch" href="//assets.calendly.com" />
+
+          {/* Structured Data for Search Engines */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "Tech Emulsion",
+                url: "https://techemulsion.com",
+                logo: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
+                description:
+                  "Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services.",
+                foundingDate: "2023",
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "Pakistan",
+                },
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  contactType: "customer service",
+                  availableLanguage: "English",
+                },
+                sameAs: [
+                  "https://linkedin.com/company/tech-emulsion",
+                  "https://twitter.com/techemulsion",
+                ],
+                serviceArea: {
+                  "@type": "GeoCircle",
+                  geoMidpoint: {
+                    "@type": "GeoCoordinates",
+                    latitude: 33.6844,
+                    longitude: 73.0479,
+                  },
+                  geoRadius: "50000",
+                },
+              }),
+            }}
+          />
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

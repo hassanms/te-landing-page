@@ -91,19 +91,22 @@ const Home: NextPage = () => {
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
 
       <Head>
-        <title>Tech Emulsion | Imagineering Digital Transformation</title>
+        <title>
+          Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI
+          Agents for your business
+        </title>
         <meta
           name="description"
-          content="Imagineering digital transformation for your business"
+          content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
         />
         {/* Open Graph (OG) Meta Tags for Social Media Previews */}
         <meta
           property="og:title"
-          content="Tech Emulsion | Imagineering Digital Transformation"
+          content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
         />
         <meta
           property="og:description"
-          content="Tech Emulsion Always provide innovative digital transformation solutions."
+          content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
         />
         <meta
           property="og:image"
@@ -139,8 +142,8 @@ const Home: NextPage = () => {
       </Script>
 
       <EnhancedSEO
-        title="Tech Emulsion | Imagineering Digital Transformation"
-        description="Imagineering digital transformation for your business"
+        title="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+        description="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
         pageType="home"
         faqData={{
           questions: [

@@ -80,11 +80,11 @@ export default class Document extends NextDocument {
           {/* Standard Meta Tags for SEO */}
           <meta
             name="description"
-            content="Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services. Get in touch now to fulfil all your digital needs."
+            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
           />
           <meta
             name="keywords"
-            content="digital transformation, AI solutions, custom software development, technology services, business automation, web development, mobile apps, cloud solutions"
+            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
           />
           <meta name="author" content="Tech Emulsion" />
           <meta name="robots" content="index, follow" />
@@ -97,11 +97,11 @@ export default class Document extends NextDocument {
           <meta property="og:type" content="website" />
           <meta
             property="og:title"
-            content="Tech Emulsion - Digital Transformation & AI Solutions"
+            content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
           />
           <meta
             property="og:description"
-            content="Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services. Get in touch now to fulfil all your digital needs."
+            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business."
           />
           <meta property="og:url" content="https://techemulsion.com" />
           <meta property="og:site_name" content="Tech Emulsion" />
@@ -113,7 +113,7 @@ export default class Document extends NextDocument {
           <meta property="og:image:height" content="630" />
           <meta
             property="og:image:alt"
-            content="Tech Emulsion - Digital Transformation & AI Solutions"
+            content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
           />
           <meta property="og:locale" content="en_US" />
 
@@ -121,11 +121,11 @@ export default class Document extends NextDocument {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:title"
-            content="Tech Emulsion - Digital Transformation & AI Solutions"
+            content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
           />
           <meta
             name="twitter:description"
-            content="Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services."
+            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business."
           />
           <meta name="twitter:site" content="@techemulsion" />
           <meta name="twitter:creator" content="@techemulsion" />
@@ -135,7 +135,7 @@ export default class Document extends NextDocument {
           />
           <meta
             name="twitter:image:alt"
-            content="Tech Emulsion - Digital Transformation & AI Solutions"
+            content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
           />
 
           {/* Preconnect for performance */}
@@ -162,7 +162,7 @@ export default class Document extends NextDocument {
                 url: "https://techemulsion.com",
                 logo: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
                 description:
-                  "Imagineering digital transformation for your business through AI-powered solutions, custom software development, and innovative technology services.",
+                  "Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business",
                 foundingDate: "2023",
                 address: {
                   "@type": "PostalAddress",

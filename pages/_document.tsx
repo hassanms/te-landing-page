@@ -153,6 +153,13 @@ export default class Document extends NextDocument {
 
           {/* Structured Data for Search Engines */}
           <script
+            id="vtag-ai-js"
+            async
+            src="https://r2.leadsy.ai/tag.js"
+            data-pid="1ifXj2fdQwendXlL"
+            data-version="062024"
+          ></script>
+          <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({

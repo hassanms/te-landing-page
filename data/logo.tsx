@@ -21,8 +21,8 @@ export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
       <Image
         src={
           colorMode === "light"
-            ? "/assets/logo/logo.png"
-            : "/assets/logo/logo (1).png"
+            ? "/assets/logo/logo-dark.png"
+            : "/assets/logo/logo-light.png"
         }
         alt="Logo"
         loading="eager"

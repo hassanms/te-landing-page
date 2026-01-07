@@ -112,7 +112,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
 
                   <ListItem role="listitem">
                     <Text color="silver" fontSize="16px">
-                      Sheikh Yaseen Trade Centre, University Road, Peshawar
+                      3rd Floor, Afzal Towers, University Road, Peshawar.
                     </Text>
                   </ListItem>
                 </List>

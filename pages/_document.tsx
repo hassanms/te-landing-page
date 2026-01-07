@@ -9,41 +9,11 @@ export default class Document extends NextDocument {
         <Head>
           {/* Standard favicon for all browsers */}
           <link rel="icon" href="/static/favicons/favicon.ico" />
-
-          {/* Apple Touch Icon */}
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/static/favicons/apple-touch-icon.png"
-          />
-
-          {/* Standard favicon sizes */}
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/static/favicons/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/static/favicons/favicon-16x16.png"
-          />
-
-          {/* Android Chrome icons */}
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="192x192"
-            href="/static/favicons/android-chrome-192x192.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="512x512"
-            href="/static/favicons/android-chrome-512x512.png"
-          />
+          <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
+          <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
+          <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
+          <link rel="manifest" href="/static/favicons/site.webmanifest" />
 
           {/* Web App Manifest */}
           <link rel="manifest" href="/static/favicons/manifest.json" />

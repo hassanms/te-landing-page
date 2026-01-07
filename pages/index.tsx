@@ -674,7 +674,7 @@ const AboutUsSection: React.FC = () => {
               </Link>
 
               <Link
-                href="https://www.facebook.com/emulsiontech/"
+                href="https://www.facebook.com/profile.php?id=100092936174663"
                 isExternal
                 aria-label="Visit Tech Emulsion on Facebook">
                 <Icon

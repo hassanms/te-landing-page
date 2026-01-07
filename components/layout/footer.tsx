@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import Layout from "components/FooterLayout/layout-1";
 import LayoutBottom from "components/FooterLayout/LayoutBottom";
+import Image from "next/image";
 
 import siteConfig from "data/config";
 import Link from "next/link";
@@ -55,7 +56,16 @@ export const Footer: React.FC<FooterProps> = (props) => {
           <Stack spacing="2">
             <Stack alignItems="flex-start">
               <Flex>
-                <Box as={siteConfig.logo} flex="1" height="32px" />
+                <Image
+                  src="/assets/logo/logo-light.png"
+                  alt="Tech Emulsion Logo"
+                  width={100}
+                  height={30}
+                  style={{
+                    objectFit: "contain",
+                    height: "32px",
+                  }}
+                />
               </Flex>
               <Text fontSize="2xl" color="white">
                 Let&apos;s Talk!

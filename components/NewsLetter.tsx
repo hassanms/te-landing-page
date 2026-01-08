@@ -60,15 +60,37 @@ const NewsLetter = () => {
     } catch (validationError) {
       if (validationError instanceof Yup.ValidationError) {
         const validationErrors: any = {};
+        const errorMessages: string[] = [];
+        
         validationError.inner.forEach((err) => {
-          if (err.path) validationErrors[err.path] = err.message;
+          if (err.path) {
+            validationErrors[err.path] = err.message;
+            // Create user-friendly field names
+            const fieldName = err.path.charAt(0).toUpperCase() + err.path.slice(1);
+            errorMessages.push(`${fieldName}: ${err.message}`);
+          }
         });
+        
         setErrors(validationErrors);
-
-        // Auto-hide error after 3 seconds
-        setTimeout(() => setErrors({ email: "" }), 3000);
+        
+        // Show specific error messages
+        if (errorMessages.length > 0) {
+          toast.error(errorMessages[0], {
+            duration: 5000,
+          });
+          
+          // Focus on the email field
+          setFocusedField("email");
+          setTimeout(() => {
+            const element = document.querySelector(`[name="email"]`);
+            if (element) {
+              (element as HTMLElement).scrollIntoView({ behavior: "smooth", block: "center" });
+              (element as HTMLElement).focus();
+            }
+          }, 100);
+        }
       } else {
-        toast.error("Failed to send Subscription email");
+        toast.error("Failed to send subscription email. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -152,7 +174,7 @@ const NewsLetter = () => {
           onFocus={() => handleFocus("email")}
           onBlur={handleBlur}
         />
-        {focusedField === "email" && errors.email && (
+        {(focusedField === "email" || errors.email) && errors.email && (
           <Text
             color="red.500"
             fontSize="18px"

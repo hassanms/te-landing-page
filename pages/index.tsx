@@ -663,7 +663,7 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={FiLinkedin}
                   boxSize="10"
-                  color="gray.100"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
@@ -684,7 +684,7 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
-                  color="gray.100"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
@@ -704,7 +704,7 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
-                  color="gray.100"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
@@ -724,7 +724,7 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={AiFillYoutube}
                   boxSize="10"
-                  color="gray.100"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",

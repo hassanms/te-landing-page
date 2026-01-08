@@ -18,6 +18,7 @@ import {
   useClipboard,
   VStack,
   useColorMode,
+  useColorModeValue,
   Divider,
   Avatar,
   Card,
@@ -128,7 +129,7 @@ const Home: NextPage = () => {
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
             text: "Talk to Sales",
-            color: "#004c4c",
+            color: "#008080",
             textColor: "#ffffff",
           });
         }}
@@ -202,6 +203,7 @@ type LottieAnimationData = Record<string, any>;
 
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [currentAnimation, setCurrentAnimation] =
     useState<LottieAnimationData>(animationData1);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
@@ -277,7 +279,7 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineer breakthrough <Br />
-                <Em style={{ color: "#66B2B2" }}>
+                <Em style={{ color: "var(--chakra-colors-pearlAqua-500)" }}>
                   SaaS, Mobile Apps, and AI Agents{" "}
                 </Em>
                 <Br /> for your business
@@ -289,7 +291,7 @@ const HeroSection: React.FC = () => {
                   Tech Emulsion designs, builds, and scales{" "}
                   <Em
                     style={{
-                      color: "#66B2B2",
+                      color: "var(--chakra-colors-pearlAqua-500)",
                       fontWeight: "900",
                     }}>
                     SaaS, mobile experiences, and AI agents
@@ -317,7 +319,7 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                   sx={{
-                    bg: "#004c4c !important",
+                    bg: "teal.500 !important",
                     color: "white !important",
                   }}>
                   Book a Discovery Call
@@ -332,7 +334,7 @@ const HeroSection: React.FC = () => {
               mt="10">
               <Text
                 fontSize="sm"
-                color="muted"
+                color={textColor}
                 fontWeight="medium"
                 maxW="lg"
                 textAlign="left"
@@ -417,7 +419,7 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineer breakthrough <Br />
-                <Em style={{ color: "#004C4C" }}>
+                <Em style={{ color: "var(--chakra-colors-teal-500)" }}>
                   SaaS, Mobile Apps, and AI Agents{" "}
                 </Em>
                 <Br /> for your business
@@ -429,7 +431,7 @@ const HeroSection: React.FC = () => {
                   Tech Emulsion designs, builds, and scales{" "}
                   <Em
                     style={{
-                      color: "#004C4C",
+                      color: "var(--chakra-colors-teal-500)",
                       fontWeight: "900",
                     }}>
                     SaaS, mobile experiences, and AI agents
@@ -457,7 +459,7 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                   sx={{
-                    bg: "#004c4c !important",
+                    bg: "teal.500 !important",
                     color: "white !important",
                   }}>
                   Book a Discovery Call
@@ -472,7 +474,7 @@ const HeroSection: React.FC = () => {
               mt="10">
               <Text
                 fontSize="sm"
-                color="muted"
+                color={textColor}
                 fontWeight="medium"
                 maxW="lg"
                 textAlign="left"
@@ -584,6 +586,7 @@ const cardData = [
 
 const AboutUsSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("muted", "lightGrey.400");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
 
@@ -615,7 +618,7 @@ const AboutUsSection: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 textTransform: "uppercase",
               }}>
@@ -630,7 +633,7 @@ const AboutUsSection: React.FC = () => {
               Impactful Product Design,
               <Br /> Memorable Experience
             </Heading>
-            <Text color="muted" fontSize="lg" mt="4">
+            <Text color={textColor} fontSize="lg" mt="4">
               We believe that collaboration is key, working closely with you to
               craft tailored solutions. Our mission is to guide you with the
               best tools and personalized support, ensuring a rewarding journey
@@ -646,7 +649,7 @@ const AboutUsSection: React.FC = () => {
               }}>
               Connect With Us
             </Heading>
-            <Text color="muted" fontSize="lg" mt="4">
+            <Text color={textColor} fontSize="lg" mt="4">
               {`We'd love to hear from you! Reach out to us for any inquiries,
               feedback, or support. Our team is here to assist you and ensure
               you have the best experience.`}
@@ -660,13 +663,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={FiLinkedin}
                   boxSize="10"
-                  color="gray.500"
+                  color="gray.100"
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -680,13 +684,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
-                  color="gray.500"
+                  color="gray.100"
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -699,13 +704,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
-                  color="gray.500"
+                  color="gray.100"
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -718,13 +724,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={AiFillYoutube}
                   boxSize="10"
-                  color="gray.500"
+                  color="gray.100"
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -737,7 +744,7 @@ const AboutUsSection: React.FC = () => {
           <Heading
             as="h2"
             size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
+            color={colorMode === "dark" ? "white" : "teal.500"}
             sx={{
               textTransform: "uppercase",
             }}
@@ -799,7 +806,7 @@ const AboutUsSection: React.FC = () => {
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
-                bgGradient={`linear(to-br, #b2d8d8, #006666 , #004c4c)`}
+                bgGradient="linear(to-br, mutedTeal.400, teal.600, teal.500)"
                 boxShadow="none"
                 border={"none"}
                 borderRadius="lg"
@@ -849,7 +856,7 @@ const AboutUsSection: React.FC = () => {
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}
             title="Areas We Specialize In">
-            <Text color="muted" fontSize="lg">
+            <Text color={textColor} fontSize="lg">
               Our team specializes in delivering innovative software solutions
               using a wide range of modern technologies. From SaaS and
               full-stack development to AI and machine learning, we provide
@@ -882,10 +889,10 @@ const AboutUsSection: React.FC = () => {
                     rounded="full"
                     px="3"
                     sx={{
-                      bg: "#185651",
+                      bg: "evergreen.500",
                       color: "#fff",
                       "&:hover": {
-                        bg: "#004c4c",
+                        bg: "teal.500",
                       },
                     }}>
                     {value}
@@ -903,6 +910,7 @@ const AboutUsSection: React.FC = () => {
 const HighlightsSection: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const HighlightsItems = [
     {
       title: "Agentic AI Engineering",
@@ -978,7 +986,7 @@ const HighlightsSection: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 textTransform: "uppercase",
               }}>
@@ -1015,11 +1023,11 @@ const HighlightsSection: React.FC = () => {
               sx={{
                 bg: " none",
                 fontSize: "1.5rem",
-                color: colorMode === "light" ? "#004c4c !important" : "white",
+                color: colorMode === "light" ? "teal.500 !important" : "white",
                 textDecoration: "underline",
                 ":hover": {
                   bg: "none",
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  color: colorMode === "light" ? "teal.500 !important" : "white",
                   textDecoration: "none",
                 },
               }}>
@@ -1052,7 +1060,7 @@ const HighlightsSection: React.FC = () => {
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="lg">
+                  <Text color={textColor} fontSize="lg">
                     {item.description}
                   </Text>
                 </VStack>
@@ -1068,6 +1076,7 @@ const HighlightsSection: React.FC = () => {
 const Portfolio: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [showAll, setShowAll] = useState(false); // Add this state
   const HighlightsItems = [
     {
@@ -1140,7 +1149,7 @@ const Portfolio: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 textTransform: "uppercase",
               }}>
@@ -1166,7 +1175,7 @@ const Portfolio: React.FC = () => {
 
             <Text
               py="4"
-              color="muted"
+              color={textColor}
               fontSize="lg"
               fontWeight={"500"}
               mt="1"
@@ -1189,12 +1198,12 @@ const Portfolio: React.FC = () => {
                 sx={{
                   bg: " none",
                   fontSize: "1.5rem",
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  color: colorMode === "light" ? "teal.500 !important" : "white",
                   textDecoration: "underline",
                   ":hover": {
                     bg: "none",
                     color:
-                      colorMode === "light" ? "#004c4c !important" : "white",
+                      colorMode === "light" ? "teal.500 !important" : "white",
                     textDecoration: "none",
                   },
                 }}>
@@ -1269,7 +1278,7 @@ const Portfolio: React.FC = () => {
                       {item.title}
                     </Heading>
                     <VStack alignItems="flex-start" spacing="8">
-                      <Text color="muted" fontSize="lg">
+                      <Text color={textColor} fontSize="lg">
                         {item.description}
                       </Text>
                     </VStack>
@@ -1289,12 +1298,13 @@ const scrollAnimation = keyframes`
 
 const SocialProofSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
 
   return (
     <Box
       id="social"
       py="20"
-      bg="#004c4c"
+      bg="evergreen.500"
       color="white"
       textAlign="center"
       height={[null, null, null]}
@@ -1331,7 +1341,7 @@ const SocialProofSection: React.FC = () => {
           </Heading>
 
           <Text
-            color="gray.400"
+            color={textColor}
             fontSize="lg"
             fontWeight={"500"}
             justifyContent={"center"}
@@ -2042,6 +2052,7 @@ const TestimonialsSection: React.FC = () => {
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   const [showMore, setShowMore] = React.useState(false);
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1,
@@ -2119,7 +2130,7 @@ const TestimonialsSection: React.FC = () => {
                         marginTop: "2rem",
                         padding: "30px",
                         background: "transparent",
-                        color: colorMode === "dark" ? "white" : "#004c4c",
+                        color: colorMode === "dark" ? "white" : "teal.500",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
                       }}>
@@ -2130,7 +2141,7 @@ const TestimonialsSection: React.FC = () => {
                           height: "25px",
                           marginLeft: 3,
                           marginTop: 2,
-                          color: colorMode === "dark" ? "white" : "#004c4c",
+                          color: colorMode === "dark" ? "white" : "teal.500",
                         }}
                       />
                     </Button>
@@ -2167,7 +2178,7 @@ const TestimonialsSection: React.FC = () => {
                         marginTop: "2rem",
                         padding: "30px",
                         background: "transparent",
-                        color: colorMode === "dark" ? "white" : "#004c4c",
+                        color: colorMode === "dark" ? "white" : "teal.500",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
                       }}>
@@ -2178,7 +2189,7 @@ const TestimonialsSection: React.FC = () => {
                           height: "25px",
                           marginLeft: 3,
                           marginTop: 2,
-                          color: colorMode === "dark" ? "white" : "#004c4c",
+                          color: colorMode === "dark" ? "white" : "teal.500",
                         }}
                       />
                     </Button>
@@ -2217,7 +2228,7 @@ const TestimonialsSection: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -2244,7 +2255,7 @@ const TestimonialsSection: React.FC = () => {
               Hear From Our Clients
             </Heading>
             <Text
-              color="muted"
+              color={textColor}
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
@@ -2283,7 +2294,7 @@ const TestimonialsSection: React.FC = () => {
                 height: "40px",
                 borderRadius: "50%",
                 ":hover": {
-                  bg: "#004c4c",
+                  bg: "teal.500",
                   color: "white",
                   fontWeight: "bold",
                 },
@@ -2328,7 +2339,7 @@ const TestimonialsSection: React.FC = () => {
                 height: "40px",
                 borderRadius: "50%",
                 ":hover": {
-                  bg: "#004c4c",
+                  bg: "teal.500",
                   color: "white",
                   fontWeight: "bold",
                 },
@@ -2347,7 +2358,7 @@ const TestimonialsSection: React.FC = () => {
           <Heading
             as="h2"
             size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
+            color={colorMode === "dark" ? "white" : "teal.500"}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -2967,7 +2978,7 @@ const TechnologySection: React.FC = () => {
           <Heading
             as="h2"
             size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
+            color={colorMode === "dark" ? "white" : "teal.500"}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -3006,14 +3017,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "frontend" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "frontend" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "frontend" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "frontend" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "frontend" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("frontend")}
@@ -3023,14 +3034,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "backend" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "backend" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "backend" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "backend" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "backend" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("backend")}
@@ -3040,14 +3051,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "devops" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "devops" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "devops" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "devops" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "devops" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("devops")}
@@ -3057,14 +3068,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "AI" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "AI" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "AI" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "AI" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "AI" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("AI")}>
@@ -3073,7 +3084,7 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "noCodeAutomation" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "noCodeAutomation" ? "white" : "gray.800",
@@ -3081,7 +3092,7 @@ const TechnologySection: React.FC = () => {
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
                   bg:
-                    currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
+                    currentTab === "noCodeAutomation" ? "teal.500" : "gray.300",
                 },
                 minWidth: "140px",
               }}

@@ -5,6 +5,7 @@ import {
   Heading,
   Text,
   useColorMode,
+  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import { ButtonLink } from "components/button-link";
@@ -17,6 +18,7 @@ import { FaChevronRight } from "react-icons/fa";
 
 const Contacts = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   return (
     <Box id="services">
       <Head>
@@ -66,7 +68,7 @@ const Contacts = () => {
               Contact Page
             </Heading>
             <Text
-              color="muted"
+              color={textColor}
               fontSize="lg"
               mt="4"
               width={["auto", null, "80%"]}>

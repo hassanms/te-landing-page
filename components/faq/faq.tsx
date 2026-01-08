@@ -1,4 +1,4 @@
-import { chakra, SimpleGrid } from '@chakra-ui/react'
+import { chakra, SimpleGrid, useColorModeValue } from '@chakra-ui/react'
 import { Section, SectionProps, SectionTitle } from 'components/section'
 
 interface FaqProps extends Omit<SectionProps, 'title' | 'children'> {
@@ -32,12 +32,13 @@ export interface FaqItemProps {
 }
 
 const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   return (
     <chakra.dl>
       <chakra.dt fontWeight="semibold" mb="2">
         {question}
       </chakra.dt>
-      <chakra.dd color="muted">{answer}</chakra.dd>
+      <chakra.dd color={textColor}>{answer}</chakra.dd>
     </chakra.dl>
   )
 }

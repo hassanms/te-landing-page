@@ -13,6 +13,7 @@ import {
   ThemingProps,
   SystemProps,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { Section, SectionTitle, SectionTitleProps } from "components/section";
@@ -61,6 +62,7 @@ export const Feature: React.FC<FeatureProps> = (props) => {
   } = props;
   const styles = useMultiStyleConfig("Feature", { variant });
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const pos = iconPosition || ip;
   const direction = pos === "left" ? "row" : "column";
 
@@ -88,7 +90,7 @@ export const Feature: React.FC<FeatureProps> = (props) => {
         >
           {title}
         </Heading>
-        <Text sx={styles.description}>{description}</Text>
+        <Text sx={styles.description} color={textColor}>{description}</Text>
       </Box>
     </Stack>
   );

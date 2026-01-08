@@ -9,6 +9,7 @@ import {
   Text,
   Textarea,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
@@ -38,6 +39,7 @@ const contactSchema = Yup.object().shape({
 
 const Contact = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -160,7 +162,7 @@ const Contact = () => {
                 <Heading
                   as="h2"
                   size="md"
-                  color={colorMode === "dark" ? "white" : "#004c4c"}
+                  color={colorMode === "dark" ? "white" : "teal.500"}
                   sx={{
                     textTransform: "uppercase",
                   }}>
@@ -183,7 +185,7 @@ const Contact = () => {
                   Have an Idea? We Can Help You Build It.
                 </Heading>
                 <Text
-                  color="gray.400"
+                  color={textColor}
                   fontSize="lg"
                   fontWeight={"500"}
                   mt="4"
@@ -248,7 +250,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -287,7 +290,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -333,7 +337,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -371,7 +376,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -435,10 +441,10 @@ const Contact = () => {
                     size="lg"
                     variant="solid"
                     sx={{
-                      backgroundColor: "#004c4c",
+                      backgroundColor: "teal.500",
                       color: "white",
                       _hover: {
-                        backgroundColor: "#006666",
+                        backgroundColor: "teal.600",
                       },
                     }}
                     type="submit"

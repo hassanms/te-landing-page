@@ -36,12 +36,12 @@ export default class Document extends NextDocument {
             name="msapplication-config"
             content="/static/favicons/browserconfig.xml"
           />
-          <meta name="msapplication-TileColor" content="#004c4c" />
+          <meta name="msapplication-TileColor" content="#008080" />
           <meta name="msapplication-tap-highlight" content="no" />
 
           {/* Additional SEO and Social Media Meta Tags */}
-          <meta name="theme-color" content="#004c4c" />
-          <meta name="msapplication-TileColor" content="#004c4c" />
+          <meta name="theme-color" content="#008080" />
+          <meta name="msapplication-TileColor" content="#008080" />
           <meta
             name="msapplication-TileImage"
             content="/static/favicons/mstile-150x150.png"

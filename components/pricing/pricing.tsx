@@ -7,6 +7,7 @@ import {
   StackProps,
   Text,
   VStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   ButtonLink,
@@ -123,6 +124,7 @@ export interface PricingBoxProps extends Omit<StackProps, "title"> {
 
 const PricingBox: React.FC<PricingBoxProps> = (props) => {
   const { title, description, price, children, ...rest } = props;
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   return (
     <VStack
       zIndex="2"
@@ -142,7 +144,7 @@ const PricingBox: React.FC<PricingBoxProps> = (props) => {
       <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
         {title}
       </Heading>
-      <Box color="muted">{description}</Box>
+      <Box color={textColor}>{description}</Box>
       <Box fontSize="2xl" fontWeight="bold" py="4">
         {price}
       </Box>

@@ -345,7 +345,17 @@ const HeroSection: React.FC = () => {
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>
-                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                {/* Static version for screens >= 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  display="none"
+                  gap="10"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "flex",
+                    },
+                  }}>
                   <>
                     <Image
                       src="/assets/clients/Bubble.1.png"
@@ -388,6 +398,108 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                   </>
+                </Box>
+                {/* Scrolling version for screens < 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  width="100%"
+                  position="relative"
+                  display="block"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "none",
+                    },
+                  }}>
+                  <Box
+                    display="flex"
+                    width="200%"
+                    gap="10"
+                    animation={`${heroScrollAnimation} 30s infinite linear`}>
+                    <>
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="Bubble logo"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/atarim-white.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="NearShore logo"
+                        style={{
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                      {/* Duplicate logos for seamless loop */}
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="Bubble logo"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/atarim-white.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="NearShore logo"
+                        style={{
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                    </>
+                  </Box>
                 </Box>
               </FallInPlace>
             </VStack>
@@ -485,7 +597,17 @@ const HeroSection: React.FC = () => {
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>
-                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                {/* Static version for screens >= 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  display="none"
+                  gap="10"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "flex",
+                    },
+                  }}>
                   <>
                     <Image
                       src="/assets/clients/Bubble.1.png"
@@ -532,6 +654,116 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                   </>
+                </Box>
+                {/* Scrolling version for screens < 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  width="100%"
+                  position="relative"
+                  display="block"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "none",
+                    },
+                  }}>
+                  <Box
+                    display="flex"
+                    width="200%"
+                    gap="10"
+                    animation={`${heroScrollAnimation} 30s infinite linear`}>
+                    <>
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="bubble logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Atarim.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="Nearshore logo"
+                        loading="eager"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                      {/* Duplicate logos for seamless loop */}
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="bubble logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Atarim.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="Nearshore logo"
+                        loading="eager"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                    </>
+                  </Box>
                 </Box>
               </FallInPlace>
             </VStack>
@@ -1293,6 +1525,10 @@ const Portfolio: React.FC = () => {
   );
 };
 const scrollAnimation = keyframes`
+0% { transform: translateX(0); }
+100% { transform: translateX(-100%); }`;
+
+const heroScrollAnimation = keyframes`
 0% { transform: translateX(0); }
 100% { transform: translateX(-100%); }`;
 

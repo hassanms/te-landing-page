@@ -29,12 +29,18 @@ interface NavLinkProps extends LinkProps {
   isActive?: boolean
 }
 
-function NavLink({ href, children, isActive, ...rest }: NavLinkProps) {
+function NavLink({ href, children, isActive, onClick, ...rest }: NavLinkProps) {
   const { pathname } = useRouter()
   const bgActiveHoverColor = useColorModeValue('gray.100', 'whiteAlpha.100')
 
   const [, group] = href?.split('/') || []
   isActive = isActive ?? pathname.includes(group)
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      onClick(e)
+    }
+  }
 
   return (
     <Link
@@ -52,6 +58,7 @@ function NavLink({ href, children, isActive, ...rest }: NavLinkProps) {
       _hover={{
         bg: isActive ? 'purple.500' : bgActiveHoverColor,
       }}
+      onClick={handleClick}
       {...rest}
     >
       {children}
@@ -67,7 +74,8 @@ interface MobileNavContentProps {
 export function MobileNavContent(props: MobileNavContentProps) {
   const { isOpen, onClose = () => { } } = props
   const closeBtnRef = React.useRef<HTMLButtonElement>(null)
-  const { pathname } = useRouter()
+  const router = useRouter()
+  const { pathname } = router
   const bgColor = useColorModeValue('whiteAlpha.900', 'blackAlpha.900')
 
   useRouteChanged(onClose)
@@ -125,10 +133,37 @@ export function MobileNavContent(props: MobileNavContentProps) {
                 <Stack alignItems="stretch" spacing="0">
                   {siteConfig.header.links.map(
                     ({ href, id, label, ...props }, i) => {
+                      const handleLinkClick = (
+                        e: React.MouseEvent<HTMLAnchorElement>
+                      ) => {
+                        // Close the menu when any link is clicked
+                        onClose()
+                        
+                        // Handle navigation for anchor links (same-page)
+                        if (id && !href) {
+                          e.preventDefault()
+                          const targetId = `#${id}`
+                          
+                          // If we're on the home page, scroll to the section
+                          if (router.pathname === '/') {
+                            const el = document.getElementById(id)
+                            if (el) {
+                              el.scrollIntoView({ behavior: 'smooth' })
+                            }
+                          } else {
+                            // Navigate to home page with hash
+                            router.push(`/${targetId}`)
+                          }
+                        }
+                        // For href links, let Next.js handle navigation
+                        // The useRouteChanged hook will close the menu on route change
+                      }
+
                       return (
                         <NavLink
                           href={href || `/#${id}`}
                           key={i}
+                          onClick={handleLinkClick}
                           {...(props as any)}
                         >
                           {label}

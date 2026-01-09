@@ -10,6 +10,7 @@ export interface EnhancedSEOProps extends NextSeoProps {
     name: string;
     description: string;
     serviceType: string;
+    areaServed?: string;
   };
   portfolioData?: {
     title: string;
@@ -30,6 +31,18 @@ export interface EnhancedSEOProps extends NextSeoProps {
     tools?: Array<{ name: string }>;
     steps?: Array<{ name: string; text: string; image?: string }>;
   };
+  breadcrumbData?: {
+    items: Array<{ name: string; url: string }>;
+  };
+  reviewData?: {
+    author?: string;
+    rating: number;
+    bestRating?: number;
+    reviewBody: string;
+    datePublished?: string;
+  };
+  canonicalUrl?: string;
+  ogImage?: string;
 }
 
 export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
@@ -40,6 +53,10 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   serviceData,
   portfolioData,
   howToData,
+  breadcrumbData,
+  reviewData,
+  canonicalUrl,
+  ogImage,
   ...props
 }) => {
   // Enhanced description with semantic keywords for AI engines
@@ -127,25 +144,53 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
     };
   };
 
+  // Get canonical URL
+  const getCanonicalUrl = () => {
+    if (canonicalUrl) return canonicalUrl;
+    // Default canonical URLs based on page type
+    const defaultCanonicals: Record<string, string> = {
+      home: "https://techemulsion.com",
+      services: "https://techemulsion.com/services",
+      portfolio: "https://techemulsion.com/portfolio",
+      about: "https://techemulsion.com/our-story",
+      contact: "https://techemulsion.com/contact",
+      blog: "https://techemulsion.com/blog",
+    };
+    return defaultCanonicals[pageType] || "https://techemulsion.com";
+  };
+
+  // Get OG Image
+  const getOGImage = () => {
+    if (ogImage) {
+      return {
+        url: ogImage.startsWith("http") ? ogImage : `https://techemulsion.com${ogImage}`,
+        width: 1200,
+        height: 630,
+        alt: title || "Tech Emulsion",
+      };
+    }
+    return {
+      url: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
+      width: 512,
+      height: 512,
+      alt: "Tech Emulsion Logo",
+    };
+  };
+
   return (
     <>
       <NextSeo
         title={title}
         description={getEnhancedDescription()}
+        canonical={canonicalUrl || getCanonicalUrl()}
         openGraph={{
           ...siteConfig.seo.openGraph,
           title,
           description: getEnhancedDescription(),
           type: "website",
           site_name: "Tech Emulsion",
-          images: [
-            {
-              url: "https://techemulsion.com/static/favicons/android-chrome-192x192.png",
-              width: 192,
-              height: 192,
-              alt: "Tech Emulsion Logo",
-            },
-          ],
+          url: getCanonicalUrl(),
+          images: [getOGImage()],
         }}
         titleTemplate={siteConfig.seo.titleTemplate}
         twitter={{
@@ -180,9 +225,37 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       {/* Organization Schema - Always present */}
       <StructuredData type="organization" data={{}} />
 
+      {/* Website Schema - Always present */}
+      <StructuredData type="website" data={{}} />
+
       {/* FAQ Schema - Conditional */}
       {faqData && faqData.questions && faqData.questions.length > 0 && (
         <StructuredData type="faq" data={faqData} />
+      )}
+
+      {/* Service Schema - Conditional */}
+      {serviceData && (
+        <StructuredData type="service" data={serviceData} />
+      )}
+
+      {/* Portfolio Schema - Conditional */}
+      {portfolioData && (
+        <StructuredData type="portfolio" data={portfolioData} />
+      )}
+
+      {/* HowTo Schema - Conditional */}
+      {howToData && (
+        <StructuredData type="howto" data={howToData} />
+      )}
+
+      {/* Breadcrumb Schema - Conditional */}
+      {breadcrumbData && breadcrumbData.items && breadcrumbData.items.length > 0 && (
+        <StructuredData type="breadcrumb" data={breadcrumbData} />
+      )}
+
+      {/* Review Schema - Conditional */}
+      {reviewData && (
+        <StructuredData type="review" data={reviewData} />
       )}
     </>
   );

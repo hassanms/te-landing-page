@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Script from "next/script";
 import React from "react";
@@ -19,16 +20,40 @@ const CaseStudyAlifa = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Alifa - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Alifa, a leading SaaS company, scaled their operations and improved client satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Alifa - Tech Emulsion"
+        description="Learn how Tech Emulsion helped Alifa, a leading SaaS company, scaled their operations and improved client satisfaction with custom software solutions."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/alifa"
+        portfolioData={{
+          title: "Alifa - SaaS Platform Development",
+          description:
+            "Tech Emulsion developed a comprehensive SaaS platform for Alifa, enabling them to scale operations and improve client satisfaction through custom software solutions.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/file.jpg",
+          url: "https://techemulsion.com/portfolio/alifa",
+          genre: "SaaS Development",
+          keywords: [
+            "SaaS",
+            "custom software",
+            "web development",
+            "Tech Emulsion",
+            "Alifa",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            { name: "Alifa", url: "https://techemulsion.com/portfolio/alifa" },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

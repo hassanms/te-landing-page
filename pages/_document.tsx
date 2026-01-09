@@ -117,11 +117,22 @@ export default class Document extends NextDocument {
           />
           <link rel="preconnect" href="https://www.googletagmanager.com" />
 
+          {/* Montserrat Font Import (active - comment out and uncomment Inter below to switch back) */}
+          { <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+          /> }
+          {/* Inter Font Import (commented out - uncomment this and comment out Montserrat above to switch back to Inter) */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+          />
+
           {/* DNS prefetch for external resources */}
           <link rel="dns-prefetch" href="//www.googletagmanager.com" />
           <link rel="dns-prefetch" href="//assets.calendly.com" />
 
-          {/* Structured Data for Search Engines */}
+          {/* Structured Data for Search Engines - Organization schema moved to page-level components */}
           <script
             id="vtag-ai-js"
             async
@@ -129,43 +140,6 @@ export default class Document extends NextDocument {
             data-pid="1ifXj2fdQwendXlL"
             data-version="062024"
           ></script>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                name: "Tech Emulsion",
-                url: "https://techemulsion.com",
-                logo: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
-                description:
-                  "Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business",
-                foundingDate: "2023",
-                address: {
-                  "@type": "PostalAddress",
-                  addressCountry: "Pakistan",
-                },
-                contactPoint: {
-                  "@type": "ContactPoint",
-                  contactType: "customer service",
-                  availableLanguage: "English",
-                },
-                sameAs: [
-                  "https://linkedin.com/company/tech-emulsion",
-                  "https://twitter.com/techemulsion",
-                ],
-                serviceArea: {
-                  "@type": "GeoCircle",
-                  geoMidpoint: {
-                    "@type": "GeoCoordinates",
-                    latitude: 33.6844,
-                    longitude: 73.0479,
-                  },
-                  geoRadius: "50000",
-                },
-              }),
-            }}
-          />
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

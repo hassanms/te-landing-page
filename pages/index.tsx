@@ -146,6 +146,7 @@ const Home: NextPage = () => {
         title="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
         description="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
         pageType="home"
+        canonicalUrl="https://techemulsion.com"
         faqData={{
           questions: [
             {
@@ -163,6 +164,16 @@ const Home: NextPage = () => {
               question: "How much does custom software development cost?",
               answer:
                 "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models.",
+            },
+            {
+              question: "What services does Tech Emulsion offer?",
+              answer:
+                "Tech Emulsion offers a comprehensive range of services including custom software development, SaaS platform development, mobile app development, AI and machine learning solutions, web development, cloud services, QA testing, and digital transformation consulting.",
+            },
+            {
+              question: "Where is Tech Emulsion located?",
+              answer:
+                "Tech Emulsion is based in Peshawar, Khyber Pakhtunkhwa, Pakistan, and serves clients worldwide. We work with businesses globally, providing remote development services and digital transformation solutions.",
             },
           ],
         }}
@@ -1510,7 +1521,7 @@ const Portfolio: React.FC = () => {
                       {item.title}
                     </Heading>
                     <VStack alignItems="flex-start" spacing="8">
-                      <Text color={textColor} fontSize="lg">
+                      <Text color={textColor} fontSize="lg" textAlign="justify">
                         {item.description}
                       </Text>
                     </VStack>

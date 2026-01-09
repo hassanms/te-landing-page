@@ -9,6 +9,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
@@ -21,16 +22,43 @@ const CaseStudyBipcards = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: LevellUp - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped LevellUp, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: LevellUp - Tech Emulsion"
+        description="LevellUp is an AI-powered sales training simulator that provides on-demand, voice-enabled role-plays against lifelike AI buyer personas, with automatic scoring, coaching insights, and dashboards for tracking performance over time."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/levellup"
+        portfolioData={{
+          title: "LevellUp – AI-Driven Sales Training Simulator",
+          description:
+            "LevellUp is an AI-powered sales training platform for SaaS and B2B revenue teams. Reps practice with lifelike AI buyer personas, receive automatic scoring against sales frameworks, and get targeted coaching suggestions with progress tracked in dashboards.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/level.png",
+          url: "https://techemulsion.com/portfolio/levellup",
+          genre: "AI, Sales Training",
+          keywords: [
+            "sales training",
+            "AI simulator",
+            "B2B SaaS",
+            "LevellUp",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "LevellUp",
+              url: "https://techemulsion.com/portfolio/levellup",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

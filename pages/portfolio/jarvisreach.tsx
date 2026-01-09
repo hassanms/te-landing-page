@@ -1,5 +1,6 @@
 import { Box, Container, Text, useColorMode } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -11,16 +12,45 @@ const CaseStudyJarvisreach = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Jarvis - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Jarvis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: JarvisReach - Tech Emulsion"
+        description="JarvisReach is a SaaS platform for LinkedIn prospecting that enables efficient data extraction, filtering, and automated email outreach, with subscription flexibility, leaderboards, and admin analytics to streamline lead management."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/jarvisreach"
+        portfolioData={{
+          title:
+            "JarvisReach – SaaS for LinkedIn Prospecting, Data Extraction & Email Outreach",
+          description:
+            "Tech Emulsion developed JarvisReach, a SaaS platform for LinkedIn prospecting that supports data extraction, advanced filtering, automated email outreach, flexible subscriptions, team leaderboards, and admin analytics to streamline lead management.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/jarvis.png",
+          url: "https://techemulsion.com/portfolio/jarvisreach",
+          genre: "SaaS, Sales Automation",
+          keywords: [
+            "LinkedIn prospecting",
+            "sales automation",
+            "email outreach",
+            "SaaS",
+            "JarvisReach",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "JarvisReach",
+              url: "https://techemulsion.com/portfolio/jarvisreach",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

@@ -1,5 +1,6 @@
 import { Box, Container, Text, useColorMode } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -10,13 +11,44 @@ const CaseStudyRagGenai = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: RAG Based Customized ChatBot - Tech Emulsion</title>
-        <meta name="description" />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: RAG Based Customized ChatBot - Tech Emulsion"
+        description="An AI-powered Retrieval-Augmented Generation (RAG) application that allows users to upload PDFs, ask questions, and receive accurate, context-aware answers using OpenAI language models, embeddings, and a vector database for efficient document retrieval."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/genai"
+        portfolioData={{
+          title: "RAG Based Customized ChatBot – AI-Powered Document Querying",
+          description:
+            "This end-to-end RAG application lets users upload PDF documents and ask natural language questions. It uses OpenAI LLMs, embeddings, and a vector database to retrieve relevant content and generate accurate, context-aware answers, including support for graphical content.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/raggenai.png",
+          url: "https://techemulsion.com/portfolio/genai",
+          genre: "AI, RAG, Document Intelligence",
+          keywords: [
+            "RAG",
+            "AI chatbot",
+            "document querying",
+            "OpenAI",
+            "vector database",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "RAG ChatBot",
+              url: "https://techemulsion.com/portfolio/genai",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

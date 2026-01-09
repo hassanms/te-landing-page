@@ -1,5 +1,6 @@
 import { Box, Container, Text, useColorMode } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -10,13 +11,44 @@ const CaseStudyMoodtube = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Moodtube - Tech Emulsion</title>
-        <meta name="description" />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: MoodTube - Tech Emulsion"
+        description="MoodTube is a browser extension that lets users search YouTube videos based on specific moods like Happy, Relaxed, or Motivated, using AI tools such as LangChain and vector embeddings to perform semantic search over video transcripts."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/moodtube"
+        portfolioData={{
+          title: "MoodTube – AI-Powered YouTube Video Search by Mood",
+          description:
+            "MoodTube allows users to search YouTube videos by mood using AI tools like LangChain and vector embeddings. It extracts YouTube transcripts, converts them into embeddings, and uses semantic search to recommend videos that match the selected mood.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/moodtube.png",
+          url: "https://techemulsion.com/portfolio/moodtube",
+          genre: "AI, Browser Extension",
+          keywords: [
+            "YouTube",
+            "browser extension",
+            "semantic search",
+            "LangChain",
+            "MoodTube",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "MoodTube",
+              url: "https://techemulsion.com/portfolio/moodtube",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

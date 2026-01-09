@@ -9,6 +9,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
@@ -21,16 +22,44 @@ const CaseStudyBipcards = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: SuperHeart - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped SuperHeart, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: SuperHeart - Tech Emulsion"
+        description="SuperHeart is an AI-powered nutrition tracking mobile app that helps users choose heart-healthy meals, log food via photos or text, and track macros and daily targets with a React Native frontend and Supabase backend."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/superheart"
+        portfolioData={{
+          title: "SuperHeart – AI-Powered Nutrition Tracking Mobile App",
+          description:
+            "SuperHeart is a food coach in your pocket that helps users choose heart-healthy meals, log food via photos or text, and track macros and daily targets. Built with React Native and Supabase, it includes dashboards, reminders, and progress tracking.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/food.webp",
+          url: "https://techemulsion.com/portfolio/superheart",
+          genre: "Mobile App, HealthTech",
+          keywords: [
+            "nutrition tracking",
+            "mobile app",
+            "React Native",
+            "Supabase",
+            "SuperHeart",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "SuperHeart",
+              url: "https://techemulsion.com/portfolio/superheart",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

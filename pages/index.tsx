@@ -91,31 +91,8 @@ const Home: NextPage = () => {
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
 
+      {/* Calendly CSS - kept separate as it's required for widget functionality */}
       <Head>
-        <title>
-          Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI
-          Agents for your business
-        </title>
-        <meta
-          name="description"
-          content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        />
-        {/* Open Graph (OG) Meta Tags for Social Media Previews */}
-        <meta
-          property="og:title"
-          content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        />
-        <meta
-          property="og:description"
-          content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        />
-        <meta
-          property="og:image"
-          content="https://techemulsion.com/static/favicons/android-chrome-192x192.png"
-        />
-        <meta property="og:url" content="https://techemulsion.com/" />
-        <meta property="og:type" content="website" />
-
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
@@ -144,52 +121,95 @@ const Home: NextPage = () => {
 
       <EnhancedSEO
         title="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        description="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+        description="Transform your business with cutting-edge SaaS platforms, mobile applications, and AI agents. Tech Emulsion specializes in digital transformation, custom software development, and innovative technology solutions that drive growth and efficiency."
         pageType="home"
         canonicalUrl="https://techemulsion.com"
+        ogImage="https://techemulsion.com/static/favicons/android-chrome-512x512.png"
         faqData={{
           questions: [
             {
               question:
                 "What is digital transformation and how can Tech Emulsion help?",
               answer:
-                "Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers. Tech Emulsion specializes in imagineering digital transformation through AI-powered solutions, custom software development, and innovative technology services.",
+                "Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers. Tech Emulsion specializes in imagineering digital transformation through AI-powered solutions, custom software development, and innovative technology services. We help businesses modernize their operations, improve efficiency, and gain competitive advantages through strategic technology implementation. Our approach combines cutting-edge technologies like artificial intelligence, machine learning, and cloud computing to create scalable, future-proof solutions tailored to your specific business needs.",
             },
             {
               question: "What AI solutions does Tech Emulsion provide?",
               answer:
-                "Tech Emulsion offers comprehensive AI solutions including custom AI applications, intelligent chatbots, machine learning models, natural language processing systems, computer vision applications, and predictive analytics.",
+                "Tech Emulsion offers comprehensive AI solutions including custom AI applications, intelligent chatbots, machine learning models, natural language processing systems, computer vision applications, and predictive analytics. We develop AI agents that automate business processes, enhance customer experiences, and provide intelligent insights. Our AI solutions range from conversational AI for customer support to advanced machine learning models for data analysis and prediction. We also specialize in RAG (Retrieval-Augmented Generation) systems for document querying, AI-powered content analysis tools, and generative AI integration for creative and operational tasks.",
             },
             {
               question: "How much does custom software development cost?",
               answer:
-                "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models.",
+                "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models. Factors that influence cost include the scope of features, technology stack, integration requirements, scalability needs, and timeline. We offer various engagement models including fixed-price projects, time and materials, and dedicated team arrangements. During our free discovery call, we analyze your requirements and provide a detailed proposal with transparent pricing. Our goal is to deliver maximum value while working within your budget constraints.",
             },
             {
               question: "What services does Tech Emulsion offer?",
               answer:
-                "Tech Emulsion offers a comprehensive range of services including custom software development, SaaS platform development, mobile app development, AI and machine learning solutions, web development, cloud services, QA testing, and digital transformation consulting.",
+                "Tech Emulsion offers a comprehensive range of services including custom software development, SaaS platform development, mobile app development (iOS and Android), AI and machine learning solutions, web development, cloud services and DevOps, QA testing and automation, Chrome extension development, and digital transformation consulting. We specialize in building scalable SaaS platforms with subscription management, multi-tenancy, and advanced analytics. Our mobile app development services cover both native and cross-platform solutions using React Native. We also provide AI agent engineering, automation solutions, and blockchain integration services. All our services are backed by comprehensive project management, quality assurance, and ongoing support.",
             },
             {
               question: "Where is Tech Emulsion located?",
               answer:
-                "Tech Emulsion is based in Peshawar, Khyber Pakhtunkhwa, Pakistan, and serves clients worldwide. We work with businesses globally, providing remote development services and digital transformation solutions.",
+                "Tech Emulsion is based in Peshawar, Khyber Pakhtunkhwa, Pakistan, and serves clients worldwide. We work with businesses globally, providing remote development services and digital transformation solutions. Our distributed team model allows us to work across different time zones, ensuring efficient collaboration with clients in North America, Europe, Asia, and beyond. We have successfully delivered projects for clients in the United States, United Kingdom, Canada, Australia, and various other countries. Our remote-first approach enables us to provide cost-effective solutions while maintaining high-quality standards and effective communication throughout the project lifecycle.",
+            },
+            {
+              question: "What industries does Tech Emulsion serve?",
+              answer:
+                "Tech Emulsion serves a diverse range of industries including healthcare, finance, e-commerce, education, real estate, marketing and advertising, entertainment, logistics, and technology startups. We have experience building solutions for SaaS companies, healthcare platforms, financial technology applications, e-commerce platforms, content management systems, project management tools, and AI-powered applications. Our portfolio includes projects for businesses of all sizes, from startups to established enterprises. We adapt our development approach and technology stack to meet the specific regulatory, security, and operational requirements of each industry.",
+            },
+            {
+              question: "How long does it take to develop a custom software solution?",
+              answer:
+                "Development timelines vary significantly based on project scope, complexity, and requirements. A simple web application might take 2-4 months, while a comprehensive SaaS platform with multiple features could take 6-12 months or more. Mobile applications typically require 3-6 months for initial development, and AI-powered solutions may take 4-8 months depending on the complexity of AI integration. We follow agile development methodologies, allowing for iterative development and early delivery of core features. During the discovery phase, we provide detailed project timelines with milestones. Our development process includes regular updates, demos, and feedback cycles to ensure alignment with your vision and requirements.",
             },
           ],
         }}
         howToData={{
-          title: "How to get started with Tech Emulsion",
+          title: "How to get started with Tech Emulsion for your digital transformation project",
           description:
-            "A simple guide to begin your digital transformation journey.",
+            "A comprehensive step-by-step guide to begin your digital transformation journey with Tech Emulsion, from initial contact to project launch.",
+          totalTime: "PT2W",
           steps: [
-            { name: "Contact Us", text: "Reach out via our website or email." },
-            {
-              name: "Discovery Call",
-              text: "Schedule a free discovery call to discuss your needs.",
+            { 
+              name: "Initial Contact", 
+              text: "Reach out to Tech Emulsion through our website contact form, email us at info@techemulsion.com, or schedule a discovery call directly via our Calendly widget. Provide basic information about your project needs, timeline, and budget expectations." 
             },
             {
-              name: "Proposal & Onboarding",
-              text: "Receive a tailored proposal and start your project.",
+              name: "Free Discovery Call",
+              text: "Schedule and attend a free discovery call with our team. During this 30-60 minute session, we'll discuss your business goals, technical requirements, project scope, timeline, and budget. This helps us understand your vision and determine how we can best assist you.",
+            },
+            {
+              name: "Project Analysis & Proposal",
+              text: "Our team analyzes your requirements and prepares a detailed proposal including project scope, technology recommendations, timeline, milestones, deliverables, and transparent pricing. The proposal includes a breakdown of features, development phases, and expected outcomes.",
+            },
+            {
+              name: "Proposal Review & Discussion",
+              text: "Review the proposal with your team and discuss any questions or modifications needed. We're flexible and can adjust the proposal to better align with your budget, timeline, or feature requirements. This collaborative approach ensures we're on the same page before starting.",
+            },
+            {
+              name: "Contract & Onboarding",
+              text: "Once you approve the proposal, we'll prepare and sign the project contract. Our onboarding process includes setting up project management tools, establishing communication channels, scheduling regular check-ins, and assigning your dedicated development team.",
+            },
+            {
+              name: "Project Kickoff",
+              text: "We begin your project with a kickoff meeting where we finalize requirements, set up development environments, establish workflows, and create the initial project timeline. This ensures everyone understands the project goals, technical approach, and success metrics.",
+            },
+            {
+              name: "Development & Iteration",
+              text: "Our agile development process includes regular sprints, weekly updates, demo sessions, and feedback cycles. You'll see progress regularly and can provide input throughout the development process. We maintain transparent communication and keep you informed at every stage.",
+            },
+            {
+              name: "Testing & Quality Assurance",
+              text: "Before launch, we conduct comprehensive testing including functional testing, performance testing, security audits, and user acceptance testing. We ensure your solution meets quality standards, performs optimally, and is ready for production deployment.",
+            },
+            {
+              name: "Launch & Deployment",
+              text: "We deploy your solution to production, configure hosting environments, set up monitoring and analytics, and ensure everything is running smoothly. We provide deployment documentation and training materials to help your team use the new system effectively.",
+            },
+            {
+              name: "Ongoing Support",
+              text: "After launch, we provide ongoing support including bug fixes, feature enhancements, performance monitoring, and technical assistance. Our support packages ensure your solution continues to evolve and meet your changing business needs.",
             },
           ],
         }}

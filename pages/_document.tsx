@@ -118,10 +118,10 @@ export default class Document extends NextDocument {
           <link rel="preconnect" href="https://www.googletagmanager.com" />
 
           {/* Montserrat Font Import (active - comment out and uncomment Inter below to switch back) */}
-          { <link
+          <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
-          /> }
+          />
           {/* Inter Font Import (commented out - uncomment this and comment out Montserrat above to switch back to Inter) */}
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"

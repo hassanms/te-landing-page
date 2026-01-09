@@ -16,7 +16,7 @@ import Script from "next/script";
 import React from "react";
 import { FaAsterisk } from "react-icons/fa";
 
-const CaseStudyFarmin = () => {
+const CaseStudyRackroom = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
@@ -338,4 +338,4 @@ const CaseStudyFarmin = () => {
   );
 };
 
-export default CaseStudyFarmin;
+export default CaseStudyRackroom;

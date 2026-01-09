@@ -16,7 +16,7 @@ import Script from "next/script";
 import React from "react";
 import { FaAsterisk } from "react-icons/fa";
 
-const CaseStudyBipcards = () => {
+const CaseStudyLevellup = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -341,4 +341,4 @@ const CaseStudyBipcards = () => {
   );
 };
 
-export default CaseStudyBipcards;
+export default CaseStudyLevellup;

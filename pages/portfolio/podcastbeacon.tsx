@@ -340,4 +340,4 @@ const CaseStudyPodcastBeacon = () => {
   );
 };
 
-export default CaseStudyFarmin;
+export default CaseStudyPodcastBeacon;

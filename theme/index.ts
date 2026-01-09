@@ -6,7 +6,7 @@ import { fontSizes } from './foundations/typography'
 import { colors, brandColors } from './foundations/colors'
 
 // Inter font 
-import '@fontsource/inter/variable.css'
+// import '@fontsource/inter/variable.css'
 
 const styles = {
   global: (props: any) => ({
@@ -14,8 +14,8 @@ const styles = {
       color: 'charcoal.800',
       bg: 'white',
       fontSize: 'lg',
-      // fontFamily: '"Montserrat", sans-serif', // Montserrat font 
-      fontFamily: 'Inter, sans-serif', // Inter font 
+      fontFamily: '"Montserrat", sans-serif', // Montserrat font 
+      // fontFamily: 'Inter, sans-serif', // Inter font 
       _dark: {
         color: 'white',
         bg: 'charcoal.800', // Use brand charcoal instead of gray.900

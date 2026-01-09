@@ -123,10 +123,10 @@ export default class Document extends NextDocument {
             rel="stylesheet"
           />
           {/* Inter Font Import (commented out - uncomment this and comment out Montserrat above to switch back to Inter) */}
-          <link
+          {/* <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
             rel="stylesheet"
-          />
+          /> */}
 
           {/* DNS prefetch for external resources */}
           <link rel="dns-prefetch" href="//www.googletagmanager.com" />

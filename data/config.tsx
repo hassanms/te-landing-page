@@ -60,7 +60,7 @@ const siteConfig = {
     ),
     links: [
       {
-        href: "https://www.facebook.com/emulsiontech/",
+        href: "https://www.facebook.com/profile.php?id=100092936174663",
         label: <FaFacebook size="20" aria-label="Facebook" title="Facebook" />,
       },
       {

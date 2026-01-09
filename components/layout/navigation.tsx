@@ -76,13 +76,14 @@ const Navigation: React.FC = () => {
           }
           {...props}
           sx={{
-            background: variant === "varient" ? "#185651" : "",
+            background: variant === "varient" ? "teal.500" : "",
             color: variant === "varient" ? "white" : "",
             "&:hover": {
+              backgroundColor: variant === "varient" ? "teal.600" : "",
               color:
                 variant === "varient" || colorMode === "dark"
                   ? "white"
-                  : "#185651",
+                  : "teal.500",
             },
           }}
         >

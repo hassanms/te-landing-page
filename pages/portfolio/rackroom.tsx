@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,21 +16,48 @@ import Script from "next/script";
 import React from "react";
 import { FaAsterisk } from "react-icons/fa";
 
-const CaseStudyFarmin = () => {
+const CaseStudyRackroom = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Rack Room - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped PodCast Beacon, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Rack Room - Tech Emulsion"
+        description="Rackroom is a tailored, secure, and scalable business resource management system that supports complex booking management, client and engineer tracking, financial calculations, and automated SMS notifications via Twilio with Gantt chart visualizations."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/rackroom"
+        portfolioData={{
+          title: "Rack Room – Business Resource Management System",
+          description:
+            "Rackroom is a secure, scalable application built for a single owner to manage business resources. It supports complex booking management, client and engineer tracking, financial calculations, automated Twilio SMS notifications, and Gantt chart dashboards for visibility and control.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/download.jpg",
+          url: "https://techemulsion.com/portfolio/rackroom",
+          genre: "Custom Software, Resource Management",
+          keywords: [
+            "resource management",
+            "booking system",
+            "Twilio SMS",
+            "Rack Room",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "Rack Room",
+              url: "https://techemulsion.com/portfolio/rackroom",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
@@ -310,4 +338,4 @@ const CaseStudyFarmin = () => {
   );
 };
 
-export default CaseStudyFarmin;
+export default CaseStudyRackroom;

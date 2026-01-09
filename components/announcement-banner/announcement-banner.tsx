@@ -5,6 +5,7 @@ import {
   HStack,
   Icon,
   Button,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   Banner,
@@ -26,6 +27,7 @@ export const AnnouncementBanner: React.FC<AnnouncementBannerProps> = (
   props
 ) => {
   const { title, description, href, action } = props;
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   if (!title) {
     return null;
   }
@@ -90,7 +92,7 @@ export const AnnouncementBanner: React.FC<AnnouncementBannerProps> = (
                     <Button
                       size="xs"
                       variant="link"
-                      color="muted"
+                      color={textColor}
                       _hover={{
                         textDecoration: "none",
                       }}

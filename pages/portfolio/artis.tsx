@@ -1,5 +1,6 @@
 import { Box, Container, Text, useColorMode } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -10,16 +11,45 @@ const CaseStudyArtis = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Artis - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Artis, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Artis - Tech Emulsion"
+        description="Artis is an AI-driven platform that analyzes an artist's style to provide tailored advice and marketing strategies, while using blockchain to protect ownership with tamper-proof digital certificates and unique fingerprints for each creation."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/artis"
+        portfolioData={{
+          title:
+            "Artis – Blockchain-Powered SaaS to Help Artists Copyright Their Work",
+          description:
+            "Artis is an AI-driven platform that acts as a personalized creative support team, analyzing an artist's style to offer tailored advice and marketing strategies while using blockchain to protect ownership with tamper-proof certificates and unique fingerprints for each creation.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/Artis.png",
+          url: "https://techemulsion.com/portfolio/artis",
+          genre: "AI, Blockchain, Creator Tools",
+          keywords: [
+            "blockchain",
+            "copyright",
+            "artists",
+            "AI platform",
+            "Artis",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "Artis",
+              url: "https://techemulsion.com/portfolio/artis",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

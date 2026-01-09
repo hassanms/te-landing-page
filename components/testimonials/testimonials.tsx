@@ -4,6 +4,7 @@ import {
   SimpleGrid,
   Text,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   Section,
@@ -20,6 +21,7 @@ export interface TestimonialsProps
 export const Testimonials: React.FC<TestimonialsProps> = (props) => {
   const { children, title, columns = [1, null, 2], ...rest } = props;
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   return (
     <Section {...rest} padding={0}>
       <Heading
@@ -54,7 +56,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
         Hear From Our Clients
       </Heading>
       <Text
-        color="muted"
+        color={textColor}
         fontSize="lg"
         fontWeight={"500"}
         mt="5"

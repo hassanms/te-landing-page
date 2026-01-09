@@ -1,4 +1,4 @@
-import { Container, Flex, FlexProps, Text, VStack } from "@chakra-ui/react";
+import { Container, Flex, FlexProps, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 
 interface HeroProps extends Omit<FlexProps, "title"> {
   title: string | React.ReactNode;
@@ -6,6 +6,7 @@ interface HeroProps extends Omit<FlexProps, "title"> {
 }
 
 export const Hero = ({ title, description, children, ...rest }: HeroProps) => {
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   return (
     <Flex py="20" alignItems="center" {...rest}>
       <Container>
@@ -21,8 +22,7 @@ export const Hero = ({ title, description, children, ...rest }: HeroProps) => {
             as="div"
             textStyle="subtitle"
             align="left"
-            color="gray.500"
-            _dark={{ color: "gray.400" }}>
+            color={textColor}>
             {description}
           </Text>
         </VStack>

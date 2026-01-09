@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Link from "next/link";
 import { compareDesc, format, parseISO } from "date-fns";
@@ -22,11 +23,23 @@ const allPosts = [
 const Blog: NextPage = ({ posts }: any) => {
   return (
     <div className="mx-auto max-w-2xl py-16 text-center">
+      <EnhancedSEO
+        title="Blog - Tech Emulsion"
+        description="Read the latest articles, insights, and updates from Tech Emulsion about digital transformation, AI solutions, custom software development, and technology trends."
+        pageType="blog"
+        canonicalUrl="https://techemulsion.com/blog"
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Blog", url: "https://techemulsion.com/blog" },
+          ],
+        }}
+      />
       <Head>
-        <title>Contentlayer Blog Example</title>
+        <title>Blog - Tech Emulsion</title>
       </Head>
 
-      <h1 className="mb-8 text-3xl font-bold">Contentlayer Blog Example</h1>
+      <h1 className="mb-8 text-3xl font-bold">Tech Emulsion Blog</h1>
 
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />

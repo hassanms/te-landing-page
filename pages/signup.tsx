@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import NextLink from "next/link";
-import { Box, Center, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { Features } from "components/features";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Section } from "components/section";
@@ -24,6 +24,7 @@ const providers = {
 };
 
 const Login: NextPage = () => {
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   return (
     <Section height="100vh" innerWidth="container.xl">
       <BackgroundGradient
@@ -77,7 +78,7 @@ const Login: NextPage = () => {
                 providers={providers}
                 loginLink={<Link href="/login">Log in</Link>}
               >
-                <Text color="muted" fontSize="sm">
+                <Text color={textColor} fontSize="sm">
                   By signing up you agree to our{" "}
                   <Link href={siteConfig.termsUrl} color="white">
                     Terms of Service{""}

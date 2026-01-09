@@ -9,11 +9,35 @@ import {
   Text,
   Textarea,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
+
+// Phone validation helper function
+const validatePhone = (phone: string) => {
+  // Remove all non-digit characters except + for validation
+  const cleaned = phone.replace(/[^\d+]/g, "");
+  
+  // Check if it starts with + (international format)
+  if (cleaned.startsWith("+")) {
+    // International format: + followed by 1-15 digits
+    const digitsOnly = cleaned.substring(1);
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+      return false;
+    }
+    return /^\+[1-9]\d{6,14}$/.test(cleaned);
+  } else {
+    // Local format: 7-15 digits
+    const digitsOnly = cleaned;
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+      return false;
+    }
+    return /^\d{7,15}$/.test(digitsOnly);
+  }
+};
 
 // Updated validation schema
 const contactSchema = Yup.object().shape({
@@ -31,13 +55,21 @@ const contactSchema = Yup.object().shape({
       "Email must contain a dot (.) after the @",
     ),
   phone: Yup.string()
-    .matches(/^[0-9+]*$/, "Phone can only contain numbers and +")
-    .required("Phone is required"),
+    .required("Phone number is required")
+    .test(
+      "phone-format",
+      "Please enter a valid phone number (7-15 digits). International format: +1234567890",
+      (value) => {
+        if (!value) return false;
+        return validatePhone(value);
+      }
+    ),
   message: Yup.string().required("Message is required"),
 });
 
 const Contact = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -55,12 +87,57 @@ const Contact = () => {
   ) => {
     const { name, value } = e.target;
 
-    // For phone: allow only numbers and +
+    // For phone: allow numbers, +, spaces, dashes, and parentheses
     if (name === "phone") {
-      const filtered = value.replace(/[^0-9+]/g, "");
-      setFormData({ ...formData, [name]: filtered });
+      // Allow + at start, then digits, spaces, dashes, parentheses
+      let filtered = value.replace(/[^\d+\s\-()]/g, "");
+      // Ensure + is only at the start
+      let cleaned = filtered.startsWith("+") 
+        ? "+" + filtered.substring(1).replace(/[^\d\s\-()]/g, "")
+        : filtered.replace(/[^\d\s\-()]/g, "");
+      
+      // Count only digits (excluding + and formatting characters)
+      const digitsOnly = cleaned.replace(/[^\d]/g, "");
+      const maxDigits = 15; // Maximum allowed digits
+      
+      // If digits exceed limit, truncate to max allowed
+      if (digitsOnly.length > maxDigits) {
+        if (cleaned.startsWith("+")) {
+          // For international format: keep + and first 15 digits
+          const digitsAfterPlus = cleaned.substring(1).replace(/[^\d]/g, "").substring(0, maxDigits);
+          // Preserve formatting characters but limit digits
+          let result = "+";
+          let digitCount = 0;
+          for (let i = 1; i < cleaned.length && digitCount < maxDigits; i++) {
+            const char = cleaned[i];
+            if (/\d/.test(char)) {
+              result += char;
+              digitCount++;
+            } else if (/[\s\-()]/.test(char)) {
+              result += char;
+            }
+          }
+          cleaned = result;
+        } else {
+          // For local format: keep first 15 digits with formatting
+          let result = "";
+          let digitCount = 0;
+          for (let i = 0; i < cleaned.length && digitCount < maxDigits; i++) {
+            const char = cleaned[i];
+            if (/\d/.test(char)) {
+              result += char;
+              digitCount++;
+            } else if (/[\s\-()]/.test(char)) {
+              result += char;
+            }
+          }
+          cleaned = result;
+        }
+      }
+      
+      setFormData({ ...formData, [name]: cleaned });
       try {
-        await contactSchema.validateAt(name, { ...formData, [name]: filtered });
+        await contactSchema.validateAt(name, { ...formData, [name]: cleaned });
         setErrors((prev: any) => ({ ...prev, [name]: "" }));
       } catch (err: any) {
         setErrors((prev: any) => ({ ...prev, [name]: err.message }));
@@ -114,11 +191,51 @@ const Contact = () => {
     } catch (err: any) {
       if (err instanceof Yup.ValidationError) {
         const validationErrors: any = {};
+        const errorMessages: string[] = [];
+        
         err.inner.forEach((error: any) => {
-          if (error.path) validationErrors[error.path] = error.message;
+          if (error.path) {
+            validationErrors[error.path] = error.message;
+            // Create user-friendly field names
+            const fieldName = error.path.charAt(0).toUpperCase() + error.path.slice(1);
+            errorMessages.push(`${fieldName}: ${error.message}`);
+          }
         });
+        
         setErrors(validationErrors);
-        toast.error("Please fix the errors in the form.");
+        
+        // Show specific error messages
+        if (errorMessages.length > 0) {
+          // Show first error in toast, and set focus to first error field
+          toast.error(errorMessages[0], {
+            duration: 5000,
+          });
+          
+          // If there are multiple errors, show them all after a short delay
+          if (errorMessages.length > 1) {
+            setTimeout(() => {
+              errorMessages.slice(1).forEach((msg, index) => {
+                setTimeout(() => {
+                  toast.error(msg, { duration: 4000 });
+                }, (index + 1) * 500);
+              });
+            }, 1000);
+          }
+          
+          // Focus on the first field with error
+          const firstErrorField = err.inner[0]?.path;
+          if (firstErrorField) {
+            setFocusedField(firstErrorField);
+            // Scroll to first error field
+            setTimeout(() => {
+              const element = document.querySelector(`[name="${firstErrorField}"]`);
+              if (element) {
+                (element as HTMLElement).scrollIntoView({ behavior: "smooth", block: "center" });
+                (element as HTMLElement).focus();
+              }
+            }, 100);
+          }
+        }
       } else if (
         err.response &&
         err.response.data &&
@@ -126,7 +243,7 @@ const Contact = () => {
       ) {
         toast.error(err.response.data.message);
       } else {
-        toast.error("Failed to send message");
+        toast.error("Failed to send message. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -160,7 +277,7 @@ const Contact = () => {
                 <Heading
                   as="h2"
                   size="md"
-                  color={colorMode === "dark" ? "white" : "#004c4c"}
+                  color={colorMode === "dark" ? "white" : "teal.500"}
                   sx={{
                     textTransform: "uppercase",
                   }}>
@@ -183,7 +300,7 @@ const Contact = () => {
                   Have an Idea? We Can Help You Build It.
                 </Heading>
                 <Text
-                  color="gray.400"
+                  color={textColor}
                   fontSize="lg"
                   fontWeight={"500"}
                   mt="4"
@@ -248,7 +365,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -268,7 +386,7 @@ const Contact = () => {
                         onFocus={() => handleFocus("name")}
                         onBlur={handleBlur}
                       />
-                      {focusedField === "name" && errors.name && (
+                      {(focusedField === "name" || errors.name) && errors.name && (
                         <Text color="red.500" fontSize="sm" mt={2} mb={2}>
                           {errors.name}
                         </Text>
@@ -287,7 +405,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -306,7 +425,7 @@ const Contact = () => {
                         onFocus={() => handleFocus("company")}
                         onBlur={handleBlur}
                       />
-                      {focusedField === "company" && errors.company && (
+                      {(focusedField === "company" || errors.company) && errors.company && (
                         <Text color="red.500" fontSize="sm" mt={2} mb={2}>
                           {errors.company}
                         </Text>
@@ -333,7 +452,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -352,7 +472,7 @@ const Contact = () => {
                         onFocus={() => handleFocus("email")}
                         onBlur={handleBlur}
                       />
-                      {focusedField === "email" && errors.email && (
+                      {(focusedField === "email" || errors.email) && errors.email && (
                         <Text color="red.500" fontSize="sm" mt={2} mb={2}>
                           {errors.email}
                         </Text>
@@ -362,7 +482,7 @@ const Contact = () => {
                       <Input
                         type="text"
                         name="phone"
-                        placeholder="Phone"
+                        placeholder="Phone (e.g., +1234567890 or 1234567890)"
                         sx={{
                           padding: "2rem",
                           border: "none",
@@ -371,7 +491,8 @@ const Contact = () => {
                           fontSize: "1rem",
                           borderRadius: "none",
                           _focusVisible: {
-                            borderBottom: "2px solid #004c4c",
+                            borderBottom: "2px solid",
+                            borderBottomColor: "teal.500",
                             color: "none",
                           },
                           mb: {
@@ -390,7 +511,7 @@ const Contact = () => {
                         onFocus={() => handleFocus("phone")}
                         onBlur={handleBlur}
                       />
-                      {focusedField === "phone" && errors.phone && (
+                      {(focusedField === "phone" || errors.phone) && errors.phone && (
                         <Text color="red.500" fontSize="sm" mt={2} mb={2}>
                           {errors.phone}
                         </Text>
@@ -425,7 +546,7 @@ const Contact = () => {
                       onFocus={() => handleFocus("message")}
                       onBlur={handleBlur}
                     />
-                    {focusedField === "message" && errors.message && (
+                    {(focusedField === "message" || errors.message) && errors.message && (
                       <Text color="red.500" fontSize="sm" mt={2} mb={2}>
                         {errors.message}
                       </Text>
@@ -435,10 +556,10 @@ const Contact = () => {
                     size="lg"
                     variant="solid"
                     sx={{
-                      backgroundColor: "#004c4c",
+                      backgroundColor: "teal.500",
                       color: "white",
                       _hover: {
-                        backgroundColor: "#006666",
+                        backgroundColor: "teal.600",
                       },
                     }}
                     type="submit"

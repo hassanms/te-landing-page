@@ -7,6 +7,7 @@ import {
   Link,
   Text,
   useColorMode,
+  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -40,6 +41,7 @@ export const Highlights: React.FC<SectionProps> = (props) => {
 
 const Services = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
 
   const HighlightsItems = [
     {
@@ -243,7 +245,7 @@ const Services = () => {
               Portfolio Page
             </Heading>
             <Text
-              color="muted"
+              color={textColor}
               fontSize="lg"
               mt="4"
               width={["70%", null, "auto"]}>
@@ -375,7 +377,7 @@ const Services = () => {
                       {item.title}
                     </Heading>
                     <VStack alignItems="flex-start" spacing="8">
-                      <Text color="muted" fontSize="lg">
+                      <Text color={textColor} fontSize="lg">
                         {item.description}
                       </Text>
                     </VStack>

@@ -11,6 +11,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Script from "next/script";
 
@@ -24,16 +25,42 @@ const OurStory: React.FC = () => {
   return (
     <Box>
       <Head>
-        <title>Our Story - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn about the journey of Tech Emulsion, from its inception to becoming a leading digital transformation agency."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Our Story - Tech Emulsion"
+        description="Learn about the journey of Tech Emulsion, from its inception to becoming a leading digital transformation agency specializing in AI solutions, custom software development, and innovative technology services."
+        pageType="about"
+        canonicalUrl="https://techemulsion.com/our-story"
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Our Story", url: "https://techemulsion.com/our-story" },
+          ],
+        }}
+        faqData={{
+          questions: [
+            {
+              question: "When was Tech Emulsion founded?",
+              answer:
+                "Tech Emulsion was founded in 2020 with a vision to imagineer digital transformation for businesses through innovative technology solutions.",
+            },
+            {
+              question: "What is Tech Emulsion's mission?",
+              answer:
+                "Tech Emulsion's mission is to help businesses transform digitally by providing cutting-edge AI solutions, custom software development, SaaS platforms, and innovative technology services that drive growth and efficiency.",
+            },
+            {
+              question: "Where is Tech Emulsion located?",
+              answer:
+                "Tech Emulsion is based in Peshawar, Khyber Pakhtunkhwa, Pakistan, and serves clients worldwide with remote development services and digital transformation solutions.",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

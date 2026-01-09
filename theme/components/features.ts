@@ -15,7 +15,7 @@ const Features = {
     },
     description: {
       fontSize: 'md',
-      color: 'gray.400',
+      color: mode('gray.600', 'lightGrey.400'),
     },
     icon: {
       mb: 3,
@@ -63,7 +63,7 @@ export const Feature = {
     description: {
       fontSize: 'lg',
       fontWeight: 'normal',
-      color: mode('gray.500', 'gray.400')(props),
+      color: mode('gray.600', 'lightGrey.400')(props),
     },
     icon: {
       mb: 4,

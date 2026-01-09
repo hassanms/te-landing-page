@@ -9,28 +9,58 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
 import React from "react";
 import { FaAsterisk } from "react-icons/fa";
 
-const CaseStudyBipcards = () => {
+const CaseStudyContentCompass = () => {
   const { colorMode } = useColorMode();
 
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Content Compass - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Content Compass, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Content Compass - Tech Emulsion"
+        description="Content Compass is a LinkedIn content analysis and inspiration tool that scrapes top creators, analyzes tone and engagement using OpenAI, and helps users generate similar high-performing posts with AI-powered suggestions."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/contentcompass"
+        portfolioData={{
+          title:
+            "Content Compass – LinkedIn Content Analysis and Inspiration Tool",
+          description:
+            "Content Compass helps users get inspired by top LinkedIn creators by scraping their profiles, analyzing posts with OpenAI LLMs, and providing insights into tone, hooks, CTAs, and engagement. Users can generate similar posts and compare performance across creators.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/linkedin.jpg",
+          url: "https://techemulsion.com/portfolio/contentcompass",
+          genre: "AI, Social Media Analytics",
+          keywords: [
+            "LinkedIn content",
+            "content analysis",
+            "OpenAI",
+            "social media tool",
+            "Content Compass",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "Content Compass",
+              url: "https://techemulsion.com/portfolio/contentcompass",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
@@ -321,4 +351,4 @@ const CaseStudyBipcards = () => {
   );
 };
 
-export default CaseStudyBipcards;
+export default CaseStudyContentCompass;

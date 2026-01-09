@@ -1,7 +1,14 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
 export const BackgroundGradient = ({ hideOverlay, ...props }: any) => {
-  const customColors = ["#004c4c", "#66b2b2", "#008080", "#006666", "#b2d8d8"];
+  // Use brand colors from theme
+  const customColors = [
+    "var(--chakra-colors-evergreen-500)", // #003530 - Evergreen
+    "var(--chakra-colors-pearlAqua-500)", // #5FC9BC - Pearl Aqua
+    "var(--chakra-colors-teal-500)", // #008080 - Primary Teal
+    "var(--chakra-colors-teal-600)", // #006666 - Darker Teal
+    "var(--chakra-colors-mutedTeal-400)", // #92C9B1 - Muted Teal
+  ];
 
   let fallbackBackground = `radial-gradient(at top left, ${customColors[0]} 10%, transparent 80%), 
                             radial-gradient(at bottom, ${customColors[1]} 0%, transparent 70%), 
@@ -11,7 +18,7 @@ export const BackgroundGradient = ({ hideOverlay, ...props }: any) => {
 
   let gradientOverlay = `linear-gradient(0deg, var(--chakra-colors-${useColorModeValue(
     "white",
-    "gray-900"
+    "charcoal-800"
   )}) 60%, rgba(0, 0, 0, 0) 100%);`;
 
   return (

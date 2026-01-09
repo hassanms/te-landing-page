@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -19,16 +20,42 @@ const CaseStudyFarmin = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Farmin - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Farmin, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Farmin - Tech Emulsion"
+        description="Farmin is an AI-powered SaaS platform for satellite image analysis that detects objects such as cars, ships, and oil spills using Mapbox, YOLO models, and OpenCV, with change detection and data annotation tools deployed on AWS."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/farmin"
+        portfolioData={{
+          title: "Farmin – AI-Powered Satellite Image Detection SaaS",
+          description:
+            "Tech Emulsion built Farmin, an AI-powered SaaS for satellite image analysis. Using Mapbox, YOLO models, and OpenCV, it detects objects like cars, ships, and oil spills and provides change detection and annotation tools on AWS.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/farmin.avif",
+          url: "https://techemulsion.com/portfolio/farmin",
+          genre: "AI SaaS, Remote Sensing",
+          keywords: [
+            "AI SaaS",
+            "satellite imagery",
+            "object detection",
+            "YOLO",
+            "remote sensing",
+            "Tech Emulsion",
+            "Farmin",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            { name: "Farmin", url: "https://techemulsion.com/portfolio/farmin" },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

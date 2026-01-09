@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -19,16 +20,41 @@ const CaseStudyAtarim = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Atarim - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Atarim, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Atarim - Tech Emulsion"
+        description="Learn how Tech Emulsion helped Atarim, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions and cloud infrastructure."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/atarim"
+        portfolioData={{
+          title: "Atarim - SaaS Platform & Cloud Infrastructure",
+          description:
+            "Tech Emulsion developed and scaled Atarim's SaaS platform with AWS cloud infrastructure, region-based load balancing, and auto-scaling capabilities.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/atarim.jpg",
+          url: "https://techemulsion.com/portfolio/atarim",
+          genre: "SaaS Development, Cloud Infrastructure",
+          keywords: [
+            "SaaS",
+            "AWS",
+            "cloud infrastructure",
+            "scalability",
+            "Tech Emulsion",
+            "Atarim",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            { name: "Atarim", url: "https://techemulsion.com/portfolio/atarim" },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

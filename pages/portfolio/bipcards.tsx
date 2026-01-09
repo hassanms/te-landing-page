@@ -9,6 +9,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Script from "next/script";
 import React from "react";
@@ -20,16 +21,44 @@ const CaseStudyBipcards = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Bipcards - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Bipcards, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Bipcards - Tech Emulsion"
+        description="Bipcards is a SaaS platform that helps businesses collect and showcase genuine customer reviews using programmable NFC cards and QR codes, with flexible subscriptions, real-time analytics, and streamlined onboarding for sales teams."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/bipcards"
+        portfolioData={{
+          title: "Bipcards – Elevate Online Presence with Genuine Reviews",
+          description:
+            "Tech Emulsion developed a SaaS platform for Bipcards.com, enabling businesses to collect customer reviews via programmable NFC cards and QR codes. Customers benefit from flexible subscriptions, real-time analytics, and easy card programming, while sales reps streamline onboarding and engagement.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/bipcards.png",
+          url: "https://techemulsion.com/portfolio/bipcards",
+          genre: "SaaS, Reviews Management",
+          keywords: [
+            "SaaS",
+            "customer reviews",
+            "NFC cards",
+            "QR codes",
+            "Bipcards",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "Bipcards",
+              url: "https://techemulsion.com/portfolio/bipcards",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

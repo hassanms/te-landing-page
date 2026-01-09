@@ -1,5 +1,6 @@
 import { Box, Container, Text, useColorMode } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
@@ -11,16 +12,44 @@ const CaseStudyPopcard = () => {
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Popcard - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped Popcard, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Popcard - Tech Emulsion"
+        description="PopCard.io is a SaaS platform that enables businesses to manage locations, teams, and customer reviews via NFC cards and QR codes, with secure authentication, analytics, leaderboards, and Stripe subscription billing."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/popcard"
+        portfolioData={{
+          title: "Popcard – SaaS for Managing Review Cards",
+          description:
+            "Tech Emulsion developed a SaaS for PopCard.io, enabling businesses to manage locations, teams, and customer reviews via NFC cards and QR codes with secure authentication, analytics, leaderboards, and Stripe subscriptions.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/popcard.png",
+          url: "https://techemulsion.com/portfolio/popcard",
+          genre: "SaaS, Reviews Management",
+          keywords: [
+            "SaaS",
+            "customer reviews",
+            "NFC cards",
+            "QR codes",
+            "Popcard",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "Popcard",
+              url: "https://techemulsion.com/portfolio/popcard",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>

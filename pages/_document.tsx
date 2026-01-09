@@ -9,41 +9,11 @@ export default class Document extends NextDocument {
         <Head>
           {/* Standard favicon for all browsers */}
           <link rel="icon" href="/static/favicons/favicon.ico" />
-
-          {/* Apple Touch Icon */}
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/static/favicons/apple-touch-icon.png"
-          />
-
-          {/* Standard favicon sizes */}
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/static/favicons/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/static/favicons/favicon-16x16.png"
-          />
-
-          {/* Android Chrome icons */}
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="192x192"
-            href="/static/favicons/android-chrome-192x192.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="512x512"
-            href="/static/favicons/android-chrome-512x512.png"
-          />
+          <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
+          <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
+          <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
+          <link rel="manifest" href="/static/favicons/site.webmanifest" />
 
           {/* Web App Manifest */}
           <link rel="manifest" href="/static/favicons/manifest.json" />
@@ -66,12 +36,12 @@ export default class Document extends NextDocument {
             name="msapplication-config"
             content="/static/favicons/browserconfig.xml"
           />
-          <meta name="msapplication-TileColor" content="#004c4c" />
+          <meta name="msapplication-TileColor" content="#008080" />
           <meta name="msapplication-tap-highlight" content="no" />
 
           {/* Additional SEO and Social Media Meta Tags */}
-          <meta name="theme-color" content="#004c4c" />
-          <meta name="msapplication-TileColor" content="#004c4c" />
+          <meta name="theme-color" content="#008080" />
+          <meta name="msapplication-TileColor" content="#008080" />
           <meta
             name="msapplication-TileImage"
             content="/static/favicons/mstile-150x150.png"
@@ -147,11 +117,22 @@ export default class Document extends NextDocument {
           />
           <link rel="preconnect" href="https://www.googletagmanager.com" />
 
+          {/* Montserrat Font Import (active - comment out and uncomment Inter below to switch back) */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+          />
+          {/* Inter Font Import (commented out - uncomment this and comment out Montserrat above to switch back to Inter) */}
+          {/* <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+            rel="stylesheet"
+          /> */}
+
           {/* DNS prefetch for external resources */}
           <link rel="dns-prefetch" href="//www.googletagmanager.com" />
           <link rel="dns-prefetch" href="//assets.calendly.com" />
 
-          {/* Structured Data for Search Engines */}
+          {/* Structured Data for Search Engines - Organization schema moved to page-level components */}
           <script
             id="vtag-ai-js"
             async
@@ -159,43 +140,6 @@ export default class Document extends NextDocument {
             data-pid="1ifXj2fdQwendXlL"
             data-version="062024"
           ></script>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                name: "Tech Emulsion",
-                url: "https://techemulsion.com",
-                logo: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
-                description:
-                  "Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business",
-                foundingDate: "2023",
-                address: {
-                  "@type": "PostalAddress",
-                  addressCountry: "Pakistan",
-                },
-                contactPoint: {
-                  "@type": "ContactPoint",
-                  contactType: "customer service",
-                  availableLanguage: "English",
-                },
-                sameAs: [
-                  "https://linkedin.com/company/tech-emulsion",
-                  "https://twitter.com/techemulsion",
-                ],
-                serviceArea: {
-                  "@type": "GeoCircle",
-                  geoMidpoint: {
-                    "@type": "GeoCoordinates",
-                    latitude: 33.6844,
-                    longitude: 73.0479,
-                  },
-                  geoRadius: "50000",
-                },
-              }),
-            }}
-          />
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

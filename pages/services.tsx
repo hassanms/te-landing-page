@@ -5,6 +5,7 @@ import {
   Heading,
   Text,
   useColorMode,
+  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -18,6 +19,7 @@ import { EnhancedSEO } from "components/seo/enhanced-seo";
 
 const Services = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
 
   const HighlightsItems = [
     {
@@ -135,7 +137,7 @@ const Services = () => {
               Services Page
             </Heading>
             <Text
-              color="muted"
+              color={textColor}
               fontSize="lg"
               mt="4"
               width={["70%", null, "auto"]}>
@@ -216,7 +218,7 @@ const Services = () => {
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="xl">
+                  <Text color={textColor} fontSize="xl">
                     {item.description}
                   </Text>
 
@@ -255,7 +257,7 @@ const Services = () => {
           ))}
 
           {/* <HighlightsItem colSpan={[1, null, 2]} title="Core components">
-        <Text color="muted" fontSize="lg">
+        <Text color={textColor} fontSize="lg">
           We don&apos;t like to re-invent the wheel, neither should you. We
           selected the most productive and established tools in the scene and
           build Saas UI on top of it.
@@ -275,7 +277,7 @@ const Services = () => {
         colSpan={[1, null, 2]}
         title="Start your next idea two steps ahead"
       >
-        <Text color="muted" fontSize="lg">
+        <Text color={textColor} fontSize="lg">
           We took care of all your basic frontend needs, so you can start
           building functionality that makes your product unique.
         </Text>

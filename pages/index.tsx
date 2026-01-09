@@ -18,6 +18,7 @@ import {
   useClipboard,
   VStack,
   useColorMode,
+  useColorModeValue,
   Divider,
   Avatar,
   Card,
@@ -90,31 +91,8 @@ const Home: NextPage = () => {
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
 
+      {/* Calendly CSS - kept separate as it's required for widget functionality */}
       <Head>
-        <title>
-          Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI
-          Agents for your business
-        </title>
-        <meta
-          name="description"
-          content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        />
-        {/* Open Graph (OG) Meta Tags for Social Media Previews */}
-        <meta
-          property="og:title"
-          content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        />
-        <meta
-          property="og:description"
-          content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        />
-        <meta
-          property="og:image"
-          content="https://techemulsion.com/static/favicons/android-chrome-192x192.png"
-        />
-        <meta property="og:url" content="https://techemulsion.com/" />
-        <meta property="og:type" content="website" />
-
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
@@ -128,7 +106,7 @@ const Home: NextPage = () => {
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
             text: "Talk to Sales",
-            color: "#004c4c",
+            color: "#008080",
             textColor: "#ffffff",
           });
         }}
@@ -143,41 +121,95 @@ const Home: NextPage = () => {
 
       <EnhancedSEO
         title="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        description="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+        description="Transform your business with cutting-edge SaaS platforms, mobile applications, and AI agents. Tech Emulsion specializes in digital transformation, custom software development, and innovative technology solutions that drive growth and efficiency."
         pageType="home"
+        canonicalUrl="https://techemulsion.com"
+        ogImage="https://techemulsion.com/static/favicons/android-chrome-512x512.png"
         faqData={{
           questions: [
             {
               question:
                 "What is digital transformation and how can Tech Emulsion help?",
               answer:
-                "Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers. Tech Emulsion specializes in imagineering digital transformation through AI-powered solutions, custom software development, and innovative technology services.",
+                "Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers. Tech Emulsion specializes in imagineering digital transformation through AI-powered solutions, custom software development, and innovative technology services. We help businesses modernize their operations, improve efficiency, and gain competitive advantages through strategic technology implementation. Our approach combines cutting-edge technologies like artificial intelligence, machine learning, and cloud computing to create scalable, future-proof solutions tailored to your specific business needs.",
             },
             {
               question: "What AI solutions does Tech Emulsion provide?",
               answer:
-                "Tech Emulsion offers comprehensive AI solutions including custom AI applications, intelligent chatbots, machine learning models, natural language processing systems, computer vision applications, and predictive analytics.",
+                "Tech Emulsion offers comprehensive AI solutions including custom AI applications, intelligent chatbots, machine learning models, natural language processing systems, computer vision applications, and predictive analytics. We develop AI agents that automate business processes, enhance customer experiences, and provide intelligent insights. Our AI solutions range from conversational AI for customer support to advanced machine learning models for data analysis and prediction. We also specialize in RAG (Retrieval-Augmented Generation) systems for document querying, AI-powered content analysis tools, and generative AI integration for creative and operational tasks.",
             },
             {
               question: "How much does custom software development cost?",
               answer:
-                "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models.",
+                "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models. Factors that influence cost include the scope of features, technology stack, integration requirements, scalability needs, and timeline. We offer various engagement models including fixed-price projects, time and materials, and dedicated team arrangements. During our free discovery call, we analyze your requirements and provide a detailed proposal with transparent pricing. Our goal is to deliver maximum value while working within your budget constraints.",
+            },
+            {
+              question: "What services does Tech Emulsion offer?",
+              answer:
+                "Tech Emulsion offers a comprehensive range of services including custom software development, SaaS platform development, mobile app development (iOS and Android), AI and machine learning solutions, web development, cloud services and DevOps, QA testing and automation, Chrome extension development, and digital transformation consulting. We specialize in building scalable SaaS platforms with subscription management, multi-tenancy, and advanced analytics. Our mobile app development services cover both native and cross-platform solutions using React Native. We also provide AI agent engineering, automation solutions, and blockchain integration services. All our services are backed by comprehensive project management, quality assurance, and ongoing support.",
+            },
+            {
+              question: "Where is Tech Emulsion located?",
+              answer:
+                "Tech Emulsion is based in Peshawar, Khyber Pakhtunkhwa, Pakistan, and serves clients worldwide. We work with businesses globally, providing remote development services and digital transformation solutions. Our distributed team model allows us to work across different time zones, ensuring efficient collaboration with clients in North America, Europe, Asia, and beyond. We have successfully delivered projects for clients in the United States, United Kingdom, Canada, Australia, and various other countries. Our remote-first approach enables us to provide cost-effective solutions while maintaining high-quality standards and effective communication throughout the project lifecycle.",
+            },
+            {
+              question: "What industries does Tech Emulsion serve?",
+              answer:
+                "Tech Emulsion serves a diverse range of industries including healthcare, finance, e-commerce, education, real estate, marketing and advertising, entertainment, logistics, and technology startups. We have experience building solutions for SaaS companies, healthcare platforms, financial technology applications, e-commerce platforms, content management systems, project management tools, and AI-powered applications. Our portfolio includes projects for businesses of all sizes, from startups to established enterprises. We adapt our development approach and technology stack to meet the specific regulatory, security, and operational requirements of each industry.",
+            },
+            {
+              question: "How long does it take to develop a custom software solution?",
+              answer:
+                "Development timelines vary significantly based on project scope, complexity, and requirements. A simple web application might take 2-4 months, while a comprehensive SaaS platform with multiple features could take 6-12 months or more. Mobile applications typically require 3-6 months for initial development, and AI-powered solutions may take 4-8 months depending on the complexity of AI integration. We follow agile development methodologies, allowing for iterative development and early delivery of core features. During the discovery phase, we provide detailed project timelines with milestones. Our development process includes regular updates, demos, and feedback cycles to ensure alignment with your vision and requirements.",
             },
           ],
         }}
         howToData={{
-          title: "How to get started with Tech Emulsion",
+          title: "How to get started with Tech Emulsion for your digital transformation project",
           description:
-            "A simple guide to begin your digital transformation journey.",
+            "A comprehensive step-by-step guide to begin your digital transformation journey with Tech Emulsion, from initial contact to project launch.",
+          totalTime: "PT2W",
           steps: [
-            { name: "Contact Us", text: "Reach out via our website or email." },
-            {
-              name: "Discovery Call",
-              text: "Schedule a free discovery call to discuss your needs.",
+            { 
+              name: "Initial Contact", 
+              text: "Reach out to Tech Emulsion through our website contact form, email us at info@techemulsion.com, or schedule a discovery call directly via our Calendly widget. Provide basic information about your project needs, timeline, and budget expectations." 
             },
             {
-              name: "Proposal & Onboarding",
-              text: "Receive a tailored proposal and start your project.",
+              name: "Free Discovery Call",
+              text: "Schedule and attend a free discovery call with our team. During this 30-60 minute session, we'll discuss your business goals, technical requirements, project scope, timeline, and budget. This helps us understand your vision and determine how we can best assist you.",
+            },
+            {
+              name: "Project Analysis & Proposal",
+              text: "Our team analyzes your requirements and prepares a detailed proposal including project scope, technology recommendations, timeline, milestones, deliverables, and transparent pricing. The proposal includes a breakdown of features, development phases, and expected outcomes.",
+            },
+            {
+              name: "Proposal Review & Discussion",
+              text: "Review the proposal with your team and discuss any questions or modifications needed. We're flexible and can adjust the proposal to better align with your budget, timeline, or feature requirements. This collaborative approach ensures we're on the same page before starting.",
+            },
+            {
+              name: "Contract & Onboarding",
+              text: "Once you approve the proposal, we'll prepare and sign the project contract. Our onboarding process includes setting up project management tools, establishing communication channels, scheduling regular check-ins, and assigning your dedicated development team.",
+            },
+            {
+              name: "Project Kickoff",
+              text: "We begin your project with a kickoff meeting where we finalize requirements, set up development environments, establish workflows, and create the initial project timeline. This ensures everyone understands the project goals, technical approach, and success metrics.",
+            },
+            {
+              name: "Development & Iteration",
+              text: "Our agile development process includes regular sprints, weekly updates, demo sessions, and feedback cycles. You'll see progress regularly and can provide input throughout the development process. We maintain transparent communication and keep you informed at every stage.",
+            },
+            {
+              name: "Testing & Quality Assurance",
+              text: "Before launch, we conduct comprehensive testing including functional testing, performance testing, security audits, and user acceptance testing. We ensure your solution meets quality standards, performs optimally, and is ready for production deployment.",
+            },
+            {
+              name: "Launch & Deployment",
+              text: "We deploy your solution to production, configure hosting environments, set up monitoring and analytics, and ensure everything is running smoothly. We provide deployment documentation and training materials to help your team use the new system effectively.",
+            },
+            {
+              name: "Ongoing Support",
+              text: "After launch, we provide ongoing support including bug fixes, feature enhancements, performance monitoring, and technical assistance. Our support packages ensure your solution continues to evolve and meet your changing business needs.",
             },
           ],
         }}
@@ -202,6 +234,7 @@ type LottieAnimationData = Record<string, any>;
 
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [currentAnimation, setCurrentAnimation] =
     useState<LottieAnimationData>(animationData1);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
@@ -277,7 +310,7 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineer breakthrough <Br />
-                <Em style={{ color: "#66B2B2" }}>
+                <Em style={{ color: "var(--chakra-colors-pearlAqua-500)" }}>
                   SaaS, Mobile Apps, and AI Agents{" "}
                 </Em>
                 <Br /> for your business
@@ -289,7 +322,7 @@ const HeroSection: React.FC = () => {
                   Tech Emulsion designs, builds, and scales{" "}
                   <Em
                     style={{
-                      color: "#66B2B2",
+                      color: "var(--chakra-colors-pearlAqua-500)",
                       fontWeight: "900",
                     }}>
                     SaaS, mobile experiences, and AI agents
@@ -317,7 +350,7 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                   sx={{
-                    bg: "#004c4c !important",
+                    bg: "teal.500 !important",
                     color: "white !important",
                   }}>
                   Book a Discovery Call
@@ -332,7 +365,7 @@ const HeroSection: React.FC = () => {
               mt="10">
               <Text
                 fontSize="sm"
-                color="muted"
+                color={textColor}
                 fontWeight="medium"
                 maxW="lg"
                 textAlign="left"
@@ -343,7 +376,17 @@ const HeroSection: React.FC = () => {
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>
-                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                {/* Static version for screens >= 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  display="none"
+                  gap="10"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "flex",
+                    },
+                  }}>
                   <>
                     <Image
                       src="/assets/clients/Bubble.1.png"
@@ -387,6 +430,108 @@ const HeroSection: React.FC = () => {
                     />
                   </>
                 </Box>
+                {/* Scrolling version for screens < 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  width="100%"
+                  position="relative"
+                  display="block"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "none",
+                    },
+                  }}>
+                  <Box
+                    display="flex"
+                    width="200%"
+                    gap="10"
+                    animation={`${heroScrollAnimation} 30s infinite linear`}>
+                    <>
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="Bubble logo"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/atarim-white.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="NearShore logo"
+                        style={{
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                      {/* Duplicate logos for seamless loop */}
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="Bubble logo"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/atarim-white.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="NearShore logo"
+                        style={{
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                    </>
+                  </Box>
+                </Box>
               </FallInPlace>
             </VStack>
           </Hero>
@@ -417,7 +562,7 @@ const HeroSection: React.FC = () => {
             title={
               <FallInPlace>
                 Imagineer breakthrough <Br />
-                <Em style={{ color: "#004C4C" }}>
+                <Em style={{ color: "var(--chakra-colors-teal-500)" }}>
                   SaaS, Mobile Apps, and AI Agents{" "}
                 </Em>
                 <Br /> for your business
@@ -429,7 +574,7 @@ const HeroSection: React.FC = () => {
                   Tech Emulsion designs, builds, and scales{" "}
                   <Em
                     style={{
-                      color: "#004C4C",
+                      color: "var(--chakra-colors-teal-500)",
                       fontWeight: "900",
                     }}>
                     SaaS, mobile experiences, and AI agents
@@ -457,7 +602,7 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                   sx={{
-                    bg: "#004c4c !important",
+                    bg: "teal.500 !important",
                     color: "white !important",
                   }}>
                   Book a Discovery Call
@@ -472,7 +617,7 @@ const HeroSection: React.FC = () => {
               mt="10">
               <Text
                 fontSize="sm"
-                color="muted"
+                color={textColor}
                 fontWeight="medium"
                 maxW="lg"
                 textAlign="left"
@@ -483,7 +628,17 @@ const HeroSection: React.FC = () => {
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>
-                <Box overflow="hidden" height="100%" display="flex" gap="10">
+                {/* Static version for screens >= 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  display="none"
+                  gap="10"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "flex",
+                    },
+                  }}>
                   <>
                     <Image
                       src="/assets/clients/Bubble.1.png"
@@ -530,6 +685,116 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                   </>
+                </Box>
+                {/* Scrolling version for screens < 600px */}
+                <Box
+                  overflow="hidden"
+                  height="100%"
+                  width="100%"
+                  position="relative"
+                  display="block"
+                  sx={{
+                    "@media (min-width: 600px)": {
+                      display: "none",
+                    },
+                  }}>
+                  <Box
+                    display="flex"
+                    width="200%"
+                    gap="10"
+                    animation={`${heroScrollAnimation} 30s infinite linear`}>
+                    <>
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="bubble logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Atarim.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="Nearshore logo"
+                        loading="eager"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                      {/* Duplicate logos for seamless loop */}
+                      <Image
+                        src="/assets/clients/Bubble.1.png"
+                        width={110}
+                        height={100}
+                        alt="bubble logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "8px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Pensa.webp"
+                        width={100}
+                        height={100}
+                        alt="Pensa logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/Atarim.svg"
+                        width={100}
+                        height={100}
+                        alt="Atarim logo"
+                        loading="eager"
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                      <Image
+                        src="/assets/clients/nearshore.png"
+                        width={140}
+                        height={100}
+                        alt="Nearshore logo"
+                        loading="eager"
+                        style={{
+                          filter: "invert(1) brightness(2) contrast(1.2)",
+                          objectFit: "contain",
+                          marginTop: "13px",
+                        }}
+                      />
+                    </>
+                  </Box>
                 </Box>
               </FallInPlace>
             </VStack>
@@ -584,6 +849,7 @@ const cardData = [
 
 const AboutUsSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("muted", "lightGrey.400");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
 
@@ -615,7 +881,7 @@ const AboutUsSection: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 textTransform: "uppercase",
               }}>
@@ -630,7 +896,7 @@ const AboutUsSection: React.FC = () => {
               Impactful Product Design,
               <Br /> Memorable Experience
             </Heading>
-            <Text color="muted" fontSize="lg" mt="4">
+            <Text color={textColor} fontSize="lg" mt="4">
               We believe that collaboration is key, working closely with you to
               craft tailored solutions. Our mission is to guide you with the
               best tools and personalized support, ensuring a rewarding journey
@@ -646,7 +912,7 @@ const AboutUsSection: React.FC = () => {
               }}>
               Connect With Us
             </Heading>
-            <Text color="muted" fontSize="lg" mt="4">
+            <Text color={textColor} fontSize="lg" mt="4">
               {`We'd love to hear from you! Reach out to us for any inquiries,
               feedback, or support. Our team is here to assist you and ensure
               you have the best experience.`}
@@ -660,13 +926,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={FiLinkedin}
                   boxSize="10"
-                  color="gray.500"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -674,19 +941,20 @@ const AboutUsSection: React.FC = () => {
               </Link>
 
               <Link
-                href="https://www.facebook.com/emulsiontech/"
+                href="https://www.facebook.com/profile.php?id=100092936174663"
                 isExternal
                 aria-label="Visit Tech Emulsion on Facebook">
                 <Icon
                   as={FiFacebook}
                   boxSize="10"
-                  color="gray.500"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -699,13 +967,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
-                  color="gray.500"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -718,13 +987,14 @@ const AboutUsSection: React.FC = () => {
                 <Icon
                   as={AiFillYoutube}
                   boxSize="10"
-                  color="gray.500"
+                  color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
                     padding: "10px",
                     borderRadius: "20%",
-                    border: "1px solid #004c4c",
+                    border: "1px solid",
+                    borderColor: "teal.500",
                     ":hover": {
-                      bg: "#004c4c",
+                      bg: "teal.500",
                       color: "white",
                     },
                   }}
@@ -737,7 +1007,7 @@ const AboutUsSection: React.FC = () => {
           <Heading
             as="h2"
             size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
+            color={colorMode === "dark" ? "white" : "teal.500"}
             sx={{
               textTransform: "uppercase",
             }}
@@ -799,7 +1069,7 @@ const AboutUsSection: React.FC = () => {
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
-                bgGradient={`linear(to-br, #b2d8d8, #006666 , #004c4c)`}
+                bgGradient="linear(to-br, mutedTeal.400, teal.600, teal.500)"
                 boxShadow="none"
                 border={"none"}
                 borderRadius="lg"
@@ -849,7 +1119,7 @@ const AboutUsSection: React.FC = () => {
           <HighlightsItem
             colSpan={[1, null, 2, 3, 3]}
             title="Areas We Specialize In">
-            <Text color="muted" fontSize="lg">
+            <Text color={textColor} fontSize="lg">
               Our team specializes in delivering innovative software solutions
               using a wide range of modern technologies. From SaaS and
               full-stack development to AI and machine learning, we provide
@@ -882,10 +1152,10 @@ const AboutUsSection: React.FC = () => {
                     rounded="full"
                     px="3"
                     sx={{
-                      bg: "#185651",
+                      bg: "evergreen.500",
                       color: "#fff",
                       "&:hover": {
-                        bg: "#004c4c",
+                        bg: "teal.500",
                       },
                     }}>
                     {value}
@@ -903,6 +1173,7 @@ const AboutUsSection: React.FC = () => {
 const HighlightsSection: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const HighlightsItems = [
     {
       title: "Agentic AI Engineering",
@@ -978,7 +1249,7 @@ const HighlightsSection: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 textTransform: "uppercase",
               }}>
@@ -1015,11 +1286,11 @@ const HighlightsSection: React.FC = () => {
               sx={{
                 bg: " none",
                 fontSize: "1.5rem",
-                color: colorMode === "light" ? "#004c4c !important" : "white",
+                color: colorMode === "light" ? "teal.500 !important" : "white",
                 textDecoration: "underline",
                 ":hover": {
                   bg: "none",
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  color: colorMode === "light" ? "teal.500 !important" : "white",
                   textDecoration: "none",
                 },
               }}>
@@ -1052,7 +1323,7 @@ const HighlightsSection: React.FC = () => {
                   {item.title}
                 </Heading>
                 <VStack alignItems="flex-start" spacing="8">
-                  <Text color="muted" fontSize="lg">
+                  <Text color={textColor} fontSize="lg">
                     {item.description}
                   </Text>
                 </VStack>
@@ -1068,6 +1339,7 @@ const HighlightsSection: React.FC = () => {
 const Portfolio: React.FC = () => {
   const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [showAll, setShowAll] = useState(false); // Add this state
   const HighlightsItems = [
     {
@@ -1140,7 +1412,7 @@ const Portfolio: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 textTransform: "uppercase",
               }}>
@@ -1166,7 +1438,7 @@ const Portfolio: React.FC = () => {
 
             <Text
               py="4"
-              color="muted"
+              color={textColor}
               fontSize="lg"
               fontWeight={"500"}
               mt="1"
@@ -1189,12 +1461,12 @@ const Portfolio: React.FC = () => {
                 sx={{
                   bg: " none",
                   fontSize: "1.5rem",
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                  color: colorMode === "light" ? "teal.500 !important" : "white",
                   textDecoration: "underline",
                   ":hover": {
                     bg: "none",
                     color:
-                      colorMode === "light" ? "#004c4c !important" : "white",
+                      colorMode === "light" ? "teal.500 !important" : "white",
                     textDecoration: "none",
                   },
                 }}>
@@ -1269,7 +1541,7 @@ const Portfolio: React.FC = () => {
                       {item.title}
                     </Heading>
                     <VStack alignItems="flex-start" spacing="8">
-                      <Text color="muted" fontSize="lg">
+                      <Text color={textColor} fontSize="lg" textAlign="justify">
                         {item.description}
                       </Text>
                     </VStack>
@@ -1287,14 +1559,19 @@ const scrollAnimation = keyframes`
 0% { transform: translateX(0); }
 100% { transform: translateX(-100%); }`;
 
+const heroScrollAnimation = keyframes`
+0% { transform: translateX(0); }
+100% { transform: translateX(-100%); }`;
+
 const SocialProofSection: React.FC = () => {
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
 
   return (
     <Box
       id="social"
       py="20"
-      bg="#004c4c"
+      bg="evergreen.500"
       color="white"
       textAlign="center"
       height={[null, null, null]}
@@ -1331,7 +1608,7 @@ const SocialProofSection: React.FC = () => {
           </Heading>
 
           <Text
-            color="gray.400"
+            color={textColor}
             fontSize="lg"
             fontWeight={"500"}
             justifyContent={"center"}
@@ -2042,6 +2319,7 @@ const TestimonialsSection: React.FC = () => {
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
   const [showMore, setShowMore] = React.useState(false);
   const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1,
@@ -2119,7 +2397,7 @@ const TestimonialsSection: React.FC = () => {
                         marginTop: "2rem",
                         padding: "30px",
                         background: "transparent",
-                        color: colorMode === "dark" ? "white" : "#004c4c",
+                        color: colorMode === "dark" ? "white" : "teal.500",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
                       }}>
@@ -2130,7 +2408,7 @@ const TestimonialsSection: React.FC = () => {
                           height: "25px",
                           marginLeft: 3,
                           marginTop: 2,
-                          color: colorMode === "dark" ? "white" : "#004c4c",
+                          color: colorMode === "dark" ? "white" : "teal.500",
                         }}
                       />
                     </Button>
@@ -2167,7 +2445,7 @@ const TestimonialsSection: React.FC = () => {
                         marginTop: "2rem",
                         padding: "30px",
                         background: "transparent",
-                        color: colorMode === "dark" ? "white" : "#004c4c",
+                        color: colorMode === "dark" ? "white" : "teal.500",
                         boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
                         textDecoration: "none",
                       }}>
@@ -2178,7 +2456,7 @@ const TestimonialsSection: React.FC = () => {
                           height: "25px",
                           marginLeft: 3,
                           marginTop: 2,
-                          color: colorMode === "dark" ? "white" : "#004c4c",
+                          color: colorMode === "dark" ? "white" : "teal.500",
                         }}
                       />
                     </Button>
@@ -2217,7 +2495,7 @@ const TestimonialsSection: React.FC = () => {
             <Heading
               as="h2"
               size="md"
-              color={colorMode === "dark" ? "white" : "#004c4c"}
+              color={colorMode === "dark" ? "white" : "teal.500"}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -2244,7 +2522,7 @@ const TestimonialsSection: React.FC = () => {
               Hear From Our Clients
             </Heading>
             <Text
-              color="muted"
+              color={textColor}
               fontSize="lg"
               fontWeight={"500"}
               mt="5"
@@ -2283,7 +2561,7 @@ const TestimonialsSection: React.FC = () => {
                 height: "40px",
                 borderRadius: "50%",
                 ":hover": {
-                  bg: "#004c4c",
+                  bg: "teal.500",
                   color: "white",
                   fontWeight: "bold",
                 },
@@ -2328,7 +2606,7 @@ const TestimonialsSection: React.FC = () => {
                 height: "40px",
                 borderRadius: "50%",
                 ":hover": {
-                  bg: "#004c4c",
+                  bg: "teal.500",
                   color: "white",
                   fontWeight: "bold",
                 },
@@ -2347,7 +2625,7 @@ const TestimonialsSection: React.FC = () => {
           <Heading
             as="h2"
             size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
+            color={colorMode === "dark" ? "white" : "teal.500"}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -2967,7 +3245,7 @@ const TechnologySection: React.FC = () => {
           <Heading
             as="h2"
             size="md"
-            color={colorMode === "dark" ? "white" : "#004c4c"}
+            color={colorMode === "dark" ? "white" : "teal.500"}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -3006,14 +3284,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "frontend" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "frontend" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "frontend" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "frontend" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "frontend" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("frontend")}
@@ -3023,14 +3301,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "backend" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "backend" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "backend" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "backend" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "backend" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("backend")}
@@ -3040,14 +3318,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "devops" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "devops" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "devops" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "devops" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "devops" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("devops")}
@@ -3057,14 +3335,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "AI" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "AI" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "AI" ? "white" : "gray.800",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "AI" ? "#004c4c" : "gray.300",
+                  bg: currentTab === "AI" ? "teal.500" : "gray.300",
                 },
               }}
               onClick={() => setCurrentTab("AI")}>
@@ -3073,7 +3351,7 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300"}
+              bg={currentTab === "noCodeAutomation" ? "teal.500" : "gray.300"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
                 color: currentTab === "noCodeAutomation" ? "white" : "gray.800",
@@ -3081,7 +3359,7 @@ const TechnologySection: React.FC = () => {
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
                   bg:
-                    currentTab === "noCodeAutomation" ? "#004c4c" : "gray.300",
+                    currentTab === "noCodeAutomation" ? "teal.500" : "gray.300",
                 },
                 minWidth: "140px",
               }}

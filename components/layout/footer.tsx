@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import Layout from "components/FooterLayout/layout-1";
 import LayoutBottom from "components/FooterLayout/LayoutBottom";
+import Image from "next/image";
 
 import siteConfig from "data/config";
 import Link from "next/link";
@@ -39,8 +40,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
   const { colorMode } = useColorMode();
   return (
     <Box
-      bg="#004c4c"
-      // _dark={{ bg: "gray.900" }}
+      bg="evergreen.500"
       {...rest}
       // make at the bottom
       position={"relative"}>
@@ -55,7 +55,16 @@ export const Footer: React.FC<FooterProps> = (props) => {
           <Stack spacing="2">
             <Stack alignItems="flex-start">
               <Flex>
-                <Box as={siteConfig.logo} flex="1" height="32px" />
+                <Image
+                  src="/assets/logo/logo-light.png"
+                  alt="Tech Emulsion Logo"
+                  width={100}
+                  height={30}
+                  style={{
+                    objectFit: "contain",
+                    height: "32px",
+                  }}
+                />
               </Flex>
               <Text fontSize="2xl" color="white">
                 Let&apos;s Talk!
@@ -83,10 +92,10 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       target="_blank"
                       rel="noreferrer">
                       <HStack>
-                        <FaWhatsapp
-                          style={{ marginRight: "2px", color: "silver" }}
-                        />
-                        <Text color="silver" fontSize="16px">
+                      <FaWhatsapp
+                        style={{ marginRight: "2px", color: "#D9D9D9" }}
+                      />
+                      <Text color="lightGrey.400" fontSize="16px">
                           +923345559140
                         </Text>
                       </HStack>
@@ -105,14 +114,14 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem> */}
 
                   <ListItem role="listitem">
-                    <Text color="silver" fontSize="16px">
+                    <Text color="lightGrey.400" fontSize="16px">
                       contact@techemulsion.com
                     </Text>
                   </ListItem>
 
                   <ListItem role="listitem">
-                    <Text color="silver" fontSize="16px">
-                      Sheikh Yaseen Trade Centre, University Road, Peshawar
+                    <Text color="lightGrey.400" fontSize="16px">
+                      3rd Floor, Afzal Towers, University Road, Peshawar.
                     </Text>
                   </ListItem>
                 </List>
@@ -240,7 +249,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   spacing={2}>
                   <ListItem
                     sx={{
-                      color: "silver",
+                      color: "lightGrey.400",
                       fontSize: "16px",
                       cursor: "pointer",
                       "&:hover": {
@@ -252,7 +261,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem>
                   <ListItem
                     sx={{
-                      color: "silver",
+                      color: "lightGrey.400",
                       fontSize: "16px",
                       cursor: "pointer",
                       "&:hover": {
@@ -264,7 +273,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem>
                   <ListItem
                     sx={{
-                      color: "silver",
+                      color: "lightGrey.400",
                       fontSize: "16px",
                       cursor: "pointer",
                       "&:hover": {
@@ -276,7 +285,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem>
                   <ListItem
                     sx={{
-                      color: "silver",
+                      color: "lightGrey.400",
                       fontSize: "16px",
                       cursor: "pointer",
                       "&:hover": {
@@ -288,7 +297,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem>
                   <ListItem
                     sx={{
-                      color: "silver",
+                      color: "lightGrey.400",
                       fontSize: "16px",
                       cursor: "pointer",
                       "&:hover": {
@@ -300,7 +309,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem>
                   <ListItem
                     sx={{
-                      color: "silver",
+                      color: "lightGrey.400",
                       fontSize: "16px",
                       cursor: "pointer",
                       "&:hover": {
@@ -322,7 +331,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             sx={{
               width: "100%",
               height: "1px",
-              backgroundColor: "#007777",
+              backgroundColor: "teal.600",
               border: "none",
             }}
           />
@@ -343,13 +352,14 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     sx={{
                       padding: "5px",
                       borderRadius: "50%",
-                      border: "1px solid #004c4c",
-                      backgroundColor: "#b2d8d8",
-                      color: colorMode === "dark" ? "black" : "black",
+                      border: "1px solid",
+                      borderColor: "evergreen.500",
+                      backgroundColor: "mutedTeal.400",
+                      color: colorMode === "dark" ? "charcoal.800" : "charcoal.800",
                       "&:hover": {
                         color: "white",
                         transition: "color .2s ease-in",
-                        backgroundColor: "#006666",
+                        backgroundColor: "teal.600",
                       },
                     }}>
                     {label}
@@ -358,7 +368,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                 </FooterLink>
               ))}
             </HStack>
-            <Text fontSize="sm" color="silver">
+            <Text fontSize="sm" color="lightGrey.400">
               Tech Emulsion is a Private Limited company in Pakistan and an LLC
               in the United States
             </Text>
@@ -385,7 +395,7 @@ export const Copyright: React.FC<CopyrightProps> = ({
     content = `&copy; ${new Date().getFullYear()} - ${title}`;
   }
   return (
-    <Text color="muted" fontSize="sm">
+    <Text color="lightGrey.400" fontSize="sm" mt={4}>
       {content || children}
     </Text>
   );
@@ -398,7 +408,7 @@ export const FooterLink: React.FC<LinkProps> = (props) => {
       target="_blank"
       rel="noopener noreferrer"
       // isExternal
-      color="muted"
+      color="lightGrey.400"
       fontSize="sm"
       textDecoration="none"
       _hover={{

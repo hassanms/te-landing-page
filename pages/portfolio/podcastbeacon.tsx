@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,21 +16,49 @@ import Script from "next/script";
 import React from "react";
 import { FaAsterisk } from "react-icons/fa";
 
-const CaseStudyFarmin = () => {
+const CaseStudyPodcastBeacon = () => {
   const { colorMode } = useColorMode();
   return (
     <Box id="services">
       <Head>
-        <title>Case Study: Podcast Beacon - Tech Emulsion</title>
-        <meta
-          name="description"
-          content="Learn how Tech Emulsion helped PodCast Beacon, a leading SaaS company, scale their operations and improve customer satisfaction with custom software solutions."
-        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </Head>
+      <EnhancedSEO
+        title="Case Study: Podcast Beacon - Tech Emulsion"
+        description="Podcast Beacon is a link-in-bio SaaS hub for podcasters that centralizes episodes, merch, services, and payments on branded pages, with secure login and admin tools to manage content and track engagement."
+        pageType="portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio/podcastbeacon"
+        portfolioData={{
+          title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+          description:
+            "Tech Emulsion built Podcast Beacon so podcasters can gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch and services, and accept payments through a built-in checkout with a secure admin panel.",
+          dateCreated: "2023",
+          image: "https://techemulsion.com/assets/portfolio/mic.jpg",
+          url: "https://techemulsion.com/portfolio/podcastbeacon",
+          genre: "SaaS, Creator Tools",
+          keywords: [
+            "podcast",
+            "link in bio",
+            "SaaS",
+            "creator economy",
+            "Podcast Beacon",
+            "Tech Emulsion",
+          ],
+        }}
+        breadcrumbData={{
+          items: [
+            { name: "Home", url: "https://techemulsion.com" },
+            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
+            {
+              name: "Podcast Beacon",
+              url: "https://techemulsion.com/portfolio/podcastbeacon",
+            },
+          ],
+        }}
+      />
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
@@ -311,4 +340,4 @@ const CaseStudyFarmin = () => {
   );
 };
 
-export default CaseStudyFarmin;
+export default CaseStudyPodcastBeacon;

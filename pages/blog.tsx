@@ -25,6 +25,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 // Filter categories
 const filterCategories = [
   "All Insights",
+  "Business Strategy",
   "AI & ML Development",
   "Data Engineering",
   "Software Development",
@@ -37,13 +38,14 @@ const filterCategories = [
 
 const allPosts = [
   {
-    title: "The AI-Orchestrated Development System",
-    fullTitle: "The AI-Orchestrated Development System: Reimagining Software Project Execution",
-    date: "2024-10-23",
-    url: "/blog/ai-orchestrated-development",
-    excerpt: "Discover how AI is revolutionizing software development workflows, from automated code generation to intelligent project management. Learn how modern development teams are leveraging AI to accelerate delivery and improve quality.",
-    image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
-    category: "AI & ML Development",
+    title: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
+    fullTitle: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
+    date: "2026-01-06",
+    url: "/blog/beyond-vibe-coding",
+    excerpt: "AI is changing software development. Learn how software agencies can pivot into work that stays valuable even as AI makes building faster and cheaper. Explore the five pivots that create new moats for agencies in 2026.",
+    image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
+    featured: true,
+    category: "Business Strategy",
   },
   {
     title: "Inside Tech Emulsion's Toolkit",
@@ -51,7 +53,7 @@ const allPosts = [
     date: "2024-10-23",
     url: "/blog/internal-toolkit",
     excerpt: "Explore the cutting-edge AI tools and frameworks we use internally to deliver superior results for our clients.",
-    image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+    image: "/assets/blog/internal-toolkit.jpg",
     category: "AI & ML Development",
   },
   {
@@ -60,7 +62,7 @@ const allPosts = [
     date: "2024-10-20",
     url: "/blog/ai-guide",
     excerpt: "A comprehensive guide to choosing the right AI solution for your business needs, comparing LLMs and RAG chatbots.",
-    image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
+    image: "/assets/blog/ai-guide.jpg",
     category: "Chatbot Development",
   },
   {
@@ -69,7 +71,7 @@ const allPosts = [
     date: "2024-10-20",
     url: "/blog/match3-games",
     excerpt: "Dive deep into the game development mechanics that power popular match-3 games using Unity and C#.",
-    image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+    image: "/assets/blog/match3-games.jpg",
     category: "Game Development",
   },
   {
@@ -77,7 +79,7 @@ const allPosts = [
     date: "2024-10-15",
     url: "/blog/scalable-saas",
     excerpt: "Learn the architecture patterns and best practices for building SaaS applications that scale with your business.",
-    image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+    image: "/assets/blog/scalable-saas.jpg",
     category: "Software Development",
   },
   {
@@ -85,8 +87,8 @@ const allPosts = [
     date: "2024-10-10",
     url: "/blog/generative-ai-integration",
     excerpt: "Discover how to integrate generative AI into your existing workflows and unlock new possibilities for automation. Learn about the latest tools, frameworks, and best practices for seamlessly incorporating AI capabilities into your business processes. From natural language processing to content generation, explore how generative AI can transform your operations, enhance productivity, and drive innovation across your organization. This comprehensive guide covers everything from initial planning and tool selection to implementation strategies and real-world use cases that demonstrate the transformative power of AI integration.",
-    image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
-    featured: true,
+    image: "/assets/blog/generative-ai-integration.jpg",
+    featured: false,
     category: "AI & ML Development",
   },
   {
@@ -94,7 +96,7 @@ const allPosts = [
     date: "2024-10-05",
     url: "/blog/devops-best-practices",
     excerpt: "Essential DevOps practices that help teams deliver faster, more reliable software releases.",
-    image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
+    image: "/assets/blog/devops-best-practices.jpg",
     category: "DevOps",
   },
   {
@@ -102,7 +104,7 @@ const allPosts = [
     date: "2024-09-28",
     url: "/blog/mobile-app-trends",
     excerpt: "Explore the latest trends and technologies shaping the future of mobile application development.",
-    image: "/assets/whatWeDo/automation.png",
+    image: "/assets/blog/mobile-app-trends.png",
     category: "Mobile App Development",
   },
   {
@@ -110,7 +112,7 @@ const allPosts = [
     date: "2024-09-20",
     url: "/blog/custom-software-process",
     excerpt: "Understanding our proven methodology for delivering custom software solutions that meet your unique business needs.",
-    image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
+    image: "/assets/blog/ai-orchestrated-development.jpg",
     category: "Software Development",
   },
   {
@@ -118,7 +120,7 @@ const allPosts = [
     date: "2024-09-15",
     url: "/blog/ai-chatbots-customer-service",
     excerpt: "How intelligent chatbots are transforming customer service and improving user experiences across industries.",
-    image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+    image: "/assets/blog/internal-toolkit.jpg",
     category: "Chatbot Development",
   },
 ];

@@ -3386,35 +3386,35 @@ const BlogSection: React.FC = () => {
   const cardBgColor = useColorModeValue("charcoal.800", "charcoal.900");
   const titleColor = useColorModeValue("gray.800", "white");
 
-  // Blog posts data - using services images for testing
+  // Blog posts data - using blog images
   const blogPosts = [
     {
-      title: "The AI-Orchestrated Development System",
-      fullTitle: "The AI-Orchestrated Development System: Reimagining Software Project Execution",
-      date: "2024-10-23",
-      url: "/blog/ai-orchestrated-development",
-      image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
+      title: "Beyond Vibe Coding",
+      fullTitle: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
+      date: "2026-01-06",
+      url: "/blog/beyond-vibe-coding",
+      image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
     },
     {
       title: "Inside Tech Emulsion's Toolkit",
       fullTitle: "Inside Tech Emulsion's Toolkit: How Our Internal AI Tools Shape Better Customer Projects",
       date: "2024-10-23",
       url: "/blog/internal-toolkit",
-      image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+      image: "/assets/blog/internal-toolkit.jpg",
     },
     {
       title: "What Kind of AI Do You Really Need?",
       fullTitle: "What Kind of AI Do You Really Need? A CEO & Tech Lead's Guide to LLMs vs. RAG Chatbots (and When to Use Each)",
       date: "2024-10-20",
       url: "/blog/ai-guide",
-      image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
+      image: "/assets/blog/ai-guide.jpg",
     },
     {
       title: "The Logic Behind Match-3 Games",
       fullTitle: "The Logic Behind Match-3 Games: How Unity and C# Make the Magic Work",
       date: "2024-10-20",
       url: "/blog/match3-games",
-      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+      image: "/assets/blog/match3-games.jpg",
     },
   ];
 

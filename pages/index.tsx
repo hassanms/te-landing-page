@@ -624,7 +624,7 @@ const HeroSection: React.FC = () => {
                 display={"flex"}
                 alignItems={"center"}
                 width={"100%"}>
-                Trusted By the Bad{"  "}
+                Trusted By the Best{"  "}
                 <Divider height="1.5px" bg="muted" width="20%" ml="4" />
               </Text>
               <FallInPlace delay={0.6}>

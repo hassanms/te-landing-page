@@ -41,6 +41,7 @@ import {
   ChevronUpIcon,
 } from "@saas-ui/react";
 import { Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { Em } from "components/typography";
 import { Features } from "components/features";
 import { BackgroundGradient } from "components/gradients/background-gradient";
@@ -58,7 +59,7 @@ import {
   HighlightsWhatWeDo,
 } from "components/highlights";
 
-import { FiFacebook, FiLinkedin } from "react-icons/fi";
+import { FiFacebook, FiLinkedin, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
@@ -223,6 +224,7 @@ const Home: NextPage = () => {
 
         <TestimonialsSection />
         <TechnologySection />
+        <BlogSection />
         <FaqSection />
         <Divider />
         <Contact />
@@ -3372,6 +3374,201 @@ const TechnologySection: React.FC = () => {
           {currentTab === "AI" && <AI />}
           {currentTab === "noCodeAutomation" && <NoCodeAutomation />}
         </Box>
+      </Container>
+    </Box>
+  );
+};
+
+const BlogSection: React.FC = () => {
+  const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const bgColor = useColorModeValue("white", "gray.800");
+  const cardBgColor = useColorModeValue("charcoal.800", "charcoal.900");
+  const titleColor = useColorModeValue("gray.800", "white");
+
+  // Blog posts data - using services images for testing
+  const blogPosts = [
+    {
+      title: "The AI-Orchestrated Development System",
+      fullTitle: "The AI-Orchestrated Development System: Reimagining Software Project Execution",
+      date: "2024-10-23",
+      url: "/blog/ai-orchestrated-development",
+      image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
+    },
+    {
+      title: "Inside Tech Emulsion's Toolkit",
+      fullTitle: "Inside Tech Emulsion's Toolkit: How Our Internal AI Tools Shape Better Customer Projects",
+      date: "2024-10-23",
+      url: "/blog/internal-toolkit",
+      image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+    },
+    {
+      title: "What Kind of AI Do You Really Need?",
+      fullTitle: "What Kind of AI Do You Really Need? A CEO & Tech Lead's Guide to LLMs vs. RAG Chatbots (and When to Use Each)",
+      date: "2024-10-20",
+      url: "/blog/ai-guide",
+      image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
+    },
+    {
+      title: "The Logic Behind Match-3 Games",
+      fullTitle: "The Logic Behind Match-3 Games: How Unity and C# Make the Magic Work",
+      date: "2024-10-20",
+      url: "/blog/match3-games",
+      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+    },
+  ];
+
+  return (
+    <Box
+      id="blog"
+      py="20"
+      bg={bgColor}
+      color={textColor}
+      sx={{ scrollMarginTop: "50px" }}>
+      <Container maxW="container.xl" py="5">
+        <Divider />
+        <Box
+          display={{ base: "block", md: "flex" }}
+          px="4"
+          mt={10}
+          mb={10}
+          justifyContent={"space-between"}>
+          <Box>
+            <Heading
+              as="h2"
+              size="md"
+              color={colorMode === "dark" ? "white" : "teal.500"}
+              sx={{
+                textTransform: "uppercase",
+              }}>
+              Insights From Our Blog
+            </Heading>
+            <Heading
+              as="h1"
+              mt="2"
+              sx={{
+                fontSize: {
+                  base: "2rem",
+                  md: "2rem",
+                },
+                width: {
+                  base: "100%",
+                  md: "70%",
+                },
+              }}>
+              Software Development Insights from Our Team
+            </Heading>
+          </Box>
+
+          {/* Explore Blog */}
+          <ButtonGroup
+            spacing={4}
+            display="flex"
+            justifyContent={["flex-start", null, "flex-end"]}
+            width={["100%", null, "auto"]}
+            alignItems="end"
+            mt="4">
+            <ButtonLink
+              size="lg"
+              href="/blog"
+              sx={{
+                bg: " none",
+                fontSize: "1.5rem",
+                color: colorMode === "light" ? "teal.500 !important" : "white",
+                textDecoration: "underline",
+                ":hover": {
+                  bg: "none",
+                  color: colorMode === "light" ? "teal.500 !important" : "white",
+                  textDecoration: "none",
+                },
+              }}>
+              Explore Blog
+            </ButtonLink>
+          </ButtonGroup>
+        </Box>
+
+        {/* Blog Posts Grid */}
+        <Stack
+          direction={["column", null, "row"]}
+          spacing="6"
+          justify="center"
+          align="stretch"
+          px="4">
+          {blogPosts.map((post, idx) => (
+            <Box key={idx} flex="1" maxW={["100%", null, "280px"]}>
+              {/* Card with Image - Square format */}
+              <Box
+                mb="4"
+                position="relative"
+                w="100%"
+                aspectRatio="1"
+                overflow="hidden"
+                bg="charcoal.700"
+                cursor="pointer"
+                _hover={{
+                  transform: "translateY(-4px)",
+                  boxShadow: "xl",
+                  "& > div": {
+                    filter: "grayscale(0%)",
+                  },
+                }}
+                transition="all 0.3s">
+                {/* Image with black and white filter by default, color on hover */}
+                <Box
+                  w="100%"
+                  h="100%"
+                  position="relative"
+                  sx={{
+                    backgroundImage: post.image
+                      ? `url(${post.image})`
+                      : "linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    filter: "grayscale(100%)",
+                    transition: "filter 0.3s ease",
+                  }}
+                />
+              </Box>
+
+              {/* Full Title, Date, and Link Below Card */}
+              <VStack align="flex-start" spacing="2">
+                <Heading
+                  as="h4"
+                  size="sm"
+                  color={titleColor}
+                  fontWeight="semibold"
+                  lineHeight="1.4">
+                  {post.fullTitle}
+                </Heading>
+                <Text
+                  fontSize="sm"
+                  color={textColor}
+                  opacity={0.8}>
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </Text>
+                <NextLink href={post.url} passHref>
+                  <Link
+                    color="teal.500"
+                    fontWeight="semibold"
+                    fontSize="sm"
+                    display="flex"
+                    alignItems="center"
+                    gap="2"
+                    _hover={{
+                      color: "teal.600",
+                    }}>
+                    READ POST
+                    <Icon as={FiArrowUpRight} />
+                  </Link>
+                </NextLink>
+              </VStack>
+            </Box>
+          ))}
+        </Stack>
       </Container>
     </Box>
   );

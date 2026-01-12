@@ -1,28 +1,51 @@
 import type { NextPage } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
-import Link from "next/link";
+import NextLink from "next/link";
 import { compareDesc, format, parseISO } from "date-fns";
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  VStack,
+  Card,
+  CardBody,
+  Link,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
+
 const allPosts = [
   {
     title: "Welcome to the blog",
     date: "2022-01-01",
     url: "/blog/welcome-to-the-blog",
+    excerpt: "Discover insights, tips, and updates from Tech Emulsion about digital transformation and technology trends.",
   },
   {
     title: "Introducing Contentlayer",
     date: "2022-01-02",
     url: "/blog/introducing-contentlayer",
+    excerpt: "Learn about Contentlayer and how it can streamline your content management workflow.",
   },
   {
     title: "How to use Contentlayer",
     date: "2022-01-03",
     url: "/blog/how-to-use-contentlayer",
+    excerpt: "A comprehensive guide on getting started with Contentlayer for your next project.",
   },
 ];
+
 const Blog: NextPage = ({ posts }: any) => {
+  const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const bgColor = useColorModeValue("white", "gray.800");
+  const cardBgColor = useColorModeValue("white", "gray.700");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+
   return (
-    <div className="mx-auto max-w-2xl py-16 text-center">
+    <Box bg={bgColor} minH="100vh" py="20">
       <EnhancedSEO
         title="Blog - Tech Emulsion"
         description="Read the latest articles, insights, and updates from Tech Emulsion about digital transformation, AI solutions, custom software development, and technology trends."
@@ -39,27 +62,83 @@ const Blog: NextPage = ({ posts }: any) => {
         <title>Blog - Tech Emulsion</title>
       </Head>
 
-      <h1 className="mb-8 text-3xl font-bold">Tech Emulsion Blog</h1>
+      <Container maxW="container.xl" py="10">
+        <Box textAlign="center" mb="12">
+          <Heading
+            as="h1"
+            size="2xl"
+            mb="4"
+            color={colorMode === "dark" ? "white" : "gray.800"}>
+            Tech Emulsion Blog
+          </Heading>
+          <Text fontSize="lg" color={textColor} maxW="600px" mx="auto">
+            Read the latest articles, insights, and updates about digital
+            transformation, AI solutions, and software development.
+          </Text>
+        </Box>
 
-      {posts.map((post, idx) => (
-        <PostCard key={idx} {...post} />
-      ))}
-    </div>
+        <VStack spacing="6" align="stretch" maxW="800px" mx="auto">
+          {posts.map((post: any, idx: number) => (
+            <PostCard key={idx} {...post} />
+          ))}
+        </VStack>
+      </Container>
+    </Box>
   );
 };
 
-function PostCard(post) {
+function PostCard(post: any) {
+  const { colorMode } = useColorMode();
+  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const cardBgColor = useColorModeValue("white", "gray.700");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+
   return (
-    <div className="mb-6">
-      <time dateTime={post.date} className="block text-sm text-slate-600">
-        {format(parseISO(post.date), "LLLL d, yyyy")}
-      </time>
-      <h2 className="text-lg">
-        <Link href={post.url}>
-          <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
-        </Link>
-      </h2>
-    </div>
+    <Card
+      bg={cardBgColor}
+      border="1px solid"
+      borderColor={borderColor}
+      borderRadius="lg"
+      overflow="hidden"
+      _hover={{
+        transform: "translateY(-2px)",
+        boxShadow: "lg",
+        transition: "all 0.3s",
+      }}
+      transition="all 0.3s">
+      <CardBody p="6">
+        <Text fontSize="sm" color={textColor} mb="2" opacity={0.7}>
+          {format(parseISO(post.date), "LLLL d, yyyy")}
+        </Text>
+        <Heading as="h2" size="lg" mb="3">
+          <NextLink href={post.url} passHref>
+            <Link
+              color={colorMode === "dark" ? "white" : "gray.800"}
+              _hover={{
+                color: "teal.500",
+                textDecoration: "none",
+              }}>
+              {post.title}
+            </Link>
+          </NextLink>
+        </Heading>
+        {post.excerpt && (
+          <Text color={textColor} fontSize="md" mb="4">
+            {post.excerpt}
+          </Text>
+        )}
+        <NextLink href={post.url} passHref>
+          <Link
+            color="teal.500"
+            fontWeight="semibold"
+            _hover={{
+              textDecoration: "underline",
+            }}>
+            Read more →
+          </Link>
+        </NextLink>
+      </CardBody>
+    </Card>
   );
 }
 

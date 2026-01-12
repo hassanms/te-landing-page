@@ -39,6 +39,10 @@ const siteConfig = {
         label: "Tech Stack",
         id: "tech",
       },
+      {
+        label: "Blog",
+        href: "/blog",
+      },
       // {
       //   label: "Our Story",
       //   href: "/our-story",

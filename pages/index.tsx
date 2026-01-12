@@ -3284,14 +3284,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "frontend" ? "teal.500" : "gray.300"}
+              bg={currentTab === "frontend" ? "teal.500" : "evergreen.500"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
-                color: currentTab === "frontend" ? "white" : "gray.800",
+                color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "frontend" ? "teal.500" : "gray.300",
+                  bg: "teal.500",
                 },
               }}
               onClick={() => setCurrentTab("frontend")}
@@ -3301,14 +3301,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "backend" ? "teal.500" : "gray.300"}
+              bg={currentTab === "backend" ? "teal.500" : "evergreen.500"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
-                color: currentTab === "backend" ? "white" : "gray.800",
+                color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "backend" ? "teal.500" : "gray.300",
+                  bg: "teal.500",
                 },
               }}
               onClick={() => setCurrentTab("backend")}
@@ -3318,14 +3318,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "devops" ? "teal.500" : "gray.300"}
+              bg={currentTab === "devops" ? "teal.500" : "evergreen.500"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
-                color: currentTab === "devops" ? "white" : "gray.800",
+                color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "devops" ? "teal.500" : "gray.300",
+                  bg: "teal.500",
                 },
               }}
               onClick={() => setCurrentTab("devops")}
@@ -3335,14 +3335,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "AI" ? "teal.500" : "gray.300"}
+              bg={currentTab === "AI" ? "teal.500" : "evergreen.500"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
-                color: currentTab === "AI" ? "white" : "gray.800",
+                color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg: currentTab === "AI" ? "teal.500" : "gray.300",
+                  bg: "teal.500",
                 },
               }}
               onClick={() => setCurrentTab("AI")}>
@@ -3351,15 +3351,14 @@ const TechnologySection: React.FC = () => {
             <Button
               size="lg"
               mt={"10"}
-              bg={currentTab === "noCodeAutomation" ? "teal.500" : "gray.300"}
+              bg={currentTab === "noCodeAutomation" ? "teal.500" : "evergreen.500"}
               sx={{
                 fontSize: isSMall ? "0.8rem" : "1rem",
-                color: currentTab === "noCodeAutomation" ? "white" : "gray.800",
+                color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
                 "&:hover": {
-                  bg:
-                    currentTab === "noCodeAutomation" ? "teal.500" : "gray.300",
+                  bg: "teal.500",
                 },
                 minWidth: "140px",
               }}

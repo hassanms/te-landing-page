@@ -237,6 +237,10 @@ type LottieAnimationData = Record<string, any>;
 const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const pensaImage = useColorModeValue(
+    "/assets/clients/Pensa.webp",
+    "/assets/clients/Pensa-white.png"
+  );
   const [currentAnimation, setCurrentAnimation] =
     useState<LottieAnimationData>(animationData1);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
@@ -402,7 +406,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Pensa.webp"
+                      src={pensaImage}
                       width={100}
                       height={100}
                       alt="Pensa logo"

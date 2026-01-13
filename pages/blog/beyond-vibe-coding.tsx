@@ -97,6 +97,7 @@ const BlogPost: NextPage = () => {
         <Stack direction={{ base: "column", lg: "row" }} spacing="8" align="flex-start">
           {/* Left Sidebar - Table of Contents */}
           <Box
+            display={{ base: "none", lg: "block" }}
             w={{ base: "100%", lg: "300px" }}
             flexShrink={0}
             position={{ base: "relative", lg: "sticky" }}

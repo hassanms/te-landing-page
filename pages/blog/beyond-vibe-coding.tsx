@@ -359,7 +359,7 @@ const BlogPost: NextPage = () => {
                         Generative AI Integration Strategies
                       </Heading>
                       <Text fontSize="sm" color={textColor}>
-                        October 10, 2024
+                        January 11, 2026
                       </Text>
                     </Link>
                   </NextLink>

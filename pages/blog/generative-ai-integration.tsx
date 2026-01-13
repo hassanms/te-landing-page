@@ -676,7 +676,7 @@ const BlogPost: NextPage = () => {
                   Read What Next
                 </Heading>
                 <VStack align="stretch" spacing="4">
-                  <NextLink href="/blog/ai-orchestrated-development" passHref>
+                  <NextLink href="/blog/beyond-vibe-coding" passHref>
                     <Link
                       display="block"
                       p="4"
@@ -694,14 +694,13 @@ const BlogPost: NextPage = () => {
                         color="teal.500"
                         textTransform="uppercase"
                         mb="2">
-                        AI & ML Development
+                        Business Strategy
                       </Text>
                       <Heading as="h3" size="md" color={titleColor} mb="2">
-                        The AI-Orchestrated Development System: Reimagining
-                        Software Project Execution
+                        Beyond Vibe Coding: The New Moats for Software Agencies in 2026
                       </Heading>
                       <Text fontSize="sm" color={textColor}>
-                        October 23, 2024
+                        January 6, 2026
                       </Text>
                     </Link>
                   </NextLink>

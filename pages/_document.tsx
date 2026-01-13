@@ -8,7 +8,6 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           {/* Standard favicon for all browsers */}
-          <link rel="icon" href="/static/favicons/favicon.ico" />
           <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
           <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
           <link rel="shortcut icon" href="/static/favicons/favicon.ico" />

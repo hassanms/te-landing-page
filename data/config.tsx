@@ -43,6 +43,10 @@ const siteConfig = {
         label: "Blog",
         href: "/blog",
       },
+      {
+        label: "Careers",
+        href: "/careers",
+      },
       // {
       //   label: "Our Story",
       //   href: "/our-story",

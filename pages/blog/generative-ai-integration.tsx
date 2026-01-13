@@ -156,13 +156,14 @@ const BlogPost: NextPage = () => {
                 </Heading>
                 <VStack align="stretch" spacing="3">
                   {[
-                    "AI & ML Development",
-                    "Custom Software Development",
-                    "Web Application Development",
-                    "Mobile App Development",
-                    "Data Engineering",
-                    "Cloud Services",
-                    "DevOps Solutions",
+                    "Agentic AI Engineering",
+                    "Next-Gen SaaS Development",
+                    "Innovative Website Development",
+                    "Custom Chrome Extensions",
+                    "Expert DevOps Solutions",
+                    "Generative AI Integration",
+                    "QA Testing & Automation",
+                    "Automation Solutions",
                   ].map((service, idx) => (
                     <NextLink key={idx} href="/services" passHref>
                       <Link

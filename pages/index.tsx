@@ -1614,7 +1614,7 @@ const SocialProofSection: React.FC = () => {
           </Heading>
 
           <Text
-            color={textColor}
+            color="lightGrey.400"
             fontSize="lg"
             fontWeight={"500"}
             justifyContent={"center"}

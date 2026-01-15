@@ -20,6 +20,26 @@ export default class Document extends NextDocument {
             rel="stylesheet"
             href="https://assets.calendly.com/assets/external/widget.css"
           />
+          <style>{`
+            /* Calendly Badge Widget Styling - Match Hero Button */
+            .calendly-badge-widget,
+            #calendly-badge-widget,
+            .calendly-inline-widget,
+            [class*="calendly-badge"],
+            [id*="calendly-badge"] {
+              border-radius: 0.375rem !important;
+              padding: 0.75rem 1.5rem !important;
+              font-size: 1rem !important;
+              font-weight: 700 !important;
+              line-height: 1.5 !important;
+              min-height: 3rem !important;
+              display: inline-flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              box-shadow: none !important;
+              border: none !important;
+            }
+          `}</style>
 
           {/* GEO/AEO Optimization Meta Tags */}
           <meta name="application-name" content="Tech Emulsion" />

@@ -19,26 +19,26 @@ const siteConfig = {
   privacyUrl: "#",
   header: {
     links: [
+      // {
+      //   id: "about",
+      //   label: "About",
+      // },
       {
-        id: "about",
-        label: "About",
-      },
-      {
-        id: "services",
+        href: "/services",
         label: "Services",
       },
       {
-        id: "portfolio",
+        href: "/portfolio",
         label: "Portfolio",
       },
-      {
-        label: "Social Proof",
-        id: "social",
-      },
-      {
-        label: "Tech Stack",
-        id: "tech",
-      },
+      // {
+      //   label: "Social Proof",
+      //   id: "social",
+      // },
+      // {
+      //   label: "Tech Stack",
+      //   id: "tech",
+      // },
       {
         label: "Blog",
         href: "/blog",

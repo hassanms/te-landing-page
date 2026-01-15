@@ -84,7 +84,7 @@ const inputStyles = (colorMode: "light" | "dark") => ({
   border: "none",
   fontWeight: 500,
   color: colorMode === "dark" ? "white" : "gray.00",
-  fontSize: "1rem",
+  fontSize: "lg",
   borderRadius: "none",
   _focusVisible: {
     borderBottom: "2px solid",
@@ -353,7 +353,7 @@ const CareersApply = () => {
             <ButtonGroup
               style={{
                 backgroundColor: " none",
-                fontSize: "1rem",
+                fontSize: "lg",
                 color: "muted",
                 display: "flex",
                 alignItems: "center",
@@ -549,7 +549,7 @@ const CareersApply = () => {
                   border: "none",
                   color: colorMode === "dark" ? "white" : "gray.700",
                   fontWeight: 500,
-                  fontSize: "1rem",
+                  fontSize: "lg",
                   minHeight: "200px",
                   borderRadius: "none",
                   _focusVisible: {

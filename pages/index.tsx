@@ -2399,7 +2399,7 @@ const TestimonialsSection: React.FC = () => {
                         setShowMore(true);
                       }}
                       sx={{
-                        fontSize: "1.2rem",
+                        fontSize: "xl",
                         marginTop: "2rem",
                         padding: "30px",
                         background: "transparent",
@@ -2447,7 +2447,7 @@ const TestimonialsSection: React.FC = () => {
                         setShowMore(false);
                       }}
                       sx={{
-                        fontSize: "1.2rem",
+                        fontSize: "xl",
                         marginTop: "2rem",
                         padding: "30px",
                         background: "transparent",
@@ -3292,7 +3292,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "frontend" ? "teal.500" : "evergreen.500"}
               sx={{
-                fontSize: isSMall ? "0.8rem" : "1rem",
+                fontSize: isSMall ? "sm" : "lg",
                 color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -3309,7 +3309,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "backend" ? "teal.500" : "evergreen.500"}
               sx={{
-                fontSize: isSMall ? "0.8rem" : "1rem",
+                fontSize: isSMall ? "sm" : "lg",
                 color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -3326,7 +3326,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "devops" ? "teal.500" : "evergreen.500"}
               sx={{
-                fontSize: isSMall ? "0.8rem" : "1rem",
+                fontSize: isSMall ? "sm" : "lg",
                 color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -3343,7 +3343,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "AI" ? "teal.500" : "evergreen.500"}
               sx={{
-                fontSize: isSMall ? "0.8rem" : "1rem",
+                fontSize: isSMall ? "sm" : "lg",
                 color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",
@@ -3359,7 +3359,7 @@ const TechnologySection: React.FC = () => {
               mt={"10"}
               bg={currentTab === "noCodeAutomation" ? "teal.500" : "evergreen.500"}
               sx={{
-                fontSize: isSMall ? "0.8rem" : "1rem",
+                fontSize: isSMall ? "sm" : "lg",
                 color: "#fff",
                 borderRadius: "30px",
                 padding: "0.5rem 1.8rem",

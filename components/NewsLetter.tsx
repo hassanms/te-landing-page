@@ -152,7 +152,7 @@ const NewsLetter = () => {
             width: "100%",
             padding: "2rem 1rem",
             borderRadius: "40px",
-            fontSize: "18px",
+            fontSize: "lg",
             color: "white",
             bg: "#66b2b2",
             opacity: "0.8",
@@ -177,7 +177,7 @@ const NewsLetter = () => {
         {(focusedField === "email" || errors.email) && errors.email && (
           <Text
             color="red.500"
-            fontSize="18px"
+            fontSize="sm"
             textAlign={"left"}
             mt={"-10px"}
             marginLeft={"10px"}>

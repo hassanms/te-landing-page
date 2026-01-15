@@ -95,7 +95,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       <FaWhatsapp
                         style={{ marginRight: "2px", color: "#D9D9D9" }}
                       />
-                      <Text color="lightGrey.400" fontSize="16px">
+                      <Text color="lightGrey.400" fontSize="lg">
                           +923345559140
                         </Text>
                       </HStack>
@@ -114,13 +114,13 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   </ListItem> */}
 
                   <ListItem role="listitem">
-                    <Text color="lightGrey.400" fontSize="16px">
+                    <Text color="lightGrey.400" fontSize="lg">
                       contact@techemulsion.com
                     </Text>
                   </ListItem>
 
                   <ListItem role="listitem">
-                    <Text color="lightGrey.400" fontSize="16px">
+                    <Text color="lightGrey.400" fontSize="lg">
                       3rd Floor, Afzal Towers, University Road, Peshawar.
                     </Text>
                   </ListItem>
@@ -166,7 +166,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     <ListItem
                       sx={{
                         color: "silver",
-                        fontSize: "16px",
+                        fontSize: "lg",
                         cursor: "pointer",
                         "&:hover": {
                           color: "white",
@@ -180,7 +180,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     <ListItem
                       sx={{
                         color: "silver",
-                        fontSize: "16px",
+                        fontSize: "lg",
                         cursor: "pointer",
                         "&:hover": {
                           color: "white",
@@ -194,7 +194,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     <ListItem
                       sx={{
                         color: "silver",
-                        fontSize: "16px",
+                        fontSize: "lg",
                         cursor: "pointer",
                         "&:hover": {
                           color: "white",
@@ -208,7 +208,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                     <ListItem
                       sx={{
                         color: "silver",
-                        fontSize: "16px",
+                        fontSize: "lg",
                         cursor: "pointer",
                         "&:hover": {
                           color: "white",

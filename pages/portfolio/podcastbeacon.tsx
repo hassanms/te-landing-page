@@ -146,7 +146,7 @@ const CaseStudyPodcastBeacon = () => {
               }}>
               <Text
                 color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
                 }
                 fontSize="3xl"
                 fontWeight={"500"}
@@ -157,7 +157,7 @@ const CaseStudyPodcastBeacon = () => {
               </Text>
               <Text
                 color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
                 }
                 fontSize="xl"
                 mt="4"

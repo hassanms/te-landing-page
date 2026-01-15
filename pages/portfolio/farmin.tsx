@@ -143,7 +143,7 @@ const CaseStudyFarmin = () => {
               }}>
               <Text
                 color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
                 }
                 fontSize="3xl"
                 fontWeight={"500"}
@@ -154,7 +154,7 @@ const CaseStudyFarmin = () => {
               </Text>
               <Text
                 color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
                 }
                 fontSize="xl"
                 mt="4"
@@ -486,7 +486,7 @@ const CaseStudyFarmin = () => {
                 fontSize="xl"
                 mb={10}
                 color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
                 }>
                 Let&apos;s discuss how we can help you achieve your business
                 goals.

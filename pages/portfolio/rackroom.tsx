@@ -147,7 +147,7 @@ const CaseStudyRackroom = () => {
                 color={
                   colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
                 }
-                fontSize="4xl"
+                fontSize="3xl"
                 fontWeight={"500"}
                 mt="4"
                 width={"100%"}
@@ -180,7 +180,7 @@ const CaseStudyRackroom = () => {
           {/* Case Study Content */}
           <Box mt={10} px="5">
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               w={["100%", null, "70%"]}
               fontWeight="bold"
               mb={10}
@@ -192,7 +192,7 @@ const CaseStudyRackroom = () => {
             </Text>
 
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               fontWeight="bold"
               mb={2}
               mt={10}

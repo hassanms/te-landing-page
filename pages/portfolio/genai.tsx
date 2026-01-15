@@ -117,7 +117,7 @@ const CaseStudyRagGenai = () => {
               color={
                 colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
               }
-              fontSize="4xl"
+              fontSize="3xl"
               fontWeight={"500"}
               mt="4"
               width={"100%"}

@@ -147,12 +147,12 @@ const CaseStudyBipcards = () => {
                 p: 5,
                 boxShadow: "md",
               }}>
-              <Text
-                color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-                }
-                fontSize="4xl"
-                fontWeight={"500"}
+            <Text
+              color={
+                colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+              }
+              fontSize="3xl"
+              fontWeight={"500"}
                 mt="4"
                 width={"100%"}
                 align={"center"}>
@@ -179,7 +179,7 @@ const CaseStudyBipcards = () => {
           {/* Case Study Content */}
           <Box mt={10} px="5">
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               w={["100%", null, "70%"]}
               fontWeight="bold"
               mb={10}
@@ -191,7 +191,7 @@ const CaseStudyBipcards = () => {
             </Text>
 
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               fontWeight="bold"
               mb={2}
               sx={{
@@ -220,7 +220,7 @@ const CaseStudyBipcards = () => {
             </Text>
 
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               fontWeight="bold"
               mb={2}
               sx={{
@@ -326,7 +326,7 @@ const CaseStudyBipcards = () => {
             </Text>
 
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               fontWeight="bold"
               mb={2}
               sx={{
@@ -583,7 +583,7 @@ const CaseStudyBipcards = () => {
               </Text>
             </Box>
             <Text
-              fontSize="4xl"
+              fontSize="3xl"
               fontWeight="bold"
               mb={2}
               mt={10}

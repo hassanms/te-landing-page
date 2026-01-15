@@ -59,7 +59,7 @@ import {
   HighlightsWhatWeDo,
 } from "components/highlights";
 
-import { FiFacebook, FiLinkedin, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { FiLinkedin, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
@@ -67,6 +67,7 @@ import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
+import { FaSquareUpwork } from "react-icons/fa6";
 import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
@@ -495,47 +496,47 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       {/* Duplicate logos for seamless loop */}
-                      <Image
-                        src="/assets/clients/Bubble.1.png"
-                        width={110}
-                        height={100}
-                        alt="Bubble logo"
-                        style={{
-                          filter: "invert(1) brightness(2) contrast(1.2)",
-                          objectFit: "contain",
-                          marginBottom: "8px",
-                        }}
-                      />
-                      <Image
-                        src="/assets/clients/Pensa.webp"
-                        width={100}
-                        height={100}
-                        alt="Pensa logo"
-                        style={{
-                          objectFit: "contain",
-                          marginBottom: "2px",
-                        }}
-                      />
-                      <Image
-                        src="/assets/clients/atarim-white.svg"
-                        width={100}
-                        height={100}
-                        alt="Atarim logo"
-                        style={{
-                          objectFit: "contain",
-                        }}
-                      />
-                      <Image
-                        src="/assets/clients/nearshore.png"
-                        width={140}
-                        height={100}
-                        alt="NearShore logo"
-                        style={{
-                          objectFit: "contain",
-                          marginTop: "13px",
-                        }}
-                      />
-                    </>
+                    <Image
+                      src="/assets/clients/Bubble.1.png"
+                      width={110}
+                      height={100}
+                      alt="Bubble logo"
+                      style={{
+                        filter: "invert(1) brightness(2) contrast(1.2)",
+                        objectFit: "contain",
+                        marginBottom: "8px",
+                      }}
+                    />
+                    <Image
+                      src="/assets/clients/Pensa.webp"
+                      width={100}
+                      height={100}
+                      alt="Pensa logo"
+                      style={{
+                        objectFit: "contain",
+                        marginBottom: "2px",
+                      }}
+                    />
+                    <Image
+                      src="/assets/clients/atarim-white.svg"
+                      width={100}
+                      height={100}
+                      alt="Atarim logo"
+                      style={{
+                        objectFit: "contain",
+                      }}
+                    />
+                    <Image
+                      src="/assets/clients/nearshore.png"
+                      width={140}
+                      height={100}
+                      alt="NearShore logo"
+                      style={{
+                        objectFit: "contain",
+                        marginTop: "13px",
+                      }}
+                    />
+                  </>
                   </Box>
                 </Box>
               </FallInPlace>
@@ -945,31 +946,10 @@ const AboutUsSection: React.FC = () => {
                   }}
                 />
               </Link>
-
               <Link
-                href="https://www.facebook.com/profile.php?id=100092936174663"
+                href="https://github.com/Tech-Emulsion"
                 isExternal
-                aria-label="Visit Tech Emulsion on Facebook">
-                <Icon
-                  as={FiFacebook}
-                  boxSize="10"
-                  color={useColorModeValue("gray.700", "gray.100")}
-                  sx={{
-                    padding: "10px",
-                    borderRadius: "20%",
-                    border: "1px solid",
-                    borderColor: "teal.500",
-                    ":hover": {
-                      bg: "teal.500",
-                      color: "white",
-                    },
-                  }}
-                />
-              </Link>
-              <Link
-                href="https://github.com/hassanms"
-                isExternal
-                aria-label="Visit Hassan's GitHub profile">
+                aria-label="Visit Tech Emulsion on GitHub">
                 <Icon
                   as={AiFillGithub}
                   boxSize="10"
@@ -992,6 +972,26 @@ const AboutUsSection: React.FC = () => {
                 aria-label="Visit Tech Emulsion on YouTube">
                 <Icon
                   as={AiFillYoutube}
+                  boxSize="10"
+                  color={useColorModeValue("gray.700", "gray.100")}
+                  sx={{
+                    padding: "10px",
+                    borderRadius: "20%",
+                    border: "1px solid",
+                    borderColor: "teal.500",
+                    ":hover": {
+                      bg: "teal.500",
+                      color: "white",
+                    },
+                  }}
+                />
+              </Link>
+              <Link
+                href="https://www.upwork.com"
+                isExternal
+                aria-label="Visit Tech Emulsion on Upwork">
+                <Icon
+                  as={FaSquareUpwork}
                   boxSize="10"
                   color={useColorModeValue("gray.700", "gray.100")}
                   sx={{

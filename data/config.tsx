@@ -6,6 +6,7 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
+import { FaSquareUpwork } from "react-icons/fa6";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";
 
@@ -81,12 +82,16 @@ const siteConfig = {
       //   label: <FaTwitter size="20" />,
       // },
       {
-        href: "https://github.com/hassanms",
+        href: "https://github.com/Tech-Emulsion",
         label: <FaGithub size="20" aria-label="GitHub" title="GitHub" />,
       },
       {
         href: "https://www.youtube.com/@TechEmulsion",
         label: <FaYoutube size="20" aria-label="YouTube" title="YouTube" />,
+      },
+      {
+        href: "https://www.upwork.com",
+        label: <FaSquareUpwork size="20" aria-label="Upwork" title="Upwork" />,
       },
     ],
   },

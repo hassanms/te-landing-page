@@ -92,9 +92,9 @@ export const Footer: React.FC<FooterProps> = (props) => {
                       target="_blank"
                       rel="noreferrer">
                       <HStack>
-                      <FaWhatsapp
+                        <FaWhatsapp
                         style={{ marginRight: "2px", color: "#D9D9D9" }}
-                      />
+                        />
                       <Text color="lightGrey.400" fontSize="lg">
                           +923345559140
                         </Text>

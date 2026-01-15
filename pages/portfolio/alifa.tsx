@@ -142,12 +142,12 @@ const CaseStudyAlifa = () => {
                 p: 5,
                 boxShadow: "md",
               }}>
-            <Text
-              color={
-                colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-              }
+              <Text
+                color={
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
+                }
               fontSize="3xl"
-              fontWeight={"500"}
+                fontWeight={"500"}
                 mt="4"
                 width={"100%"}
                 align={"center"}>

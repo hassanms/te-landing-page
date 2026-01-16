@@ -48,6 +48,10 @@ export default async function handler(
         preferred_location,
         linkedin_url,
         portfolio_url,
+        status,
+        admin_notes,
+        status_updated_at,
+        updated_by,
         created_at,
         jobs (
           id,
@@ -94,6 +98,10 @@ export default async function handler(
       preferredLocation: app.preferred_location,
       linkedin: app.linkedin_url,
       portfolio: app.portfolio_url,
+      status: app.status || "pending",
+      adminNotes: app.admin_notes,
+      statusUpdatedAt: app.status_updated_at,
+      updatedBy: app.updated_by,
       createdAt: app.created_at,
       job: app.jobs
         ? {

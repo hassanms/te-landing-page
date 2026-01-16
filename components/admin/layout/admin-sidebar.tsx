@@ -16,6 +16,7 @@ import {
   FiFileText,
   FiX,
   FiMenu,
+  FiBarChart2,
 } from "react-icons/fi";
 import { Logo } from "data/logo";
 import { useAdminLayout } from "./admin-layout";
@@ -42,6 +43,11 @@ const navItems: NavItem[] = [
     label: "Applications",
     icon: FiFileText,
     href: "/admin/applications",
+  },
+  {
+    label: "Analytics",
+    icon: FiBarChart2,
+    href: "/admin/analytics",
   },
 ];
 

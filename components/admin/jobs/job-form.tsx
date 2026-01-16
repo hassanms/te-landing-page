@@ -12,8 +12,13 @@ import {
   useColorModeValue,
   HStack,
 } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import axios from "axios";
+
+// Dynamically import ReactQuill to avoid SSR issues
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
 
 interface Job {
   id?: string;
@@ -48,7 +53,33 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const inputBg = useColorModeValue("gray.50", "gray.700");
+  const quillBg = useColorModeValue("white", "gray.800");
+  const quillTextColor = useColorModeValue("gray.800", "gray.200");
   const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
+
+  // ReactQuill modules configuration
+  const quillModules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      ["link"],
+      ["clean"],
+    ],
+  };
+
+  const quillFormats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+  ];
 
   useEffect(() => {
     if (job) {
@@ -86,7 +117,12 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
     if (!form.slug) newErrors.slug = "Slug is required";
     if (!form.department) newErrors.department = "Department is required";
     if (!form.location) newErrors.location = "Location is required";
-    if (!form.description) newErrors.description = "Description is required";
+    
+    // Validate description - check if it has actual content (not just empty HTML tags)
+    const descriptionText = form.description.replace(/<[^>]*>/g, "").trim();
+    if (!descriptionText) {
+      newErrors.description = "Description is required";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -215,13 +251,29 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
 
         <FormControl isRequired isInvalid={!!errors.description}>
           <FormLabel>Job Description</FormLabel>
-          <Textarea
-            value={form.description}
-            onChange={(e) => handleChange("description", e.target.value)}
-            bg={inputBg}
-            minH="120px"
-            placeholder="Describe the role, responsibilities, and what you're looking for..."
-          />
+          <Box
+            bg={quillBg}
+            borderRadius="md"
+            border="1px solid"
+            borderColor={useColorModeValue("gray.200", "gray.600")}
+            _focusWithin={{
+              borderColor: "teal.500",
+              boxShadow: "0 0 0 1px var(--chakra-colors-teal-500)",
+            }}
+          >
+            <ReactQuill
+              theme="snow"
+              value={form.description}
+              onChange={(value) => handleChange("description", value)}
+              modules={quillModules}
+              formats={quillFormats}
+              placeholder="Describe the role, responsibilities, and what you're looking for..."
+              style={{
+                backgroundColor: quillBg,
+                color: quillTextColor,
+              }}
+            />
+          </Box>
           <FormErrorMessage>{errors.description}</FormErrorMessage>
         </FormControl>
 

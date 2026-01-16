@@ -67,13 +67,16 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
       <ApplicationHeader job={job} />
 
       <Container maxW="container.xl" pb={{ base: 16, md: 24 }}>
-        <CareersBreadcrumb
-          items={[
-            { label: "Job listing", href: "/careers" },
-            { label: "Job details", href: `/careers/${job.slug || job.id}` },
-            { label: "Job application" },
-          ]}
-        />
+        <Box mb={4}>
+          <CareersBreadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Careers", href: "/careers" },
+              { label: "Job details", href: `/careers/${job.slug || job.id}` },
+              { label: "Job application" },
+            ]}
+          />
+        </Box>
         <Stack spacing={8}>
           <ApplicationForm job={job} />
         </Stack>

@@ -24,9 +24,14 @@ import {
   Spinner,
   Alert,
   AlertIcon,
+  Select,
+  Textarea,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 import { FiDownload, FiEye } from "react-icons/fi";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
@@ -53,6 +58,10 @@ interface Application {
   preferredLocation?: string | null;
   linkedin?: string | null;
   portfolio?: string | null;
+  status?: string;
+  adminNotes?: string | null;
+  statusUpdatedAt?: string | null;
+  updatedBy?: string | null;
   createdAt: string;
   job: {
     id: string;
@@ -96,10 +105,63 @@ const AdminApplicationsPage = () => {
     }
   };
 
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [editingStatus, setEditingStatus] = useState<string>("");
+  const [editingNotes, setEditingNotes] = useState<string>("");
+
   const handleViewDetails = (application: Application) => {
     setSelectedApplication(application);
+    setEditingStatus(application.status || "pending");
+    setEditingNotes(application.adminNotes || "");
     onOpen();
   };
+
+  const handleStatusUpdate = async () => {
+    if (!selectedApplication) return;
+
+    try {
+      const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
+      await axios.put(
+        `/api/admin/applications/${selectedApplication.id}/status`,
+        {
+          status: editingStatus,
+          adminNotes: editingNotes,
+          updatedBy: "Admin",
+        },
+        {
+          params: { secret: adminSecret },
+        }
+      );
+
+      toast.success("Application status updated successfully");
+      fetchApplications();
+      setSelectedApplication({
+        ...selectedApplication,
+        status: editingStatus,
+        adminNotes: editingNotes,
+      });
+    } catch (err: any) {
+      console.error("Error updating status:", err);
+      toast.error(err?.response?.data?.error || "Failed to update status");
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    const statusColors: Record<string, string> = {
+      pending: "gray",
+      reviewing: "blue",
+      shortlisted: "purple",
+      interviewed: "orange",
+      offered: "green",
+      rejected: "red",
+      withdrawn: "yellow",
+    };
+    return statusColors[status] || "gray";
+  };
+
+  const filteredApplications = statusFilter === "all"
+    ? applications
+    : applications.filter((app) => (app.status || "pending") === statusFilter);
 
   const handleDownloadResume = async (applicationId: string, resumeUrl: string, fileName: string) => {
     try {
@@ -150,9 +212,24 @@ const AdminApplicationsPage = () => {
 
       <Box>
         <VStack align="stretch" spacing={6}>
-          <Heading size="xl" mb={4}>
-            Job Applications
-          </Heading>
+          <HStack justify="space-between" align="center" mb={4}>
+            <Heading size="xl">Job Applications</Heading>
+            <Select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              maxW="200px"
+              bg={useColorModeValue("white", "gray.700")}
+            >
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="reviewing">Reviewing</option>
+              <option value="shortlisted">Shortlisted</option>
+              <option value="interviewed">Interviewed</option>
+              <option value="offered">Offered</option>
+              <option value="rejected">Rejected</option>
+              <option value="withdrawn">Withdrawn</option>
+            </Select>
+          </HStack>
 
           {error && (
             <Alert status="error">
@@ -187,12 +264,13 @@ const AdminApplicationsPage = () => {
                     <Th>Email</Th>
                     <Th>Phone</Th>
                     <Th>Job</Th>
+                    <Th>Status</Th>
                     <Th>Applied</Th>
                     <Th>Actions</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {applications.map((app) => (
+                  {filteredApplications.map((app) => (
                     <Tr key={app.id}>
                       <Td>
                         {app.firstName} {app.lastName}
@@ -207,6 +285,14 @@ const AdminApplicationsPage = () => {
                             N/A
                           </Text>
                         )}
+                      </Td>
+                      <Td>
+                        <Badge
+                          colorScheme={getStatusColor(app.status || "pending")}
+                          textTransform="capitalize"
+                        >
+                          {app.status || "pending"}
+                        </Badge>
                       </Td>
                       <Td>
                         <Text fontSize="sm" color={textColor}>
@@ -438,6 +524,59 @@ const AdminApplicationsPage = () => {
                   >
                     Download Resume
                   </Button>
+                </Box>
+
+                <Box>
+                  <Text fontWeight="bold" mb={4}>
+                    Status Management
+                  </Text>
+                  <VStack align="stretch" spacing={4}>
+                    <FormControl>
+                      <FormLabel>Application Status</FormLabel>
+                      <Select
+                        value={editingStatus}
+                        onChange={(e) => setEditingStatus(e.target.value)}
+                        bg={useColorModeValue("white", "gray.700")}
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="reviewing">Reviewing</option>
+                        <option value="shortlisted">Shortlisted</option>
+                        <option value="interviewed">Interviewed</option>
+                        <option value="offered">Offered</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="withdrawn">Withdrawn</option>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Admin Notes</FormLabel>
+                      <Textarea
+                        value={editingNotes}
+                        onChange={(e) => setEditingNotes(e.target.value)}
+                        placeholder="Add notes about this application..."
+                        bg={useColorModeValue("white", "gray.700")}
+                        rows={4}
+                      />
+                    </FormControl>
+
+                    {selectedApplication.statusUpdatedAt && (
+                      <Text fontSize="sm" color={textColor}>
+                        Last updated: {formatDate(selectedApplication.statusUpdatedAt)}
+                        {selectedApplication.updatedBy && ` by ${selectedApplication.updatedBy}`}
+                      </Text>
+                    )}
+
+                    <Button
+                      colorScheme="teal"
+                      onClick={handleStatusUpdate}
+                      isDisabled={
+                        editingStatus === (selectedApplication.status || "pending") &&
+                        editingNotes === (selectedApplication.adminNotes || "")
+                      }
+                    >
+                      Update Status
+                    </Button>
+                  </VStack>
                 </Box>
 
                 <Box>

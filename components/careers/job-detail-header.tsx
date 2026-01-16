@@ -19,6 +19,18 @@ interface JobDetailHeaderProps {
 
 export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
   const subTextColor = useColorModeValue("gray.600", "lightGrey.400");
+  
+  // Get the current job URL
+  const jobUrl = typeof window !== "undefined" 
+    ? window.location.href 
+    : `https://techemulsion.com/careers/${job.slug || job.id}`;
+  
+  // Create email share link with subject and body
+  const emailSubject = encodeURIComponent(`Job opportunity: ${job.title} at ${job.company}`);
+  const emailBody = encodeURIComponent(
+    `Check out this job opportunity:\n\n${job.title}\n${job.company}\n\nView details: ${jobUrl}`
+  );
+  const emailShareLink = `mailto:?subject=${emailSubject}&body=${emailBody}`;
 
   return (
     <Box
@@ -59,9 +71,7 @@ export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
                 colorScheme="teal"
                 size="sm"
                 as="a"
-                href={`mailto:?subject=${encodeURIComponent(
-                  `Job opportunity: ${job.title} at ${job.company}`,
-                )}`}
+                href={emailShareLink}
               >
                 Share job via email
               </Button>
@@ -75,7 +85,7 @@ export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
               </Button>
             </Stack>
 
-            <SocialShareButtons title={job.title} />
+            <SocialShareButtons title={job.title} url={jobUrl} />
           </Stack>
         </Stack>
       </Container>

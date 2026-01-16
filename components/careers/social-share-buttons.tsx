@@ -16,9 +16,11 @@ export const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   url,
   title,
 }) => {
-  const shareUrl =
-    url ||
-    (typeof window !== "undefined" ? window.location.href : "https://techemulsion.com/careers");
+  // Use provided URL or fallback to current page URL
+  const shareUrl = url || (typeof window !== "undefined" 
+    ? window.location.href 
+    : "https://techemulsion.com/careers");
+  
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
   const bg = useColorModeValue("white", "gray.800");
@@ -50,7 +52,7 @@ export const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
         bg={bg}
         onClick={() =>
           openShare(
-            `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+            `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}%20-%20${encodedUrl}`,
           )
         }
       />

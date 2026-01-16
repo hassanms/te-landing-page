@@ -9,6 +9,11 @@ interface ApplicationHeaderProps {
 
 export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => {
   const subTextColor = useColorModeValue("gray.600", "lightGrey.400");
+  
+  // Get the job detail page URL (not the apply page)
+  const jobUrl = typeof window !== "undefined"
+    ? window.location.origin + `/careers/${job.slug || job.id}`
+    : `https://techemulsion.com/careers/${job.slug || job.id}`;
 
   return (
     <Box
@@ -47,7 +52,7 @@ export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => 
             <Text fontSize="sm" color={subTextColor}>
               Share this job with your network
             </Text>
-            <SocialShareButtons title={job.title} />
+            <SocialShareButtons title={job.title} url={jobUrl} />
           </Stack>
         </Stack>
       </Container>

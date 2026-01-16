@@ -1,6 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { supabaseAdmin } from "lib/supabase/server";
 
+// Utility function to strip HTML tags and get plain text
+function stripHtmlTags(html: string): string {
+  if (!html) return "";
+  // Remove HTML tags
+  const text = html.replace(/<[^>]*>/g, "");
+  // Decode HTML entities
+  const decoded = text
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+  // Clean up multiple spaces and trim
+  return decoded.replace(/\s+/g, " ").trim();
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -33,28 +50,36 @@ export default async function handler(
     }
 
     // Transform data to match existing Job interface
-    const jobs = data?.map((job) => ({
-      id: job.id,
-      slug: job.slug,
-      title: job.title,
-      company: "Tech Emulsion",
-      employmentType: job.employment_type,
-      department: job.department,
-      locations: [job.location],
-      region: "APAC",
-      country: "Pakistan",
-      industry: "Technology",
-      shortDescription: job.description.substring(0, 150) + "...",
-      description: job.description,
-      requirements: job.requirements || [],
-      responsibilities: [], // Can be added later
-      experienceLevel: "Mid-level",
-      skills: [],
-      benefits: [],
-      postedDate: job.created_at,
-      applicationDeadline: null,
-      status: job.status,
-    })) || [];
+    const jobs = data?.map((job) => {
+      // Strip HTML from description to create plain text shortDescription
+      const plainTextDescription = stripHtmlTags(job.description);
+      const shortDesc = plainTextDescription.length > 150
+        ? plainTextDescription.substring(0, 150) + "..."
+        : plainTextDescription;
+
+      return {
+        id: job.id,
+        slug: job.slug,
+        title: job.title,
+        company: "Tech Emulsion",
+        employmentType: job.employment_type,
+        department: job.department,
+        locations: [job.location],
+        region: "APAC",
+        country: "Pakistan",
+        industry: "Technology",
+        shortDescription: shortDesc,
+        description: job.description, // Keep full HTML for detail page
+        requirements: job.requirements || [],
+        responsibilities: [], // Can be added later
+        experienceLevel: "Mid-level",
+        skills: [],
+        benefits: [],
+        postedDate: job.created_at,
+        applicationDeadline: null,
+        status: job.status,
+      };
+    }) || [];
 
     return res.status(200).json({ jobs });
   } catch (error) {

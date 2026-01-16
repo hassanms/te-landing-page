@@ -67,7 +67,8 @@ const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
         <Box mb={4}>
           <CareersBreadcrumb
             items={[
-              { label: "Job listing", href: "/careers" },
+              { label: "Home", href: "/" },
+              { label: "Careers", href: "/careers" },
               { label: "Job details" },
             ]}
           />

@@ -14,7 +14,47 @@ export const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
         <Heading as="h2" size="md" mb={4}>
           Job Description
         </Heading>
-        <Text mb={4}>{job.description}</Text>
+        <Box
+          mb={4}
+          dangerouslySetInnerHTML={{ __html: job.description }}
+          sx={{
+            "& p": {
+              mb: 3,
+              lineHeight: "1.7",
+            },
+            "& h1, & h2, & h3, & h4": {
+              fontWeight: "bold",
+              mb: 2,
+              mt: 4,
+            },
+            "& h1": { fontSize: "2xl" },
+            "& h2": { fontSize: "xl" },
+            "& h3": { fontSize: "lg" },
+            "& ul, & ol": {
+              ml: 6,
+              mb: 3,
+            },
+            "& li": {
+              mb: 1,
+            },
+            "& strong": {
+              fontWeight: "bold",
+            },
+            "& em": {
+              fontStyle: "italic",
+            },
+            "& u": {
+              textDecoration: "underline",
+            },
+            "& a": {
+              color: "teal.500",
+              textDecoration: "underline",
+              _hover: {
+                color: "teal.600",
+              },
+            },
+          }}
+        />
         {job.responsibilities.length > 0 && (
           <List spacing={2}>
             {job.responsibilities.map((item) => (

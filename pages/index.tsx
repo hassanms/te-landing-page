@@ -67,7 +67,7 @@ import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
-import { FaSquareUpwork } from "react-icons/fa6";
+import { FaSquare } from "react-icons/fa6";
 import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
@@ -987,11 +987,11 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
               <Link
-                href="https://www.upwork.com"
+                href="https://www.upwork.com/agencies/techemulsion/"
                 isExternal
                 aria-label="Visit Tech Emulsion on Upwork">
                 <Icon
-                  as={FaSquareUpwork}
+                  as={FaSquare}
                   boxSize="10"
                   color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
@@ -3519,7 +3519,7 @@ const BlogSection: React.FC = () => {
                   mb="4"
                   position="relative"
                   w="100%"
-                  aspectRatio="1"
+                  aspectRatio="16/9"
                   overflow="hidden"
                   bg="charcoal.700"
                   transition="all 0.3s">

@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Button, Heading, List, ListItem, Stack, Text } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import NextLink from "next/link";

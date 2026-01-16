@@ -1,6 +1,7 @@
+import React from "react";
 import { SimpleGrid, Stack, Heading, Text, Box } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
-import { JobCard } from "./job-card";
+import JobCard from "./job-card";
 
 interface JobListingsGridProps {
   jobs: Job[];

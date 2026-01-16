@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -7,7 +8,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
 
 interface AutofillSectionProps {
   onResumeUpload: (file: File | null) => void;

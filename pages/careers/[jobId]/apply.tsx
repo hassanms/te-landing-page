@@ -1,18 +1,46 @@
-import { Box, Container, Flex, Link, Stack, Text } from "@chakra-ui/react";
-import { GetStaticPaths, GetStaticProps } from "next";
-import jobs from "data/jobs/jobs";
+import React from "react";
+import { Box, Container, Flex, Link, Stack, Text, Spinner } from "@chakra-ui/react";
+import { GetServerSideProps } from "next";
 import { Job } from "data/jobs/types";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ApplicationHeader } from "components/careers/application-header";
 import { ApplicationForm } from "components/careers/application-form";
 import CareersBreadcrumb from "components/layout/careers-breadcrumb";
 import NextLink from "next/link";
+import axios from "axios";
 
 interface ApplyPageProps {
-  job: Job;
+  job: Job | null;
+  error?: string;
 }
 
-const ApplyPage: React.FC<ApplyPageProps> = ({ job }) => {
+const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
+  if (error) {
+    return (
+      <Box minH="100vh" py={20}>
+        <Container maxW="container.xl" textAlign="center">
+          <Text color="red.500" fontSize="lg" mb={4}>
+            {error}
+          </Text>
+          <Link as={NextLink} href="/careers" color="teal.600" fontWeight="medium">
+            View all jobs
+          </Link>
+        </Container>
+      </Box>
+    );
+  }
+
+  if (!job) {
+    return (
+      <Box minH="100vh" py={20}>
+        <Container maxW="container.xl" textAlign="center">
+          <Spinner size="xl" />
+          <Text mt={4}>Loading job details...</Text>
+        </Container>
+      </Box>
+    );
+  }
+
   return (
     <Box>
       <EnhancedSEO
@@ -77,31 +105,47 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = jobs.map((job) => ({
-    params: { jobId: job.slug || job.id },
-  }));
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps<ApplyPageProps> = async (
+export const getServerSideProps: GetServerSideProps<ApplyPageProps> = async (
   context,
 ) => {
   const jobId = context.params?.jobId as string;
-  const job =
-    jobs.find((j) => j.slug === jobId) ||
-    jobs.find((j) => j.id === jobId);
 
-  if (!job) {
-    return { notFound: true };
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
+      (context.req.headers.host 
+        ? `http${context.req.headers.host.includes('localhost') ? '' : 's'}://${context.req.headers.host}`
+        : 'http://localhost:3000');
+    
+    const response = await axios.get(`${baseUrl}/api/jobs/${jobId}`);
+    const job = response.data;
+
+    if (!job) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        job,
+      },
+    };
+  } catch (error: any) {
+    console.error("Error fetching job:", error);
+    
+    if (error.response?.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        job: null,
+        error: "Failed to load job details. Please try again later.",
+      },
+    };
   }
-
-  return {
-    props: {
-      job,
-    },
-  };
 };
 
 export default ApplyPage;

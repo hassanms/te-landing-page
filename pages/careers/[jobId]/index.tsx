@@ -1,19 +1,47 @@
-import { Box, Button, Container, Flex, Stack } from "@chakra-ui/react";
+import React from "react";
+import { Box, Button, Container, Flex, Stack, Spinner, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
-import jobs from "data/jobs/jobs";
 import { Job } from "data/jobs/types";
 import { JobDetailHeader } from "components/careers/job-detail-header";
 import { JobDescription } from "components/careers/job-description";
 import { JobInformationSidebar } from "components/careers/job-information-sidebar";
 import CareersBreadcrumb from "components/layout/careers-breadcrumb";
+import axios from "axios";
 
 interface JobDetailPageProps {
-  job: Job;
+  job: Job | null;
+  error?: string;
 }
 
-const JobDetailPage: React.FC<JobDetailPageProps> = ({ job }) => {
+const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
+  if (error) {
+    return (
+      <Box minH="100vh" py={20}>
+        <Container maxW="container.xl" textAlign="center">
+          <Text color="red.500" fontSize="lg" mb={4}>
+            {error}
+          </Text>
+          <Button as={NextLink} href="/careers" colorScheme="teal">
+            View all jobs
+          </Button>
+        </Container>
+      </Box>
+    );
+  }
+
+  if (!job) {
+    return (
+      <Box minH="100vh" py={20}>
+        <Container maxW="container.xl" textAlign="center">
+          <Spinner size="xl" />
+          <Text mt={4}>Loading job details...</Text>
+        </Container>
+      </Box>
+    );
+  }
+
   return (
     <Box>
       <EnhancedSEO
@@ -65,31 +93,47 @@ const JobDetailPage: React.FC<JobDetailPageProps> = ({ job }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = jobs.map((job) => ({
-    params: { jobId: job.slug || job.id },
-  }));
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps<JobDetailPageProps> = async (
+export const getServerSideProps: GetServerSideProps<JobDetailPageProps> = async (
   context,
 ) => {
   const jobId = context.params?.jobId as string;
-  const job =
-    jobs.find((j) => j.slug === jobId) ||
-    jobs.find((j) => j.id === jobId);
 
-  if (!job) {
-    return { notFound: true };
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
+      (context.req.headers.host 
+        ? `http${context.req.headers.host.includes('localhost') ? '' : 's'}://${context.req.headers.host}`
+        : 'http://localhost:3000');
+    
+    const response = await axios.get(`${baseUrl}/api/jobs/${jobId}`);
+    const job = response.data;
+
+    if (!job) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        job,
+      },
+    };
+  } catch (error: any) {
+    console.error("Error fetching job:", error);
+    
+    if (error.response?.status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        job: null,
+        error: "Failed to load job details. Please try again later.",
+      },
+    };
   }
-
-  return {
-    props: {
-      job,
-    },
-  };
 };
 
 export default JobDetailPage;

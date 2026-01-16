@@ -12,12 +12,15 @@ import {
   Stack,
   Link,
   Divider,
+  ButtonGroup,
   useColorMode,
   useColorModeValue,
   Icon,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
+import { FaChevronRight } from "react-icons/fa";
+import { ButtonLink } from "components/button-link/button-link";
 
 const BlogPost: NextPage = () => {
   const { colorMode } = useColorMode();
@@ -94,8 +97,89 @@ const BlogPost: NextPage = () => {
       </Head>
 
       <Container maxW="container.xl" py="10">
+        {/* Header Section with Title and Breadcrumb */}
+        {/* Breadcrumb Navigation - Top */}
+        <Box px="15" mt={10} mb="4">
+          <ButtonGroup
+            style={{
+              backgroundColor: " none",
+              fontSize: "1rem",
+              color: "muted",
+              display: "flex",
+              alignItems: "center",
+            }}>
+            <ButtonLink
+              href="/"
+              size="lg"
+              sx={{
+                bg: "none",
+                color: "muted",
+                padding: "0",
+                "&:hover": {
+                  bg: "none",
+                },
+              }}>
+              Home
+            </ButtonLink>
+            {/* @ts-ignore - react-icons type compatibility */}
+            <FaChevronRight size={15} />
+            <ButtonLink
+              href="/blog"
+              size="lg"
+              sx={{
+                bg: "none",
+                color: "muted",
+                padding: "0",
+                "&:hover": {
+                  bg: "none",
+                },
+              }}>
+              Insights
+            </ButtonLink>
+            {/* @ts-ignore - react-icons type compatibility */}
+            <FaChevronRight size={15} />
+            <Text
+              as="span"
+              ml="2"
+              sx={{
+                color: colorMode === "light" ? "#004c4c !important" : "white",
+              }}>
+              Business Strategy
+            </Text>
+          </ButtonGroup>
+        </Box>
+
+        {/* Title - Below Breadcrumb */}
+        <Box px="15" mb="8">
+          <Heading as="h1" size="3xl" color={titleColor} fontWeight="normal" lineHeight="1.2" mb="4">
+            Beyond Vibe Coding: The New Moats for Software Agencies in 2026
+          </Heading>
+        </Box>
+
+        {/* Author Info with Vertical Line */}
+        <Box
+          position="relative"
+          pl="4"
+          mb="8"
+          borderLeft="4px solid"
+          borderColor="teal.500"
+          maxW={{ base: "100%", lg: "800px" }}>
+          <VStack align="flex-start" spacing="1">
+            <Text fontSize="sm" fontWeight="semibold" color={titleColor}>
+              Written by:
+            </Text>
+            <Text fontSize="sm" color={textColor}>
+              Hassan Sid
+            </Text>
+            <Text fontSize="sm" color={textColor}>
+              January 6, 2026
+            </Text>
+          </VStack>
+        </Box>
+
+        {/* Two Column Layout: Table of Contents (Left) and Content (Right) */}
         <Stack direction={{ base: "column", lg: "row" }} spacing="8" align="flex-start">
-          {/* Left Sidebar - Table of Contents */}
+          {/* Left Sidebar - Table of Contents (Sticky) */}
           <Box
             display={{ base: "none", lg: "block" }}
             w={{ base: "100%", lg: "300px" }}
@@ -182,42 +266,9 @@ const BlogPost: NextPage = () => {
             </Box>
           </Box>
 
-          {/* Main Content */}
+          {/* Right Column - Blog Content */}
           <Box flex="1" maxW={{ base: "100%", lg: "800px" }}>
             <VStack align="stretch" spacing="6">
-              {/* Category Tag */}
-              <Text
-                fontSize="sm"
-                fontWeight="semibold"
-                color="teal.500"
-                textTransform="uppercase"
-                letterSpacing="wide">
-                Software Development
-              </Text>
-
-              {/* Title */}
-              <Heading
-                as="h1"
-                size="2xl"
-                color={titleColor}
-                fontWeight="bold"
-                lineHeight="1.2">
-                Beyond Vibe Coding: The New Moats for Software Agencies in 2026
-              </Heading>
-
-              {/* Author Info */}
-              <HStack spacing="4" mb="4">
-                <Text fontSize="sm" color={textColor}>
-                  By Hassan Sid (CEO of Tech Emulsion)
-                </Text>
-                <Text fontSize="sm" color={textColor}>
-                  •
-                </Text>
-                <Text fontSize="sm" color={textColor}>
-                  January 6, 2026
-                </Text>
-              </HStack>
-
               {/* Featured Image */}
               <Box
                 w="100%"
@@ -234,11 +285,15 @@ const BlogPost: NextPage = () => {
                 }}
               />
 
-              {/* Introduction */}
-              <Box id="introduction" sx={{ scrollMarginTop: "100px" }}>
-                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+              {/* Introduction Paragraph - After Image */}
+              <Box mb="8">
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="6">
                   AI is changing software development in a way that feels both exciting and threatening, especially if you run a services business. Every week there is a new tool that turns vague instructions into working code, and it is easy to jump to the conclusion that software agencies are heading toward the same fate as many commodity industries, squeezed margins, faster delivery expectations, and clients asking, "Why does this cost so much when a tool can generate it?"
                 </Text>
+              </Box>
+
+              {/* Introduction Content */}
+              <Box id="introduction" sx={{ scrollMarginTop: "100px" }}>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
                   But the more accurate truth is simpler. AI is not killing agencies. It is killing the parts of agency work that were already becoming commodities. Building generic web apps, shipping standard CRUD dashboards, and selling hours as development capacity will keep getting cheaper and more crowded. If your business depends on being the team that can code, you will feel pressure from both directions, clients expecting lower pricing and faster timelines, and competitors delivering acceptable work using powerful tools.
                 </Text>
@@ -249,7 +304,7 @@ const BlogPost: NextPage = () => {
 
               {/* Section: The Real Shift */}
               <Box id="the-shift" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   The Real Shift
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
@@ -259,20 +314,18 @@ const BlogPost: NextPage = () => {
 
               {/* Section: The Five Pivots */}
               <Box id="five-pivots" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   The Five Pivots
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
                   That is what this series is about. It is a practical map for how a software services agency can pivot into work that stays valuable, even as AI makes building faster and cheaper. The five pivots are not abstract trends. They are real service lines that are already working in the market, and each one becomes more valuable as AI capability improves.
                 </Text>
-                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  First, we look at AI Systems Engineering, which is the discipline of building controlled and production ready AI systems that run real workflows, not toy AI apps. Then we explore Vertical AI Solutions, where agencies win by specializing in one industry and compounding domain expertise into repeatable deployments. Third is Automation First Consulting, a shift from shipping features to redesigning operations around measurable outcomes. Fourth is AI Ops and Ownership, the layer that keeps AI reliable in production through monitoring, evaluation, governance, and continuous improvement. Finally, we cover Productized Internal Tools, where agencies escape custom project chaos by selling repeatable capability systems that integrate deeply into how a business runs.
-                </Text>
+                
               </Box>
 
               {/* Section: AI Systems Engineering */}
               <Box id="ai-systems-engineering" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   AI Systems Engineering
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
@@ -282,7 +335,7 @@ const BlogPost: NextPage = () => {
 
               {/* Section: Vertical AI Solutions */}
               <Box id="vertical-ai-solutions" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   Vertical AI Solutions
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
@@ -292,7 +345,7 @@ const BlogPost: NextPage = () => {
 
               {/* Section: Automation First Consulting */}
               <Box id="automation-first" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   Automation First Consulting
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
@@ -302,7 +355,7 @@ const BlogPost: NextPage = () => {
 
               {/* Section: AI Ops and Ownership */}
               <Box id="ai-ops" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   AI Ops and Ownership
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
@@ -312,7 +365,7 @@ const BlogPost: NextPage = () => {
 
               {/* Section: Productized Internal Tools */}
               <Box id="productized-tools" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   Productized Internal Tools
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
@@ -322,7 +375,7 @@ const BlogPost: NextPage = () => {
 
               {/* Section: Conclusion */}
               <Box id="conclusion" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="xl" color={titleColor} mb="4" mt="8">
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
                   Conclusion
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="8">
@@ -366,8 +419,8 @@ const BlogPost: NextPage = () => {
                   </NextLink>
                 </VStack>
               </Box>
-            </VStack>
-          </Box>
+          </VStack>
+        </Box>
         </Stack>
       </Container>
     </Box>

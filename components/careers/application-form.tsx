@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -14,7 +15,6 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Job } from "data/jobs/types";
@@ -156,7 +156,8 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
             firstName: form.firstName,
             lastName: form.lastName,
             email: form.email,
-            phone: `${form.countryCode} ${form.phone}`,
+            countryCode: form.countryCode,
+            phone: form.phone,
             yearOfGraduation: form.yearOfGraduation,
             gender: form.gender,
             experienceYears: form.experienceYears,
@@ -201,10 +202,11 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           setResumeFile(null);
           setErrors({});
         } catch (error: any) {
-          toast.error(
+          const errorMessage = 
+            error?.response?.data?.error || 
             error?.response?.data?.message ||
-              "Failed to submit application. Please try again.",
-          );
+            "Failed to submit application. Please try again.";
+          toast.error(errorMessage);
         } finally {
           setSubmitting(false);
         }
@@ -246,13 +248,13 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
-      <AutofillSection
+      {/* <AutofillSection
         onResumeUpload={(file) => {
           setResumeFile(file);
           setResumeError("");
         }}
         resumeFile={resumeFile}
-      />
+      /> */}
 
       <Flex justify="space-between" align="center" mb={4}>
         <Heading as="h2" fontSize="xl" fontWeight="semibold" color="teal.600">
@@ -266,7 +268,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
       <Stack spacing={4}>
         <Flex direction={{ base: "column", md: "row" }} gap={4}>
           <FormControl isRequired isInvalid={!!errors.firstName}>
-            <FormLabel>First Name*</FormLabel>
+            <FormLabel>First Name</FormLabel>
             <Input
               value={form.firstName}
               onChange={(e) => handleChange("firstName", e.target.value)}
@@ -276,7 +278,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
             <FormErrorMessage>{errors.firstName}</FormErrorMessage>
           </FormControl>
           <FormControl isRequired isInvalid={!!errors.lastName}>
-            <FormLabel>Last Name*</FormLabel>
+            <FormLabel>Last Name</FormLabel>
             <Input
               value={form.lastName}
               onChange={(e) => handleChange("lastName", e.target.value)}
@@ -352,7 +354,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
         <Flex direction={{ base: "column", md: "row" }} gap={4}>
           <FormControl isRequired isInvalid={!!errors.experienceYears}>
-            <FormLabel>Experience In Years*</FormLabel>
+            <FormLabel>Experience In Years</FormLabel>
             <Select
               placeholder="-None-"
               value={form.experienceYears}
@@ -384,7 +386,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
         <Flex direction={{ base: "column", md: "row" }} gap={4}>
           <FormControl isRequired isInvalid={!!errors.currentCTC}>
-            <FormLabel>Current CTC (In Lakhs Per Annum)*</FormLabel>
+            <FormLabel>Current Salary</FormLabel>
             <Select
               placeholder="-None-"
               value={form.currentCTC}
@@ -400,7 +402,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
             <FormErrorMessage>{errors.currentCTC}</FormErrorMessage>
           </FormControl>
           <FormControl isRequired isInvalid={!!errors.expectedCTC}>
-            <FormLabel>Expected CTC (In Lakhs Per Annum)*</FormLabel>
+            <FormLabel>Expected Salary</FormLabel>
             <Select
               placeholder="-None-"
               value={form.expectedCTC}
@@ -419,7 +421,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
         <Flex direction={{ base: "column", md: "row" }} gap={4}>
           <FormControl isRequired isInvalid={!!errors.noticePeriod}>
-            <FormLabel>Notice Period*</FormLabel>
+            <FormLabel>Notice Period</FormLabel>
             <Select
               placeholder="-None-"
               value={form.noticePeriod}
@@ -448,7 +450,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
         <Flex direction={{ base: "column", md: "row" }} gap={4}>
           <FormControl isRequired isInvalid={!!errors.source}>
-            <FormLabel>How did you come across this vacancy?*</FormLabel>
+            <FormLabel>How did you come across this vacancy?</FormLabel>
             <Select
               placeholder="-None-"
               value={form.source}
@@ -478,7 +480,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
             <FormErrorMessage>{errors.currentLocation}</FormErrorMessage>
           </FormControl>
           <FormControl isRequired isInvalid={!!errors.preferredLocation}>
-            <FormLabel>Preferred Location*</FormLabel>
+            <FormLabel>Preferred Location</FormLabel>
             <Input
               value={form.preferredLocation}
               onChange={(e) =>

@@ -16,11 +16,14 @@ import {
   Button,
   Divider,
   SimpleGrid,
+  ButtonGroup,
   useColorMode,
   useColorModeValue,
   Icon,
 } from "@chakra-ui/react";
 import { FiArrowUpRight } from "react-icons/fi";
+import { FaChevronRight } from "react-icons/fa";
+import { ButtonLink } from "components/button-link/button-link";
 
 // Filter categories
 const filterCategories = [
@@ -162,6 +165,41 @@ const Blog: NextPage = ({ posts }: any) => {
       </Head>
 
       <Container maxW="container.xl" py="10">
+        {/* Breadcrumb Navigation - Top */}
+        <Box mb="4">
+          <ButtonGroup
+            style={{
+              backgroundColor: " none",
+              fontSize: "1rem",
+              color: "muted",
+              display: "flex",
+              alignItems: "center",
+            }}>
+            <ButtonLink
+              href="/"
+              size="lg"
+              sx={{
+                bg: "none",
+                color: "muted",
+                padding: "0",
+                "&:hover": {
+                  bg: "none",
+                },
+              }}>
+              Home
+            </ButtonLink>
+            <FaChevronRight size={15} />
+            <Text
+              as="span"
+              ml="2"
+              sx={{
+                color: colorMode === "light" ? "#004c4c !important" : "white",
+              }}>
+              Insights
+            </Text>
+          </ButtonGroup>
+        </Box>
+
         {/* Main Heading */}
         <Box mb="8">
           <Heading
@@ -185,7 +223,7 @@ const Blog: NextPage = ({ posts }: any) => {
               {/* Featured Image */}
               <Box
                 flex="1"
-                aspectRatio="1"
+                aspectRatio="16/9"
                 maxW={{ base: "100%", lg: "600px" }}
                 overflow="hidden"
                 bg="charcoal.800"
@@ -355,7 +393,7 @@ function PostCard({ post }: any) {
           mb="4"
           position="relative"
           w="100%"
-          aspectRatio="1"
+          aspectRatio="16/9"
           overflow="hidden"
           bg="charcoal.700"
           transition="all 0.3s">

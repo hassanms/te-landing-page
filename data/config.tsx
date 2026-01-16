@@ -6,7 +6,7 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
-import { FaSquareUpwork } from "react-icons/fa6";
+import { FaSquare } from "react-icons/fa6";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";
 
@@ -90,8 +90,8 @@ const siteConfig = {
         label: <FaYoutube size="20" aria-label="YouTube" title="YouTube" />,
       },
       {
-        href: "https://www.upwork.com",
-        label: <FaSquareUpwork size="20" aria-label="Upwork" title="Upwork" />,
+        href: "https://www.upwork.com/agencies/techemulsion/",
+        label: <FaSquare size="20" aria-label="Upwork" title="Upwork" />,
       },
     ],
   },

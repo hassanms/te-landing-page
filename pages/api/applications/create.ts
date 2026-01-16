@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import nodemailer from "nodemailer";
+import { supabaseAdmin } from "lib/supabase/server";
 
 export const config = {
   api: {
@@ -9,24 +9,33 @@ export const config = {
   },
 };
 
-const buildTransporter = () => {
-  const port = Number(process.env.SMTP_PORT);
-
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port,
-    secure: port === 465,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-    logger: true,
-    debug: true,
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
-};
+interface ApplicationData {
+  jobId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  countryCode?: string;
+  phone: string;
+  coverLetter?: string;
+  cvFileName: string;
+  cvFileType: string;
+  cvData: string; // Base64 encoded file
+  // Additional fields from form (stored but not required)
+  role?: string;
+  yearOfGraduation?: string;
+  gender?: string;
+  experienceYears?: string;
+  currentEmployer?: string;
+  currentCTC?: string;
+  expectedCTC?: string;
+  noticePeriod?: string;
+  skills?: string;
+  source?: string;
+  currentLocation?: string;
+  preferredLocation?: string;
+  linkedin?: string;
+  portfolio?: string;
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -34,113 +43,128 @@ export default async function handler(
 ) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).end("Method Not Allowed");
+    return res.status(405).json({ error: "Method not allowed" });
   }
-
-  const {
-    jobId,
-    role,
-    firstName,
-    lastName,
-    email,
-    phone,
-    yearOfGraduation,
-    gender,
-    experienceYears,
-    currentEmployer,
-    currentCTC,
-    expectedCTC,
-    noticePeriod,
-    skills,
-    source,
-    currentLocation,
-    preferredLocation,
-    linkedin,
-    portfolio,
-    coverLetter,
-    cvFileName,
-    cvFileType,
-    cvData,
-  } = req.body;
-
-  if (
-    !role ||
-    !firstName ||
-    !lastName ||
-    !email ||
-    !phone ||
-    !yearOfGraduation ||
-    !gender ||
-    !experienceYears ||
-    !currentEmployer ||
-    !currentCTC ||
-    !expectedCTC ||
-    !noticePeriod ||
-    !skills ||
-    !source ||
-    !currentLocation ||
-    !preferredLocation ||
-    !cvData
-  ) {
-    return res.status(422).json({
-      message: "Invalid input. Please fill in all required fields.",
-    });
-  }
-
-  const base64Content = (cvData as string).split(",").pop();
-
-  if (!base64Content) {
-    return res.status(422).json({
-      message: "CV file is not valid. Please try again.",
-    });
-  }
-
-  const transporter = buildTransporter();
-
-  const mailOptions = {
-    from: process.env.SMTP_FROM,
-    to: process.env.SMTP_TO,
-    subject: `Career application: ${role} - ${firstName} ${lastName}`,
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 720px; margin: 20px auto; padding: 20px; border: 1px solid #f0f0f0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-        <h2 style="color: #004c4c; margin-bottom: 16px;">New Career Application</h2>
-        <p><strong>Role:</strong> ${role}</p>
-        ${jobId ? `<p><strong>Job ID:</strong> ${jobId}</p>` : ""}
-        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Year of Graduation:</strong> ${yearOfGraduation}</p>
-        <p><strong>Gender:</strong> ${gender}</p>
-        <p><strong>Experience in Years:</strong> ${experienceYears}</p>
-        <p><strong>Current Employer:</strong> ${currentEmployer}</p>
-        <p><strong>Current CTC:</strong> ${currentCTC}</p>
-        <p><strong>Expected CTC:</strong> ${expectedCTC}</p>
-        <p><strong>Notice Period:</strong> ${noticePeriod}</p>
-        <p><strong>Skill Set:</strong> ${skills}</p>
-        <p><strong>How did you come across this vacancy?:</strong> ${source}</p>
-        <p><strong>Current Location:</strong> ${currentLocation}</p>
-        <p><strong>Preferred Location:</strong> ${preferredLocation}</p>
-        ${linkedin ? `<p><strong>LinkedIn:</strong> ${linkedin}</p>` : ""}
-        ${portfolio ? `<p><strong>Portfolio / GitHub:</strong> ${portfolio}</p>` : ""}
-        ${coverLetter ? `<p><strong>Cover Letter / Message:</strong><br/>${coverLetter}</p>` : ""}
-        <p style="margin-top: 18px;">CV is attached to this email.</p>
-      </div>
-    `,
-    attachments: [
-      {
-        filename: cvFileName || "candidate-cv",
-        content: Buffer.from(base64Content, "base64"),
-        contentType: cvFileType || undefined,
-      },
-    ],
-  };
 
   try {
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ message: "Application sent successfully" });
+    const {
+      jobId,
+      firstName,
+      lastName,
+      email,
+      countryCode,
+      phone,
+      coverLetter,
+      cvFileName,
+      cvFileType,
+      cvData,
+      yearOfGraduation,
+      gender,
+      experienceYears,
+      currentEmployer,
+      currentCTC,
+      expectedCTC,
+      noticePeriod,
+      skills,
+      source,
+      currentLocation,
+      preferredLocation,
+      linkedin,
+      portfolio,
+    }: ApplicationData = req.body;
+
+    // Validate required fields
+    if (!jobId || !firstName || !lastName || !email || !phone || !cvData) {
+      return res.status(400).json({
+        error: "Missing required fields",
+      });
+    }
+
+    // Verify job exists and is open
+    const { data: job, error: jobError } = await supabaseAdmin
+      .from("jobs")
+      .select("id, status")
+      .eq("id", jobId)
+      .single();
+
+    if (jobError || !job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    if (job.status !== "open") {
+      return res.status(400).json({ error: "This job is no longer accepting applications" });
+    }
+
+    // Convert base64 to buffer
+    const base64Data = cvData.split(",")[1] || cvData;
+    const fileBuffer = Buffer.from(base64Data, "base64");
+
+    // Generate unique file path
+    const timestamp = Date.now();
+    const sanitizedFileName = cvFileName.replace(/[^a-zA-Z0-9.-]/g, "_");
+    const filePath = `${jobId}/${timestamp}-${sanitizedFileName}`;
+
+    // Upload resume to Supabase Storage
+    const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
+      .from("resumes")
+      .upload(filePath, fileBuffer, {
+        contentType: cvFileType,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error("Storage upload error:", uploadError);
+      return res.status(500).json({ error: "Failed to upload resume" });
+    }
+
+    // For private buckets, store the file path instead of public URL
+    // We'll generate signed URLs on-demand via API endpoint
+    // Store path in format: resumes/[filePath] for easy extraction
+    const resumeUrl = `resumes/${filePath}`;
+
+    // Save application to database with all fields
+    const { data: application, error: dbError } = await supabaseAdmin
+      .from("applications")
+      .insert({
+        job_id: jobId,
+        first_name: firstName,
+        last_name: lastName,
+        email: email.toLowerCase().trim(),
+        phone,
+        resume_url: resumeUrl,
+        cover_letter: coverLetter || null,
+        // Additional fields
+        country_code: countryCode || null,
+        year_of_graduation: yearOfGraduation || null,
+        gender: gender || null,
+        experience_years: experienceYears || null,
+        current_employer: currentEmployer || null,
+        current_ctc: currentCTC || null,
+        expected_ctc: expectedCTC || null,
+        notice_period: noticePeriod || null,
+        skills: skills || null,
+        source: source || null,
+        current_location: currentLocation || null,
+        preferred_location: preferredLocation || null,
+        linkedin_url: linkedin || null,
+        portfolio_url: portfolio || null,
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error("Database error:", dbError);
+      // If database insert fails, try to delete uploaded file
+      await supabaseAdmin.storage.from("resumes").remove([filePath]);
+      return res.status(500).json({ error: "Failed to save application" });
+    }
+
+    return res.status(201).json({
+      message: "Application submitted successfully",
+      applicationId: application.id,
+    });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Failed to send application" });
+    console.error("Error creating application:", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 }
-

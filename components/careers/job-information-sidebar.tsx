@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 

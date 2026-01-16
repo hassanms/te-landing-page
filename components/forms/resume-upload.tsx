@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Input, Text, useColorModeValue } from "@chakra-ui/react";
 
 interface ResumeUploadProps {

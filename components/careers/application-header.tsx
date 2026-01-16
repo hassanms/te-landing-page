@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Container, Heading, Stack, Tag, Text, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import { SocialShareButtons } from "./social-share-buttons";

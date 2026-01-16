@@ -59,6 +59,22 @@ All URLs and routes for the Career Management System.
      - Filter by job
      - Application detail modal
 
+### Admin Job Management
+
+2. **Admin Jobs Dashboard**
+   - **URL**: `/admin/jobs`
+   - **Full URL**: `https://techemulsion.com/admin/jobs`
+   - **Query Parameter**: `?secret=YOUR_ADMIN_SECRET`
+   - **Full URL with Secret**: `https://techemulsion.com/admin/jobs?secret=your-admin-secret`
+   - **Description**: Admin page to create, edit, and manage job postings
+   - **Features**:
+     - List all jobs in a table
+     - Create new job postings
+     - Edit existing jobs
+     - Delete jobs
+     - View job status (open/closed)
+     - Job creation/edit form with all fields
+
 ---
 
 ## 🔌 API Endpoints
@@ -174,7 +190,8 @@ https://techemulsion.com/admin/applications?secret=your-admin-secret
 | Careers Listing | `/careers` | Public |
 | Job Details | `/careers/[jobId]` | Public |
 | Apply Form | `/careers/[jobId]/apply` | Public |
-| Admin Dashboard | `/admin/applications?secret=SECRET` | Admin Only |
+| Admin Applications | `/admin/applications?secret=SECRET` | Admin Only |
+| Admin Jobs | `/admin/jobs?secret=SECRET` | Admin Only |
 
 ---
 
@@ -194,6 +211,7 @@ If you have a job with slug `web-developer`:
 
 ```
 /admin/applications?secret=your-admin-secret
+/admin/jobs?secret=your-admin-secret
 ```
 
 ---

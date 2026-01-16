@@ -22,8 +22,6 @@ export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
 
   return (
     <Box
-      borderBottomWidth="1px"
-      borderColor={useColorModeValue("gray.100", "gray.700")}
       bg={useColorModeValue("white", "charcoal.900")}
       pt={{ base: 20, md: 24 }}
       pb={{ base: 10, md: 12 }}

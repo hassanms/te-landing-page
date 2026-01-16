@@ -1,0 +1,54 @@
+import React from "react";
+import { Box, HStack, IconButton, useColorModeValue } from "@chakra-ui/react";
+import { Logo } from "data/logo";
+import ThemeToggle from "components/layout/theme-toggle";
+import { useAdminLayout } from "./admin-layout";
+import { FiMenu } from "react-icons/fi";
+
+export const AdminHeader: React.FC = () => {
+  const bgColor = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("gray.200", "gray.700");
+  const { isSidebarCollapsed, toggleSidebar } = useAdminLayout();
+
+  const sidebarWidth = isSidebarCollapsed ? "80px" : "260px";
+
+  return (
+    <Box
+      as="header"
+      position="fixed"
+      top={0}
+      left={sidebarWidth}
+      right={0}
+      zIndex={999}
+      bg={bgColor}
+      borderBottom="1px solid"
+      borderColor={borderColor}
+      h="70px"
+      boxShadow="sm"
+      transition="left 0.3s ease"
+    >
+      <HStack
+        justify="space-between"
+        align="center"
+        h="100%"
+        px={6}
+        maxW="100%"
+        spacing={4}
+      >
+        <HStack spacing={4}>
+          <IconButton
+            aria-label="Toggle sidebar"
+            icon={<FiMenu />}
+            variant="ghost"
+            onClick={toggleSidebar}
+            display={{ base: "none", md: "flex" }}
+          />
+        </HStack>
+
+        <HStack spacing={4}>
+          <ThemeToggle />
+        </HStack>
+      </HStack>
+    </Box>
+  );
+};

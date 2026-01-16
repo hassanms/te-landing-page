@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Heading,
   Table,
   Thead,
@@ -28,6 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { AdminLayout } from "components/admin/layout/admin-layout";
 import { FiDownload, FiEye } from "react-icons/fi";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 
@@ -141,14 +141,14 @@ const AdminApplicationsPage = () => {
   };
 
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.50", "gray.900")} pt={{ base: 24, md: 28 }} pb={10}>
+    <AdminLayout>
       <EnhancedSEO
         title="Admin - Applications - Tech Emulsion"
         description="View and manage job applications"
         pageType="about"
       />
 
-      <Container maxW="container.xl">
+      <Box>
         <VStack align="stretch" spacing={6}>
           <Heading size="xl" mb={4}>
             Job Applications
@@ -244,7 +244,6 @@ const AdminApplicationsPage = () => {
             </Box>
           )}
         </VStack>
-      </Container>
 
       {/* Application Detail Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -451,7 +450,8 @@ const AdminApplicationsPage = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
-    </Box>
+      </Box>
+    </AdminLayout>
   );
 };
 

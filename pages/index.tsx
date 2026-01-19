@@ -3414,11 +3414,11 @@ const BlogSection: React.FC = () => {
       image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
     },
     {
-      title: "Generative AI Integration Strategies",
-      fullTitle: "Generative AI Integration Strategies",
-      date: "2024-10-10",
-      url: "/blog/generative-ai-integration",
-      image: "/assets/blog/generative-ai-integration.jpg",
+      title: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
+      fullTitle: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
+      date: "2026-01-09",
+      url: "/blog/automation-first-consulting",
+      image: "/assets/blog/Automation-First-Consulting.png",
     },
   ];
 

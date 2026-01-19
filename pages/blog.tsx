@@ -47,7 +47,18 @@ const allPosts = [
     url: "/blog/productized-internal-tools",
     excerpt: "Custom projects feel flexible. They are also the hardest way to scale. Productized internal tools solve that problem. Learn how agencies can pivot from custom builds to repeatable capabilities.",
     image: "/assets/blog/Productized-Internal-Tools.png",
-    featured: true,
+    featured: false,
+    category: "Business Strategy",
+  },
+  {
+    title: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
+    fullTitle: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
+    date: "2026-01-09",
+    url: "/blog/automation-first-consulting",
+    excerpt:
+      "Most businesses do not have a software problem. They have a workflow problem. Automation first consulting exists to solve that difference and pivot agencies from building features to building outcomes.",
+    image: "/assets/blog/Automation-First-Consulting.png",
+    featured: false,
     category: "Business Strategy",
   },
   {
@@ -67,7 +78,7 @@ const allPosts = [
     url: "/blog/beyond-vibe-coding",
     excerpt: "AI is changing software development. Learn how software agencies can pivot into work that stays valuable even as AI makes building faster and cheaper. Explore the five pivots that create new moats for agencies in 2026.",
     image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
-    featured: false,
+    featured: true,
     category: "Business Strategy",
   },
   {
@@ -75,7 +86,8 @@ const allPosts = [
     fullTitle: "Generative AI Integration Strategies",
     date: "2024-10-10",
     url: "/blog/generative-ai-integration",
-    excerpt: "Discover how to integrate generative AI into your existing workflows and unlock new possibilities for automation. Learn about the latest tools, frameworks, and best practices for seamlessly incorporating AI capabilities into your business processes.",
+    excerpt:
+      "Discover how to integrate generative AI into your existing workflows and unlock new possibilities for automation. Learn about the latest tools, frameworks, and best practices for seamlessly incorporating AI capabilities into your business processes.",
     image: "/assets/blog/generative-ai-integration.jpg",
     featured: false,
     category: "AI & ML Development",

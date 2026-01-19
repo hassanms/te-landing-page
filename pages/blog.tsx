@@ -51,6 +51,17 @@ const allPosts = [
     category: "Business Strategy",
   },
   {
+    title: "AI Ops and Ownership: The Missing Layer That Makes AI Reliable in Production",
+    fullTitle: "AI Ops and Ownership: The Missing Layer That Makes AI Reliable in Production",
+    date: "2026-01-13",
+    url: "/blog/ai-ops-and-ownership",
+    excerpt:
+      "Most AI systems do not fail on launch. They fail quietly after launch. AI Ops exists to prevent that silence. Learn how AI Ops makes AI reliable in production.",
+    image: "/assets/blog/AI-Ops-and-Ownership.png",
+    featured: false,
+    category: "Business Strategy",
+  },
+  {
     title: "Vertical AI Solutions: How Agencies Win by Owning One Industry's Workflows",
     fullTitle: "Vertical AI Solutions: How Agencies Win by Owning One Industry's Workflows",
     date: "2026-01-12",

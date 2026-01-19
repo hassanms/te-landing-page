@@ -677,7 +677,7 @@ const BlogPost: NextPage = () => {
                   Read What Next
                 </Heading>
                 <VStack align="stretch" spacing="4">
-                  <NextLink href="/blog/beyond-vibe-coding" passHref>
+                  <NextLink href="/blog/productized-internal-tools" passHref>
                     <Link
                       display="block"
                       p="4"
@@ -698,10 +698,10 @@ const BlogPost: NextPage = () => {
                         Business Strategy
                       </Text>
                       <Heading as="h3" size="md" color={titleColor} mb="2">
-                        Beyond Vibe Coding: The New Moats for Software Agencies in 2026
+                        Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities
                       </Heading>
                       <Text fontSize="sm" color={textColor}>
-                        January 6, 2026
+                        January 14, 2026
                       </Text>
                     </Link>
                   </NextLink>

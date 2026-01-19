@@ -3393,6 +3393,13 @@ const BlogSection: React.FC = () => {
   // Blog posts data - using blog images
   const blogPosts = [
     {
+      title: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
+      fullTitle: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
+      date: "2026-01-14",
+      url: "/blog/productized-internal-tools",
+      image: "/assets/blog/Productized-Internal-Tools.png",
+    },
+    {
       title: "AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not",
       fullTitle: "AI Systems Engineering: Why \"AI Apps\" Will Get Commoditized and \"AI Systems\" Will Not",
       date: "2026-01-08",

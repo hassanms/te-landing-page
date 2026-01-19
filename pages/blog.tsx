@@ -41,13 +41,23 @@ const filterCategories = [
 
 const allPosts = [
   {
+    title: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
+    fullTitle: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
+    date: "2026-01-14",
+    url: "/blog/productized-internal-tools",
+    excerpt: "Custom projects feel flexible. They are also the hardest way to scale. Productized internal tools solve that problem. Learn how agencies can pivot from custom builds to repeatable capabilities.",
+    image: "/assets/blog/Productized-Internal-Tools.png",
+    featured: true,
+    category: "Business Strategy",
+  },
+  {
     title: "AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not",
     fullTitle: "AI Systems Engineering: Why \"AI Apps\" Will Get Commoditized and \"AI Systems\" Will Not",
     date: "2026-01-08",
     url: "/blog/ai-systems-engineering",
     excerpt: "AI apps are becoming easy to build. Reliable AI systems are not. That difference will decide which software agencies survive the next decade. Learn about AI Systems Engineering and why it matters.",
     image: "/assets/blog/AI-Systems-Engineering.png",
-    featured: true,
+    featured: false,
     category: "AI & ML Development",
   },
   {

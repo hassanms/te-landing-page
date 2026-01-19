@@ -6,8 +6,7 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
-// import { SiUpwork } from "react-icons/si";
-import { FaSquareUpwork } from "react-icons/fa6";
+import { SiUpwork } from "react-icons/si";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";
 
@@ -92,7 +91,7 @@ const siteConfig = {
       },
       {
         href: "https://www.upwork.com/agencies/techemulsion/",
-        label: <FaSquareUpwork size="20" aria-label="Upwork" title="Upwork" />,
+        label: <SiUpwork size="20" aria-label="Upwork" title="Upwork" />,
       },
     ],
   },

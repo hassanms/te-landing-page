@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { supabaseAdmin } from "lib/supabase/server";
+import { getSupabaseAdmin } from "lib/supabase/server";
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET || "your-admin-secret-key";
 
@@ -7,6 +7,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  const supabaseAdmin = getSupabaseAdmin();
   // Admin authentication check
   const adminSecret = req.headers["x-admin-secret"] || req.query.secret;
 

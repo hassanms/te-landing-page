@@ -3393,32 +3393,25 @@ const BlogSection: React.FC = () => {
   // Blog posts data - using blog images
   const blogPosts = [
     {
-      title: "Beyond Vibe Coding",
+      title: "AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not",
+      fullTitle: "AI Systems Engineering: Why \"AI Apps\" Will Get Commoditized and \"AI Systems\" Will Not",
+      date: "2026-01-08",
+      url: "/blog/ai-systems-engineering",
+      image: "/assets/blog/AI-Systems-Engineering.png",
+    },
+    {
+      title: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
       fullTitle: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
       date: "2026-01-06",
       url: "/blog/beyond-vibe-coding",
       image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
     },
     {
-      title: "Inside Tech Emulsion's Toolkit",
-      fullTitle: "Inside Tech Emulsion's Toolkit: How Our Internal AI Tools Shape Better Customer Projects",
-      date: "2024-10-23",
-      url: "/blog/internal-toolkit",
-      image: "/assets/blog/internal-toolkit.jpg",
-    },
-    {
-      title: "What Kind of AI Do You Really Need?",
-      fullTitle: "What Kind of AI Do You Really Need? A CEO & Tech Lead's Guide to LLMs vs. RAG Chatbots (and When to Use Each)",
-      date: "2024-10-20",
-      url: "/blog/ai-guide",
-      image: "/assets/blog/ai-guide.jpg",
-    },
-    {
-      title: "The Logic Behind Match-3 Games",
-      fullTitle: "The Logic Behind Match-3 Games: How Unity and C# Make the Magic Work",
-      date: "2024-10-20",
-      url: "/blog/match3-games",
-      image: "/assets/blog/match3-games.jpg",
+      title: "Generative AI Integration Strategies",
+      fullTitle: "Generative AI Integration Strategies",
+      date: "2024-10-10",
+      url: "/blog/generative-ai-integration",
+      image: "/assets/blog/generative-ai-integration.jpg",
     },
   ];
 

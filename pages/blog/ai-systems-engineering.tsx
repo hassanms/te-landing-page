@@ -33,14 +33,13 @@ const BlogPost: NextPage = () => {
   // Table of Contents items
   const tocItems = [
     { id: "introduction", label: "Introduction" },
-    { id: "the-shift", label: "The Real Shift" },
-    { id: "five-pivots", label: "The Five Pivots" },
-    { id: "ai-systems-engineering", label: "AI Systems Engineering" },
-    { id: "vertical-ai-solutions", label: "Vertical AI Solutions" },
-    { id: "automation-first", label: "Automation First Consulting" },
-    { id: "ai-ops", label: "AI Ops and Ownership" },
-    { id: "productized-tools", label: "Productized Internal Tools" },
-    { id: "conclusion", label: "Conclusion" },
+    { id: "the-real-problem", label: "The Real Problem" },
+    { id: "the-shift", label: "The Shift" },
+    { id: "the-field-explained", label: "The Field Explained" },
+    { id: "examples", label: "Examples" },
+    { id: "how-agencies-should-package", label: "How Agencies Should Package This" },
+    { id: "common-mistakes", label: "Common Mistakes" },
+    { id: "the-next-step", label: "The Next Step" },
   ];
 
   const [activeSection, setActiveSection] = useState("");
@@ -77,23 +76,23 @@ const BlogPost: NextPage = () => {
   return (
     <Box bg={bgColor} minH="100vh" py="20">
       <EnhancedSEO
-        title="Beyond Vibe Coding: The New Moats for Software Agencies in 2026 - Tech Emulsion"
-        description="AI is changing software development. Learn how software agencies can pivot into work that stays valuable even as AI makes building faster and cheaper. Explore the five pivots that create new moats for agencies in 2026."
+        title="AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not - Tech Emulsion"
+        description="AI apps are becoming easy to build. Reliable AI systems are not. That difference will decide which software agencies survive the next decade. Learn about AI Systems Engineering and why it matters."
         pageType="blog"
-        canonicalUrl="https://techemulsion.com/blog/beyond-vibe-coding"
+        canonicalUrl="https://techemulsion.com/blog/ai-systems-engineering"
         breadcrumbData={{
           items: [
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Insights", url: "https://techemulsion.com/blog" },
             {
-              name: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
-              url: "https://techemulsion.com/blog/beyond-vibe-coding",
+              name: "AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not",
+              url: "https://techemulsion.com/blog/ai-systems-engineering",
             },
           ],
         }}
       />
       <Head>
-        <title>Beyond Vibe Coding: The New Moats for Software Agencies in 2026 - Tech Emulsion</title>
+        <title>AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not - Tech Emulsion</title>
       </Head>
 
       <Container maxW="container.xl" py="10">
@@ -144,7 +143,7 @@ const BlogPost: NextPage = () => {
               sx={{
                 color: colorMode === "light" ? "#004c4c !important" : "white",
               }}>
-              Business Strategy
+              AI & ML Development
             </Text>
           </ButtonGroup>
         </Box>
@@ -152,7 +151,7 @@ const BlogPost: NextPage = () => {
         {/* Title - Below Breadcrumb */}
         <Box px="15" mb="8">
           <Heading as="h1" size="3xl" color={titleColor} fontWeight="normal" lineHeight="1.2" mb="4">
-            Beyond Vibe Coding: The New Moats for Software Agencies in 2026
+            AI Systems Engineering: Why "AI Apps" Will Get Commoditized and "AI Systems" Will Not
           </Heading>
         </Box>
 
@@ -172,7 +171,7 @@ const BlogPost: NextPage = () => {
               Hassan Sid
             </Text>
             <Text fontSize="sm" color={textColor}>
-              January 6, 2026
+              January 8, 2026
             </Text>
           </VStack>
         </Box>
@@ -279,7 +278,7 @@ const BlogPost: NextPage = () => {
                 mb="8"
                 sx={{
                   backgroundImage:
-                    "url(/assets/blog/Beyond-Vibe-Coding-main-image.png)",
+                    "url(/assets/blog/AI-Systems-Engineering.png)",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -288,98 +287,179 @@ const BlogPost: NextPage = () => {
               {/* Introduction Paragraph - After Image */}
               <Box mb="8">
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="6">
-                  AI is changing software development in a way that feels both exciting and threatening, especially if you run a services business. Every week there is a new tool that turns vague instructions into working code, and it is easy to jump to the conclusion that software agencies are heading toward the same fate as many commodity industries, squeezed margins, faster delivery expectations, and clients asking, "Why does this cost so much when a tool can generate it?"
+                  AI apps are becoming easy to build.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="6">
+                  Reliable AI systems are not.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="6">
+                  That difference will decide which software agencies survive the next decade.
                 </Text>
               </Box>
 
-              {/* Introduction Content */}
-              <Box id="introduction" sx={{ scrollMarginTop: "100px" }}>
+              {/* Section: The Real Problem */}
+              <Box id="the-real-problem" sx={{ scrollMarginTop: "100px" }}>
+                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
+                  The Real Problem
+                </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  But the more accurate truth is simpler. AI is not killing agencies. It is killing the parts of agency work that were already becoming commodities. Building generic web apps, shipping standard CRUD dashboards, and selling hours as development capacity will keep getting cheaper and more crowded. If your business depends on being the team that can code, you will feel pressure from both directions, clients expecting lower pricing and faster timelines, and competitors delivering acceptable work using powerful tools.
+                  Many agencies are rushing to build AI features. Chatbots. AI assistants. Smart dashboards. Auto responders. These demos often look impressive. They work well in controlled scenarios and early pilots. But once they are exposed to real users, real data, and real business pressure, cracks start to appear.
                 </Text>
-                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="8">
-                  At the same time, something else is happening that creates a massive opportunity. As code becomes easier to produce, businesses demand more automation, more integration, and more reliability. They do not just want software. They want systems that run operations, produce measurable outcomes, and keep working as reality changes. Most importantly, they want someone to own those systems from start to finish, because operational software is not a one time build. It is a living part of the business.
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  The AI gives inconsistent answers. It misunderstands edge cases. It triggers the wrong actions. It escalates too often or not enough. Costs grow unpredictably. Trust slowly erodes.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  The client does not say the system is broken. They say something more dangerous.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  They say it feels unreliable.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  This is the moment when excitement turns into disappointment, and many AI projects quietly stall.
                 </Text>
               </Box>
 
-              {/* Section: The Real Shift */}
+              {/* Section: The Shift */}
               <Box id="the-shift" sx={{ scrollMarginTop: "100px" }}>
                 <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  The Real Shift
+                  The Shift
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  This is the real shift. The winning agency is not the one that builds apps. The winning agency is the one that designs and operates systems driven by outcomes. Instead of selling features, you sell leverage. Instead of selling development, you sell operational transformation. Instead of delivering a project and leaving, you become an ownership partner for workflows that directly affect revenue, cost, and customer experience.
+                  The mistake is thinking the value lies in the AI itself.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Models are getting better every month. Access is getting cheaper. Everyone can plug into the same APIs. When everyone can build an AI app, the app itself stops being the advantage.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  The real shift is this.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Value moves from AI outputs to system design.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  The agencies that win are not the ones who ask what the model should say. They are the ones who decide when the model should act, what it is allowed to do, how its output is verified, and what happens when it is uncertain.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  That discipline is called AI Systems Engineering.
                 </Text>
               </Box>
 
-              {/* Section: The Five Pivots */}
-              <Box id="five-pivots" sx={{ scrollMarginTop: "100px" }}>
+              {/* Section: The Field Explained */}
+              <Box id="the-field-explained" sx={{ scrollMarginTop: "100px" }}>
                 <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  The Five Pivots
+                  The Field Explained
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  That is what this series is about. It is a practical map for how a software services agency can pivot into work that stays valuable, even as AI makes building faster and cheaper. The five pivots are not abstract trends. They are real service lines that are already working in the market, and each one becomes more valuable as AI capability improves.
+                  AI Systems Engineering is the practice of building AI into controlled, production ready systems that run real workflows.
                 </Text>
-                
-              </Box>
-
-              {/* Section: AI Systems Engineering */}
-              <Box id="ai-systems-engineering" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  AI Systems Engineering
-                </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  First, we look at AI Systems Engineering, which is the discipline of building controlled and production ready AI systems that run real workflows, not toy AI apps.
+                  In this model, AI is not the boss. It is a specialist.
                 </Text>
-              </Box>
-
-              {/* Section: Vertical AI Solutions */}
-              <Box id="vertical-ai-solutions" sx={{ scrollMarginTop: "100px" }}>
-                <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  Vertical AI Solutions
-                </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  Then we explore Vertical AI Solutions, where agencies win by specializing in one industry and compounding domain expertise into repeatable deployments.
+                  The system has clear layers. There is an orchestration layer that controls flow and state. There are integrations that connect calendars, CRMs, databases, and internal tools. There are rules that define boundaries and escalation paths. There are validations that prevent bad outputs from causing damage.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  The AI is used where it is strong. Understanding language. Extracting intent. Summarizing context. Classifying inputs. Suggesting next steps.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  But decisions, permissions, and execution remain governed by the system.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  This is what separates an AI app from an AI system.
                 </Text>
               </Box>
 
-              {/* Section: Automation First Consulting */}
-              <Box id="automation-first" sx={{ scrollMarginTop: "100px" }}>
+              {/* Section: Examples */}
+              <Box id="examples" sx={{ scrollMarginTop: "100px" }}>
                 <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  Automation First Consulting
+                  Examples
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  Third is Automation First Consulting, a shift from shipping features to redesigning operations around measurable outcomes.
+                  Consider a booking assistant.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  An AI app simply talks to the user and tries to schedule something. When it fails, it fails silently.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  An AI system checks availability from the calendar. Confirms duration rules. Applies business hours. Validates location and service area. Uses AI only to understand the request and collect missing details. If anything is unclear, it escalates.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Or take customer support.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  An AI app replies to tickets.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  An AI system classifies tickets, drafts responses, checks policy rules, flags risk, routes edge cases to humans, logs outcomes, and measures resolution quality.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  In both cases, the value is not the response. The value is the controlled flow.
                 </Text>
               </Box>
 
-              {/* Section: AI Ops and Ownership */}
-              <Box id="ai-ops" sx={{ scrollMarginTop: "100px" }}>
+              {/* Section: How Agencies Should Package This */}
+              <Box id="how-agencies-should-package" sx={{ scrollMarginTop: "100px" }}>
                 <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  AI Ops and Ownership
+                  How Agencies Should Package This
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  Fourth is AI Ops and Ownership, the layer that keeps AI reliable in production through monitoring, evaluation, governance, and continuous improvement.
+                  AI Systems Engineering should never be sold as building a feature.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  It should be sold as building an operational system.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  A strong engagement starts with defining the workflow. Inputs. Outputs. Decisions. Failure modes. Escalation rules. Success metrics.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Then the system is built with clear ownership and monitoring. Finally, it is run in production with feedback loops and continuous improvement.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  When packaged this way, pricing moves away from hours and toward outcomes. Clients stop comparing you to cheaper builders because you are no longer selling code. You are selling reliability.
                 </Text>
               </Box>
 
-              {/* Section: Productized Internal Tools */}
-              <Box id="productized-tools" sx={{ scrollMarginTop: "100px" }}>
+              {/* Section: Common Mistakes */}
+              <Box id="common-mistakes" sx={{ scrollMarginTop: "100px" }}>
                 <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  Productized Internal Tools
+                  Common Mistakes
                 </Heading>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
-                  Finally, we cover Productized Internal Tools, where agencies escape custom project chaos by selling repeatable capability systems that integrate deeply into how a business runs.
+                  The most common mistake is letting the AI control the flow.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Another is shipping without monitoring. If you cannot see how the system behaves, you cannot improve it.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Many teams also skip validation and allow free form outputs to trigger actions. This works until it does not.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Finally, some teams over optimize for clever prompts instead of system design. Prompts matter, but they are not the foundation.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  Systems are.
                 </Text>
               </Box>
 
-              {/* Section: Conclusion */}
-              <Box id="conclusion" sx={{ scrollMarginTop: "100px" }}>
+              {/* Section: The Next Step */}
+              <Box id="the-next-step" sx={{ scrollMarginTop: "100px" }}>
                 <Heading as="h2" size="lg" color={titleColor} mb="4" mt="8">
-                  Conclusion
+                  The Next Step
                 </Heading>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  If you are building AI today, ask yourself a simple question.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  If this system runs at ten times the volume tomorrow, will it become more reliable or more chaotic.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="4">
+                  If the answer is chaotic, you are building an AI app.
+                </Text>
                 <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="8">
-                  If you are building an agency in 2026, the question is not how to compete with AI tools. The better question is which work becomes more valuable because AI exists. When you answer that correctly, you stop fearing the tooling wave and start riding it.
+                  If the answer is reliable, you are building an AI system.
+                </Text>
+                <Text color={textColor} fontSize="lg" lineHeight="1.8" mb="8">
+                  That difference is the moat.
                 </Text>
               </Box>
 
@@ -389,7 +469,7 @@ const BlogPost: NextPage = () => {
                   Read What Next
                 </Heading>
                 <VStack align="stretch" spacing="4">
-                  <NextLink href="/blog/ai-systems-engineering" passHref>
+                  <NextLink href="/blog/beyond-vibe-coding" passHref>
                     <Link
                       display="block"
                       p="4"
@@ -407,20 +487,20 @@ const BlogPost: NextPage = () => {
                         color="teal.500"
                         textTransform="uppercase"
                         mb="2">
-                        AI & ML Development
+                        Business Strategy
                       </Text>
                       <Heading as="h3" size="md" color={titleColor} mb="2">
-                        AI Systems Engineering: Why "AI Apps" Will Get Commoditized and "AI Systems" Will Not
+                        Beyond Vibe Coding: The New Moats for Software Agencies in 2026
                       </Heading>
                       <Text fontSize="sm" color={textColor}>
-                        January 8, 2026
+                        January 6, 2026
                       </Text>
                     </Link>
                   </NextLink>
                 </VStack>
               </Box>
-          </VStack>
-        </Box>
+            </VStack>
+          </Box>
         </Stack>
       </Container>
     </Box>

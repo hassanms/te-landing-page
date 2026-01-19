@@ -20,6 +20,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
+  ModalFooter,
   useDisclosure,
   Spinner,
   Alert,
@@ -28,12 +29,30 @@ import {
   Textarea,
   FormControl,
   FormLabel,
+  SimpleGrid,
+  Divider,
+  Icon,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import apiClient from "lib/api-client";
 import toast from "react-hot-toast";
 import { AdminLayout } from "components/admin/layout/admin-layout";
-import { FiDownload, FiEye } from "react-icons/fi";
+import { 
+  FiDownload, 
+  FiEye, 
+  FiUser, 
+  FiBriefcase, 
+  FiMapPin, 
+  FiLink, 
+  FiFileText,
+  FiMail,
+  FiPhone,
+  FiCalendar,
+  FiDollarSign,
+  FiClock,
+  FiAward,
+  FiGlobe
+} from "react-icons/fi";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 
 interface Application {
@@ -320,188 +339,54 @@ const AdminApplicationsPage = () => {
         </VStack>
 
       {/* Application Detail Modal */}
-      <Modal isOpen={isOpen} onClose={onClose} size="xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            Application Details - {selectedApplication?.firstName}{" "}
-            {selectedApplication?.lastName}
+      <Modal isOpen={isOpen} onClose={onClose} size="6xl" scrollBehavior="inside">
+        <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
+        <ModalContent maxH="90vh">
+          <ModalHeader pb={3}>
+            <HStack spacing={3}>
+              <Icon as={FiUser} boxSize={6} color="teal.500" />
+              <Box>
+                <Heading size="md">
+                  {selectedApplication?.firstName} {selectedApplication?.lastName}
+                </Heading>
+                <Text fontSize="sm" color={textColor} fontWeight="normal" mt={1}>
+                  Application Details
+                </Text>
+              </Box>
+            </HStack>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             {selectedApplication && (
-              <VStack align="stretch" spacing={4}>
-                <Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Personal Information
-                  </Text>
-                  <VStack align="stretch" spacing={2}>
-                    <Text>
-                      <strong>Name:</strong> {selectedApplication.firstName}{" "}
-                      {selectedApplication.lastName}
+              <VStack align="stretch" spacing={6}>
+                {/* Header Section with Status Badge */}
+                <HStack justify="space-between" align="flex-start">
+                  <VStack align="flex-start" spacing={1}>
+                    <HStack spacing={2}>
+                      <Badge
+                        colorScheme={getStatusColor(selectedApplication.status || "pending")}
+                        fontSize="sm"
+                        px={3}
+                        py={1}
+                        textTransform="capitalize"
+                      >
+                        {selectedApplication.status || "pending"}
+                      </Badge>
+                      {selectedApplication.job && (
+                        <Badge colorScheme="teal" fontSize="sm" px={3} py={1}>
+                          {selectedApplication.job.department}
+                        </Badge>
+                      )}
+                    </HStack>
+                    <Text fontSize="xs" color={textColor}>
+                      Applied on {formatDate(selectedApplication.createdAt)}
                     </Text>
-                    <Text>
-                      <strong>Email:</strong> {selectedApplication.email}
-                    </Text>
-                    <Text>
-                      <strong>Phone:</strong>{" "}
-                      {selectedApplication.countryCode
-                        ? `${selectedApplication.countryCode} ${selectedApplication.phone}`
-                        : selectedApplication.phone}
-                    </Text>
-                    {selectedApplication.yearOfGraduation && (
-                      <Text>
-                        <strong>Year of Graduation:</strong>{" "}
-                        {selectedApplication.yearOfGraduation}
-                      </Text>
-                    )}
-                    {selectedApplication.gender && (
-                      <Text>
-                        <strong>Gender:</strong> {selectedApplication.gender}
-                      </Text>
-                    )}
                   </VStack>
-                </Box>
-
-                <Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Professional Information
-                  </Text>
-                  <VStack align="stretch" spacing={2}>
-                    {selectedApplication.experienceYears && (
-                      <Text>
-                        <strong>Experience:</strong>{" "}
-                        {selectedApplication.experienceYears}
-                      </Text>
-                    )}
-                    {selectedApplication.currentEmployer && (
-                      <Text>
-                        <strong>Current Employer:</strong>{" "}
-                        {selectedApplication.currentEmployer}
-                      </Text>
-                    )}
-                    {selectedApplication.currentCTC && (
-                      <Text>
-                        <strong>Current Salary:</strong>{" "}
-                        {selectedApplication.currentCTC}
-                      </Text>
-                    )}
-                    {selectedApplication.expectedCTC && (
-                      <Text>
-                        <strong>Expected Salary:</strong>{" "}
-                        {selectedApplication.expectedCTC}
-                      </Text>
-                    )}
-                    {selectedApplication.noticePeriod && (
-                      <Text>
-                        <strong>Notice Period:</strong>{" "}
-                        {selectedApplication.noticePeriod}
-                      </Text>
-                    )}
-                    {selectedApplication.skills && (
-                      <Text>
-                        <strong>Skills:</strong> {selectedApplication.skills}
-                      </Text>
-                    )}
-                  </VStack>
-                </Box>
-
-                <Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Location & Source
-                  </Text>
-                  <VStack align="stretch" spacing={2}>
-                    {selectedApplication.currentLocation && (
-                      <Text>
-                        <strong>Current Location:</strong>{" "}
-                        {selectedApplication.currentLocation}
-                      </Text>
-                    )}
-                    {selectedApplication.preferredLocation && (
-                      <Text>
-                        <strong>Preferred Location:</strong>{" "}
-                        {selectedApplication.preferredLocation}
-                      </Text>
-                    )}
-                    {selectedApplication.source && (
-                      <Text>
-                        <strong>Source:</strong> {selectedApplication.source}
-                      </Text>
-                    )}
-                  </VStack>
-                </Box>
-
-                <Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Links & Portfolio
-                  </Text>
-                  <VStack align="stretch" spacing={2}>
-                    {selectedApplication.linkedin && (
-                      <Text>
-                        <strong>LinkedIn:</strong>{" "}
-                        <Link
-                          href={selectedApplication.linkedin}
-                          isExternal
-                          color="teal.500"
-                        >
-                          {selectedApplication.linkedin}
-                        </Link>
-                      </Text>
-                    )}
-                    {selectedApplication.portfolio && (
-                      <Text>
-                        <strong>Portfolio/GitHub:</strong>{" "}
-                        <Link
-                          href={selectedApplication.portfolio}
-                          isExternal
-                          color="teal.500"
-                        >
-                          {selectedApplication.portfolio}
-                        </Link>
-                      </Text>
-                    )}
-                  </VStack>
-                </Box>
-
-                {selectedApplication.job && (
-                  <Box>
-                    <Text fontWeight="bold" mb={2}>
-                      Job Applied For
-                    </Text>
-                    <Text>
-                      <strong>Title:</strong> {selectedApplication.job.title}
-                    </Text>
-                    <Text>
-                      <strong>Department:</strong>{" "}
-                      {selectedApplication.job.department}
-                    </Text>
-                  </Box>
-                )}
-
-                {selectedApplication.coverLetter && (
-                  <Box>
-                    <Text fontWeight="bold" mb={2}>
-                      Cover Letter
-                    </Text>
-                    <Text
-                      whiteSpace="pre-wrap"
-                      p={3}
-                      bg={useColorModeValue("gray.50", "gray.700")}
-                      borderRadius="md"
-                    >
-                      {selectedApplication.coverLetter}
-                    </Text>
-                  </Box>
-                )}
-
-                <Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Resume
-                  </Text>
                   <Button
                     size="sm"
                     leftIcon={<FiDownload />}
                     colorScheme="teal"
+                    variant="outline"
                     onClick={() =>
                       handleDownloadResume(
                         selectedApplication.id,
@@ -512,30 +397,442 @@ const AdminApplicationsPage = () => {
                   >
                     Download Resume
                   </Button>
+                </HStack>
+
+                <Divider />
+
+                {/* Personal Information Section */}
+                <Box>
+                  <HStack spacing={2} mb={4}>
+                    <Icon as={FiUser} boxSize={5} color="teal.500" />
+                    <Heading size="sm">Personal Information</Heading>
+                  </HStack>
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                    <Box
+                      p={4}
+                      bg={useColorModeValue("gray.50", "gray.700")}
+                      borderRadius="md"
+                    >
+                      <HStack spacing={2} mb={1}>
+                        <Icon as={FiUser} boxSize={4} color={textColor} />
+                        <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                          Full Name
+                        </Text>
+                      </HStack>
+                      <Text fontWeight="semibold">
+                        {selectedApplication.firstName} {selectedApplication.lastName}
+                      </Text>
+                    </Box>
+                    <Box
+                      p={4}
+                      bg={useColorModeValue("gray.50", "gray.700")}
+                      borderRadius="md"
+                    >
+                      <HStack spacing={2} mb={1}>
+                        <Icon as={FiMail} boxSize={4} color={textColor} />
+                        <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                          Email
+                        </Text>
+                      </HStack>
+                      <Text fontWeight="semibold" isTruncated>
+                        {selectedApplication.email}
+                      </Text>
+                    </Box>
+                    <Box
+                      p={4}
+                      bg={useColorModeValue("gray.50", "gray.700")}
+                      borderRadius="md"
+                    >
+                      <HStack spacing={2} mb={1}>
+                        <Icon as={FiPhone} boxSize={4} color={textColor} />
+                        <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                          Phone
+                        </Text>
+                      </HStack>
+                      <Text fontWeight="semibold">
+                        {selectedApplication.countryCode
+                          ? `${selectedApplication.countryCode} ${selectedApplication.phone}`
+                          : selectedApplication.phone}
+                      </Text>
+                    </Box>
+                    {selectedApplication.yearOfGraduation && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiCalendar} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Year of Graduation
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.yearOfGraduation}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.gender && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiUser} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Gender
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">{selectedApplication.gender}</Text>
+                      </Box>
+                    )}
+                  </SimpleGrid>
                 </Box>
 
-                <Box>
-                  <Text fontWeight="bold" mb={4}>
-                    Status Management
-                  </Text>
-                  <VStack align="stretch" spacing={4}>
-                    <FormControl>
-                      <FormLabel>Application Status</FormLabel>
-                      <Select
-                        value={editingStatus}
-                        onChange={(e) => setEditingStatus(e.target.value)}
-                        bg={useColorModeValue("white", "gray.700")}
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="reviewing">Reviewing</option>
-                        <option value="shortlisted">Shortlisted</option>
-                        <option value="interviewed">Interviewed</option>
-                        <option value="offered">Offered</option>
-                        <option value="rejected">Rejected</option>
-                        <option value="withdrawn">Withdrawn</option>
-                      </Select>
-                    </FormControl>
+                <Divider />
 
+                {/* Professional Information Section */}
+                <Box>
+                  <HStack spacing={2} mb={4}>
+                    <Icon as={FiBriefcase} boxSize={5} color="teal.500" />
+                    <Heading size="sm">Professional Information</Heading>
+                  </HStack>
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                    {selectedApplication.experienceYears && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiAward} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Experience
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.experienceYears} years
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.currentEmployer && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiBriefcase} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Current Employer
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.currentEmployer}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.currentCTC && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiDollarSign} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Current Salary
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.currentCTC}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.expectedCTC && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiDollarSign} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Expected Salary
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.expectedCTC}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.noticePeriod && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiClock} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Notice Period
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.noticePeriod}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.skills && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                        gridColumn={{ base: "1", md: "1 / -1" }}
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiAward} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Skills
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold" whiteSpace="pre-wrap">
+                          {selectedApplication.skills}
+                        </Text>
+                      </Box>
+                    )}
+                  </SimpleGrid>
+                </Box>
+
+                <Divider />
+
+                {/* Location & Source Section */}
+                <Box>
+                  <HStack spacing={2} mb={4}>
+                    <Icon as={FiMapPin} boxSize={5} color="teal.500" />
+                    <Heading size="sm">Location & Source</Heading>
+                  </HStack>
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                    {selectedApplication.currentLocation && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiMapPin} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Current Location
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.currentLocation}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.preferredLocation && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiGlobe} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Preferred Location
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">
+                          {selectedApplication.preferredLocation}
+                        </Text>
+                      </Box>
+                    )}
+                    {selectedApplication.source && (
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                      >
+                        <HStack spacing={2} mb={1}>
+                          <Icon as={FiGlobe} boxSize={4} color={textColor} />
+                          <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                            Application Source
+                          </Text>
+                        </HStack>
+                        <Text fontWeight="semibold">{selectedApplication.source}</Text>
+                      </Box>
+                    )}
+                  </SimpleGrid>
+                </Box>
+
+                {/* Links & Portfolio Section */}
+                {(selectedApplication.linkedin || selectedApplication.portfolio) && (
+                  <>
+                    <Divider />
+                    <Box>
+                      <HStack spacing={2} mb={4}>
+                        <Icon as={FiLink} boxSize={5} color="teal.500" />
+                        <Heading size="sm">Links & Portfolio</Heading>
+                      </HStack>
+                      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                        {selectedApplication.linkedin && (
+                          <Box
+                            p={4}
+                            bg={useColorModeValue("gray.50", "gray.700")}
+                            borderRadius="md"
+                          >
+                            <HStack spacing={2} mb={2}>
+                              <Icon as={FiLink} boxSize={4} color={textColor} />
+                              <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                                LinkedIn
+                              </Text>
+                            </HStack>
+                            <Link
+                              href={selectedApplication.linkedin}
+                              isExternal
+                              color="teal.500"
+                              fontWeight="semibold"
+                              wordBreak="break-all"
+                            >
+                              {selectedApplication.linkedin}
+                            </Link>
+                          </Box>
+                        )}
+                        {selectedApplication.portfolio && (
+                          <Box
+                            p={4}
+                            bg={useColorModeValue("gray.50", "gray.700")}
+                            borderRadius="md"
+                          >
+                            <HStack spacing={2} mb={2}>
+                              <Icon as={FiLink} boxSize={4} color={textColor} />
+                              <Text fontSize="xs" color={textColor} textTransform="uppercase" letterSpacing="wide">
+                                Portfolio/GitHub
+                              </Text>
+                            </HStack>
+                            <Link
+                              href={selectedApplication.portfolio}
+                              isExternal
+                              color="teal.500"
+                              fontWeight="semibold"
+                              wordBreak="break-all"
+                            >
+                              {selectedApplication.portfolio}
+                            </Link>
+                          </Box>
+                        )}
+                      </SimpleGrid>
+                    </Box>
+                  </>
+                )}
+
+                {/* Job Applied For Section */}
+                {selectedApplication.job && (
+                  <>
+                    <Divider />
+                    <Box>
+                      <HStack spacing={2} mb={4}>
+                        <Icon as={FiBriefcase} boxSize={5} color="teal.500" />
+                        <Heading size="sm">Job Applied For</Heading>
+                      </HStack>
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("teal.50", "teal.900")}
+                        borderRadius="md"
+                        borderLeft="4px solid"
+                        borderColor="teal.500"
+                      >
+                        <Text fontSize="lg" fontWeight="bold" mb={1}>
+                          {selectedApplication.job.title}
+                        </Text>
+                        <Text fontSize="sm" color={textColor}>
+                          Department: {selectedApplication.job.department}
+                        </Text>
+                      </Box>
+                    </Box>
+                  </>
+                )}
+
+                {/* Cover Letter Section */}
+                {selectedApplication.coverLetter && (
+                  <>
+                    <Divider />
+                    <Box>
+                      <HStack spacing={2} mb={4}>
+                        <Icon as={FiFileText} boxSize={5} color="teal.500" />
+                        <Heading size="sm">Cover Letter</Heading>
+                      </HStack>
+                      <Box
+                        p={4}
+                        bg={useColorModeValue("gray.50", "gray.700")}
+                        borderRadius="md"
+                        maxH="200px"
+                        overflowY="auto"
+                      >
+                        <Text
+                          whiteSpace="pre-wrap"
+                          fontSize="sm"
+                          lineHeight="tall"
+                        >
+                          {selectedApplication.coverLetter}
+                        </Text>
+                      </Box>
+                    </Box>
+                  </>
+                )}
+
+                <Divider />
+
+                {/* Status Management Section */}
+                <Box>
+                  <HStack spacing={2} mb={4}>
+                    <Icon as={FiBriefcase} boxSize={5} color="teal.500" />
+                    <Heading size="sm">Status Management</Heading>
+                  </HStack>
+                  <VStack align="stretch" spacing={4}>
+                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                      <FormControl>
+                        <FormLabel>Application Status</FormLabel>
+                        <Select
+                          value={editingStatus}
+                          onChange={(e) => setEditingStatus(e.target.value)}
+                          bg={useColorModeValue("white", "gray.700")}
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="reviewing">Reviewing</option>
+                          <option value="shortlisted">Shortlisted</option>
+                          <option value="interviewed">Interviewed</option>
+                          <option value="offered">Offered</option>
+                          <option value="rejected">Rejected</option>
+                          <option value="withdrawn">Withdrawn</option>
+                        </Select>
+                      </FormControl>
+                      {selectedApplication.statusUpdatedAt && (
+                        <Box
+                          p={3}
+                          bg={useColorModeValue("gray.50", "gray.700")}
+                          borderRadius="md"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <VStack align="flex-start" spacing={0}>
+                            <Text fontSize="xs" color={textColor}>
+                              Last Updated
+                            </Text>
+                            <Text fontSize="sm" fontWeight="semibold">
+                              {formatDate(selectedApplication.statusUpdatedAt)}
+                            </Text>
+                            {selectedApplication.updatedBy && (
+                              <Text fontSize="xs" color={textColor}>
+                                by {selectedApplication.updatedBy}
+                              </Text>
+                            )}
+                          </VStack>
+                        </Box>
+                      )}
+                    </SimpleGrid>
                     <FormControl>
                       <FormLabel>Admin Notes</FormLabel>
                       <Textarea
@@ -546,35 +843,28 @@ const AdminApplicationsPage = () => {
                         rows={4}
                       />
                     </FormControl>
-
-                    {selectedApplication.statusUpdatedAt && (
-                      <Text fontSize="sm" color={textColor}>
-                        Last updated: {formatDate(selectedApplication.statusUpdatedAt)}
-                        {selectedApplication.updatedBy && ` by ${selectedApplication.updatedBy}`}
-                      </Text>
-                    )}
-
-                    <Button
-                      colorScheme="teal"
-                      onClick={handleStatusUpdate}
-                      isDisabled={
-                        editingStatus === (selectedApplication.status || "pending") &&
-                        editingNotes === (selectedApplication.adminNotes || "")
-                      }
-                    >
-                      Update Status
-                    </Button>
                   </VStack>
-                </Box>
-
-                <Box>
-                  <Text fontSize="sm" color={textColor}>
-                    Applied on: {formatDate(selectedApplication.createdAt)}
-                  </Text>
                 </Box>
               </VStack>
             )}
           </ModalBody>
+          <ModalFooter>
+            <HStack spacing={3}>
+              <Button variant="ghost" onClick={onClose}>
+                Close
+              </Button>
+              <Button
+                colorScheme="teal"
+                onClick={handleStatusUpdate}
+                isDisabled={
+                  editingStatus === (selectedApplication?.status || "pending") &&
+                  editingNotes === (selectedApplication?.adminNotes || "")
+                }
+              >
+                Update Status
+              </Button>
+            </HStack>
+          </ModalFooter>
         </ModalContent>
       </Modal>
       </Box>

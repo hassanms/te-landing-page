@@ -148,14 +148,10 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
       if (job?.id) {
         // Update existing job
         await apiClient.put(`/api/admin/jobs/${job.id}`, jobData);
-          params: { secret: adminSecret },
-        });
         toast.success("Job updated successfully");
       } else {
         // Create new job
         await apiClient.post("/api/admin/jobs", jobData);
-          params: { secret: adminSecret },
-        });
         toast.success("Job created successfully");
       }
 

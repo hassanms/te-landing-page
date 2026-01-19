@@ -72,8 +72,7 @@ export const AdminSidebar: React.FC = () => {
   };
 
   const handleNavClick = (href: string) => {
-    const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
-    router.push(`${href}?secret=${adminSecret}`);
+    router.push(href);
     setIsMobileOpen(false);
   };
 

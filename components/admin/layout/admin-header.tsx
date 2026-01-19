@@ -51,7 +51,7 @@ export const AdminHeader: React.FC = () => {
           {user && (
             <Text
               fontSize="sm"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.100")}
               display={{ base: "none", md: "block" }}
             >
               {user.email}

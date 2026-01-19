@@ -26,7 +26,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
-import axios from "axios";
+import apiClient from "lib/api-client";
 import toast from "react-hot-toast";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { JobForm } from "components/admin/jobs/job-form";
@@ -57,8 +57,6 @@ const AdminJobsPage = () => {
   const borderColor = useColorModeValue("gray.200", "gray.600");
   const textColor = useColorModeValue("gray.600", "gray.300");
 
-  const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
-
   useEffect(() => {
     fetchJobs();
   }, []);
@@ -66,9 +64,7 @@ const AdminJobsPage = () => {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/admin/jobs", {
-        params: { secret: adminSecret },
-      });
+      const response = await apiClient.get("/api/admin/jobs");
       setJobs(response.data.jobs || []);
       setError(null);
     } catch (err: any) {
@@ -97,9 +93,7 @@ const AdminJobsPage = () => {
     }
 
     try {
-      await axios.delete(`/api/admin/jobs/${jobId}`, {
-        params: { secret: adminSecret },
-      });
+      await apiClient.delete(`/api/admin/jobs/${jobId}`);
       toast.success("Job deleted successfully");
       fetchJobs();
     } catch (err: any) {

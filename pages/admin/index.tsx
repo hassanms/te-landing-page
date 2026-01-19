@@ -11,7 +11,7 @@ import {
   VStack,
   Icon,
 } from "@chakra-ui/react";
-import axios from "axios";
+import apiClient from "lib/api-client";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 import {
@@ -128,8 +128,6 @@ const AdminDashboard = () => {
     error: null as string | null,
   });
 
-  const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
-
   useEffect(() => {
     fetchStats();
   }, []);
@@ -139,17 +137,13 @@ const AdminDashboard = () => {
       setStats((prev) => ({ ...prev, loading: true, error: null }));
 
       // Fetch jobs
-      const jobsResponse = await axios.get("/api/admin/jobs", {
-        params: { secret: adminSecret },
-      });
+      const jobsResponse = await apiClient.get("/api/admin/jobs");
       const jobs = jobsResponse.data.jobs || [];
       const openJobs = jobs.filter((job: any) => job.status === "open");
       const closedJobs = jobs.filter((job: any) => job.status === "closed");
 
       // Fetch applications
-      const appsResponse = await axios.get("/api/admin/applications", {
-        params: { secret: adminSecret },
-      });
+      const appsResponse = await apiClient.get("/api/admin/applications");
       const applications = appsResponse.data.applications || [];
 
       // Calculate recent applications (last 7 days)

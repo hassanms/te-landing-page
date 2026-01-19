@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
-import axios from "axios";
+import apiClient from "lib/api-client";
 
 // Dynamically import ReactQuill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -55,7 +55,6 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
   const inputBg = useColorModeValue("gray.50", "gray.700");
   const quillBg = useColorModeValue("white", "gray.800");
   const quillTextColor = useColorModeValue("gray.800", "gray.200");
-  const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
 
   // ReactQuill modules configuration
   const quillModules = {
@@ -148,13 +147,13 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
 
       if (job?.id) {
         // Update existing job
-        await axios.put(`/api/admin/jobs/${job.id}`, jobData, {
+        await apiClient.put(`/api/admin/jobs/${job.id}`, jobData);
           params: { secret: adminSecret },
         });
         toast.success("Job updated successfully");
       } else {
         // Create new job
-        await axios.post("/api/admin/jobs", jobData, {
+        await apiClient.post("/api/admin/jobs", jobData);
           params: { secret: adminSecret },
         });
         toast.success("Job created successfully");

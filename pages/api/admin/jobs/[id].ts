@@ -1,19 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getSupabaseAdmin } from "lib/supabase/server";
-
-const ADMIN_SECRET = process.env.ADMIN_SECRET || "your-admin-secret-key";
+import { getAuthUserFromRequest } from "lib/supabase/auth-helpers";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const supabaseAdmin = getSupabaseAdmin();
   // Admin authentication check
-  const adminSecret = req.headers["x-admin-secret"] || req.query.secret;
+  const { user, error: authError } = await getAuthUserFromRequest(req, res);
 
-  if (adminSecret !== ADMIN_SECRET) {
+  if (authError || !user) {
     return res.status(401).json({ error: "Unauthorized" });
   }
+
+  const supabaseAdmin = getSupabaseAdmin();
 
   const { id } = req.query;
 

@@ -30,7 +30,7 @@ import {
   FormLabel,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import apiClient from "lib/api-client";
 import toast from "react-hot-toast";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 import { FiDownload, FiEye } from "react-icons/fi";
@@ -82,9 +82,6 @@ const AdminApplicationsPage = () => {
   const borderColor = useColorModeValue("gray.200", "gray.600");
   const textColor = useColorModeValue("gray.600", "gray.300");
 
-  // Simple admin secret - in production, use proper authentication
-  const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
-
   useEffect(() => {
     fetchApplications();
   }, []);
@@ -92,9 +89,7 @@ const AdminApplicationsPage = () => {
   const fetchApplications = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/admin/applications", {
-        params: { secret: adminSecret },
-      });
+      const response = await apiClient.get("/api/admin/applications");
       setApplications(response.data.applications || []);
       setError(null);
     } catch (err: any) {
@@ -120,16 +115,12 @@ const AdminApplicationsPage = () => {
     if (!selectedApplication) return;
 
     try {
-      const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
-      await axios.put(
+      await apiClient.put(
         `/api/admin/applications/${selectedApplication.id}/status`,
         {
           status: editingStatus,
           adminNotes: editingNotes,
           updatedBy: "Admin",
-        },
-        {
-          params: { secret: adminSecret },
         }
       );
 
@@ -166,10 +157,7 @@ const AdminApplicationsPage = () => {
   const handleDownloadResume = async (applicationId: string, resumeUrl: string, fileName: string) => {
     try {
       // Get signed URL from API
-      const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
-      const response = await axios.get(`/api/admin/applications/${applicationId}/resume`, {
-        params: { secret: adminSecret },
-      });
+      const response = await apiClient.get(`/api/admin/applications/${applicationId}/resume`);
 
       if (response.data?.downloadUrl) {
         window.open(response.data.downloadUrl, "_blank");

@@ -23,7 +23,7 @@ import {
   Td,
   Badge,
 } from "@chakra-ui/react";
-import axios from "axios";
+import apiClient from "lib/api-client";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 
@@ -60,7 +60,6 @@ const AdminAnalyticsPage = () => {
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
   const textColor = useColorModeValue("gray.600", "gray.300");
-  const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || "your-admin-secret-key";
 
   useEffect(() => {
     fetchAnalytics();
@@ -69,8 +68,8 @@ const AdminAnalyticsPage = () => {
   const fetchAnalytics = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/admin/analytics", {
-        params: { secret: adminSecret, period },
+      const response = await apiClient.get("/api/admin/analytics", {
+        params: { period },
       });
       setAnalytics(response.data);
       setError(null);

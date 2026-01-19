@@ -1,14 +1,16 @@
 import React from "react";
-import { Box, HStack, IconButton, useColorModeValue } from "@chakra-ui/react";
+import { Box, HStack, IconButton, Button, useColorModeValue, Text } from "@chakra-ui/react";
 import { Logo } from "data/logo";
 import ThemeToggle from "components/layout/theme-toggle";
 import { useAdminLayout } from "./admin-layout";
-import { FiMenu } from "react-icons/fi";
+import { useAuth } from "contexts/auth-context";
+import { FiMenu, FiLogOut } from "react-icons/fi";
 
 export const AdminHeader: React.FC = () => {
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
   const { isSidebarCollapsed, toggleSidebar } = useAdminLayout();
+  const { user, signOut } = useAuth();
 
   const sidebarWidth = isSidebarCollapsed ? "80px" : "260px";
 
@@ -46,6 +48,24 @@ export const AdminHeader: React.FC = () => {
         </HStack>
 
         <HStack spacing={4}>
+          {user && (
+            <Text
+              fontSize="sm"
+              color={useColorModeValue("gray.600", "gray.300")}
+              display={{ base: "none", md: "block" }}
+            >
+              {user.email}
+            </Text>
+          )}
+          <Button
+            size="sm"
+            variant="ghost"
+            leftIcon={<FiLogOut />}
+            onClick={signOut}
+            colorScheme="red"
+          >
+            Logout
+          </Button>
           <ThemeToggle />
         </HStack>
       </HStack>

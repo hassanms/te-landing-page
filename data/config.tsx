@@ -6,6 +6,7 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
+import { FaSquare } from "react-icons/fa6";
 import { SiUpwork } from "react-icons/si";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";

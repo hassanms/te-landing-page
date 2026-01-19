@@ -51,6 +51,17 @@ const allPosts = [
     category: "Business Strategy",
   },
   {
+    title: "Vertical AI Solutions: How Agencies Win by Owning One Industry's Workflows",
+    fullTitle: "Vertical AI Solutions: How Agencies Win by Owning One Industry's Workflows",
+    date: "2026-01-12",
+    url: "/blog/vertical-ai-solutions",
+    excerpt:
+      "Trying to serve everyone makes you replaceable. Owning one industry makes you indispensable. Learn how vertical AI solutions help agencies win by focusing on one industry's workflows.",
+    image: "/assets/blog/Vertical-AI-Solutions.png",
+    featured: false,
+    category: "Business Strategy",
+  },
+  {
     title: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
     fullTitle: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
     date: "2026-01-09",

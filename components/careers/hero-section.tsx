@@ -49,7 +49,7 @@ export const CareersHeroSection: React.FC = () => {
 
           <Box w="100%">
             <Image
-              src="/assets/Career/career-banner-updated-03.svg"
+              src="/assets/career/career-banner-updated-03.svg"
               alt="Careers at Tech Emulsion"
               objectFit="contain"
             />

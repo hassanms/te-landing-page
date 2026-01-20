@@ -103,17 +103,6 @@ const allPosts = [
     featured: true,
     category: "Business Strategy",
   },
-  {
-    title: "Generative AI Integration Strategies",
-    fullTitle: "Generative AI Integration Strategies",
-    date: "2024-10-10",
-    url: "/blog/generative-ai-integration",
-    excerpt:
-      "Discover how to integrate generative AI into your existing workflows and unlock new possibilities for automation. Learn about the latest tools, frameworks, and best practices for seamlessly incorporating AI capabilities into your business processes.",
-    image: "/assets/blog/generative-ai-integration.jpg",
-    featured: false,
-    category: "AI & ML Development",
-  },
 ];
 
 const Blog: NextPage = ({ posts }: any) => {

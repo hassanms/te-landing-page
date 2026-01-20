@@ -6,6 +6,7 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
+import { BiLogoUpwork } from "react-icons/bi";
 import { FiCheck } from "react-icons/fi";
 import { Logo } from "./logo";
 
@@ -19,25 +20,33 @@ const siteConfig = {
   privacyUrl: "#",
   header: {
     links: [
+      // {
+      //   id: "about",
+      //   label: "About",
+      // },
       {
-        id: "about",
-        label: "About",
-      },
-      {
-        id: "services",
+        href: "/services",
         label: "Services",
       },
       {
-        id: "portfolio",
+        href: "/portfolio",
         label: "Portfolio",
       },
+      // {
+      //   label: "Social Proof",
+      //   id: "social",
+      // },
+      // {
+      //   label: "Tech Stack",
+      //   id: "tech",
+      // },
       {
-        label: "Social Proof",
-        id: "social",
+        label: "Blog",
+        href: "/blog",
       },
       {
-        label: "Tech Stack",
-        id: "tech",
+        label: "Careers",
+        href: "/careers",
       },
       // {
       //   label: "Our Story",
@@ -73,12 +82,16 @@ const siteConfig = {
       //   label: <FaTwitter size="20" />,
       // },
       {
-        href: "https://github.com/hassanms",
+        href: "https://github.com/Tech-Emulsion",
         label: <FaGithub size="20" aria-label="GitHub" title="GitHub" />,
       },
       {
         href: "https://www.youtube.com/@TechEmulsion",
         label: <FaYoutube size="20" aria-label="YouTube" title="YouTube" />,
+      },
+      {
+        href: "https://www.upwork.com/agencies/techemulsion/",
+        label: <BiLogoUpwork size="20" aria-label="Upwork" title="Upwork" />,
       },
     ],
   },

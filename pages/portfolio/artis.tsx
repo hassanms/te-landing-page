@@ -115,10 +115,10 @@ const CaseStudyArtis = () => {
               />
             </Box>
             <Text
-              color={
-                colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-              }
-              fontSize="4xl"
+                color={
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
+                }
+              fontSize="3xl"
               fontWeight={"500"}
               mt="4"
               width={"100%"}
@@ -126,9 +126,9 @@ const CaseStudyArtis = () => {
               Artis – Case Study
             </Text>
             <Text
-              color={
-                colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-              }
+                color={
+                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
+                }
               fontSize="xl"
               mt="4"
               width={["auto", null, "60%"]}>

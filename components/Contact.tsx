@@ -362,7 +362,7 @@ const Contact = () => {
                           border: "none",
                           fontWeight: 500,
                           color: colorMode === "dark" ? "white" : "gray.00",
-                          fontSize: "1rem",
+                          fontSize: "lg",
                           borderRadius: "none",
                           _focusVisible: {
                             borderBottom: "2px solid",
@@ -402,7 +402,7 @@ const Contact = () => {
                           border: "none",
                           fontWeight: 500,
                           color: colorMode === "dark" ? "white" : "gray.00",
-                          fontSize: "1rem",
+                          fontSize: "lg",
                           borderRadius: "none",
                           _focusVisible: {
                             borderBottom: "2px solid",
@@ -449,7 +449,7 @@ const Contact = () => {
                           border: "none",
                           fontWeight: 500,
                           color: colorMode === "dark" ? "white" : "gray.00",
-                          fontSize: "1rem",
+                          fontSize: "lg",
                           borderRadius: "none",
                           _focusVisible: {
                             borderBottom: "2px solid",
@@ -488,7 +488,7 @@ const Contact = () => {
                           border: "none",
                           fontWeight: 500,
                           color: colorMode === "dark" ? "white" : "gray.00",
-                          fontSize: "1rem",
+                          fontSize: "lg",
                           borderRadius: "none",
                           _focusVisible: {
                             borderBottom: "2px solid",

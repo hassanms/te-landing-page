@@ -19,17 +19,19 @@
     "@lottiefiles/react-lottie-player": "^3.5.4",
     "@saas-ui/auth": "^3.0.6",
     "@saas-ui/react": "^2.7.2",
+    "@supabase/supabase-js": "^2.90.1",
     "@svgr/webpack": "^7.0.0",
     "axios": "^1.7.7",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.18.0",
-    "next": "^14.1.4",
+    "next": "^16.1.2",
     "next-seo": "^6.5.0",
     "nodemailer": "^6.9.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.12.0",
+    "react-quill": "^2.0.0",
     "react-remove-scroll": "^2.5.9",
     "react-slick": "^0.30.2",
     "server-only": "^0.0.1",
@@ -44,6 +46,6 @@
     "@types/react-slick": "^0.23.13",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
-    "typescript": "5.0.4"
+    "typescript": "^5.9.3"
   }
 }

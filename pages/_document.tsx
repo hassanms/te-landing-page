@@ -8,7 +8,6 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           {/* Standard favicon for all browsers */}
-          <link rel="icon" href="/static/favicons/favicon.ico" />
           <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
           <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
           <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
@@ -21,6 +20,26 @@ export default class Document extends NextDocument {
             rel="stylesheet"
             href="https://assets.calendly.com/assets/external/widget.css"
           />
+          <style>{`
+            /* Calendly Badge Widget Styling - Match Hero Button */
+            .calendly-badge-widget,
+            #calendly-badge-widget,
+            .calendly-inline-widget,
+            [class*="calendly-badge"],
+            [id*="calendly-badge"] {
+              border-radius: 0.375rem !important;
+              padding: 0.75rem 1.5rem !important;
+              font-size: 1rem !important;
+              font-weight: 700 !important;
+              line-height: 1.5 !important;
+              min-height: 3rem !important;
+              display: inline-flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              box-shadow: none !important;
+              border: none !important;
+            }
+          `}</style>
 
           {/* GEO/AEO Optimization Meta Tags */}
           <meta name="application-name" content="Tech Emulsion" />

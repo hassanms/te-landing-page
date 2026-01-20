@@ -67,7 +67,7 @@ import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
 import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
-import { FaSquare } from "react-icons/fa6";
+import { BiLogoUpwork } from "react-icons/bi";
 import OutsourceIcon from "components/icons/Outsource";
 import StaffIcon from "components/icons/Staff";
 import ContractorsIcon from "components/icons/Contractors";
@@ -991,7 +991,7 @@ const AboutUsSection: React.FC = () => {
                 isExternal
                 aria-label="Visit Tech Emulsion on Upwork">
                 <Icon
-                  as={FaSquare}
+                  as={BiLogoUpwork}
                   boxSize="10"
                   color={useColorModeValue("gray.700", "gray.100")}
                   sx={{

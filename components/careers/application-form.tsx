@@ -523,9 +523,9 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
         </FormControl>
 
         <Box>
-          <Heading as="h2" fontSize="xl" fontWeight="semibold" color="teal.600" mb={4}>
+          {/* <Heading as="h2" fontSize="xl" fontWeight="semibold" color="teal.600" mb={4}>
             Upload Your Resume
-          </Heading>
+          </Heading> */}
           <ResumeUpload
             onFileChange={(file) => setResumeFile(file)}
             error={resumeError}

@@ -98,7 +98,10 @@ export const AdminSidebar: React.FC = () => {
       {/* Sidebar - Full left side */}
       <Box
         as="aside"
-        position="relative"
+        position={{ base: "fixed", md: "relative" }}
+        top={{ base: 0, md: "auto" }}
+        left={{ base: 0, md: "auto" }}
+        bottom={{ base: 0, md: "auto" }}
         w={{ base: "260px", md: sidebarWidth }}
         minH="100vh"
         bg={bgColor}
@@ -221,7 +224,7 @@ export const AdminSidebar: React.FC = () => {
           position="fixed"
           left={4}
           top={4}
-          zIndex={998}
+          zIndex={1100}
           display={{ base: "block", md: "none" }}
         >
           <IconButton

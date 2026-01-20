@@ -24,6 +24,8 @@ import {
   ModalBody,
   ModalCloseButton,
   IconButton,
+  Select,
+  Input,
 } from "@chakra-ui/react";
 import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
 import apiClient from "lib/api-client";
@@ -53,6 +55,11 @@ const AdminJobsPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
   const textColor = useColorModeValue("gray.600", "gray.300");
@@ -60,6 +67,11 @@ const AdminJobsPage = () => {
   useEffect(() => {
     fetchJobs();
   }, []);
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [statusFilter, searchTerm]);
 
   const fetchJobs = async () => {
     try {
@@ -117,6 +129,26 @@ const AdminJobsPage = () => {
     });
   };
 
+  const filteredJobs = jobs.filter((job) => {
+    const matchesStatus =
+      statusFilter === "all" ? true : job.status === statusFilter;
+    const term = searchTerm.toLowerCase().trim();
+    const matchesSearch =
+      !term ||
+      job.title.toLowerCase().includes(term) ||
+      job.department.toLowerCase().includes(term) ||
+      job.location.toLowerCase().includes(term);
+
+    return matchesStatus && matchesSearch;
+  });
+
+  const totalFiltered = filteredJobs.length;
+  const totalPages = Math.max(1, Math.ceil(totalFiltered / pageSize));
+  const safePage = Math.min(currentPage, totalPages);
+  const startIndex = (safePage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedJobs = filteredJobs.slice(startIndex, endIndex);
+
   return (
     <AdminLayout>
       <EnhancedSEO
@@ -126,8 +158,17 @@ const AdminJobsPage = () => {
       />
 
       <Box>
-        <HStack justify="space-between" mb={6}>
-          <Heading size="xl">Job Management</Heading>
+        <HStack justify="space-between" mb={6} align="flex-start">
+          <Box>
+            <Heading size="xl">Job Management</Heading>
+            <Text
+              mt={1}
+              fontSize="sm"
+              color={useColorModeValue("gray.600", "gray.300")}
+            >
+              Create, edit, and manage all open roles.
+            </Text>
+          </Box>
           <Button
             leftIcon={<FiPlus />}
             colorScheme="teal"
@@ -135,6 +176,53 @@ const AdminJobsPage = () => {
           >
             Create New Job
           </Button>
+        </HStack>
+
+        <HStack
+          spacing={4}
+          mb={4}
+          align="center"
+          flexWrap="wrap"
+        >
+          <Select
+            placeholder="All statuses"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value || "all")}
+            maxW="200px"
+            bg={useColorModeValue("white", "gray.800")}
+            size="sm"
+          >
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+          </Select>
+          <Input
+            placeholder="Search by title, department, or location"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            maxW="320px"
+            bg={useColorModeValue("white", "gray.800")}
+            size="sm"
+          />
+          <HStack spacing={2} ml="auto" fontSize="xs" color={textColor}>
+            <Text>
+              Rows per page:
+            </Text>
+            <Select
+              value={pageSize}
+              onChange={(e) => {
+                setPageSize(Number(e.target.value));
+                setCurrentPage(1);
+              }}
+              size="xs"
+              w="auto"
+              bg={useColorModeValue("white", "gray.800")}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </Select>
+          </HStack>
         </HStack>
 
         {error && (
@@ -155,6 +243,12 @@ const AdminJobsPage = () => {
               No jobs found. Create your first job posting.
             </Text>
           </Box>
+        ) : filteredJobs.length === 0 ? (
+          <Box textAlign="center" py={10}>
+            <Text fontSize="lg" color={textColor}>
+              No jobs match the current filters.
+            </Text>
+          </Box>
         ) : (
           <Box
             bg={bgColor}
@@ -162,8 +256,9 @@ const AdminJobsPage = () => {
             border="1px solid"
             borderColor={borderColor}
             overflow="hidden"
+            overflowX="auto"
           >
-            <Table variant="simple">
+            <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
                   <Th>Title</Th>
@@ -176,12 +271,14 @@ const AdminJobsPage = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {jobs.map((job) => (
+                {paginatedJobs.map((job) => (
                   <Tr key={job.id}>
-                    <Td fontWeight="medium">{job.title}</Td>
-                    <Td>{job.department}</Td>
-                    <Td>{job.location}</Td>
-                    <Td>{job.employment_type}</Td>
+                    <Td fontWeight="medium" whiteSpace="nowrap">
+                      {job.title}
+                    </Td>
+                    <Td whiteSpace="nowrap">{job.department}</Td>
+                    <Td whiteSpace="nowrap">{job.location}</Td>
+                    <Td whiteSpace="nowrap">{job.employment_type}</Td>
                     <Td>
                       <Badge
                         colorScheme={job.status === "open" ? "green" : "gray"}
@@ -217,6 +314,51 @@ const AdminJobsPage = () => {
               </Tbody>
             </Table>
           </Box>
+        )}
+
+        {!loading && filteredJobs.length > 0 && (
+          <HStack
+            mt={4}
+            justify="space-between"
+            align="center"
+            fontSize="xs"
+            color={textColor}
+            flexWrap="wrap"
+          >
+            <Text>
+              Showing{" "}
+              <strong>
+                {startIndex + 1}-
+                {Math.min(endIndex, totalFiltered)}
+              </strong>{" "}
+              of <strong>{totalFiltered}</strong> filtered jobs (
+              {jobs.length} total)
+            </Text>
+            <HStack spacing={2}>
+              <Button
+                size="xs"
+                variant="outline"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                isDisabled={safePage <= 1}
+              >
+                Previous
+              </Button>
+              <Text>
+                Page <strong>{safePage}</strong> of{" "}
+                <strong>{totalPages}</strong>
+              </Text>
+              <Button
+                size="xs"
+                variant="outline"
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
+                isDisabled={safePage >= totalPages}
+              >
+                Next
+              </Button>
+            </HStack>
+          </HStack>
         )}
       </Box>
 

@@ -122,6 +122,8 @@ const AdminApplicationsPage = () => {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [editingStatus, setEditingStatus] = useState<string>("");
   const [editingNotes, setEditingNotes] = useState<string>("");
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleViewDetails = (application: Application) => {
     setSelectedApplication(application);
@@ -209,6 +211,27 @@ const AdminApplicationsPage = () => {
     });
   };
 
+  const statusSummary = applications.reduce<Record<string, number>>(
+    (acc, app) => {
+      const key = app.status || "pending";
+      acc[key] = (acc[key] || 0) + 1;
+      return acc;
+    },
+    {},
+  );
+
+  // Reset to first page when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [statusFilter]);
+
+  const totalFiltered = filteredApplications.length;
+  const totalPages = Math.max(1, Math.ceil(totalFiltered / pageSize));
+  const safePage = Math.min(currentPage, totalPages);
+  const startIndex = (safePage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedApplications = filteredApplications.slice(startIndex, endIndex);
+
   return (
     <AdminLayout>
       <EnhancedSEO
@@ -219,13 +242,23 @@ const AdminApplicationsPage = () => {
 
       <Box>
         <VStack align="stretch" spacing={6}>
-          <HStack justify="space-between" align="center" mb={4}>
-            <Heading size="xl">Job Applications</Heading>
+          <HStack justify="space-between" align="flex-start" mb={4}>
+            <Box>
+              <Heading size="xl">Job Applications</Heading>
+              <Text
+                mt={1}
+                fontSize="sm"
+                color={useColorModeValue("gray.600", "gray.300")}
+              >
+                Review candidates, update statuses, and keep notes.
+              </Text>
+            </Box>
             <Select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              maxW="200px"
+              maxW="220px"
               bg={useColorModeValue("white", "gray.700")}
+              size="sm"
             >
               <option value="all">All Status</option>
               <option value="pending">Pending</option>
@@ -236,6 +269,48 @@ const AdminApplicationsPage = () => {
               <option value="rejected">Rejected</option>
               <option value="withdrawn">Withdrawn</option>
             </Select>
+          </HStack>
+
+          <HStack
+            spacing={3}
+            flexWrap="wrap"
+            align="center"
+            fontSize="xs"
+            color={textColor}
+          >
+            <Text>
+              Total: <strong>{applications.length}</strong>
+            </Text>
+            {Object.entries(statusSummary).map(([status, count]) => (
+              <Badge
+                key={status}
+                colorScheme={getStatusColor(status)}
+                borderRadius="full"
+                px={3}
+                py={1}
+                textTransform="capitalize"
+              >
+                {status} • {count}
+              </Badge>
+            ))}
+            <HStack spacing={2} ml="auto">
+              <Text>Rows per page:</Text>
+              <Select
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(Number(e.target.value));
+                  setCurrentPage(1);
+                }}
+                size="xs"
+                w="auto"
+                bg={useColorModeValue("white", "gray.700")}
+              >
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+              </Select>
+            </HStack>
           </HStack>
 
           {error && (
@@ -263,8 +338,9 @@ const AdminApplicationsPage = () => {
               border="1px solid"
               borderColor={borderColor}
               overflow="hidden"
+              overflowX="auto"
             >
-              <Table variant="simple">
+              <Table variant="striped" colorScheme="blackAlpha" size="sm">
                 <Thead>
                   <Tr>
                     <Th>Name</Th>
@@ -277,7 +353,7 @@ const AdminApplicationsPage = () => {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {filteredApplications.map((app) => (
+                  {paginatedApplications.map((app) => (
                     <Tr key={app.id}>
                       <Td>
                         {app.firstName} {app.lastName}
@@ -337,6 +413,51 @@ const AdminApplicationsPage = () => {
             </Box>
           )}
         </VStack>
+
+        {!loading && filteredApplications.length > 0 && (
+          <HStack
+            mt={4}
+            justify="space-between"
+            align="center"
+            fontSize="xs"
+            color={textColor}
+            flexWrap="wrap"
+          >
+            <Text>
+              Showing{" "}
+              <strong>
+                {startIndex + 1}-
+                {Math.min(endIndex, totalFiltered)}
+              </strong>{" "}
+              of <strong>{totalFiltered}</strong> filtered applications (
+              {applications.length} total)
+            </Text>
+            <HStack spacing={2}>
+              <Button
+                size="xs"
+                variant="outline"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                isDisabled={safePage <= 1}
+              >
+                Previous
+              </Button>
+              <Text>
+                Page <strong>{safePage}</strong> of{" "}
+                <strong>{totalPages}</strong>
+              </Text>
+              <Button
+                size="xs"
+                variant="outline"
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
+                isDisabled={safePage >= totalPages}
+              >
+                Next
+              </Button>
+            </HStack>
+          </HStack>
+        )}
 
       {/* Application Detail Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="6xl" scrollBehavior="inside">

@@ -1,6 +1,12 @@
 import React from "react";
-import { Box, HStack, IconButton, Button, useColorModeValue, Text } from "@chakra-ui/react";
-import { Logo } from "data/logo";
+import {
+  Box,
+  HStack,
+  IconButton,
+  Button,
+  useColorModeValue,
+  Text,
+} from "@chakra-ui/react";
 import ThemeToggle from "components/layout/theme-toggle";
 import { useAdminLayout } from "./admin-layout";
 import { useAuth } from "contexts/auth-context";
@@ -9,23 +15,21 @@ import { FiMenu, FiLogOut } from "react-icons/fi";
 export const AdminHeader: React.FC = () => {
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
-  const { isSidebarCollapsed, toggleSidebar } = useAdminLayout();
+  const { sidebarWidth, toggleSidebar } = useAdminLayout();
   const { user, signOut } = useAuth();
-
-  const sidebarWidth = isSidebarCollapsed ? "80px" : "260px";
 
   return (
     <Box
       as="header"
       position="fixed"
       top={0}
-      left={sidebarWidth}
+      left={{ base: 0, md: sidebarWidth }}
       right={0}
       zIndex={999}
       bg={bgColor}
       borderBottom="1px solid"
       borderColor={borderColor}
-      h="70px"
+      h={{ base: "60px", md: "70px" }}
       boxShadow="sm"
       transition="left 0.3s ease"
     >
@@ -33,7 +37,7 @@ export const AdminHeader: React.FC = () => {
         justify="space-between"
         align="center"
         h="100%"
-        px={6}
+        px={{ base: 4, md: 6 }}
         maxW="100%"
         spacing={4}
       >

@@ -66,12 +66,16 @@ export const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
 
       {job.requirements.length > 0 && (
         <Box>
-          <Heading as="h3" size="sm" mb={3}>
+          <Heading as="h2" size="md" mb={3}>
             Requirements
           </Heading>
           <List spacing={2}>
             {job.requirements.map((item) => (
-              <ListItem key={item}>• {item}</ListItem>
+              // <ListItem key={item}><strong>• </strong>{item}</ListItem>
+              <ListItem key={item} display="flex" ml={1} alignItems="flex-start" gap="0.5rem">
+                <strong>•</strong>
+                <span>{item}</span>
+              </ListItem>
             ))}
           </List>
         </Box>

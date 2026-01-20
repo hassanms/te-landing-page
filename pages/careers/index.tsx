@@ -3,6 +3,7 @@ import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { CareersHeroSection } from "components/careers/hero-section";
 import { JobListingsGrid } from "components/careers/job-listings-grid";
+import CareersBreadcrumb from "components/layout/careers-breadcrumb";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Job } from "data/jobs/types";
@@ -53,6 +54,14 @@ const CareersPage = () => {
 
       <Box py={{ base: 10, md: 16 }}>
         <Container maxW="container.xl">
+          {/* <Box mb={6}>
+            <CareersBreadcrumb
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Careers" },
+              ]}
+            />
+          </Box> */}
           <Stack spacing={16}>
             {loading ? (
               <Box textAlign="center" py={10}>

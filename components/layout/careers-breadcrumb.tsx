@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, ButtonGroup, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 
@@ -14,14 +14,11 @@ export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
 
   return (
     <Box mb="4">
-      <ButtonGroup
-        style={{
-          backgroundColor: "none",
-          fontSize: "1rem",
-          color: "muted",
-          display: "flex",
-          alignItems: "center",
-        }}
+      <Flex
+        flexWrap="wrap"
+        alignItems="center"
+        gap={{ base: 1, md: 2 }}
+        fontSize={{ base: "xs", md: "sm" }}
       >
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -31,11 +28,14 @@ export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
               <React.Fragment key={`${item.label}-${index}`}>
                 <ButtonLink
                   href={item.href}
-                  size="lg"
+                  size={{ base: "xs", md: "sm" }}
                   sx={{
                     bg: "none",
                     color: "muted",
                     padding: "0",
+                    fontSize: "inherit",
+                    height: "auto",
+                    minW: "auto",
                     "&:hover": {
                       bg: "none",
                     },
@@ -43,7 +43,7 @@ export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
                 >
                   {item.label}
                 </ButtonLink>
-                <FaChevronRight size={15} />
+                <FaChevronRight size={10} style={{ flexShrink: 0 }} />
               </React.Fragment>
             );
           }
@@ -52,16 +52,16 @@ export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
             <Text
               key={`${item.label}-${index}`}
               as="span"
-              ml="2"
+              fontWeight="medium"
               sx={{
-                color: colorMode === "light" ? "#004c4c !important" : "white",
+                color: colorMode === "light" ? "teal.700" : "teal.300",
               }}
             >
               {item.label}
             </Text>
           );
         })}
-      </ButtonGroup>
+      </Flex>
     </Box>
   );
 };

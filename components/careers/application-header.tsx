@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Heading, Stack, Tag, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Stack, Tag, Text, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import { SocialShareButtons } from "./social-share-buttons";
 
@@ -15,6 +15,13 @@ export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => 
     ? window.location.origin + `/careers/${job.slug || job.id}`
     : `https://techemulsion.com/careers/${job.slug || job.id}`;
 
+  // Create email share link with subject and body
+  const emailSubject = encodeURIComponent(`Job opportunity: ${job.title} at ${job.company}`);
+  const emailBody = encodeURIComponent(
+    `Check out this job opportunity:\n\n${job.title}\n${job.company}\n\nView details: ${jobUrl}`
+  );
+  const emailShareLink = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+
   return (
     <Box
       borderBottomWidth="1px"
@@ -23,7 +30,6 @@ export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => 
       pt={{ base: 20, md: 24 }}
       pb={{ base: 10, md: 12 }}
       mb={8}
-      mt={{ base: 40, md: 12 }}
     >
       <Container maxW="container.xl">
         <Stack spacing={6} align="center" textAlign="center">
@@ -49,6 +55,15 @@ export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => 
           </Stack>
 
           <Stack spacing={3} align="center">
+            <Button
+              variant="outline"
+              colorScheme="teal"
+              size="sm"
+              as="a"
+              href={emailShareLink}
+            >
+              Share job via email
+            </Button>
             <Text fontSize="sm" color={subTextColor}>
               Share this job with your network
             </Text>

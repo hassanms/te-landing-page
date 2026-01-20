@@ -4,7 +4,6 @@ import {
   FaFacebook,
   FaLinkedin,
   FaWhatsapp,
-  FaXTwitter,
 } from "react-icons/fa6";
 
 interface SocialShareButtonsProps {
@@ -41,18 +40,6 @@ export const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
         onClick={() =>
           openShare(
             `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-          )
-        }
-      />
-      <IconButton
-        aria-label="Share on X"
-        icon={<FaXTwitter />}
-        size="sm"
-        variant="outline"
-        bg={bg}
-        onClick={() =>
-          openShare(
-            `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}%20-%20${encodedUrl}`,
           )
         }
       />

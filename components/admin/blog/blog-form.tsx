@@ -49,7 +49,7 @@ interface BlogPost {
   title?: string;
   excerpt?: string;
   content?: string;
-  featured_image?: string;
+  featured_image?: string | null;
   category?: string;
   author_name?: string;
   tags?: string[];
@@ -59,7 +59,7 @@ interface BlogPost {
   meta_description?: string;
   meta_keywords?: string;
   canonical_url?: string;
-  og_image?: string;
+  og_image?: string | null;
 }
 
 interface Category {

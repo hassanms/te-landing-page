@@ -32,12 +32,16 @@ export default async function handler(
     }
 
     // Increment view count (fire and forget)
-    supabaseAdmin
-      .from("blog_posts")
-      .update({ view_count: (post.view_count || 0) + 1 })
-      .eq("id", post.id)
-      .then(() => {})
-      .catch(console.error);
+    void (async () => {
+      try {
+        await supabaseAdmin
+          .from("blog_posts")
+          .update({ view_count: (post.view_count || 0) + 1 })
+          .eq("id", post.id);
+      } catch (err) {
+        console.error("Failed to increment view count:", err);
+      }
+    })();
 
     // Fetch related posts (same category, excluding current)
     const { data: relatedPosts } = await supabaseAdmin

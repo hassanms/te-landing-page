@@ -5,7 +5,7 @@ import { useAdminLayout } from "./admin-layout";
 export const AdminFooter: React.FC = () => {
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
-  const textColor = useColorModeValue("gray.600", "gray.400");
+  const textColor = useColorModeValue("gray.600", "gray.200");
   const { sidebarWidth } = useAdminLayout();
 
   return (

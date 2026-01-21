@@ -37,7 +37,7 @@ export const JobFilters: React.FC<JobFiltersProps> = ({
     onChange({ ...value, [key]: newValue });
   };
 
-  const labelColor = useColorModeValue("gray.600", "lightGrey.400");
+  const labelColor = useColorModeValue("gray.600", "gray.200");
 
   return (
     <Box>

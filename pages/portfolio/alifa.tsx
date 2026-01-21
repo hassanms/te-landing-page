@@ -6,6 +6,7 @@ import {
   ListItem,
   Text,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
@@ -16,6 +17,7 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const CaseStudyAlifa = () => {
   const { colorMode } = useColorMode();
+  const quoteAuthorColor = useColorModeValue("gray.600", "gray.200");
 
   return (
     <Box id="services">
@@ -392,7 +394,7 @@ const CaseStudyAlifa = () => {
                 size={10}
                 style={{ position: "absolute", right: "20%", bottom: 34 }}
               />
-              <Text fontSize="2xl" fontWeight="bold" color="gray.600" mt={5}>
+              <Text fontSize="2xl" fontWeight="bold" color={quoteAuthorColor} mt={5}>
                 – Suliman, CEO of Alifa
               </Text>
             </Box>

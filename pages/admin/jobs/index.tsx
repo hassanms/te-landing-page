@@ -62,7 +62,8 @@ const AdminJobsPage = () => {
 
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.300");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
 
   useEffect(() => {
     fetchJobs();
@@ -164,7 +165,7 @@ const AdminJobsPage = () => {
             <Text
               mt={1}
               fontSize="sm"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.200")}
             >
               Create, edit, and manage all open roles.
             </Text>
@@ -261,13 +262,13 @@ const AdminJobsPage = () => {
             <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
-                  <Th>Title</Th>
-                  <Th>Department</Th>
-                  <Th>Location</Th>
-                  <Th>Type</Th>
-                  <Th>Status</Th>
-                  <Th>Created</Th>
-                  <Th>Actions</Th>
+                  <Th color={tableHeadingColor}>Title</Th>
+                  <Th color={tableHeadingColor}>Department</Th>
+                  <Th color={tableHeadingColor}>Location</Th>
+                  <Th color={tableHeadingColor}>Type</Th>
+                  <Th color={tableHeadingColor}>Status</Th>
+                  <Th color={tableHeadingColor}>Created</Th>
+                  <Th color={tableHeadingColor}>Actions</Th>
                 </Tr>
               </Thead>
               <Tbody>

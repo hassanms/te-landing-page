@@ -59,7 +59,8 @@ const AdminAnalyticsPage = () => {
 
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.300");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
 
   useEffect(() => {
     fetchAnalytics();
@@ -118,7 +119,7 @@ const AdminAnalyticsPage = () => {
             <Text
               mt={1}
               fontSize="sm"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.200")}
             >
               Track application trends and hiring performance over time.
             </Text>
@@ -352,8 +353,8 @@ const AdminAnalyticsPage = () => {
             <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
-                  <Th>Department</Th>
-                  <Th>Applications</Th>
+                  <Th color={tableHeadingColor}>Department</Th>
+                  <Th color={tableHeadingColor}>Applications</Th>
                 </Tr>
               </Thead>
               <Tbody>

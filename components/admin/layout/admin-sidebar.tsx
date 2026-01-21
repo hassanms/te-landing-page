@@ -17,6 +17,7 @@ import {
   FiX,
   FiMenu,
   FiBarChart2,
+  FiEdit3,
 } from "react-icons/fi";
 import { Logo } from "data/logo";
 import { useAdminLayout } from "./admin-layout";
@@ -33,6 +34,11 @@ const navItems: NavItem[] = [
     label: "Dashboard",
     icon: FiHome,
     href: "/admin",
+  },
+  {
+    label: "Blog",
+    icon: FiEdit3,
+    href: "/admin/blog",
   },
   {
     label: "Jobs",
@@ -61,7 +67,7 @@ export const AdminSidebar: React.FC = () => {
   const activeBg = useColorModeValue("teal.500", "teal.600");
   const activeColor = "white";
   const hoverBg = useColorModeValue("gray.50", "gray.700");
-  const textColor = useColorModeValue("gray.700", "gray.300");
+  const textColor = useColorModeValue("gray.700", "gray.200");
   const brandTextColor = useColorModeValue("gray.800", "white");
 
   const isActive = (href: string) => {

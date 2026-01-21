@@ -8,7 +8,7 @@ interface ApplicationHeaderProps {
 }
 
 export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => {
-  const subTextColor = useColorModeValue("gray.600", "lightGrey.400");
+  const subTextColor = useColorModeValue("gray.600", "gray.200");
   
   // Get the job detail page URL (not the apply page)
   const jobUrl = typeof window !== "undefined"

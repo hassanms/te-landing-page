@@ -10,7 +10,7 @@ import {
 import { ButtonLink } from "components/button-link";
 
 export const CareersHeroSection: React.FC = () => {
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const textColor = useColorModeValue("gray.600", "gray.200");
 
   return (
     <Box bg={useColorModeValue("white", "charcoal.900")} pt={{ base: 20, md: 24 }} pb={16}>

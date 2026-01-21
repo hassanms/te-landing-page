@@ -99,7 +99,9 @@ const AdminApplicationsPage = () => {
 
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.300");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
+  const labelColor = useColorModeValue("gray.700", "gray.100");
 
   useEffect(() => {
     fetchApplications();
@@ -248,7 +250,7 @@ const AdminApplicationsPage = () => {
               <Text
                 mt={1}
                 fontSize="sm"
-                color={useColorModeValue("gray.600", "gray.300")}
+                color={useColorModeValue("gray.600", "gray.200")}
               >
                 Review candidates, update statuses, and keep notes.
               </Text>
@@ -343,13 +345,13 @@ const AdminApplicationsPage = () => {
               <Table variant="striped" colorScheme="blackAlpha" size="sm">
                 <Thead>
                   <Tr>
-                    <Th>Name</Th>
-                    <Th>Email</Th>
-                    <Th>Phone</Th>
-                    <Th>Job</Th>
-                    <Th>Status</Th>
-                    <Th>Applied</Th>
-                    <Th>Actions</Th>
+                    <Th color={tableHeadingColor}>Name</Th>
+                    <Th color={tableHeadingColor}>Email</Th>
+                    <Th color={tableHeadingColor}>Phone</Th>
+                    <Th color={tableHeadingColor}>Job</Th>
+                    <Th color={tableHeadingColor}>Status</Th>
+                    <Th color={tableHeadingColor}>Applied</Th>
+                    <Th color={tableHeadingColor}>Actions</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -914,7 +916,7 @@ const AdminApplicationsPage = () => {
                   <VStack align="stretch" spacing={4}>
                     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                       <FormControl>
-                        <FormLabel>Application Status</FormLabel>
+                        <FormLabel color={labelColor}>Application Status</FormLabel>
                         <Select
                           value={editingStatus}
                           onChange={(e) => setEditingStatus(e.target.value)}
@@ -955,7 +957,7 @@ const AdminApplicationsPage = () => {
                       )}
                     </SimpleGrid>
                     <FormControl>
-                      <FormLabel>Admin Notes</FormLabel>
+                      <FormLabel color={labelColor}>Admin Notes</FormLabel>
                       <Textarea
                         value={editingNotes}
                         onChange={(e) => setEditingNotes(e.target.value)}

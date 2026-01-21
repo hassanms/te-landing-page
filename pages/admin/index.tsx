@@ -51,7 +51,7 @@ const StatCard: React.FC<StatCardProps> = ({
 }) => {
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.400");
+  const textColor = useColorModeValue("gray.600", "gray.200");
   const valueColor = useColorModeValue("gray.800", "white");
 
   return (
@@ -286,7 +286,7 @@ const AdminDashboard = () => {
           <Heading size="xl">Admin Dashboard</Heading>
           <Text
             fontSize="sm"
-            color={useColorModeValue("gray.600", "gray.300")}
+            color={useColorModeValue("gray.600", "gray.200")}
           >
             Monitor jobs and applications at a glance.
           </Text>
@@ -298,7 +298,7 @@ const AdminDashboard = () => {
           flexWrap="wrap"
           mb={6}
           fontSize="xs"
-          color={useColorModeValue("gray.600", "gray.300")}
+          color={useColorModeValue("gray.600", "gray.200")}
         >
           <Badge borderRadius="full" px={3} py={1} colorScheme="teal">
             Total jobs: {stats.totalJobs}
@@ -333,7 +333,7 @@ const AdminDashboard = () => {
           {stats.jobsWithNoApplications === 0 &&
           stats.longPendingApplications === 0 &&
           stats.staleOpenJobs.length === 0 ? (
-            <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.300")}>
+            <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.200")}>
               All clear. Nothing critical needs attention right now.
             </Text>
           ) : (
@@ -354,7 +354,7 @@ const AdminDashboard = () => {
                         <Text
                           key={job.title}
                           fontSize="xs"
-                          color={useColorModeValue("gray.600", "gray.300")}
+                          color={useColorModeValue("gray.600", "gray.200")}
                         >
                           • {job.title}
                         </Text>
@@ -362,7 +362,7 @@ const AdminDashboard = () => {
                       {stats.jobsWithNoApplicationsList.length > 3 && (
                         <Text
                           fontSize="xs"
-                          color={useColorModeValue("gray.500", "gray.400")}
+                          color={useColorModeValue("gray.500", "gray.200")}
                         >
                           + {stats.jobsWithNoApplicationsList.length - 3} more
                         </Text>
@@ -388,7 +388,7 @@ const AdminDashboard = () => {
                       <Text
                         key={job.title}
                         fontSize="xs"
-                        color={useColorModeValue("gray.600", "gray.300")}
+                        color={useColorModeValue("gray.600", "gray.200")}
                       >
                         • {job.title} &mdash; open for {job.daysOpen} days
                       </Text>
@@ -396,7 +396,7 @@ const AdminDashboard = () => {
                     {stats.staleOpenJobs.length > 3 && (
                       <Text
                         fontSize="xs"
-                        color={useColorModeValue("gray.500", "gray.400")}
+                        color={useColorModeValue("gray.500", "gray.200")}
                       >
                         + {stats.staleOpenJobs.length - 3} more
                       </Text>

@@ -947,11 +947,11 @@ const AboutUsSection: React.FC = () => {
                 />
               </Link>
               <Link
-                href="https://github.com/Tech-Emulsion"
+                href="https://www.upwork.com/agencies/techemulsion/"
                 isExternal
-                aria-label="Visit Tech Emulsion on GitHub">
+                aria-label="Visit Tech Emulsion on Upwork">
                 <Icon
-                  as={AiFillGithub}
+                  as={BiLogoUpwork}
                   boxSize="10"
                   color={useColorModeValue("gray.700", "gray.100")}
                   sx={{
@@ -972,26 +972,6 @@ const AboutUsSection: React.FC = () => {
                 aria-label="Visit Tech Emulsion on YouTube">
                 <Icon
                   as={AiFillYoutube}
-                  boxSize="10"
-                  color={useColorModeValue("gray.700", "gray.100")}
-                  sx={{
-                    padding: "10px",
-                    borderRadius: "20%",
-                    border: "1px solid",
-                    borderColor: "teal.500",
-                    ":hover": {
-                      bg: "teal.500",
-                      color: "white",
-                    },
-                  }}
-                />
-              </Link>
-              <Link
-                href="https://www.upwork.com/agencies/techemulsion/"
-                isExternal
-                aria-label="Visit Tech Emulsion on Upwork">
-                <Icon
-                  as={BiLogoUpwork}
                   boxSize="10"
                   color={useColorModeValue("gray.700", "gray.100")}
                   sx={{

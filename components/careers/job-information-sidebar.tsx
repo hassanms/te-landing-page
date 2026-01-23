@@ -15,6 +15,14 @@ export const JobInformationSidebar: React.FC<JobInformationSidebarProps> = ({
   const infoItems: { label: string; value?: string }[] = [
     { label: "Country", value: job.country },
     { label: "Industry", value: job.industry },
+    ...(job.totalPositions
+      ? [
+          {
+            label: "Total Positions",
+            value: `${job.totalPositions} ${job.totalPositions === 1 ? "Position" : "Positions"}`,
+          },
+        ]
+      : []),
   ];
 
   return (

@@ -30,6 +30,7 @@ interface Job {
   description?: string;
   requirements?: string[];
   status?: string;
+  total_positions?: number | null;
 }
 
 interface JobFormProps {
@@ -48,6 +49,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
     description: "",
     requirements: "",
     status: "open",
+    total_positions: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -92,17 +94,18 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
         description: job.description || "",
         requirements: job.requirements?.join("\n") || "",
         status: job.status || "open",
+        total_positions: job.total_positions?.toString() || "",
       });
     }
   }, [job]);
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | number) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
 
     // Auto-generate slug from title
     if (field === "title" && !job) {
-      const slug = value
+      const slug = String(value)
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
@@ -141,9 +144,15 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
         .map((r) => r.trim())
         .filter((r) => r.length > 0);
 
+      // Convert total_positions to number or null
+      const totalPositions = form.total_positions
+        ? parseInt(form.total_positions, 10)
+        : null;
+
       const jobData = {
         ...form,
         requirements: requirementsArray,
+        total_positions: totalPositions,
       };
 
       if (job?.id) {
@@ -242,6 +251,18 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
               <option value="open">Open</option>
               <option value="closed">Closed</option>
             </Select>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel color={labelColor}>Total Positions</FormLabel>
+            <Input
+              type="number"
+              value={form.total_positions}
+              onChange={(e) => handleChange("total_positions", e.target.value)}
+              bg={inputBg}
+              placeholder="e.g., 5"
+              min="1"
+            />
           </FormControl>
         </HStack>
 

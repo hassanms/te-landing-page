@@ -44,6 +44,7 @@ interface Job {
   description: string;
   requirements: string[];
   status: string;
+  total_positions: number | null;
   created_at: string;
 }
 

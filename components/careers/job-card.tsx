@@ -37,9 +37,14 @@ export const JobCard: React.FC<JobCardProps> = ({ job }) => {
         <Heading as="h3" fontSize="lg" color={useColorModeValue("teal.700", "teal.300")}>
           {job.title}
         </Heading>
-        <Stack direction="row" spacing={3}>
+        <Stack direction="row" spacing={3} flexWrap="wrap">
           <Badge colorScheme="teal">{job.employmentType}</Badge>
           <Badge variant="subtle">{job.department}</Badge>
+          {job.totalPositions && (
+            <Badge colorScheme="blue" variant="outline">
+              {job.totalPositions} {job.totalPositions === 1 ? "Position" : "Positions"}
+            </Badge>
+          )}
         </Stack>
         <Text color={textColor} noOfLines={3}>
           {job.shortDescription}

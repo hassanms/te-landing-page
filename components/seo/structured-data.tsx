@@ -2,7 +2,7 @@ import React from "react";
 import Script from "next/script";
 
 interface StructuredDataProps {
-  type: "organization" | "faq" | "service" | "portfolio" | "howto" | "breadcrumb" | "review" | "website" | "localbusiness";
+  type: "organization" | "faq" | "service" | "portfolio" | "howto" | "breadcrumb" | "review" | "website";
   data: any;
 }
 
@@ -185,32 +185,6 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
             },
             "query-input": "required name=search_term_string",
           },
-        };
-      case "localbusiness":
-        return {
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": "https://techemulsion.com",
-          name: "Tech Emulsion",
-          image: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
-          url: "https://techemulsion.com",
-          telephone: data.telephone,
-          email: data.email || "info@techemulsion.com",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Peshawar",
-            addressRegion: "Khyber Pakhtunkhwa",
-            postalCode: "25120",
-            addressCountry: "PK",
-            streetAddress: "Arbab road, Peshawar",
-          },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: 33.6844,
-            longitude: 73.0479,
-          },
-          openingHoursSpecification: data.openingHours,
-          priceRange: data.priceRange,
         };
       default:
         return {};

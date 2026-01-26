@@ -160,18 +160,6 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
             },
           ],
         }}
-        articleData={{
-          headline: post.title,
-          description: post.meta_description || post.excerpt,
-          image: post.featured_image || post.og_image,
-          datePublished: post.published_at,
-          dateModified: post.published_at,
-          author: post.author_name || "Tech Emulsion",
-          section: post.category,
-          category: post.category,
-          keywords: post.meta_keywords || undefined,
-          url: `https://techemulsion.com/blog/${post.slug}`,
-        }}
       />
       <Head>
         <title>{post.meta_title || `${post.title} - Tech Emulsion`}</title>

@@ -41,24 +41,6 @@ export interface EnhancedSEOProps extends NextSeoProps {
     reviewBody: string;
     datePublished?: string;
   };
-  articleData?: {
-    headline?: string;
-    description?: string;
-    image?: string | string[];
-    datePublished?: string;
-    dateModified?: string;
-    author?: string;
-    section?: string;
-    category?: string;
-    keywords?: string;
-    url?: string;
-  };
-  localBusinessData?: {
-    telephone?: string;
-    email?: string;
-    openingHours?: any;
-    priceRange?: string;
-  };
   canonicalUrl?: string;
   ogImage?: string;
 }
@@ -289,16 +271,6 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       {/* Review Schema - Conditional */}
       {reviewData && (
         <StructuredData type="review" data={reviewData} />
-      )}
-
-      {/* Article Schema - Conditional */}
-      {articleData && (
-        <StructuredData type="article" data={articleData} />
-      )}
-
-      {/* LocalBusiness Schema - Conditional */}
-      {localBusinessData && (
-        <StructuredData type="localbusiness" data={localBusinessData} />
       )}
     </>
   );

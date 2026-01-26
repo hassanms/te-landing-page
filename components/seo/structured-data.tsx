@@ -2,7 +2,7 @@ import React from "react";
 import Script from "next/script";
 
 interface StructuredDataProps {
-  type: "organization" | "faq" | "service" | "portfolio" | "howto" | "breadcrumb" | "review" | "website" | "localbusiness" | "article";
+  type: "organization" | "faq" | "service" | "portfolio" | "howto" | "breadcrumb" | "review" | "website" | "localbusiness";
   data: any;
 }
 
@@ -211,34 +211,6 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           },
           openingHoursSpecification: data.openingHours,
           priceRange: data.priceRange,
-        };
-      case "article":
-        return {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: data.headline || data.title,
-          description: data.description,
-          image: data.image ? (Array.isArray(data.image) ? data.image : [data.image]) : undefined,
-          datePublished: data.datePublished,
-          dateModified: data.dateModified || data.datePublished,
-          author: {
-            "@type": "Person",
-            name: data.author || "Tech Emulsion",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Tech Emulsion",
-            logo: {
-              "@type": "ImageObject",
-              url: "https://techemulsion.com/static/favicons/android-chrome-192x192.png",
-            },
-          },
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": data.url,
-          },
-          articleSection: data.section || data.category,
-          keywords: data.keywords || undefined,
         };
       default:
         return {};

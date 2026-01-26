@@ -57,6 +57,25 @@ const CaseStudyRackroom = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Rack Room and what problem does it solve?",
+              answer:
+                "Rack Room is a tailored, secure, and scalable business resource management system built for a single owner to manage their business's resources efficiently. It supports complex booking management with sophisticated date and time calculations, client and engineer tracking, financial calculations, and automated SMS notifications via Twilio. The system includes a Gantt chart dashboard and event logs that provide the owner with clear visibility and control over all business operations.",
+            },
+            {
+              question: "What are the main features of Rack Room?",
+              answer:
+                "Rack Room offers comprehensive business management features including booking management with complex date and time calculations to handle scheduling conflicts and availability, client tracking to maintain detailed records of customer interactions, engineer tracking to monitor team member assignments and performance, financial calculations for accurate billing and revenue tracking, automated SMS notifications via Twilio for appointment reminders and updates, Gantt chart dashboard for visual project and resource scheduling, and event logs that provide a complete audit trail of all business activities.",
+            },
+            {
+              question: "How does Rack Room help business owners manage their operations?",
+              answer:
+                "Rack Room helps business owners manage operations by providing a centralized system that handles all aspects of resource management, offering real-time visibility through Gantt charts and event logs, automating routine tasks like SMS notifications to reduce manual work, tracking financial data to support informed decision-making, managing complex scheduling scenarios with advanced date and time calculations, and providing a scalable architecture that can grow with the business while maintaining security and reliability.",
+            },
+          ],
+        }}
       />
       <Script
         async

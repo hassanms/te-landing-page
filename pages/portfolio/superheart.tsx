@@ -59,6 +59,25 @@ const CaseStudySuperheart = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is SuperHeart and how does it help with nutrition tracking?",
+              answer:
+                "SuperHeart is an AI-powered nutrition tracking mobile app that acts as a food coach in your pocket, helping you choose meals that keep your heart happy. The app allows users to log meals by photo, words, or search, and uses AI to automatically guess food details including calories and macros (protein, carbs, fats) right away. The dashboard tracks water, fiber, sugar, and other daily targets with colored rings that indicate what you still need or should limit.",
+            },
+            {
+              question: "How does SuperHeart use AI for nutrition tracking?",
+              answer:
+                "SuperHeart leverages AI technology to automatically identify and analyze food from photos, estimate nutritional information including calories and macronutrients, provide personalized meal recommendations based on heart health goals, track daily targets for water, fiber, sugar, and other nutrients, and offer intelligent insights to help users make better food choices. The AI system learns from user inputs to improve accuracy over time and provides helpful notes and reminders to support healthy eating habits.",
+            },
+            {
+              question: "What features does SuperHeart offer?",
+              answer:
+                "SuperHeart offers comprehensive nutrition tracking features including multiple meal logging options (photo, text, or search), AI-powered food recognition and nutritional analysis, real-time calorie and macro tracking, daily target tracking for water, fiber, sugar, and other nutrients with visual indicators, meal details with deeper nutritional facts and helpful notes, reminders for eating, weighing in, and health tips, profile page with streaks, premium status, and account settings, chat help for nutrition questions, and long-term progress tracking. The app is built with React Native for cross-platform compatibility (iOS and Android) and uses Supabase for data storage and synchronization.",
+            },
+          ],
+        }}
       />
       <Script
         async

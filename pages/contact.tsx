@@ -39,6 +39,12 @@ const Contacts = () => {
             { name: "Contact", url: "https://techemulsion.com/contact" },
           ],
         }}
+        localBusinessData={{
+          telephone: undefined,
+          email: "info@techemulsion.com",
+          openingHours: undefined,
+          priceRange: undefined,
+        }}
         faqData={{
           questions: [
             {

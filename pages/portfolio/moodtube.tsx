@@ -48,6 +48,25 @@ const CaseStudyMoodtube = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is MoodTube and how does it work?",
+              answer:
+                "MoodTube is a browser extension that allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings using models like all-mpnet-base-v2, and stores them in PGVector for efficient semantic search. When users select a mood, the system performs semantic search to retrieve videos that match the selected emotional tone, offering personalized video recommendations based on mood rather than just keywords.",
+            },
+            {
+              question: "How does MoodTube use AI for mood-based video search?",
+              answer:
+                "MoodTube uses advanced AI technology including LangChain for orchestrating the AI workflow, vector embeddings to convert video transcripts into searchable representations, semantic search algorithms to find videos matching emotional tones, PGVector database for efficient similarity search, and natural language processing to understand the emotional context of video content. This allows the extension to go beyond keyword matching and find videos based on the actual mood and emotional tone of the content.",
+            },
+            {
+              question: "What makes MoodTube different from regular YouTube search?",
+              answer:
+                "MoodTube differs from regular YouTube search by enabling mood-based discovery rather than keyword-based search, using AI to understand the emotional tone of video content, providing personalized recommendations based on how videos make you feel, analyzing video transcripts to understand context and mood, and offering a more intuitive way to find content that matches your current emotional state or desired mood. This creates a unique user experience that helps people find videos that resonate with their feelings rather than just matching search terms.",
+            },
+          ],
+        }}
       />
       <Script
         async

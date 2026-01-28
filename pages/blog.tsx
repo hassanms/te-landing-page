@@ -1,6 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
-import Head from "next/head";
 import NextLink from "next/link";
 import { useState } from "react";
 import {
@@ -83,9 +82,6 @@ const Blog: NextPage<BlogPageProps> = ({ posts, categories }) => {
           ],
         }}
       />
-      <Head>
-        <title>Insights - Tech Emulsion</title>
-      </Head>
 
       <Container maxW="container.xl" py="10">
         {/* Breadcrumb Navigation - Top */}

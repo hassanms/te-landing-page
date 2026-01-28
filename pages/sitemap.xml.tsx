@@ -17,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { path: "/contact", changefreq: "monthly", priority: "0.8" },
     { path: "/our-story", changefreq: "monthly", priority: "0.7" },
     { path: "/blog", changefreq: "weekly", priority: "0.8" },
+    { path: "/careers", changefreq: "weekly", priority: "0.7" },
     { path: "/privacy-policy", changefreq: "yearly", priority: "0.3" },
     { path: "/terms-of-service", changefreq: "yearly", priority: "0.3" },
     // Portfolio pages
@@ -66,6 +67,46 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     // Continue without blog posts if there's an error
   }
 
+  // Fetch career pages dynamically
+  let careerPages: Array<{ path: string; lastmod: string; changefreq: string; priority: string }> =
+    [];
+  try {
+    const supabaseAdmin = getSupabaseAdmin();
+    const { data: jobs } = await supabaseAdmin
+      .from("jobs")
+      .select("id, slug, updated_at, created_at")
+      .eq("is_published", true);
+
+    if (jobs && jobs.length > 0) {
+      careerPages = jobs.flatMap((job: any) => {
+        const jobIdentifier = job.slug || job.id;
+        const lastmod = job.updated_at
+          ? new Date(job.updated_at).toISOString().split("T")[0]
+          : job.created_at
+          ? new Date(job.created_at).toISOString().split("T")[0]
+          : currentDate;
+
+        return [
+          {
+            path: `/careers/${jobIdentifier}`,
+            lastmod,
+            changefreq: "weekly",
+            priority: "0.6",
+          },
+          {
+            path: `/careers/${jobIdentifier}/apply`,
+            lastmod,
+            changefreq: "weekly",
+            priority: "0.5",
+          },
+        ];
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching careers for sitemap:", error);
+    // Continue without career pages if there's an error
+  }
+
   // Combine static pages and blog posts
   const allPages = [
     ...staticPages.map((page) => ({
@@ -73,6 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       lastmod: currentDate,
     })),
     ...blogPosts,
+    ...careerPages,
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

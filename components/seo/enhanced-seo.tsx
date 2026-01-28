@@ -34,6 +34,15 @@ export interface EnhancedSEOProps extends NextSeoProps {
   breadcrumbData?: {
     items: Array<{ name: string; url: string }>;
   };
+  articleData?: {
+    title: string;
+    description?: string;
+    image?: string;
+    authorName?: string;
+    datePublished?: string;
+    dateModified?: string;
+    url?: string;
+  };
   reviewData?: {
     author?: string;
     rating: number;
@@ -54,6 +63,7 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   portfolioData,
   howToData,
   breadcrumbData,
+  articleData,
   reviewData,
   canonicalUrl,
   ogImage,
@@ -215,11 +225,6 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
         }}
         additionalMetaTags={[
           {
-            name: "keywords",
-            content:
-              "agentic AI development, AI agent development services, SaaS development services, custom SaaS development, generative AI solutions, AI integration services, business automation solutions, workflow automation services, DevOps services, QA testing services, test automation services, Chrome extension development, custom website development, Next.js website development, AI automation services, digital transformation, AI solutions, custom software development, SaaS platforms, machine learning, artificial intelligence, web development, mobile apps, blockchain solutions, Tech Emulsion",
-          },
-          {
             name: "author",
             content: "Tech Emulsion",
           },
@@ -266,6 +271,11 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       {/* Breadcrumb Schema - Conditional */}
       {breadcrumbData && breadcrumbData.items && breadcrumbData.items.length > 0 && (
         <StructuredData type="breadcrumb" data={breadcrumbData} />
+      )}
+
+      {/* Article Schema - Conditional */}
+      {articleData && (
+        <StructuredData type="article" data={articleData} />
       )}
 
       {/* Review Schema - Conditional */}

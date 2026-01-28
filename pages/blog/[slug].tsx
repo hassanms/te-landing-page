@@ -1,6 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
-import Head from "next/head";
 import { useState, useEffect } from "react";
 import {
   Box,
@@ -150,6 +149,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
         description={post.meta_description || post.excerpt}
         pageType="blog"
         canonicalUrl={post.canonical_url || `https://techemulsion.com/blog/${post.slug}`}
+        ogImage={post.og_image || post.featured_image || undefined}
         breadcrumbData={{
           items: [
             { name: "Home", url: "https://techemulsion.com" },
@@ -160,16 +160,15 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
             },
           ],
         }}
+        articleData={{
+          title: post.meta_title || post.title,
+          description: post.meta_description || post.excerpt,
+          image: post.og_image || post.featured_image || undefined,
+          authorName: post.author_name,
+          datePublished: post.published_at,
+          url: post.canonical_url || `https://techemulsion.com/blog/${post.slug}`,
+        }}
       />
-      <Head>
-        <title>{post.meta_title || `${post.title} - Tech Emulsion`}</title>
-        {post.meta_keywords && (
-          <meta name="keywords" content={post.meta_keywords} />
-        )}
-        {post.og_image && (
-          <meta property="og:image" content={post.og_image} />
-        )}
-      </Head>
 
       <Container maxW="container.xl" py="10">
         {/* Breadcrumb Navigation */}

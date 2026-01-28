@@ -14,6 +14,8 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import apiClient from "lib/api-client";
+import { getAccessToken } from "lib/supabase/auth-client";
+import { useRouter } from "next/router";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 import {
@@ -135,9 +137,29 @@ const AdminDashboard = () => {
     error: null as string | null,
   });
 
+  const router = useRouter();
+
   useEffect(() => {
-    fetchStats();
-  }, []);
+    let isMounted = true;
+
+    const init = async () => {
+      // Only proceed if there is a valid access token; otherwise redirect.
+      const token = await getAccessToken();
+      if (!token) {
+        router.replace("/admin/login");
+        return;
+      }
+      if (isMounted) {
+        fetchStats();
+      }
+    };
+
+    void init();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [router]);
 
   const fetchStats = async () => {
     try {
@@ -254,11 +276,15 @@ const AdminDashboard = () => {
       });
     } catch (err: any) {
       console.error("Error fetching stats:", err);
-      setStats((prev) => ({
-        ...prev,
-        loading: false,
-        error: "Failed to load dashboard statistics",
-      }));
+      // Let the global apiClient interceptor handle 401s by redirecting
+      // to the admin login page, without flashing an error state.
+      if (err?.response?.status !== 401) {
+        setStats((prev) => ({
+          ...prev,
+          loading: false,
+          error: "Failed to load dashboard statistics",
+        }));
+      }
     }
   };
 

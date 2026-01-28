@@ -2,7 +2,16 @@ import React from "react";
 import Script from "next/script";
 
 interface StructuredDataProps {
-  type: "organization" | "faq" | "service" | "portfolio" | "howto" | "breadcrumb" | "review" | "website";
+  type:
+    | "organization"
+    | "faq"
+    | "service"
+    | "portfolio"
+    | "howto"
+    | "breadcrumb"
+    | "review"
+    | "website"
+    | "article";
   data: any;
 }
 
@@ -185,6 +194,26 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
             },
             "query-input": "required name=search_term_string",
           },
+        };
+      case "article":
+        return {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: data.title,
+          description: data.description,
+          image: data.image,
+          author: {
+            "@type": "Person",
+            name: data.authorName || "Tech Emulsion",
+          },
+          datePublished: data.datePublished,
+          dateModified: data.dateModified || data.datePublished,
+          mainEntityOfPage: data.url
+            ? {
+                "@type": "WebPage",
+                "@id": data.url,
+              }
+            : undefined,
         };
       default:
         return {};

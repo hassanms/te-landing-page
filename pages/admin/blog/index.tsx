@@ -376,7 +376,7 @@ const AdminBlogPage = () => {
             overflow="hidden"
             overflowX="auto"
           >
-            <Table variant="simple" size="sm">
+            <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
                   <Th w="50px" color={tableHeadingColor}></Th>

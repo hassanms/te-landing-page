@@ -96,7 +96,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
           {/* Main content area - After sidebar */}
           <Box
             flex="1"
-            ml={0}
+            ml={{ base: 0, md: sidebarWidth }}
             minH="100vh"
             display="flex"
             flexDirection="column"
@@ -109,7 +109,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               flex="1"
               as="main"
               mt={{ base: "60px", md: "70px" }}
-              mb={{ base: "56px", md: "60px" }}
+              mb={0}
               px={{ base: 4, md: 6 }}
               py={6}
               transition="all 0.3s ease"

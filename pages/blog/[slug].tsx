@@ -509,12 +509,22 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       return { notFound: true };
     }
 
-    // Increment view count (fire and forget)
-    supabaseAdmin
-      .from("blog_posts")
-      .update({ view_count: (post.view_count || 0) + 1 })
-      .eq("id", post.id)
-      .then(() => {})
+    // Increment view count and record view (fire and forget)
+    void (async () => {
+      try {
+        await Promise.all([
+          supabaseAdmin
+            .from("blog_posts")
+            .update({ view_count: (post.view_count || 0) + 1 })
+            .eq("id", post.id),
+          supabaseAdmin
+            .from("blog_post_views")
+            .insert({ blog_post_id: post.id }),
+        ]);
+      } catch (err) {
+        console.error("Failed to record blog view:", err);
+      }
+    })();
 
     // Fetch related posts (same category, excluding current)
     const { data: relatedPosts } = await supabaseAdmin

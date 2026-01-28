@@ -31,15 +31,20 @@ export default async function handler(
       return res.status(404).json({ error: "Blog post not found" });
     }
 
-    // Increment view count (fire and forget)
+    // Increment view count and record view (fire and forget)
     void (async () => {
       try {
-        await supabaseAdmin
-          .from("blog_posts")
-          .update({ view_count: (post.view_count || 0) + 1 })
-          .eq("id", post.id);
+        await Promise.all([
+          supabaseAdmin
+            .from("blog_posts")
+            .update({ view_count: (post.view_count || 0) + 1 })
+            .eq("id", post.id),
+          supabaseAdmin
+            .from("blog_post_views")
+            .insert({ blog_post_id: post.id }),
+        ]);
       } catch (err) {
-        console.error("Failed to increment view count:", err);
+        console.error("Failed to record blog view:", err);
       }
     })();
 

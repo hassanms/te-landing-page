@@ -87,11 +87,21 @@ export default async function handler(
 
     // Applications by department
     const applicationsByDepartment: Record<string, number> = {};
+    // Applications by job title
+    const applicationsByTitle: Record<string, number> = {};
+
     applications?.forEach((app) => {
       const job = jobs?.find((j) => j.id === app.job_id);
       if (job) {
         const dept = job.department || "Unknown";
-        applicationsByDepartment[dept] = (applicationsByDepartment[dept] || 0) + 1;
+        applicationsByDepartment[dept] =
+          (applicationsByDepartment[dept] || 0) + 1;
+
+        const title = job.title || "Unknown role";
+        applicationsByTitle[title] = (applicationsByTitle[title] || 0) + 1;
+      } else {
+        applicationsByTitle["Unknown role"] =
+          (applicationsByTitle["Unknown role"] || 0) + 1;
       }
     });
 
@@ -128,6 +138,7 @@ export default async function handler(
       applicationsByJob,
       applicationsByDay,
       applicationsByDepartment,
+      applicationsByTitle,
       period: days,
     });
   } catch (error) {

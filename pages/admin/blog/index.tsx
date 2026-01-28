@@ -379,7 +379,7 @@ const AdminBlogPage = () => {
             <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
-                  <Th w="50px" color={tableHeadingColor}></Th>
+                  <Th w="60px" color={tableHeadingColor}></Th>
                   <Th color={tableHeadingColor}>Title</Th>
                   <Th color={tableHeadingColor}>Category</Th>
                   <Th color={tableHeadingColor}>Status</Th>

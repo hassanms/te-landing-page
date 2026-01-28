@@ -361,7 +361,11 @@ const AdminApplicationsPage = () => {
                         {app.firstName} {app.lastName}
                       </Td>
                       <Td>{app.email}</Td>
-                      <Td>{app.phone}</Td>
+                      <Td>
+                        {app.countryCode
+                          ? `${app.countryCode} ${app.phone}`
+                          : app.phone}
+                      </Td>
                       <Td>
                         {app.job ? (
                           <Badge colorScheme="teal">{app.job.title}</Badge>

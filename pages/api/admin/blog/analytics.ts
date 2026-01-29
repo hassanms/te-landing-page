@@ -93,12 +93,13 @@ export default async function handler(
         slug: string;
         title: string;
         is_published: boolean;
-      } | null;
+      }[] | null;
     };
 
-    const rows = (viewRows || []).filter(
-      (row: ViewRow) => row.blog_posts && row.blog_posts.is_published,
-    ) as ViewRow[];
+    const rows = (viewRows || []).filter((row: ViewRow) => {
+      const post = Array.isArray(row.blog_posts) ? row.blog_posts[0] : row.blog_posts;
+      return post && post.is_published;
+    }) as ViewRow[];
 
     const bucketMap = new Map<
       string,
@@ -128,6 +129,9 @@ export default async function handler(
     };
 
     rows.forEach((row) => {
+      const post = Array.isArray(row.blog_posts) ? row.blog_posts[0] : row.blog_posts;
+      if (!post) return;
+
       const viewedAt = new Date(row.viewed_at);
       const baseDate =
         bucketUnit === "month" ? startOfMonth(viewedAt) : startOfDay(viewedAt);
@@ -143,7 +147,6 @@ export default async function handler(
       const bucket = bucketMap.get(key)!;
       bucket.totalViews += 1;
 
-      const post = row.blog_posts!;
       const existing = bucket.perPost.get(post.id) || {
         id: post.id,
         slug: post.slug,

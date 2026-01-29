@@ -77,12 +77,12 @@ const Services = () => {
     <Box>
       <EnhancedSEO
         title="Services - Tech Emulsion"
-        description="Tech Emulsion offers a range of innovative services, including SaaS development, website development, Chrome extensions, DevOps solutions, generative AI integration, QA testing, and automation solutions."
+        description="Tech Emulsion provides comprehensive technology services including SaaS development services, AI agent development, and custom software solutions. We specialize in generative AI solutions, business automation, workflow automation services, DevOps services, QA testing services, Chrome extension development, and Next.js website development."
         pageType="services"
         serviceData={{
           name: "Digital Transformation Services",
           description:
-            "Comprehensive digital transformation services including AI solutions, custom software development, SaaS platforms, and automation solutions.",
+            "Comprehensive digital transformation services including agentic AI development, AI agent development services, SaaS development services, custom SaaS development, generative AI solutions, AI integration services, business automation solutions, workflow automation services, DevOps services, QA testing services, test automation services, Chrome extension development, custom website development, Next.js website development, and AI automation services.",
           serviceType: "Technology Services",
         }}
         faqData={{
@@ -91,13 +91,49 @@ const Services = () => {
               question:
                 "What types of SaaS platforms does Tech Emulsion develop?",
               answer:
-                "Tech Emulsion develops various SaaS platforms including customer relationship management (CRM) systems, project management tools, e-commerce platforms, learning management systems, analytics dashboards, and industry-specific solutions.",
+                "Tech Emulsion develops various SaaS platforms including customer relationship management (CRM) systems, project management tools, e-commerce platforms, learning management systems, analytics dashboards, and industry-specific solutions. Our SaaS development services encompass custom SaaS development tailored to your business needs, ensuring scalable, secure, and high-performance solutions.",
             },
             {
               question:
                 "How does Tech Emulsion handle data security and privacy?",
               answer:
                 "Tech Emulsion implements enterprise-grade security measures including data encryption, secure authentication systems, regular security audits, compliance with GDPR and other privacy regulations, and comprehensive backup and disaster recovery plans.",
+            },
+            {
+              question:
+                "What are your AI agent development services?",
+              answer:
+                "Our AI agent development services include creating intelligent, autonomous AI agents that can perform complex tasks, make decisions, and interact with users naturally. We specialize in agentic AI development, building AI agents that can automate business processes, provide intelligent customer support, analyze data, and integrate seamlessly with your existing systems. Our AI agent development services cover conversational AI, task automation agents, data analysis agents, and custom AI agent solutions tailored to your specific business requirements.",
+            },
+            {
+              question:
+                "Do you offer workflow automation services?",
+              answer:
+                "Yes, we provide comprehensive workflow automation services that help streamline your business processes. Our workflow automation services include analyzing your current workflows, identifying automation opportunities, designing automated workflows, and implementing solutions that reduce manual errors, improve efficiency, and save time. We also offer business automation solutions that encompass end-to-end process automation, integration with existing systems, and continuous optimization of automated workflows.",
+            },
+            {
+              question:
+                "What QA testing services do you provide?",
+              answer:
+                "We offer comprehensive QA testing services including functional testing, performance testing, security testing, usability testing, and automated testing. Our QA testing services ensure your software is bug-free, reliable, and ready for market. Additionally, we provide test automation services that help you maintain quality while accelerating your development cycles through automated test suites, continuous testing integration, and comprehensive test coverage.",
+            },
+            {
+              question:
+                "Can you help with Next.js website development?",
+              answer:
+                "Absolutely! We specialize in Next.js website development, creating high-performance, SEO-friendly websites using the Next.js framework. Our Next.js website development services include custom website development, responsive design, server-side rendering, static site generation, API integration, and performance optimization. We also provide custom website development services for businesses looking for unique, tailored web solutions that align with their brand and business objectives.",
+            },
+            {
+              question:
+                "What AI integration services do you offer?",
+              answer:
+                "Our AI integration services help businesses seamlessly integrate artificial intelligence into their existing systems and workflows. We provide AI integration services for various AI technologies including generative AI solutions, machine learning models, natural language processing, computer vision, and predictive analytics. Our AI integration services ensure smooth integration, minimal disruption to existing operations, and maximum value from AI technologies.",
+            },
+            {
+              question:
+                "Do you provide AI automation services?",
+              answer:
+                "Yes, we offer comprehensive AI automation services that combine artificial intelligence with automation to create intelligent, self-learning automated systems. Our AI automation services include intelligent process automation, AI-powered decision-making systems, automated data analysis, intelligent document processing, and AI-driven workflow optimization. These services help businesses achieve higher levels of automation while maintaining flexibility and adaptability.",
             },
           ],
         }}

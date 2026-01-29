@@ -21,6 +21,7 @@ export interface Job {
   postedDate: string;
   applicationDeadline?: string | null;
   status: "open" | "closed" | "filled";
+  totalPositions?: number | null;
 }
 
 export interface JobFilters {

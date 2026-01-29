@@ -48,6 +48,25 @@ const CaseStudyRagGenai = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is a RAG-based chatbot and how does it work?",
+              answer:
+                "A RAG (Retrieval-Augmented Generation) chatbot is an AI-powered application that allows users to interact with documents by uploading PDFs and asking natural language questions. The system uses advanced AI techniques including OpenAI's large language models (LLMs), vector embeddings for semantic search, and pgvector for similarity matching to extract, understand, and answer queries with remarkable accuracy. It also includes image recognition capabilities for graphical content, making it an intelligent and intuitive document querying experience.",
+            },
+            {
+              question: "What technologies power this RAG chatbot?",
+              answer:
+                "This RAG chatbot is built using cutting-edge technologies including OpenAI's language models for natural language understanding and generation, pgvector for efficient vector similarity search, advanced embedding models to convert text into searchable vectors, image recognition systems for processing graphical content in documents, and a robust database architecture that enables fast retrieval of relevant information from uploaded documents.",
+            },
+            {
+              question: "What are the main use cases for this RAG chatbot?",
+              answer:
+                "This RAG chatbot is ideal for various use cases including document Q&A where users can ask questions about uploaded PDF documents, knowledge base querying for organizations with large document repositories, research assistance to quickly find information within documents, customer support automation to answer questions based on documentation, and educational purposes where students or professionals need to extract information from technical documents efficiently.",
+            },
+          ],
+        }}
       />
       <Script
         async

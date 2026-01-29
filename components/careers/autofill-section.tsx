@@ -22,6 +22,9 @@ export const AutofillSection: React.FC<AutofillSectionProps> = ({
   const borderColor = useColorModeValue("gray.300", "gray.600");
   const bgColor = useColorModeValue("white", "gray.800");
   const hoverBg = useColorModeValue("gray.50", "gray.700");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const smallTextColor = useColorModeValue("gray.500", "gray.200");
+  const mediumTextColor = useColorModeValue("gray.700", "gray.200");
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -73,7 +76,7 @@ export const AutofillSection: React.FC<AutofillSectionProps> = ({
       >
         Autofill Application
       </Heading>
-      <Text fontSize="sm" color="gray.600" mb={4}>
+      <Text fontSize="sm" color={textColor} mb={4}>
         Upload your resume/cv in seconds with the autofill option.
       </Text>
 
@@ -112,10 +115,10 @@ export const AutofillSection: React.FC<AutofillSectionProps> = ({
           }}
         >
           <Stack spacing={2} align="center">
-            <Text fontSize="md" fontWeight="medium" color="gray.700">
+            <Text fontSize="md" fontWeight="medium" color={mediumTextColor}>
               Upload your resume or drag and drop it here
             </Text>
-            <Text fontSize="xs" color="gray.500">
+            <Text fontSize="xs" color={smallTextColor}>
               Only .doc, .docx, .pdf, .odt, .rtf (Optional)
             </Text>
             {resumeFile && (
@@ -135,7 +138,7 @@ export const AutofillSection: React.FC<AutofillSectionProps> = ({
           bg={bgColor}
           minW={{ base: "100%", lg: "300px" }}
         >
-          <Text fontSize="sm" color="gray.700" mb={4}>
+          <Text fontSize="sm" color={mediumTextColor} mb={4}>
             Please sign in to apply with Tech Emulsion
           </Text>
           <Stack spacing={3}>

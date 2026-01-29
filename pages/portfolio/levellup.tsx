@@ -58,6 +58,25 @@ const CaseStudyLevellup = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is LevellUp and how does it help sales teams?",
+              answer:
+                "LevellUp is an AI-driven sales training simulator purpose-built for SaaS and other B2B revenue teams. Instead of requiring reps to pair with colleagues or wait for a manager's calendar to free up, reps can drop into on-demand, voice-enabled role-plays against lifelike AI buyer personas that adapt in real time. These AI personas mirror the questions, objections, and pushback reps will face on live calls, providing realistic training scenarios that help improve sales skills and confidence.",
+            },
+            {
+              question: "How does LevellUp's AI training work?",
+              answer:
+                "LevellUp uses advanced AI technology to create realistic sales training scenarios. During each simulated conversation, the software automatically scores the rep's performance against proven sales frameworks including discovery techniques, objection-handling strategies, and closing methods. The system pinpoints specific strengths and gaps in the rep's approach, then delivers focused coaching suggestions. Results accumulate in a dashboard so both reps and managers can track progress call-by-call and measure ramp-up, skill growth, and quota attainment over time.",
+            },
+            {
+              question: "What benefits does LevellUp provide to sales organizations?",
+              answer:
+                "LevellUp provides several key benefits including on-demand training availability that eliminates scheduling constraints, realistic practice scenarios with AI buyer personas that adapt in real time, automatic performance scoring against proven sales frameworks, personalized coaching suggestions based on individual performance, comprehensive progress tracking through detailed dashboards, and measurable skill development metrics that help both reps and managers understand training effectiveness and ROI.",
+            },
+          ],
+        }}
       />
       <Script
         async

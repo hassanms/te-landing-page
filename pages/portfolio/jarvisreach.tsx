@@ -50,6 +50,25 @@ const CaseStudyJarvisreach = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is JarvisReach and what problem does it solve?",
+              answer:
+                "JarvisReach is a SaaS platform designed for LinkedIn prospecting that streamlines the lead generation and outreach process. It enables businesses to efficiently extract data from LinkedIn, filter prospects based on specific criteria, and automate email outreach campaigns. The platform helps sales teams save time by automating repetitive tasks, improves lead management through organized data extraction, and boosts productivity by providing tools for efficient prospecting and outreach.",
+            },
+            {
+              question: "How does JarvisReach help with LinkedIn prospecting?",
+              answer:
+                "JarvisReach simplifies LinkedIn prospecting by providing tools for data extraction from LinkedIn profiles, advanced filtering capabilities to find the right prospects, automated email outreach to engage potential customers, subscription flexibility to accommodate different team sizes, team leaderboards to track performance and motivate team members, and admin analytics to monitor campaign effectiveness and ROI. This comprehensive approach makes LinkedIn prospecting more efficient and effective.",
+            },
+            {
+              question: "What are the key features of JarvisReach?",
+              answer:
+                "JarvisReach offers several key features including efficient LinkedIn data extraction that captures relevant prospect information, advanced filtering options to target specific audiences, automated email outreach capabilities to scale communication efforts, flexible subscription models for different business needs, team leaderboards to encourage healthy competition and track performance, and comprehensive admin analytics that provide insights into campaign performance, conversion rates, and team productivity metrics.",
+            },
+          ],
+        }}
       />
       <Script
         async

@@ -1,8 +1,6 @@
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
-import Head from "next/head";
 import NextLink from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
 import { useState } from "react";
 import {
   Box,
@@ -11,7 +9,6 @@ import {
   Text,
   Stack,
   VStack,
-  HStack,
   Link,
   Button,
   Divider,
@@ -24,88 +21,33 @@ import {
 import { FiArrowUpRight } from "react-icons/fi";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
+import { getSupabaseAdmin } from "lib/supabase/server";
 
-// Filter categories
-const filterCategories = [
-  "All Insights",
-  "Business Strategy",
-  "AI & ML Development",
-  "Data Engineering",
-  "Software Development",
-  "Project Management",
-  "Chatbot Development",
-  "DevOps",
-  "Game Development",
-  "Mobile App Development",
-];
+interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  featured_image: string | null;
+  category: string;
+  author_name: string;
+  is_featured: boolean;
+  published_at: string;
+  reading_time_minutes: number;
+}
 
-const allPosts = [
-  {
-    title: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
-    fullTitle: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
-    date: "2026-01-14",
-    url: "/blog/productized-internal-tools",
-    excerpt: "Custom projects feel flexible. They are also the hardest way to scale. Productized internal tools solve that problem. Learn how agencies can pivot from custom builds to repeatable capabilities.",
-    image: "/assets/blog/Productized-Internal-Tools.png",
-    featured: false,
-    category: "Business Strategy",
-  },
-  {
-    title: "AI Ops and Ownership: The Missing Layer That Makes AI Reliable in Production",
-    fullTitle: "AI Ops and Ownership: The Missing Layer That Makes AI Reliable in Production",
-    date: "2026-01-13",
-    url: "/blog/ai-ops-and-ownership",
-    excerpt:
-      "Most AI systems do not fail on launch. They fail quietly after launch. AI Ops exists to prevent that silence. Learn how AI Ops makes AI reliable in production.",
-    image: "/assets/blog/AI-Ops-and-Ownership.png",
-    featured: false,
-    category: "Business Strategy",
-  },
-  {
-    title: "Vertical AI Solutions: How Agencies Win by Owning One Industry's Workflows",
-    fullTitle: "Vertical AI Solutions: How Agencies Win by Owning One Industry's Workflows",
-    date: "2026-01-12",
-    url: "/blog/vertical-ai-solutions",
-    excerpt:
-      "Trying to serve everyone makes you replaceable. Owning one industry makes you indispensable. Learn how vertical AI solutions help agencies win by focusing on one industry's workflows.",
-    image: "/assets/blog/Vertical-AI-Solutions.png",
-    featured: false,
-    category: "Business Strategy",
-  },
-  {
-    title: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
-    fullTitle: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
-    date: "2026-01-09",
-    url: "/blog/automation-first-consulting",
-    excerpt:
-      "Most businesses do not have a software problem. They have a workflow problem. Automation first consulting exists to solve that difference and pivot agencies from building features to building outcomes.",
-    image: "/assets/blog/Automation-First-Consulting.png",
-    featured: false,
-    category: "Business Strategy",
-  },
-  {
-    title: "AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not",
-    fullTitle: "AI Systems Engineering: Why \"AI Apps\" Will Get Commoditized and \"AI Systems\" Will Not",
-    date: "2026-01-08",
-    url: "/blog/ai-systems-engineering",
-    excerpt: "AI apps are becoming easy to build. Reliable AI systems are not. That difference will decide which software agencies survive the next decade. Learn about AI Systems Engineering and why it matters.",
-    image: "/assets/blog/AI-Systems-Engineering.png",
-    featured: false,
-    category: "AI & ML Development",
-  },
-  {
-    title: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
-    fullTitle: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
-    date: "2026-01-06",
-    url: "/blog/beyond-vibe-coding",
-    excerpt: "AI is changing software development. Learn how software agencies can pivot into work that stays valuable even as AI makes building faster and cheaper. Explore the five pivots that create new moats for agencies in 2026.",
-    image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
-    featured: true,
-    category: "Business Strategy",
-  },
-];
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+}
 
-const Blog: NextPage = ({ posts }: any) => {
+interface BlogPageProps {
+  posts: BlogPost[];
+  categories: Category[];
+}
+
+const Blog: NextPage<BlogPageProps> = ({ posts, categories }) => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const bgColor = useColorModeValue("white", "gray.800");
@@ -113,15 +55,18 @@ const Blog: NextPage = ({ posts }: any) => {
   const cardBgColor = "charcoal.800";
   const [selectedFilter, setSelectedFilter] = useState("All Insights");
 
-  // Get featured post (first post with featured: true, or first post)
-  const featuredPost = posts.find((p: any) => p.featured) || posts[0];
-  const allInsightsPosts = posts.filter((p: any) => p !== featuredPost);
+  // Build filter categories from database categories
+  const filterCategories = ["All Insights", ...categories.map((c) => c.name)];
+
+  // Get featured post (first post with is_featured: true, or first post)
+  const featuredPost = posts.find((p) => p.is_featured) || posts[0];
+  const allInsightsPosts = posts.filter((p) => p !== featuredPost);
 
   // Filter posts based on selected category
   const filteredPosts =
     selectedFilter === "All Insights"
       ? allInsightsPosts
-      : allInsightsPosts.filter((post: any) => post.category === selectedFilter);
+      : allInsightsPosts.filter((post) => post.category === selectedFilter);
 
   return (
     <Box bg={bgColor} minH="100vh" py="20">
@@ -137,9 +82,6 @@ const Blog: NextPage = ({ posts }: any) => {
           ],
         }}
       />
-      <Head>
-        <title>Insights - Tech Emulsion</title>
-      </Head>
 
       <Container maxW="container.xl" py="10">
         {/* Breadcrumb Navigation - Top */}
@@ -214,8 +156,8 @@ const Blog: NextPage = ({ posts }: any) => {
                   w="100%"
                   h="100%"
                   sx={{
-                    backgroundImage: featuredPost.image
-                      ? `url(${featuredPost.image})`
+                    backgroundImage: featuredPost.featured_image
+                      ? `url(${featuredPost.featured_image})`
                       : "linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%)",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
@@ -253,7 +195,7 @@ const Blog: NextPage = ({ posts }: any) => {
                   <Text color={textColor} fontSize="lg" mb="6" lineHeight="1.8">
                     {featuredPost.excerpt}
                   </Text>
-                  <NextLink href={featuredPost.url} passHref>
+                  <NextLink href={`/blog/${featuredPost.slug}`} passHref>
                     <Button
                       as="a"
                       size="lg"
@@ -345,13 +287,13 @@ const Blog: NextPage = ({ posts }: any) => {
   );
 };
 
-function PostCard({ post }: any) {
+function PostCard({ post }: { post: BlogPost }) {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const titleColor = useColorModeValue("gray.800", "white");
 
   return (
-    <NextLink href={post.url} passHref>
+    <NextLink href={`/blog/${post.slug}`} passHref>
       <Box
         w="100%"
         cursor="pointer"
@@ -380,8 +322,8 @@ function PostCard({ post }: any) {
             h="100%"
             position="relative"
             sx={{
-              backgroundImage: post.image
-                ? `url(${post.image})`
+              backgroundImage: post.featured_image
+                ? `url(${post.featured_image})`
                 : "linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%)",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -399,13 +341,13 @@ function PostCard({ post }: any) {
             color={titleColor}
             fontWeight="semibold"
             lineHeight="1.4">
-            {post.fullTitle || post.title}
+            {post.title}
           </Heading>
           <Text
             fontSize="sm"
             color={textColor}
             opacity={0.8}>
-            {new Date(post.date).toLocaleDateString("en-US", {
+            {new Date(post.published_at).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
@@ -433,9 +375,44 @@ function PostCard({ post }: any) {
 
 export default Blog;
 
-export async function getStaticProps() {
-  const posts = allPosts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date));
-  });
-  return { props: { posts } };
-}
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const supabaseAdmin = getSupabaseAdmin();
+
+    // Fetch published blog posts
+    const { data: posts, error: postsError } = await supabaseAdmin
+      .from("blog_posts")
+      .select("id, slug, title, excerpt, featured_image, category, author_name, is_featured, published_at, reading_time_minutes")
+      .eq("is_published", true)
+      .order("published_at", { ascending: false });
+
+    if (postsError) {
+      console.error("Error fetching posts:", postsError);
+    }
+
+    // Fetch categories
+    const { data: categories, error: categoriesError } = await supabaseAdmin
+      .from("blog_categories")
+      .select("id, name, slug")
+      .order("sort_order", { ascending: true });
+
+    if (categoriesError) {
+      console.error("Error fetching categories:", categoriesError);
+    }
+
+    return {
+      props: {
+        posts: posts || [],
+        categories: categories || [],
+      },
+    };
+  } catch (error) {
+    console.error("Error in getServerSideProps:", error);
+    return {
+      props: {
+        posts: [],
+        categories: [],
+      },
+    };
+  }
+};

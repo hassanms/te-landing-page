@@ -27,6 +27,8 @@ const AdminLogin = () => {
 
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const labelColor = useColorModeValue("gray.700", "gray.100");
 
   useEffect(() => {
     // Check if user is already logged in
@@ -103,7 +105,7 @@ const AdminLogin = () => {
               <Heading size="lg" mb={2}>
                 Admin Login
               </Heading>
-              <Text color="gray.600" fontSize="sm">
+              <Text color={textColor} fontSize="sm">
                 Sign in to access the admin dashboard
               </Text>
             </Box>
@@ -118,7 +120,7 @@ const AdminLogin = () => {
             <form onSubmit={handleSubmit}>
               <VStack spacing={4}>
                 <FormControl isRequired>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel color={labelColor}>Email</FormLabel>
                   <Input
                     type="email"
                     value={email}
@@ -129,7 +131,7 @@ const AdminLogin = () => {
                 </FormControl>
 
                 <FormControl isRequired>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel color={labelColor}>Password</FormLabel>
                   <Input
                     type="password"
                     value={password}

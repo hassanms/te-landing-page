@@ -10,7 +10,7 @@ import {
 import { ButtonLink } from "components/button-link";
 
 export const CareersHeroSection: React.FC = () => {
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const textColor = useColorModeValue("gray.600", "gray.200");
 
   return (
     <Box bg={useColorModeValue("white", "charcoal.900")} pt={{ base: 20, md: 24 }} pb={16}>
@@ -49,7 +49,7 @@ export const CareersHeroSection: React.FC = () => {
 
           <Box w="100%">
             <Image
-              src="/assets/Career/career-banner-updated-03.svg"
+              src="/assets/career/career-banner-updated-03.svg"
               alt="Careers at Tech Emulsion"
               objectFit="contain"
             />

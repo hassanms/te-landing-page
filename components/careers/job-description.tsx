@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Heading, List, ListItem, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, List, ListItem, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import NextLink from "next/link";
 
@@ -8,6 +8,8 @@ interface JobDescriptionProps {
 }
 
 export const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
+  const noteTextColor = useColorModeValue("gray.600", "gray.200");
+
   return (
     <Stack spacing={8} flex="2">
       <Box>
@@ -84,7 +86,7 @@ export const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
       {job.locations.length > 0 && (
         <Stack spacing={4}>
           <Box>
-            <Text fontSize="sm" color="gray.600">
+            <Text fontSize="sm" color={noteTextColor}>
               Please note that this role is currently open for{" "}
               {job.locations.join(", ")}.
             </Text>

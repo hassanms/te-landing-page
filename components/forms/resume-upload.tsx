@@ -13,10 +13,13 @@ export const ResumeUpload: React.FC<ResumeUploadProps> = ({
   fileName,
 }) => {
   const borderColor = useColorModeValue("gray.200", "gray.600");
+  const helperTextColor = useColorModeValue("gray.500", "gray.200");
+  const fileNameColor = useColorModeValue("gray.600", "gray.200");
+  const labelColor = useColorModeValue("gray.700", "white");
 
   return (
     <Box>
-      <Text mb={2} fontWeight="600">
+      <Text mb={2} fontWeight="600" color={labelColor}>
         Upload Your Resume *
       </Text>
       <Input
@@ -32,16 +35,19 @@ export const ResumeUpload: React.FC<ResumeUploadProps> = ({
           borderColor: error ? "red.500" : borderColor,
           borderRadius: "md",
           backgroundColor: useColorModeValue("gray.50", "gray.700"),
+          "&::file-selector-button": {
+            color: "black",
+          },
         }}
       />
-      <Text fontSize="sm" color="gray.500" mt={2}>
+      <Text fontSize="sm" color={helperTextColor} mt={2}>
         Only .doc, .docx, .pdf, .odt, .rtf (max 7MB)
       </Text>
       {(fileName || error) && (
         <Text
           fontSize="sm"
           mt={2}
-          color={error ? "red.500" : "gray.600"}
+          color={error ? "red.500" : fileNameColor}
         >
           {error || fileName}
         </Text>

@@ -30,6 +30,7 @@ interface Job {
   description?: string;
   requirements?: string[];
   status?: string;
+  total_positions?: number | null;
 }
 
 interface JobFormProps {
@@ -48,6 +49,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
     description: "",
     requirements: "",
     status: "open",
+    total_positions: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -55,6 +57,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
   const inputBg = useColorModeValue("gray.50", "gray.700");
   const quillBg = useColorModeValue("white", "gray.800");
   const quillTextColor = useColorModeValue("gray.800", "gray.200");
+  const labelColor = useColorModeValue("gray.700", "gray.100");
 
   // ReactQuill modules configuration
   const quillModules = {
@@ -91,17 +94,18 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
         description: job.description || "",
         requirements: job.requirements?.join("\n") || "",
         status: job.status || "open",
+        total_positions: job.total_positions?.toString() || "",
       });
     }
   }, [job]);
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | number) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
 
     // Auto-generate slug from title
     if (field === "title" && !job) {
-      const slug = value
+      const slug = String(value)
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
@@ -140,9 +144,15 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
         .map((r) => r.trim())
         .filter((r) => r.length > 0);
 
+      // Convert total_positions to number or null
+      const totalPositions = form.total_positions
+        ? parseInt(form.total_positions, 10)
+        : null;
+
       const jobData = {
         ...form,
         requirements: requirementsArray,
+        total_positions: totalPositions,
       };
 
       if (job?.id) {
@@ -171,7 +181,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
     <Box as="form" onSubmit={handleSubmit}>
       <Stack spacing={4}>
         <FormControl isRequired isInvalid={!!errors.title}>
-          <FormLabel>Job Title</FormLabel>
+          <FormLabel color={labelColor}>Job Title</FormLabel>
           <Input
             value={form.title}
             onChange={(e) => handleChange("title", e.target.value)}
@@ -182,7 +192,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
         </FormControl>
 
         <FormControl isRequired isInvalid={!!errors.slug}>
-          <FormLabel>Slug (URL-friendly)</FormLabel>
+          <FormLabel color={labelColor}>Slug (URL-friendly)</FormLabel>
           <Input
             value={form.slug}
             onChange={(e) => handleChange("slug", e.target.value)}
@@ -194,7 +204,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
 
         <HStack spacing={4}>
           <FormControl isRequired isInvalid={!!errors.department}>
-            <FormLabel>Department</FormLabel>
+            <FormLabel color={labelColor}>Department</FormLabel>
             <Input
               value={form.department}
               onChange={(e) => handleChange("department", e.target.value)}
@@ -205,7 +215,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
           </FormControl>
 
           <FormControl isRequired isInvalid={!!errors.location}>
-            <FormLabel>Location</FormLabel>
+            <FormLabel color={labelColor}>Location</FormLabel>
             <Input
               value={form.location}
               onChange={(e) => handleChange("location", e.target.value)}
@@ -218,7 +228,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
 
         <HStack spacing={4}>
           <FormControl isRequired>
-            <FormLabel>Employment Type</FormLabel>
+            <FormLabel color={labelColor}>Employment Type</FormLabel>
             <Select
               value={form.employment_type}
               onChange={(e) => handleChange("employment_type", e.target.value)}
@@ -232,7 +242,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>Status</FormLabel>
+            <FormLabel color={labelColor}>Status</FormLabel>
             <Select
               value={form.status}
               onChange={(e) => handleChange("status", e.target.value)}
@@ -242,10 +252,22 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
               <option value="closed">Closed</option>
             </Select>
           </FormControl>
+
+          <FormControl>
+            <FormLabel color={labelColor}>Total Positions</FormLabel>
+            <Input
+              type="number"
+              value={form.total_positions}
+              onChange={(e) => handleChange("total_positions", e.target.value)}
+              bg={inputBg}
+              placeholder="e.g., 5"
+              min="1"
+            />
+          </FormControl>
         </HStack>
 
         <FormControl isRequired isInvalid={!!errors.description}>
-          <FormLabel>Job Description</FormLabel>
+          <FormLabel color={labelColor}>Job Description</FormLabel>
           <Box
             bg={quillBg}
             borderRadius="md"
@@ -273,7 +295,7 @@ export const JobForm: React.FC<JobFormProps> = ({ job, onSuccess, onCancel }) =>
         </FormControl>
 
         <FormControl>
-          <FormLabel>Requirements (one per line)</FormLabel>
+          <FormLabel color={labelColor}>Requirements (one per line)</FormLabel>
           <Textarea
             value={form.requirements}
             onChange={(e) => handleChange("requirements", e.target.value)}

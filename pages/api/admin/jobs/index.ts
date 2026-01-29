@@ -53,6 +53,7 @@ export default async function handler(
         description,
         requirements,
         status,
+        total_positions,
       } = req.body;
 
       // Validate required fields
@@ -85,6 +86,7 @@ export default async function handler(
           description,
           requirements: requirements || [],
           status: status || "open",
+          total_positions: total_positions || null,
         })
         .select()
         .single();

@@ -69,29 +69,24 @@ const siteConfig = {
     ),
     links: [
       {
-        href: "https://www.facebook.com/profile.php?id=100092936174663",
-        label: <FaFacebook size="20" aria-label="Facebook" title="Facebook" />,
-      },
-      {
         href: "https://www.linkedin.com/company/tech-emulsion/",
         label: <FaLinkedin size="20" aria-label="LinkedIn" title="LinkedIn" />,
       },
-
-      // {
-      //   href: "https://twitter.com/saas_js",
-      //   label: <FaTwitter size="20" />,
-      // },
       {
-        href: "https://github.com/Tech-Emulsion",
-        label: <FaGithub size="20" aria-label="GitHub" title="GitHub" />,
+        href: "https://www.upwork.com/agencies/techemulsion/",
+        label: <BiLogoUpwork size="20" aria-label="Upwork" title="Upwork" />,
       },
       {
         href: "https://www.youtube.com/@TechEmulsion",
         label: <FaYoutube size="20" aria-label="YouTube" title="YouTube" />,
       },
       {
-        href: "https://www.upwork.com/agencies/techemulsion/",
-        label: <BiLogoUpwork size="20" aria-label="Upwork" title="Upwork" />,
+        href: "https://github.com/Tech-Emulsion",
+        label: <FaGithub size="20" aria-label="GitHub" title="GitHub" />,
+      },
+      {
+        href: "https://www.facebook.com/profile.php?id=100092936174663",
+        label: <FaFacebook size="20" aria-label="Facebook" title="Facebook" />,
       },
     ],
   },

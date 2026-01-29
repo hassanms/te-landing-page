@@ -49,6 +49,25 @@ const CaseStudyPopcard = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Popcard and what does it do?",
+              answer:
+                "Popcard is a SaaS platform that enables businesses to manage locations, teams, and customer reviews via NFC cards and QR codes. The platform provides a comprehensive solution for businesses with multiple locations or teams, allowing them to streamline review collection, manage team performance, and track customer feedback across different locations. It features secure authentication with social logins, analytics to track review performance, leaderboards to motivate teams, and Stripe subscription integration for flexible billing.",
+            },
+            {
+              question: "How does Popcard help businesses manage reviews?",
+              answer:
+                "Popcard simplifies review management by providing NFC cards and QR codes that customers can easily scan to leave reviews, enabling businesses to manage multiple locations from a single dashboard, tracking team performance through leaderboards, collecting customer reviews efficiently across different touchpoints, and providing analytics to understand review trends and customer satisfaction. This approach helps businesses build their online reputation and improve customer engagement.",
+            },
+            {
+              question: "What are the key features of Popcard?",
+              answer:
+                "Popcard offers several key features including location management for businesses with multiple sites, team management and performance tracking, customer review collection via NFC cards and QR codes, secure authentication with social login options, comprehensive analytics to track review performance and engagement, leaderboards to motivate teams and encourage healthy competition, and Stripe subscription integration for flexible billing options that scale with business needs.",
+            },
+          ],
+        }}
       />
       <Script
         async

@@ -69,7 +69,8 @@ const FormSection: React.FC<FormSectionProps> = ({
   const sectionBg = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
   const stepBg = useColorModeValue("teal.500", "teal.400");
-  const descriptionColor = useColorModeValue("gray.600", "gray.400");
+  const descriptionColor = useColorModeValue("gray.600", "gray.200");
+  const headingColor = useColorModeValue("teal.700", "teal.300");
 
   return (
     <Box
@@ -96,7 +97,7 @@ const FormSection: React.FC<FormSectionProps> = ({
           {stepNumber}
         </Flex>
         <Box>
-          <Heading as="h3" fontSize="lg" fontWeight="semibold" color="teal.600">
+          <Heading as="h3" fontSize="lg" fontWeight="semibold" color={headingColor}>
             {title}
           </Heading>
           {description && (
@@ -140,6 +141,9 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const inputBg = useColorModeValue("gray.50", "gray.700");
+  const helperTextColor = useColorModeValue("gray.500", "gray.200");
+  const linkColor = useColorModeValue("gray.600", "gray.200");
+  const labelColor = useColorModeValue("gray.800", "gray.100");
 
   const handleChange = (field: keyof FormState, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -309,11 +313,11 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           <Heading as="h2" fontSize="xl" fontWeight="semibold">
             Job Application
           </Heading>
-          <Text fontSize="sm" color="gray.500" mt={1}>
+          <Text fontSize="sm" color={helperTextColor} mt={1}>
             Please fill out all required fields marked with *
           </Text>
         </Box>
-        <Button variant="link" size="sm" onClick={clearForm} color="gray.600">
+        <Button variant="link" size="sm" onClick={clearForm} color={linkColor}>
           Clear All
         </Button>
       </Flex>
@@ -327,7 +331,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
         <Stack spacing={4}>
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.firstName}>
-              <FormLabel>First Name</FormLabel>
+              <FormLabel color={labelColor}>First Name</FormLabel>
               <Input
                 value={form.firstName}
                 onChange={(e) => handleChange("firstName", e.target.value)}
@@ -337,7 +341,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               <FormErrorMessage>{errors.firstName}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.lastName}>
-              <FormLabel>Last Name</FormLabel>
+              <FormLabel color={labelColor}>Last Name</FormLabel>
               <Input
                 value={form.lastName}
                 onChange={(e) => handleChange("lastName", e.target.value)}
@@ -349,7 +353,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           </Flex>
 
           <FormControl isRequired isInvalid={!!errors.email}>
-            <FormLabel>Email Address</FormLabel>
+            <FormLabel color={labelColor}>Email Address</FormLabel>
             <Input
               type="email"
               value={form.email}
@@ -361,7 +365,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           </FormControl>
 
           <FormControl isRequired isInvalid={!!errors.phone}>
-            <FormLabel>Phone Number</FormLabel>
+            <FormLabel color={labelColor}>Phone Number</FormLabel>
             <Flex gap={2}>
               <Select
                 maxW="120px"
@@ -385,7 +389,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.yearOfGraduation}>
-              <FormLabel>Year of Graduation</FormLabel>
+              <FormLabel color={labelColor}>Year of Graduation</FormLabel>
               <Input
                 type="number"
                 value={form.yearOfGraduation}
@@ -398,7 +402,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               <FormErrorMessage>{errors.yearOfGraduation}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.gender}>
-              <FormLabel>Gender</FormLabel>
+              <FormLabel color={labelColor}>Gender</FormLabel>
               <Select
                 placeholder="Select gender"
                 value={form.gender}
@@ -425,7 +429,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
         <Stack spacing={4}>
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.experienceYears}>
-              <FormLabel>Years of Experience</FormLabel>
+              <FormLabel color={labelColor}>Years of Experience</FormLabel>
               <Select
                 placeholder="Select experience"
                 value={form.experienceYears}
@@ -443,7 +447,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               <FormErrorMessage>{errors.experienceYears}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.currentEmployer}>
-              <FormLabel>Current Employer</FormLabel>
+              <FormLabel color={labelColor}>Current Employer</FormLabel>
               <Input
                 value={form.currentEmployer}
                 onChange={(e) =>
@@ -458,7 +462,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.currentCTC}>
-              <FormLabel>Current Salary</FormLabel>
+              <FormLabel color={labelColor}>Current Salary</FormLabel>
               <Select
                 placeholder="Select salary range"
                 value={form.currentCTC}
@@ -474,7 +478,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               <FormErrorMessage>{errors.currentCTC}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.expectedCTC}>
-              <FormLabel>Expected Salary</FormLabel>
+              <FormLabel color={labelColor}>Expected Salary</FormLabel>
               <Select
                 placeholder="Select salary range"
                 value={form.expectedCTC}
@@ -493,7 +497,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.noticePeriod}>
-              <FormLabel>Notice Period</FormLabel>
+              <FormLabel color={labelColor}>Notice Period</FormLabel>
               <Select
                 placeholder="Select notice period"
                 value={form.noticePeriod}
@@ -509,7 +513,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               <FormErrorMessage>{errors.noticePeriod}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.skills}>
-              <FormLabel>Key Skills</FormLabel>
+              <FormLabel color={labelColor}>Key Skills</FormLabel>
               <Input
                 placeholder="e.g., React, Node.js, Python"
                 value={form.skills}
@@ -522,7 +526,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl>
-              <FormLabel>LinkedIn Profile</FormLabel>
+              <FormLabel color={labelColor}>LinkedIn Profile</FormLabel>
               <Input
                 value={form.linkedin}
                 onChange={(e) => handleChange("linkedin", e.target.value)}
@@ -531,7 +535,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               />
             </FormControl>
             <FormControl>
-              <FormLabel>Portfolio / GitHub</FormLabel>
+              <FormLabel color={labelColor}>Portfolio / GitHub</FormLabel>
               <Input
                 value={form.portfolio}
                 onChange={(e) => handleChange("portfolio", e.target.value)}
@@ -552,7 +556,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
         <Stack spacing={4}>
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.currentLocation}>
-              <FormLabel>Current Location</FormLabel>
+              <FormLabel color={labelColor}>Current Location</FormLabel>
               <Input
                 value={form.currentLocation}
                 onChange={(e) =>
@@ -564,7 +568,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
               <FormErrorMessage>{errors.currentLocation}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.preferredLocation}>
-              <FormLabel>Preferred Work Location</FormLabel>
+              <FormLabel color={labelColor}>Preferred Work Location</FormLabel>
               <Input
                 value={form.preferredLocation}
                 onChange={(e) =>
@@ -578,7 +582,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           </Flex>
 
           <FormControl isRequired isInvalid={!!errors.source}>
-            <FormLabel>How did you hear about this position?</FormLabel>
+            <FormLabel color={labelColor}>How did you hear about this position?</FormLabel>
             <Select
               placeholder="Select source"
               value={form.source}
@@ -610,7 +614,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           />
 
           <FormControl>
-            <FormLabel>Cover Letter / Message (Optional)</FormLabel>
+            <FormLabel color={labelColor}>Cover Letter / Message (Optional)</FormLabel>
             <Textarea
               value={form.coverLetter}
               onChange={(e) => handleChange("coverLetter", e.target.value)}

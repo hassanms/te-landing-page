@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Flex, Link, Stack, Text, Spinner } from "@chakra-ui/react";
+import { Box, Container, Flex, Link, Stack, Text, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { Job } from "data/jobs/types";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
@@ -15,6 +15,8 @@ interface ApplyPageProps {
 }
 
 const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
+  const separatorColor = useColorModeValue("gray.400", "gray.200");
+
   if (error) {
     return (
       <Box minH="100vh" py={20}>
@@ -93,7 +95,7 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
           <Link as={NextLink} href="/careers" color="teal.600" fontWeight="medium">
             View all jobs
           </Link>
-          <Text color="gray.400">|</Text>
+          <Text color={separatorColor}>|</Text>
           <Link
             href="https://techemulsion.com"
             isExternal

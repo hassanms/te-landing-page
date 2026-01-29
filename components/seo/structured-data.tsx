@@ -2,7 +2,16 @@ import React from "react";
 import Script from "next/script";
 
 interface StructuredDataProps {
-  type: "organization" | "faq" | "service" | "portfolio" | "howto" | "breadcrumb" | "review" | "website" | "localbusiness";
+  type:
+    | "organization"
+    | "faq"
+    | "service"
+    | "portfolio"
+    | "howto"
+    | "breadcrumb"
+    | "review"
+    | "website"
+    | "article";
   data: any;
 }
 
@@ -186,31 +195,25 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
             "query-input": "required name=search_term_string",
           },
         };
-      case "localbusiness":
+      case "article":
         return {
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": "https://techemulsion.com",
-          name: "Tech Emulsion",
-          image: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
-          url: "https://techemulsion.com",
-          telephone: data.telephone,
-          email: data.email || "info@techemulsion.com",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Peshawar",
-            addressRegion: "Khyber Pakhtunkhwa",
-            postalCode: "25120",
-            addressCountry: "PK",
-            streetAddress: "Arbab road, Peshawar",
+          "@type": "Article",
+          headline: data.title,
+          description: data.description,
+          image: data.image,
+          author: {
+            "@type": "Person",
+            name: data.authorName || "Tech Emulsion",
           },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: 33.6844,
-            longitude: 73.0479,
-          },
-          openingHoursSpecification: data.openingHours,
-          priceRange: data.priceRange,
+          datePublished: data.datePublished,
+          dateModified: data.dateModified || data.datePublished,
+          mainEntityOfPage: data.url
+            ? {
+                "@type": "WebPage",
+                "@id": data.url,
+              }
+            : undefined,
         };
       default:
         return {};

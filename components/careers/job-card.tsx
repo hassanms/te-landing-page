@@ -18,7 +18,7 @@ interface JobCardProps {
 export const JobCard: React.FC<JobCardProps> = ({ job }) => {
   const borderColor = useColorModeValue("gray.100", "gray.700");
   const cardBg = useColorModeValue("white", "gray.800");
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const textColor = useColorModeValue("gray.600", "gray.200");
 
   return (
     <Box
@@ -37,9 +37,14 @@ export const JobCard: React.FC<JobCardProps> = ({ job }) => {
         <Heading as="h3" fontSize="lg" color={useColorModeValue("teal.700", "teal.300")}>
           {job.title}
         </Heading>
-        <Stack direction="row" spacing={3}>
+        <Stack direction="row" spacing={3} flexWrap="wrap">
           <Badge colorScheme="teal">{job.employmentType}</Badge>
           <Badge variant="subtle">{job.department}</Badge>
+          {job.totalPositions && (
+            <Badge colorScheme="blue" variant="outline">
+              {job.totalPositions} {job.totalPositions === 1 ? "Position" : "Positions"}
+            </Badge>
+          )}
         </Stack>
         <Text color={textColor} noOfLines={3}>
           {job.shortDescription}

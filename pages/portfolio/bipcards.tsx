@@ -58,6 +58,25 @@ const CaseStudyBipcards = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Bipcards and how does it help businesses?",
+              answer:
+                "Bipcards is a SaaS platform that enables businesses to collect and showcase genuine customer reviews using programmable NFC cards and QR codes. The platform allows businesses to easily gather customer feedback, display reviews on their online presence, and build trust with potential customers. It features flexible subscription models, real-time analytics to track review performance, and easy card programming capabilities that make it simple for sales teams to onboard and manage.",
+            },
+            {
+              question: "How do NFC cards and QR codes work with Bipcards?",
+              answer:
+                "Bipcards uses programmable NFC (Near Field Communication) cards and QR codes that customers can tap or scan to leave reviews. When a customer interacts with the card or code, they're directed to a review page where they can provide feedback. The platform makes it easy to program these cards, track which cards generate the most reviews, and manage multiple locations or teams. This approach eliminates the need for customers to search for review pages and makes the review process more accessible and convenient.",
+            },
+            {
+              question: "What features does the Bipcards platform offer?",
+              answer:
+                "Bipcards offers a comprehensive set of features including programmable NFC cards and QR codes for easy customer access, flexible subscription models to suit different business needs, real-time analytics to track review performance and engagement, streamlined onboarding for sales teams, easy card programming and management, and the ability to collect and display genuine customer reviews that enhance online reputation and build trust with potential customers.",
+            },
+          ],
+        }}
       />
       <Script
         async

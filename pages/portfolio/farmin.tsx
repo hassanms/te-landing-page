@@ -55,6 +55,25 @@ const CaseStudyFarmin = () => {
             { name: "Farmin", url: "https://techemulsion.com/portfolio/farmin" },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Farmin and what does it do?",
+              answer:
+                "Farmin is an AI-powered SaaS platform for satellite image analysis that uses advanced computer vision and machine learning to detect objects such as cars, ships, and oil spills in satellite imagery. The platform leverages Mapbox for mapping, YOLO models for object detection, and OpenCV for image processing. It provides change detection capabilities and includes data annotation tools, all deployed on AWS for scalable cloud infrastructure.",
+            },
+            {
+              question: "What technologies were used to build Farmin?",
+              answer:
+                "Farmin was built using a combination of cutting-edge technologies including Mapbox for geographic mapping and visualization, YOLO (You Only Look Once) deep learning models for real-time object detection, OpenCV for computer vision and image processing, and AWS cloud infrastructure for deployment and scalability. The platform also includes custom data annotation tools and change detection algorithms to analyze temporal changes in satellite imagery.",
+            },
+            {
+              question: "What are the main features of the Farmin platform?",
+              answer:
+                "Farmin offers several key features including automated object detection in satellite images (identifying cars, ships, oil spills, and other objects), change detection to identify differences between images taken at different times, data annotation tools for training and refining AI models, real-time analysis capabilities, and scalable cloud infrastructure on AWS that can handle large volumes of satellite imagery data efficiently.",
+            },
+          ],
+        }}
       />
       <Script
         async

@@ -54,6 +54,25 @@ const CaseStudyAtarim = () => {
             { name: "Atarim", url: "https://techemulsion.com/portfolio/atarim" },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Atarim and how does it help with visual collaboration?",
+              answer:
+                "Atarim is a scalable SaaS platform for visual collaboration on any website that allows teams to instantly comment on any design, from websites to graphics, and manage projects at scale. Instead of endless email or Slack chains, users can simply click on any part of a website to leave feedback. The platform integrates with your existing tech stack and provides tools like kanban boards, notifications, a WYSIWYG editor, and more, turning Atarim into a complete project management and feedback solution.",
+            },
+            {
+              question: "How did Tech Emulsion help transform Atarim?",
+              answer:
+                "Tech Emulsion transformed Atarim from WPFeedback, a WordPress plugin, into a comprehensive SaaS platform. The transformation included developing a Chrome extension for feedback on various site types, expanding the feature set with project management tools, adding automation and integrations with Slack, Jira, and Asana, creating custom scraping solutions for collaborative editing, and scaling the cloud infrastructure on AWS with region-based load balancing and auto-scaling. This transformation helped Atarim secure $500K in funding and expand to a universal project management tool.",
+            },
+            {
+              question: "What are the main features of Atarim?",
+              answer:
+                "Atarim offers comprehensive visual collaboration features including instant commenting on any part of a website or design, visual feedback tools that eliminate the need for email or Slack chains, project management capabilities with kanban boards and task tracking, notifications to keep team members informed, WYSIWYG editor for content editing, workflow automation to streamline processes, integrations with popular tools like Slack, Jira, and Asana, Chrome extension for easy access, and scalable cloud infrastructure that supports teams of all sizes. The platform works on any website, not just WordPress.",
+            },
+          ],
+        }}
       />
       <Script
         async

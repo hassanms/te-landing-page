@@ -58,6 +58,25 @@ const CaseStudyPodcastBeacon = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Podcast Beacon and how does it help podcasters?",
+              answer:
+                "Podcast Beacon is a link-in-bio SaaS hub specifically designed for podcasters to gather every important link on one branded page. Instead of having scattered links across different platforms, podcasters can launch multiple landing pages, showcase episodes, merchandise, and services, and accept payments through the built-in checkout system. The platform features a secure login system and clean admin panel that makes it simple to manage products, track clicks, and refresh content in seconds, turning scattered links into a single beacon that boosts listener engagement.",
+            },
+            {
+              question: "What features does Podcast Beacon offer?",
+              answer:
+                "Podcast Beacon offers comprehensive features including multiple landing page creation for different purposes, episode showcasing to highlight specific podcast episodes, merchandise management and sales through the built-in checkout, service promotion for podcasters offering additional services, secure login and authentication system, clean admin panel for easy content management, click tracking and analytics to understand audience engagement, and quick content updates that allow podcasters to refresh their links and information in seconds.",
+            },
+            {
+              question: "How does Podcast Beacon help podcasters monetize their content?",
+              answer:
+                "Podcast Beacon helps podcasters monetize their content by providing a built-in checkout system for accepting payments, enabling them to sell merchandise directly from their link-in-bio page, promoting additional services or offerings, tracking which links generate the most engagement and revenue, and converting profile traffic into revenue by consolidating all important links and monetization opportunities in one place. This approach maximizes the value of each visitor to the podcaster's profile.",
+            },
+          ],
+        }}
       />
       <Script
         async

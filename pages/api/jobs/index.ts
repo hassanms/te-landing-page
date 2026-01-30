@@ -79,6 +79,7 @@ export default async function handler(
         postedDate: job.created_at,
         applicationDeadline: null,
         status: job.status,
+        totalPositions: job.total_positions || null,
       };
     }) || [];
 

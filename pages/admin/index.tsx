@@ -12,8 +12,11 @@ import {
   Icon,
   Heading,
   Badge,
+  Button,
 } from "@chakra-ui/react";
 import apiClient from "lib/api-client";
+import { getAccessToken } from "lib/supabase/auth-client";
+import { useRouter } from "next/router";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 import {
@@ -25,6 +28,15 @@ import {
   FiClock,
   FiGithub,
 } from "react-icons/fi";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip as RechartsTooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 interface StatCardProps {
   title: string;
@@ -36,6 +48,7 @@ interface StatCardProps {
   footerIcon?: React.ElementType;
   alertText?: string;
   alertColor?: string;
+  onClick?: () => void;
 }
 
 const StatCard: React.FC<StatCardProps> = ({
@@ -48,73 +61,102 @@ const StatCard: React.FC<StatCardProps> = ({
   footerIcon: FooterIcon,
   alertText,
   alertColor,
+  onClick,
 }) => {
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.400");
+  const textColor = useColorModeValue("gray.600", "gray.200");
   const valueColor = useColorModeValue("gray.800", "white");
 
   return (
     <Box
       bg={cardBg}
       borderRadius="xl"
-      p={6}
+      p={5}
       border="1px solid"
       borderColor={borderColor}
       boxShadow="md"
-      _hover={{ boxShadow: "lg", transform: "translateY(-3px)" }}
+      _hover={{
+        boxShadow: "lg",
+        transform: "translateY(-3px)",
+        cursor: onClick ? "pointer" : "default",
+      }}
       transition="all 0.2s"
       h="100%"
       display="flex"
       flexDirection="column"
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (!onClick) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
     >
-      <HStack justify="space-between" align="flex-start" mb={4}>
-        <Box
-          bg={iconBg}
-          p={4}
-          borderRadius="lg"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          boxSize="64px"
-          flexShrink={0}
-        >
-          <Icon as={IconComponent} boxSize={7} color={iconColor} />
-        </Box>
-        {alertText && (
-          <Text fontSize="sm" color={alertColor || "red.500"} fontWeight="medium">
-            {alertText}
-          </Text>
-        )}
-      </HStack>
-
-      <VStack align="flex-start" spacing={1} flex="1">
+      {/* Top row: title and optional context */}
+      <HStack justify="space-between" align="flex-start" mb={3} spacing={4}>
         <Text
           fontSize="xs"
           color={textColor}
           fontWeight="semibold"
           textTransform="uppercase"
           letterSpacing="0.5px"
-          mb={1}
         >
           {title}
         </Text>
+        {footerText && (
+          <HStack
+            spacing={1.5}
+            color={textColor}
+            fontSize="xs"
+            whiteSpace="nowrap"
+          >
+            {FooterIcon && <Icon as={FooterIcon} boxSize={3} />}
+            <Text>{footerText}</Text>
+          </HStack>
+        )}
+      </HStack>
+
+      {/* Middle row: icon + main value */}
+      <HStack justify="space-between" align="center" spacing={4} flex="1">
+        <Box
+          bg={iconBg}
+          p={3}
+          borderRadius="lg"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxSize="56px"
+          flexShrink={0}
+        >
+          <Icon as={IconComponent} boxSize={6} color={iconColor} />
+        </Box>
         <Text
           fontSize="3xl"
           fontWeight="600"
           color={valueColor}
-          lineHeight="1.2"
-          mb={2}
+          lineHeight="1.1"
+          textAlign="right"
+          flex="1"
         >
           {value}
         </Text>
-        {footerText && (
-          <HStack spacing={1.5} mt="auto" color={textColor}>
-            {FooterIcon && <Icon as={FooterIcon} boxSize={3.5} />}
-            <Text fontSize="xs">{footerText}</Text>
-          </HStack>
-        )}
-      </VStack>
+      </HStack>
+
+      {/* Optional alert/footer line at bottom */}
+      {alertText && (
+        <Text
+          mt={3}
+          fontSize="xs"
+          color={alertColor || "red.500"}
+          fontWeight="medium"
+        >
+          {alertText}
+        </Text>
+      )}
     </Box>
   );
 };
@@ -135,9 +177,68 @@ const AdminDashboard = () => {
     error: null as string | null,
   });
 
+  type BlogViewsRange = "week" | "month" | "year";
+
+  interface BlogViewsPoint {
+    bucket: string;
+    label: string;
+    totalViews: number;
+    topPosts: {
+      id: string;
+      slug: string;
+      title: string;
+      views: number;
+    }[];
+  }
+
+  const [blogViewsRange, setBlogViewsRange] = useState<BlogViewsRange>("week");
+  const [blogViewsData, setBlogViewsData] = useState<BlogViewsPoint[]>([]);
+  const [blogViewsLoading, setBlogViewsLoading] = useState(false);
+  const [blogViewsError, setBlogViewsError] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  const router = useRouter();
+
   useEffect(() => {
-    fetchStats();
-  }, []);
+    setIsClient(true);
+
+    let isMounted = true;
+
+    const init = async () => {
+      // Only proceed if there is a valid access token; otherwise redirect.
+      const token = await getAccessToken();
+      if (!token) {
+        router.replace("/admin/login");
+        return;
+      }
+      if (isMounted) {
+        fetchStats();
+        fetchBlogViews("week");
+      }
+    };
+
+    void init();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [router]);
+
+  const fetchBlogViews = async (range: BlogViewsRange) => {
+    try {
+      setBlogViewsLoading(true);
+      const response = await apiClient.get("/api/admin/blog/analytics", {
+        params: { range },
+      });
+      setBlogViewsData(response.data.buckets || []);
+      setBlogViewsError(null);
+    } catch (err: any) {
+      console.error("Error fetching blog views analytics:", err);
+      setBlogViewsError("Failed to load blog views analytics.");
+    } finally {
+      setBlogViewsLoading(false);
+    }
+  };
 
   const fetchStats = async () => {
     try {
@@ -254,12 +355,84 @@ const AdminDashboard = () => {
       });
     } catch (err: any) {
       console.error("Error fetching stats:", err);
-      setStats((prev) => ({
-        ...prev,
-        loading: false,
-        error: "Failed to load dashboard statistics",
-      }));
+      // Let the global apiClient interceptor handle 401s by redirecting
+      // to the admin login page, without flashing an error state.
+      if (err?.response?.status !== 401) {
+        setStats((prev) => ({
+          ...prev,
+          loading: false,
+          error: "Failed to load dashboard statistics",
+        }));
+      }
     }
+  };
+
+  const handleBlogViewsRangeChange = (range: BlogViewsRange) => {
+    if (range === blogViewsRange) return;
+    setBlogViewsRange(range);
+    fetchBlogViews(range);
+  };
+
+  const BlogViewsTooltip = ({
+    active,
+    payload,
+  }: {
+    active?: boolean;
+    payload?: any[];
+  }) => {
+    const cardBg = useColorModeValue("white", "gray.700");
+    const borderColor = useColorModeValue("gray.200", "gray.600");
+    const smallTextColor = useColorModeValue("gray.400", "gray.200");
+    const textColor = useColorModeValue("gray.600", "gray.200");
+
+    if (!active || !payload || payload.length === 0) return null;
+
+    const point: BlogViewsPoint = payload[0].payload;
+
+    return (
+      <Box
+        bg={cardBg}
+        border="1px solid"
+        borderColor={borderColor}
+        borderRadius="md"
+        p={3}
+        boxShadow="lg"
+        maxW="280px"
+      >
+        <Text fontSize="xs" color={smallTextColor} mb={1}>
+          {point.label}
+        </Text>
+        <Text fontSize="sm" fontWeight="bold" mb={2} color={textColor}>
+          Total views: {point.totalViews}
+        </Text>
+        {point.topPosts.length > 0 ? (
+          <VStack align="flex-start" spacing={1}>
+            <Text fontSize="xs" color={smallTextColor} fontWeight="semibold">
+              Top 5 posts
+            </Text>
+            {point.topPosts.map((post, index) => (
+              <HStack key={post.id} spacing={2} align="flex-start">
+                <Text fontSize="xs" color={smallTextColor}>
+                  {index + 1}.
+                </Text>
+                <VStack align="flex-start" spacing={0}>
+                  <Text fontSize="xs" noOfLines={1} maxW="220px" color={textColor}>
+                    {post.title}
+                  </Text>
+                  <Text fontSize="xs" color={smallTextColor}>
+                    {post.views} views
+                  </Text>
+                </VStack>
+              </HStack>
+            ))}
+          </VStack>
+        ) : (
+          <Text fontSize="xs" color={smallTextColor}>
+            No views recorded for this period.
+          </Text>
+        )}
+      </Box>
+    );
   };
 
   if (stats.loading) {
@@ -286,7 +459,7 @@ const AdminDashboard = () => {
           <Heading size="xl">Admin Dashboard</Heading>
           <Text
             fontSize="sm"
-            color={useColorModeValue("gray.600", "gray.300")}
+            color={useColorModeValue("gray.600", "gray.200")}
           >
             Monitor jobs and applications at a glance.
           </Text>
@@ -298,7 +471,7 @@ const AdminDashboard = () => {
           flexWrap="wrap"
           mb={6}
           fontSize="xs"
-          color={useColorModeValue("gray.600", "gray.300")}
+          color={useColorModeValue("gray.600", "gray.200")}
         >
           <Badge borderRadius="full" px={3} py={1} colorScheme="teal">
             Total jobs: {stats.totalJobs}
@@ -333,7 +506,7 @@ const AdminDashboard = () => {
           {stats.jobsWithNoApplications === 0 &&
           stats.longPendingApplications === 0 &&
           stats.staleOpenJobs.length === 0 ? (
-            <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.300")}>
+            <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.200")}>
               All clear. Nothing critical needs attention right now.
             </Text>
           ) : (
@@ -354,7 +527,7 @@ const AdminDashboard = () => {
                         <Text
                           key={job.title}
                           fontSize="xs"
-                          color={useColorModeValue("gray.600", "gray.300")}
+                          color={useColorModeValue("gray.600", "gray.200")}
                         >
                           • {job.title}
                         </Text>
@@ -362,7 +535,7 @@ const AdminDashboard = () => {
                       {stats.jobsWithNoApplicationsList.length > 3 && (
                         <Text
                           fontSize="xs"
-                          color={useColorModeValue("gray.500", "gray.400")}
+                          color={useColorModeValue("gray.500", "gray.200")}
                         >
                           + {stats.jobsWithNoApplicationsList.length - 3} more
                         </Text>
@@ -388,7 +561,7 @@ const AdminDashboard = () => {
                       <Text
                         key={job.title}
                         fontSize="xs"
-                        color={useColorModeValue("gray.600", "gray.300")}
+                        color={useColorModeValue("gray.600", "gray.200")}
                       >
                         • {job.title} &mdash; open for {job.daysOpen} days
                       </Text>
@@ -396,7 +569,7 @@ const AdminDashboard = () => {
                     {stats.staleOpenJobs.length > 3 && (
                       <Text
                         fontSize="xs"
-                        color={useColorModeValue("gray.500", "gray.400")}
+                        color={useColorModeValue("gray.500", "gray.200")}
                       >
                         + {stats.staleOpenJobs.length - 3} more
                       </Text>
@@ -428,7 +601,8 @@ const AdminDashboard = () => {
           </Alert>
         )}
 
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+        {/* Stat cards */}
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} mb={8}>
           <StatCard
             title="Total Jobs"
             value={stats.totalJobs}
@@ -437,6 +611,7 @@ const AdminDashboard = () => {
             iconColor="orange.500"
             footerText="All job postings"
             footerIcon={FiBriefcase}
+            onClick={() => router.push("/admin/jobs")}
           />
 
           <StatCard
@@ -447,6 +622,7 @@ const AdminDashboard = () => {
             iconColor="green.500"
             footerText="Last 24 Hours"
             footerIcon={FiCalendar}
+            onClick={() => router.push("/admin/jobs")}
           />
 
           <StatCard
@@ -457,6 +633,7 @@ const AdminDashboard = () => {
             iconColor="red.500"
             footerText="Tracked from System"
             footerIcon={FiGithub}
+             onClick={() => router.push("/admin/jobs")}
           />
 
           <StatCard
@@ -467,8 +644,120 @@ const AdminDashboard = () => {
             iconColor="blue.500"
             footerText={`${stats.recentApplications} in last 7 days`}
             footerIcon={FiClock}
+            onClick={() => router.push("/admin/jobs")}
           />
         </SimpleGrid>
+
+        {/* Blog views analytics */}
+        <Box
+          bg={useColorModeValue("white", "gray.700")}
+          borderRadius="xl"
+          border="1px solid"
+          borderColor={useColorModeValue("gray.200", "gray.600")}
+          p={6}
+          boxShadow="md"
+        >
+          <HStack justify="space-between" align="flex-start" mb={4} flexWrap="wrap" spacing={3}>
+            <Box>
+              <Heading size="md">Blog Views Analytics</Heading>
+              <Text
+                mt={1}
+                fontSize="sm"
+                color={useColorModeValue("gray.600", "gray.200")}
+              >
+                See how your blog traffic trends over time.
+              </Text>
+            </Box>
+            <HStack spacing={2}>
+              <Button
+                size="sm"
+                variant={blogViewsRange === "week" ? "solid" : "outline"}
+                colorScheme="teal"
+                onClick={() => handleBlogViewsRangeChange("week")}
+              >
+                Week
+              </Button>
+              <Button
+                size="sm"
+                variant={blogViewsRange === "month" ? "solid" : "outline"}
+                colorScheme="teal"
+                onClick={() => handleBlogViewsRangeChange("month")}
+              >
+                Month
+              </Button>
+              <Button
+                size="sm"
+                variant={blogViewsRange === "year" ? "solid" : "outline"}
+                colorScheme="teal"
+                onClick={() => handleBlogViewsRangeChange("year")}
+              >
+                Year
+              </Button>
+            </HStack>
+          </HStack>
+
+          {blogViewsError && (
+            <Alert status="error" mb={4} borderRadius="md">
+              <AlertIcon />
+              {blogViewsError}
+            </Alert>
+          )}
+
+          {blogViewsLoading ? (
+            <Box textAlign="center" py={10}>
+              <Spinner size="lg" color="teal.500" />
+              <Text mt={3} fontSize="sm" color={useColorModeValue("gray.600", "gray.200")}>
+                Loading blog views...
+              </Text>
+            </Box>
+          ) : blogViewsData.length === 0 ? (
+            <Box textAlign="center" py={10}>
+              <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.200")}>
+                No blog views recorded yet for the selected period.
+              </Text>
+              <Text fontSize="xs" color={useColorModeValue("gray.500", "gray.400")} mt={2}>
+                Once visitors read your blog posts, their views will appear here.
+              </Text>
+            </Box>
+          ) : (
+            <Box height={{ base: "260px", md: "320px" }}>
+              {isClient && (
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={blogViewsData}
+                    margin={{ top: 10, right: 16, bottom: 8, left: 0 }}
+                  >
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke={useColorModeValue("#EDF2F7", "#2D3748")}
+                      vertical={false}
+                    />
+                    <XAxis
+                      dataKey="label"
+                      tick={{ fontSize: 11 }}
+                      tickMargin={8}
+                      stroke={useColorModeValue("gray.400", "gray.300")}
+                    />
+                    <YAxis
+                      allowDecimals={false}
+                      tick={{ fontSize: 11 }}
+                      stroke={useColorModeValue("gray.400", "gray.300")}
+                    />
+                    <RechartsTooltip content={<BlogViewsTooltip />} />
+                    <Line
+                      type="monotone"
+                      dataKey="totalViews"
+                      stroke="#14B8A6"
+                      strokeWidth={2.5}
+                      dot={{ r: 3, strokeWidth: 1, stroke: "#0F766E", fill: "#14B8A6" }}
+                      activeDot={{ r: 5 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              )}
+            </Box>
+          )}
+        </Box>
       </Box>
     </AdminLayout>
   );

@@ -31,7 +31,7 @@ export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
                   size={{ base: "xs", md: "sm" }}
                   sx={{
                     bg: "none",
-                    color: "muted",
+                    color: colorMode === "light" ? "muted" : "gray.200",
                     padding: "0",
                     fontSize: "inherit",
                     height: "auto",

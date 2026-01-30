@@ -60,6 +60,25 @@ const CaseStudyContentCompass = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Content Compass and how does it help LinkedIn creators?",
+              answer:
+                "Content Compass is a LinkedIn content analysis and inspiration tool that helps users get inspired by top LinkedIn creators and improve their own content strategy. Users can create a personalized dashboard by entering LinkedIn profiles they want to follow. The system scrapes those profiles every 3 days (or on demand) and collects all types of post formats including text, carousels, videos, images, multi-image posts, and reshared content. It uses OpenAI's LLM to analyze posts for tone, writing patterns, common hooks, CTAs, and engagement trends.",
+            },
+            {
+              question: "What insights does Content Compass provide?",
+              answer:
+                "Content Compass provides comprehensive insights including tone analysis to understand the writing style of top creators, writing pattern detection to identify successful content structures, common hooks identification to learn what captures attention, CTA analysis to see effective call-to-action strategies, engagement trend analysis to understand what content performs best, and AI-powered content generation that helps users create similar posts based on their favorite creators' styles while maintaining their unique voice.",
+            },
+            {
+              question: "How does Content Compass use AI to help with content creation?",
+              answer:
+                "Content Compass leverages AI in several ways including analyzing posts using OpenAI's LLM to detect tone, writing patterns, hooks, and CTAs, suggesting engaging hooks based on successful patterns, helping users write complete posts tailored to their voice, generating content ideas inspired by top creators, and providing an analytics panel that compares tone and engagement across different creators to help users understand what content styles perform best. The platform offers subscription-based access with no current limits on creators or post generations.",
+            },
+          ],
+        }}
       />
       <Script
         async

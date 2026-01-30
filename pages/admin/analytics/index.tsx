@@ -48,6 +48,7 @@ interface AnalyticsData {
   applicationsByJob: Record<string, number>;
   applicationsByDay: Record<string, number>;
   applicationsByDepartment: Record<string, number>;
+  applicationsByTitle: Record<string, number>;
   period: number;
 }
 
@@ -59,7 +60,8 @@ const AdminAnalyticsPage = () => {
 
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.300");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
 
   useEffect(() => {
     fetchAnalytics();
@@ -118,7 +120,7 @@ const AdminAnalyticsPage = () => {
             <Text
               mt={1}
               fontSize="sm"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.200")}
             >
               Track application trends and hiring performance over time.
             </Text>
@@ -335,7 +337,7 @@ const AdminAnalyticsPage = () => {
           </SimpleGrid>
         </Box>
 
-        {/* Applications by Department */}
+        {/* Applications by Job Title */}
         <Box
           bg={cardBg}
           borderRadius="xl"
@@ -346,22 +348,23 @@ const AdminAnalyticsPage = () => {
           boxShadow="md"
         >
           <Heading size="md" mb={4}>
-            Applications by Department
+            Applications by Job Title
           </Heading>
-          {Object.keys(analytics.applicationsByDepartment).length > 0 ? (
+          {analytics.applicationsByTitle &&
+          Object.keys(analytics.applicationsByTitle).length > 0 ? (
             <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
-                  <Th>Department</Th>
-                  <Th>Applications</Th>
+                  <Th color={tableHeadingColor}>Job Title</Th>
+                  <Th color={tableHeadingColor}>Applications</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {Object.entries(analytics.applicationsByDepartment)
+                {Object.entries(analytics.applicationsByTitle)
                   .sort(([, a], [, b]) => b - a)
-                  .map(([dept, count]) => (
-                    <Tr key={dept}>
-                      <Td>{dept}</Td>
+                  .map(([title, count]) => (
+                    <Tr key={title}>
+                      <Td>{title}</Td>
                       <Td>
                         <Badge colorScheme="teal" fontSize="md" px={3} py={1}>
                           {count}

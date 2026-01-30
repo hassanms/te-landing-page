@@ -6,6 +6,7 @@ import {
   ListItem,
   Text,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
@@ -16,6 +17,7 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const CaseStudyAlifa = () => {
   const { colorMode } = useColorMode();
+  const quoteAuthorColor = useColorModeValue("gray.600", "gray.200");
 
   return (
     <Box id="services">
@@ -51,6 +53,25 @@ const CaseStudyAlifa = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             { name: "Alifa", url: "https://techemulsion.com/portfolio/alifa" },
+          ],
+        }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Alifa App and how does it help sales teams?",
+              answer:
+                "Alifa App is a client engagement and AI-driven sales SaaS platform designed to help sales reps manage client interactions with ease. The platform enables Zoom meeting creation directly from the app, dynamic proposal sharing with hyperlinks for easy access, and automated client chats using RAG (Retrieval-Augmented Generation) technology. It includes AI agents for web monitoring, data extraction, and web searches that automate tasks and enhance client engagement, delivering a seamless and scalable sales solution.",
+            },
+            {
+              question: "How does Alifa App use AI to automate sales tasks?",
+              answer:
+                "Alifa App leverages AI technology in several ways including RAG-based automated client chats that can answer questions using company knowledge bases, AI agents for web monitoring that track relevant information about clients or competitors, automated data extraction from various sources to keep sales reps informed, intelligent web search capabilities that gather relevant information automatically, and AI-powered insights that help sales reps understand client needs and preferences better. This automation frees up sales reps to focus on building relationships and closing deals.",
+            },
+            {
+              question: "What are the key features of Alifa App?",
+              answer:
+                "Alifa App offers comprehensive sales management features including Zoom meeting creation and scheduling directly from the platform, dynamic proposal sharing with hyperlinks for easy client access, automated client chats using RAG technology for intelligent responses, AI agents for web monitoring and data extraction, web search automation to gather relevant information, client interaction management tools, and a scalable architecture that supports sales teams of all sizes. The platform streamlines the entire sales process from initial contact to closing deals.",
+            },
           ],
         }}
       />
@@ -392,7 +413,7 @@ const CaseStudyAlifa = () => {
                 size={10}
                 style={{ position: "absolute", right: "20%", bottom: 34 }}
               />
-              <Text fontSize="2xl" fontWeight="bold" color="gray.600" mt={5}>
+              <Text fontSize="2xl" fontWeight="bold" color={quoteAuthorColor} mt={5}>
                 – Suliman, CEO of Alifa
               </Text>
             </Box>

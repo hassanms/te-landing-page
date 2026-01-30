@@ -18,7 +18,7 @@ interface JobDetailHeaderProps {
 }
 
 export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
-  const subTextColor = useColorModeValue("gray.600", "lightGrey.400");
+  const subTextColor = useColorModeValue("gray.600", "gray.200");
   
   // Get the current job URL
   const jobUrl = typeof window !== "undefined" 

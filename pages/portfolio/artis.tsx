@@ -49,6 +49,25 @@ const CaseStudyArtis = () => {
             },
           ],
         }}
+        faqData={{
+          questions: [
+            {
+              question: "What is Artis and how does it help artists?",
+              answer:
+                "Artis is an AI-driven platform that analyzes an artist's style to provide tailored advice and marketing strategies, while using blockchain technology to protect ownership with tamper-proof digital certificates and unique fingerprints for each creation. The platform connects artists with audiences, enabling secure sales and empowering creators across various fields to make their creativity both secure and profitable. It acts as a personalized creative support team that helps artists understand their unique style and market their work effectively.",
+            },
+            {
+              question: "How does Artis use blockchain for copyright protection?",
+              answer:
+                "Artis leverages blockchain technology to provide secure ownership protection and copyright management for artists. Each creation receives a tamper-proof digital certificate and unique fingerprint that proves authenticity and ownership. This blockchain-based system ensures that artists' work is protected from unauthorized use, provides a permanent record of ownership, enables secure transactions when selling artwork, and gives artists confidence that their intellectual property is safeguarded. The platform makes copyright protection accessible and affordable for artists of all levels.",
+            },
+            {
+              question: "What features does Artis offer to artists?",
+              answer:
+                "Artis offers comprehensive features for artists including AI-powered style analysis that provides insights into an artist's unique creative approach, tailored marketing strategies based on the artist's style and target audience, blockchain-based copyright protection with tamper-proof certificates, secure sales platform that connects artists with buyers, ownership protection that ensures artists maintain control of their work, and support for creators across various fields including visual arts, music, writing, and more. The platform empowers artists to protect their work while building their careers.",
+            },
+          ],
+        }}
       />
       <Script
         async

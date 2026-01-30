@@ -1,5 +1,5 @@
 import React from "react";
-import { SimpleGrid, Stack, Heading, Text, Box } from "@chakra-ui/react";
+import { SimpleGrid, Stack, Heading, Text, Box, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import JobCard from "./job-card";
 
@@ -8,13 +8,15 @@ interface JobListingsGridProps {
 }
 
 export const JobListingsGrid: React.FC<JobListingsGridProps> = ({ jobs }) => {
+  const textColor = useColorModeValue("gray.500", "gray.200");
+
   if (!jobs.length) {
     return (
       <Box textAlign="center" py={16}>
         <Heading size="md" mb={2}>
           No open roles right now
         </Heading>
-        <Text color="gray.500">
+        <Text color={textColor}>
           Check back soon or reach out to us at contact@techemulsion.com.
         </Text>
       </Box>

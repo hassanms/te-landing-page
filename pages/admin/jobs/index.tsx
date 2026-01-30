@@ -29,6 +29,8 @@ import {
 } from "@chakra-ui/react";
 import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
 import apiClient from "lib/api-client";
+import { getAccessToken } from "lib/supabase/auth-client";
+import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { JobForm } from "components/admin/jobs/job-form";
@@ -44,6 +46,7 @@ interface Job {
   description: string;
   requirements: string[];
   status: string;
+  total_positions: number | null;
   created_at: string;
 }
 
@@ -62,11 +65,33 @@ const AdminJobsPage = () => {
 
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.300");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
+
+  const router = useRouter();
 
   useEffect(() => {
-    fetchJobs();
-  }, []);
+    let isMounted = true;
+
+    const init = async () => {
+      // Ensure we only load this page when an access token is present.
+      const token = await getAccessToken();
+      if (!token) {
+        // Not authenticated: send to admin login and avoid triggering API calls.
+        router.replace("/admin/login");
+        return;
+      }
+      if (isMounted) {
+        fetchJobs();
+      }
+    };
+
+    void init();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [router]);
 
   // Reset to first page when filters change
   useEffect(() => {
@@ -81,7 +106,12 @@ const AdminJobsPage = () => {
       setError(null);
     } catch (err: any) {
       console.error("Error fetching jobs:", err);
-      setError("Failed to load jobs. Please check your admin secret.");
+      // If the user is not authenticated, a 401 will trigger a redirect
+      // via the global apiClient interceptor. In that case, avoid flashing
+      // a transient error state before the login page loads.
+      if (err?.response?.status !== 401) {
+        setError("Failed to load jobs. Please check your admin secret.");
+      }
     } finally {
       setLoading(false);
     }
@@ -164,7 +194,7 @@ const AdminJobsPage = () => {
             <Text
               mt={1}
               fontSize="sm"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.200")}
             >
               Create, edit, and manage all open roles.
             </Text>
@@ -261,13 +291,13 @@ const AdminJobsPage = () => {
             <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
-                  <Th>Title</Th>
-                  <Th>Department</Th>
-                  <Th>Location</Th>
-                  <Th>Type</Th>
-                  <Th>Status</Th>
-                  <Th>Created</Th>
-                  <Th>Actions</Th>
+                  <Th color={tableHeadingColor}>Title</Th>
+                  <Th color={tableHeadingColor}>Department</Th>
+                  <Th color={tableHeadingColor}>Location</Th>
+                  <Th color={tableHeadingColor}>Type</Th>
+                  <Th color={tableHeadingColor}>Status</Th>
+                  <Th color={tableHeadingColor}>Created</Th>
+                  <Th color={tableHeadingColor}>Actions</Th>
                 </Tr>
               </Thead>
               <Tbody>

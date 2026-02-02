@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Heading,
@@ -26,6 +26,12 @@ import {
   IconButton,
   Select,
   Input,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
 import apiClient from "lib/api-client";
@@ -56,7 +62,15 @@ const AdminJobsPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [jobToDeleteId, setJobToDeleteId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const cancelDeleteRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
 
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -129,19 +143,31 @@ const AdminJobsPage = () => {
     onOpen();
   };
 
-  const handleDelete = async (jobId: string) => {
-    if (!confirm("Are you sure you want to delete this job?")) {
-      return;
-    }
+  const openDeleteConfirm = (jobId: string) => {
+    setJobToDeleteId(jobId);
+    onDeleteOpen();
+  };
 
+  const handleConfirmDelete = async () => {
+    if (!jobToDeleteId) return;
+    setIsDeleting(true);
     try {
-      await apiClient.delete(`/api/admin/jobs/${jobId}`);
+      await apiClient.delete(`/api/admin/jobs/${jobToDeleteId}`);
       toast.success("Job deleted successfully");
+      onDeleteClose();
+      setJobToDeleteId(null);
       fetchJobs();
     } catch (err: any) {
       console.error("Error deleting job:", err);
       toast.error("Failed to delete job");
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    onDeleteClose();
+    setJobToDeleteId(null);
   };
 
   const handleFormSuccess = () => {
@@ -335,7 +361,7 @@ const AdminJobsPage = () => {
                           size="sm"
                           colorScheme="red"
                           variant="ghost"
-                          onClick={() => handleDelete(job.id)}
+                          onClick={() => openDeleteConfirm(job.id)}
                         />
                       </HStack>
                     </Td>
@@ -391,6 +417,39 @@ const AdminJobsPage = () => {
           </HStack>
         )}
       </Box>
+
+      {/* Delete confirmation dialog */}
+      <AlertDialog
+        isOpen={isDeleteOpen}
+        leastDestructiveRef={cancelDeleteRef}
+        onClose={handleCancelDelete}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete job
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Are you sure you want to delete this job? This action cannot be
+              undone.
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button ref={cancelDeleteRef} onClick={handleCancelDelete}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="red"
+                onClick={handleConfirmDelete}
+                ml={3}
+                isLoading={isDeleting}
+                loadingText="Deleting..."
+              >
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
 
       {/* Create/Edit Job Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="4xl">

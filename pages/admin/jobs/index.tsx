@@ -35,8 +35,6 @@ import {
 } from "@chakra-ui/react";
 import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
 import apiClient from "lib/api-client";
-import { getAccessToken } from "lib/supabase/auth-client";
-import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { JobForm } from "components/admin/jobs/job-form";
@@ -82,30 +80,9 @@ const AdminJobsPage = () => {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
 
-  const router = useRouter();
-
   useEffect(() => {
-    let isMounted = true;
-
-    const init = async () => {
-      // Ensure we only load this page when an access token is present.
-      const token = await getAccessToken();
-      if (!token) {
-        // Not authenticated: send to admin login and avoid triggering API calls.
-        router.replace("/admin/login");
-        return;
-      }
-      if (isMounted) {
-        fetchJobs();
-      }
-    };
-
-    void init();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [router]);
+    fetchJobs();
+  }, []);
 
   // Reset to first page when filters change
   useEffect(() => {
@@ -205,6 +182,9 @@ const AdminJobsPage = () => {
   const endIndex = startIndex + pageSize;
   const paginatedJobs = filteredJobs.slice(startIndex, endIndex);
 
+  const openCount = jobs.filter((j) => j.status === "open").length;
+  const closedCount = jobs.filter((j) => j.status === "closed").length;
+
   return (
     <AdminLayout>
       <EnhancedSEO
@@ -214,7 +194,7 @@ const AdminJobsPage = () => {
       />
 
       <Box>
-        <HStack justify="space-between" mb={6} align="flex-start">
+        <HStack justify="space-between" mb={4} align="flex-start">
           <Box>
             <Heading size="xl">Job Management</Heading>
             <Text
@@ -232,6 +212,19 @@ const AdminJobsPage = () => {
           >
             Create New Job
           </Button>
+        </HStack>
+
+        {/* Stats - same style as Blog and Applications */}
+        <HStack spacing={4} mb={4} flexWrap="wrap">
+          <Badge colorScheme="blue" px={3} py={1} borderRadius="full">
+            Total: {jobs.length}
+          </Badge>
+          <Badge colorScheme="green" px={3} py={1} borderRadius="full">
+            Open: {openCount}
+          </Badge>
+          <Badge colorScheme="gray" px={3} py={1} borderRadius="full">
+            Closed: {closedCount}
+          </Badge>
         </HStack>
 
         <HStack

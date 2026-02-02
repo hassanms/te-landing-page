@@ -15,7 +15,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import apiClient from "lib/api-client";
-import { getAccessToken } from "lib/supabase/auth-client";
 import { useRouter } from "next/router";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
@@ -201,28 +200,9 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     setIsClient(true);
-
-    let isMounted = true;
-
-    const init = async () => {
-      // Only proceed if there is a valid access token; otherwise redirect.
-      const token = await getAccessToken();
-      if (!token) {
-        router.replace("/admin/login");
-        return;
-      }
-      if (isMounted) {
-        fetchStats();
-        fetchBlogViews("week");
-      }
-    };
-
-    void init();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [router]);
+    fetchStats();
+    fetchBlogViews("week");
+  }, []);
 
   const fetchBlogViews = async (range: BlogViewsRange) => {
     try {
@@ -644,7 +624,7 @@ const AdminDashboard = () => {
             iconColor="blue.500"
             footerText={`${stats.recentApplications} in last 7 days`}
             footerIcon={FiClock}
-            onClick={() => router.push("/admin/jobs")}
+            onClick={() => router.push("/admin/applications")}
           />
         </SimpleGrid>
 

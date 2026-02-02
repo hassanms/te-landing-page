@@ -60,6 +60,7 @@ export default async function handler(
         meta_keywords,
         canonical_url,
         og_image,
+        show_on_homepage,
       } = req.body;
 
       // Check if the post exists
@@ -104,12 +105,43 @@ export default async function handler(
         meta_keywords,
         canonical_url,
         og_image,
+        show_on_homepage,
         updated_at: new Date().toISOString(),
       };
 
       // Set published_at if publishing for the first time
       if (is_published && !existingPost.published_at) {
         updateData.published_at = new Date().toISOString();
+      }
+
+      // Ensure only one featured blog post at a time
+      if (typeof is_featured === "boolean" && is_featured) {
+        await supabaseAdmin
+          .from("blog_posts")
+          .update({ is_featured: false })
+          .neq("id", id);
+      }
+
+      // Ensure no more than 4 posts are marked for homepage
+      if (typeof show_on_homepage === "boolean" && show_on_homepage) {
+        const { count: homeCount, error: homeError } = await supabaseAdmin
+          .from("blog_posts")
+          .select("id", { count: "exact", head: true })
+          .eq("show_on_homepage", true)
+          .neq("id", id);
+
+        if (homeError) {
+          console.error("Error checking homepage posts count:", homeError);
+          return res
+            .status(500)
+            .json({ error: "Failed to update homepage visibility" });
+        }
+
+        if ((homeCount || 0) >= 4) {
+          return res.status(400).json({
+            error: "You can only show up to 4 blog posts on the homepage.",
+          });
+        }
       }
 
       // Remove undefined values

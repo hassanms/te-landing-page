@@ -35,15 +35,16 @@ import {
   Tooltip,
   Link,
 } from "@chakra-ui/react";
-import { 
-  FiEdit, 
-  FiTrash2, 
-  FiPlus, 
-  FiEye, 
+import {
+  FiEdit,
+  FiTrash2,
+  FiPlus,
+  FiEye,
   FiMoreVertical,
   FiExternalLink,
   FiCopy,
   FiStar,
+  FiHome,
 } from "react-icons/fi";
 import apiClient from "lib/api-client";
 import toast from "react-hot-toast";
@@ -68,6 +69,7 @@ interface BlogPost {
   reading_time_minutes: number;
   created_at: string;
   updated_at: string;
+  show_on_homepage?: boolean;
 }
 
 interface Category {
@@ -181,6 +183,29 @@ const AdminBlogPage = () => {
     } catch (err: any) {
       console.error("Error toggling featured:", err);
       toast.error("Failed to update featured status");
+    }
+  };
+
+  const handleToggleHomepage = async (post: BlogPost) => {
+    try {
+      await apiClient.put(`/api/admin/blog/${post.id}`, {
+        show_on_homepage: !post.show_on_homepage,
+      });
+      toast.success(
+        post.show_on_homepage
+          ? "Removed from homepage section"
+          : "Added to homepage section",
+      );
+      fetchPosts();
+    } catch (err: any) {
+      console.error("Error toggling homepage visibility:", err);
+
+      const message =
+        err?.response?.status === 400 && err?.response?.data?.error
+          ? err.response.data.error
+          : "Failed to update homepage visibility";
+
+      toast.error(message);
     }
   };
 
@@ -421,14 +446,21 @@ const AdminBlogPage = () => {
                     </Td>
                     <Td>
                       <VStack align="flex-start" spacing={0}>
-                        <HStack>
+                        <HStack spacing={2}>
                           <Text fontWeight="medium" noOfLines={1} maxW="300px">
                             {post.title}
                           </Text>
                           {post.is_featured && (
-                            <Tooltip label="Featured post">
+                            <Tooltip label="Featured on blog page">
                               <Box color="yellow.500">
                                 <FiStar size={14} fill="currentColor" />
+                              </Box>
+                            </Tooltip>
+                          )}
+                          {post.show_on_homepage && (
+                            <Tooltip label="Shown on homepage">
+                              <Box color="teal.400">
+                                <FiHome size={14} />
                               </Box>
                             </Tooltip>
                           )}
@@ -506,6 +538,12 @@ const AdminBlogPage = () => {
                               onClick={() => handleToggleFeatured(post)}
                             >
                               {post.is_featured ? "Remove Featured" : "Set Featured"}
+                            </MenuItem>
+                            <MenuItem
+                              icon={<FiHome />}
+                              onClick={() => handleToggleHomepage(post)}
+                            >
+                              {post.show_on_homepage ? "Remove from Home" : "Show on Home"}
                             </MenuItem>
                             <MenuItem
                               icon={<FiTrash2 />}

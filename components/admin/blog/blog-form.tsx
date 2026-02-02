@@ -60,6 +60,7 @@ interface BlogPost {
   meta_keywords?: string;
   canonical_url?: string;
   og_image?: string | null;
+  show_on_homepage?: boolean;
 }
 
 interface Category {
@@ -86,6 +87,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({ post, onSuccess, onCancel })
     tags: [] as string[],
     is_featured: false,
     is_published: false,
+    show_on_homepage: false,
     meta_title: "",
     meta_description: "",
     meta_keywords: "",
@@ -175,6 +177,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({ post, onSuccess, onCancel })
         meta_keywords: post.meta_keywords || "",
         canonical_url: post.canonical_url || "",
         og_image: post.og_image || "",
+        show_on_homepage: post.show_on_homepage || false,
       });
     }
   }, [post]);
@@ -765,6 +768,25 @@ export const BlogForm: React.FC<BlogFormProps> = ({ post, onSuccess, onCancel })
                 <Switch
                   isChecked={form.is_featured}
                   onChange={(e) => handleChange("is_featured", e.target.checked)}
+                  colorScheme="teal"
+                  size="lg"
+                />
+              </FormControl>
+
+              <FormControl display="flex" alignItems="center" justifyContent="space-between">
+                <Box>
+                  <FormLabel mb={0} color={labelColor}>
+                    Show on Home
+                  </FormLabel>
+                  <Text fontSize="xs" color={helperTextColor}>
+                    Include this post in the homepage blog section (up to 4 posts)
+                  </Text>
+                </Box>
+                <Switch
+                  isChecked={form.show_on_homepage}
+                  onChange={(e) =>
+                    handleChange("show_on_homepage", e.target.checked)
+                  }
                   colorScheme="teal"
                   size="lg"
                 />

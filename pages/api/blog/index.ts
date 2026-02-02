@@ -11,15 +11,20 @@ export default async function handler(
   }
 
   try {
-    const { category, featured, limit, offset, search } = req.query;
+    const { category, featured, limit, offset, search, home } = req.query;
 
     const supabaseAdmin = getSupabaseAdmin();
 
     let query = supabaseAdmin
       .from("blog_posts")
-      .select("id, slug, title, excerpt, featured_image, category, author_name, tags, is_featured, published_at, reading_time_minutes, view_count", { count: "exact" })
+      .select("id, slug, title, excerpt, featured_image, category, author_name, tags, is_featured, published_at, reading_time_minutes, view_count, show_on_homepage", { count: "exact" })
       .eq("is_published", true)
       .order("published_at", { ascending: false });
+
+    // Filter by homepage selection
+    if (home === "true") {
+      query = query.eq("show_on_homepage", true);
+    }
 
     // Filter by category
     if (category && category !== "all" && category !== "All Insights") {

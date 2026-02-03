@@ -51,7 +51,7 @@ const navItems: NavItem[] = [
     href: "/admin/applications",
   },
   {
-    label: "Analytics",
+    label: "Applications Analytics",
     icon: FiBarChart2,
     href: "/admin/analytics",
   },

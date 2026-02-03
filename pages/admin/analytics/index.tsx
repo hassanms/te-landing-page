@@ -108,15 +108,15 @@ const AdminAnalyticsPage = () => {
   return (
     <AdminLayout>
       <EnhancedSEO
-        title="Admin Analytics - Tech Emulsion"
-        description="Analytics and reporting for job applications"
+        title="Admin Applications Analytics - Tech Emulsion"
+        description="Applications analytics and reporting for job applications"
         pageType="about"
       />
 
       <Box>
         <HStack justify="space-between" align="flex-start" mb={6}>
           <Box>
-            <Heading size="xl">Analytics & Reporting</Heading>
+            <Heading size="xl">Applications Analytics</Heading>
             <Text
               mt={1}
               fontSize="sm"

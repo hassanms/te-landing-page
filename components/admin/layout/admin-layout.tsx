@@ -6,6 +6,18 @@ import { AdminHeader } from "./admin-header";
 import { AdminFooter } from "./admin-footer";
 import { useAuth } from "contexts/auth-context";
 
+const SIDEBAR_COLLAPSED_KEY = "admin-sidebar-collapsed";
+
+function getInitialSidebarCollapsed(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const stored = localStorage.getItem(SIDEBAR_COLLAPSED_KEY);
+    return stored === "true";
+  } catch {
+    return false;
+  }
+}
+
 interface AdminLayoutContextType {
   isSidebarCollapsed: boolean;
   toggleSidebar: () => void;
@@ -25,14 +37,20 @@ interface AdminLayoutProps {
 }
 
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => getInitialSidebarCollapsed());
   const bgColor = useColorModeValue("white", "gray.900");
   const contentBg = useColorModeValue("white", "gray.800");
   const { user, loading } = useAuth();
   const router = useRouter();
 
   const toggleSidebar = () => {
-    setIsSidebarCollapsed((prev) => !prev);
+    setIsSidebarCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(next));
+      } catch (_) {}
+      return next;
+    });
   };
 
   const sidebarWidth = isSidebarCollapsed ? "80px" : "260px";

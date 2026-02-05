@@ -89,6 +89,7 @@ export default async function handler(
         meta_keywords,
         canonical_url,
         og_image,
+        show_on_homepage,
       } = req.body;
 
       // Validate required fields
@@ -126,6 +127,7 @@ export default async function handler(
         meta_keywords: meta_keywords || null,
         canonical_url: canonical_url || null,
         og_image: og_image || featured_image || null,
+        show_on_homepage: show_on_homepage || false,
       };
 
       // Set published_at if publishing
@@ -143,6 +145,14 @@ export default async function handler(
       if (error) {
         console.error("Database error:", error);
         return res.status(500).json({ error: "Failed to create blog post" });
+      }
+
+      // If this post is featured, ensure all other posts are not featured
+      if (post.is_featured) {
+        await supabaseAdmin
+          .from("blog_posts")
+          .update({ is_featured: false })
+          .neq("id", post.id);
       }
 
       return res.status(201).json({ post });

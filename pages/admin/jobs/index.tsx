@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Heading,
@@ -26,11 +26,15 @@ import {
   IconButton,
   Select,
   Input,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
 import apiClient from "lib/api-client";
-import { getAccessToken } from "lib/supabase/auth-client";
-import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { JobForm } from "components/admin/jobs/job-form";
@@ -56,7 +60,15 @@ const AdminJobsPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [jobToDeleteId, setJobToDeleteId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const cancelDeleteRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
 
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -68,30 +80,9 @@ const AdminJobsPage = () => {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
 
-  const router = useRouter();
-
   useEffect(() => {
-    let isMounted = true;
-
-    const init = async () => {
-      // Ensure we only load this page when an access token is present.
-      const token = await getAccessToken();
-      if (!token) {
-        // Not authenticated: send to admin login and avoid triggering API calls.
-        router.replace("/admin/login");
-        return;
-      }
-      if (isMounted) {
-        fetchJobs();
-      }
-    };
-
-    void init();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [router]);
+    fetchJobs();
+  }, []);
 
   // Reset to first page when filters change
   useEffect(() => {
@@ -129,19 +120,31 @@ const AdminJobsPage = () => {
     onOpen();
   };
 
-  const handleDelete = async (jobId: string) => {
-    if (!confirm("Are you sure you want to delete this job?")) {
-      return;
-    }
+  const openDeleteConfirm = (jobId: string) => {
+    setJobToDeleteId(jobId);
+    onDeleteOpen();
+  };
 
+  const handleConfirmDelete = async () => {
+    if (!jobToDeleteId) return;
+    setIsDeleting(true);
     try {
-      await apiClient.delete(`/api/admin/jobs/${jobId}`);
+      await apiClient.delete(`/api/admin/jobs/${jobToDeleteId}`);
       toast.success("Job deleted successfully");
+      onDeleteClose();
+      setJobToDeleteId(null);
       fetchJobs();
     } catch (err: any) {
       console.error("Error deleting job:", err);
       toast.error("Failed to delete job");
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    onDeleteClose();
+    setJobToDeleteId(null);
   };
 
   const handleFormSuccess = () => {
@@ -179,6 +182,9 @@ const AdminJobsPage = () => {
   const endIndex = startIndex + pageSize;
   const paginatedJobs = filteredJobs.slice(startIndex, endIndex);
 
+  const openCount = jobs.filter((j) => j.status === "open").length;
+  const closedCount = jobs.filter((j) => j.status === "closed").length;
+
   return (
     <AdminLayout>
       <EnhancedSEO
@@ -188,7 +194,7 @@ const AdminJobsPage = () => {
       />
 
       <Box>
-        <HStack justify="space-between" mb={6} align="flex-start">
+        <HStack justify="space-between" mb={4} align="flex-start">
           <Box>
             <Heading size="xl">Job Management</Heading>
             <Text
@@ -206,6 +212,19 @@ const AdminJobsPage = () => {
           >
             Create New Job
           </Button>
+        </HStack>
+
+        {/* Stats - same style as Blog and Applications */}
+        <HStack spacing={4} mb={4} flexWrap="wrap">
+          <Badge colorScheme="blue" px={3} py={1} borderRadius="full">
+            Total: {jobs.length}
+          </Badge>
+          <Badge colorScheme="green" px={3} py={1} borderRadius="full">
+            Open: {openCount}
+          </Badge>
+          <Badge colorScheme="gray" px={3} py={1} borderRadius="full">
+            Closed: {closedCount}
+          </Badge>
         </HStack>
 
         <HStack
@@ -335,7 +354,7 @@ const AdminJobsPage = () => {
                           size="sm"
                           colorScheme="red"
                           variant="ghost"
-                          onClick={() => handleDelete(job.id)}
+                          onClick={() => openDeleteConfirm(job.id)}
                         />
                       </HStack>
                     </Td>
@@ -391,6 +410,39 @@ const AdminJobsPage = () => {
           </HStack>
         )}
       </Box>
+
+      {/* Delete confirmation dialog */}
+      <AlertDialog
+        isOpen={isDeleteOpen}
+        leastDestructiveRef={cancelDeleteRef}
+        onClose={handleCancelDelete}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete job
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Are you sure you want to delete this job? This action cannot be
+              undone.
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button ref={cancelDeleteRef} onClick={handleCancelDelete}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="red"
+                onClick={handleConfirmDelete}
+                ml={3}
+                isLoading={isDeleting}
+                loadingText="Deleting..."
+              >
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
 
       {/* Create/Edit Job Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="4xl">

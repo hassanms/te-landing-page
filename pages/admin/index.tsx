@@ -15,7 +15,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import apiClient from "lib/api-client";
-import { getAccessToken } from "lib/supabase/auth-client";
 import { useRouter } from "next/router";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
@@ -85,6 +84,8 @@ const StatCard: React.FC<StatCardProps> = ({
       h="100%"
       display="flex"
       flexDirection="column"
+      overflow="hidden"
+      minW={0}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
       onClick={onClick}
@@ -96,32 +97,20 @@ const StatCard: React.FC<StatCardProps> = ({
         }
       }}
     >
-      {/* Top row: title and optional context */}
-      <HStack justify="space-between" align="flex-start" mb={3} spacing={4}>
-        <Text
-          fontSize="xs"
-          color={textColor}
-          fontWeight="semibold"
-          textTransform="uppercase"
-          letterSpacing="0.5px"
-        >
-          {title}
-        </Text>
-        {footerText && (
-          <HStack
-            spacing={1.5}
-            color={textColor}
-            fontSize="xs"
-            whiteSpace="nowrap"
-          >
-            {FooterIcon && <Icon as={FooterIcon} boxSize={3} />}
-            <Text>{footerText}</Text>
-          </HStack>
-        )}
-      </HStack>
+      {/* Top: heading only (full text) */}
+      <Text
+        fontSize="xs"
+        color={textColor}
+        fontWeight="semibold"
+        textTransform="uppercase"
+        letterSpacing="0.5px"
+        mb={3}
+      >
+        {title}
+      </Text>
 
-      {/* Middle row: icon + main value */}
-      <HStack justify="space-between" align="center" spacing={4} flex="1">
+      {/* Middle: icon (left) + value & footer (right) */}
+      <HStack justify="space-between" align="center" spacing={4} flex="1" minW={0}>
         <Box
           bg={iconBg}
           p={3}
@@ -134,22 +123,30 @@ const StatCard: React.FC<StatCardProps> = ({
         >
           <Icon as={IconComponent} boxSize={6} color={iconColor} />
         </Box>
-        <Text
-          fontSize="3xl"
-          fontWeight="600"
-          color={valueColor}
-          lineHeight="1.1"
-          textAlign="right"
-          flex="1"
-        >
-          {value}
-        </Text>
+        <VStack align="flex-end" spacing={0} flex="1" minW={0}>
+          <Text
+            fontSize="3xl"
+            fontWeight="600"
+            color={valueColor}
+            lineHeight="1.1"
+          >
+            {value}
+          </Text>
+          {footerText && (
+            <HStack spacing={1.5} color={textColor} fontSize="xs" mt={0.5}>
+              {FooterIcon && <Icon as={FooterIcon} boxSize={3} flexShrink={0} />}
+              <Text noOfLines={1} overflow="hidden" textOverflow="ellipsis" maxW="100%">
+                {footerText}
+              </Text>
+            </HStack>
+          )}
+        </VStack>
       </HStack>
 
-      {/* Optional alert/footer line at bottom */}
+      {/* Optional alert line at bottom */}
       {alertText && (
         <Text
-          mt={3}
+          mt={2}
           fontSize="xs"
           color={alertColor || "red.500"}
           fontWeight="medium"
@@ -201,28 +198,9 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     setIsClient(true);
-
-    let isMounted = true;
-
-    const init = async () => {
-      // Only proceed if there is a valid access token; otherwise redirect.
-      const token = await getAccessToken();
-      if (!token) {
-        router.replace("/admin/login");
-        return;
-      }
-      if (isMounted) {
-        fetchStats();
-        fetchBlogViews("week");
-      }
-    };
-
-    void init();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [router]);
+    fetchStats();
+    fetchBlogViews("week");
+  }, []);
 
   const fetchBlogViews = async (range: BlogViewsRange) => {
     try {
@@ -644,7 +622,7 @@ const AdminDashboard = () => {
             iconColor="blue.500"
             footerText={`${stats.recentApplications} in last 7 days`}
             footerIcon={FiClock}
-            onClick={() => router.push("/admin/jobs")}
+            onClick={() => router.push("/admin/applications")}
           />
         </SimpleGrid>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Heading,
@@ -34,16 +34,23 @@ import {
   MenuItem,
   Tooltip,
   Link,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
-import { 
-  FiEdit, 
-  FiTrash2, 
-  FiPlus, 
-  FiEye, 
+import {
+  FiEdit,
+  FiTrash2,
+  FiPlus,
+  FiEye,
   FiMoreVertical,
   FiExternalLink,
   FiCopy,
   FiStar,
+  FiHome,
 } from "react-icons/fi";
 import apiClient from "lib/api-client";
 import toast from "react-hot-toast";
@@ -68,6 +75,7 @@ interface BlogPost {
   reading_time_minutes: number;
   created_at: string;
   updated_at: string;
+  show_on_homepage?: boolean;
 }
 
 interface Category {
@@ -83,7 +91,15 @@ const AdminBlogPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [postToDeleteId, setPostToDeleteId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelDeleteRef = useRef<HTMLButtonElement>(null);
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
 
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
@@ -143,19 +159,31 @@ const AdminBlogPage = () => {
     onOpen();
   };
 
-  const handleDelete = async (postId: string) => {
-    if (!confirm("Are you sure you want to delete this blog post? This action cannot be undone.")) {
-      return;
-    }
+  const openDeleteConfirm = (postId: string) => {
+    setPostToDeleteId(postId);
+    onDeleteOpen();
+  };
 
+  const handleConfirmDelete = async () => {
+    if (!postToDeleteId) return;
+    setIsDeleting(true);
     try {
-      await apiClient.delete(`/api/admin/blog/${postId}`);
+      await apiClient.delete(`/api/admin/blog/${postToDeleteId}`);
       toast.success("Blog post deleted successfully");
+      onDeleteClose();
+      setPostToDeleteId(null);
       fetchPosts();
     } catch (err: any) {
       console.error("Error deleting post:", err);
       toast.error("Failed to delete blog post");
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    onDeleteClose();
+    setPostToDeleteId(null);
   };
 
   const handleTogglePublish = async (post: BlogPost) => {
@@ -181,6 +209,40 @@ const AdminBlogPage = () => {
     } catch (err: any) {
       console.error("Error toggling featured:", err);
       toast.error("Failed to update featured status");
+    }
+  };
+
+  const handleToggleHomepage = async (post: BlogPost) => {
+    const turningOn = !post.show_on_homepage;
+
+    // Client-side guard: don't call API if limit already reached
+    if (turningOn) {
+      const currentOnHomepage = posts.filter(
+        (p) => p.show_on_homepage && p.id !== post.id
+      ).length;
+      if (currentOnHomepage >= 4) {
+        toast.error("You can only show up to 4 blog posts on the homepage.");
+        return;
+      }
+    }
+
+    try {
+      await apiClient.put(`/api/admin/blog/${post.id}`, {
+        show_on_homepage: turningOn,
+      });
+      toast.success(
+        post.show_on_homepage
+          ? "Removed from homepage section"
+          : "Added to homepage section",
+      );
+      fetchPosts();
+    } catch (err: any) {
+      console.error("Error toggling homepage visibility:", err);
+      const message =
+        err?.response?.status === 400 && err?.response?.data?.error
+          ? err.response.data.error
+          : "Failed to update homepage visibility";
+      toast.error(message);
     }
   };
 
@@ -421,14 +483,21 @@ const AdminBlogPage = () => {
                     </Td>
                     <Td>
                       <VStack align="flex-start" spacing={0}>
-                        <HStack>
+                        <HStack spacing={2}>
                           <Text fontWeight="medium" noOfLines={1} maxW="300px">
                             {post.title}
                           </Text>
                           {post.is_featured && (
-                            <Tooltip label="Featured post">
+                            <Tooltip label="Featured on blog page">
                               <Box color="yellow.500">
                                 <FiStar size={14} fill="currentColor" />
+                              </Box>
+                            </Tooltip>
+                          )}
+                          {post.show_on_homepage && (
+                            <Tooltip label="Shown on homepage">
+                              <Box color="teal.400">
+                                <FiHome size={14} />
                               </Box>
                             </Tooltip>
                           )}
@@ -508,9 +577,15 @@ const AdminBlogPage = () => {
                               {post.is_featured ? "Remove Featured" : "Set Featured"}
                             </MenuItem>
                             <MenuItem
+                              icon={<FiHome />}
+                              onClick={() => handleToggleHomepage(post)}
+                            >
+                              {post.show_on_homepage ? "Remove from Home" : "Show on Home"}
+                            </MenuItem>
+                            <MenuItem
                               icon={<FiTrash2 />}
                               color="red.500"
-                              onClick={() => handleDelete(post.id)}
+                              onClick={() => openDeleteConfirm(post.id)}
                             >
                               Delete
                             </MenuItem>
@@ -566,6 +641,39 @@ const AdminBlogPage = () => {
           </HStack>
         )}
       </Box>
+
+      {/* Delete confirmation dialog */}
+      <AlertDialog
+        isOpen={isDeleteOpen}
+        leastDestructiveRef={cancelDeleteRef}
+        onClose={handleCancelDelete}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete blog post
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Are you sure you want to delete this blog post? This action cannot
+              be undone.
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button ref={cancelDeleteRef} onClick={handleCancelDelete}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="red"
+                onClick={handleConfirmDelete}
+                ml={3}
+                isLoading={isDeleting}
+                loadingText="Deleting..."
+              >
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
 
       {/* Create/Edit Post Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="6xl" scrollBehavior="inside">

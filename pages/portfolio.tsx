@@ -45,6 +45,20 @@ const Services = () => {
 
   const HighlightsItems = [
     {
+      title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
+      description:
+        "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
+      image: "/assets/portfolio/Pack-Assist.PNG",
+      alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
+    },
+    {
+      title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
+      description:
+        "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
+      image: "/assets/portfolio/Meatery-logo.png",
+      alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
+    },
+    {
       title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
       description:
         "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
@@ -299,7 +313,11 @@ const Services = () => {
 
         <Highlights>
           {HighlightsItems.map((item, index) => {
-            const href = item.title.includes("Farmin")
+            const href = item.title.includes("Pack Assist")
+              ? "/portfolio/packassist"
+              : item.title.includes("The Meatery")
+              ? "/portfolio/meatery"
+              : item.title.includes("Farmin")
               ? "/portfolio/farmin"
               : item.title.includes("Atarim")
               ? "/portfolio/atarim"

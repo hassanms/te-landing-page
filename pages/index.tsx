@@ -285,7 +285,11 @@ const HeroSection: React.FC = () => {
   const [currentAnimation, setCurrentAnimation] =
     useState<LottieAnimationData>(animationData1);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
+
   useEffect(() => {
+    // Avoid running the animation toggle timer on small screens
+    if (isSmall) return;
+
     const interval = setInterval(() => {
       setCurrentAnimation((prevAnimation) =>
         prevAnimation === animationData1 ? animationData2 : animationData1,
@@ -293,7 +297,7 @@ const HeroSection: React.FC = () => {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isSmall]);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -321,24 +325,26 @@ const HeroSection: React.FC = () => {
         display="grid"
         zIndex="-1"
         mb={{ base: "0px", lg: "-120px" }}>
-        <FallInPlace delay={1}>
-          <video
-            src="/assets/Animation/hero-video.mp4"
-            ref={videoRef}
-            autoPlay={true}
-            loop={true}
-            muted={true}
-            // loading="eager"
-            playsInline={true}
-            preload="none"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              maxWidth: "100%",
-            }}
-          />
-        </FallInPlace>
+        {!isSmall && (
+          <FallInPlace delay={1}>
+            <video
+              src="/assets/Animation/hero-video.mp4"
+              ref={videoRef}
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              // loading="eager"
+              playsInline={true}
+              preload="none"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                maxWidth: "100%",
+              }}
+            />
+          </FallInPlace>
+        )}
       </Box>
       <Container
         maxW="container.xl"
@@ -1369,6 +1375,20 @@ const Portfolio: React.FC = () => {
   const [showAll, setShowAll] = useState(false); // Add this state
   const HighlightsItems = [
     {
+      title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
+      description:
+        "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
+      image: "/assets/portfolio/Pack-Assist.PNG",
+      alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
+    },
+    {
+      title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
+      description:
+        "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
+      image: "/assets/portfolio/Meatery-logo.png",
+      alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
+    },
+    {
       title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
       description:
         "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
@@ -1505,7 +1525,11 @@ const Portfolio: React.FC = () => {
         {/* Explore services */}
         <Highlights>
           {HighlightsItems.map((item, index) => {
-            const href = item.title.includes("Atarim")
+            const href = item.title.includes("Pack Assist")
+              ? "/portfolio/packassist"
+              : item.title.includes("The Meatery")
+              ? "/portfolio/meatery"
+              : item.title.includes("Atarim")
               ? "/portfolio/atarim"
               : item.title.includes("JarvisReach")
               ? "/portfolio/jarvisreach"
@@ -1567,7 +1591,7 @@ const Portfolio: React.FC = () => {
                       {item.title}
                     </Heading>
                     <VStack alignItems="flex-start" spacing="8">
-                      <Text color={textColor} fontSize="lg" textAlign="justify">
+                      <Text color={textColor} fontSize="lg" textAlign="left">
                         {item.description}
                       </Text>
                     </VStack>
@@ -2359,12 +2383,15 @@ const TestimonialsSection: React.FC = () => {
   };
 
   React.useEffect(() => {
+    // Only auto-rotate testimonials on larger screens and at a slower interval
+    if (isSmall) return;
+
     const interval = setInterval(() => {
       handleNext();
-    }, 2000);
+    }, 8000);
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [isSmall]);
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {
@@ -3410,37 +3437,54 @@ const BlogSection: React.FC = () => {
   const cardBgColor = useColorModeValue("charcoal.800", "charcoal.900");
   const titleColor = useColorModeValue("gray.800", "white");
 
-  // Blog posts data - using blog images
-  const blogPosts = [
-    {
-      title: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
-      fullTitle: "Productized Internal Tools: The Agency Pivot From Custom Builds to Repeatable Capabilities",
-      date: "2026-01-14",
-      url: "/blog/productized-internal-tools",
-      image: "/assets/blog/Productized-Internal-Tools.png",
-    },
-    {
-      title: "AI Systems Engineering: Why AI Apps Will Get Commoditized and AI Systems Will Not",
-      fullTitle: "AI Systems Engineering: Why \"AI Apps\" Will Get Commoditized and \"AI Systems\" Will Not",
-      date: "2026-01-08",
-      url: "/blog/ai-systems-engineering",
-      image: "/assets/blog/AI-Systems-Engineering.png",
-    },
-    {
-      title: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
-      fullTitle: "Beyond Vibe Coding: The New Moats for Software Agencies in 2026",
-      date: "2026-01-06",
-      url: "/blog/beyond-vibe-coding",
-      image: "/assets/blog/Beyond-Vibe-Coding-main-image.png",
-    },
-    {
-      title: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
-      fullTitle: "Automation First Consulting: The Pivot From Building Features to Building Outcomes",
-      date: "2026-01-09",
-      url: "/blog/automation-first-consulting",
-      image: "/assets/blog/Automation-First-Consulting.png",
-    },
-  ];
+  type HomeBlogCard = {
+    id: string;
+    slug: string;
+    title: string;
+    fullTitle: string;
+    date: string | null;
+    url: string;
+    image: string | null;
+  };
+
+  const [blogPosts, setBlogPosts] = React.useState<HomeBlogCard[]>([]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const loadHomepageBlogs = async () => {
+      try {
+        const res = await fetch("/api/blog?home=true&limit=4");
+        if (!res.ok) {
+          console.error("Failed to fetch homepage blogs:", res.statusText);
+          return;
+        }
+        const json = await res.json();
+        const posts = (json.posts || []) as any[];
+        const mapped: HomeBlogCard[] = posts.map((post) => ({
+          id: post.id as string,
+          slug: post.slug as string,
+          title: post.title as string,
+          fullTitle: (post.title as string) || "",
+          date: (post.published_at as string) || null,
+          url: `/blog/${post.slug}`,
+          image: (post.featured_image as string) || null,
+        }));
+
+        if (isMounted) {
+          setBlogPosts(mapped.slice(0, 4));
+        }
+      } catch (err) {
+        console.error("Error loading homepage blogs:", err);
+      }
+    };
+
+    void loadHomepageBlogs();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <Box
@@ -3574,11 +3618,13 @@ const BlogSection: React.FC = () => {
                     fontSize="sm"
                     color={textColor}
                     opacity={0.8}>
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+                    {post.date
+                      ? new Date(post.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })
+                      : "—"}
                   </Text>
                   <Link
                     as="span"

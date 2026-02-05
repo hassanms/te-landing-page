@@ -26,14 +26,22 @@ import {
   Alert,
   AlertIcon,
   Select,
+  Input,
   Textarea,
   FormControl,
   FormLabel,
   SimpleGrid,
   Divider,
   Icon,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  IconButton,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import apiClient from "lib/api-client";
 import toast from "react-hot-toast";
 import { AdminLayout } from "components/admin/layout/admin-layout";
@@ -51,7 +59,8 @@ import {
   FiDollarSign,
   FiClock,
   FiAward,
-  FiGlobe
+  FiGlobe,
+  FiTrash2,
 } from "react-icons/fi";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 
@@ -95,7 +104,15 @@ const AdminApplicationsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
+  const [applicationToDeleteId, setApplicationToDeleteId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const cancelDeleteRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
 
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
@@ -122,6 +139,7 @@ const AdminApplicationsPage = () => {
   };
 
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [editingStatus, setEditingStatus] = useState<string>("");
   const [editingNotes, setEditingNotes] = useState<string>("");
   const [pageSize, setPageSize] = useState<number>(10);
@@ -173,9 +191,48 @@ const AdminApplicationsPage = () => {
     return statusColors[status] || "gray";
   };
 
-  const filteredApplications = statusFilter === "all"
+  const openDeleteConfirm = (applicationId: string) => {
+    setApplicationToDeleteId(applicationId);
+    onDeleteOpen();
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!applicationToDeleteId) return;
+    setIsDeleting(true);
+    try {
+      await apiClient.delete(`/api/admin/applications/${applicationToDeleteId}`);
+      toast.success("Application deleted successfully");
+      onDeleteClose();
+      setApplicationToDeleteId(null);
+      fetchApplications();
+      if (selectedApplication?.id === applicationToDeleteId) {
+        onClose();
+        setSelectedApplication(null);
+      }
+    } catch (err: any) {
+      console.error("Error deleting application:", err);
+      toast.error(err?.response?.data?.error || "Failed to delete application");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    onDeleteClose();
+    setApplicationToDeleteId(null);
+  };
+
+  const filteredApplications = (statusFilter === "all"
     ? applications
-    : applications.filter((app) => (app.status || "pending") === statusFilter);
+    : applications.filter((app) => (app.status || "pending") === statusFilter)
+  ).filter((app) => {
+    const term = searchTerm.toLowerCase().trim();
+    if (!term) return true;
+    const name = `${app.firstName} ${app.lastName}`.toLowerCase();
+    const email = (app.email || "").toLowerCase();
+    const jobTitle = (app.job?.title || "").toLowerCase();
+    return name.includes(term) || email.includes(term) || jobTitle.includes(term);
+  });
 
   const handleDownloadResume = async (applicationId: string, resumeUrl: string, fileName: string) => {
     try {
@@ -222,10 +279,10 @@ const AdminApplicationsPage = () => {
     {},
   );
 
-  // Reset to first page when filter changes
+  // Reset to first page when filter or search changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [statusFilter]);
+  }, [statusFilter, searchTerm]);
 
   const totalFiltered = filteredApplications.length;
   const totalPages = Math.max(1, Math.ceil(totalFiltered / pageSize));
@@ -244,22 +301,44 @@ const AdminApplicationsPage = () => {
 
       <Box>
         <VStack align="stretch" spacing={6}>
-          <HStack justify="space-between" align="flex-start" mb={4}>
-            <Box>
-              <Heading size="xl">Job Applications</Heading>
-              <Text
-                mt={1}
-                fontSize="sm"
-                color={useColorModeValue("gray.600", "gray.200")}
+          <Box>
+            <Heading size="xl">Job Applications</Heading>
+            <Text
+              mt={1}
+              fontSize="sm"
+              color={useColorModeValue("gray.600", "gray.200")}
+            >
+              Review candidates, update statuses, and keep notes.
+            </Text>
+          </Box>
+
+          {/* Stats */}
+          <HStack spacing={4} mb={2} flexWrap="wrap">
+            <Text fontSize="xs" color={textColor}>
+              Total: <strong>{applications.length}</strong>
+            </Text>
+            {Object.entries(statusSummary).map(([status, count]) => (
+              <Badge
+                key={status}
+                colorScheme={getStatusColor(status)}
+                borderRadius="full"
+                px={3}
+                py={1}
+                textTransform="capitalize"
+                fontSize="xs"
               >
-                Review candidates, update statuses, and keep notes.
-              </Text>
-            </Box>
+                {status} • {count}
+              </Badge>
+            ))}
+          </HStack>
+
+          {/* Filters - same layout as Blog and Jobs */}
+          <HStack spacing={4} mb={4} align="center" flexWrap="wrap">
             <Select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              maxW="220px"
-              bg={useColorModeValue("white", "gray.700")}
+              maxW="200px"
+              bg={bgColor}
               size="sm"
             >
               <option value="all">All Status</option>
@@ -271,31 +350,15 @@ const AdminApplicationsPage = () => {
               <option value="rejected">Rejected</option>
               <option value="withdrawn">Withdrawn</option>
             </Select>
-          </HStack>
-
-          <HStack
-            spacing={3}
-            flexWrap="wrap"
-            align="center"
-            fontSize="xs"
-            color={textColor}
-          >
-            <Text>
-              Total: <strong>{applications.length}</strong>
-            </Text>
-            {Object.entries(statusSummary).map(([status, count]) => (
-              <Badge
-                key={status}
-                colorScheme={getStatusColor(status)}
-                borderRadius="full"
-                px={3}
-                py={1}
-                textTransform="capitalize"
-              >
-                {status} • {count}
-              </Badge>
-            ))}
-            <HStack spacing={2} ml="auto">
+            <Input
+              placeholder="Search by name, email, or job title..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              maxW="300px"
+              bg={bgColor}
+              size="sm"
+            />
+            <HStack spacing={2} ml="auto" fontSize="xs" color={textColor}>
               <Text>Rows per page:</Text>
               <Select
                 value={pageSize}
@@ -305,7 +368,7 @@ const AdminApplicationsPage = () => {
                 }}
                 size="xs"
                 w="auto"
-                bg={useColorModeValue("white", "gray.700")}
+                bg={bgColor}
               >
                 <option value={10}>10</option>
                 <option value={20}>20</option>
@@ -410,6 +473,14 @@ const AdminApplicationsPage = () => {
                           >
                             Resume
                           </Button>
+                          <IconButton
+                            aria-label="Delete application"
+                            icon={<FiTrash2 />}
+                            size="sm"
+                            colorScheme="red"
+                            variant="ghost"
+                            onClick={() => openDeleteConfirm(app.id)}
+                          />
                         </HStack>
                       </Td>
                     </Tr>
@@ -464,6 +535,39 @@ const AdminApplicationsPage = () => {
             </HStack>
           </HStack>
         )}
+
+      {/* Delete confirmation dialog */}
+      <AlertDialog
+        isOpen={isDeleteOpen}
+        leastDestructiveRef={cancelDeleteRef}
+        onClose={handleCancelDelete}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete application
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Are you sure you want to delete this application? This action
+              cannot be undone.
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button ref={cancelDeleteRef} onClick={handleCancelDelete}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="red"
+                onClick={handleConfirmDelete}
+                ml={3}
+                isLoading={isDeleting}
+                loadingText="Deleting..."
+              >
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
 
       {/* Application Detail Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="6xl" scrollBehavior="inside">

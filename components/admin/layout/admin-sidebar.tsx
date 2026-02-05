@@ -51,7 +51,7 @@ const navItems: NavItem[] = [
     href: "/admin/applications",
   },
   {
-    label: "Analytics",
+    label: "Applications Analytics",
     icon: FiBarChart2,
     href: "/admin/analytics",
   },
@@ -125,7 +125,7 @@ export const AdminSidebar: React.FC = () => {
         <VStack align="stretch" spacing={0} p={4}>
           {/* Logo Section */}
           <Box
-            p={4}
+            p={2}
             mb={4}
             display="flex"
             alignItems="center"
@@ -138,13 +138,13 @@ export const AdminSidebar: React.FC = () => {
                 alignItems="center"
                 justifyContent="center"
                 w="100%"
-                h="100%"
+                minH="40px"
               >
                 <Image
                   src="/assets/icons/logo-icon.svg"
                   alt="Tech Emulsion Icon"
-                  width={100}
-                  height={100}
+                  width={32}
+                  height={32}
                   style={{
                     objectFit: "contain",
                   }}

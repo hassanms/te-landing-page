@@ -335,7 +335,6 @@ const AdminApplicationsPage = () => {
           {/* Filters - same layout as Blog and Jobs */}
           <HStack spacing={4} mb={4} align="center" flexWrap="wrap">
             <Select
-              placeholder="All statuses"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               maxW="200px"

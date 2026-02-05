@@ -285,7 +285,11 @@ const HeroSection: React.FC = () => {
   const [currentAnimation, setCurrentAnimation] =
     useState<LottieAnimationData>(animationData1);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
+
   useEffect(() => {
+    // Avoid running the animation toggle timer on small screens
+    if (isSmall) return;
+
     const interval = setInterval(() => {
       setCurrentAnimation((prevAnimation) =>
         prevAnimation === animationData1 ? animationData2 : animationData1,
@@ -293,7 +297,7 @@ const HeroSection: React.FC = () => {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isSmall]);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -321,24 +325,26 @@ const HeroSection: React.FC = () => {
         display="grid"
         zIndex="-1"
         mb={{ base: "0px", lg: "-120px" }}>
-        <FallInPlace delay={1}>
-          <video
-            src="/assets/Animation/hero-video.mp4"
-            ref={videoRef}
-            autoPlay={true}
-            loop={true}
-            muted={true}
-            // loading="eager"
-            playsInline={true}
-            preload="none"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              maxWidth: "100%",
-            }}
-          />
-        </FallInPlace>
+        {!isSmall && (
+          <FallInPlace delay={1}>
+            <video
+              src="/assets/Animation/hero-video.mp4"
+              ref={videoRef}
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              // loading="eager"
+              playsInline={true}
+              preload="none"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                maxWidth: "100%",
+              }}
+            />
+          </FallInPlace>
+        )}
       </Box>
       <Container
         maxW="container.xl"
@@ -2377,12 +2383,15 @@ const TestimonialsSection: React.FC = () => {
   };
 
   React.useEffect(() => {
+    // Only auto-rotate testimonials on larger screens and at a slower interval
+    if (isSmall) return;
+
     const interval = setInterval(() => {
       handleNext();
-    }, 2000);
+    }, 8000);
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [isSmall]);
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {

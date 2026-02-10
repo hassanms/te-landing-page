@@ -1438,6 +1438,13 @@ const Portfolio: React.FC = () => {
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
       alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
     },
+    {
+      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+      description:
+        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
+      image: "/assets/portfolio/New/Health_app.jpg",
+      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+    },
   ];
 
   // Listen for hash change to #portfolio (when nav is clicked)
@@ -1550,6 +1557,8 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/podcastbeacon"
               : item.title.includes("DADS Sales Reborn")
               ? "/portfolio/dadssalesreborn"
+              : item.title.includes("Macromascot")
+              ? "/portfolio/macromascot"
               : null;
 
             // Set objectFit for Rack Room, otherwise use "contain"

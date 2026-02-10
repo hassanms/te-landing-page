@@ -26,6 +26,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { path: "/portfolio/atarim", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/bipcards", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/contentcompass", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/dadssalesreborn", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/farmin", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/genai", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/jarvisreach", changefreq: "monthly", priority: "0.7" },

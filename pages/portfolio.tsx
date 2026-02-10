@@ -160,6 +160,13 @@ const Services = () => {
       image: "/assets/portfolio/raggenai.png",
       alt: "RAG – AI-Powered Document Querying Application",
     },
+    {
+      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      description:
+        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, with AI-driven automation planned as a second phase.",
+      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
+      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+    },
   ];
 
   return (
@@ -345,6 +352,8 @@ const Services = () => {
               ? "/portfolio/rackroom"
               : item.title.includes("Podcast Beacon")
               ? "/portfolio/podcastbeacon"
+              : item.title.includes("DADS Sales Reborn")
+              ? "/portfolio/dadssalesreborn"
               : null;
 
             // Set objectFit for Rack Room, otherwise use "contain"

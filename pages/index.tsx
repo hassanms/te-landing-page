@@ -1378,14 +1378,14 @@ const Portfolio: React.FC = () => {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
-      image: "/assets/portfolio/Pack-Assist.PNG",
+      image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
       alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
     },
     {
       title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
       description:
         "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
-      image: "/assets/portfolio/Meatery-logo.png",
+      image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
     {

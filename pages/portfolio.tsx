@@ -174,6 +174,13 @@ const Services = () => {
       image: "/assets/portfolio/New/Health_app.jpg",
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
+    {
+      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      description:
+        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting. The platform emphasizes data accuracy, role-based visibility, and high-fidelity automated exports.",
+      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
+      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+    },
   ];
 
   return (
@@ -363,6 +370,8 @@ const Services = () => {
               ? "/portfolio/dadssalesreborn"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
+              : item.title.includes("Campaign OS")
+              ? "/portfolio/campaignos"
               : null;
 
             // Set objectFit for Rack Room, otherwise use "contain"

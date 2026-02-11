@@ -45,6 +45,27 @@ const Services = () => {
 
   const HighlightsItems = [
     {
+      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      description:
+        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting. The platform emphasizes data accuracy, role-based visibility, and high-fidelity automated exports.",
+      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
+      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+    },
+    {
+      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+      description:
+        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
+      image: "/assets/portfolio/New/Health_app.jpg",
+      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+    },
+    {
+      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      description:
+        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, with AI-driven automation planned as a second phase.",
+      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
+      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+    },
+    {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
@@ -159,27 +180,6 @@ const Services = () => {
         "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
       image: "/assets/portfolio/raggenai.png",
       alt: "RAG – AI-Powered Document Querying Application",
-    },
-    {
-      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
-      description:
-        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, with AI-driven automation planned as a second phase.",
-      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
-    },
-    {
-      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
-      description:
-        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
-      image: "/assets/portfolio/New/Health_app.jpg",
-      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
-    },
-    {
-      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
-      description:
-        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting. The platform emphasizes data accuracy, role-based visibility, and high-fidelity automated exports.",
-      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
   ];
 

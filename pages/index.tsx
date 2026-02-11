@@ -1375,6 +1375,27 @@ const Portfolio: React.FC = () => {
   const [showAll, setShowAll] = useState(false); // Add this state
   const HighlightsItems = [
     {
+      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      description:
+        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
+      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+    },
+    {
+      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+      description:
+        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
+      image: "/assets/portfolio/New/Health_app.jpg",
+      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+    },
+    {
+      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      description:
+        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
+      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+    },
+    {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
@@ -1394,63 +1415,6 @@ const Portfolio: React.FC = () => {
         "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
       image: "/assets/portfolio/mic.jpg",
       alt: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
-    },
-    {
-      title: "Rack Room – Business resource management system",
-      description:
-        "Rackroom is a tailored, secure, and scalable application built for a single owner to manage their business's resources. It supports booking management with complex date/time calculations, client and engineer tracking, financial calculations, and automated SMS notifications via Twilio. The Gantt chart dashboard and event logs provide the owner with clear visibility and control. Built with a modern tech stack and a robust database schema, Rackroom is optimized for the owner's specific business needs, with flexibility for future enhancements.",
-      image: "/assets/portfolio/download.jpg",
-      alt: "Rack Room – Business resource management system",
-    },
-    {
-      title: "Content Compass – LinkedIn content analysis and inspiration tool",
-      description:
-        "This tool helps users get inspired by top LinkedIn creators and level up their own content game. Users can create a personalized dashboard by entering the LinkedIn profiles they want to follow. The system scrapes those profiles every 3 days (or on demand) and collects all types of post formats including text, carousels, videos, images, multi-image posts, reshared and reposted content. We analyze the posts using OpenAI's LLM to detect tone, writing patterns, common hooks, CTAs, and engagement trends. Users get insights into what works and why and can use the AI to generate similar posts based on their favorite creators. The AI suggests engaging hooks and helps users write complete posts tailored to their voice. A built-in analytics panel also compares tone and engagement across different creators to help users understand what content styles perform best. This will be offered on a subscription basis with no current limits on creators or post generations.",
-      image: "/assets/portfolio/linkedin.jpg",
-      alt: "Content Compass – LinkedIn content analysis and inspiration tool",
-    },
-    {
-      title: "SuperHeart – AI-powered nutrition tracking mobile app",
-      description:
-        "SuperHeart is a food coach in your pocket. It helps you choose meals that keep your heart happy. You can log meals by photo, words, or search. The app uses AI (smart computer brain) to guess food details. It shows calories and macros (big nutrients like protein, carbs, fats) right away. he dashboard tracks water, fiber, sugar and other targets for each day. Colored rings tell you what you still need or should limit. You can tap a meal for deeper facts and helpful notes. Reminders nudge you to eat, weigh in, or read small health tips. A profile page stores streaks, premium status, and account settings. Extra tabs show chat help and long-term progress. Everything runs in React Native, so one code serves iOS and Android. Supabase holds user data and handles sign-in and sync. This stack keeps costs low and updates fast.",
-      image: "/assets/portfolio/food.webp",
-      alt: "SuperHeart – AI-powered nutrition tracking mobile app",
-    },
-    {
-      title: "Atarim – A SaaS tool for visual collaboration & project mgmt",
-      description:
-        "Tech Emulsion transformed WPFeedback into Atarim, a scalable SaaS platform for visual collaboration on any website. With new features, a Chrome extension, custom scraping, AWS scaling, and performance optimizations, we helped Atarim secure $500K funding and expand to a universal project management tool.",
-      image: "/assets/portfolio/atarim.png",
-      alt: "Atarim – A SaaS tool for visual collaboration & project mgmt",
-    },
-    {
-      title:
-        "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
-      description:
-        "Tech Emulsion developed JarvisReach, a SaaS for LinkedIn prospecting, enabling efficient data extraction, filtering, and automated email outreach. With subscription flexibility, team leaderboards, and admin analytics, JarvisReach streamlines lead management and boosts user productivity.",
-      image: "/assets/portfolio/jarvis.png",
-      alt: "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
-    },
-    {
-      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
-      description:
-        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
-      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
-    },
-    {
-      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
-      description:
-        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
-      image: "/assets/portfolio/New/Health_app.jpg",
-      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
-    },
-    {
-      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
-      description:
-        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
-      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
   ];
 

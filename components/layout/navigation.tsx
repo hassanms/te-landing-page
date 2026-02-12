@@ -12,6 +12,8 @@ import ThemeToggle from "./theme-toggle";
 const HERO_LIGHT_NAV_PATHS = [
   "/portfolio/dadssalesreborn-v2",
   "/portfolio/macromascot-v2",
+  "/portfolio-v2",
+  "/portfolio-v3",
 ];
 
 interface NavigationProps {

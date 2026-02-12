@@ -67,7 +67,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
   const bgColor = useColorModeValue("gray.50", "gray.800");
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const textColor = useColorModeValue("gray.600", "gray.100");
 
   return (
     <Box id="services">
@@ -78,12 +78,12 @@ const CaseStudyDadsSalesRebornV2 = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: DADS Sales Reborn (Premium Design) - Tech Emulsion"
-        description="DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
+        title="Case Study: AutoOps Intelligence (Premium Design) - Tech Emulsion"
+        description="AutoOps Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/dadssalesreborn-v2"
         portfolioData={{
-          title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+          title: "AutoOps Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
           description:
             "A centralized operational intelligence platform for multi-location automotive repair businesses. Rebuilt from unreliable prototype into scalable data aggregation system with multi-shop aggregation, hardened sales calculations, aging WIP intelligence, and AI-ready architecture.",
           dateCreated: "2024",
@@ -91,7 +91,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
           url: "https://techemulsion.com/portfolio/dadssalesreborn-v2",
           genre: "Data Analytics, Automotive Intelligence, Operational Control System",
           keywords: [
-            "DADS Sales Reborn",
+            "AutoOps Intelligence",
             "automotive intelligence",
             "data aggregation",
             "multi-location business",
@@ -105,7 +105,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "DADS Sales Reborn",
+              name: "AutoOps Intelligence",
               url: "https://techemulsion.com/portfolio/dadssalesreborn-v2",
             },
           ],
@@ -113,17 +113,17 @@ const CaseStudyDadsSalesRebornV2 = () => {
         faqData={{
           questions: [
             {
-              question: "What is DADS Sales Reborn?",
+              question: "What is AutoOps Intelligence?",
               answer:
-                "DADS Sales Reborn is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+                "AutoOps Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
             },
             {
-              question: "What problems does DADS Sales Reborn solve?",
+              question: "What problems does AutoOps Intelligence solve?",
               answer:
                 "The platform addresses fragmented visibility across multiple shops, inaccurate and incomplete data from unreliable APIs, operational risk blind spots, and the lack of automation or intelligence for proactive warnings.",
             },
             {
-              question: "What technologies power DADS Sales Reborn?",
+              question: "What technologies power AutoOps Intelligence?",
               answer:
                 "Frontend: React-based dashboard. Backend: Supabase (PostgreSQL) with Edge Functions. Data Sources: Tekmetric API, with planned Chrome extension ingestion and future integrations.",
             },
@@ -172,7 +172,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
           zIndex={0}>
           <Image
             src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-            alt="DADS Sales Reborn"
+            alt="AutoOps Intelligence"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -236,7 +236,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                 sx={{
                   color: "white",
                 }}>
-                DADS Sales Reborn
+                AutoOps Intelligence
               </Text>
             </ButtonGroup>
           </Box>
@@ -264,7 +264,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                 fontWeight="bold"
                 lineHeight="1.1"
                 color="white">
-                DADS Sales Reborn
+                AutoOps Intelligence
               </Heading>
               <Text
                 fontSize={{ base: "xl", md: "2xl" }}
@@ -327,7 +327,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
               />
               <Image
                 src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-                alt="DADS Sales Reborn Dashboard"
+                alt="AutoOps Intelligence Dashboard"
                 fill
                 style={{
                   objectFit: "cover",
@@ -432,7 +432,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                   fontSize={{ base: "lg", md: "xl" }}
                   color={useColorModeValue("gray.700", "gray.200")}
                   lineHeight="1.8">
-                  DADS Sales Reborn is a centralized operational intelligence platform
+                  AutoOps Intelligence is a centralized operational intelligence platform
                   built for a multi-location automotive repair business operating across
                   multiple US states. The goal was simple but brutal to execute:{" "}
                   <Text as="span" fontWeight="bold" color="brand.500">
@@ -492,7 +492,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
               </Heading>
               <Text
                 fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.300")}
+                color={useColorModeValue("gray.600", "gray.100")}
                 maxW="2xl"
                 mx="auto">
                 The client owned 9 automotive shops (growing to 10+) across Georgia,
@@ -552,7 +552,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                     </HStack>
                     <Text
                       fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.300")}
+                      color={useColorModeValue("gray.600", "gray.100")}
                       lineHeight="1.7">
                       {challenge.description}
                     </Text>
@@ -600,7 +600,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
             </Heading>
             <Text
               fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.100")}
               maxW="2xl"
               mx="auto">
               We rebuilt the system around a data-first, aggregation-driven
@@ -688,7 +688,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                   </HStack>
                   <Text
                     fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.300")}
+                    color={useColorModeValue("gray.600", "gray.100")}
                     lineHeight="1.7">
                     {solution.description}
                   </Text>
@@ -758,25 +758,27 @@ const CaseStudyDadsSalesRebornV2 = () => {
                   _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
                   transition="all 0.3s">
                   <CardBody>
-                    <Icon
-                      as={tech.icon}
-                      boxSize={10}
-                      color={`${tech.color}.500`}
-                      mb={4}
-                    />
-                    <Badge
-                      colorScheme={tech.color}
-                      mb={2}
-                      fontSize="xs"
-                      borderRadius="full">
-                      {tech.category}
-                    </Badge>
+                    <Box display="flex" justifyContent="center" mb={4}>
+                      <Icon
+                        as={tech.icon}
+                        boxSize={10}
+                        color={`${tech.color}.500`}
+                      />
+                    </Box>
+                    <Box display="flex" justifyContent="center" mb={2}>
+                      <Badge
+                        colorScheme={tech.color}
+                        fontSize="xs"
+                        borderRadius="full">
+                        {tech.category}
+                      </Badge>
+                    </Box>
                     <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
                       {tech.name}
                     </Heading>
                     <Text
                       fontSize="sm"
-                      color={useColorModeValue("gray.600", "gray.400")}
+                      color={useColorModeValue("gray.600", "gray.200")}
                       lineHeight="1.6">
                       {tech.description}
                     </Text>
@@ -795,10 +797,10 @@ const CaseStudyDadsSalesRebornV2 = () => {
                     p={4}
                     bg={useColorModeValue("blue.50", "blue.900")}
                     borderRadius="md">
-                    <Text fontWeight="bold" mb={2} fontSize="sm">
+                    <Text fontWeight="bold" mb={2} fontSize="sm" color={useColorModeValue("gray.900", "white")}>
                       Never Trust Upstream Aggregates
                     </Text>
-                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.400")}>
+                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.200")}>
                       Calculate everything ourselves
                     </Text>
                   </Box>
@@ -806,10 +808,10 @@ const CaseStudyDadsSalesRebornV2 = () => {
                     p={4}
                     bg={useColorModeValue("green.50", "green.900")}
                     borderRadius="md">
-                    <Text fontWeight="bold" mb={2} fontSize="sm">
+                    <Text fontWeight="bold" mb={2} fontSize="sm" color={useColorModeValue("gray.900", "white")}>
                       Store Raw + Derived Separately
                     </Text>
-                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.400")}>
+                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.200")}>
                       Historical analysis enabled
                     </Text>
                   </Box>
@@ -817,10 +819,10 @@ const CaseStudyDadsSalesRebornV2 = () => {
                     p={4}
                     bg={useColorModeValue("purple.50", "purple.900")}
                     borderRadius="md">
-                    <Text fontWeight="bold" mb={2} fontSize="sm">
+                    <Text fontWeight="bold" mb={2} fontSize="sm" color={useColorModeValue("gray.900", "white")}>
                       Optimize for Historical Analysis
                     </Text>
-                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.400")}>
+                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.200")}>
                       Not just current state
                     </Text>
                   </Box>
@@ -898,7 +900,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                   </HStack>
                   <Text
                     fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.300")}
+                    color={useColorModeValue("gray.600", "gray.100")}
                     lineHeight="1.7">
                     {result.description}
                   </Text>

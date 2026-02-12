@@ -9,20 +9,25 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightAddon,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
   Select,
   Stack,
   Text,
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { FiChevronDown } from "react-icons/fi";
+import { sortedCountryCodes, CountryCode } from "data/country-codes";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Job } from "data/jobs/types";
 import {
   applicationSourceOptions,
-  ctcRangeOptions,
-  experienceYearOptions,
-  noticePeriodOptions,
 } from "data/jobs/constants";
 import { ResumeUpload } from "components/forms/resume-upload";
 
@@ -144,10 +149,27 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
   const helperTextColor = useColorModeValue("gray.500", "gray.200");
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const labelColor = useColorModeValue("gray.800", "gray.100");
+  const menuBg = useColorModeValue("white", "gray.800");
+  const menuHoverBg = useColorModeValue("gray.100", "gray.700");
+
+  // Find selected country for display
+  const selectedCountry = sortedCountryCodes.find(
+    (country) => country.dialCode === form.countryCode
+  ) || sortedCountryCodes.find((country) => country.dialCode === "+92");
 
   const handleChange = (field: keyof FormState, value: string) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" }));
+    // For phone field, only allow digits and limit to 15 characters
+    if (field === "phone") {
+      // Remove all non-digit characters
+      const digitsOnly = value.replace(/\D/g, "");
+      // Limit to 15 digits (standard international phone number length)
+      const limitedValue = digitsOnly.slice(0, 15);
+      setForm((prev) => ({ ...prev, [field]: limitedValue }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
+    } else {
+      setForm((prev) => ({ ...prev, [field]: value }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
+    }
   };
 
   const validate = (): boolean => {
@@ -367,21 +389,54 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           <FormControl isRequired isInvalid={!!errors.phone}>
             <FormLabel color={labelColor}>Phone Number</FormLabel>
             <Flex gap={2}>
-              <Select
-                maxW="120px"
-                value={form.countryCode}
-                onChange={(e) => handleChange("countryCode", e.target.value)}
-                bg={inputBg}
-              >
-                <option value="+92">+92</option>
-                <option value="+91">+91</option>
-                <option value="+1">+1</option>
-              </Select>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rightIcon={<FiChevronDown />}
+                  bg={inputBg}
+                  minW="140px"
+                  maxW="140px"
+                  fontWeight="normal"
+                  _hover={{ bg: inputBg }}
+                  _active={{ bg: inputBg }}
+                >
+                  <Flex align="center" gap={2}>
+                    <Text fontSize="lg">{selectedCountry?.flag}</Text>
+                    <Text>{selectedCountry?.dialCode}</Text>
+                  </Flex>
+                </MenuButton>
+                <MenuList
+                  bg={menuBg}
+                  maxH="300px"
+                  overflowY="auto"
+                  zIndex={1000}
+                >
+                  {sortedCountryCodes.map((country: CountryCode) => (
+                    <MenuItem
+                      key={country.code}
+                      onClick={() => handleChange("countryCode", country.dialCode)}
+                      bg={menuBg}
+                      _hover={{ bg: menuHoverBg }}
+                      icon={<Text fontSize="lg">{country.flag}</Text>}
+                    >
+                      <Flex align="center" gap={2} w="100%">
+                        <Text flex={1}>{country.name}</Text>
+                        <Text color={helperTextColor}>{country.dialCode}</Text>
+                      </Flex>
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </Menu>
               <Input
+                type="tel"
                 value={form.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
                 bg={inputBg}
                 placeholder="3001234567"
+                flex={1}
+                maxLength={15}
+                pattern="[0-9]*"
+                inputMode="numeric"
               />
             </Flex>
             <FormErrorMessage>{errors.phone}</FormErrorMessage>
@@ -430,20 +485,21 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.experienceYears}>
               <FormLabel color={labelColor}>Years of Experience</FormLabel>
-              <Select
-                placeholder="Select experience"
-                value={form.experienceYears}
-                onChange={(e) =>
-                  handleChange("experienceYears", e.target.value)
-                }
-                bg={inputBg}
-              >
-                {experienceYearOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </Select>
+              <InputGroup>
+                <Input
+                  type="number"
+                  value={form.experienceYears}
+                  onChange={(e) =>
+                    handleChange("experienceYears", e.target.value)
+                  }
+                  bg={inputBg}
+                  placeholder="Enter years of experience"
+                  min="0"
+                />
+                <InputRightAddon bg={inputBg}>
+                  {form.experienceYears === "1" ? "year" : "years"}
+                </InputRightAddon>
+              </InputGroup>
               <FormErrorMessage>{errors.experienceYears}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.currentEmployer}>
@@ -463,34 +519,30 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.currentCTC}>
               <FormLabel color={labelColor}>Current Salary</FormLabel>
-              <Select
-                placeholder="Select salary range"
-                value={form.currentCTC}
-                onChange={(e) => handleChange("currentCTC", e.target.value)}
-                bg={inputBg}
-              >
-                {ctcRangeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </Select>
+              <InputGroup>
+                <Input
+                  type="number"
+                  value={form.currentCTC}
+                  onChange={(e) => handleChange("currentCTC", e.target.value)}
+                  bg={inputBg}
+                  placeholder="e.g., 50,000"
+                />
+                <InputRightAddon bg={inputBg}>PKR</InputRightAddon>
+              </InputGroup>
               <FormErrorMessage>{errors.currentCTC}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.expectedCTC}>
               <FormLabel color={labelColor}>Expected Salary</FormLabel>
-              <Select
-                placeholder="Select salary range"
-                value={form.expectedCTC}
-                onChange={(e) => handleChange("expectedCTC", e.target.value)}
-                bg={inputBg}
-              >
-                {ctcRangeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </Select>
+              <InputGroup>
+                <Input
+                  type="number"
+                  value={form.expectedCTC}
+                  onChange={(e) => handleChange("expectedCTC", e.target.value)}
+                  bg={inputBg}
+                  placeholder="e.g., 50,000"
+                />
+                <InputRightAddon bg={inputBg}>PKR</InputRightAddon>
+              </InputGroup>
               <FormErrorMessage>{errors.expectedCTC}</FormErrorMessage>
             </FormControl>
           </Flex>
@@ -498,18 +550,16 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
           <Flex direction={{ base: "column", md: "row" }} gap={4}>
             <FormControl isRequired isInvalid={!!errors.noticePeriod}>
               <FormLabel color={labelColor}>Notice Period</FormLabel>
-              <Select
-                placeholder="Select notice period"
-                value={form.noticePeriod}
-                onChange={(e) => handleChange("noticePeriod", e.target.value)}
-                bg={inputBg}
-              >
-                {noticePeriodOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </Select>
+              <InputGroup>
+                <Input
+                  type="number"
+                  value={form.noticePeriod}
+                  onChange={(e) => handleChange("noticePeriod", e.target.value)}
+                  bg={inputBg}
+                  placeholder="Enter notice period"
+                />
+                <InputRightAddon bg={inputBg}>days</InputRightAddon>
+              </InputGroup>
               <FormErrorMessage>{errors.noticePeriod}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.skills}>

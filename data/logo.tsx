@@ -6,9 +6,16 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 
-export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
+export interface LogoProps extends HTMLChakraProps<"svg"> {
+  useLightLogo?: boolean;
+}
+
+export const Logo: React.FC<LogoProps> = (props) => {
+  const { useLightLogo, ...rest } = props;
   const color = useColorModeValue("#231f20", "#fff");
   const { colorMode } = useColorMode();
+  const useLight =
+    useLightLogo ?? (colorMode === "dark" ? true : false);
   return (
     <Box
       sx={{
@@ -17,12 +24,13 @@ export const Logo: React.FC<HTMLChakraProps<"svg">> = (props) => {
         gap: "2",
         textDecoration: "none",
       }}
+      {...rest}
     >
       <Image
         src={
-          colorMode === "light"
-            ? "/assets/logo/logo-dark.png"
-            : "/assets/logo/logo-light.png"
+          useLight
+            ? "/assets/logo/logo-light.png"
+            : "/assets/logo/logo-dark.png"
         }
         alt="Logo"
         loading="eager"

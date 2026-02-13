@@ -14,7 +14,7 @@ import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
 const HERO_DARK_NAVBAR_PATHS = [
-  "/portfolio/dadssalesreborn-v2",
+  "/portfolio/autosync-intelligence",
   "/portfolio/macromascot-v2",
   "/portfolio-v2",
   "/portfolio-v3",

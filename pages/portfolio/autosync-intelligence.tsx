@@ -62,7 +62,7 @@ import {
   SiGooglechrome,
 } from "react-icons/si";
 
-const CaseStudyDadsSalesRebornV2 = () => {
+const CaseStudyAutoSyncIntelligence = () => {
   const { colorMode } = useColorMode();
   const bgColor = useColorModeValue("gray.50", "gray.800");
   const cardBg = useColorModeValue("white", "gray.700");
@@ -78,20 +78,20 @@ const CaseStudyDadsSalesRebornV2 = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: AutoOps Intelligence (Premium Design) - Tech Emulsion"
-        description="AutoOps Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
+        title="Case Study: AutoSync Intelligence (Premium Design) - Tech Emulsion"
+        description="AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio/dadssalesreborn-v2"
+        canonicalUrl="https://techemulsion.com/portfolio/autosync-intelligence"
         portfolioData={{
-          title: "AutoOps Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+          title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
           description:
             "A centralized operational intelligence platform for multi-location automotive repair businesses. Rebuilt from unreliable prototype into scalable data aggregation system with multi-shop aggregation, hardened sales calculations, aging WIP intelligence, and AI-ready architecture.",
           dateCreated: "2024",
           image: "https://techemulsion.com/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-          url: "https://techemulsion.com/portfolio/dadssalesreborn-v2",
+          url: "https://techemulsion.com/portfolio/autosync-intelligence",
           genre: "Data Analytics, Automotive Intelligence, Operational Control System",
           keywords: [
-            "AutoOps Intelligence",
+            "AutoSync Intelligence",
             "automotive intelligence",
             "data aggregation",
             "multi-location business",
@@ -105,25 +105,25 @@ const CaseStudyDadsSalesRebornV2 = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "AutoOps Intelligence",
-              url: "https://techemulsion.com/portfolio/dadssalesreborn-v2",
+              name: "AutoSync Intelligence",
+              url: "https://techemulsion.com/portfolio/autosync-intelligence",
             },
           ],
         }}
         faqData={{
           questions: [
             {
-              question: "What is AutoOps Intelligence?",
+              question: "What is AutoSync Intelligence?",
               answer:
-                "AutoOps Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+                "AutoSync Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
             },
             {
-              question: "What problems does AutoOps Intelligence solve?",
+              question: "What problems does AutoSync Intelligence solve?",
               answer:
                 "The platform addresses fragmented visibility across multiple shops, inaccurate and incomplete data from unreliable APIs, operational risk blind spots, and the lack of automation or intelligence for proactive warnings.",
             },
             {
-              question: "What technologies power AutoOps Intelligence?",
+              question: "What technologies power AutoSync Intelligence?",
               answer:
                 "Frontend: React-based dashboard. Backend: Supabase (PostgreSQL) with Edge Functions. Data Sources: Tekmetric API, with planned Chrome extension ingestion and future integrations.",
             },
@@ -172,7 +172,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
           zIndex={0}>
           <Image
             src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-            alt="AutoOps Intelligence"
+            alt="AutoSync Intelligence"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -236,7 +236,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                 sx={{
                   color: "white",
                 }}>
-                AutoOps Intelligence
+                AutoSync Intelligence
               </Text>
             </ButtonGroup>
           </Box>
@@ -264,7 +264,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                 fontWeight="bold"
                 lineHeight="1.1"
                 color="white">
-                AutoOps Intelligence
+                AutoSync Intelligence
               </Heading>
               <Text
                 fontSize={{ base: "xl", md: "2xl" }}
@@ -327,7 +327,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
               />
               <Image
                 src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-                alt="AutoOps Intelligence Dashboard"
+                alt="AutoSync Intelligence Dashboard"
                 fill
                 style={{
                   objectFit: "cover",
@@ -432,7 +432,7 @@ const CaseStudyDadsSalesRebornV2 = () => {
                   fontSize={{ base: "lg", md: "xl" }}
                   color={useColorModeValue("gray.700", "gray.200")}
                   lineHeight="1.8">
-                  AutoOps Intelligence is a centralized operational intelligence platform
+                  AutoSync Intelligence is a centralized operational intelligence platform
                   built for a multi-location automotive repair business operating across
                   multiple US states. The goal was simple but brutal to execute:{" "}
                   <Text as="span" fontWeight="bold" color="brand.500">
@@ -973,4 +973,4 @@ const CaseStudyDadsSalesRebornV2 = () => {
   );
 };
 
-export default CaseStudyDadsSalesRebornV2;
+export default CaseStudyAutoSyncIntelligence;

@@ -69,13 +69,13 @@ const PortfolioV2 = () => {
       stats: { users: "10K+", rating: "4.8" },
     },
     {
-      title: "DADS Sales Reborn – Multi-Location Automotive Intelligence",
+      title: "AutoSync Intelligence – Multi-Location Automotive Intelligence",
       shortDescription: "Centralized operational intelligence platform for automotive repair business",
       description:
-        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases.",
+        "AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases.",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn",
-      href: "/portfolio/dadssalesreborn-v2",
+      alt: "AutoSync Intelligence",
+      href: "/portfolio/autosync-intelligence",
       category: "Enterprise SaaS",
       badge: "Featured",
       stats: { locations: "15+", efficiency: "40%" },

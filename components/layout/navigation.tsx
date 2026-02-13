@@ -10,7 +10,7 @@ import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
 const HERO_LIGHT_NAV_PATHS = [
-  "/portfolio/dadssalesreborn-v2",
+  "/portfolio/autosync-intelligence",
   "/portfolio/macromascot-v2",
   "/portfolio-v2",
   "/portfolio-v3",

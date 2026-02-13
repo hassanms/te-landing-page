@@ -72,11 +72,11 @@ const PortfolioV3 = () => {
       href: "/portfolio/macromascot-v2",
     },
     {
-      title: "DADS Sales Reborn",
+      title: "AutoSync Intelligence",
       category: "Enterprise SaaS",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn",
-      href: "/portfolio/dadssalesreborn-v2",
+      alt: "AutoSync Intelligence",
+      href: "/portfolio/autosync-intelligence",
     },
     {
       title: "Pack Assist",

@@ -626,7 +626,7 @@ const AdminApplicationsPage = () => {
                       )
                     }
                   >
-                    Download Resume
+                    Resume
                   </Button>
                 </HStack>
 

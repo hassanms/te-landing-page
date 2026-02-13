@@ -16,7 +16,6 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { useColorMode } from "@chakra-ui/react";
 import { FiHome, FiArrowLeft } from "react-icons/fi";
 import Head from "next/head";
-import { EnhancedSEO } from "components/seo/enhanced-seo";
 
 const MotionBox = motion(Box);
 const MotionVStack = motion(VStack);
@@ -34,12 +33,6 @@ const Custom404 = () => {
       <Head>
         <title>404 - Page Not Found | Tech Emulsion</title>
       </Head>
-      <EnhancedSEO
-        title="404 - Page Not Found"
-        description="The page you're looking for doesn't exist. Return to Tech Emulsion homepage."
-        pageType="error"
-        canonicalUrl="https://techemulsion.com/404"
-      />
       
       <BackgroundGradient height="100%" zIndex={0} opacity={colorMode === "dark" ? 0.3 : 0.1} />
       

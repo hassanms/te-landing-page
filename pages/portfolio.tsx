@@ -201,6 +201,13 @@ const PortfolioV3 = () => {
       alt: "RAG ChatBot",
       href: "/portfolio/genai",
     },
+    {
+      title: "AVL-CoPilot",
+      category: "AI Solution",
+      image: "/assets/portfolio/New/ai-chatbot-avl-case-study.png",
+      alt: "AVL-CoPilot",
+      href: "/portfolio/avl-copilot",
+    },
   ];
 
   return (
@@ -476,6 +483,7 @@ const PortfolioV3 = () => {
                       fill
                       style={{
                         objectFit: "cover",
+                        objectPosition: "right",
                       }}
                     />
                   </Box>

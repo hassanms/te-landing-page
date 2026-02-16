@@ -1419,11 +1419,11 @@ const Portfolio: React.FC = () => {
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
     {
-      title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+      title: "AVL-CoPilot – Intelligent Conversational AI Platform",
       description:
-        "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
-      image: "/assets/portfolio/mic.jpg",
-      alt: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+        "An advanced AI-powered conversational assistant solution designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions. Built with cutting-edge AI frameworks to deliver 24/7 availability, sub-second response times, and continuous learning capabilities.",
+      image: "/assets/portfolio/New/ai-chatbot-avl-case-study.png",
+      alt: "AVL-CoPilot – Intelligent Conversational AI Platform",
     },
   ];
 
@@ -1541,6 +1541,8 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/macromascot"
               : item.title.includes("Campaign Management System") || item.title.includes("Campaign")
               ? "/portfolio/campaignos"
+              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
+              ? "/portfolio/avl-copilot"
               : null;
 
             // Determine category based on title
@@ -1556,6 +1558,8 @@ const Portfolio: React.FC = () => {
               ? "Voice CRM"
               : item.title.includes("Podcast")
               ? "SaaS Platform"
+              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
+              ? "AI Solution"
               : "Project";
 
             return (
@@ -1603,7 +1607,7 @@ const Portfolio: React.FC = () => {
                     src={item.image}
                     alt={item.alt}
                     fill
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", objectPosition: "right" }}
                   />
                 </Box>
                 <Box

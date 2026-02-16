@@ -5,14 +5,22 @@ import { Link } from '@saas-ui/react'
 export interface LogoProps {
   href?: string
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
+  useLightLogo?: boolean
 }
 
 import siteConfig from 'data/config'
 
-export const Logo = ({ href = '/', onClick }: LogoProps) => {
+export const Logo = ({ href = '/', onClick, useLightLogo }: LogoProps) => {
   let logo
   if (siteConfig.logo) {
-    logo = <Box as={siteConfig.logo} height="32px" mt="-4px" />
+    logo = (
+      <Box
+        as={siteConfig.logo}
+        height="32px"
+        mt="-4px"
+        useLightLogo={useLightLogo}
+      />
+    )
   } else {
     logo = (
       <Heading as="h1" size="md">

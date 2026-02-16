@@ -9,10 +9,36 @@ import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
-const Navigation: React.FC = () => {
+const HERO_LIGHT_NAV_PATHS = [
+  "/portfolio",
+  "/portfolio/autosync-intelligence",
+  "/portfolio/macromascot-v2",
+  "/portfolio-v2",
+  "/portfolio-v3",
+  "/portfolio-v4",
+];
+
+const NO_THEME_TOGGLE_PATHS = [
+  "/portfolio-v3",
+  "/portfolio-v4",
+  "/index-v2",
+  "/index-v3",
+];
+
+interface NavigationProps {
+  isScrolled?: boolean;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
   const { colorMode } = useColorMode();
   const mobileNav = useDisclosure();
   const router = useRouter();
+  const useWhiteNav =
+    colorMode === "light" &&
+    !isScrolled &&
+    HERO_LIGHT_NAV_PATHS.some((path) => router.pathname === path);
+  
+  const hideThemeToggle = NO_THEME_TOGGLE_PATHS.some((path) => router.pathname === path);
 
   const mobileNavBtnRef = React.useRef<HTMLButtonElement>(null);
 
@@ -50,11 +76,12 @@ const Navigation: React.FC = () => {
           {...props}
           sx={{
             background: variant === "varient" ? "teal.500" : "",
-            color: variant === "varient" ? "white" : "",
+            color:
+              variant === "varient" ? "white" : useWhiteNav ? "white" : "",
             "&:hover": {
               backgroundColor: variant === "varient" ? "teal.600" : "",
               color:
-                variant === "varient" || colorMode === "dark"
+                variant === "varient" || colorMode === "dark" || useWhiteNav
                   ? "white"
                   : "teal.500",
             },
@@ -64,12 +91,13 @@ const Navigation: React.FC = () => {
         </NavLink>
       ))}
 
-      <ThemeToggle />
+      {!hideThemeToggle && <ThemeToggle color={useWhiteNav ? "white" : undefined} />}
 
       <MobileNavButton
         ref={mobileNavBtnRef}
         aria-label="Open Menu"
         onClick={mobileNav.onOpen}
+        color={useWhiteNav ? "white" : undefined}
       />
 
       <MobileNavContent isOpen={mobileNav.isOpen} onClose={mobileNav.onClose} />

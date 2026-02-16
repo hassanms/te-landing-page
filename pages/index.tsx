@@ -26,9 +26,12 @@ import {
   CardBody,
   useBreakpointValue,
   Tooltip,
+  SimpleGrid,
+  Badge,
 } from "@chakra-ui/react";
 // new import for animation
 import { keyframes } from "@emotion/react";
+import { motion } from "framer-motion";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { Logo2 } from "components/logo2";
 import { FallInPlace } from "components/motion/fall-in-place";
@@ -85,6 +88,9 @@ const Player = dynamic(
   () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
   { ssr: false },
 );
+
+const MotionBox = motion(Box);
+const MotionCard = motion(Box);
 
 const Home: NextPage = () => {
   return (
@@ -1373,19 +1379,43 @@ const Portfolio: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [showAll, setShowAll] = useState(false); // Add this state
+  const cardBg = useColorModeValue("white", "gray.800");
+  const cardBorder = useColorModeValue("gray.200", "whiteAlpha.200");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.400");
   const HighlightsItems = [
+    {
+      title: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      description:
+        "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
+      alt: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+    },
+    {
+      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+      description:
+        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
+      image: "/assets/portfolio/New/Health_app.jpg",
+      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+    },
+    {
+      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      description:
+        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
+      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+    },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
-      image: "/assets/portfolio/Pack-Assist.PNG",
+      image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
       alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
     },
     {
       title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
       description:
         "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
-      image: "/assets/portfolio/Meatery-logo.png",
+      image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
     {
@@ -1394,42 +1424,6 @@ const Portfolio: React.FC = () => {
         "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
       image: "/assets/portfolio/mic.jpg",
       alt: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
-    },
-    {
-      title: "Rack Room – Business resource management system",
-      description:
-        "Rackroom is a tailored, secure, and scalable application built for a single owner to manage their business's resources. It supports booking management with complex date/time calculations, client and engineer tracking, financial calculations, and automated SMS notifications via Twilio. The Gantt chart dashboard and event logs provide the owner with clear visibility and control. Built with a modern tech stack and a robust database schema, Rackroom is optimized for the owner's specific business needs, with flexibility for future enhancements.",
-      image: "/assets/portfolio/download.jpg",
-      alt: "Rack Room – Business resource management system",
-    },
-    {
-      title: "Content Compass – LinkedIn content analysis and inspiration tool",
-      description:
-        "This tool helps users get inspired by top LinkedIn creators and level up their own content game. Users can create a personalized dashboard by entering the LinkedIn profiles they want to follow. The system scrapes those profiles every 3 days (or on demand) and collects all types of post formats including text, carousels, videos, images, multi-image posts, reshared and reposted content. We analyze the posts using OpenAI's LLM to detect tone, writing patterns, common hooks, CTAs, and engagement trends. Users get insights into what works and why and can use the AI to generate similar posts based on their favorite creators. The AI suggests engaging hooks and helps users write complete posts tailored to their voice. A built-in analytics panel also compares tone and engagement across different creators to help users understand what content styles perform best. This will be offered on a subscription basis with no current limits on creators or post generations.",
-      image: "/assets/portfolio/linkedin.jpg",
-      alt: "Content Compass – LinkedIn content analysis and inspiration tool",
-    },
-    {
-      title: "SuperHeart – AI-powered nutrition tracking mobile app",
-      description:
-        "SuperHeart is a food coach in your pocket. It helps you choose meals that keep your heart happy. You can log meals by photo, words, or search. The app uses AI (smart computer brain) to guess food details. It shows calories and macros (big nutrients like protein, carbs, fats) right away. he dashboard tracks water, fiber, sugar and other targets for each day. Colored rings tell you what you still need or should limit. You can tap a meal for deeper facts and helpful notes. Reminders nudge you to eat, weigh in, or read small health tips. A profile page stores streaks, premium status, and account settings. Extra tabs show chat help and long-term progress. Everything runs in React Native, so one code serves iOS and Android. Supabase holds user data and handles sign-in and sync. This stack keeps costs low and updates fast.",
-      image: "/assets/portfolio/food.webp",
-      alt: "SuperHeart – AI-powered nutrition tracking mobile app",
-    },
-    {
-      title: "Atarim – A SaaS tool for visual collaboration & project mgmt",
-      description:
-        "Tech Emulsion transformed WPFeedback into Atarim, a scalable SaaS platform for visual collaboration on any website. With new features, a Chrome extension, custom scraping, AWS scaling, and performance optimizations, we helped Atarim secure $500K funding and expand to a universal project management tool.",
-      image: "/assets/portfolio/atarim.png",
-      alt: "Atarim – A SaaS tool for visual collaboration & project mgmt",
-    },
-    {
-      title:
-        "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
-      description:
-        "Tech Emulsion developed JarvisReach, a SaaS for LinkedIn prospecting, enabling efficient data extraction, filtering, and automated email outreach. With subscription flexibility, team leaderboards, and admin analytics, JarvisReach streamlines lead management and boosts user productivity.",
-      image: "/assets/portfolio/jarvis.png",
-      alt: "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
     },
   ];
 
@@ -1522,8 +1516,8 @@ const Portfolio: React.FC = () => {
           </Box>
         </Box>
 
-        {/* Explore services */}
-        <Highlights>
+        {/* Image-first masonry grid */}
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%" mt={8}>
           {HighlightsItems.map((item, index) => {
             const href = item.title.includes("Pack Assist")
               ? "/portfolio/packassist"
@@ -1541,66 +1535,126 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/rackroom"
               : item.title.includes("Podcast Beacon")
               ? "/portfolio/podcastbeacon"
+              : item.title.includes("DADS Sales Reborn")
+              ? "/portfolio/dadssalesreborn"
+              : item.title.includes("Macromascot")
+              ? "/portfolio/macromascot"
+              : item.title.includes("Campaign Management System") || item.title.includes("Campaign")
+              ? "/portfolio/campaignos"
               : null;
 
-            // Set objectFit for Rack Room, otherwise use "contain"
-            const objectFit = item.title.includes("Rack Room")
-              ? "cover"
-              : "contain";
+            // Determine category based on title
+            const category = item.title.includes("Campaign")
+              ? "Management System"
+              : item.title.includes("Macromascot")
+              ? "Health App"
+              : item.title.includes("DADS")
+              ? "Analytics Platform"
+              : item.title.includes("Pack Assist")
+              ? "AI Chatbot"
+              : item.title.includes("Meatery")
+              ? "Voice CRM"
+              : item.title.includes("Podcast")
+              ? "SaaS Platform"
+              : "Project";
 
             return (
-              <HighlightsItem key={index} colSpan={[1, null, 2]}>
-                <Link
-                  href={href || "/"}
-                  _hover={{ textDecoration: "none" }}
-                  gap="0"
-                  title=""
-                  border="none">
-                  <Box
+              <NextLink href={href || "/"} passHref legacyBehavior>
+                <MotionCard
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  as={Link}
+                position="relative"
+                h={{ base: "400px", md: "450px", lg: "500px" }}
+                borderRadius="2xl"
+                overflow="hidden"
+                cursor="pointer"
+                bg={cardBg}
+                border="1px solid"
+                borderColor={cardBorder}
+                _hover={{
+                  transform: "translateY(-8px)",
+                  boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.4)`,
+                  "& .project-image": {
+                    transform: "scale(1.05)",
+                    filter: "brightness(1.1) contrast(1)",
+                  },
+                  "& .project-overlay": {
+                    opacity: 0.4,
+                  },
+                }}
+                >
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  zIndex={0}
+                  className="project-image"
+                  transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  sx={{
+                    filter: "brightness(0.9) contrast(1)",
+                  }}>
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </Box>
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  bgGradient="linear(to-t, blackAlpha.900, blackAlpha.600, transparent)"
+                  opacity={0.7}
+                  className="project-overlay"
+                  transition="opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  zIndex={1}
+                />
+                <VStack
+                  position="absolute"
+                  bottom={0}
+                  left={0}
+                  right={0}
+                  p={6}
+                  zIndex={2}
+                  align="flex-start"
+                  spacing={3}>
+                  <Badge
+                    color="white"
+                    px={4}
+                    py={1.5}
+                    borderRadius="full"
+                    fontSize="xs"
+                    fontWeight="bold"
+                    textTransform="uppercase"
+                    letterSpacing="0.5px"
                     sx={{
-                      width: "100%",
-                      backgroundImage:
-                        colorMode === "dark"
-                          ? "url('/assets/background/pattern.jpg')"
-                          : "url('/assets/background/light-pattern.jpg')",
-                      height: "350px",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      py: 1,
-                      // Only add px for Rack Room
-                      px: item.title.includes("Rack Room") ? 12 : 0,
+                      background: "linear-gradient(135deg, rgba(128, 237, 255, 0.25), rgba(20, 184, 166, 0.25))",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3), 0 0 24px rgba(128, 237, 255, 0.3)",
+                      textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
                     }}>
-                    <Box>
-                      <Image
-                        src={item.image}
-                        alt={item.alt}
-                        width={502}
-                        height={300}
-                        style={{
-                          width: "100%",
-                          height: "300px",
-                          objectFit: objectFit,
-                          marginTop: 25,
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                  <Box w="100%" px={{ base: "0", md: "16", lg: "0" }} pt="4">
-                    <Heading as="h2" size="lg" mb={4}>
-                      {item.title}
-                    </Heading>
-                    <VStack alignItems="flex-start" spacing="8">
-                      <Text color={textColor} fontSize="lg" textAlign="left">
-                        {item.description}
-                      </Text>
-                    </VStack>
-                  </Box>
-                </Link>
-              </HighlightsItem>
+                    {category}
+                  </Badge>
+                  <Heading fontSize="2xl" fontWeight="bold" color="white" textShadow="0 2px 12px rgba(0,0,0,0.5)">
+                    {item.title}
+                  </Heading>
+                </VStack>
+              </MotionCard>
+              </NextLink>
             );
           })}
-        </Highlights>
+        </SimpleGrid>
       </Container>
     </Box>
   );

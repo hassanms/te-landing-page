@@ -1,7 +1,7 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { NextPage } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import NextLink from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -17,11 +17,12 @@ import {
   useColorMode,
   useColorModeValue,
   Icon,
+  Spinner,
 } from "@chakra-ui/react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
-import { getSupabaseAdmin } from "lib/supabase/server";
+import axios from "axios";
 
 interface BlogPost {
   id: string;
@@ -42,18 +43,39 @@ interface Category {
   slug: string;
 }
 
-interface BlogPageProps {
-  posts: BlogPost[];
-  categories: Category[];
-}
-
-const Blog: NextPage<BlogPageProps> = ({ posts, categories }) => {
+const Blog: NextPage = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const bgColor = useColorModeValue("white", "gray.800");
   const titleColor = useColorModeValue("gray.800", "white");
-  const cardBgColor = "charcoal.800";
   const [selectedFilter, setSelectedFilter] = useState("All Insights");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const [postsRes, categoriesRes] = await Promise.all([
+          axios.get("/api/blog"),
+          axios.get("/api/blog/categories"),
+        ]);
+        setPosts(postsRes.data.posts || []);
+        setCategories(categoriesRes.data.categories || []);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching blog data:", err);
+        setError("Failed to load insights. Please try again later.");
+        setPosts([]);
+        setCategories([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   // Build filter categories from database categories
   const filterCategories = ["All Insights", ...categories.map((c) => c.name)];
@@ -132,6 +154,20 @@ const Blog: NextPage<BlogPageProps> = ({ posts, categories }) => {
           <Divider />
         </Box>
 
+        {/* Body Content - loading state */}
+        {loading ? (
+          <Box textAlign="center" py={16}>
+            <Spinner size="xl" color="teal.500" />
+            <Text mt={4} color={textColor}>
+              Loading insights...
+            </Text>
+          </Box>
+        ) : error ? (
+          <Box textAlign="center" py={16}>
+            <Text color="red.500">{error}</Text>
+          </Box>
+        ) : (
+          <>
         {/* Featured Blog Post */}
         {featuredPost && (
           <Box mb="16">
@@ -282,6 +318,8 @@ const Blog: NextPage<BlogPageProps> = ({ posts, categories }) => {
             </SimpleGrid>
           </Box>
         </Stack>
+          </>
+        )}
       </Container>
     </Box>
   );
@@ -374,45 +412,3 @@ function PostCard({ post }: { post: BlogPost }) {
 }
 
 export default Blog;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const supabaseAdmin = getSupabaseAdmin();
-
-    // Fetch published blog posts
-    const { data: posts, error: postsError } = await supabaseAdmin
-      .from("blog_posts")
-      .select("id, slug, title, excerpt, featured_image, category, author_name, is_featured, published_at, reading_time_minutes")
-      .eq("is_published", true)
-      .order("published_at", { ascending: false });
-
-    if (postsError) {
-      console.error("Error fetching posts:", postsError);
-    }
-
-    // Fetch categories
-    const { data: categories, error: categoriesError } = await supabaseAdmin
-      .from("blog_categories")
-      .select("id, name, slug")
-      .order("sort_order", { ascending: true });
-
-    if (categoriesError) {
-      console.error("Error fetching categories:", categoriesError);
-    }
-
-    return {
-      props: {
-        posts: posts || [],
-        categories: categories || [],
-      },
-    };
-  } catch (error) {
-    console.error("Error in getServerSideProps:", error);
-    return {
-      props: {
-        posts: [],
-        categories: [],
-      },
-    };
-  }
-};

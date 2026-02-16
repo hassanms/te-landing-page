@@ -37,7 +37,7 @@ const CaseStudyMeatery = () => {
           description:
             "Proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper, Shopify integration, n8n AI Judge, and real-time draft orders.",
           dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/Meatery-logo.png",
+          image: "https://techemulsion.com/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
           url: "https://techemulsion.com/portfolio/meatery",
           genre: "Voice AI, CRM, E-commerce, Multi-Tenant",
           keywords: [
@@ -121,7 +121,7 @@ const CaseStudyMeatery = () => {
             }}>
             <Box>
               <Image
-                src="/assets/portfolio/Meatery-logo.png"
+                src="/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg"
                 alt="The Meatery – AI-Driven Voice CRM Multi-Tenant Agency"
                 width={1200}
                 height={300}
@@ -129,7 +129,7 @@ const CaseStudyMeatery = () => {
                   width: "100vw",
                   height: "100vh",
                   marginTop: 45,
-                  objectFit: "contain",
+                  objectFit: "cover",
                 }}
               />
             </Box>

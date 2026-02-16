@@ -2,252 +2,225 @@ import {
   Box,
   ButtonGroup,
   Container,
-  Grid,
   Heading,
-  Link,
   Text,
   useColorMode,
   useColorModeValue,
   VStack,
+  HStack,
+  SimpleGrid,
+  Badge,
+  Icon,
+  Flex,
+  Stat,
+  StatLabel,
+  StatNumber,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { ButtonLink } from "components/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import { HighlightsItem } from "components/highlights";
 import Head from "next/head";
 import Script from "next/script";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { FaChevronRight } from "react-icons/fa";
-import { SectionProps, Section } from "components/section";
-export const Highlights: React.FC<SectionProps> = (props) => {
-  const { children, ...rest } = props;
+import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
-  return (
-    <Section
-      innerWidth="container.xl"
-      position="relative"
-      overflow="hidden"
-      {...rest}>
-      <Grid
-        templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
-        gap={6}
-        position="relative"
-        ml={{ base: 0, lg: "-12px" }}>
-        {children}
-      </Grid>
-    </Section>
-  );
-};
+const MotionBox = motion(Box);
+const MotionCard = motion(Box);
 
-const Services = () => {
+const PortfolioV3 = () => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const textColor = useColorModeValue("gray.600", "gray.300");
+  const bgColor = useColorModeValue("white", "gray.900");
+  const headingColor = useColorModeValue("gray.800", "white");
+  const statLabelColor = useColorModeValue("gray.600", "whiteAlpha.800");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const heroOverlayGradient = useColorModeValue(
+    "linear(to-b, blackAlpha.400 0%, blackAlpha.300 50%, white 100%)",
+    "linear(to-b, blackAlpha.700 0%, blackAlpha.600 50%, gray.900 100%)"
+  );
+  const sectionDividerGradient = useColorModeValue(
+    "linear(to-r, transparent, teal.500, transparent)",
+    "linear(to-r, transparent, pearlAqua.500, transparent)"
+  );
 
-  const HighlightsItems = [
+  // Animated counter component
+  const AnimatedCounter = ({ end, duration = 2 }: { end: number; duration?: number }) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      let startTime: number;
+      const animate = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+        setCount(Math.floor(progress * end));
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    }, [end, duration]);
+
+    return <>{count}+</>;
+  };
+
+  // All portfolio items (case studies) - minimal data
+  const allProjects = [
     {
-      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
-      description:
-        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting. The platform emphasizes data accuracy, role-based visibility, and high-fidelity automated exports.",
+      title: "Campaign Management System",
+      category: "SaaS Platform",
       image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      alt: "Campaign Management System",
+      href: "/portfolio/campaignos",
     },
     {
-      title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
-      description:
-        "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
+      title: "Macromascot",
+      category: "Mobile App",
       image: "/assets/portfolio/New/Health_app.jpg",
-      alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+      alt: "Macromascot",
+      href: "/portfolio/macromascot-v2",
     },
     {
-      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
-      description:
-        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, with AI-driven automation planned as a second phase.",
+      title: "AutoSync Intelligence",
+      category: "Enterprise SaaS",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+      alt: "AutoSync Intelligence",
+      href: "/portfolio/autosync-intelligence",
     },
     {
-      title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
-      description:
-        "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
+      title: "Pack Assist",
+      category: "AI Solution",
       image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
-      alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
+      alt: "Pack Assist",
+      href: "/portfolio/packassist",
     },
     {
-      title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
-      description:
-        "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
+      title: "The Meatery",
+      category: "AI Solution",
       image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
-      alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
+      alt: "The Meatery",
+      href: "/portfolio/meatery",
     },
     {
-      title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
-      description:
-        "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
+      title: "Podcast Beacon",
+      category: "SaaS Platform",
       image: "/assets/portfolio/mic.jpg",
-      alt: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+      alt: "Podcast Beacon",
+      href: "/portfolio/podcastbeacon",
     },
     {
-      title: "Rack Room – Business resource management system",
-      description:
-        "Rackroom is a tailored, secure, and scalable application built for a single owner to manage their business's resources. It supports booking management with complex date/time calculations, client and engineer tracking, financial calculations, and automated SMS notifications via Twilio. The Gantt chart dashboard and event logs provide the owner with clear visibility and control. Built with a modern tech stack and a robust database schema, Rackroom is optimized for the owner's specific business needs, with flexibility for future enhancements.",
+      title: "Rack Room",
+      category: "Enterprise SaaS",
       image: "/assets/portfolio/download.jpg",
-      alt: "Rack Room – Business resource management system",
+      alt: "Rack Room",
+      href: "/portfolio/rackroom",
     },
     {
-      title: "Content Compass – LinkedIn content analysis and inspiration tool",
-      description:
-        "This tool helps users get inspired by top LinkedIn creators and level up their own content game. Users can create a personalized dashboard by entering the LinkedIn profiles they want to follow. The system scrapes those profiles every 3 days (or on demand) and collects all types of post formats including text, carousels, videos, images, multi-image posts, reshared and reposted content. We analyze the posts using OpenAI's LLM to detect tone, writing patterns, common hooks, CTAs, and engagement trends. Users get insights into what works and why and can use the AI to generate similar posts based on their favorite creators. The AI suggests engaging hooks and helps users write complete posts tailored to their voice. A built-in analytics panel also compares tone and engagement across different creators to help users understand what content styles perform best. This will be offered on a subscription basis with no current limits on creators or post generations.",
+      title: "Content Compass",
+      category: "AI Solution",
       image: "/assets/portfolio/linkedin.jpg",
-      alt: "Content Compass – LinkedIn content analysis and inspiration tool",
+      alt: "Content Compass",
+      href: "/portfolio/contentcompass",
     },
     {
-      title: "SuperHeart – AI-powered nutrition tracking mobile app",
-      description:
-        "SuperHeart is a food coach in your pocket. It helps you choose meals that keep your heart happy. You can log meals by photo, words, or search. The app uses AI (smart computer brain) to guess food details. It shows calories and macros (big nutrients like protein, carbs, fats) right away. he dashboard tracks water, fiber, sugar and other targets for each day. Colored rings tell you what you still need or should limit. You can tap a meal for deeper facts and helpful notes. Reminders nudge you to eat, weigh in, or read small health tips. A profile page stores streaks, premium status, and account settings. Extra tabs show chat help and long-term progress. Everything runs in React Native, so one code serves iOS and Android. Supabase holds user data and handles sign-in and sync. This stack keeps costs low and updates fast.",
+      title: "SuperHeart",
+      category: "Mobile App",
       image: "/assets/portfolio/food.webp",
-      alt: "SuperHeart – AI-powered nutrition tracking mobile app",
+      alt: "SuperHeart",
+      href: "/portfolio/superheart",
     },
     {
-      title: "Atarim – A SaaS tool for visual collaboration & project mgmt",
-      description:
-        "Tech Emulsion transformed WPFeedback into Atarim, a scalable SaaS platform for visual collaboration on any website. With new features, a Chrome extension, custom scraping, AWS scaling, and performance optimizations, we helped Atarim secure $500K funding and expand to a universal project management tool.",
+      title: "Atarim",
+      category: "SaaS Platform",
       image: "/assets/portfolio/atarim.png",
-      alt: "Atarim – A SaaS tool for visual collaboration & project mgmt",
+      alt: "Atarim",
+      href: "/portfolio/atarim",
     },
     {
-      title:
-        "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
-      description:
-        "Tech Emulsion developed JarvisReach, a SaaS for LinkedIn prospecting, enabling efficient data extraction, filtering, and automated email outreach. With subscription flexibility, team leaderboards, and admin analytics, JarvisReach streamlines lead management and boosts user productivity.",
+      title: "JarvisReach",
+      category: "SaaS Platform",
       image: "/assets/portfolio/jarvis.png",
-      alt: "JarvisReach – SaaS for LinkedIn prospecting, data extraction & email outreach",
+      alt: "JarvisReach",
+      href: "/portfolio/jarvisreach",
     },
     {
-      title: "Levellup - AI-driven sales training simulator",
-      description:
-        "LevellUp is an AI-powered sales-training platform purpose-built for SaaS and other B2B revenue teams. Instead of pairing with a colleague or waiting for a manager's calendar to free up, reps drop into on-demand, voice-enabled role-plays against lifelike AI buyer personas that adapt in real time—mirroring the questions, objections, and pushback they'll face on live calls. During each simulated conversation the software automatically scores the rep's performance against proven sales frameworks (discovery, objection-handling, closing techniques, etc.), pinpoints specific strengths and gaps, and then delivers focused coaching suggestions. Results accumulate in a dashboard so both reps and managers can track progress call-by-call and measure ramp-up, skill growth, and quota attainment over time.",
+      title: "Levellup",
+      category: "AI Solution",
       image: "/assets/portfolio/level.png",
-      alt: "Levellup - AI-driven sales training simulator",
+      alt: "Levellup",
+      href: "/portfolio/levellup",
     },
     {
-      title: "Farmin – AI-Powered Satellite Image Detection SaaS",
-      description:
-        "Tech Emulsion built Farmin, an AI-powered SaaS for satellite image analysis. Using Mapbox, YOLO models, and OpenCV, it detects objects like cars, ships, and oil spills. We added change detection, a data annotation tool, and deployed it on AWS, enabling real-time insights and scalable remote sensing.",
+      title: "Farmin",
+      category: "AI Solution",
       image: "/assets/portfolio/farmin.avif",
-      alt: "Farmin – AI-Powered Satellite Image Detection SaaS",
+      alt: "Farmin",
+      href: "/portfolio/farmin",
     },
-
     {
-      title: "Bipcards – Elevate Online Presence with Genuine Reviews",
-      description:
-        "Tech Emulsion developed a SaaS platform for Bipcards.com, enabling businesses to collect customer reviews via programmable NFC cards and QR codes. Customers benefit from a flexible subscription model, real-time analytics, and easy card programming, while sales reps streamline onboarding, enhancing engagement and efficiency.",
+      title: "Bipcards",
+      category: "SaaS Platform",
       image: "/assets/portfolio/bipcards.png",
-      alt: "Bipcards – Elevate Online Presence with Genuine Reviews",
+      alt: "Bipcards",
+      href: "/portfolio/bipcards",
     },
     {
-      title: "Popcard – SaaS for managing review cards",
-      description:
-        "Tech Emulsion developed a SaaS for PopCard.io, enabling businesses to manage locations, teams, and customer reviews via NFC cards and QR codes. Features included secure authentication with social logins, analytics, leaderboards, and Stripe subscriptions, enhancing engagement and revenue.",
+      title: "Popcard",
+      category: "SaaS Platform",
       image: "/assets/portfolio/popcard.png",
-      alt: "Popcard – SaaS for managing review cards",
+      alt: "Popcard",
+      href: "/portfolio/popcard",
     },
     {
-      title:
-        "Artis – Blockchain powered SaaS to help artists copyright their work",
-      description:
-        "Artis is an AI-driven platform that analyzes an artist's style to provide tailored advice and marketing strategies. It leverages blockchain for secure ownership protection and copyright management.It connects artists with audiences, enabling secure sales. Artis empowers creators across various fields, making creativity secure and profitable.",
+      title: "Artis",
+      category: "Blockchain",
       image: "/assets/portfolio/Artis.png",
-      alt: "Artis – Blockchain powered SaaS to help artists copyright their work",
+      alt: "Artis",
+      href: "/portfolio/artis",
     },
-
     {
-      title: "Alifa App – Client Engagement and AI-Driven Sales SaaS",
-      description:
-        "Tech Emulsion developed Alifa App to help sales reps manage client interactions with ease. It enables Zoom meeting creation, dynamic proposal sharing with hyperlinks, and automated client chats using RAG. With AI agents for web monitoring, data extraction, and web searches, it automates tasks and enhances client engagement, delivering a seamless and scalable sales solution.",
+      title: "Alifa App",
+      category: "AI Solution",
       image: "/assets/portfolio/file.jpg",
-      alt: "Alifa App – AI-Driven Client Interaction SaaS",
+      alt: "Alifa App",
+      href: "/portfolio/alifa",
     },
     {
-      title: "MoodTube Extension – AI-Powered YouTube Video Search by Mood",
-      description:
-        "MoodTube allows users to search YouTube videos by mood (e.g., Happy, Relaxed, Motivated) using AI tools like LangChain and vector embeddings. The extension extracts YouTube transcripts, converts them into embeddings with models like all-mpnet-base-v2, and stores them in PGVector. Semantic search retrieves videos matching the selected mood, offering personalized video recommendations.",
+      title: "MoodTube",
+      category: "AI Solution",
       image: "/assets/portfolio/moodtube.png",
-      alt: "MoodTube – AI-Powered Video Search by Mood",
+      alt: "MoodTube",
+      href: "/portfolio/moodtube",
     },
     {
-      title: "RAG Based Customized ChatBot",
-      description:
-        "This end-to-end RAG application allows users to interact with documents by uploading PDFs and asking questions. It uses advanced AI techniques to extract, understand, and answer queries with remarkable accuracy. The system leverages OpenAI's LLMs, pgvector for similarity search, and image recognition for graphical content, offering an intelligent and intuitive document query experience.",
+      title: "RAG ChatBot",
+      category: "AI Solution",
       image: "/assets/portfolio/raggenai.png",
-      alt: "RAG – AI-Powered Document Querying Application",
+      alt: "RAG ChatBot",
+      href: "/portfolio/genai",
     },
   ];
 
   return (
-    <Box>
+    <Box bg={bgColor}>
+      <Head>
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
+      </Head>
       <EnhancedSEO
         title="Our Portfolio - Tech Emulsion"
         description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, blockchain solutions, and custom software development for global clients."
         pageType="portfolio"
-        portfolioData={{
-          title: "Tech Emulsion Portfolio",
-          description:
-            "A comprehensive collection of successful digital transformation projects and innovative technology solutions.",
-          dateCreated: "2020",
-          image:
-            "https://techemulsion.com/static/favicons/android-chrome-192x192.png",
-          url: "https://techemulsion.com/portfolio",
-          genre: "Technology Portfolio",
-          keywords: [
-            "AI solutions",
-            "custom software",
-            "SaaS platforms",
-            "mobile apps",
-            "blockchain",
-            "digital transformation",
-          ],
-        }}
-        faqData={{
-          questions: [
-            {
-              question: "What types of projects has Tech Emulsion completed?",
-              answer:
-                "Tech Emulsion has completed diverse projects including AI-powered video search platforms (MoodTube), RAG-based document querying systems, e-commerce platforms, mobile applications, blockchain solutions, and custom enterprise software.",
-            },
-            {
-              question: "Can I see examples of Tech Emulsion's work?",
-              answer:
-                "Yes, you can explore our portfolio section to see detailed case studies of our completed projects. Each portfolio item includes project descriptions, technologies used, challenges solved, and outcomes achieved.",
-            },
-          ],
-        }}
-        howToData={{
-          title: "How to explore Tech Emulsion's portfolio",
-          description:
-            "A step-by-step guide to viewing and understanding our project case studies.",
-          steps: [
-            {
-              name: "Visit the Portfolio Page",
-              text: "Go to the Tech Emulsion portfolio section from the main menu.",
-            },
-            {
-              name: "Browse Projects",
-              text: "Scroll through the list of featured projects and select one that interests you.",
-            },
-            {
-              name: "Read Case Study",
-              text: "Click on a project to view detailed descriptions, technologies used, and outcomes achieved.",
-            },
-            {
-              name: "Contact Us",
-              text: "If you have questions or want a similar solution, use the contact form to reach out.",
-            },
-          ],
-        }}
+        canonicalUrl="https://techemulsion.com/portfolio-v3"
       />
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
+      />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -256,7 +229,7 @@ const Services = () => {
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
             text: "Talk to Sales",
-            color: "#004c4c",
+            color: "#008080",
             textColor: "#ffffff",
           });
         }}
@@ -265,42 +238,37 @@ const Services = () => {
         {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.xl" py="20" mb="20">
-        <BackgroundGradient height="100%" zIndex="-1" />
-        <Box
-          display={{ base: "block", md: "flex" }}
-          px="15"
-          mt={10}
-          justifyContent={"space-between"}>
-          <Box>
-            <Heading as="h2" size="lg">
-              Portfolio Page
-            </Heading>
-            <Text
-              color={textColor}
-              fontSize="lg"
-              mt="4"
-              width={["70%", null, "auto"]}>
-              We believe that building a product should be fun and rewarding.
-              Our mission is to provide you with the best tools to make that
-              happen.
-            </Text>
-          </Box>
 
-          {/* Explore Services */}
-          <VStack
-            spacing={4}
-            display="flex"
-            justifyContent={["flex-start", null, "flex-end"]}
-            width={["100%", null, "auto"]}
-            alignItems="end"
-            mt="4">
+      {/* Hero Section - blends into content below */}
+      <Box
+        position="relative"
+        py={{ base: 20, md: 28 }}
+        overflow="hidden"
+        sx={{
+          backgroundImage: "url('/assets/portfolio/porfolio_bg_image.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}>
+        {/* Overlay: adapts to color mode */}
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bgGradient={heroOverlayGradient}
+          zIndex={0}
+        />
+        <BackgroundGradient height="100%" zIndex={0} opacity={0.3} />
+        <Container maxW="container.xl" position="relative" zIndex={1}>
+          {/* Breadcrumb - white in light mode for visibility on dark hero */}
+          <Box mb={12} display="flex" justifyContent="flex-end">
             <ButtonGroup
               style={{
-                backgroundColor: " none",
+                backgroundColor: "none",
                 fontSize: "1rem",
                 color: "muted",
                 display: "flex",
@@ -311,130 +279,264 @@ const Services = () => {
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: "muted",
+                  color: "white",
                   padding: "0",
                   "&:hover": {
                     bg: "none",
+                    color: "white",
                   },
                 }}>
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} />
+              <FaChevronRight size={15} style={{ color: "white" }} />
               <Text
                 as="span"
                 ml="2"
-                sx={{
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
-                }}>
+                color="white">
                 Portfolio
               </Text>
             </ButtonGroup>
+          </Box>
+
+          <VStack spacing={12} textAlign="center" maxW="4xl" mx="auto">
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}>
+              <Heading
+                fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
+                fontWeight="bold"
+                lineHeight="1.1"
+                mb={6}
+                color="white">
+                Our{" "}
+                <Text
+                  as="span"
+                  color="white">
+                  Portfolio
+                </Text>
+              </Heading>
+            </MotionBox>
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}>
+              <Text
+                fontSize={{ base: "xl", md: "2xl" }}
+                color={colorMode === "dark" ? "whiteAlpha.900" : "whiteAlpha.900"}
+                maxW="2xl"
+                lineHeight="1.8"
+                fontWeight="300">
+                Showcasing innovative solutions that transform businesses
+              </Text>
+            </MotionBox>
+
+            {/* Minimal Stats */}
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              w="full"
+              mt={4}>
+              <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8}>
+                <Stat>
+                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                    Projects
+                  </StatLabel>
+                  <StatNumber
+                    fontSize={{ base: "3xl", md: "4xl" }}
+                    color={accentColor}
+                    fontWeight="bold">
+                    <AnimatedCounter end={20} />
+                  </StatNumber>
+                </Stat>
+                <Stat>
+                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                    Technologies
+                  </StatLabel>
+                  <StatNumber
+                    fontSize={{ base: "3xl", md: "4xl" }}
+                    color={accentColor}
+                    fontWeight="bold">
+                    <AnimatedCounter end={15} />
+                  </StatNumber>
+                </Stat>
+                <Stat>
+                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                    Clients
+                  </StatLabel>
+                  <StatNumber
+                    fontSize={{ base: "3xl", md: "4xl" }}
+                    color={accentColor}
+                    fontWeight="bold">
+                    <AnimatedCounter end={50} />
+                  </StatNumber>
+                </Stat>
+                <Stat>
+                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                    Years
+                  </StatLabel>
+                  <StatNumber
+                    fontSize={{ base: "3xl", md: "4xl" }}
+                    color={accentColor}
+                    fontWeight="bold">
+                    <AnimatedCounter end={5} />
+                  </StatNumber>
+                </Stat>
+              </SimpleGrid>
+            </MotionBox>
           </VStack>
-        </Box>
+        </Container>
+      </Box>
 
-        <Highlights>
-          {HighlightsItems.map((item, index) => {
-            const href = item.title.includes("Pack Assist")
-              ? "/portfolio/packassist"
-              : item.title.includes("The Meatery")
-              ? "/portfolio/meatery"
-              : item.title.includes("Farmin")
-              ? "/portfolio/farmin"
-              : item.title.includes("Atarim")
-              ? "/portfolio/atarim"
-              : item.title.includes("Bipcards")
-              ? "/portfolio/bipcards"
-              : item.title.includes("Popcard")
-              ? "/portfolio/popcard"
-              : item.title.includes("Artis")
-              ? "/portfolio/artis"
-              : item.title.includes("JarvisReach")
-              ? "/portfolio/jarvisreach"
-              : item.title.includes("Alifa")
-              ? "/portfolio/alifa"
-              : item.title.includes("RAG")
-              ? "/portfolio/genai"
-              : item.title.includes("MoodTube")
-              ? "/portfolio/moodtube"
-              : item.title.includes("Content Compass")
-              ? "/portfolio/contentcompass"
-              : item.title.includes("Levellup")
-              ? "/portfolio/levellup"
-              : item.title.includes("SuperHeart")
-              ? "/portfolio/superheart"
-              : item.title.includes("Rack Room")
-              ? "/portfolio/rackroom"
-              : item.title.includes("Podcast Beacon")
-              ? "/portfolio/podcastbeacon"
-              : item.title.includes("DADS Sales Reborn")
-              ? "/portfolio/dadssalesreborn"
-              : item.title.includes("Macromascot")
-              ? "/portfolio/macromascot"
-              : item.title.includes("Campaign OS")
-              ? "/portfolio/campaignos"
-              : null;
+      {/* All Projects - same dark base, accent aligned with hero */}
+      <Box
+        bg={bgColor}
+        py={{ base: 16, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: sectionDividerGradient,
+          opacity: 0.4,
+        }}>
+        <Container maxW="container.xl">
+          <VStack spacing={12} align="stretch">
+            <Box textAlign="center">
+              <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" mb={4} color={headingColor}>
+                All{" "}
+                <Text as="span" color={accentColor}>
+                  Projects
+                </Text>
+              </Heading>
+              <Text fontSize="lg" color={textColor} maxW="xl" mx="auto">
+                Explore our complete collection of innovative solutions
+              </Text>
+            </Box>
 
-            // Set objectFit for Rack Room, otherwise use "contain"
-            const objectFit = item.title.includes("Rack Room")
-              ? "cover"
-              : "contain";
-
-            return (
-              <HighlightsItem key={index} colSpan={[1, null, 2]}>
-                <Link
-                  href={href || "/"}
-                  _hover={{ textDecoration: "none" }}
-                  gap="0"
-                  title=""
-                  border="none">
+            <SimpleGrid columns={{ base: 1, sm: 2, lg: 3, xl: 4 }} spacing={6}>
+              {allProjects.map((project, index) => (
+                <MotionCard
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.03 }}
+                  as={Link}
+                  href={project.href}
+                  position="relative"
+                  aspectRatio="4/3"
+                  borderRadius="xl"
+                  overflow="hidden"
+                  cursor="pointer"
+                  sx={{
+                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                    _hover: {
+                      transform: "translateY(-6px)",
+                      boxShadow: "xl",
+                      "& .project-image-small": {
+                        transform: "scale(1.08)",
+                        filter: "grayscale(0%) brightness(1.05) !important",
+                      },
+                      "& .project-overlay-small": {
+                        opacity: 0.85,
+                      },
+                      "& .project-title-small": {
+                        opacity: 1,
+                        transform: "translateY(0)",
+                      },
+                    },
+                  }}
+                  boxShadow="lg">
+                  {/* Background Image - subtle grayscale so section feels aligned with hero */}
                   <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    zIndex={0}
+                    className="project-image-small"
                     sx={{
-                      width: "100%",
-                      backgroundImage:
-                        colorMode === "dark"
-                          ? "url('/assets/background/pattern.jpg')"
-                          : "url('/assets/background/light-pattern.jpg')",
-                      height: "350px",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      py: 1,
-                      // Only add px for Rack Room
-                      px: item.title.includes("Rack Room") ? 12 : 0,
+                      filter: "grayscale(40%) brightness(0.85)",
+                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "& img": {
+                        objectFit: "cover",
+                        width: "100%",
+                        height: "100%",
+                      },
                     }}>
-                    <Box>
-                      <Image
-                        src={item.image}
-                        alt={item.alt}
-                        width={502}
-                        height={300}
-                        style={{
-                          width: "100%",
-                          height: "300px",
-                          objectFit: objectFit,
-                          marginTop: 25,
-                        }}
-                      />
-                    </Box>
+                    <Image
+                      src={project.image}
+                      alt={project.alt}
+                      fill
+                      style={{
+                        objectFit: "cover",
+                      }}
+                    />
                   </Box>
-                  <Box w="100%" px={{ base: "0", md: "16", lg: "0" }} pt="4">
-                    <Heading as="h2" size="lg" mb={4}>
-                      {item.title}
+
+                  {/* Gradient Overlay */}
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    bgGradient="linear(to-t, blackAlpha.800, blackAlpha.500, transparent)"
+                    opacity={0.55}
+                    className="project-overlay-small"
+                    transition="opacity 0.4s"
+                    zIndex={1}
+                  />
+
+                  {/* Minimal Content */}
+                  <Box
+                    position="absolute"
+                    bottom={0}
+                    left={0}
+                    right={0}
+                    p={4}
+                    zIndex={2}
+                    className="project-title-small"
+                    opacity={0.8}
+                    transform="translateY(10px)"
+                    transition="all 0.4s">
+                    <Badge
+                      bg="whiteAlpha.200"
+                      backdropFilter="blur(8px)"
+                      color="white"
+                      px={2}
+                      py={1}
+                      borderRadius="md"
+                      fontSize="xs"
+                      fontWeight="medium"
+                      mb={2}
+                      borderWidth="1px"
+                      borderColor="whiteAlpha.300">
+                      {project.category}
+                    </Badge>
+                    <Heading
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color="white"
+                      fontWeight="bold"
+                      textShadow="0 2px 8px rgba(0,0,0,0.5)"
+                      noOfLines={1}>
+                      {project.title}
                     </Heading>
-                    <VStack alignItems="flex-start" spacing="8">
-                      <Text color={textColor} fontSize="lg">
-                        {item.description}
-                      </Text>
-                    </VStack>
                   </Box>
-                </Link>
-              </HighlightsItem>
-            );
-          })}
-        </Highlights>
-      </Container>
+                </MotionCard>
+              ))}
+            </SimpleGrid>
+          </VStack>
+        </Container>
+      </Box>
     </Box>
   );
 };
 
-export default Services;
+export default PortfolioV3;

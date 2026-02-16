@@ -27,12 +27,12 @@ const CaseStudyCampaignOS = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: Campaign OS - Tech Emulsion"
-        description="Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting."
+        title="Case Study: Campaign Management System - Tech Emulsion"
+        description="Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/campaignos"
         portfolioData={{
-          title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+          title: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
           description:
             "A comprehensive, end-to-end management platform for Out-of-Home advertising. Features intelligent inventory management, automated financial reconciliation, lunar-period availability tracking, multi-format exports, and role-based dashboards.",
           dateCreated: "2024",
@@ -40,7 +40,7 @@ const CaseStudyCampaignOS = () => {
           url: "https://techemulsion.com/portfolio/campaignos",
           genre: "SaaS Platform, Out-of-Home Advertising, Campaign Management",
           keywords: [
-            "Campaign OS",
+            "Campaign Management System",
             "OOH advertising",
             "campaign management",
             "inventory management",
@@ -53,7 +53,7 @@ const CaseStudyCampaignOS = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "Campaign OS",
+              name: "Campaign Management System",
               url: "https://techemulsion.com/portfolio/campaignos",
             },
           ],
@@ -61,17 +61,17 @@ const CaseStudyCampaignOS = () => {
         faqData={{
           questions: [
             {
-              question: "What is Campaign OS?",
+              question: "What is Campaign Management System?",
               answer:
-                "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. It handles the entire lifecycle of an advertising campaign—from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+                "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. It handles the entire lifecycle of an advertising campaign—from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
             },
             {
-              question: "What problems does Campaign OS solve?",
+              question: "What problems does Campaign Management System solve?",
               answer:
-                "Campaign OS addresses inventory fragmentation across multiple countries, complex availability logic for lunar-period calculations, reporting bottlenecks through automated exports, and visibility control with role-based dashboards for management and sales teams.",
+                "Campaign Management System addresses inventory fragmentation across multiple countries, complex availability logic for lunar-period calculations, reporting bottlenecks through automated exports, and visibility control with role-based dashboards for management and sales teams.",
             },
             {
-              question: "What technologies power Campaign OS?",
+              question: "What technologies power Campaign Management System?",
               answer:
                 "Frontend: React 18, TypeScript, and Vite. Styling: Tailwind CSS and Shadcn UI (Radix UI). Backend: Supabase (PostgreSQL) with Row Level Security and Edge Functions. Real-Time: Supabase Realtime for instant synchronization. Analytics: Recharts for financial data visualization.",
             },
@@ -121,7 +121,7 @@ const CaseStudyCampaignOS = () => {
             <Box>
               <Image
                 src="/assets/portfolio/New/Campaign_Porfolio.jpg"
-                alt="Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising"
+                alt="Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising"
                 width={1200}
                 height={300}
                 style={{
@@ -172,7 +172,7 @@ const CaseStudyCampaignOS = () => {
                 mt="4"
                 width={"100%"}
                 align={"center"}>
-                Campaign OS – Case Study
+                Campaign Management System – Case Study
               </Text>
               <Text
                 color={
@@ -201,7 +201,7 @@ const CaseStudyCampaignOS = () => {
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
               }}>
-              Campaign OS – A Precision-Engineered Management Ecosystem for
+              Campaign Management System – A Precision-Engineered Management Ecosystem for
               Out-of-Home Advertising
             </Text>
 
@@ -225,7 +225,7 @@ const CaseStudyCampaignOS = () => {
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
               }}>
-              Campaign OS is a comprehensive, end-to-end management platform
+              Campaign Management System is a comprehensive, end-to-end management platform
               designed specifically for the Out-of-Home (OOH) advertising industry.
               The project involved building a high-performance React and
               Supabase-powered ecosystem to handle the entire lifecycle of an

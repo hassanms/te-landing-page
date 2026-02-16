@@ -26,9 +26,12 @@ import {
   CardBody,
   useBreakpointValue,
   Tooltip,
+  SimpleGrid,
+  Badge,
 } from "@chakra-ui/react";
 // new import for animation
 import { keyframes } from "@emotion/react";
+import { motion } from "framer-motion";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { Logo2 } from "components/logo2";
 import { FallInPlace } from "components/motion/fall-in-place";
@@ -85,6 +88,9 @@ const Player = dynamic(
   () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
   { ssr: false },
 );
+
+const MotionBox = motion(Box);
+const MotionCard = motion(Box);
 
 const Home: NextPage = () => {
   return (
@@ -1373,13 +1379,16 @@ const Portfolio: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const [showAll, setShowAll] = useState(false); // Add this state
+  const cardBg = useColorModeValue("white", "gray.800");
+  const cardBorder = useColorModeValue("gray.200", "whiteAlpha.200");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.400");
   const HighlightsItems = [
     {
-      title: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      title: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
       description:
-        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+        "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
       image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign OS – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      alt: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
     {
       title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
@@ -1507,8 +1516,8 @@ const Portfolio: React.FC = () => {
           </Box>
         </Box>
 
-        {/* Explore services */}
-        <Highlights>
+        {/* Image-first masonry grid */}
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%" mt={8}>
           {HighlightsItems.map((item, index) => {
             const href = item.title.includes("Pack Assist")
               ? "/portfolio/packassist"
@@ -1530,68 +1539,122 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/dadssalesreborn"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
-              : item.title.includes("Campaign OS")
+              : item.title.includes("Campaign Management System") || item.title.includes("Campaign")
               ? "/portfolio/campaignos"
               : null;
 
-            // Set objectFit for Rack Room, otherwise use "contain"
-            const objectFit = item.title.includes("Rack Room")
-              ? "cover"
-              : "contain";
+            // Determine category based on title
+            const category = item.title.includes("Campaign")
+              ? "Management System"
+              : item.title.includes("Macromascot")
+              ? "Health App"
+              : item.title.includes("DADS")
+              ? "Analytics Platform"
+              : item.title.includes("Pack Assist")
+              ? "AI Chatbot"
+              : item.title.includes("Meatery")
+              ? "Voice CRM"
+              : item.title.includes("Podcast")
+              ? "SaaS Platform"
+              : "Project";
 
             return (
-              <HighlightsItem key={index} colSpan={[1, null, 2]}>
-                <Link
-                  href={href || "/"}
-                  _hover={{ textDecoration: "none" }}
-                  gap="0"
-                  title=""
-                  border="none">
-                  <Box
+              <NextLink href={href || "/"} passHref legacyBehavior>
+                <MotionCard
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  as={Link}
+                position="relative"
+                h={{ base: "400px", md: "450px", lg: "500px" }}
+                borderRadius="2xl"
+                overflow="hidden"
+                cursor="pointer"
+                bg={cardBg}
+                border="1px solid"
+                borderColor={cardBorder}
+                _hover={{
+                  transform: "translateY(-8px)",
+                  boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.4)`,
+                  "& .project-image": {
+                    transform: "scale(1.05)",
+                    filter: "brightness(1.1) contrast(1)",
+                  },
+                  "& .project-overlay": {
+                    opacity: 0.4,
+                  },
+                }}
+                >
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  zIndex={0}
+                  className="project-image"
+                  transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  sx={{
+                    filter: "brightness(0.9) contrast(1)",
+                  }}>
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </Box>
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  bgGradient="linear(to-t, blackAlpha.900, blackAlpha.600, transparent)"
+                  opacity={0.7}
+                  className="project-overlay"
+                  transition="opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  zIndex={1}
+                />
+                <VStack
+                  position="absolute"
+                  bottom={0}
+                  left={0}
+                  right={0}
+                  p={6}
+                  zIndex={2}
+                  align="flex-start"
+                  spacing={3}>
+                  <Badge
+                    color="white"
+                    px={4}
+                    py={1.5}
+                    borderRadius="full"
+                    fontSize="xs"
+                    fontWeight="bold"
+                    textTransform="uppercase"
+                    letterSpacing="0.5px"
                     sx={{
-                      width: "100%",
-                      backgroundImage:
-                        colorMode === "dark"
-                          ? "url('/assets/background/pattern.jpg')"
-                          : "url('/assets/background/light-pattern.jpg')",
-                      height: "350px",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      py: 1,
-                      // Only add px for Rack Room
-                      px: item.title.includes("Rack Room") ? 12 : 0,
+                      background: "linear-gradient(135deg, rgba(128, 237, 255, 0.25), rgba(20, 184, 166, 0.25))",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3), 0 0 24px rgba(128, 237, 255, 0.3)",
+                      textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
                     }}>
-                    <Box>
-                      <Image
-                        src={item.image}
-                        alt={item.alt}
-                        width={502}
-                        height={300}
-                        style={{
-                          width: "100%",
-                          height: "300px",
-                          objectFit: objectFit,
-                          marginTop: 25,
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                  <Box w="100%" px={{ base: "0", md: "16", lg: "0" }} pt="4">
-                    <Heading as="h2" size="lg" mb={4}>
-                      {item.title}
-                    </Heading>
-                    <VStack alignItems="flex-start" spacing="8">
-                      <Text color={textColor} fontSize="lg" textAlign="left">
-                        {item.description}
-                      </Text>
-                    </VStack>
-                  </Box>
-                </Link>
-              </HighlightsItem>
+                    {category}
+                  </Badge>
+                  <Heading fontSize="2xl" fontWeight="bold" color="white" textShadow="0 2px 12px rgba(0,0,0,0.5)">
+                    {item.title}
+                  </Heading>
+                </VStack>
+              </MotionCard>
+              </NextLink>
             );
           })}
-        </Highlights>
+        </SimpleGrid>
       </Container>
     </Box>
   );

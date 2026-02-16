@@ -10,10 +10,19 @@ import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
 const HERO_LIGHT_NAV_PATHS = [
+  "/portfolio",
   "/portfolio/autosync-intelligence",
   "/portfolio/macromascot-v2",
   "/portfolio-v2",
   "/portfolio-v3",
+  "/portfolio-v4",
+];
+
+const NO_THEME_TOGGLE_PATHS = [
+  "/portfolio-v3",
+  "/portfolio-v4",
+  "/index-v2",
+  "/index-v3",
 ];
 
 interface NavigationProps {
@@ -28,6 +37,8 @@ const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
     colorMode === "light" &&
     !isScrolled &&
     HERO_LIGHT_NAV_PATHS.some((path) => router.pathname === path);
+  
+  const hideThemeToggle = NO_THEME_TOGGLE_PATHS.some((path) => router.pathname === path);
 
   const mobileNavBtnRef = React.useRef<HTMLButtonElement>(null);
 
@@ -80,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
         </NavLink>
       ))}
 
-      <ThemeToggle color={useWhiteNav ? "white" : undefined} />
+      {!hideThemeToggle && <ThemeToggle color={useWhiteNav ? "white" : undefined} />}
 
       <MobileNavButton
         ref={mobileNavBtnRef}

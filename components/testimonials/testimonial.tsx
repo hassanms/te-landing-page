@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Box,
   Card,
   CardBody,
   CardFooter,
@@ -41,8 +42,9 @@ export const Testimonial = ({
     <Card
       position="relative"
       {...rest}
-      maxWidth={{ base: "100%", md: "100%" }}
-      width={{ base: "100%", md: "100%" }}
+      maxWidth="100%"
+      width="100%"
+      overflow="hidden"
     >
       <CardHeader display="flex" flexDirection="row" alignItems="center">
         <Stack
@@ -55,8 +57,23 @@ export const Testimonial = ({
           <Heading size="sm">{company}</Heading>
         </Stack>
       </CardHeader>
-      <CardBody width={isSmall ? "100%" : "600px"}>
-        {children}
+      <CardBody 
+        width="100%" 
+        maxWidth="100%"
+        overflow="hidden"
+        wordBreak="break-word">
+        <Box
+          maxW="100%"
+          overflow="hidden"
+          sx={{
+            "& > *": {
+              maxW: "100%",
+              wordWrap: "break-word",
+              overflowWrap: "break-word",
+            },
+          }}>
+          {children}
+        </Box>
 
         {href && (
           <Link href={href} position="absolute" top="4" right="4">

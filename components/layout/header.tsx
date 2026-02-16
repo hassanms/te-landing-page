@@ -14,10 +14,12 @@ import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
 const HERO_DARK_NAVBAR_PATHS = [
+  "/portfolio",
   "/portfolio/autosync-intelligence",
   "/portfolio/macromascot-v2",
   "/portfolio-v2",
   "/portfolio-v3",
+  "/portfolio-v4",
 ];
 
 export interface HeaderProps extends Omit<BoxProps, "children"> {}

@@ -45,12 +45,12 @@ const PortfolioV2 = () => {
   // Featured projects (top 4)
   const featuredProjects = [
     {
-      title: "Campaign OS – A Precision-Engineered Management Ecosystem",
+      title: "Campaign Management System – A Precision-Engineered Management Ecosystem",
       shortDescription: "End-to-end management platform for Out-of-Home advertising industry",
       description:
-        "Campaign OS is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+        "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
       image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign OS",
+      alt: "Campaign Management System",
       href: "/portfolio/campaignos",
       category: "SaaS Platform",
       badge: "Featured",

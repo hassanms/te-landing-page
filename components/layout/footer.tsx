@@ -19,7 +19,7 @@ import Image from "next/image";
 
 import siteConfig from "data/config";
 import Link from "next/link";
-import { FaPhone, FaWhatsapp } from "react-icons/fa";
+import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 export interface FooterProps extends BoxProps {
   columns?: number;
@@ -88,6 +88,22 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   }}>
                   <ListItem role="listitem">
                     <a
+                      href="tel:+18509307798"
+                      target="_blank"
+                      rel="noreferrer">
+                      <HStack>
+                        <FaPhone
+                          style={{ marginRight: "2px", color: "#D9D9D9" }}
+                        />
+                        <Text color="lightGrey.400" fontSize="lg">
+                          +1 (850) 930-7798
+                        </Text>
+                      </HStack>
+                    </a>
+                  </ListItem>
+
+                  <ListItem role="listitem">
+                    <a
                       href="https://wa.me/+923345559140"
                       target="_blank"
                       rel="noreferrer">
@@ -96,33 +112,37 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         style={{ marginRight: "2px", color: "#D9D9D9" }}
                         />
                       <Text color="lightGrey.400" fontSize="lg">
-                          +923345559140
+                          +92 334 555 9140
                         </Text>
                       </HStack>
                     </a>
                   </ListItem>
 
-                  {/* <ListItem role="listitem">
-                    <HStack>
-                      <FaPhone
-                        style={{ marginRight: "2px", color: "silver" }}
-                      />
-                      <Text color="silver" fontSize="16px">
-                        +92 334 555 9140
-                      </Text>
-                    </HStack>
-                  </ListItem> */}
-
                   <ListItem role="listitem">
-                    <Text color="lightGrey.400" fontSize="lg">
-                      contact@techemulsion.com
-                    </Text>
+                    <a
+                      href="mailto:contact@techemulsion.com"
+                      target="_blank"
+                      rel="noreferrer">
+                      <HStack>
+                        <FaEnvelope
+                          style={{ marginRight: "2px", color: "#D9D9D9" }}
+                        />
+                        <Text color="lightGrey.400" fontSize="lg">
+                          contact@techemulsion.com
+                        </Text>
+                      </HStack>
+                    </a>
                   </ListItem>
 
                   <ListItem role="listitem">
-                    <Text color="lightGrey.400" fontSize="lg">
-                      3rd Floor, Afzal Towers, University Road, Peshawar.
-                    </Text>
+                    <HStack>
+                      <FaMapMarkerAlt
+                        style={{ marginRight: "2px", color: "#D9D9D9" }}
+                      />
+                      <Text color="lightGrey.400" fontSize="lg">
+                        3rd Floor, Afzal Towers, University Road, Peshawar.
+                      </Text>
+                    </HStack>
                   </ListItem>
                 </List>
               </HStack>

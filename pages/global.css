@@ -115,3 +115,66 @@
 .quill .ql-picker-label {
   color: currentColor;
 }
+
+/* Floating animation for hero decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-25px) translateX(15px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px) scale(0.95);
+  }
+  75% {
+    transform: translateY(15px) translateX(10px) scale(1.02);
+  }
+}
+
+/* Hero Floating Cards Animations */
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes heroFloatDelayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes heroGlowPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Animation Classes */
+.hero-float {
+  animation: heroFloat 4s ease-in-out infinite;
+}
+
+.hero-float-delayed {
+  animation: heroFloatDelayed 3.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.hero-float-slow {
+  animation: heroFloat 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.hero-glow-pulse {
+  animation: heroGlowPulse 3s ease-in-out infinite;
+}

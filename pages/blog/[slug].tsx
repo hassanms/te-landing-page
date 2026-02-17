@@ -18,11 +18,14 @@ import {
   Wrap,
   WrapItem,
   Image,
+  Spinner,
+  Skeleton,
+  SkeletonText,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
-import { getSupabaseAdmin } from "lib/supabase/server";
 
 interface BlogPost {
   id: string;
@@ -57,11 +60,13 @@ interface RelatedPost {
 }
 
 interface BlogPostPageProps {
-  post: BlogPost;
-  relatedPosts: RelatedPost[];
+  post?: BlogPost;
+  relatedPosts?: RelatedPost[];
 }
 
-const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
+const BlogPostPage: NextPage<BlogPostPageProps> = () => {
+  const router = useRouter();
+  const { slug } = router.query;
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const bgColor = useColorModeValue("white", "gray.800");
@@ -69,11 +74,48 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
   const sidebarBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   // Generate table of contents from content
   const [tocItems, setTocItems] = useState<{ id: string; label: string }[]>([]);
   const [activeSection, setActiveSection] = useState("");
 
+  // Fetch blog post data client-side
   useEffect(() => {
+    if (!slug || typeof slug !== "string") return;
+
+    const fetchPost = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`/api/blog/${slug}`);
+        if (!response.ok) {
+          if (response.status === 404) {
+            router.push("/404");
+            return;
+          }
+          throw new Error("Failed to load blog post");
+        }
+        const data = await response.json();
+        setPost(data.post);
+        setRelatedPosts(data.relatedPosts || []);
+      } catch (err) {
+        console.error("Error fetching blog post:", err);
+        setError("Failed to load blog post. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [slug, router]);
+
+  useEffect(() => {
+    if (!post?.content) return;
+    
     // Extract headings from content for TOC
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = post.content;
@@ -90,7 +132,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
     });
 
     setTocItems(items);
-  }, [post.content]);
+  }, [post?.content]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,7 +164,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
   }, [tocItems]);
 
   // Add IDs to headings in the content
-  const processedContent = post.content.replace(
+  const processedContent = post?.content?.replace(
     /<(h[1-3])([^>]*)>(.*?)<\/h[1-3]>/gi,
     (match, tag, attrs, content) => {
       const id = content
@@ -132,7 +174,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
         .replace(/(^-|-$)/g, "");
       return `<${tag}${attrs} id="${id}" style="scroll-margin-top: 100px;">${content}</${tag}>`;
     }
-  );
+  ) || "";
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -144,31 +186,33 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
 
   return (
     <Box bg={bgColor} minH="100vh" py="20">
-      <EnhancedSEO
-        title={post.meta_title || `${post.title} - Tech Emulsion`}
-        description={post.meta_description || post.excerpt}
-        pageType="blog"
-        canonicalUrl={post.canonical_url || `https://techemulsion.com/blog/${post.slug}`}
-        ogImage={post.og_image || post.featured_image || undefined}
-        breadcrumbData={{
-          items: [
-            { name: "Home", url: "https://techemulsion.com" },
-            { name: "Insights", url: "https://techemulsion.com/blog" },
-            {
-              name: post.title,
-              url: `https://techemulsion.com/blog/${post.slug}`,
-            },
-          ],
-        }}
-        articleData={{
-          title: post.meta_title || post.title,
-          description: post.meta_description || post.excerpt,
-          image: post.og_image || post.featured_image || undefined,
-          authorName: post.author_name,
-          datePublished: post.published_at,
-          url: post.canonical_url || `https://techemulsion.com/blog/${post.slug}`,
-        }}
-      />
+      {post && (
+        <EnhancedSEO
+          title={post.meta_title || `${post.title} - Tech Emulsion`}
+          description={post.meta_description || post.excerpt}
+          pageType="blog"
+          canonicalUrl={post.canonical_url || `https://techemulsion.com/blog/${post.slug}`}
+          ogImage={post.og_image || post.featured_image || undefined}
+          breadcrumbData={{
+            items: [
+              { name: "Home", url: "https://techemulsion.com" },
+              { name: "Insights", url: "https://techemulsion.com/blog" },
+              {
+                name: post.title,
+                url: `https://techemulsion.com/blog/${post.slug}`,
+              },
+            ],
+          }}
+          articleData={{
+            title: post.meta_title || post.title,
+            description: post.meta_description || post.excerpt,
+            image: post.og_image || post.featured_image || undefined,
+            authorName: post.author_name,
+            datePublished: post.published_at,
+            url: post.canonical_url || `https://techemulsion.com/blog/${post.slug}`,
+          }}
+        />
+      )}
 
       <Container maxW="container.xl" py="10">
         {/* Breadcrumb Navigation */}
@@ -209,22 +253,35 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
               Insights
             </ButtonLink>
             <FaChevronRight size={15} />
-            <Text
-              as="span"
-              ml="2"
-              sx={{
-                color: colorMode === "light" ? "#004c4c !important" : "white",
-              }}>
-              {post.category}
-            </Text>
+            {loading ? (
+              <Skeleton height="20px" width="100px" />
+            ) : (
+              <Text
+                as="span"
+                ml="2"
+                sx={{
+                  color: colorMode === "light" ? "#004c4c !important" : "white",
+                }}>
+                {post?.category || "Loading..."}
+              </Text>
+            )}
           </ButtonGroup>
         </Box>
 
         {/* Title */}
         <Box px="15" mb="8">
-          <Heading as="h1" size="3xl" color={titleColor} fontWeight="normal" lineHeight="1.2" mb="4">
-            {post.title}
-          </Heading>
+          {loading ? (
+            <VStack align="flex-start" spacing={4}>
+              <Skeleton height="40px" width="80%" />
+              <Skeleton height="40px" width="60%" />
+            </VStack>
+          ) : error ? (
+            <Text color="red.500">{error}</Text>
+          ) : (
+            <Heading as="h1" size="3xl" color={titleColor} fontWeight="normal" lineHeight="1.2" mb="4">
+              {post?.title || "Loading..."}
+            </Heading>
+          )}
         </Box>
 
         {/* Author Info */}
@@ -235,17 +292,25 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
           borderLeft="4px solid"
           borderColor="teal.500"
           maxW={{ base: "100%", lg: "800px" }}>
-          <VStack align="flex-start" spacing="1">
-            <Text fontSize="sm" fontWeight="semibold" color={titleColor}>
-              Written by:
-            </Text>
-            <Text fontSize="sm" color={textColor}>
-              {post.author_name}
-            </Text>
-            <Text fontSize="sm" color={textColor}>
-              {formatDate(post.published_at)}
-            </Text>
-          </VStack>
+          {loading ? (
+            <VStack align="flex-start" spacing={2}>
+              <Skeleton height="16px" width="100px" />
+              <Skeleton height="16px" width="150px" />
+              <Skeleton height="16px" width="120px" />
+            </VStack>
+          ) : post ? (
+            <VStack align="flex-start" spacing="1">
+              <Text fontSize="sm" fontWeight="semibold" color={titleColor}>
+                Written by:
+              </Text>
+              <Text fontSize="sm" color={textColor}>
+                {post.author_name}
+              </Text>
+              <Text fontSize="sm" color={textColor}>
+                {formatDate(post.published_at)}
+              </Text>
+            </VStack>
+          ) : null}
         </Box>
 
         {/* Two Column Layout */}
@@ -346,7 +411,9 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
           <Box flex="1" maxW={{ base: "100%", lg: "800px" }}>
             <VStack align="stretch" spacing="6">
               {/* Featured Image */}
-              {post.featured_image && (
+              {loading ? (
+                <Skeleton height="400px" borderRadius="lg" mb="8" />
+              ) : post?.featured_image ? (
                 <Box
                   w="100%"
                   h="400px"
@@ -360,14 +427,25 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
                     backgroundPosition: "center",
                   }}
                 />
-              )}
+              ) : null}
 
               {/* Blog Content */}
-              <Box
-                className="blog-content"
-                dangerouslySetInnerHTML={{ __html: processedContent }}
-                sx={{
-                  "& h1, & h2, & h3, & h4, & h5, & h6": {
+              {loading ? (
+                <Box>
+                  <SkeletonText mt="4" noOfLines={10} spacing="4" />
+                  <SkeletonText mt="4" noOfLines={8} spacing="4" />
+                  <SkeletonText mt="4" noOfLines={6} spacing="4" />
+                </Box>
+              ) : error ? (
+                <Box textAlign="center" py={10}>
+                  <Text color="red.500" fontSize="lg">{error}</Text>
+                </Box>
+              ) : post ? (
+                <Box
+                  className="blog-content"
+                  dangerouslySetInnerHTML={{ __html: processedContent }}
+                  sx={{
+                    "& h1, & h2, & h3, & h4, & h5, & h6": {
                     color: titleColor,
                     fontWeight: "bold",
                     mt: "5",
@@ -436,9 +514,19 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
                   },
                 }}
               />
+              ) : null}
 
               {/* Related Articles */}
-              {relatedPosts.length > 0 && (
+              {loading ? (
+                <Box mt="12" pt="8" borderTop="1px solid" borderColor={borderColor}>
+                  <Skeleton height="32px" width="200px" mb="6" />
+                  <VStack align="stretch" spacing="4">
+                    {[1, 2, 3].map((i) => (
+                      <Skeleton key={i} height="120px" borderRadius="lg" />
+                    ))}
+                  </VStack>
+                </Box>
+              ) : relatedPosts.length > 0 ? (
                 <Box mt="12" pt="8" borderTop="1px solid" borderColor={borderColor}>
                   <Heading as="h2" size="lg" color={titleColor} mb="6">
                     Read What Next
@@ -476,7 +564,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
                     ))}
                   </VStack>
                 </Box>
-              )}
+              ) : null}
             </VStack>
           </Box>
         </Stack>
@@ -488,62 +576,9 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post, relatedPosts }) => {
 export default BlogPostPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug as string;
-
-  if (!slug) {
-    return { notFound: true };
-  }
-
-  try {
-    const supabaseAdmin = getSupabaseAdmin();
-
-    // Fetch the blog post
-    const { data: post, error: postError } = await supabaseAdmin
-      .from("blog_posts")
-      .select("*")
-      .eq("slug", slug)
-      .eq("is_published", true)
-      .single();
-
-    if (postError || !post) {
-      return { notFound: true };
-    }
-
-    // Increment view count and record view (fire and forget)
-    void (async () => {
-      try {
-        await Promise.all([
-          supabaseAdmin
-            .from("blog_posts")
-            .update({ view_count: (post.view_count || 0) + 1 })
-            .eq("id", post.id),
-          supabaseAdmin
-            .from("blog_post_views")
-            .insert({ blog_post_id: post.id }),
-        ]);
-      } catch (err) {
-        console.error("Failed to record blog view:", err);
-      }
-    })();
-
-    // Fetch related posts (same category, excluding current)
-    const { data: relatedPosts } = await supabaseAdmin
-      .from("blog_posts")
-      .select("id, slug, title, excerpt, featured_image, category, published_at, reading_time_minutes")
-      .eq("is_published", true)
-      .eq("category", post.category)
-      .neq("id", post.id)
-      .order("published_at", { ascending: false })
-      .limit(3);
-
-    return {
-      props: {
-        post,
-        relatedPosts: relatedPosts || [],
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching blog post:", error);
-    return { notFound: true };
-  }
+  // Return empty props to allow immediate rendering
+  // Data will be fetched client-side for faster page load
+  return {
+    props: {},
+  };
 };

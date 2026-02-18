@@ -218,10 +218,10 @@ const PortfolioV3 = () => {
       href: "/portfolio/genai",
     },
     {
-      title: "AVL-CoPilot",
+      title: "AVL Copilot",
       category: "AI Solution",
-      image: "/assets/portfolio/New/ai-chatbot-avl-case-study.png",
-      alt: "AVL-CoPilot",
+      image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
+      alt: "AVL Copilot",
       href: "/portfolio/avl-copilot",
     },
   ];

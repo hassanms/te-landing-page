@@ -553,7 +553,7 @@ const PortfolioSectionV2: React.FC = () => {
       title: "Macromascot",
       category: "Mobile App",
       image: "/assets/portfolio/New/Health_app.jpg",
-      href: "/portfolio/macromascot-v2",
+      href: "/portfolio/macromascot",
     },
     {
       title: "AutoSync Intelligence",

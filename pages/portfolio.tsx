@@ -38,13 +38,29 @@ const PortfolioV3 = () => {
   const statLabelColor = useColorModeValue("gray.600", "whiteAlpha.800");
   const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
   const heroOverlayGradient = useColorModeValue(
-    "linear(to-b, blackAlpha.400 0%, blackAlpha.300 50%, white 100%)",
+    "linear(to-b, blackAlpha.700 0%, blackAlpha.600 25%, blackAlpha.500 55%, blackAlpha.300 85%, blackAlpha.200 100%)",
     "linear(to-b, blackAlpha.700 0%, blackAlpha.600 50%, gray.900 100%)"
   );
+  const heroTextShadow = useColorModeValue(
+    "0 1px 2px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+    "0 1px 3px rgba(0,0,0,0.5)"
+  );
+  const heroStatLabelColor = useColorModeValue("whiteAlpha.900", "whiteAlpha.900");
+  const heroStatNumberColor = useColorModeValue("white", "pearlAqua.400");
   const sectionDividerGradient = useColorModeValue(
     "linear(to-r, transparent, teal.500, transparent)",
     "linear(to-r, transparent, pearlAqua.500, transparent)"
   );
+  // Card image: brighter in light mode, stronger brighten on hover
+  const cardImageFilter = useColorModeValue(
+    "grayscale(15%) brightness(0.95)",
+    "grayscale(40%) brightness(0.85)"
+  );
+  const cardImageFilterHover = useColorModeValue(
+    "grayscale(0%) brightness(1.12)",
+    "grayscale(0%) brightness(1.05)"
+  );
+  const cardOverlayOpacity = useColorModeValue(0.45, 0.55);
 
   // Animated counter component
   const AnimatedCounter = ({ end, duration = 2 }: { end: number; duration?: number }) => {
@@ -80,7 +96,7 @@ const PortfolioV3 = () => {
       category: "Mobile App",
       image: "/assets/portfolio/New/Health_app.jpg",
       alt: "Macromascot",
-      href: "/portfolio/macromascot-v2",
+      href: "/portfolio/macromascot",
     },
     {
       title: "AutoSync Intelligence",
@@ -269,15 +285,14 @@ const PortfolioV3 = () => {
           bgGradient={heroOverlayGradient}
           zIndex={0}
         />
-        <BackgroundGradient height="100%" zIndex={0} opacity={0.3} />
+        <BackgroundGradient height="100%" zIndex={0} opacity={colorMode === "light" ? 0.15 : 0.3} />
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - white in light mode for visibility on dark hero */}
-          <Box mb={12} display="flex" justifyContent="flex-end">
+          {/* Breadcrumb - high contrast on hero */}
+          <Box mb={12} display="flex" justifyContent="flex-end" sx={{ textShadow: heroTextShadow }}>
             <ButtonGroup
               style={{
                 backgroundColor: "none",
                 fontSize: "1rem",
-                color: "muted",
                 display: "flex",
                 alignItems: "center",
               }}>
@@ -288,18 +303,16 @@ const PortfolioV3 = () => {
                   bg: "none",
                   color: "white",
                   padding: "0",
+                  textShadow: heroTextShadow,
                   "&:hover": {
                     bg: "none",
-                    color: "white",
+                    color: "whiteAlpha.900",
                   },
                 }}>
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "white" }} />
-              <Text
-                as="span"
-                ml="2"
-                color="white">
+              <Icon as={FaChevronRight} color="white" boxSize={4} />
+              <Text as="span" ml="2" color="white" fontWeight="500">
                 Portfolio
               </Text>
             </ButtonGroup>
@@ -315,11 +328,13 @@ const PortfolioV3 = () => {
                 fontWeight="bold"
                 lineHeight="1.1"
                 mb={6}
-                color="white">
+                color="white"
+                textShadow={heroTextShadow}>
                 Our{" "}
                 <Text
                   as="span"
-                  color="white">
+                  color="white"
+                  textShadow={heroTextShadow}>
                   Portfolio
                 </Text>
               </Heading>
@@ -330,10 +345,11 @@ const PortfolioV3 = () => {
               transition={{ duration: 0.6, delay: 0.2 }}>
               <Text
                 fontSize={{ base: "xl", md: "2xl" }}
-                color={colorMode === "dark" ? "whiteAlpha.900" : "whiteAlpha.900"}
+                color="white"
                 maxW="2xl"
                 lineHeight="1.8"
-                fontWeight="300">
+                fontWeight="400"
+                textShadow={heroTextShadow}>
                 Showcasing innovative solutions that transform businesses
               </Text>
             </MotionBox>
@@ -347,46 +363,50 @@ const PortfolioV3 = () => {
               mt={4}>
               <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8}>
                 <Stat>
-                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
                     Projects
                   </StatLabel>
                   <StatNumber
                     fontSize={{ base: "3xl", md: "4xl" }}
-                    color={accentColor}
-                    fontWeight="bold">
+                    color={heroStatNumberColor}
+                    fontWeight="bold"
+                    textShadow={heroTextShadow}>
                     <AnimatedCounter end={20} />
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
                     Technologies
                   </StatLabel>
                   <StatNumber
                     fontSize={{ base: "3xl", md: "4xl" }}
-                    color={accentColor}
-                    fontWeight="bold">
+                    color={heroStatNumberColor}
+                    fontWeight="bold"
+                    textShadow={heroTextShadow}>
                     <AnimatedCounter end={15} />
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
                     Clients
                   </StatLabel>
                   <StatNumber
                     fontSize={{ base: "3xl", md: "4xl" }}
-                    color={accentColor}
-                    fontWeight="bold">
+                    color={heroStatNumberColor}
+                    fontWeight="bold"
+                    textShadow={heroTextShadow}>
                     <AnimatedCounter end={50} />
                   </StatNumber>
                 </Stat>
                 <Stat>
-                  <StatLabel color={statLabelColor} fontSize="sm" fontWeight="normal">
+                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
                     Years
                   </StatLabel>
                   <StatNumber
                     fontSize={{ base: "3xl", md: "4xl" }}
-                    color={accentColor}
-                    fontWeight="bold">
+                    color={heroStatNumberColor}
+                    fontWeight="bold"
+                    textShadow={heroTextShadow}>
                     <AnimatedCounter end={5} />
                   </StatNumber>
                 </Stat>
@@ -447,7 +467,7 @@ const PortfolioV3 = () => {
                       boxShadow: "xl",
                       "& .project-image-small": {
                         transform: "scale(1.08)",
-                        filter: "grayscale(0%) brightness(1.05) !important",
+                        filter: `${cardImageFilterHover} !important`,
                       },
                       "& .project-overlay-small": {
                         opacity: 0.85,
@@ -469,7 +489,7 @@ const PortfolioV3 = () => {
                     zIndex={0}
                     className="project-image-small"
                     sx={{
-                      filter: "grayscale(40%) brightness(0.85)",
+                      filter: cardImageFilter,
                       transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                       "& img": {
                         objectFit: "cover",
@@ -496,7 +516,7 @@ const PortfolioV3 = () => {
                     right={0}
                     bottom={0}
                     bgGradient="linear(to-t, blackAlpha.800, blackAlpha.500, transparent)"
-                    opacity={0.55}
+                    opacity={cardOverlayOpacity}
                     className="project-overlay-small"
                     transition="opacity 0.4s"
                     zIndex={1}

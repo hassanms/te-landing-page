@@ -1541,7 +1541,7 @@ const Portfolio: React.FC = () => {
         </Box>
 
         {/* Image-first masonry grid */}
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%" mt={8}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, md: 6 }} w="100%" mt={8}>
           {HighlightsItems.map((item, index) => {
             const href = item.title.includes("Pack Assist")
               ? "/portfolio/packassist"
@@ -1587,98 +1587,128 @@ const Portfolio: React.FC = () => {
               : "Project";
 
             return (
-              <NextLink href={href || "/"} passHref legacyBehavior>
+              <NextLink href={href || "/"} passHref legacyBehavior key={index}>
                 <MotionCard
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
                   as={Link}
-                position="relative"
-                h={{ base: "400px", md: "450px", lg: "500px" }}
-                borderRadius="2xl"
+                  position="relative"
+                  w="100%"
+                  aspectRatio="4/3"
+                borderRadius="md"
                 overflow="hidden"
-                cursor="pointer"
-                bg={cardBg}
-                border="1px solid"
-                borderColor={cardBorder}
-                _hover={{
-                  transform: "translateY(-8px)",
-                  boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.4)`,
-                  "& .project-image": {
-                    transform: "scale(1.05)",
-                    filter: "brightness(1.1) contrast(1)",
-                  },
-                  "& .project-overlay": {
-                    opacity: 0.4,
-                  },
-                }}
+                  cursor="pointer"
+                  bg={cardBg}
+                  border="1px solid"
+                  borderColor={cardBorder}
+                  transition="transform 0.3s ease, box-shadow 0.3s ease"
+                  _hover={{
+                    transform: "translateY(-6px)",
+                    boxShadow:
+                      colorMode === "dark"
+                        ? "0 20px 40px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)"
+                        : "0 20px 40px -12px rgba(0, 0, 0, 0.15)",
+                    "& .project-image": {
+                      transform: "scale(1.06)",
+                    },
+                    "& .project-overlay": {
+                      opacity: 0.85,
+                    },
+                    "& .project-cta": {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                    },
+                  }}
                 >
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  zIndex={0}
-                  className="project-image"
-                  transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                  sx={{
-                    filter: "brightness(0.9) contrast(1)",
-                  }}>
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    style={{ objectFit: "cover", objectPosition: "right" }}
-                  />
-                </Box>
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  bgGradient="linear(to-t, blackAlpha.900, blackAlpha.600, transparent)"
-                  opacity={0.7}
-                  className="project-overlay"
-                  transition="opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                  zIndex={1}
-                />
-                <VStack
-                  position="absolute"
-                  bottom={0}
-                  left={0}
-                  right={0}
-                  p={6}
-                  zIndex={2}
-                  align="flex-start"
-                  spacing={3}>
-                  <Badge
-                    color="white"
-                    px={4}
-                    py={1.5}
-                    borderRadius="full"
-                    fontSize="xs"
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    letterSpacing="0.5px"
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    zIndex={0}
+                    className="project-image"
+                    transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                     sx={{
-                      background: "linear-gradient(135deg, rgba(128, 237, 255, 0.25), rgba(20, 184, 166, 0.25))",
-                      backdropFilter: "blur(12px)",
-                      WebkitBackdropFilter: "blur(12px)",
-                      border: "1px solid rgba(255, 255, 255, 0.3)",
-                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3), 0 0 24px rgba(128, 237, 255, 0.3)",
-                      textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
-                    }}>
-                    {category}
-                  </Badge>
-                  <Heading fontSize="2xl" fontWeight="bold" color="white" textShadow="0 2px 12px rgba(0,0,0,0.5)">
-                    {item.title}
-                  </Heading>
-                </VStack>
-              </MotionCard>
+                      filter: "brightness(0.85) contrast(1.02)",
+                    }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "center" }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </Box>
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    bgGradient="linear(to-t, blackAlpha.950 0%, blackAlpha.700 35%, blackAlpha.400 65%, transparent)"
+                    opacity={0.75}
+                    className="project-overlay"
+                    transition="opacity 0.3s ease"
+                    zIndex={1}
+                  />
+                  <VStack
+                    position="absolute"
+                    bottom={0}
+                    left={0}
+                    right={0}
+                    p={4}
+                    zIndex={2}
+                    align="flex-start"
+                    spacing={2}
+                  >
+                    <Badge
+                      color="white"
+                      px={2.5}
+                      py={1}
+                      borderRadius="full"
+                      fontSize="xs"
+                      fontWeight="bold"
+                      textTransform="uppercase"
+                      letterSpacing="0.05em"
+                      sx={{
+                        background:
+                          "linear-gradient(135deg, rgba(128, 237, 255, 0.2), rgba(20, 184, 166, 0.2))",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        border: "1px solid rgba(255, 255, 255, 0.25)",
+                      }}
+                    >
+                      {category}
+                    </Badge>
+                    <Heading
+                      as="h3"
+                      fontSize={{ base: "sm", md: "md" }}
+                      fontWeight="700"
+                      color="white"
+                      lineHeight="short"
+                      noOfLines={2}
+                      textShadow="0 1px 8px rgba(0,0,0,0.6)"
+                    >
+                      {item.title}
+                    </Heading>
+                    <HStack
+                      className="project-cta"
+                      opacity={0}
+                      transform="translateY(6px)"
+                      transition="opacity 0.25s ease, transform 0.25s ease"
+                      spacing={1}
+                      color="pearlAqua.200"
+                      fontSize="xs"
+                      fontWeight="600"
+                    >
+                      <Text as="span">View case study</Text>
+                      <Icon as={FiArrowUpRight} boxSize={3} />
+                    </HStack>
+                  </VStack>
+                </MotionCard>
               </NextLink>
             );
           })}

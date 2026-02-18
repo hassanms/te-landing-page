@@ -63,7 +63,7 @@ const PortfolioV2 = () => {
         "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention.",
       image: "/assets/portfolio/New/Health_app.jpg",
       alt: "Macromascot",
-      href: "/portfolio/macromascot-v2",
+      href: "/portfolio/macromascot",
       category: "Mobile App",
       badge: "Featured",
       stats: { users: "10K+", rating: "4.8" },

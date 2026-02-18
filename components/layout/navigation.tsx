@@ -9,13 +9,15 @@ import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
+// Only the 6 case studies shown in the home page Recent Works section
 const HERO_LIGHT_NAV_PATHS = [
   "/portfolio",
+  "/portfolio/campaignos",
+  "/portfolio/macromascot",
   "/portfolio/autosync-intelligence",
-  "/portfolio/macromascot-v2",
-  "/portfolio-v2",
-  "/portfolio-v3",
-  "/portfolio-v4",
+  "/portfolio/packassist",
+  "/portfolio/meatery",
+  "/portfolio/avl-copilot",
 ];
 
 const NO_THEME_TOGGLE_PATHS = [

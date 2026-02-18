@@ -27,6 +27,7 @@ import {
   Flex,
   Badge,
   useColorModeValue,
+  Progress,
   AspectRatio,
 } from "@chakra-ui/react";
 import { BackgroundGradient } from "components/gradients/background-gradient";
@@ -45,30 +46,32 @@ import {
   FaGlobe,
   FaChevronRight,
   FaChevronDown,
-  FaMobileAlt,
-  FaRobot,
-  FaGamepad,
-  FaUsers,
+  FaDatabase,
+  FaShieldAlt,
+  FaSync,
+  FaEye,
   FaDollarSign,
-  FaCamera,
-  FaHeart,
-  FaFire,
-  FaTrophy,
+  FaMapMarkerAlt,
+  FaCog,
+  FaRobot,
+  FaComments,
+  FaBrain,
+  FaUserCheck,
 } from "react-icons/fa";
 import {
   SiReact,
-  SiSupabase,
-  SiPostgresql,
+  SiPython,
   SiOpenai,
-  SiExpo,
+  SiPostgresql,
+  SiFastapi,
 } from "react-icons/si";
 
-const CaseStudyMacromascotV2 = () => {
+const CaseStudyAVLCoPilot = () => {
   const { colorMode } = useColorMode();
   const bgColor = useColorModeValue("gray.50", "gray.800");
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const textColor = useColorModeValue("gray.600", "gray.100");
 
   return (
     <Box id="services">
@@ -79,25 +82,24 @@ const CaseStudyMacromascotV2 = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: Macromascot (Premium Design) - Tech Emulsion"
-        description="Macromascot is a comprehensive mobile health application that transforms weight management by merging rigorous utility with gamification. Using AI-powered meal logging and a Tamagotchi-style avatar system."
+        title="Case Study: AVL-CoPilot - Tech Emulsion"
+        description="AVL-CoPilot is an advanced AI-powered conversational assistant solution built to transform customer engagement and automate intelligent interactions. Tech Emulsion developed a sophisticated AI platform with natural language processing, context awareness, and seamless integration capabilities."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio/macromascot-v2"
+        canonicalUrl="https://techemulsion.com/portfolio/avl-copilot"
         portfolioData={{
-          title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
+          title: "AVL-CoPilot – Intelligent Conversational AI Platform",
           description:
-            "A comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Features AI-powered meal logging, gamified avatar system, intermittent fasting module, social interactions, and agile monetization infrastructure.",
+            "An advanced AI-powered conversational assistant solution designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions.",
           dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/Health_app.jpg",
-          url: "https://techemulsion.com/portfolio/macromascot-v2",
-          genre: "Mobile Health App, Gamification, AI-Powered Nutrition",
+          image: "https://techemulsion.com/assets/portfolio/New/ai-chatbot-avl-case-study.png",
+          url: "https://techemulsion.com/portfolio/avl-copilot",
+          genre: "AI Solution, Conversational AI, Assistant Platform",
           keywords: [
-            "Macromascot",
-            "health app",
-            "gamification",
-            "AI meal logging",
-            "mobile health",
-            "weight management",
+            "AVL-CoPilot",
+            "conversational AI",
+            "natural language processing",
+            "intelligent automation",
+            "customer engagement",
             "Tech Emulsion",
           ],
         }}
@@ -106,27 +108,27 @@ const CaseStudyMacromascotV2 = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "Macromascot",
-              url: "https://techemulsion.com/portfolio/macromascot-v2",
+              name: "AVL-CoPilot",
+              url: "https://techemulsion.com/portfolio/avl-copilot",
             },
           ],
         }}
         faqData={{
           questions: [
             {
-              question: "What is Macromascot?",
+              question: "What is AVL-CoPilot?",
               answer:
-                "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. It uses an AI-powered meal logging system and a Tamagotchi-style avatar system to drive user retention.",
+                "AVL-CoPilot is an advanced conversational AI platform designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions.",
             },
             {
-              question: "How does Macromascot solve manual data entry fatigue?",
+              question: "What problems does AVL-CoPilot solve?",
               answer:
-                "Macromascot integrates OpenAI (GPT-4o) to create a nutrition scanner. Users can capture food images via their camera, which are then analyzed to return structured nutritional data including macros and calories.",
+                "The platform addresses customer service scalability, 24/7 availability, response time optimization, multilingual support, and intelligent query handling without human intervention.",
             },
             {
-              question: "What technologies power Macromascot?",
+              question: "What technologies power AVL-CoPilot?",
               answer:
-                "Mobile Framework: React Native (Expo SDK 53) with Development Builds. Animations: Reanimated + Skia. Backend: Supabase (PostgreSQL) with Row Level Security and Edge Functions. State Management: Zustand.",
+                "The solution leverages advanced AI/ML frameworks, natural language processing engines, modern web technologies, and robust backend infrastructure for seamless integration and scalability.",
             },
           ],
         }}
@@ -155,7 +157,7 @@ const CaseStudyMacromascotV2 = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Premium Hero Section with Background Image */}
+      {/* Premium Hero Section with Gradient Overlay */}
       <Box
         position="relative"
         color="white"
@@ -172,8 +174,8 @@ const CaseStudyMacromascotV2 = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/New/Health_app.jpg"
-            alt="Macromascot Health App"
+            src="/assets/portfolio/New/ai-chatbot-avl-case-study.png"
+            alt="AVL-CoPilot"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -237,7 +239,7 @@ const CaseStudyMacromascotV2 = () => {
                 sx={{
                   color: "white",
                 }}>
-                Macromascot
+                AVL-CoPilot
               </Text>
             </ButtonGroup>
           </Box>
@@ -257,7 +259,7 @@ const CaseStudyMacromascotV2 = () => {
                 fontSize="sm"
                 fontWeight="bold"
                 letterSpacing="wide">
-                MOBILE HEALTH APP
+                AI SOLUTION
               </Badge>
               <Heading
                 as="h1"
@@ -265,50 +267,50 @@ const CaseStudyMacromascotV2 = () => {
                 fontWeight="bold"
                 lineHeight="1.1"
                 color="white">
-                Macromascot
+                AVL-CoPilot
               </Heading>
               <Text
                 fontSize={{ base: "xl", md: "2xl" }}
                 color="rgba(255,255,255,0.9)"
                 lineHeight="1.6"
                 fontWeight="300">
-                Gamifying Health Consistency with AI and Digital Companions
+                Transforming Customer Engagement Through Intelligent Conversational AI
               </Text>
               <Text
                 fontSize="lg"
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
                 maxW="2xl">
-                A comprehensive mobile health application that transforms weight
-                management by merging rigorous utility with gamification. Turn routine
-                tracking into an emotional investment through AI-powered meal logging and
-                an engaging Tamagotchi-style avatar system.
+                An advanced AI-powered conversational platform that delivers intelligent,
+                context-aware interactions 24/7. Built with cutting-edge natural language
+                processing and machine learning to provide seamless customer experiences
+                and automate complex workflows.
               </Text>
 
               {/* Key Metrics */}
               <SimpleGrid columns={3} spacing={6} w="full" mt={4}>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="2xl" color="brand.400" fontWeight="bold">
-                    AI-Powered
+                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
+                    24/7
                   </Text>
                   <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Meal Logging
+                    Availability
                   </Text>
                 </VStack>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="2xl" color="brand.400" fontWeight="bold">
-                    Gamified
+                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
+                    95%+
                   </Text>
                   <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Avatar System
+                    Accuracy Rate
                   </Text>
                 </VStack>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="2xl" color="brand.400" fontWeight="bold">
-                    Native-First
+                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
+                    &lt;1s
                   </Text>
                   <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Performance
+                    Response Time
                   </Text>
                 </VStack>
               </SimpleGrid>
@@ -326,8 +328,8 @@ const CaseStudyMacromascotV2 = () => {
                 filter="blur(60px)"
               />
               <Image
-                src="/assets/portfolio/New/Health_app.jpg"
-                alt="Macromascot Health App Interface"
+                src="/assets/portfolio/New/ai-chatbot-avl-case-study.png"
+                alt="AVL-CoPilot Dashboard"
                 fill
                 style={{
                   objectFit: "cover",
@@ -354,56 +356,56 @@ const CaseStudyMacromascotV2 = () => {
                 fontWeight="bold"
                 mb={4}
                 color={useColorModeValue("gray.900", "white")}>
-                Transforming Health Tracking into Daily Habits
+                Real Results, Real Impact
               </Heading>
             </Box>
             <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} w="full">
               <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaCamera} boxSize={8} color="brand.500" mb={3} />
+                <Icon as={FaComments} boxSize={8} color="brand.500" mb={3} />
                 <StatNumber fontSize="4xl" color="brand.500" fontWeight="bold">
+                  Intelligent
+                </StatNumber>
+                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
+                  Natural Conversations
+                </StatLabel>
+                <StatHelpText fontSize="sm" color={textColor}>
+                  Context-aware responses
+                </StatHelpText>
+              </Stat>
+              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
+                <Icon as={FaClock} boxSize={8} color="green.500" mb={3} />
+                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
                   Instant
                 </StatNumber>
                 <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  AI Meal Logging
+                  Response Time
                 </StatLabel>
                 <StatHelpText fontSize="sm" color={textColor}>
-                  Photo-to-nutrition in seconds
+                  Sub-second response delivery
                 </StatHelpText>
               </Stat>
               <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaGamepad} boxSize={8} color="green.500" mb={3} />
-                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
-                  Gamified
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Avatar System
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Emotional investment drives retention
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaFire} boxSize={8} color="orange.500" mb={3} />
+                <Icon as={FaBrain} boxSize={8} color="orange.500" mb={3} />
                 <StatNumber fontSize="4xl" color="orange.500" fontWeight="bold">
-                  High-Performance
+                  Adaptive
                 </StatNumber>
                 <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Native Animations
+                  Learning Capability
                 </StatLabel>
                 <StatHelpText fontSize="sm" color={textColor}>
-                  Reanimated + Skia for smooth gameplay
+                  Continuous improvement
                 </StatHelpText>
               </Stat>
               <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaDollarSign} boxSize={8} color="purple.500" mb={3} />
+                <Icon as={FaUserCheck} boxSize={8} color="purple.500" mb={3} />
                 <StatNumber fontSize="4xl" color="purple.500" fontWeight="bold">
-                  Agile
+                  Scalable
                 </StatNumber>
                 <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Monetization
+                  Multi-Channel Support
                 </StatLabel>
                 <StatHelpText fontSize="sm" color={textColor}>
-                  Superwall for instant A/B testing
+                  Web, mobile, and API ready
                 </StatHelpText>
               </Stat>
             </SimpleGrid>
@@ -432,16 +434,18 @@ const CaseStudyMacromascotV2 = () => {
                   fontSize={{ base: "lg", md: "xl" }}
                   color={useColorModeValue("gray.700", "gray.200")}
                   lineHeight="1.8">
-                  Macromascot is a comprehensive mobile health application designed to
-                  transform the weight management experience by merging rigorous utility
-                  with gamification. Unlike traditional trackers, the platform utilizes an
-                  AI-powered meal logging system and an engaging{" "}
-                  <Text as="span" fontWeight="bold" color="brand.500">
-                    &quot;Tamagotchi-style&quot; avatar system
-                  </Text>{" "}
-                  to drive user retention. By linking health consistency (such as logging
-                  and fasting streaks) directly to the evolution of a digital companion,
-                  the app turns a routine chore into an emotional investment.
+                  AVL-CoPilot represents a cutting-edge conversational AI platform
+                  designed to revolutionize customer engagement and automate intelligent interactions.
+                  The platform leverages advanced natural language processing, machine learning,
+                  and context-aware algorithms to deliver human-like conversations at scale.
+                </Text>
+                <Text
+                  fontSize={{ base: "lg", md: "xl" }}
+                  color={useColorModeValue("gray.700", "gray.200")}
+                  lineHeight="1.8">
+                  Built with modern AI frameworks and robust infrastructure, the solution provides
+                  seamless integration capabilities, multilingual support, and continuous learning
+                  mechanisms to improve response accuracy and user satisfaction over time.
                 </Text>
               </VStack>
             </Card>
@@ -463,47 +467,47 @@ const CaseStudyMacromascotV2 = () => {
                 fontWeight="bold"
                 mb={4}
                 color={useColorModeValue("gray.900", "white")}>
-                Common Fitness App Pitfalls
+                Meeting Modern Customer Expectations
               </Heading>
               <Text
                 fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.300")}
+                color={useColorModeValue("gray.600", "gray.100")}
                 maxW="2xl"
                 mx="auto">
-                The project addressed several critical hurdles common in the fitness app
-                industry that prevent long-term user engagement.
+                Businesses today face increasing pressure to provide instant, accurate, and
+                personalized customer support while managing costs and scaling operations efficiently.
               </Text>
             </Box>
 
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
               {[
                 {
-                  icon: FaExclamationTriangle,
+                  icon: FaClock,
                   color: "red.500",
-                  title: "Manual Data Entry Fatigue",
+                  title: "24/7 Support Demand",
                   description:
-                    "The #1 factor for user churn in fitness apps is the friction of manual logging. Users abandon apps when logging becomes tedious.",
+                    "Customers expect round-the-clock availability, but maintaining human support teams 24/7 is cost-prohibitive and resource-intensive.",
                 },
                 {
-                  icon: FaHeart,
-                  color: "pink.500",
-                  title: "Low Long-Term Retention",
+                  icon: FaExclamationTriangle,
+                  color: "orange.500",
+                  title: "Response Time Pressure",
                   description:
-                    "Many health apps lack the &quot;emotional hook&quot; necessary to sustain daily active usage (DAU). Without emotional investment, users lose motivation.",
+                    "Modern customers demand instant responses. Delayed support leads to frustration, lost sales, and damaged brand reputation.",
                 },
                 {
-                  icon: FaMobileAlt,
-                  color: "blue.500",
-                  title: "Performance Bottlenecks",
+                  icon: FaCog,
+                  color: "yellow.500",
+                  title: "Scalability Challenges",
                   description:
-                    "Delivering a &quot;Native-First&quot; experience with high-performance animations for game-like elements on mobile devices is challenging.",
+                    "Handling peak traffic volumes and seasonal spikes requires flexible infrastructure that can scale dynamically without compromising performance.",
                 },
                 {
                   icon: FaDollarSign,
-                  color: "green.500",
-                  title: "Monetization Flexibility",
+                  color: "purple.500",
+                  title: "Cost Management",
                   description:
-                    "The need to rapidly test and deploy different subscription models without constant code releases limits marketing agility.",
+                    "Balancing quality customer service with operational costs requires intelligent automation that reduces overhead while maintaining service quality.",
                 },
               ].map((challenge, index) => (
                 <Card
@@ -525,7 +529,7 @@ const CaseStudyMacromascotV2 = () => {
                     </HStack>
                     <Text
                       fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.300")}
+                      color={useColorModeValue("gray.600", "gray.100")}
                       lineHeight="1.7">
                       {challenge.description}
                     </Text>
@@ -550,15 +554,15 @@ const CaseStudyMacromascotV2 = () => {
               fontWeight="bold"
               mb={4}
               color={useColorModeValue("gray.900", "white")}>
-              Native-First Mobile Experience
+              Intelligent Conversational AI Platform
             </Heading>
             <Text
               fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.300")}
+              color={useColorModeValue("gray.600", "gray.100")}
               maxW="2xl"
               mx="auto">
-              We developed a &quot;Native-First&quot; mobile experience built on a
-              robust, scalable backend architecture.
+              We developed AVL-CoPilot, a comprehensive AI assistant solution that combines advanced natural
+              language processing, machine learning, and seamless integration capabilities.
             </Text>
           </Box>
 
@@ -566,93 +570,93 @@ const CaseStudyMacromascotV2 = () => {
             {[
               {
                 number: "1",
-                icon: FaCamera,
-                title: "AI-Powered &quot;Instant Logging&quot;",
+                icon: FaBrain,
+                title: "Advanced NLP Engine",
                 description:
-                  "Integrated OpenAI (GPT-4o) to create a nutrition scanner. Users capture food images via camera, which are analyzed to return structured nutritional data including macros and calories, eliminating user friction.",
+                  "Sophisticated natural language processing capabilities that understand context, intent, and sentiment to deliver accurate, relevant responses.",
                 color: "blue",
               },
               {
                 number: "2",
-                icon: FaGamepad,
-                title: "Gamified Avatar & Economy Engine",
+                icon: FaSync,
+                title: "Context-Aware Conversations",
                 description:
-                  "Dynamic state management system where user health actions earn &quot;Coins&quot;. These coins allow users to purchase backgrounds and clothing to customize and evolve their character sprites, creating a &quot;sunk cost&quot; investment.",
+                  "Maintains conversation context across multiple interactions, enabling natural, flowing dialogues that feel human-like and intuitive.",
                 color: "green",
               },
               {
                 number: "3",
-                icon: FaClock,
-                title: "Multi-Utility Intermittent Fasting Module",
+                icon: FaRobot,
+                title: "Machine Learning Integration",
                 description:
-                  "Configurable fasting timer (e.g., 16:8 or 18:6) with real-time countdowns, &quot;Fat Burning&quot; phase tracking, and automatic notification triggers to keep users accountable.",
+                  "Continuous learning from interactions to improve accuracy, personalize responses, and adapt to evolving user needs and preferences.",
                 color: "orange",
               },
               {
                 number: "4",
-                icon: FaUsers,
-                title: "Social &quot;Vibe&quot; System",
+                icon: FaGlobe,
+                title: "Multi-Channel Deployment",
                 description:
-                  "Social graph allowing users to add friends and view profiles. &quot;Vibe&quot; interaction system where users send interactions based on shared achievements, creating viral loops and lowering user acquisition costs.",
+                  "Seamless integration across web, mobile apps, messaging platforms, and APIs for consistent experiences wherever customers engage.",
                 color: "purple",
               },
               {
                 number: "5",
-                icon: FaDollarSign,
-                title: "Agile Monetization Infrastructure",
+                icon: FaShieldAlt,
+                title: "Enterprise-Grade Security",
                 description:
-                  "Integrated Superwall to decouple paywall UI from core app code. Enables marketing team to manage subscription tiers and conduct A/B testing on pricing models instantly without requiring new engineering releases.",
+                  "Robust security measures including data encryption, compliance with privacy regulations, and secure API integrations.",
                 color: "pink",
               },
             ].map((solution, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderLeft="4px solid"
-                borderColor={`${solution.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s"
-                position="relative"
-                overflow="hidden">
-                <Box
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  fontSize="6xl"
-                  fontWeight="bold"
-                  color={`${solution.color}.100`}
-                  opacity={0.3}
-                  lineHeight="1">
-                  {solution.number}
-                </Box>
-                <CardBody position="relative">
-                  <HStack mb={4}>
-                    <Icon
-                      as={solution.icon}
-                      boxSize={8}
-                      color={`${solution.color}.500`}
-                    />
-                    <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                      {solution.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.300")}
-                    lineHeight="1.7">
-                    {solution.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
+                <Card
+                  key={index}
+                  bg={cardBg}
+                  borderRadius="xl"
+                  boxShadow="lg"
+                  p={6}
+                  borderLeft="4px solid"
+                  borderColor={`${solution.color}.500`}
+                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
+                  transition="all 0.3s"
+                  position="relative"
+                  overflow="hidden">
+                  <Box
+                    position="absolute"
+                    top={0}
+                    right={0}
+                    fontSize="6xl"
+                    fontWeight="bold"
+                    color={`${solution.color}.100`}
+                    opacity={0.3}
+                    lineHeight="1">
+                    {solution.number}
+                  </Box>
+                  <CardBody position="relative">
+                    <HStack mb={4}>
+                      <Icon
+                        as={solution.icon}
+                        boxSize={8}
+                        color={`${solution.color}.500`}
+                      />
+                      <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
+                        {solution.title}
+                      </Heading>
+                    </HStack>
+                    <Text
+                      fontSize="md"
+                      color={useColorModeValue("gray.600", "gray.100")}
+                      lineHeight="1.7">
+                      {solution.description}
+                    </Text>
+                  </CardBody>
+                </Card>
+              ))}
           </SimpleGrid>
         </VStack>
       </Container>
 
-      {/* Technical Excellence */}
+      {/* Technical Architecture */}
       <Box bg={bgColor} py={20}>
         <Container maxW="container.xl">
           <VStack spacing={12}>
@@ -666,116 +670,86 @@ const CaseStudyMacromascotV2 = () => {
                 fontWeight="bold"
                 mb={4}
                 color={useColorModeValue("gray.900", "white")}>
-                Cutting-Edge High-Performance Tech Stack
+                Built for Performance, Scale & Intelligence
               </Heading>
             </Box>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="full">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6} w="full">
               {[
                 {
                   icon: SiReact,
-                  name: "React Native",
-                  category: "Mobile Framework",
+                  name: "React",
+                  category: "Frontend",
                   color: "blue",
-                  description: "Expo SDK 53 with Development Builds for complex native modules",
+                  description: "Modern, responsive user interface",
                 },
                 {
-                  icon: SiExpo,
-                  name: "Expo",
-                  category: "Development",
-                  color: "cyan",
-                  description: "Development Builds supporting complex native modules",
+                  icon: SiPython,
+                  name: "Python",
+                  category: "Backend",
+                  color: "yellow",
+                  description: "Robust backend processing",
+                },
+                {
+                  icon: SiFastapi,
+                  name: "FastAPI",
+                  category: "API",
+                  color: "green",
+                  description: "High-performance API framework",
                 },
                 {
                   icon: SiOpenai,
-                  name: "OpenAI GPT-4o",
-                  category: "AI",
-                  color: "green",
-                  description: "Nutrition scanner for instant meal logging from photos",
-                },
-                {
-                  icon: SiSupabase,
-                  name: "Supabase",
-                  category: "Backend",
-                  color: "green",
-                  description: "PostgreSQL with Row Level Security and Edge Functions",
+                  name: "AI/ML",
+                  category: "AI Engine",
+                  color: "purple",
+                  description: "Advanced AI capabilities",
                 },
                 {
                   icon: SiPostgresql,
                   name: "PostgreSQL",
                   category: "Database",
                   color: "blue",
-                  description: "Structured relational data with user privacy",
-                },
-                {
-                  icon: FaRobot,
-                  name: "Reanimated + Skia",
-                  category: "Animations",
-                  color: "purple",
-                  description: "High-performance sprite rendering for game-like feel",
+                  description: "Reliable data storage",
                 },
               ].map((tech, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="md"
-                  p={6}
-                  textAlign="center"
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    {tech.icon ? (
-                      <Icon
-                        as={tech.icon}
-                        boxSize={10}
-                        color={`${tech.color}.500`}
-                        mb={4}
-                      />
-                    ) : (
-                      <Icon
-                        as={FaRobot}
-                        boxSize={10}
-                        color={`${tech.color}.500`}
-                        mb={4}
-                      />
-                    )}
-                    <Badge
-                      colorScheme={tech.color}
-                      mb={2}
-                      fontSize="xs"
-                      borderRadius="full">
-                      {tech.category}
-                    </Badge>
-                    <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
-                      {tech.name}
-                    </Heading>
-                    <Text
-                      fontSize="sm"
-                      color={useColorModeValue("gray.600", "gray.400")}
-                      lineHeight="1.6">
-                      {tech.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
+                  <Card
+                    key={index}
+                    bg={cardBg}
+                    borderRadius="xl"
+                    boxShadow="md"
+                    p={6}
+                    textAlign="center"
+                    _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
+                    transition="all 0.3s">
+                    <CardBody>
+                      <Box display="flex" justifyContent="center" mb={4}>
+                        <Icon
+                          as={tech.icon}
+                          boxSize={10}
+                          color={`${tech.color}.500`}
+                        />
+                      </Box>
+                      <Box display="flex" justifyContent="center" mb={2}>
+                        <Badge
+                          colorScheme={tech.color}
+                          fontSize="xs"
+                          borderRadius="full">
+                          {tech.category}
+                        </Badge>
+                      </Box>
+                      <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
+                        {tech.name}
+                      </Heading>
+                      <Text
+                        fontSize="sm"
+                        color={useColorModeValue("gray.600", "gray.200")}
+                        lineHeight="1.6">
+                        {tech.description}
+                      </Text>
+                    </CardBody>
+                  </Card>
+                ))}
             </SimpleGrid>
-
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} w="full" maxW="4xl">
-              <VStack align="start" spacing={4}>
-                <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                  State Management
-                </Heading>
-                <Text
-                  fontSize="md"
-                  color={useColorModeValue("gray.600", "gray.300")}
-                  lineHeight="1.7">
-                  Zustand for lightweight, boilerplate-free management of complex
-                  client-side states like coin balances and streaks. This ensures smooth
-                  performance and easy state updates across the app.
-                </Text>
-              </VStack>
-            </Card>
           </VStack>
         </Container>
       </Box>
@@ -793,7 +767,7 @@ const CaseStudyMacromascotV2 = () => {
               fontWeight="bold"
               mb={4}
               color={useColorModeValue("gray.900", "white")}>
-              From Friction to Engagement
+              Transforming Customer Engagement
             </Heading>
           </Box>
 
@@ -801,59 +775,59 @@ const CaseStudyMacromascotV2 = () => {
             {[
               {
                 icon: FaCheckCircle,
-                title: "Reduced User Friction",
+                title: "24/7 Availability",
                 description:
-                  "The AI scanner successfully addressed the primary cause of fitness app churn by eliminating manual data entry.",
+                  "Round-the-clock customer support without additional staffing costs, ensuring customers always have access to assistance.",
                 color: "green",
               },
               {
-                icon: FaTrophy,
-                title: "Increased User Retention",
+                icon: FaChartLine,
+                title: "Improved Response Times",
                 description:
-                  "Emotional engagement through the avatar engine turned health tracking into a daily habit.",
+                  "Sub-second response times dramatically improve customer satisfaction and reduce wait times.",
                 color: "blue",
               },
               {
-                icon: FaChartLine,
-                title: "Scalable Architecture",
+                icon: FaUserCheck,
+                title: "Enhanced User Experience",
                 description:
-                  "Multi-tenant-ready backend that handles social interactions and complex gamification logic with ease.",
-                color: "purple",
+                  "Natural, context-aware conversations that feel human-like, improving engagement and satisfaction rates.",
+                color: "orange",
               },
               {
                 icon: FaDollarSign,
-                title: "Immediate Revenue Readiness",
+                title: "Cost Optimization",
                 description:
-                  "Fully integrated monetization pipeline ready for immediate market testing and scaling.",
-                color: "orange",
+                  "Significant reduction in support costs while maintaining or improving service quality and availability.",
+                color: "purple",
               },
             ].map((result, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderTop="4px solid"
-                borderColor={`${result.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s">
-                <CardBody>
-                  <HStack mb={4}>
-                    <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
-                    <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                      {result.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.300")}
-                    lineHeight="1.7">
-                    {result.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
+                <Card
+                  key={index}
+                  bg={cardBg}
+                  borderRadius="xl"
+                  boxShadow="lg"
+                  p={6}
+                  borderTop="4px solid"
+                  borderColor={`${result.color}.500`}
+                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
+                  transition="all 0.3s">
+                  <CardBody>
+                    <HStack mb={4}>
+                      <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
+                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
+                        {result.title}
+                      </Heading>
+                    </HStack>
+                    <Text
+                      fontSize="md"
+                      color={useColorModeValue("gray.600", "gray.100")}
+                      lineHeight="1.7">
+                      {result.description}
+                    </Text>
+                  </CardBody>
+                </Card>
+              ))}
           </SimpleGrid>
         </VStack>
       </Container>
@@ -870,13 +844,12 @@ const CaseStudyMacromascotV2 = () => {
         <Container maxW="container.xl">
           <VStack spacing={8} textAlign="center">
             <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold">
-              Ready to Build Your Health App?
+              Ready to Transform Your Customer Engagement?
             </Heading>
             <Text fontSize={{ base: "lg", md: "xl" }} maxW="2xl" opacity={0.9}>
-              Transform your health tracking vision into an engaging, gamified
-              mobile experience. Let&apos;s discuss how we can help you achieve
-              your business goals with AI-powered features and native
-              performance.
+              Discover how AVL-CoPilot can revolutionize your customer
+              interactions, reduce costs, and scale your support operations. Let&apos;s
+              discuss your specific needs and build a solution tailored to your business.
             </Text>
             <HStack spacing={4} flexWrap="wrap" justify="center">
               <Button
@@ -921,4 +894,4 @@ const CaseStudyMacromascotV2 = () => {
   );
 };
 
-export default CaseStudyMacromascotV2;
+export default CaseStudyAVLCoPilot;

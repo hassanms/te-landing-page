@@ -13,13 +13,15 @@ import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
+// Only the 6 case studies shown in the home page Recent Works section
 const HERO_DARK_NAVBAR_PATHS = [
   "/portfolio",
+  "/portfolio/campaignos",
+  "/portfolio/macromascot",
   "/portfolio/autosync-intelligence",
-  "/portfolio/macromascot-v2",
-  "/portfolio-v2",
-  "/portfolio-v3",
-  "/portfolio-v4",
+  "/portfolio/packassist",
+  "/portfolio/meatery",
+  "/portfolio/avl-copilot",
 ];
 
 export interface HeaderProps extends Omit<BoxProps, "children"> {}

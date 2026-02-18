@@ -48,6 +48,8 @@ import NextLink from "next/link";
 import { Em } from "components/typography";
 import { Features } from "components/features";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { AnimatedMeshBackground } from "components/gradients/animated-mesh-background";
+import { FloatingUICards } from "components/hero/floating-ui-cards";
 import { Faq } from "components/faq";
 
 import { ButtonLink } from "components/button-link/button-link";
@@ -288,70 +290,18 @@ const HeroSection: React.FC = () => {
     "/assets/clients/Pensa.webp",
     "/assets/clients/Pensa-white.png"
   );
-  const [currentAnimation, setCurrentAnimation] =
-    useState<LottieAnimationData>(animationData1);
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
 
-  useEffect(() => {
-    // Avoid running the animation toggle timer on small screens
-    if (isSmall) return;
-
-    const interval = setInterval(() => {
-      setCurrentAnimation((prevAnimation) =>
-        prevAnimation === animationData1 ? animationData2 : animationData1,
-      );
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [isSmall]);
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.play().catch((err) => console.error("Video play error:", err));
-  }, []);
-
-  const img =
-    "https://agency.demo.nextjstemplates.com/_next/image?url=%2Fimages%2Fhero%2Fhero-image-01.png&w=1920&q=75";
   return colorMode === "dark" ? (
     <Box
       position="relative"
       overflow="hidden"
       display="grid"
       gridTemplateColumns="1fr"
-      gridTemplateRows="1fr">
+      gridTemplateRows="1fr"
+      minH={{ base: "auto", lg: "90vh" }}>
+      <AnimatedMeshBackground height="100%" zIndex="0" />
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Box
-        gridColumn="1 / -1"
-        gridRow="1 / -1"
-        height="100%"
-        width="100%"
-        display="grid"
-        zIndex="-1"
-        mb={{ base: "0px", lg: "-120px" }}>
-        {!isSmall && (
-          <FallInPlace delay={1}>
-            <video
-              src="/assets/Animation/hero-video.mp4"
-              ref={videoRef}
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              // loading="eager"
-              playsInline={true}
-              preload="none"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                maxWidth: "100%",
-              }}
-            />
-          </FallInPlace>
-        )}
-      </Box>
       <Container
         maxW="container.xl"
         pt={{ base: 20, lg: 20 }}
@@ -519,7 +469,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Pensa.webp"
+                        src={pensaImage}
                         width={100}
                         height={100}
                         alt="Pensa logo"
@@ -595,19 +545,63 @@ const HeroSection: React.FC = () => {
             </VStack>
           </Hero>
           <Box
-            display={{ base: "none", lg: "block" }}
+            display={{ base: "none", lg: "flex" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
+            alignItems="flex-start"
+            justifyContent="center"
+            position="relative">
             <FallInPlace delay={1}>
-              <Box overflow="hidden"></Box>
+              <Box
+                position="relative"
+                w="100%"
+                maxW="420px"
+                py={4}>
+                {/* Background decorative floating elements */}
+                <Box
+                  position="absolute"
+                  top="-10%"
+                  right="-5%"
+                  w="200px"
+                  h="200px"
+                  borderRadius="full"
+                  bgGradient="radial(circle, pearlAqua.400, transparent)"
+                  opacity={0.2}
+                  filter="blur(60px)"
+                  animation="float 8s ease-in-out infinite"
+                  zIndex={0}
+                />
+                <Box
+                  position="absolute"
+                  bottom="-10%"
+                  left="-5%"
+                  w="150px"
+                  h="150px"
+                  borderRadius="full"
+                  bgGradient="radial(circle, teal.400, transparent)"
+                  opacity={0.15}
+                  filter="blur(50px)"
+                  animation="float 10s ease-in-out infinite"
+                  style={{ animationDelay: "3s" }}
+                  zIndex={0}
+                />
+                {/* Floating UI Cards */}
+                <Box position="relative" zIndex={1}>
+                  <FloatingUICards />
+                </Box>
+              </Box>
             </FallInPlace>
           </Box>
         </Stack>
       </Container>
     </Box>
   ) : (
-    <Box position="relative" overflow="hidden">
+    <Box
+      position="relative"
+      overflow="hidden"
+      minH={{ base: "auto", lg: "90vh" }}>
+      <AnimatedMeshBackground height="100%" zIndex="0" />
       <BackgroundGradient height="100%" zIndex="-1" />
       <Container maxW="container.xl" pt={{ base: 20, lg: 20 }}>
         <Stack
@@ -859,21 +853,51 @@ const HeroSection: React.FC = () => {
             </VStack>
           </Hero>
           <Box
-            display={{ base: "none", lg: "block" }}
+            display={{ base: "none", lg: "flex" }}
             mt={{ base: "20", lg: "20" }}
             mr={{ base: 0, lg: 0 }}
-            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}>
+            w={{ base: "100%", md: "100%", lg: "50%", xl: "50%" }}
+            alignItems="flex-start"
+            justifyContent="center"
+            position="relative">
             <FallInPlace delay={1}>
-              <Box overflow="hidden">
-                <Player
-                  autoplay
-                  loop
-                  src={currentAnimation} // Toggle between animations
-                  style={{
-                    height: "70%",
-                    width: "70%",
-                  }}
+              <Box
+                position="relative"
+                w="100%"
+                maxW="420px"
+                py={4}>
+                {/* Background decorative floating elements */}
+                <Box
+                  position="absolute"
+                  top="-10%"
+                  right="-5%"
+                  w="200px"
+                  h="200px"
+                  borderRadius="full"
+                  bgGradient="radial(circle, teal.300, transparent)"
+                  opacity={0.25}
+                  filter="blur(60px)"
+                  animation="float 8s ease-in-out infinite"
+                  zIndex={0}
                 />
+                <Box
+                  position="absolute"
+                  bottom="-10%"
+                  left="-5%"
+                  w="150px"
+                  h="150px"
+                  borderRadius="full"
+                  bgGradient="radial(circle, pearlAqua.300, transparent)"
+                  opacity={0.2}
+                  filter="blur(50px)"
+                  animation="float 10s ease-in-out infinite"
+                  style={{ animationDelay: "3s" }}
+                  zIndex={0}
+                />
+                {/* Floating UI Cards */}
+                <Box position="relative" zIndex={1}>
+                  <FloatingUICards />
+                </Box>
               </Box>
             </FallInPlace>
           </Box>
@@ -1398,11 +1422,11 @@ const Portfolio: React.FC = () => {
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
     {
-      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
       description:
-        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+        "AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+      alt: "AutoSync Intelligence – Multi-Location Automotive Intelligence Platform",
     },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
@@ -1419,11 +1443,11 @@ const Portfolio: React.FC = () => {
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
     {
-      title: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+      title: "AVL-CoPilot – Intelligent Conversational AI Platform",
       description:
-        "Tech Emulsion built Podcast Beacon to let podcasters gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch, and services, and accept payments through the built-in checkout. A secure login and clean admin panel make it simple to manage products, track clicks, and refresh content in seconds. By turning scattered links into a single beacon, the platform boosts listener engagement and converts profile traffic into revenue.",
-      image: "/assets/portfolio/mic.jpg",
-      alt: "Podcast Beacon – Link-in-Bio SaaS Hub for Podcasters",
+        "An advanced AI-powered conversational assistant solution designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions. Built with cutting-edge AI frameworks to deliver 24/7 availability, sub-second response times, and continuous learning capabilities.",
+      image: "/assets/portfolio/New/ai-chatbot-avl-case-study.png",
+      alt: "AVL-CoPilot – Intelligent Conversational AI Platform",
     },
   ];
 
@@ -1517,7 +1541,7 @@ const Portfolio: React.FC = () => {
         </Box>
 
         {/* Image-first masonry grid */}
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%" mt={8}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, md: 6 }} w="100%" mt={8}>
           {HighlightsItems.map((item, index) => {
             const href = item.title.includes("Pack Assist")
               ? "/portfolio/packassist"
@@ -1535,12 +1559,14 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/rackroom"
               : item.title.includes("Podcast Beacon")
               ? "/portfolio/podcastbeacon"
-              : item.title.includes("DADS Sales Reborn")
-              ? "/portfolio/dadssalesreborn"
+              : item.title.includes("AutoSync Intelligence")
+              ? "/portfolio/autosync-intelligence"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
               : item.title.includes("Campaign Management System") || item.title.includes("Campaign")
               ? "/portfolio/campaignos"
+              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
+              ? "/portfolio/avl-copilot"
               : null;
 
             // Determine category based on title
@@ -1548,7 +1574,7 @@ const Portfolio: React.FC = () => {
               ? "Management System"
               : item.title.includes("Macromascot")
               ? "Health App"
-              : item.title.includes("DADS")
+              : item.title.includes("AutoSync")
               ? "Analytics Platform"
               : item.title.includes("Pack Assist")
               ? "AI Chatbot"
@@ -1556,101 +1582,133 @@ const Portfolio: React.FC = () => {
               ? "Voice CRM"
               : item.title.includes("Podcast")
               ? "SaaS Platform"
+              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
+              ? "AI Solution"
               : "Project";
 
             return (
-              <NextLink href={href || "/"} passHref legacyBehavior>
+              <NextLink href={href || "/"} passHref legacyBehavior key={index}>
                 <MotionCard
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
                   as={Link}
-                position="relative"
-                h={{ base: "400px", md: "450px", lg: "500px" }}
-                borderRadius="2xl"
+                  position="relative"
+                  w="100%"
+                  aspectRatio="4/3"
+                borderRadius="md"
                 overflow="hidden"
-                cursor="pointer"
-                bg={cardBg}
-                border="1px solid"
-                borderColor={cardBorder}
-                _hover={{
-                  transform: "translateY(-8px)",
-                  boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.4)`,
-                  "& .project-image": {
-                    transform: "scale(1.05)",
-                    filter: "brightness(1.1) contrast(1)",
-                  },
-                  "& .project-overlay": {
-                    opacity: 0.4,
-                  },
-                }}
+                  cursor="pointer"
+                  bg={cardBg}
+                  border="1px solid"
+                  borderColor={cardBorder}
+                  transition="transform 0.3s ease, box-shadow 0.3s ease"
+                  _hover={{
+                    transform: "translateY(-6px)",
+                    boxShadow:
+                      colorMode === "dark"
+                        ? "0 20px 40px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)"
+                        : "0 20px 40px -12px rgba(0, 0, 0, 0.15)",
+                    "& .project-image": {
+                      transform: "scale(1.06)",
+                    },
+                    "& .project-overlay": {
+                      opacity: 0.85,
+                    },
+                    "& .project-cta": {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                    },
+                  }}
                 >
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  zIndex={0}
-                  className="project-image"
-                  transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                  sx={{
-                    filter: "brightness(0.9) contrast(1)",
-                  }}>
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </Box>
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  bgGradient="linear(to-t, blackAlpha.900, blackAlpha.600, transparent)"
-                  opacity={0.7}
-                  className="project-overlay"
-                  transition="opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                  zIndex={1}
-                />
-                <VStack
-                  position="absolute"
-                  bottom={0}
-                  left={0}
-                  right={0}
-                  p={6}
-                  zIndex={2}
-                  align="flex-start"
-                  spacing={3}>
-                  <Badge
-                    color="white"
-                    px={4}
-                    py={1.5}
-                    borderRadius="full"
-                    fontSize="xs"
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    letterSpacing="0.5px"
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    zIndex={0}
+                    className="project-image"
+                    transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                     sx={{
-                      background: "linear-gradient(135deg, rgba(128, 237, 255, 0.25), rgba(20, 184, 166, 0.25))",
-                      backdropFilter: "blur(12px)",
-                      WebkitBackdropFilter: "blur(12px)",
-                      border: "1px solid rgba(255, 255, 255, 0.3)",
-                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3), 0 0 24px rgba(128, 237, 255, 0.3)",
-                      textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
-                    }}>
-                    {category}
-                  </Badge>
-                  <Heading fontSize="2xl" fontWeight="bold" color="white" textShadow="0 2px 12px rgba(0,0,0,0.5)">
-                    {item.title}
-                  </Heading>
-                </VStack>
-              </MotionCard>
+                      filter: "brightness(0.85) contrast(1.02)",
+                    }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "center" }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </Box>
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    bgGradient="linear(to-t, blackAlpha.950 0%, blackAlpha.700 35%, blackAlpha.400 65%, transparent)"
+                    opacity={0.75}
+                    className="project-overlay"
+                    transition="opacity 0.3s ease"
+                    zIndex={1}
+                  />
+                  <VStack
+                    position="absolute"
+                    bottom={0}
+                    left={0}
+                    right={0}
+                    p={4}
+                    zIndex={2}
+                    align="flex-start"
+                    spacing={2}
+                  >
+                    <Badge
+                      color="white"
+                      px={2.5}
+                      py={1}
+                      borderRadius="full"
+                      fontSize="xs"
+                      fontWeight="bold"
+                      textTransform="uppercase"
+                      letterSpacing="0.05em"
+                      sx={{
+                        background:
+                          "linear-gradient(135deg, rgba(128, 237, 255, 0.2), rgba(20, 184, 166, 0.2))",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        border: "1px solid rgba(255, 255, 255, 0.25)",
+                      }}
+                    >
+                      {category}
+                    </Badge>
+                    <Heading
+                      as="h3"
+                      fontSize={{ base: "sm", md: "md" }}
+                      fontWeight="700"
+                      color="white"
+                      lineHeight="short"
+                      noOfLines={2}
+                      textShadow="0 1px 8px rgba(0,0,0,0.6)"
+                    >
+                      {item.title}
+                    </Heading>
+                    <HStack
+                      className="project-cta"
+                      opacity={0}
+                      transform="translateY(6px)"
+                      transition="opacity 0.25s ease, transform 0.25s ease"
+                      spacing={1}
+                      color="pearlAqua.200"
+                      fontSize="xs"
+                      fontWeight="600"
+                    >
+                      <Text as="span">View case study</Text>
+                      <Icon as={FiArrowUpRight} boxSize={3} />
+                    </HStack>
+                  </VStack>
+                </MotionCard>
               </NextLink>
             );
           })}
@@ -1755,6 +1813,7 @@ const SocialProofSection: React.FC = () => {
                 width: "110px",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1773,6 +1832,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1785,12 +1845,12 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                // filter: "invert(1) brightness(2) contrast(1.2)",
                 height: "cover",
                 maxHeight: "80px",
                 width: "100px",
                 cursor: "pointer",
                 marginTop: "11px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1808,6 +1868,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1825,6 +1886,7 @@ const SocialProofSection: React.FC = () => {
                 width: "180px",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1842,6 +1904,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1858,6 +1921,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                // Keep original colors, no filter
               }}
             />
           </Tooltip>
@@ -1874,6 +1938,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "50px",
                 cursor: "pointer",
+                // Keep original colors, no filter
               }}
             />
           </Tooltip>
@@ -1890,6 +1955,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "30px",
                 width: "auto",
                 cursor: "pointer",
+                // Already white, no filter needed
               }}
             />
           </Tooltip>
@@ -1907,6 +1973,7 @@ const SocialProofSection: React.FC = () => {
                 width: "120px",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1923,6 +1990,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1941,6 +2009,7 @@ const SocialProofSection: React.FC = () => {
                 height: "120px",
                 cursor: "pointer",
                 marginTop: "5px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1959,6 +2028,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1975,6 +2045,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "120px",
                 width: "120",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -1991,6 +2062,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2024,6 +2096,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "130px",
                 cursor: "pointer",
+                // Already white, no filter needed
               }}
             />
           </Tooltip>
@@ -2040,6 +2113,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "60px",
                 width: "90px",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2056,6 +2130,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2078,31 +2153,70 @@ const SocialProofSection: React.FC = () => {
             />
           </Tooltip>
           <Tooltip label="Bipcards" hasArrow>
-            <Box cursor="pointer">
+            <Box cursor="pointer" filter="brightness(0) invert(1)">
               <Logo2 />
             </Box>
           </Tooltip>
         </Box>
+        {/* Duplicate logos for seamless infinite scroll */}
         <Box
           display="flex"
           width={{ base: "100%", lg: "50%" }}
           justifyContent="space-around"
           alignItems="center"
           animation={`${scrollAnimation} 75s infinite linear`}>
-          <Tooltip label="Sprintzeal" hasArrow>
+          <Tooltip label="Teadit" hasArrow>
             <Image
-              src="/assets/clients/Sprintzeal_Logo.webp"
-              alt="Sprintzeal"
-              width={80}
-              height={80}
+              src="/assets/clients/teadit.png"
+              alt="teadit"
+              width={160}
+              height={60}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
-                width: "auto",
+                maxHeight: "60px",
+                width: "110px",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Artis" hasArrow>
+            <Image
+              src="/assets/clients/Artis-lab.png"
+              alt="Artis"
+              width={100}
+              height={100}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain",
+                maxHeight: "100px",
+                maxWidth: "100px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+                filter: "brightness(0) invert(1)",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Sonara" hasArrow>
+            <Image
+              src="/assets/clients/sonara.svg"
+              alt="Sonara"
+              width={100}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "cover",
+                maxHeight: "80px",
+                width: "100px",
+                cursor: "pointer",
+                marginTop: "11px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2120,97 +2234,46 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
-          <Tooltip label="Bubble" hasArrow>
+          <Tooltip label="Nearshore" hasArrow>
             <Image
-              src="/assets/clients/Bubble.io.png"
-              alt="Bubble"
-              width={120}
-              height={130}
+              src="/assets/clients/nearshore.png"
+              alt="Pensa"
+              width={140}
+              height={180}
               loading="eager"
               decoding="async"
               style={{
-                // filter: "invert(1) brightness(2) contrast(1.2)",
-                height: "cover",
-                maxHeight: "110px",
-                width: "120",
+                height: "contain",
+                maxHeight: "140px",
+                width: "180px",
                 cursor: "pointer",
-                marginTop: "5px",
+                marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
-          <Tooltip label="Teadit" hasArrow>
+          <Tooltip label="Sprintzeal" hasArrow>
             <Image
-              src="/assets/clients/teadit.png"
-              alt="teadit"
-              width={130}
-              height={80}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "80px",
-                width: "130px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Artis" hasArrow>
-            <Image
-              src="/assets/clients/Artis-lab.png"
-              alt="Artis"
-              width={100}
-              height={100}
-              loading="eager"
-              decoding="async"
-              style={{
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "100px",
-                maxWidth: "100px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Moodtube Extension" hasArrow>
-            <Image
-              src="/assets/clients/moodtube_img.png"
-              alt="Republic Power"
+              src="/assets/clients/Sprintzeal_Logo.webp"
+              alt="Sprintzeal"
               width={80}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "80px",
-                maxWidth: "80px",
-                // width: "auto",
-                // height: "auto",
+                maxHeight: "50px",
+                width: "auto",
                 cursor: "pointer",
+                marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
-          <Tooltip label="Atarim" hasArrow>
-            <Image
-              src="/assets/clients/atarim-white.svg"
-              alt="Atarim"
-              width={150}
-              height={60}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "60px",
-                width: "150px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-
           <Tooltip label="Bai" hasArrow>
             <Image
               src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
@@ -2224,6 +2287,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
+                // Keep original colors, no filter
               }}
             />
           </Tooltip>
@@ -2240,6 +2304,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "50px",
                 cursor: "pointer",
+                // Keep original colors, no filter
               }}
             />
           </Tooltip>
@@ -2247,31 +2312,16 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/farmin-white.png"
               alt="Farmin"
-              width={120}
-              height={120}
-              loading="eager"
-              decoding="async"
-              style={{
-                height: "fit-content",
-                maxHeight: "120px",
-                width: "120px",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Ibatu" hasArrow>
-            <Image
-              src="/assets/clients/ibatu.png"
-              alt="Ibatu"
               width={80}
               height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "50px",
+                maxHeight: "30px",
                 width: "auto",
                 cursor: "pointer",
+                // Already white, no filter needed
               }}
             />
           </Tooltip>
@@ -2289,6 +2339,24 @@ const SocialProofSection: React.FC = () => {
                 width: "120px",
                 cursor: "pointer",
                 marginTop: "10px",
+                filter: "brightness(0) invert(1)",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Ibatu" hasArrow>
+            <Image
+              src="/assets/clients/ibatu.png"
+              alt="Ibatu"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "50px",
+                width: "auto",
+                cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2296,20 +2364,21 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/krypto-labs.png"
               alt="Krypto Labs"
-              width={180} // Increased width
-              height={100} // Increased height
+              width={180}
+              height={120}
               loading="eager"
               decoding="async"
               style={{
                 display: "block",
-                objectFit: "cover", // Keeps proportions correct
-                width: "180px", // Ensures it expands properly
-                height: "100px",
+                objectFit: "cover",
+                width: "180px",
+                height: "120px",
                 cursor: "pointer",
+                marginTop: "5px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
-
           <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
               src="/assets/clients/Podcast-Beacon.png"
@@ -2319,16 +2388,33 @@ const SocialProofSection: React.FC = () => {
               loading="eager"
               decoding="async"
               style={{
-                objectFit: "contain", // Ensures proper aspect ratio
+                objectFit: "contain",
                 maxHeight: "150px",
                 maxWidth: "150px",
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
-
+          <Tooltip label="Pensa" hasArrow>
+            <Image
+              src="/assets/clients/Pensa.webp"
+              alt="Pensa"
+              width={120}
+              height={120}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "cover",
+                maxHeight: "120px",
+                width: "120",
+                cursor: "pointer",
+                filter: "brightness(0) invert(1)",
+              }}
+            />
+          </Tooltip>
           <Tooltip label="Logo Black" hasArrow>
             <Image
               src="/assets/clients/logo-black-small.png"
@@ -2342,6 +2428,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2358,6 +2445,24 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
+                marginTop: "5px",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Atarim" hasArrow>
+            <Image
+              src="/assets/clients/atarim-white.svg"
+              alt="Atarim"
+              width={130}
+              height={40}
+              loading="eager"
+              decoding="async"
+              style={{
+                height: "fit-content",
+                maxHeight: "40px",
+                width: "130px",
+                cursor: "pointer",
+                // Already white, no filter needed
               }}
             />
           </Tooltip>
@@ -2374,6 +2479,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "60px",
                 width: "90px",
                 cursor: "pointer",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
@@ -2381,21 +2487,39 @@ const SocialProofSection: React.FC = () => {
             <Image
               src="/assets/clients/alifa.PNG"
               alt="Republic Power"
-              width={120}
-              height={120}
+              width={80}
+              height={80}
               loading="eager"
               decoding="async"
               style={{
                 height: "fit-content",
-                maxHeight: "120px",
-                width: "120px",
+                maxHeight: "50px",
+                width: "auto",
                 cursor: "pointer",
-                marginTop: "10px",
+                filter: "brightness(0) invert(1)",
               }}
             />
           </Tooltip>
-          <Tooltip label="Bipcards">
-            <Box cursor="pointer">
+          <Tooltip label="Moodtube Extension" hasArrow>
+            <Image
+              src="/assets/clients/moodtube_img.png"
+              alt="Republic Power"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              style={{
+                objectFit: "contain",
+                maxHeight: "80px",
+                maxWidth: "80px",
+                width: "auto",
+                height: "auto",
+                cursor: "pointer",
+              }}
+            />
+          </Tooltip>
+          <Tooltip label="Bipcards" hasArrow>
+            <Box cursor="pointer" filter="brightness(0) invert(1)">
               <Logo2 />
             </Box>
           </Tooltip>

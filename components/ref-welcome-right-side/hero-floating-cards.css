@@ -1,0 +1,58 @@
+/*
+ * hero-floating-cards.css
+ * 
+ * Required CSS for the HeroFloatingCards component.
+ * Add this to your global stylesheet or import it directly:
+ *   @import './components/hero-floating-cards.css';
+ * 
+ * NOTE: These use prefixed class names (hero-*) to avoid
+ * conflicts with your existing CSS.
+ */
+
+/* ── Keyframes ── */
+
+@keyframes heroFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  @keyframes heroFloatDelayed {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes heroGlowPulse {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  /* ── Animation Classes ── */
+  
+  /* Primary float — 4s cycle, ±12px vertical travel */
+  .hero-float {
+    animation: heroFloat 4s ease-in-out infinite;
+  }
+  /* Delayed float — 3.5s cycle, ±8px travel, 0.5s delay (creates offset rhythm) */
+  .hero-float-delayed {
+    animation: heroFloatDelayed 3.5s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+  /* Slow float — 5s cycle, ±12px travel, 1s delay (slowest, most relaxed) */
+  .hero-float-slow {
+    animation: heroFloat 5s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+  /* Glow pulse — background orb breathing effect */
+  .hero-glow-pulse {
+    animation: heroGlowPulse 3s ease-in-out infinite;
+  }
+  

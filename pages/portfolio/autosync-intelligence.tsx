@@ -564,10 +564,10 @@ const CaseStudyAutoSyncIntelligence = () => {
             <Box
               mt={8}
               p={6}
-              bg={useColorModeValue("red.50", "red.900")}
+              bg={useColorModeValue("teal.50", "teal.900")}
               borderRadius="xl"
               borderLeft="4px solid"
-              borderColor="red.500"
+              borderColor="teal.500"
               maxW="3xl"
               w="full">
               <Text

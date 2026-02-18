@@ -59,11 +59,11 @@ const Services = () => {
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
     {
-      title: "DADS Sales Reborn – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
       description:
-        "DADS Sales Reborn is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, with AI-driven automation planned as a second phase.",
+        "AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, with AI-driven automation planned as a second phase.",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "DADS Sales Reborn – Multi-Location Automotive Intelligence Platform",
+      alt: "AutoSync Intelligence – Multi-Location Automotive Intelligence Platform",
     },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
@@ -366,8 +366,8 @@ const Services = () => {
               ? "/portfolio/rackroom"
               : item.title.includes("Podcast Beacon")
               ? "/portfolio/podcastbeacon"
-              : item.title.includes("DADS Sales Reborn")
-              ? "/portfolio/dadssalesreborn"
+              : item.title.includes("AutoSync Intelligence")
+              ? "/portfolio/autosync-intelligence"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
               : item.title.includes("Campaign Management System") || item.title.includes("Campaign")

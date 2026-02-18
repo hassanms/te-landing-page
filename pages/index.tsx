@@ -70,7 +70,6 @@ import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
-import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import { BiLogoUpwork } from "react-icons/bi";
 import OutsourceIcon from "components/icons/Outsource";
@@ -1737,7 +1736,7 @@ const SocialProofSection: React.FC = () => {
       color="white"
       textAlign="center"
       height={[null, null, null]}
-      mb="200">
+      mb="20">
       <Box
         position={"relative"}
         display="flex"
@@ -2525,19 +2524,6 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
         </Box>
       </Box>
-      {/* added a margin of -10 */}
-      <Container maxW="container.xl" pb="5" pt="0" mb="20" mt="-10">
-        <Box
-          position={"relative"}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          gap="4">
-          {/* Absolute Subscrite newletter with imput and subscribe button  */}
-          <NewsLetter />
-        </Box>
-      </Container>
     </Box>
   );
 };
@@ -2703,12 +2689,11 @@ const TestimonialsSection: React.FC = () => {
   return (
     <Box
       id="testimonials"
-      py="20"
+      py="10"
       color="white"
       textAlign="center"
       height={[null, null, null]}>
       <Container maxW="container.xl" py="5" mb="5">
-        <Divider />
         <Box
           display="flex"
           flexDirection={"column"}
@@ -2719,7 +2704,7 @@ const TestimonialsSection: React.FC = () => {
             // add transition upo changing the testimonial
             transition: "all 0.5s ease",
           }}
-          mt={10}
+          mt={0}
           w={"95%"}
           marginLeft={"20px"}>
           <Box mb={5} maxW={"60%"}>

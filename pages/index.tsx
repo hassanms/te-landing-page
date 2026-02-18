@@ -469,7 +469,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Pensa.webp"
+                        src={pensaImage}
                         width={100}
                         height={100}
                         alt="Pensa logo"

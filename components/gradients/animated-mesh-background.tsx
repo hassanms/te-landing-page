@@ -1,5 +1,5 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { Box, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 interface Blob {
   x: number;
@@ -15,12 +15,18 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [blobs, setBlobs] = useState<Blob[]>([]);
   const animationFrameRef = useRef<number>();
+  const lastUpdateTimeRef = useRef<number>(0);
+  const mouseThrottleRef = useRef<number>(0);
 
   const isDark = useColorModeValue(false, true);
+  
+  // Check for reduced motion preference
+  const [prefersReducedMotion] = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const shouldAnimate = !prefersReducedMotion;
 
-  // Initialize blobs
+  // Initialize blobs - reduced from 4 to 3 for better performance
   useEffect(() => {
-    const initialBlobs: Blob[] = Array.from({ length: 4 }, (_, i) => ({
+    const initialBlobs: Blob[] = Array.from({ length: 3 }, (_, i) => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
       targetX: Math.random() * 100,
@@ -33,8 +39,16 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
   }, []);
 
   // Mouse tracking - track mouse on the entire window for better interaction
+  // Throttled to reduce update frequency
   useEffect(() => {
+    if (!shouldAnimate) return;
+
     const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      // Throttle mouse updates to every 16ms (~60fps)
+      if (now - mouseThrottleRef.current < 16) return;
+      mouseThrottleRef.current = now;
+
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       // Calculate mouse position relative to container
@@ -49,7 +63,7 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
     };
 
     // Track mouse on window for better coverage
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     
     // Initialize mouse position to center
     if (containerRef.current) {
@@ -60,13 +74,21 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [shouldAnimate]);
 
-  // Animate blobs
+  // Animate blobs - throttled and with reduced motion support
   useEffect(() => {
-    if (blobs.length === 0) return;
+    if (blobs.length === 0 || !shouldAnimate) return;
 
-    const animate = () => {
+    const animate = (timestamp: number) => {
+      // Throttle animation updates to ~30fps instead of 60fps for better performance
+      const elapsed = timestamp - lastUpdateTimeRef.current;
+      if (elapsed < 33) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastUpdateTimeRef.current = timestamp;
+
       setBlobs((prevBlobs) =>
         prevBlobs.map((blob, index) => {
           const updatedBlob = { ...blob };
@@ -77,8 +99,8 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
             updatedBlob.targetX = mousePosition.x;
             updatedBlob.targetY = mousePosition.y;
           } else {
-            // Other blobs have autonomous movement
-            if (Math.random() < 0.005) {
+            // Other blobs have autonomous movement - reduced frequency
+            if (Math.random() < 0.003) {
               updatedBlob.targetX = Math.random() * 100;
               updatedBlob.targetY = Math.random() * 100;
             }
@@ -101,29 +123,31 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [blobs.length, mousePosition]);
+  }, [blobs.length, mousePosition, shouldAnimate]);
 
-  // Color gradients based on theme
-  const colors = isDark
-    ? [
-        "rgba(20, 184, 166, 0.4)", // teal-500
-        "rgba(95, 201, 188, 0.3)", // pearlAqua-500
-        "rgba(0, 53, 48, 0.5)", // evergreen-500
-        "rgba(146, 201, 177, 0.3)", // mutedTeal-400
-      ]
-    : [
-        "rgba(20, 184, 166, 0.25)", // teal-500
-        "rgba(95, 201, 188, 0.2)", // pearlAqua-500
-        "rgba(0, 53, 48, 0.15)", // evergreen-500
-        "rgba(146, 201, 177, 0.2)", // mutedTeal-400
-      ];
+  // Color gradients based on theme - memoized for performance
+  const colors = useMemo(
+    () =>
+      isDark
+        ? [
+            "rgba(20, 184, 166, 0.4)", // teal-500
+            "rgba(95, 201, 188, 0.3)", // pearlAqua-500
+            "rgba(0, 53, 48, 0.5)", // evergreen-500
+          ]
+        : [
+            "rgba(20, 184, 166, 0.25)", // teal-500
+            "rgba(95, 201, 188, 0.2)", // pearlAqua-500
+            "rgba(0, 53, 48, 0.15)", // evergreen-500
+          ],
+    [isDark]
+  );
 
   return (
     <Box
@@ -139,7 +163,7 @@ export const AnimatedMeshBackground = ({ ...props }: any) => {
       {...props}
     >
       {/* Animated gradient blobs */}
-      {blobs.map((blob, index) => (
+      {shouldAnimate && blobs.map((blob, index) => (
         <Box
           key={index}
           position="absolute"

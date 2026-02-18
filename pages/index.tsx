@@ -48,8 +48,6 @@ import NextLink from "next/link";
 import { Em } from "components/typography";
 import { Features } from "components/features";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import { AnimatedMeshBackground } from "components/gradients/animated-mesh-background";
-import { FloatingUICards } from "components/hero/floating-ui-cards";
 import { Faq } from "components/faq";
 
 import { ButtonLink } from "components/button-link/button-link";
@@ -70,7 +68,6 @@ import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
 import EffectiveCommunication from "components/icons/EffectiveCommunication";
 import OwnerShipd from "components/icons/OwnerShipd";
-import NewsLetter from "components/NewsLetter";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import { BiLogoUpwork } from "react-icons/bi";
 import OutsourceIcon from "components/icons/Outsource";
@@ -89,6 +86,20 @@ import Script from "next/script";
 const Player = dynamic(
   () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
   { ssr: false },
+);
+
+// Dynamic imports for heavy components
+const AnimatedMeshBackground = dynamic(
+  () => import("components/gradients/animated-mesh-background").then((mod) => mod.AnimatedMeshBackground),
+  { ssr: false }
+);
+
+const FloatingUICards = dynamic(
+  () => import("components/hero/floating-ui-cards").then((mod) => mod.FloatingUICards),
+  { 
+    ssr: false,
+    loading: () => <Box h="520px" w="100%" /> // Placeholder to prevent layout shift
+  }
 );
 
 const MotionBox = motion(Box);
@@ -698,7 +709,7 @@ const HeroSection: React.FC = () => {
                       width={110}
                       height={100}
                       alt="bubble logo"
-                      loading="eager"
+                      priority={true}
                       style={{
                         objectFit: "contain",
                         marginBottom: "8px",
@@ -709,7 +720,7 @@ const HeroSection: React.FC = () => {
                       width={100}
                       height={100}
                       alt="Pensa logo"
-                      loading="eager"
+                      priority={true}
                       style={{
                         objectFit: "contain",
                         marginBottom: "2px",
@@ -720,7 +731,7 @@ const HeroSection: React.FC = () => {
                       width={100}
                       height={100}
                       alt="Atarim logo"
-                      loading="eager"
+                      priority={true}
                       style={{
                         objectFit: "contain",
                       }}
@@ -730,7 +741,7 @@ const HeroSection: React.FC = () => {
                       width={140}
                       height={100}
                       alt="Nearshore logo"
-                      loading="eager"
+                      priority={true}
                       style={{
                         filter: "invert(1) brightness(2) contrast(1.2)",
                         objectFit: "contain",
@@ -762,7 +773,7 @@ const HeroSection: React.FC = () => {
                         width={110}
                         height={100}
                         alt="bubble logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           objectFit: "contain",
                           marginBottom: "8px",
@@ -773,7 +784,7 @@ const HeroSection: React.FC = () => {
                         width={100}
                         height={100}
                         alt="Pensa logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           objectFit: "contain",
                           marginBottom: "2px",
@@ -784,7 +795,7 @@ const HeroSection: React.FC = () => {
                         width={100}
                         height={100}
                         alt="Atarim logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           objectFit: "contain",
                         }}
@@ -794,7 +805,7 @@ const HeroSection: React.FC = () => {
                         width={140}
                         height={100}
                         alt="Nearshore logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           filter: "invert(1) brightness(2) contrast(1.2)",
                           objectFit: "contain",
@@ -807,7 +818,7 @@ const HeroSection: React.FC = () => {
                         width={110}
                         height={100}
                         alt="bubble logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           objectFit: "contain",
                           marginBottom: "8px",
@@ -818,7 +829,7 @@ const HeroSection: React.FC = () => {
                         width={100}
                         height={100}
                         alt="Pensa logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           objectFit: "contain",
                           marginBottom: "2px",
@@ -829,7 +840,7 @@ const HeroSection: React.FC = () => {
                         width={100}
                         height={100}
                         alt="Atarim logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           objectFit: "contain",
                         }}
@@ -839,7 +850,7 @@ const HeroSection: React.FC = () => {
                         width={140}
                         height={100}
                         alt="Nearshore logo"
-                        loading="eager"
+                        loading="lazy"
                         style={{
                           filter: "invert(1) brightness(2) contrast(1.2)",
                           objectFit: "contain",
@@ -1638,6 +1649,7 @@ const Portfolio: React.FC = () => {
                       src={item.image}
                       alt={item.alt}
                       fill
+                      loading="lazy"
                       style={{ objectFit: "cover", objectPosition: "center" }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
@@ -1737,7 +1749,7 @@ const SocialProofSection: React.FC = () => {
       color="white"
       textAlign="center"
       height={[null, null, null]}
-      mb="200">
+      mb="20">
       <Box
         position={"relative"}
         display="flex"
@@ -1805,7 +1817,7 @@ const SocialProofSection: React.FC = () => {
               alt="teadit"
               width={160}
               height={60}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1823,7 +1835,7 @@ const SocialProofSection: React.FC = () => {
               alt="Artis"
               width={100}
               height={100}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
@@ -1842,7 +1854,7 @@ const SocialProofSection: React.FC = () => {
               alt="Sonara"
               width={100}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "cover",
@@ -1860,7 +1872,7 @@ const SocialProofSection: React.FC = () => {
               alt="POPCARD"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1878,7 +1890,7 @@ const SocialProofSection: React.FC = () => {
               alt="Pensa"
               width={140}
               height={180}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "contain",
@@ -1896,7 +1908,7 @@ const SocialProofSection: React.FC = () => {
               alt="Sprintzeal"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1914,7 +1926,7 @@ const SocialProofSection: React.FC = () => {
               alt="Bai"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1931,7 +1943,7 @@ const SocialProofSection: React.FC = () => {
               alt="Crystal Ball"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1948,7 +1960,7 @@ const SocialProofSection: React.FC = () => {
               alt="Farmin"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1965,7 +1977,7 @@ const SocialProofSection: React.FC = () => {
               alt="Jarvis"
               width={120}
               height={120}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -1983,7 +1995,7 @@ const SocialProofSection: React.FC = () => {
               alt="Ibatu"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2000,7 +2012,7 @@ const SocialProofSection: React.FC = () => {
               alt="Krypto Labs"
               width={180} // Increased width
               height={120} // Increased height
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 display: "block",
@@ -2019,7 +2031,7 @@ const SocialProofSection: React.FC = () => {
               alt="Podcast-Beacon"
               width={150}
               height={150}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
@@ -2038,7 +2050,7 @@ const SocialProofSection: React.FC = () => {
               alt="Pensa"
               width={120}
               height={120}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "cover",
@@ -2055,7 +2067,7 @@ const SocialProofSection: React.FC = () => {
               alt="Logo Black"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2072,7 +2084,7 @@ const SocialProofSection: React.FC = () => {
               alt="Logo Black"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2089,7 +2101,7 @@ const SocialProofSection: React.FC = () => {
               alt="Atarim"
               width={130}
               height={40}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2106,7 +2118,7 @@ const SocialProofSection: React.FC = () => {
               alt="Republic Power"
               width={200}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2123,7 +2135,7 @@ const SocialProofSection: React.FC = () => {
               alt="Republic Power"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2140,7 +2152,7 @@ const SocialProofSection: React.FC = () => {
               alt="Republic Power"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 objectFit: "contain", // Ensures proper aspect ratio
@@ -2171,7 +2183,7 @@ const SocialProofSection: React.FC = () => {
               alt="teadit"
               width={160}
               height={60}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2189,7 +2201,7 @@ const SocialProofSection: React.FC = () => {
               alt="Artis"
               width={100}
               height={100}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 objectFit: "contain",
@@ -2208,7 +2220,7 @@ const SocialProofSection: React.FC = () => {
               alt="Sonara"
               width={100}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "cover",
@@ -2226,7 +2238,7 @@ const SocialProofSection: React.FC = () => {
               alt="POPCARD"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2244,7 +2256,7 @@ const SocialProofSection: React.FC = () => {
               alt="Pensa"
               width={140}
               height={180}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "contain",
@@ -2262,7 +2274,7 @@ const SocialProofSection: React.FC = () => {
               alt="Sprintzeal"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2280,7 +2292,7 @@ const SocialProofSection: React.FC = () => {
               alt="Bai"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2297,7 +2309,7 @@ const SocialProofSection: React.FC = () => {
               alt="Crystal Ball"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2314,7 +2326,7 @@ const SocialProofSection: React.FC = () => {
               alt="Farmin"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2331,7 +2343,7 @@ const SocialProofSection: React.FC = () => {
               alt="Jarvis"
               width={120}
               height={120}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2349,7 +2361,7 @@ const SocialProofSection: React.FC = () => {
               alt="Ibatu"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2366,7 +2378,7 @@ const SocialProofSection: React.FC = () => {
               alt="Krypto Labs"
               width={180}
               height={120}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 display: "block",
@@ -2385,7 +2397,7 @@ const SocialProofSection: React.FC = () => {
               alt="Podcast-Beacon"
               width={150}
               height={150}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 objectFit: "contain",
@@ -2404,7 +2416,7 @@ const SocialProofSection: React.FC = () => {
               alt="Pensa"
               width={120}
               height={120}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "cover",
@@ -2421,7 +2433,7 @@ const SocialProofSection: React.FC = () => {
               alt="Logo Black"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2438,7 +2450,7 @@ const SocialProofSection: React.FC = () => {
               alt="Logo Black"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2455,7 +2467,7 @@ const SocialProofSection: React.FC = () => {
               alt="Atarim"
               width={130}
               height={40}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2472,7 +2484,7 @@ const SocialProofSection: React.FC = () => {
               alt="Republic Power"
               width={200}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2489,7 +2501,7 @@ const SocialProofSection: React.FC = () => {
               alt="Republic Power"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 height: "fit-content",
@@ -2506,7 +2518,7 @@ const SocialProofSection: React.FC = () => {
               alt="Republic Power"
               width={80}
               height={80}
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 objectFit: "contain",
@@ -2525,19 +2537,6 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
         </Box>
       </Box>
-      {/* added a margin of -10 */}
-      <Container maxW="container.xl" pb="5" pt="0" mb="20" mt="-10">
-        <Box
-          position={"relative"}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          gap="4">
-          {/* Absolute Subscrite newletter with imput and subscribe button  */}
-          <NewsLetter />
-        </Box>
-      </Container>
     </Box>
   );
 };
@@ -2703,12 +2702,11 @@ const TestimonialsSection: React.FC = () => {
   return (
     <Box
       id="testimonials"
-      py="20"
+      py="10"
       color="white"
       textAlign="center"
       height={[null, null, null]}>
       <Container maxW="container.xl" py="5" mb="5">
-        <Divider />
         <Box
           display="flex"
           flexDirection={"column"}
@@ -2719,7 +2717,7 @@ const TestimonialsSection: React.FC = () => {
             // add transition upo changing the testimonial
             transition: "all 0.5s ease",
           }}
-          mt={10}
+          mt={0}
           w={"95%"}
           marginLeft={"20px"}>
           <Box mb={5} maxW={"60%"}>

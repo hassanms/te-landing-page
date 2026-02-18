@@ -501,10 +501,12 @@ const PortfolioV3 = () => {
                       src={project.image}
                       alt={project.alt}
                       fill
+                      loading="lazy"
                       style={{
                         objectFit: "cover",
                         objectPosition: "right",
                       }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </Box>
 

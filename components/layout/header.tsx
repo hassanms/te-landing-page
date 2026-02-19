@@ -22,6 +22,7 @@ const HERO_DARK_NAVBAR_PATHS = [
   "/portfolio/packassist",
   "/portfolio/meatery",
   "/portfolio/avl-copilot",
+  "/portfolio/avl-copilot-v3",
 ];
 
 export interface HeaderProps extends Omit<BoxProps, "children"> {}

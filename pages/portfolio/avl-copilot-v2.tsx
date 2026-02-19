@@ -493,7 +493,7 @@ const CaseStudyAVLCoPilotV2 = () => {
           pointerEvents="none"
         />
         <Container maxW="6xl" position="relative" zIndex={1}>
-          <VStack align="start" spacing={10} maxW="4xl">
+          <VStack align="start" spacing={12} w="full">
             <Heading
               as="h2"
               fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -503,19 +503,89 @@ const CaseStudyAVLCoPilotV2 = () => {
               lineHeight="1.1">
               The Solution: AVL Support AI
             </Heading>
-            <VStack align="start" spacing={6}>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                <Text as="span" fontWeight="semibold" color={headingColor}>Intelligent Intent Routing:</Text> We implemented a hybrid intent classification layer using local BERT models combined with GPT reasoning. Instead of responding generically, the system detects the context of the request and routes it into specialized workflows such as troubleshooting diagnostics, manual deep-search mode, firmware and driver support, and educational explanation mode. This ensures technicians receive structured, context-aware responses rather than probabilistic guesses.
-              </Text>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                <Text as="span" fontWeight="semibold" color={headingColor}>Deep Retrieval-Augmented Generation:</Text> We built a dynamic RAG engine powered by Pinecone and OpenAI embeddings. Technical manuals are semantically indexed, allowing fast retrieval of exact sections from complex PDFs, structured synthesis instead of surface-level answers, and confidence scoring to prevent low-certainty outputs. If a manual does not exist in the system, the AI can autonomously locate, download, index, and use it in real time. This prevents knowledge gaps and eliminates outdated responses.
-              </Text>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                <Text as="span" fontWeight="semibold" color={headingColor}>Visual Equipment Intelligence:</Text> AVL is physical. Technicians work with racks, cables, consoles, and lighting fixtures. We integrated multimodal reasoning so users can upload images of equipment setups. The AI can identify specific models, detect visible cabling errors, assess device state, and generate structured inventory outputs. This bridges digital AI intelligence with real-world field environments.
-              </Text>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                <Text as="span" fontWeight="semibold" color={headingColor}>Real-Time Web Validation:</Text> When internal data is insufficient, a controlled search agent retrieves live firmware versions, manufacturer bulletins, and verified sources. This prevents stale knowledge and keeps responses current.
-              </Text>
+
+            {/* Main Screen */}
+            <Box w="full" borderRadius="xl" overflow="hidden" boxShadow="xl">
+              <Image
+                src="/assets/portfolio/New/AVL-Copilot/Main Screen.png"
+                alt="AVL Copilot Main Screen"
+                width={1200}
+                height={675}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+              />
+            </Box>
+
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8" mb={4}>
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Intelligent Intent Routing:</Text> We implemented a hybrid intent classification layer using local BERT models combined with GPT reasoning. Instead of responding generically, the system detects the context of the request and routes it into specialized workflows such as troubleshooting diagnostics, manual deep-search mode, firmware and driver support, and educational explanation mode. This ensures technicians receive structured, context-aware responses rather than probabilistic guesses.
+                </Text>
+                <Box borderRadius="xl" overflow="hidden" boxShadow="lg" maxW="3xl">
+                  <Image
+                    src="/assets/portfolio/New/AVL-Copilot/Chat Interface.png"
+                    alt="AVL Copilot Chat Interface"
+                    width={1000}
+                    height={563}
+                    style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  />
+                </Box>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8" mb={4}>
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Deep Retrieval-Augmented Generation:</Text> We built a dynamic RAG engine powered by Pinecone and OpenAI embeddings. Technical manuals are semantically indexed, allowing fast retrieval of exact sections from complex PDFs, structured synthesis instead of surface-level answers, and confidence scoring to prevent low-certainty outputs. If a manual does not exist in the system, the AI can autonomously locate, download, index, and use it in real time. This prevents knowledge gaps and eliminates outdated responses.
+                </Text>
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} maxW="4xl">
+                  <Box borderRadius="xl" overflow="hidden" boxShadow="lg">
+                    <Image
+                      src="/assets/portfolio/New/AVL-Copilot/Streaming Response.png"
+                      alt="AVL Copilot streaming response"
+                      width={600}
+                      height={338}
+                      style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                    />
+                  </Box>
+                  <Box borderRadius="xl" overflow="hidden" boxShadow="lg">
+                    <Image
+                      src="/assets/portfolio/New/AVL-Copilot/Web Search.png"
+                      alt="AVL Copilot PDF manual retrieval"
+                      width={600}
+                      height={338}
+                      style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                    />
+                  </Box>
+                </SimpleGrid>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8" mb={4}>
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Visual Equipment Intelligence:</Text> AVL is physical. Technicians work with racks, cables, consoles, and lighting fixtures. We integrated multimodal reasoning so users can upload images of equipment setups. The AI can identify specific models, detect visible cabling errors, assess device state, and generate structured inventory outputs. This bridges digital AI intelligence with real-world field environments.
+                </Text>
+                <Box borderRadius="xl" overflow="hidden" boxShadow="lg" maxW="3xl">
+                  <Image
+                    src="/assets/portfolio/New/AVL-Copilot/Image Analysis.png"
+                    alt="AVL Copilot multimodal image analysis"
+                    width={1000}
+                    height={563}
+                    style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  />
+                </Box>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8" mb={4}>
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Real-Time Web Validation:</Text> When internal data is insufficient, a controlled search agent retrieves live firmware versions, manufacturer bulletins, and verified sources. This prevents stale knowledge and keeps responses current.
+                </Text>
+                <Box borderRadius="xl" overflow="hidden" boxShadow="lg" maxW="3xl">
+                  <Image
+                    src="/assets/portfolio/New/AVL-Copilot/Live Google Maps Finder.png"
+                    alt="AVL Copilot real-time web search and maps"
+                    width={1000}
+                    height={563}
+                    style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  />
+                </Box>
+              </Box>
             </VStack>
           </VStack>
         </Container>
@@ -562,6 +632,26 @@ const CaseStudyAVLCoPilotV2 = () => {
               <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
                 We implemented a modular microservices architecture built for scalability and resilience. Backend built with FastAPI for async performance, LangGraph for stateful agent orchestration, Supabase for authentication and user state, Pinecone for high-speed semantic search, React frontend with streaming responses and structured rendering, and Dockerized containers deployed on Google Cloud.
               </Text>
+              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full" maxW="4xl">
+                <Box borderRadius="xl" overflow="hidden" boxShadow="lg">
+                  <Image
+                    src="/assets/portfolio/New/AVL-Copilot/Sign In.png"
+                    alt="AVL Copilot Sign In - Supabase authentication"
+                    width={600}
+                    height={400}
+                    style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  />
+                </Box>
+                <Box borderRadius="xl" overflow="hidden" boxShadow="lg">
+                  <Image
+                    src="/assets/portfolio/New/AVL-Copilot/User Profile.png"
+                    alt="AVL Copilot User Profile"
+                    width={600}
+                    height={400}
+                    style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  />
+                </Box>
+              </SimpleGrid>
               <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
                 The orchestration layer allows cyclic reasoning workflows where the AI can plan, execute, verify, and refine responses before presenting them to the user. This dramatically reduces hallucination risk.
               </Text>
@@ -660,6 +750,15 @@ const CaseStudyAVLCoPilotV2 = () => {
               <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
                 Unlike demo AI tools, this system was built for scale. We implemented usage tracking and quota enforcement, token cost monitoring, dual-layer caching to reduce inference overhead, structured logging for observability, and Stripe-powered subscription tiers.
               </Text>
+              <Box borderRadius="xl" overflow="hidden" boxShadow="lg" maxW="md" w="full">
+                <Image
+                  src="/assets/portfolio/New/AVL-Copilot/Total Usage.png"
+                  alt="AVL Copilot usage tracking and quota enforcement"
+                  width={500}
+                  height={350}
+                  style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                />
+              </Box>
               <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
                 The platform can handle thousands of concurrent sessions without performance degradation.
               </Text>

@@ -51,7 +51,7 @@ const CaseStudyAVLCoPilotV3 = () => {
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
   const bgColor = useColorModeValue("white", "charcoal.800");
   const sectionBg = useColorModeValue("gray.50", "charcoal.900");
-  const textColor = useColorModeValue("gray.700", "gray.200");
+  const textColor = useColorModeValue("gray.700", "gray.100");
   const headingColor = useColorModeValue("gray.900", "white");
   const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
   const dividerColor = useColorModeValue("gray.200", "gray.700");
@@ -695,7 +695,7 @@ const CaseStudyAVLCoPilotV3 = () => {
               Architecture Overview
             </Heading>
             <VStack align="start" spacing={6}>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
                 We implemented a modular microservices architecture built for scalability and resilience.
               </Text>
             </VStack>
@@ -741,7 +741,7 @@ const CaseStudyAVLCoPilotV3 = () => {
               Safety & Guardrails
             </Heading>
             <VStack align="start" spacing={6}>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
                 We implemented strict prompt guardrails preventing speculative voltage or load calculations, hazard detection triggers, and confidence thresholds.
               </Text>
             </VStack>
@@ -787,7 +787,7 @@ const CaseStudyAVLCoPilotV3 = () => {
               Production Infrastructure & Cost Control
             </Heading>
             <VStack align="start" spacing={6}>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
                 Usage tracking, token cost monitoring, dual-layer caching, and Stripe-powered subscription tiers.
               </Text>
             </VStack>
@@ -879,7 +879,7 @@ const CaseStudyAVLCoPilotV3 = () => {
                 lineHeight="1.1">
                 Why This Matters
               </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
                 Tech Emulsion delivered a hardened AI infrastructure tailored for a safety-sensitive technical industry.
               </Text>
             </VStack>
@@ -893,7 +893,7 @@ const CaseStudyAVLCoPilotV3 = () => {
                 lineHeight="1.1">
                 What&apos;s Next
               </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
                 Planned roadmap includes offline mode, schematic interpretation, voice interface, and multi-tenant deployments.
               </Text>
             </VStack>

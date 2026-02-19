@@ -78,12 +78,12 @@ const CaseStudyAutoSyncIntelligence = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: AutoSync Intelligence (Premium Design) - Tech Emulsion"
-        description="AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
+        title="Case Study: AutoCar Intelligence (Premium Design) - Tech Emulsion"
+        description="AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/autosync-intelligence"
         portfolioData={{
-          title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+          title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
           description:
             "A centralized operational intelligence platform for multi-location automotive repair businesses. Rebuilt from unreliable prototype into scalable data aggregation system with multi-shop aggregation, hardened sales calculations, aging WIP intelligence, and AI-ready architecture.",
           dateCreated: "2024",
@@ -91,7 +91,7 @@ const CaseStudyAutoSyncIntelligence = () => {
           url: "https://techemulsion.com/portfolio/autosync-intelligence",
           genre: "Data Analytics, Automotive Intelligence, Operational Control System",
           keywords: [
-            "AutoSync Intelligence",
+            "AutoCar Intelligence",
             "automotive intelligence",
             "data aggregation",
             "multi-location business",
@@ -105,7 +105,7 @@ const CaseStudyAutoSyncIntelligence = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "AutoSync Intelligence",
+              name: "AutoCar Intelligence",
               url: "https://techemulsion.com/portfolio/autosync-intelligence",
             },
           ],
@@ -113,17 +113,17 @@ const CaseStudyAutoSyncIntelligence = () => {
         faqData={{
           questions: [
             {
-              question: "What is AutoSync Intelligence?",
+              question: "What is AutoCar Intelligence?",
               answer:
-                "AutoSync Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+                "AutoCar Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
             },
             {
-              question: "What problems does AutoSync Intelligence solve?",
+              question: "What problems does AutoCar Intelligence solve?",
               answer:
                 "The platform addresses fragmented visibility across multiple shops, inaccurate and incomplete data from unreliable APIs, operational risk blind spots, and the lack of automation or intelligence for proactive warnings.",
             },
             {
-              question: "What technologies power AutoSync Intelligence?",
+              question: "What technologies power AutoCar Intelligence?",
               answer:
                 "Frontend: React-based dashboard. Backend: Supabase (PostgreSQL) with Edge Functions. Data Sources: Tekmetric API, with planned Chrome extension ingestion and future integrations.",
             },
@@ -172,7 +172,7 @@ const CaseStudyAutoSyncIntelligence = () => {
           zIndex={0}>
           <Image
             src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-            alt="AutoSync Intelligence"
+            alt="AutoCar Intelligence"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -236,7 +236,7 @@ const CaseStudyAutoSyncIntelligence = () => {
                 sx={{
                   color: "white",
                 }}>
-                AutoSync Intelligence
+                AutoCar Intelligence
               </Text>
             </ButtonGroup>
           </Box>
@@ -264,7 +264,7 @@ const CaseStudyAutoSyncIntelligence = () => {
                 fontWeight="bold"
                 lineHeight="1.1"
                 color="white">
-                AutoSync Intelligence
+                AutoCar Intelligence
               </Heading>
               <Text
                 fontSize={{ base: "xl", md: "2xl" }}
@@ -327,7 +327,7 @@ const CaseStudyAutoSyncIntelligence = () => {
               />
               <Image
                 src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-                alt="AutoSync Intelligence Dashboard"
+                alt="AutoCar Intelligence Dashboard"
                 fill
                 style={{
                   objectFit: "cover",
@@ -432,7 +432,7 @@ const CaseStudyAutoSyncIntelligence = () => {
                   fontSize={{ base: "lg", md: "xl" }}
                   color={useColorModeValue("gray.700", "gray.200")}
                   lineHeight="1.8">
-                  AutoSync Intelligence is a centralized operational intelligence platform
+                  AutoCar Intelligence is a centralized operational intelligence platform
                   built for a multi-location automotive repair business operating across
                   multiple US states. The goal was simple but brutal to execute:{" "}
                   <Text as="span" fontWeight="bold" color="brand.500">

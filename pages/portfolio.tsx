@@ -143,11 +143,11 @@ const PortfolioV3 = () => {
       href: "/portfolio/macromascot",
     },
     {
-      title: "AutoSync Intelligence",
+      title: "AutoCar Intelligence",
       platform: "Enterprise SaaS",
       industry: "Automotive",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "AutoSync Intelligence",
+      alt: "AutoCar Intelligence",
       href: "/portfolio/autosync-intelligence",
     },
     {

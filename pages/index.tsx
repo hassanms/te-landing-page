@@ -1433,11 +1433,11 @@ const Portfolio: React.FC = () => {
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
     {
-      title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
       description:
-        "AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+        "AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "AutoSync Intelligence – Multi-Location Automotive Intelligence Platform",
+      alt: "AutoCar Intelligence – Multi-Location Automotive Intelligence Platform",
     },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
@@ -1570,7 +1570,7 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/rackroom"
               : item.title.includes("Podcast Beacon")
               ? "/portfolio/podcastbeacon"
-              : item.title.includes("AutoSync Intelligence")
+              : item.title.includes("AutoCar Intelligence")
               ? "/portfolio/autosync-intelligence"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
@@ -1584,14 +1584,14 @@ const Portfolio: React.FC = () => {
             const platform =
               item.title.includes("Campaign") ? "SaaS Platform"
               : item.title.includes("Macromascot") ? "Mobile App"
-              : item.title.includes("AutoSync") ? "Enterprise SaaS"
+              : item.title.includes("AutoCar") ? "Enterprise SaaS"
               : item.title.includes("Pack Assist") || item.title.includes("Meatery") || item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
                 ? "AI Solution"
               : "SaaS Platform";
             const industry =
               item.title.includes("Campaign") ? "Advertising"
               : item.title.includes("Macromascot") ? "Healthcare"
-              : item.title.includes("AutoSync") ? "Automotive"
+              : item.title.includes("AutoCar") ? "Automotive"
               : item.title.includes("Pack Assist") ? "Packaging"
               : item.title.includes("Meatery") ? "E-commerce"
               : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co") ? "Enterprise"

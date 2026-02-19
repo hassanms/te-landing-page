@@ -922,7 +922,7 @@ const CaseStudyAVLCoPilotV3 = () => {
                 target="_blank"
                 size="lg"
                 bg="white"
-                color={accentColor}
+                color="teal.500"
                 _hover={{ bg: "whiteAlpha.900" }}
                 rightIcon={<FaChevronRight />}
                 px={8}

@@ -1580,22 +1580,22 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/avl-copilot"
               : null;
 
-            // Determine category based on title
-            const category = item.title.includes("Campaign")
-              ? "Management System"
-              : item.title.includes("Macromascot")
-              ? "Health App"
-              : item.title.includes("AutoSync")
-              ? "Analytics Platform"
-              : item.title.includes("Pack Assist")
-              ? "AI Chatbot"
-              : item.title.includes("Meatery")
-              ? "Voice CRM"
-              : item.title.includes("Podcast")
-              ? "SaaS Platform"
-              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
-              ? "AI Solution"
-              : "Project";
+            // Platform + industry (must match portfolio page)
+            const platform =
+              item.title.includes("Campaign") ? "SaaS Platform"
+              : item.title.includes("Macromascot") ? "Mobile App"
+              : item.title.includes("AutoSync") ? "Enterprise SaaS"
+              : item.title.includes("Pack Assist") || item.title.includes("Meatery") || item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
+                ? "AI Solution"
+              : "SaaS Platform";
+            const industry =
+              item.title.includes("Campaign") ? "Advertising"
+              : item.title.includes("Macromascot") ? "Healthcare"
+              : item.title.includes("AutoSync") ? "Automotive"
+              : item.title.includes("Pack Assist") ? "Packaging"
+              : item.title.includes("Meatery") ? "E-commerce"
+              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co") ? "Enterprise"
+              : "Business";
 
             return (
               <NextLink href={href || "/"} passHref legacyBehavior key={index}>
@@ -1676,25 +1676,6 @@ const Portfolio: React.FC = () => {
                     align="flex-start"
                     spacing={2}
                   >
-                    <Badge
-                      color="white"
-                      px={2.5}
-                      py={1}
-                      borderRadius="full"
-                      fontSize="xs"
-                      fontWeight="bold"
-                      textTransform="uppercase"
-                      letterSpacing="0.05em"
-                      sx={{
-                        background:
-                          "linear-gradient(135deg, rgba(128, 237, 255, 0.2), rgba(20, 184, 166, 0.2))",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.25)",
-                      }}
-                    >
-                      {category}
-                    </Badge>
                     <Heading
                       as="h3"
                       fontSize={{ base: "sm", md: "md" }}
@@ -1706,6 +1687,38 @@ const Portfolio: React.FC = () => {
                     >
                       {item.title}
                     </Heading>
+                    <HStack spacing={2} flexWrap="wrap" gap={1}>
+                      <Badge
+                        bg="blackAlpha.85"
+                        color="white"
+                        px={2.5}
+                        py={1}
+                        borderRadius="md"
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        letterSpacing="0.02em"
+                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
+                        borderWidth="1px"
+                        borderColor="whiteAlpha.400"
+                      >
+                        {industry}
+                      </Badge>
+                      <Badge
+                        bg="blackAlpha.85"
+                        color="white"
+                        px={2.5}
+                        py={1}
+                        borderRadius="md"
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        letterSpacing="0.02em"
+                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
+                        borderWidth="1px"
+                        borderColor="whiteAlpha.400"
+                      >
+                        {platform}
+                      </Badge>
+                    </HStack>
                     <HStack
                       className="project-cta"
                       opacity={0}

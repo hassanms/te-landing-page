@@ -1433,11 +1433,11 @@ const Portfolio: React.FC = () => {
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
     {
-      title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+      title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
       description:
-        "AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
+        "AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "AutoSync Intelligence – Multi-Location Automotive Intelligence Platform",
+      alt: "AutoCar Intelligence – Multi-Location Automotive Intelligence Platform",
     },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
@@ -1570,7 +1570,7 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/rackroom"
               : item.title.includes("Podcast Beacon")
               ? "/portfolio/podcastbeacon"
-              : item.title.includes("AutoSync Intelligence")
+              : item.title.includes("AutoCar Intelligence")
               ? "/portfolio/autosync-intelligence"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
@@ -1580,22 +1580,22 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/avl-copilot"
               : null;
 
-            // Determine category based on title
-            const category = item.title.includes("Campaign")
-              ? "Management System"
-              : item.title.includes("Macromascot")
-              ? "Health App"
-              : item.title.includes("AutoSync")
-              ? "Analytics Platform"
-              : item.title.includes("Pack Assist")
-              ? "AI Chatbot"
-              : item.title.includes("Meatery")
-              ? "Voice CRM"
-              : item.title.includes("Podcast")
-              ? "SaaS Platform"
-              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
-              ? "AI Solution"
-              : "Project";
+            // Platform + industry (must match portfolio page)
+            const platform =
+              item.title.includes("Campaign") ? "SaaS Platform"
+              : item.title.includes("Macromascot") ? "Mobile App"
+              : item.title.includes("AutoCar") ? "Enterprise SaaS"
+              : item.title.includes("Pack Assist") || item.title.includes("Meatery") || item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
+                ? "AI Solution"
+              : "SaaS Platform";
+            const industry =
+              item.title.includes("Campaign") ? "Advertising"
+              : item.title.includes("Macromascot") ? "Healthcare"
+              : item.title.includes("AutoCar") ? "Automotive"
+              : item.title.includes("Pack Assist") ? "Packaging"
+              : item.title.includes("Meatery") ? "E-commerce"
+              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co") ? "Enterprise"
+              : "Business";
 
             return (
               <NextLink href={href || "/"} passHref legacyBehavior key={index}>
@@ -1676,25 +1676,6 @@ const Portfolio: React.FC = () => {
                     align="flex-start"
                     spacing={2}
                   >
-                    <Badge
-                      color="white"
-                      px={2.5}
-                      py={1}
-                      borderRadius="full"
-                      fontSize="xs"
-                      fontWeight="bold"
-                      textTransform="uppercase"
-                      letterSpacing="0.05em"
-                      sx={{
-                        background:
-                          "linear-gradient(135deg, rgba(128, 237, 255, 0.2), rgba(20, 184, 166, 0.2))",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.25)",
-                      }}
-                    >
-                      {category}
-                    </Badge>
                     <Heading
                       as="h3"
                       fontSize={{ base: "sm", md: "md" }}
@@ -1706,6 +1687,38 @@ const Portfolio: React.FC = () => {
                     >
                       {item.title}
                     </Heading>
+                    <HStack spacing={2} flexWrap="wrap" gap={1}>
+                      <Badge
+                        bg="blackAlpha.85"
+                        color="white"
+                        px={2.5}
+                        py={1}
+                        borderRadius="md"
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        letterSpacing="0.02em"
+                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
+                        borderWidth="1px"
+                        borderColor="whiteAlpha.400"
+                      >
+                        {industry}
+                      </Badge>
+                      <Badge
+                        bg="blackAlpha.85"
+                        color="white"
+                        px={2.5}
+                        py={1}
+                        borderRadius="md"
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        letterSpacing="0.02em"
+                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
+                        borderWidth="1px"
+                        borderColor="whiteAlpha.400"
+                      >
+                        {platform}
+                      </Badge>
+                    </HStack>
                     <HStack
                       className="project-cta"
                       opacity={0}

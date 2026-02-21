@@ -27,12 +27,12 @@ const CaseStudyDadsSalesReborn = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: AutoSync Intelligence - Tech Emulsion"
-        description="AutoSync Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases."
+        title="Case Study: AutoCar Intelligence - Tech Emulsion"
+        description="AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/autosync-intelligence"
         portfolioData={{
-          title: "AutoSync Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
+          title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
           description:
             "A centralized operational intelligence platform for multi-location automotive repair businesses. Rebuilt from unreliable prototype into scalable data aggregation system with multi-shop aggregation, hardened sales calculations, aging WIP intelligence, and AI-ready architecture.",
           dateCreated: "2024",
@@ -40,7 +40,7 @@ const CaseStudyDadsSalesReborn = () => {
           url: "https://techemulsion.com/portfolio/autosync-intelligence",
           genre: "Data Analytics, Automotive Intelligence, Operational Control System",
           keywords: [
-            "AutoSync Intelligence",
+            "AutoCar Intelligence",
             "automotive intelligence",
             "data aggregation",
             "multi-location business",
@@ -54,7 +54,7 @@ const CaseStudyDadsSalesReborn = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "AutoSync Intelligence",
+              name: "AutoCar Intelligence",
               url: "https://techemulsion.com/portfolio/autosync-intelligence",
             },
           ],
@@ -62,17 +62,17 @@ const CaseStudyDadsSalesReborn = () => {
         faqData={{
           questions: [
             {
-              question: "What is AutoSync Intelligence?",
+              question: "What is AutoCar Intelligence?",
               answer:
-                "AutoSync Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, replacing the need to log into multiple systems like Tekmetric, QuickBooks, and banks.",
+                "AutoCar Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard, replacing the need to log into multiple systems like Tekmetric, QuickBooks, and banks.",
             },
             {
-              question: "What problems does AutoSync Intelligence solve?",
+              question: "What problems does AutoCar Intelligence solve?",
               answer:
                 "The platform addresses fragmented visibility across multiple shops, inaccurate and incomplete data from unreliable APIs, operational risk blind spots (like high-dollar repair orders without deposits), and the lack of automation or intelligence for proactive warnings and anomaly detection.",
             },
             {
-              question: "What technologies power AutoSync Intelligence?",
+              question: "What technologies power AutoCar Intelligence?",
               answer:
                 "Frontend: React-based dashboard (Lovable for rapid UI iteration). Backend: Supabase (PostgreSQL) for structured relational data, Edge Functions for scheduled aggregation and sync. Data Sources: Tekmetric API, with planned Chrome extension ingestion for missing reports and future integrations with Wicked File and financial systems.",
             },
@@ -122,7 +122,7 @@ const CaseStudyDadsSalesReborn = () => {
             <Box>
               <Image
                 src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-                alt="AutoSync Intelligence – Multi-Location Automotive Intelligence Platform"
+                alt="AutoCar Intelligence – Multi-Location Automotive Intelligence Platform"
                 width={1200}
                 height={300}
                 style={{
@@ -173,7 +173,7 @@ const CaseStudyDadsSalesReborn = () => {
                 mt="4"
                 width={"100%"}
                 align={"center"}>
-                AutoSync Intelligence – Case Study
+                AutoCar Intelligence – Case Study
               </Text>
               <Text
                 color={
@@ -202,7 +202,7 @@ const CaseStudyDadsSalesReborn = () => {
               sx={{
                 color: colorMode === "dark" ? "white" : "#004c4c",
               }}>
-              AutoSync Intelligence – Rebuilding Multi-Location Automotive
+              AutoCar Intelligence – Rebuilding Multi-Location Automotive
               Intelligence from Broken SaaS Data
             </Text>
 
@@ -226,7 +226,7 @@ const CaseStudyDadsSalesReborn = () => {
                 textAlign: "left",
                 color: colorMode === "dark" ? "white" : "gray.600",
               }}>
-              AutoSync Intelligence is a centralized operational intelligence platform
+              AutoCar Intelligence is a centralized operational intelligence platform
               built for a multi-location automotive repair business operating across
               multiple US states. The goal was simple but brutal to execute: give
               the owner a single, trustworthy source of truth across all shops

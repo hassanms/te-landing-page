@@ -30,6 +30,48 @@ import React, { useState, useEffect } from "react";
 const MotionBox = motion(Box);
 const MotionCard = motion(Box);
 
+// Title that expands on hover only when it overflows one row; first row stays visible
+const ProjectTitle = ({ title }: { title: string }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [overflows, setOverflows] = React.useState<boolean | null>(null);
+
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (el) {
+      const check = () => {
+        setOverflows(el.scrollHeight > el.clientHeight);
+      };
+      check();
+      const ro = new ResizeObserver(check);
+      ro.observe(el);
+      return () => ro.disconnect();
+    }
+  }, [title]);
+
+  // Use 1.4em when measuring or when overflows; use auto when fits in one line
+  const height = overflows === false ? "auto" : "1.4em";
+
+  return (
+    <Box
+      ref={containerRef}
+      overflow="hidden"
+      mb={2}
+      flexShrink={0}
+      h={height}
+      transition="height 0.4s ease"
+      className={overflows ? "project-title-overflow" : undefined}>
+      <Heading
+        fontSize={{ base: "lg", md: "xl" }}
+        color="white"
+        fontWeight="bold"
+        textShadow="0 2px 8px rgba(0,0,0,0.5)"
+        lineHeight="1.4">
+        {title}
+      </Heading>
+    </Box>
+  );
+};
+
 const PortfolioV3 = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "gray.300");
@@ -82,146 +124,166 @@ const PortfolioV3 = () => {
     return <>{count}+</>;
   };
 
-  // All portfolio items (case studies) - minimal data
+  // All portfolio items (case studies) - platform + industry tags
   const allProjects = [
     {
       title: "Campaign Management System",
-      category: "SaaS Platform",
+      platform: "SaaS Platform",
+      industry: "Advertising",
       image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
       alt: "Campaign Management System",
       href: "/portfolio/campaignos",
     },
     {
       title: "Macromascot",
-      category: "Mobile App",
+      platform: "Mobile App",
+      industry: "Healthcare",
       image: "/assets/portfolio/New/Health_app.jpg",
       alt: "Macromascot",
       href: "/portfolio/macromascot",
     },
     {
-      title: "AutoSync Intelligence",
-      category: "Enterprise SaaS",
+      title: "AutoCar Intelligence",
+      platform: "Enterprise SaaS",
+      industry: "Automotive",
       image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "AutoSync Intelligence",
+      alt: "AutoCar Intelligence",
       href: "/portfolio/autosync-intelligence",
     },
     {
       title: "Pack Assist",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "Packaging",
       image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
       alt: "Pack Assist",
       href: "/portfolio/packassist",
     },
     {
       title: "The Meatery",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "E-commerce",
       image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
       alt: "The Meatery",
       href: "/portfolio/meatery",
     },
     {
       title: "Podcast Beacon",
-      category: "SaaS Platform",
+      platform: "SaaS Platform",
+      industry: "Media",
       image: "/assets/portfolio/mic.jpg",
       alt: "Podcast Beacon",
       href: "/portfolio/podcastbeacon",
     },
     {
       title: "Rack Room",
-      category: "Enterprise SaaS",
+      platform: "Enterprise SaaS",
+      industry: "Retail",
       image: "/assets/portfolio/download.jpg",
       alt: "Rack Room",
       href: "/portfolio/rackroom",
     },
     {
       title: "Content Compass",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "Marketing",
       image: "/assets/portfolio/linkedin.jpg",
       alt: "Content Compass",
       href: "/portfolio/contentcompass",
     },
     {
       title: "SuperHeart",
-      category: "Mobile App",
+      platform: "Mobile App",
+      industry: "Healthcare",
       image: "/assets/portfolio/food.webp",
       alt: "SuperHeart",
       href: "/portfolio/superheart",
     },
     {
       title: "Atarim",
-      category: "SaaS Platform",
+      platform: "SaaS Platform",
+      industry: "Design & Development",
       image: "/assets/portfolio/atarim.png",
       alt: "Atarim",
       href: "/portfolio/atarim",
     },
     {
       title: "JarvisReach",
-      category: "SaaS Platform",
+      platform: "SaaS Platform",
+      industry: "Sales & Marketing",
       image: "/assets/portfolio/jarvis.png",
       alt: "JarvisReach",
       href: "/portfolio/jarvisreach",
     },
     {
       title: "Levellup",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "Gaming",
       image: "/assets/portfolio/level.png",
       alt: "Levellup",
       href: "/portfolio/levellup",
     },
     {
       title: "Farmin",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "Agriculture",
       image: "/assets/portfolio/farmin.avif",
       alt: "Farmin",
       href: "/portfolio/farmin",
     },
     {
       title: "Bipcards",
-      category: "SaaS Platform",
+      platform: "SaaS Platform",
+      industry: "Business",
       image: "/assets/portfolio/bipcards.png",
       alt: "Bipcards",
       href: "/portfolio/bipcards",
     },
     {
       title: "Popcard",
-      category: "SaaS Platform",
+      platform: "SaaS Platform",
+      industry: "Business",
       image: "/assets/portfolio/popcard.png",
       alt: "Popcard",
       href: "/portfolio/popcard",
     },
     {
       title: "Artis",
-      category: "Blockchain",
+      platform: "Blockchain",
+      industry: "NFT & Digital Art",
       image: "/assets/portfolio/Artis.png",
       alt: "Artis",
       href: "/portfolio/artis",
     },
     {
       title: "Alifa App",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "AI & Automation",
       image: "/assets/portfolio/file.jpg",
       alt: "Alifa App",
       href: "/portfolio/alifa",
     },
     {
       title: "MoodTube",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "Media & Entertainment",
       image: "/assets/portfolio/moodtube.png",
       alt: "MoodTube",
       href: "/portfolio/moodtube",
     },
     {
       title: "RAG ChatBot",
-      category: "AI Solution",
+      platform: "AI Solution",
+      industry: "Enterprise",
       image: "/assets/portfolio/raggenai.png",
       alt: "RAG ChatBot",
       href: "/portfolio/genai",
     },
     {
-      title: "AVL-CoPilot",
-      category: "AI Solution",
-      image: "/assets/portfolio/New/ai-chatbot-avl-case-study.png",
-      alt: "AVL-CoPilot",
+      title: "AVL Copilot",
+      platform: "AI Solution",
+      industry: "Enterprise",
+      image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
+      alt: "AVL Copilot",
       href: "/portfolio/avl-copilot",
     },
   ];
@@ -433,17 +495,6 @@ const PortfolioV3 = () => {
         }}>
         <Container maxW="container.xl">
           <VStack spacing={12} align="stretch">
-            <Box textAlign="center">
-              <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" mb={4} color={headingColor}>
-                All{" "}
-                <Text as="span" color={accentColor}>
-                  Projects
-                </Text>
-              </Heading>
-              <Text fontSize="lg" color={textColor} maxW="xl" mx="auto">
-                Explore our complete collection of innovative solutions
-              </Text>
-            </Box>
 
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 3, xl: 4 }} spacing={6}>
               {allProjects.map((project, index) => (
@@ -475,6 +526,10 @@ const PortfolioV3 = () => {
                       "& .project-title-small": {
                         opacity: 1,
                         transform: "translateY(0)",
+                      },
+                      "& .project-title-overflow": {
+                        height: "auto",
+                        maxHeight: "6em",
                       },
                     },
                   }}
@@ -536,28 +591,37 @@ const PortfolioV3 = () => {
                     opacity={0.8}
                     transform="translateY(10px)"
                     transition="all 0.4s">
-                    <Badge
-                      bg="whiteAlpha.200"
-                      backdropFilter="blur(8px)"
-                      color="white"
-                      px={2}
-                      py={1}
-                      borderRadius="md"
-                      fontSize="xs"
-                      fontWeight="medium"
-                      mb={2}
-                      borderWidth="1px"
-                      borderColor="whiteAlpha.300">
-                      {project.category}
-                    </Badge>
-                    <Heading
-                      fontSize={{ base: "lg", md: "xl" }}
-                      color="white"
-                      fontWeight="bold"
-                      textShadow="0 2px 8px rgba(0,0,0,0.5)"
-                      noOfLines={1}>
-                      {project.title}
-                    </Heading>
+                    <ProjectTitle title={project.title} />
+                    <HStack spacing={2} flexWrap="wrap" gap={1}>
+                      <Badge
+                        bg="blackAlpha.75"
+                        color="white"
+                        px={2.5}
+                        py={1}
+                        borderRadius="md"
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        letterSpacing="0.02em"
+                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
+                        borderWidth="1px"
+                        borderColor="whiteAlpha.400">
+                        {project.industry}
+                      </Badge>
+                      <Badge
+                        bg="blackAlpha.75"
+                        color="white"
+                        px={2.5}
+                        py={1}
+                        borderRadius="md"
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        letterSpacing="0.02em"
+                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
+                        borderWidth="1px"
+                        borderColor="whiteAlpha.400">
+                        {project.platform}
+                      </Badge>
+                    </HStack>
                   </Box>
                 </MotionCard>
               ))}

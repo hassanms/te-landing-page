@@ -152,7 +152,7 @@ export const FloatingUICards: React.FC = () => {
           <Text pl={3}>
             <Text as="span" color={codeProp}>model</Text>
             <Text as="span" color={codePunct}>: </Text>
-            <Text as="span" color={codeString}>"gpt-5o"</Text>
+            <Text as="span" color={codeString}>"gpt-5"</Text>
             <Text as="span" color={codePunct}>,</Text>
           </Text>
           <Text pl={3}>

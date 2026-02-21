@@ -18,6 +18,7 @@ const HERO_LIGHT_NAV_PATHS = [
   "/portfolio/packassist",
   "/portfolio/meatery",
   "/portfolio/avl-copilot",
+  "/portfolio/avl-copilot-v3",
 ];
 
 const NO_THEME_TOGGLE_PATHS = [

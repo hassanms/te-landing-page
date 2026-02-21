@@ -1,80 +1,70 @@
 import {
   Box,
   Container,
-  List,
-  ListIcon,
-  ListItem,
   Text,
   useColorMode,
   Heading,
   HStack,
   VStack,
   SimpleGrid,
-  Card,
-  CardHeader,
-  CardBody,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  Tag,
-  Wrap,
-  WrapItem,
-  Icon,
   Divider,
   Button,
   ButtonGroup,
-  Flex,
   Badge,
   useColorModeValue,
-  Progress,
-  AspectRatio,
+  Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { BackgroundGradient } from "components/gradients/background-gradient";
+import { keyframes } from "@emotion/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
-import React from "react";
-import {
-  FaAsterisk,
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaChartLine,
-  FaClock,
-  FaGlobe,
-  FaChevronRight,
-  FaChevronDown,
-  FaDatabase,
-  FaShieldAlt,
-  FaSync,
-  FaEye,
-  FaDollarSign,
-  FaMapMarkerAlt,
-  FaCog,
-  FaRobot,
-  FaComments,
-  FaBrain,
-  FaUserCheck,
-} from "react-icons/fa";
-import {
-  SiReact,
-  SiPython,
-  SiOpenai,
-  SiPostgresql,
-  SiFastapi,
-} from "react-icons/si";
+import React, { useState } from "react";
+import { FaChevronRight } from "react-icons/fa";
 
-const CaseStudyAVLCoPilot = () => {
+const AVL_CASE_STUDY_IMAGES = [
+  { src: "/assets/portfolio/New/AVL-Copilot/Main Screen.png", alt: "AVL Copilot Main Screen", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Sign In.png", alt: "AVL Copilot Sign In", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Chat Interface.png", alt: "AVL Copilot Chat Interface", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Image Analysis.png", alt: "AVL Copilot Image Analysis", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Live Google Maps Finder.png", alt: "AVL Copilot Live Google Maps Finder", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Streaming Response.png", alt: "AVL Copilot Streaming Response", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Total Usage.png", alt: "AVL Copilot Total Usage", isPortrait: true },
+  { src: "/assets/portfolio/New/AVL-Copilot/User Profile.png", alt: "AVL Copilot User Profile", isPortrait: false },
+  { src: "/assets/portfolio/New/AVL-Copilot/Web Search.png", alt: "AVL Copilot Web Search", isPortrait: false },
+];
+
+const scrollRightToLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
+
+const CaseStudyAVLCoPilotV3 = () => {
   const { colorMode } = useColorMode();
-  const bgColor = useColorModeValue("gray.50", "gray.800");
-  const cardBg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.100");
+  const [isGalleryPaused, setIsGalleryPaused] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const bgColor = useColorModeValue("white", "charcoal.800");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const textColor = useColorModeValue("gray.700", "gray.100");
+  const headingColor = useColorModeValue("gray.900", "white");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const dividerColor = useColorModeValue("gray.200", "gray.700");
+  const numberColor = accentColor;
+
+  // Subtle background pattern
+  const subtlePattern = useColorModeValue(
+    "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
+    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
+  );
 
   return (
-    <Box id="services">
+    <Box bg={bgColor}>
       <Head>
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -82,56 +72,10 @@ const CaseStudyAVLCoPilot = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: AVL-CoPilot - Tech Emulsion"
-        description="AVL-CoPilot is an advanced AI-powered conversational assistant solution built to transform customer engagement and automate intelligent interactions. Tech Emulsion developed a sophisticated AI platform with natural language processing, context awareness, and seamless integration capabilities."
+        title="Case Study: AVL Copilot - AI-Powered RAG SaaS for Professional AV Industry - Tech Emulsion"
+        description="Built a production-grade AI SaaS for the Professional AV industry using FastAPI, OpenAI, LangGraph, and Pinecone. Designed a scalable RAG architecture with vector search, intent routing, real-time manual ingestion, and multimodal image analysis. Reduced troubleshooting time by 40–60% and deployed a multi-tenant platform with billing, guardrails, cost controls, and cloud infrastructure on Google Cloud."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio/avl-copilot"
-        portfolioData={{
-          title: "AVL-CoPilot – Intelligent Conversational AI Platform",
-          description:
-            "An advanced AI-powered conversational assistant solution designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions.",
-          dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/ai-chatbot-avl-case-study.png",
-          url: "https://techemulsion.com/portfolio/avl-copilot",
-          genre: "AI Solution, Conversational AI, Assistant Platform",
-          keywords: [
-            "AVL-CoPilot",
-            "conversational AI",
-            "natural language processing",
-            "intelligent automation",
-            "customer engagement",
-            "Tech Emulsion",
-          ],
-        }}
-        breadcrumbData={{
-          items: [
-            { name: "Home", url: "https://techemulsion.com" },
-            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
-            {
-              name: "AVL-CoPilot",
-              url: "https://techemulsion.com/portfolio/avl-copilot",
-            },
-          ],
-        }}
-        faqData={{
-          questions: [
-            {
-              question: "What is AVL-CoPilot?",
-              answer:
-                "AVL-CoPilot is an advanced conversational AI platform designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions.",
-            },
-            {
-              question: "What problems does AVL-CoPilot solve?",
-              answer:
-                "The platform addresses customer service scalability, 24/7 availability, response time optimization, multilingual support, and intelligent query handling without human intervention.",
-            },
-            {
-              question: "What technologies power AVL-CoPilot?",
-              answer:
-                "The solution leverages advanced AI/ML frameworks, natural language processing engines, modern web technologies, and robust backend infrastructure for seamless integration and scalability.",
-            },
-          ],
-        }}
+        canonicalUrl="https://techemulsion.com/portfolio/avl-copilot-v3"
       />
       <Script
         async
@@ -157,14 +101,14 @@ const CaseStudyAVLCoPilot = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Premium Hero Section with Gradient Overlay */}
+      {/* Hero Section */}
       <Box
         position="relative"
         color="white"
-        pt={{ base: 8, md: 20 }}
-        pb={{ base: 12, md: 24 }}
+        pt={{ base: 20, md: 32 }}
+        pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "600px", md: "700px" }}>
+        minH={{ base: "500px", md: "600px" }}>
         {/* Background Image with Overlay */}
         <Box
           position="absolute"
@@ -174,8 +118,8 @@ const CaseStudyAVLCoPilot = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/New/ai-chatbot-avl-case-study.png"
-            alt="AVL-CoPilot"
+            src="/assets/portfolio/New/AVL-CoPilot-hero.png"
+            alt="AVL Copilot - Professional AV Industry AI Platform"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -195,13 +139,13 @@ const CaseStudyAVLCoPilot = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - white in light mode for visibility on dark hero */}
-          <Box mb={8} display="flex" justifyContent="flex-end">
+          {/* Breadcrumb */}
+          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup
               style={{
                 backgroundColor: "none",
                 fontSize: "1rem",
-                color: colorMode === "light" ? "white" : "muted",
+                color: "white",
                 display: "flex",
                 alignItems: "center",
               }}>
@@ -210,7 +154,7 @@ const CaseStudyAVLCoPilot = () => {
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
+                  color: "white",
                   padding: "0",
                   "&:hover": {
                     bg: "none",
@@ -218,13 +162,13 @@ const CaseStudyAVLCoPilot = () => {
                 }}>
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
+              <FaChevronRight size={15} style={{ color: "white" }} />
               <ButtonLink
                 href="/portfolio"
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
+                  color: "white",
                   padding: "0",
                   "&:hover": {
                     bg: "none",
@@ -232,634 +176,754 @@ const CaseStudyAVLCoPilot = () => {
                 }}>
                 Portfolio
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: "white",
-                }}>
-                AVL-CoPilot
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Text as="span" ml="2" color="white">
+                AVL Copilot
               </Text>
             </ButtonGroup>
           </Box>
 
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center">
-            {/* Left Side - Content */}
-            <VStack align="start" spacing={6}>
+          <Flex
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap={{ base: 10, lg: 12 }}
+            flexDir={{ base: "column", lg: "row" }}
+            w="full">
+            <VStack align="start" spacing={6} flex={1} maxW="4xl">
               <Badge
-                bg="brand.500"
+                bg={accentColor}
                 color="white"
                 px={4}
                 py={2}
                 borderRadius="full"
                 fontSize="sm"
-                fontWeight="bold"
-                letterSpacing="wide">
+                fontWeight="bold">
                 AI SOLUTION
               </Badge>
               <Heading
                 as="h1"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
                 fontWeight="bold"
                 lineHeight="1.1"
                 color="white">
-                AVL-CoPilot
+                AVL Copilot
+              </Heading>
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="300"
+                lineHeight="1.3"
+                color="rgba(255,255,255,0.9)">
+                AI-Powered RAG SaaS for the Professional AV Industry
               </Heading>
               <Text
-                fontSize={{ base: "xl", md: "2xl" }}
-                color="rgba(255,255,255,0.9)"
-                lineHeight="1.6"
-                fontWeight="300">
-                Transforming Customer Engagement Through Intelligent Conversational AI
-              </Text>
-              <Text
-                fontSize="lg"
+                fontSize={{ base: "lg", md: "xl" }}
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
-                maxW="2xl">
-                An advanced AI-powered conversational platform that delivers intelligent,
-                context-aware interactions 24/7. Built with cutting-edge natural language
-                processing and machine learning to provide seamless customer experiences
-                and automate complex workflows.
+                maxW="3xl">
+                Built a production-grade AI SaaS for the Professional AV industry using FastAPI, OpenAI, LangGraph, and Pinecone. Designed a scalable RAG architecture with vector search, intent routing, real-time manual ingestion, and multimodal image analysis. Reduced troubleshooting time by 40–60% and deployed a multi-tenant platform with billing, guardrails, cost controls, and cloud infrastructure on Google Cloud.
               </Text>
+            </VStack>
+            <Box
+              flexShrink={0}
+              w={{ base: "100%", lg: "45%" }}
+              maxW={{ lg: "500px" }}
+              position="relative"
+              alignSelf={{ base: "center", lg: "flex-end" }}>
+              <Image
+                src="/assets/portfolio/New/AVL-Copilot/showcase image.png"
+                alt="AVL Copilot - Desktop, tablet, and mobile showcase"
+                width={500}
+                height={400}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+              />
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
 
-              {/* Key Metrics */}
-              <SimpleGrid columns={3} spacing={6} w="full" mt={4}>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    24/7
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Availability
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    95%+
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Accuracy Rate
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    &lt;1s
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Response Time
-                  </Text>
-                </VStack>
-              </SimpleGrid>
+      {/* Executive Snapshot */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack spacing={10} align="stretch">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Industry
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Professional Audiovisual (Pro AV)
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Client
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Global AVL Industry Leader
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Engagement
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  End-to-end AI Architecture & Production Deployment
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Outcome
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Reduced troubleshooting time by 40–60%
+                </Text>
+              </Box>
+            </SimpleGrid>
+            <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
+              <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                Tech Stack
+              </Text>
+              <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">
+                Python, FastAPI, React, LangGraph, Pinecone, OpenAI, Supabase, Google Cloud
+              </Text>
+            </Box>
+          </VStack>
+        </Container>
+      </Box>
 
+      {/* Case Study Image Gallery Section */}
+      <Box
+        position="relative"
+        py={{ base: 6, md: 10 }}
+        overflow="hidden"
+        minH={{ base: "340px", md: "400px" }}
+        onMouseEnter={() => setIsGalleryPaused(true)}
+        onMouseLeave={() => setIsGalleryPaused(false)}>
+        {/* Background Image */}
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          zIndex={0}>
+          <Image
+            src="/assets/portfolio/New/banner of case studies.webp"
+            alt=""
+            fill
+            style={{ objectFit: "cover" }}
+          />
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            bg="blackAlpha.6"
+            _dark={{ bg: "blackAlpha.5" }}
+          />
+        </Box>
+
+        {/* Scrolling Gallery */}
+        <Box
+          position="relative"
+          zIndex={1}
+          overflow="hidden"
+          w="100%"
+          py={4}>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            width="max-content"
+            animation={`${scrollRightToLeft} 45s linear infinite`}
+            sx={{
+              animationPlayState: isGalleryPaused ? "paused" : "running",
+            }}>
+            {[...AVL_CASE_STUDY_IMAGES, ...AVL_CASE_STUDY_IMAGES].map((img, idx) => (
+              <Box
+                key={idx}
+                as="figure"
+                flexShrink={0}
+                mr={{ base: 6, md: 8 }}
+                overflow="hidden"
+                borderRadius={img.isPortrait ? "2xl" : "0"}
+                border="5px solid"
+                borderColor="gray.500"
+                _dark={{ borderColor: "whiteAlpha.150" }}
+                boxShadow="0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)"
+                lineHeight={0}
+                m={0}
+                h={{ base: "300px", md: "360px" }}
+                cursor="pointer"
+                onClick={() => setSelectedImage(img)}
+                _hover={{ opacity: 0.95, transform: "scale(1.02)", boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06)" }}
+                transition="all 0.25s ease"
+                sx={{
+                  "& img": {
+                    display: "block",
+                    width: "auto",
+                    height: "100%",
+                    objectFit: "contain",
+                  },
+                }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Image Lightbox Modal */}
+      <Modal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        size="6xl"
+        isCentered>
+        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
+        <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
+          <ModalCloseButton
+            color="black"
+            bg="transparent"
+            top={4}
+            right={4}
+            zIndex={2}
+            _hover={{ bg: "transparent", color: "gray.800" }}
+            _focus={{ boxShadow: "none" }}
+          />
+          <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
+            {selectedImage && (
+              <Box maxW="100%" maxH="90vh">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "90vh",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+              </Box>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      {/* The Business Problem */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                The Business Problem
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The AVL industry operates in high-pressure, live environments where failure is not an option.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                Technicians working concerts, conferences, stadiums, and broadcast events face critical challenges. Incorrect troubleshooting guidance can damage equipment, delay events, or create safety hazards.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                The client needed more than a chatbot—they needed a domain-restricted AI system that could function like a senior systems engineer on demand.
+              </Text>
             </VStack>
 
-            {/* Right Side - Visual Element */}
-            <Box position="relative" h={{ base: "400px", lg: "500px" }}>
-              <Box
-                position="absolute"
-                inset={0}
-                bgGradient="radial(circle, brand.500 0%, transparent 70%)"
-                opacity={0.2}
-                borderRadius="full"
-                filter="blur(60px)"
-              />
-              <Image
-                src="/assets/portfolio/New/ai-chatbot-avl-case-study.png"
-                alt="AVL-CoPilot Dashboard"
-                fill
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "16px",
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.5)",
-                }}
-              />
-            </Box>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Thousands of scattered PDF manuals",
+                "Time-critical equipment failures during live shows",
+                "Complex signal chains and hardware dependencies",
+                "Safety-sensitive rigging and electrical configurations",
+                "Inconsistent documentation across manufacturers",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
           </SimpleGrid>
         </Container>
       </Box>
 
-      {/* Impact Stats Section */}
-      <Box bg={bgColor} py={16} position="relative">
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="teal" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                IMPACT METRICS
-              </Badge>
+      {/* Our Approach */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
               <Heading
                 as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                 fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Real Results, Real Impact
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Our Approach
               </Heading>
-            </Box>
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} w="full">
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaComments} boxSize={8} color="brand.500" mb={3} />
-                <StatNumber fontSize="4xl" color="brand.500" fontWeight="bold">
-                  Intelligent
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Natural Conversations
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Context-aware responses
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaClock} boxSize={8} color="green.500" mb={3} />
-                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
-                  Instant
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Response Time
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Sub-second response delivery
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaBrain} boxSize={8} color="orange.500" mb={3} />
-                <StatNumber fontSize="4xl" color="orange.500" fontWeight="bold">
-                  Adaptive
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Learning Capability
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Continuous improvement
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaUserCheck} boxSize={8} color="purple.500" mb={3} />
-                <StatNumber fontSize="4xl" color="purple.500" fontWeight="bold">
-                  Scalable
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Multi-Channel Support
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Web, mobile, and API ready
-                </StatHelpText>
-              </Stat>
-            </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* Project Overview */}
-      <Container maxW="container.xl" py={20}>
-        <VStack align="start" spacing={8}>
-          <Box w="full">
-            <Badge colorScheme="blue" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              OVERVIEW
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={6}
-              color={useColorModeValue("gray.900", "white")}>
-              Project Overview
-            </Heading>
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} borderLeft="4px solid" borderColor="brand.500">
-              <VStack align="start" spacing={4}>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  AVL-CoPilot represents a cutting-edge conversational AI platform
-                  designed to revolutionize customer engagement and automate intelligent interactions.
-                  The platform leverages advanced natural language processing, machine learning,
-                  and context-aware algorithms to deliver human-like conversations at scale.
-                </Text>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  Built with modern AI frameworks and robust infrastructure, the solution provides
-                  seamless integration capabilities, multilingual support, and continuous learning
-                  mechanisms to improve response accuracy and user satisfaction over time.
-                </Text>
-              </VStack>
-            </Card>
-          </Box>
-        </VStack>
-      </Container>
-
-      {/* Challenge Section */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="red" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                THE CHALLENGE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Meeting Modern Customer Expectations
-              </Heading>
-              <Text
-                fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.100")}
-                maxW="2xl"
-                mx="auto">
-                Businesses today face increasing pressure to provide instant, accurate, and
-                personalized customer support while managing costs and scaling operations efficiently.
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                At Tech Emulsion, we architect AI systems as production infrastructure, not experiments.
               </Text>
-            </Box>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We designed a multi-agent, guardrailed AI platform that could understand technician intent, route queries intelligently, retrieve manufacturer-grade documentation, perform real-time web validation, analyze equipment visually, and enforce safety boundaries.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The goal was clear: build an Expert-in-the-Loop AI that prioritizes accuracy, speed, and operational reliability.
+              </Text>
+            </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
+            <VStack align="start" spacing={0} pt={2}>
               {[
-                {
-                  icon: FaClock,
-                  color: "red.500",
-                  title: "24/7 Support Demand",
-                  description:
-                    "Customers expect round-the-clock availability, but maintaining human support teams 24/7 is cost-prohibitive and resource-intensive.",
-                },
-                {
-                  icon: FaExclamationTriangle,
-                  color: "orange.500",
-                  title: "Response Time Pressure",
-                  description:
-                    "Modern customers demand instant responses. Delayed support leads to frustration, lost sales, and damaged brand reputation.",
-                },
-                {
-                  icon: FaCog,
-                  color: "yellow.500",
-                  title: "Scalability Challenges",
-                  description:
-                    "Handling peak traffic volumes and seasonal spikes requires flexible infrastructure that can scale dynamically without compromising performance.",
-                },
-                {
-                  icon: FaDollarSign,
-                  color: "purple.500",
-                  title: "Cost Management",
-                  description:
-                    "Balancing quality customer service with operational costs requires intelligent automation that reduces overhead while maintaining service quality.",
-                },
-              ].map((challenge, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  borderTop="4px solid"
-                  borderColor={challenge.color}
-                  p={6}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <HStack mb={4}>
-                      <Icon as={challenge.icon} boxSize={6} color={challenge.color} />
-                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                        {challenge.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {challenge.description}
+                "Understand technician intent",
+                "Route queries intelligently",
+                "Retrieve manufacturer-grade documentation",
+                "Perform real-time web validation",
+                "Analyze equipment visually",
+                "Enforce safety boundaries",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
                     </Text>
-                  </CardBody>
-                </Card>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
               ))}
-            </SimpleGrid>
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* The Solution Sections */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              The Solution: AVL Support AI
+            </Heading>
+
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Intelligent Intent Routing:</Text> We implemented a hybrid intent classification layer using local BERT models combined with GPT reasoning.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Deep Retrieval-Augmented Generation:</Text> We built a dynamic RAG engine powered by Pinecone and OpenAI embeddings.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Visual Equipment Intelligence:</Text> We integrated multimodal reasoning so users can upload images of equipment setups.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Real-Time Web Validation:</Text> A controlled search agent retrieves live firmware versions and verified sources.
+                </Text>
+              </Box>
+            </VStack>
           </VStack>
         </Container>
       </Box>
 
-      {/* Solution Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE SOLUTION
-            </Badge>
+      {/* Architecture Overview */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
             <Heading
               as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              Intelligent Conversational AI Platform
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              Architecture Overview
             </Heading>
-            <Text
-              fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.100")}
-              maxW="2xl"
-              mx="auto">
-              We developed AVL-CoPilot, a comprehensive AI assistant solution that combines advanced natural
-              language processing, machine learning, and seamless integration capabilities.
-            </Text>
-          </Box>
+            <VStack align="start" spacing={6}>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                We implemented a modular microservices architecture built for scalability and resilience.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} w="full">
-            {[
-              {
-                number: "1",
-                icon: FaBrain,
-                title: "Advanced NLP Engine",
-                description:
-                  "Sophisticated natural language processing capabilities that understand context, intent, and sentiment to deliver accurate, relevant responses.",
-                color: "blue",
-              },
-              {
-                number: "2",
-                icon: FaSync,
-                title: "Context-Aware Conversations",
-                description:
-                  "Maintains conversation context across multiple interactions, enabling natural, flowing dialogues that feel human-like and intuitive.",
-                color: "green",
-              },
-              {
-                number: "3",
-                icon: FaRobot,
-                title: "Machine Learning Integration",
-                description:
-                  "Continuous learning from interactions to improve accuracy, personalize responses, and adapt to evolving user needs and preferences.",
-                color: "orange",
-              },
-              {
-                number: "4",
-                icon: FaGlobe,
-                title: "Multi-Channel Deployment",
-                description:
-                  "Seamless integration across web, mobile apps, messaging platforms, and APIs for consistent experiences wherever customers engage.",
-                color: "purple",
-              },
-              {
-                number: "5",
-                icon: FaShieldAlt,
-                title: "Enterprise-Grade Security",
-                description:
-                  "Robust security measures including data encryption, compliance with privacy regulations, and secure API integrations.",
-                color: "pink",
-              },
-            ].map((solution, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  p={6}
-                  borderLeft="4px solid"
-                  borderColor={`${solution.color}.500`}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s"
-                  position="relative"
-                  overflow="hidden">
-                  <Box
-                    position="absolute"
-                    top={0}
-                    right={0}
-                    fontSize="6xl"
-                    fontWeight="bold"
-                    color={`${solution.color}.100`}
-                    opacity={0.3}
-                    lineHeight="1">
-                    {solution.number}
-                  </Box>
-                  <CardBody position="relative">
-                    <HStack mb={4}>
-                      <Icon
-                        as={solution.icon}
-                        boxSize={8}
-                        color={`${solution.color}.500`}
-                      />
-                      <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                        {solution.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {solution.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+      {/* Safety & Guardrails */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              Safety & Guardrails
+            </Heading>
+            <VStack align="start" spacing={6}>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                We implemented strict prompt guardrails preventing speculative voltage or load calculations, hazard detection triggers, and confidence thresholds.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
-      {/* Technical Architecture */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="purple" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                TECHNICAL EXCELLENCE
-              </Badge>
+      {/* Production Infrastructure */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              Production Infrastructure & Cost Control
+            </Heading>
+            <VStack align="start" spacing={6}>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                Usage tracking, token cost monitoring, dual-layer caching, and Stripe-powered subscription tiers.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* Business Impact */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
               <Heading
                 as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                 fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Built for Performance, Scale & Intelligence
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Business Impact
               </Heading>
-            </Box>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                Troubleshooting time reduced by 40–60 percent. Fragmented documentation consolidated into one intelligent interface.
+              </Text>
+            </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6} w="full">
+            <VStack align="start" spacing={0} pt={2}>
               {[
-                {
-                  icon: SiReact,
-                  name: "React",
-                  category: "Frontend",
-                  color: "blue",
-                  description: "Modern, responsive user interface",
-                },
-                {
-                  icon: SiPython,
-                  name: "Python",
-                  category: "Backend",
-                  color: "yellow",
-                  description: "Robust backend processing",
-                },
-                {
-                  icon: SiFastapi,
-                  name: "FastAPI",
-                  category: "API",
-                  color: "green",
-                  description: "High-performance API framework",
-                },
-                {
-                  icon: SiOpenai,
-                  name: "AI/ML",
-                  category: "AI Engine",
-                  color: "purple",
-                  description: "Advanced AI capabilities",
-                },
-                {
-                  icon: SiPostgresql,
-                  name: "PostgreSQL",
-                  category: "Database",
-                  color: "blue",
-                  description: "Reliable data storage",
-                },
-              ].map((tech, index) => (
-                  <Card
-                    key={index}
-                    bg={cardBg}
-                    borderRadius="xl"
-                    boxShadow="md"
-                    p={6}
-                    textAlign="center"
-                    _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                    transition="all 0.3s">
-                    <CardBody>
-                      <Box display="flex" justifyContent="center" mb={4}>
-                        <Icon
-                          as={tech.icon}
-                          boxSize={10}
-                          color={`${tech.color}.500`}
-                        />
-                      </Box>
-                      <Box display="flex" justifyContent="center" mb={2}>
-                        <Badge
-                          colorScheme={tech.color}
-                          fontSize="xs"
-                          borderRadius="full">
-                          {tech.category}
-                        </Badge>
-                      </Box>
-                      <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
-                        {tech.name}
-                      </Heading>
-                      <Text
-                        fontSize="sm"
-                        color={useColorModeValue("gray.600", "gray.200")}
-                        lineHeight="1.6">
-                        {tech.description}
-                      </Text>
-                    </CardBody>
-                  </Card>
-                ))}
-            </SimpleGrid>
-          </VStack>
+                "Troubleshooting time reduced by 40–60 percent",
+                "Fragmented documentation consolidated into one intelligent interface",
+                "Scalable subscription SaaS architecture deployed",
+                "Foundation established for multi-tenant enterprise expansion",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
         </Container>
       </Box>
 
-      {/* Results Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE RESULTS
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              Transforming Customer Engagement
-            </Heading>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-            {[
-              {
-                icon: FaCheckCircle,
-                title: "24/7 Availability",
-                description:
-                  "Round-the-clock customer support without additional staffing costs, ensuring customers always have access to assistance.",
-                color: "green",
-              },
-              {
-                icon: FaChartLine,
-                title: "Improved Response Times",
-                description:
-                  "Sub-second response times dramatically improve customer satisfaction and reduce wait times.",
-                color: "blue",
-              },
-              {
-                icon: FaUserCheck,
-                title: "Enhanced User Experience",
-                description:
-                  "Natural, context-aware conversations that feel human-like, improving engagement and satisfaction rates.",
-                color: "orange",
-              },
-              {
-                icon: FaDollarSign,
-                title: "Cost Optimization",
-                description:
-                  "Significant reduction in support costs while maintaining or improving service quality and availability.",
-                color: "purple",
-              },
-            ].map((result, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  p={6}
-                  borderTop="4px solid"
-                  borderColor={`${result.color}.500`}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <HStack mb={4}>
-                      <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
-                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                        {result.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {result.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+      {/* Why This Matters & What's Next - Condensed */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative">
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} maxW="4xl">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Why This Matters
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                Tech Emulsion delivered a hardened AI infrastructure tailored for a safety-sensitive technical industry.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                What&apos;s Next
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                Planned roadmap includes offline mode, schematic interpretation, voice interface, and multi-tenant deployments.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* CTA Section */}
       <Box
         bgGradient={
           colorMode === "dark"
-            ? "linear(to-r, brand.600, brand.800)"
-            : "linear(to-r, brand.500, brand.600)"
+            ? "linear(to-r, teal.600, teal.800)"
+            : "linear(to-r, teal.500, teal.600)"
         }
-        py={20}
-        color={colorMode === "dark" ? "white" : "black"}>
+        py={{ base: 16, md: 20 }}
+        color="white">
         <Container maxW="container.xl">
-          <VStack spacing={8} textAlign="center">
-            <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold">
-              Ready to Transform Your Customer Engagement?
+          <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
+            <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
+              Looking to Build Domain-Specific AI?
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} maxW="2xl" opacity={0.9}>
-              Discover how AVL-CoPilot can revolutionize your customer
-              interactions, reduce costs, and scale your support operations. Let&apos;s
-              discuss your specific needs and build a solution tailored to your business.
-            </Text>
-            <HStack spacing={4} flexWrap="wrap" justify="center">
+            <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
               <Button
                 as="a"
                 href="https://calendly.com/hassanms/discovery-call"
                 target="_blank"
                 size="lg"
-                bg="teal.500"
-                color="white"
-                _hover={{ bg: "teal.600", transform: "translateY(-2px)" }}
+                bg="white"
+                color="teal.500"
+                _hover={{ bg: "whiteAlpha.900" }}
                 rightIcon={<FaChevronRight />}
                 px={8}
                 py={6}
@@ -873,13 +937,10 @@ const CaseStudyAVLCoPilot = () => {
                 href="/portfolio"
                 size="lg"
                 variant="outline"
-                borderColor="teal.500"
+                borderColor="white"
                 borderWidth="2px"
-                color="teal.500"
-                _hover={{
-                  bg: colorMode === "dark" ? "whiteAlpha.200" : "blackAlpha.100",
-                  transform: "translateY(-2px)",
-                }}
+                color="white"
+                _hover={{ bg: "whiteAlpha.200" }}
                 px={8}
                 py={6}
                 fontSize="lg"
@@ -894,4 +955,4 @@ const CaseStudyAVLCoPilot = () => {
   );
 };
 
-export default CaseStudyAVLCoPilot;
+export default CaseStudyAVLCoPilotV3;

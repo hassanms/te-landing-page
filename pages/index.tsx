@@ -1423,11 +1423,11 @@ const Portfolio: React.FC = () => {
   const accentColor = useColorModeValue("teal.500", "pearlAqua.400");
   const HighlightsItems = [
     {
-      title: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      title: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
       description:
-        "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+        "BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
       image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      alt: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
     {
       title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
@@ -1578,7 +1578,7 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/autosync-intelligence"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
-              : item.title.includes("Campaign Management System") || item.title.includes("Campaign")
+              : item.title.includes("BillboardIQ") || item.title.includes("Campaign")
               ? "/portfolio/campaignos"
               : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
               ? "/portfolio/avl-copilot"

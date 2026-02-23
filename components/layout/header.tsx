@@ -13,9 +13,8 @@ import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
-// Only the 6 case studies shown in the home page Recent Works section
+// Only the 6 case studies shown in the home page Recent Works section (excludes /portfolio - keeps default menu in light mode at top)
 const HERO_DARK_NAVBAR_PATHS = [
-  "/portfolio",
   "/portfolio/campaignos",
   "/portfolio/macromascot",
   "/portfolio/autosync-intelligence",

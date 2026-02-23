@@ -235,7 +235,7 @@ const portfolioItems = [
   },
   {
     id: 2,
-    title: "Campaign Management System",
+    title: "BillboardIQ",
     platform: "SaaS Platform",
     industry: "Advertising",
     image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
@@ -369,22 +369,6 @@ const portfolioItems = [
     industry: "AI & Automation",
     image: "/assets/portfolio/file.jpg",
     href: "/portfolio/alifa",
-  },
-  {
-    id: 19,
-    title: "MoodTube",
-    platform: "AI Solution",
-    industry: "Media & Entertainment",
-    image: "/assets/portfolio/moodtube.png",
-    href: "/portfolio/moodtube",
-  },
-  {
-    id: 20,
-    title: "RAG ChatBot",
-    platform: "AI Solution",
-    industry: "Enterprise",
-    image: "/assets/portfolio/raggenai.png",
-    href: "/portfolio/genai",
   },
 ];
 

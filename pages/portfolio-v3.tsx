@@ -31,7 +31,7 @@ import { FaChevronRight } from "react-icons/fa";
 // Tech Emulsion portfolio data
 const portfolioItems = [
   { id: 1, title: "AVL Copilot", platform: "AI Solution", industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
-  { id: 2, title: "Campaign Management System", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/Campaign_Porfolio.jpg", href: "/portfolio/campaignos" },
+  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/Campaign_Porfolio.jpg", href: "/portfolio/campaignos" },
   { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/Health_app.jpg", href: "/portfolio/macromascot" },
   { id: 4, title: "AutoCar Intelligence", platform: "Enterprise SaaS", industry: "Automotive", image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg", href: "/portfolio/autosync-intelligence" },
   { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/Pack Assist.png", href: "/portfolio/packassist" },
@@ -48,8 +48,6 @@ const portfolioItems = [
   { id: 16, title: "Popcard", platform: "SaaS Platform", industry: "Business", image: "/assets/portfolio/popcard.png", href: "/portfolio/popcard" },
   { id: 17, title: "Artis", platform: "Blockchain", industry: "NFT & Digital Art", image: "/assets/portfolio/Artis.png", href: "/portfolio/artis" },
   { id: 18, title: "Alifa App", platform: "AI Solution", industry: "AI & Automation", image: "/assets/portfolio/file.jpg", href: "/portfolio/alifa" },
-  { id: 19, title: "MoodTube", platform: "AI Solution", industry: "Media & Entertainment", image: "/assets/portfolio/moodtube.png", href: "/portfolio/moodtube" },
-  { id: 20, title: "RAG ChatBot", platform: "AI Solution", industry: "Enterprise", image: "/assets/portfolio/raggenai.png", href: "/portfolio/genai" },
 ];
 
 const technologies = ["All", "AI Solution", "SaaS Platform", "Mobile App", "Enterprise SaaS", "Blockchain"];

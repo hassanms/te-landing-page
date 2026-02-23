@@ -81,12 +81,12 @@ const CaseStudyCampaignOS = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: Campaign Management System (Premium Design) - Tech Emulsion"
-        description="Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting."
+        title="Case Study: BillboardIQ (Premium Design) - Tech Emulsion"
+        description="BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/campaignos"
         portfolioData={{
-          title: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+          title: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
           description:
             "A comprehensive, end-to-end management platform for Out-of-Home advertising. Features intelligent inventory management, automated financial reconciliation, lunar-period availability tracking, multi-format exports, and role-based dashboards.",
           dateCreated: "2024",
@@ -94,7 +94,7 @@ const CaseStudyCampaignOS = () => {
           url: "https://techemulsion.com/portfolio/campaignos",
           genre: "SaaS Platform, Out-of-Home Advertising, Campaign Management",
           keywords: [
-            "Campaign Management System",
+            "BillboardIQ",
             "OOH advertising",
             "campaign management",
             "inventory management",
@@ -107,7 +107,7 @@ const CaseStudyCampaignOS = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
             {
-              name: "Campaign Management System",
+              name: "BillboardIQ",
               url: "https://techemulsion.com/portfolio/campaignos",
             },
           ],
@@ -115,17 +115,17 @@ const CaseStudyCampaignOS = () => {
         faqData={{
           questions: [
             {
-              question: "What is Campaign Management System?",
+              question: "What is BillboardIQ?",
               answer:
-                "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. It handles the entire lifecycle of an advertising campaign—from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+                "BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. It handles the entire lifecycle of an advertising campaign—from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
             },
             {
-              question: "What problems does Campaign Management System solve?",
+              question: "What problems does BillboardIQ solve?",
               answer:
-                "Campaign Management System addresses inventory fragmentation across multiple countries, complex availability logic for lunar-period calculations, reporting bottlenecks through automated exports, and visibility control with role-based dashboards for management and sales teams.",
+                "BillboardIQ addresses inventory fragmentation across multiple countries, complex availability logic for lunar-period calculations, reporting bottlenecks through automated exports, and visibility control with role-based dashboards for management and sales teams.",
             },
             {
-              question: "What technologies power Campaign Management System?",
+              question: "What technologies power BillboardIQ?",
               answer:
                 "Frontend: React 18, TypeScript, and Vite. Styling: Tailwind CSS and Shadcn UI (Radix UI). Backend: Supabase (PostgreSQL) with Row Level Security and Edge Functions. Real-Time: Supabase Realtime for instant synchronization. Analytics: Recharts for financial data visualization.",
             },
@@ -174,7 +174,7 @@ const CaseStudyCampaignOS = () => {
           zIndex={0}>
           <Image
             src="/assets/portfolio/New/Campaign_Porfolio.jpg"
-            alt="Campaign Management System"
+            alt="BillboardIQ"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -238,7 +238,7 @@ const CaseStudyCampaignOS = () => {
                 sx={{
                   color: "white",
                 }}>
-                Campaign Management System
+                BillboardIQ
               </Text>
             </ButtonGroup>
           </Box>
@@ -266,7 +266,7 @@ const CaseStudyCampaignOS = () => {
                 fontWeight="bold"
                 lineHeight="1.1"
                 color="white">
-                Campaign Management System
+                BillboardIQ
               </Heading>
               <Text
                 fontSize={{ base: "xl", md: "2xl" }}
@@ -329,7 +329,7 @@ const CaseStudyCampaignOS = () => {
               />
               <Image
                 src="/assets/portfolio/New/Campaign_Porfolio.jpg"
-                alt="Campaign Management System Dashboard"
+                alt="BillboardIQ Dashboard"
                 fill
                 style={{
                   objectFit: "cover",
@@ -434,7 +434,7 @@ const CaseStudyCampaignOS = () => {
                   fontSize={{ base: "lg", md: "xl" }}
                   color={useColorModeValue("gray.700", "gray.200")}
                   lineHeight="1.8">
-                  Campaign Management System is a comprehensive, end-to-end management platform
+                  BillboardIQ is a comprehensive, end-to-end management platform
                   designed specifically for the Out-of-Home (OOH) advertising industry. The
                   project involved building a high-performance React and Supabase-powered
                   ecosystem to handle the entire lifecycle of an advertising campaign—from

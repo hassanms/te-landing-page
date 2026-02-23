@@ -1,636 +1,505 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
 import {
   Box,
-  ButtonGroup,
   Container,
   Heading,
   Text,
-  useColorMode,
-  useColorModeValue,
-  VStack,
-  HStack,
   SimpleGrid,
-  Badge,
-  Icon,
+  HStack,
+  Link,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  Divider,
   Flex,
-  Stat,
-  StatLabel,
-  StatNumber,
+  ButtonGroup,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import Link from "next/link";
-import { ButtonLink } from "components/button-link";
-import { BackgroundGradient } from "components/gradients/background-gradient";
-import Head from "next/head";
-import Script from "next/script";
+import NextLink from "next/link";
+import { Icon } from "@chakra-ui/react";
+import { FiChevronDown, FiGrid, FiList, FiArrowUpRight } from "react-icons/fi";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
+import { BackgroundGradient } from "components/gradients/background-gradient";
+import { ButtonLink } from "components/button-link";
 import { FaChevronRight } from "react-icons/fa";
-import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
 
-const MotionBox = motion(Box);
-const MotionCard = motion(Box);
+// Tech Emulsion portfolio data
+const portfolioItems = [
+  { id: 1, title: "AVL Copilot", platform: "AI Solution", industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
+  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/Campaign_Porfolio.jpg", href: "/portfolio/campaignos" },
+  { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/Health_app.jpg", href: "/portfolio/macromascot" },
+  { id: 4, title: "AutoCar Intelligence", platform: "Enterprise SaaS", industry: "Automotive", image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg", href: "/portfolio/autosync-intelligence" },
+  { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/Pack Assist.png", href: "/portfolio/packassist" },
+  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg", href: "/portfolio/meatery" },
+  { id: 7, title: "Podcast Beacon", platform: "SaaS Platform", industry: "Media", image: "/assets/portfolio/mic.jpg", href: "/portfolio/podcastbeacon" },
+  { id: 8, title: "Rack Room", platform: "Enterprise SaaS", industry: "Retail", image: "/assets/portfolio/download.jpg", href: "/portfolio/rackroom" },
+  { id: 9, title: "Content Compass", platform: "AI Solution", industry: "Marketing", image: "/assets/portfolio/linkedin.jpg", href: "/portfolio/contentcompass" },
+  { id: 10, title: "SuperHeart", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/food.webp", href: "/portfolio/superheart" },
+  { id: 11, title: "Atarim", platform: "SaaS Platform", industry: "Design & Development", image: "/assets/portfolio/atarim.png", href: "/portfolio/atarim" },
+  { id: 12, title: "JarvisReach", platform: "SaaS Platform", industry: "Sales & Marketing", image: "/assets/portfolio/jarvis.png", href: "/portfolio/jarvisreach" },
+  { id: 13, title: "Levellup", platform: "AI Solution", industry: "Gaming", image: "/assets/portfolio/level.png", href: "/portfolio/levellup" },
+  { id: 14, title: "Farmin", platform: "AI Solution", industry: "Agriculture", image: "/assets/portfolio/farmin.avif", href: "/portfolio/farmin" },
+  { id: 15, title: "Bipcards", platform: "SaaS Platform", industry: "Business", image: "/assets/portfolio/bipcards.png", href: "/portfolio/bipcards" },
+  { id: 16, title: "Popcard", platform: "SaaS Platform", industry: "Business", image: "/assets/portfolio/popcard.png", href: "/portfolio/popcard" },
+  { id: 17, title: "Artis", platform: "Blockchain", industry: "NFT & Digital Art", image: "/assets/portfolio/Artis.png", href: "/portfolio/artis" },
+  { id: 18, title: "Alifa App", platform: "AI Solution", industry: "AI & Automation", image: "/assets/portfolio/file.jpg", href: "/portfolio/alifa" },
+];
 
-// Title that expands on hover only when it overflows one row; first row stays visible
-const ProjectTitle = ({ title }: { title: string }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [overflows, setOverflows] = React.useState<boolean | null>(null);
+const technologies = ["All", "AI Solution", "SaaS Platform", "Mobile App", "Enterprise SaaS", "Blockchain"];
+const industries = ["All", "Advertising", "Healthcare", "Automotive", "Packaging", "E-commerce", "Media", "Retail", "Marketing", "Design & Development", "Sales & Marketing", "Gaming", "Agriculture", "Business", "NFT & Digital Art", "AI & Automation", "Media & Entertainment", "Enterprise"];
 
-  React.useEffect(() => {
-    const el = containerRef.current;
-    if (el) {
-      const check = () => {
-        setOverflows(el.scrollHeight > el.clientHeight);
-      };
-      check();
-      const ro = new ResizeObserver(check);
-      ro.observe(el);
-      return () => ro.disconnect();
-    }
-  }, [title]);
-
-  // Use 1.4em when measuring or when overflows; use auto when fits in one line
-  const height = overflows === false ? "auto" : "1.4em";
-
+function ProjectCard({
+  title,
+  industry,
+  platform,
+  image,
+  href,
+  headingColor,
+  textColor,
+}: {
+  title: string;
+  industry: string;
+  platform: string;
+  image: string;
+  href: string;
+  headingColor: string;
+  textColor: string;
+}) {
   return (
-    <Box
-      ref={containerRef}
-      overflow="hidden"
-      mb={2}
-      flexShrink={0}
-      h={height}
-      transition="height 0.4s ease"
-      className={overflows ? "project-title-overflow" : undefined}>
-      <Heading
-        fontSize={{ base: "lg", md: "xl" }}
-        color="white"
-        fontWeight="bold"
-        textShadow="0 2px 8px rgba(0,0,0,0.5)"
-        lineHeight="1.4">
-        {title}
-      </Heading>
-    </Box>
+    <Link as={NextLink} href={href} _hover={{ textDecoration: "none" }}>
+      <Box role="group">
+        <Flex justify="space-between" align="flex-start" mb={3} gap={4}>
+          <Heading as="h3" size="lg" color={headingColor} fontWeight="bold" flex="1" minW={0}>
+            {title}
+          </Heading>
+          <HStack spacing={2} flexWrap="wrap" justifyContent="flex-end" flexShrink={0}>
+            <Text color={textColor} fontSize="sm" whiteSpace="nowrap">
+              {industry}, {platform}
+            </Text>
+          </HStack>
+        </Flex>
+        <Box
+          position="relative"
+          aspectRatio={4 / 3}
+          overflow="hidden"
+          bg="teal.500"
+          cursor="pointer"
+        >
+          <Box
+            position="absolute"
+            inset={0}
+            opacity={1}
+            transition="opacity 0.3s"
+          >
+            <Image
+              src={image}
+              alt={title}
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </Box>
+          {/* Hover state - teal 30% visible, text 100% visible */}
+          <Box
+            position="absolute"
+            inset={0}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            opacity={0}
+            transition="opacity 0.3s"
+            _groupHover={{ opacity: 1 }}
+            zIndex={1}
+          >
+            <Box position="absolute" inset={0} bg="teal.500" opacity={0.55} />
+            <Heading
+              as="h3"
+              position="relative"
+              zIndex={1}
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight="bold"
+              color="white"
+              textAlign="center"
+              px={6}
+              py={4}
+              lineHeight="tall"
+              textShadow="0 2px 8px rgba(0,0,0,0.4)"
+            >
+              {title}
+            </Heading>
+          </Box>
+        </Box>
+      </Box>
+    </Link>
   );
-};
+}
 
-const PortfolioV3 = () => {
-  const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "gray.300");
-  const bgColor = useColorModeValue("white", "gray.900");
+function ProjectCardList({
+  title,
+  industry,
+  platform,
+  image,
+  href,
+  headingColor,
+  textColor,
+  linkIconBg,
+}: {
+  title: string;
+  industry: string;
+  platform: string;
+  image: string;
+  href: string;
+  headingColor: string;
+  textColor: string;
+  linkIconBg: string;
+}) {
+  return (
+    <Link as={NextLink} href={href} _hover={{ textDecoration: "none" }}>
+      <Flex
+        flexDirection={{ base: "column", md: "row" }}
+        align={{ md: "stretch" }}
+        gap={0}
+        py={12}
+        role="group"
+      >
+        {/* Image - left side, ~45% width on desktop - teal + title on hover */}
+        <Box
+          position="relative"
+          w={{ base: "100%", md: "45%" }}
+          flexShrink={0}
+          overflow="hidden"
+          sx={{ aspectRatio: "4/3" }}
+          bg="teal.500"
+        >
+          <Box position="absolute" inset={0} opacity={1} transition="opacity 0.3s">
+            <Image src={image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 45vw" />
+          </Box>
+          <Box
+            position="absolute"
+            inset={0}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            opacity={0}
+            transition="opacity 0.3s"
+            _groupHover={{ opacity: 1 }}
+            zIndex={1}
+          >
+            <Box position="absolute" inset={0} bg="teal.500" opacity={0.45} />
+            <Heading
+              as="h3"
+              position="relative"
+              zIndex={1}
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight="bold"
+              color="white"
+              textAlign="center"
+              px={6}
+              py={4}
+              lineHeight="tall"
+              textShadow="0 2px 8px rgba(0,0,0,0.4)"
+            >
+              {title}
+            </Heading>
+          </Box>
+        </Box>
+        {/* Text content - right side */}
+        <Flex
+          flex={1}
+          flexDirection="column"
+          justify="flex-start"
+          align="flex-start"
+          pl={{ base: 0, md: 12 }}
+          pt={{ base: 4, md: 0 }}
+          minW={0}
+        >
+          <Flex justify="space-between" align="flex-start" mb={2} gap={4} w="100%">
+            <Text color={textColor} fontSize="sm" fontWeight="medium">
+              {industry}, {platform}
+            </Text>
+            <Box
+              as="span"
+              display="inline-flex"
+              alignItems="center"
+              justifyContent="center"
+              w="10"
+              h="10"
+              bg={linkIconBg}
+              borderRadius="full"
+              flexShrink={0}
+            >
+              <Icon as={FiArrowUpRight} boxSize={5} color="white" />
+            </Box>
+          </Flex>
+          <Heading as="h3" size="xl" color={headingColor} fontWeight="bold" lineHeight="tight">
+            {title}
+          </Heading>
+        </Flex>
+      </Flex>
+    </Link>
+  );
+}
+
+export default function Portfolio() {
+  const [selectedTech, setSelectedTech] = useState("All");
+  const [selectedIndustry, setSelectedIndustry] = useState("All");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  const filteredItems = useMemo(() => {
+    return portfolioItems.filter((item) => {
+      const techMatch = selectedTech === "All" || item.platform === selectedTech;
+      const industryMatch = selectedIndustry === "All" || item.industry === selectedIndustry;
+      return techMatch && industryMatch;
+    });
+  }, [selectedTech, selectedIndustry]);
+
   const headingColor = useColorModeValue("gray.800", "white");
-  const statLabelColor = useColorModeValue("gray.600", "whiteAlpha.800");
-  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
-  const heroOverlayGradient = useColorModeValue(
-    "linear(to-b, blackAlpha.700 0%, blackAlpha.600 25%, blackAlpha.500 55%, blackAlpha.300 85%, blackAlpha.200 100%)",
-    "linear(to-b, blackAlpha.700 0%, blackAlpha.600 50%, gray.900 100%)"
-  );
-  const heroTextShadow = useColorModeValue(
-    "0 1px 2px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
-    "0 1px 3px rgba(0,0,0,0.5)"
-  );
-  const heroStatLabelColor = useColorModeValue("whiteAlpha.900", "whiteAlpha.900");
-  const heroStatNumberColor = useColorModeValue("white", "pearlAqua.400");
-  const sectionDividerGradient = useColorModeValue(
-    "linear(to-r, transparent, teal.500, transparent)",
-    "linear(to-r, transparent, pearlAqua.500, transparent)"
-  );
-  // Card image: brighter in light mode, stronger brighten on hover
-  const cardImageFilter = useColorModeValue(
-    "grayscale(15%) brightness(0.95)",
-    "grayscale(40%) brightness(0.85)"
-  );
-  const cardImageFilterHover = useColorModeValue(
-    "grayscale(0%) brightness(1.12)",
-    "grayscale(0%) brightness(1.05)"
-  );
-  const cardOverlayOpacity = useColorModeValue(0.45, 0.55);
-
-  // Animated counter component
-  const AnimatedCounter = ({ end, duration = 2 }: { end: number; duration?: number }) => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-      let startTime: number;
-      const animate = (timestamp: number) => {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-        setCount(Math.floor(progress * end));
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-      requestAnimationFrame(animate);
-    }, [end, duration]);
-
-    return <>{count}+</>;
-  };
-
-  // All portfolio items (case studies) - platform + industry tags
-  const allProjects = [
-    {
-      title: "Campaign Management System",
-      platform: "SaaS Platform",
-      industry: "Advertising",
-      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign Management System",
-      href: "/portfolio/campaignos",
-    },
-    {
-      title: "Macromascot",
-      platform: "Mobile App",
-      industry: "Healthcare",
-      image: "/assets/portfolio/New/Health_app.jpg",
-      alt: "Macromascot",
-      href: "/portfolio/macromascot",
-    },
-    {
-      title: "AutoCar Intelligence",
-      platform: "Enterprise SaaS",
-      industry: "Automotive",
-      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-      alt: "AutoCar Intelligence",
-      href: "/portfolio/autosync-intelligence",
-    },
-    {
-      title: "Pack Assist",
-      platform: "AI Solution",
-      industry: "Packaging",
-      image: "/assets/portfolio/New/Pack Assist.png",
-      alt: "Pack Assist",
-      href: "/portfolio/packassist",
-    },
-    {
-      title: "The Meatery",
-      platform: "AI Solution",
-      industry: "E-commerce",
-      image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
-      alt: "The Meatery",
-      href: "/portfolio/meatery",
-    },
-    {
-      title: "Podcast Beacon",
-      platform: "SaaS Platform",
-      industry: "Media",
-      image: "/assets/portfolio/mic.jpg",
-      alt: "Podcast Beacon",
-      href: "/portfolio/podcastbeacon",
-    },
-    {
-      title: "Rack Room",
-      platform: "Enterprise SaaS",
-      industry: "Retail",
-      image: "/assets/portfolio/download.jpg",
-      alt: "Rack Room",
-      href: "/portfolio/rackroom",
-    },
-    {
-      title: "Content Compass",
-      platform: "AI Solution",
-      industry: "Marketing",
-      image: "/assets/portfolio/linkedin.jpg",
-      alt: "Content Compass",
-      href: "/portfolio/contentcompass",
-    },
-    {
-      title: "SuperHeart",
-      platform: "Mobile App",
-      industry: "Healthcare",
-      image: "/assets/portfolio/food.webp",
-      alt: "SuperHeart",
-      href: "/portfolio/superheart",
-    },
-    {
-      title: "Atarim",
-      platform: "SaaS Platform",
-      industry: "Design & Development",
-      image: "/assets/portfolio/atarim.png",
-      alt: "Atarim",
-      href: "/portfolio/atarim",
-    },
-    {
-      title: "JarvisReach",
-      platform: "SaaS Platform",
-      industry: "Sales & Marketing",
-      image: "/assets/portfolio/jarvis.png",
-      alt: "JarvisReach",
-      href: "/portfolio/jarvisreach",
-    },
-    {
-      title: "Levellup",
-      platform: "AI Solution",
-      industry: "Gaming",
-      image: "/assets/portfolio/level.png",
-      alt: "Levellup",
-      href: "/portfolio/levellup",
-    },
-    {
-      title: "Farmin",
-      platform: "AI Solution",
-      industry: "Agriculture",
-      image: "/assets/portfolio/farmin.avif",
-      alt: "Farmin",
-      href: "/portfolio/farmin",
-    },
-    {
-      title: "Bipcards",
-      platform: "SaaS Platform",
-      industry: "Business",
-      image: "/assets/portfolio/bipcards.png",
-      alt: "Bipcards",
-      href: "/portfolio/bipcards",
-    },
-    {
-      title: "Popcard",
-      platform: "SaaS Platform",
-      industry: "Business",
-      image: "/assets/portfolio/popcard.png",
-      alt: "Popcard",
-      href: "/portfolio/popcard",
-    },
-    {
-      title: "Artis",
-      platform: "Blockchain",
-      industry: "NFT & Digital Art",
-      image: "/assets/portfolio/Artis.png",
-      alt: "Artis",
-      href: "/portfolio/artis",
-    },
-    {
-      title: "Alifa App",
-      platform: "AI Solution",
-      industry: "AI & Automation",
-      image: "/assets/portfolio/file.jpg",
-      alt: "Alifa App",
-      href: "/portfolio/alifa",
-    },
-    {
-      title: "MoodTube",
-      platform: "AI Solution",
-      industry: "Media & Entertainment",
-      image: "/assets/portfolio/moodtube.png",
-      alt: "MoodTube",
-      href: "/portfolio/moodtube",
-    },
-    {
-      title: "RAG ChatBot",
-      platform: "AI Solution",
-      industry: "Enterprise",
-      image: "/assets/portfolio/raggenai.png",
-      alt: "RAG ChatBot",
-      href: "/portfolio/genai",
-    },
-    {
-      title: "AVL Copilot",
-      platform: "AI Solution",
-      industry: "Enterprise",
-      image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
-      alt: "AVL Copilot",
-      href: "/portfolio/avl-copilot",
-    },
-  ];
+  const textColor = useColorModeValue("gray.600", "gray.100");
+  const filterColor = useColorModeValue("gray.800", "white");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
+  const menuBg = useColorModeValue("white", "charcoal.700");
+  const menuBorder = useColorModeValue("gray.200", "whiteAlpha.200");
+  const linkIconBg = useColorModeValue("teal.500", "teal.500");
 
   return (
-    <Box bg={bgColor}>
-      <Head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
-      </Head>
+    <>
       <EnhancedSEO
         title="Our Portfolio - Tech Emulsion"
-        description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, blockchain solutions, and custom software development for global clients."
+        description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, and custom software development."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio-v3"
+        canonicalUrl="https://techemulsion.com/portfolio"
       />
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-        onLoad={() => {
-          // @ts-ignore
-          Calendly.initBadgeWidget({
-            url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Sales",
-            color: "#008080",
-            textColor: "#ffffff",
-          });
-        }}
-      />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
 
-      {/* Hero Section - blends into content below */}
-      <Box
-        position="relative"
-        py={{ base: 20, md: 28 }}
-        overflow="hidden"
-        sx={{
-          backgroundImage: "url('/assets/portfolio/porfolio_bg_image.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}>
-        {/* Overlay: adapts to color mode */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          bgGradient={heroOverlayGradient}
-          zIndex={0}
-        />
-        <BackgroundGradient height="100%" zIndex={0} opacity={colorMode === "light" ? 0.15 : 0.3} />
-        <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - high contrast on hero */}
-          <Box mb={12} display="flex" justifyContent="flex-end" sx={{ textShadow: heroTextShadow }}>
-            <ButtonGroup
-              style={{
-                backgroundColor: "none",
-                fontSize: "1rem",
-                display: "flex",
-                alignItems: "center",
-              }}>
-              <ButtonLink
-                href="/"
-                size="lg"
-                sx={{
-                  bg: "none",
-                  color: "white",
-                  padding: "0",
-                  textShadow: heroTextShadow,
-                  "&:hover": {
-                    bg: "none",
-                    color: "whiteAlpha.900",
-                  },
-                }}>
+      <Box position="relative" minH="100vh" color={headingColor}>
+        {/* Full-page gradient - scrolls with content (not fixed) */}
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={-1} overflow="hidden" pointerEvents="none">
+          <BackgroundGradient height="100%" width="100%" />
+        </Box>
+
+        {/* Top margin - significant empty space above content */}
+        <Box pt={{ base: 24, md: 32 }} />
+        <Container maxW="container.xl" py={20} position="relative" zIndex={1}>
+          {/* Breadcrumb */}
+          <Flex justify="flex-end" mb={8}>
+            <ButtonGroup sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}>
+              <ButtonLink href="/" size="lg" sx={{ bg: "none", color: textColor, p: 0, "&:hover": { bg: "none", color: headingColor } }}>
                 Home
               </ButtonLink>
-              <Icon as={FaChevronRight} color="white" boxSize={4} />
-              <Text as="span" ml="2" color="white" fontWeight="500">
+              <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+              <Text as="span" ml="2" color={headingColor}>
                 Portfolio
               </Text>
             </ButtonGroup>
+          </Flex>
+
+          {/* Header section - no bg, tall height, vertical line aligns with grid columns; mx/px match filter bar for aligned dividers */}
+          <Box
+            minH={{ base: "280px", md: "35vh" }}
+            display={{ base: "block", md: "grid" }}
+            gridTemplateColumns={{ md: "1fr 1fr" }}
+            borderTopWidth="1px"
+            borderColor={dividerColor}
+            mx={-6}
+            px={6}
+          >
+            {/* Left: Our work - top aligned, borderRight aligns with grid divider */}
+            <Box
+              py={8}
+              pr={{ base: 0, md: 6 }}
+              display="flex"
+              alignItems="flex-start"
+              borderRightWidth={{ md: "1px" }}
+              borderColor={dividerColor}
+              sx={{
+                borderColor: "gray.200 !important",
+                _dark: { borderColor: "gray.600 !important" },
+              }}
+            >
+              <Heading as="h1" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor}>
+                Our work
+              </Heading>
+            </Box>
+            {/* Right: Description - bottom aligned, right aligned */}
+            <Box
+              pl={{ base: 0, md: 6 }}
+              py={{ base: 4, md: 8 }}
+              display="flex"
+              alignItems={{ base: "flex-start", md: "flex-end" }}
+              justifyContent={{ base: "flex-start", md: "flex-end" }}
+            >
+              <Text
+                color={textColor}
+                fontSize="lg"
+                lineHeight="tall"
+                textAlign={{ base: "left", md: "left" }}
+                maxW={{ md: "420px" }}
+              >
+                We collaborate with innovative companies at every stage, acting as a partner as they accelerate and meet their goals. Take a look at some of our favorite projects to date.
+              </Text>
+            </Box>
           </Box>
 
-          <VStack spacing={12} textAlign="center" maxW="4xl" mx="auto">
-            <MotionBox
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}>
-              <Heading
-                fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
-                fontWeight="bold"
-                lineHeight="1.1"
-                mb={6}
-                color="white"
-                textShadow={heroTextShadow}>
-                Our{" "}
-                <Text
-                  as="span"
-                  color="white"
-                  textShadow={heroTextShadow}>
-                  Portfolio
-                </Text>
-              </Heading>
-            </MotionBox>
-            <MotionBox
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}>
-              <Text
-                fontSize={{ base: "xl", md: "2xl" }}
-                color="white"
-                maxW="2xl"
-                lineHeight="1.8"
-                fontWeight="400"
-                textShadow={heroTextShadow}>
-                Showcasing innovative solutions that transform businesses
-              </Text>
-            </MotionBox>
+          {/* Filter bar - bg matches page (transparent, gradient shows through) */}
+          <Box
+            bg="transparent"
+            py={2}
+            px={6}
+            mx={-6}
+            borderTopWidth="1px"
+            borderBottomWidth="1px"
+            borderColor={dividerColor}
+          >
+            <Flex justify="space-between" align="center" flexWrap="wrap">
+              {/* Filter buttons - left: Platforms | Industries */}
+              <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="6" />} align="center">
+                <Menu>
+                  <MenuButton
+                    as={Box}
+                    cursor="pointer"
+                    display="flex"
+                    alignItems="center"
+                    gap={2}
+                    px={4}
+                    py={2}
+                    color={filterColor}
+                    fontSize="sm"
+                    _hover={{ opacity: 0.8 }}
+                  >
+                    Platforms {selectedTech !== "All" && `(${selectedTech})`}
+                    <Icon as={FiChevronDown} boxSize={4} ml={2} />
+                  </MenuButton>
+                  <MenuList bg={menuBg} borderColor={menuBorder}>
+                    {technologies.map((tech) => (
+                      <MenuItem
+                        key={tech}
+                        onClick={() => setSelectedTech(tech)}
+                        bg={selectedTech === tech ? "whiteAlpha.100" : "transparent"}
+                        color={headingColor}
+                        _hover={{ bg: "whiteAlpha.100" }}
+                      >
+                        {tech}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Menu>
+                <Menu>
+                  <MenuButton
+                    as={Box}
+                    cursor="pointer"
+                    display="flex"
+                    alignItems="center"
+                    gap={2}
+                    px={4}
+                    py={2}
+                    color={filterColor}
+                    fontSize="sm"
+                    _hover={{ opacity: 0.8 }}
+                  >
+                    Industries {selectedIndustry !== "All" && `(${selectedIndustry})`}
+                    <Icon as={FiChevronDown} boxSize={4} ml={2} />
+                  </MenuButton>
+                  <MenuList bg={menuBg} borderColor={menuBorder} maxH="300px" overflowY="auto">
+                    {industries.map((ind) => (
+                      <MenuItem
+                        key={ind}
+                        onClick={() => setSelectedIndustry(ind)}
+                        bg={selectedIndustry === ind ? "whiteAlpha.100" : "transparent"}
+                        color={headingColor}
+                        _hover={{ bg: "whiteAlpha.100" }}
+                      >
+                        {ind}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Menu>
+              </HStack>
+              {/* View toggles - right side: Grid | List */}
+              <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="6" />} align="center">
+                <IconButton
+                  aria-label="Grid view"
+                  icon={<FiGrid />}
+                  variant="ghost"
+                  color={viewMode === "grid" ? filterColor : "gray.500"}
+                  borderRadius={0}
+                  px={3}
+                  py={2}
+                  onClick={() => setViewMode("grid")}
+                  _hover={{ bg: "transparent", color: filterColor, opacity: 0.8 }}
+                />
+                <IconButton
+                  aria-label="List view"
+                  icon={<FiList />}
+                  variant="ghost"
+                  color={viewMode === "list" ? filterColor : "gray.500"}
+                  borderRadius={0}
+                  px={3}
+                  py={2}
+                  onClick={() => setViewMode("list")}
+                  _hover={{ bg: "transparent", color: filterColor, opacity: 0.8 }}
+                />
+              </HStack>
+            </Flex>
+          </Box>
 
-            {/* Minimal Stats */}
-            <MotionBox
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              w="full"
-              mt={4}>
-              <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8}>
-                <Stat>
-                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
-                    Projects
-                  </StatLabel>
-                  <StatNumber
-                    fontSize={{ base: "3xl", md: "4xl" }}
-                    color={heroStatNumberColor}
-                    fontWeight="bold"
-                    textShadow={heroTextShadow}>
-                    <AnimatedCounter end={20} />
-                  </StatNumber>
-                </Stat>
-                <Stat>
-                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
-                    Technologies
-                  </StatLabel>
-                  <StatNumber
-                    fontSize={{ base: "3xl", md: "4xl" }}
-                    color={heroStatNumberColor}
-                    fontWeight="bold"
-                    textShadow={heroTextShadow}>
-                    <AnimatedCounter end={15} />
-                  </StatNumber>
-                </Stat>
-                <Stat>
-                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
-                    Clients
-                  </StatLabel>
-                  <StatNumber
-                    fontSize={{ base: "3xl", md: "4xl" }}
-                    color={heroStatNumberColor}
-                    fontWeight="bold"
-                    textShadow={heroTextShadow}>
-                    <AnimatedCounter end={50} />
-                  </StatNumber>
-                </Stat>
-                <Stat>
-                  <StatLabel color={heroStatLabelColor} fontSize="sm" fontWeight="medium" textShadow={heroTextShadow}>
-                    Years
-                  </StatLabel>
-                  <StatNumber
-                    fontSize={{ base: "3xl", md: "4xl" }}
-                    color={heroStatNumberColor}
-                    fontWeight="bold"
-                    textShadow={heroTextShadow}>
-                    <AnimatedCounter end={5} />
-                  </StatNumber>
-                </Stat>
-              </SimpleGrid>
-            </MotionBox>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* All Projects - same dark base, accent aligned with hero */}
-      <Box
-        bg={bgColor}
-        py={{ base: 16, md: 24 }}
-        position="relative"
-        _before={{
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "1px",
-          bgGradient: sectionDividerGradient,
-          opacity: 0.4,
-        }}>
-        <Container maxW="container.xl">
-          <VStack spacing={12} align="stretch">
-
-            <SimpleGrid columns={{ base: 1, sm: 2, lg: 3, xl: 4 }} spacing={6}>
-              {allProjects.map((project, index) => (
-                <MotionCard
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.03 }}
-                  as={Link}
-                  href={project.href}
-                  position="relative"
-                  aspectRatio="4/3"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  cursor="pointer"
+          {/* Project grid or list */}
+          {viewMode === "grid" ? (
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0}>
+              {filteredItems.map((item, idx) => (
+                <Box
+                  key={item.id}
+                  py={6}
+                  pr={{ base: 0, md: idx % 2 === 0 ? 6 : 0 }}
+                  pl={{ base: 0, md: idx % 2 === 1 ? 6 : 0 }}
+                  borderRight={{ base: "none", md: idx % 2 === 0 ? "1px solid" : "none" }}
+                  borderBottom={
+                    idx < 2 * Math.floor((filteredItems.length - 1) / 2) ? "1px solid" : "none"
+                  }
+                  borderColor={dividerColor}
                   sx={{
-                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    _hover: {
-                      transform: "translateY(-6px)",
-                      boxShadow: "xl",
-                      "& .project-image-small": {
-                        transform: "scale(1.08)",
-                        filter: `${cardImageFilterHover} !important`,
-                      },
-                      "& .project-overlay-small": {
-                        opacity: 0.85,
-                      },
-                      "& .project-title-small": {
-                        opacity: 1,
-                        transform: "translateY(0)",
-                      },
-                      "& .project-title-overflow": {
-                        height: "auto",
-                        maxHeight: "6em",
-                      },
-                    },
+                    borderColor: "gray.200 !important",
+                    _dark: { borderColor: "gray.600 !important" },
                   }}
-                  boxShadow="lg">
-                  {/* Background Image - subtle grayscale so section feels aligned with hero */}
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    zIndex={0}
-                    className="project-image-small"
-                    sx={{
-                      filter: cardImageFilter,
-                      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                      "& img": {
-                        objectFit: "cover",
-                        width: "100%",
-                        height: "100%",
-                      },
-                    }}>
-                    <Image
-                      src={project.image}
-                      alt={project.alt}
-                      fill
-                      loading="lazy"
-                      style={{
-                        objectFit: "cover",
-                        objectPosition: "right",
-                      }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </Box>
-
-                  {/* Gradient Overlay */}
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bgGradient="linear(to-t, blackAlpha.800, blackAlpha.500, transparent)"
-                    opacity={cardOverlayOpacity}
-                    className="project-overlay-small"
-                    transition="opacity 0.4s"
-                    zIndex={1}
+                >
+                  <ProjectCard
+                    key={item.id}
+                    title={item.title}
+                    industry={item.industry}
+                    platform={item.platform}
+                    image={item.image}
+                    href={item.href}
+                    headingColor={headingColor}
+                    textColor={textColor}
                   />
-
-                  {/* Minimal Content */}
-                  <Box
-                    position="absolute"
-                    bottom={0}
-                    left={0}
-                    right={0}
-                    p={4}
-                    zIndex={2}
-                    className="project-title-small"
-                    opacity={0.8}
-                    transform="translateY(10px)"
-                    transition="all 0.4s">
-                    <ProjectTitle title={project.title} />
-                    <HStack spacing={2} flexWrap="wrap" gap={1}>
-                      <Badge
-                        bg="blackAlpha.75"
-                        color="white"
-                        px={2.5}
-                        py={1}
-                        borderRadius="md"
-                        fontSize="xs"
-                        fontWeight="semibold"
-                        letterSpacing="0.02em"
-                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
-                        borderWidth="1px"
-                        borderColor="whiteAlpha.400">
-                        {project.industry}
-                      </Badge>
-                      <Badge
-                        bg="blackAlpha.75"
-                        color="white"
-                        px={2.5}
-                        py={1}
-                        borderRadius="md"
-                        fontSize="xs"
-                        fontWeight="semibold"
-                        letterSpacing="0.02em"
-                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
-                        borderWidth="1px"
-                        borderColor="whiteAlpha.400">
-                        {project.platform}
-                      </Badge>
-                    </HStack>
-                  </Box>
-                </MotionCard>
+                </Box>
               ))}
             </SimpleGrid>
-          </VStack>
+          ) : (
+            <Box>
+              {filteredItems.map((item, idx) => (
+                <Box key={item.id}>
+                  {idx > 0 && <Divider borderColor={dividerColor} my={4} />}
+                  <ProjectCardList
+                    key={item.id}
+                    title={item.title}
+                    industry={item.industry}
+                    platform={item.platform}
+                    image={item.image}
+                    href={item.href}
+                    headingColor={headingColor}
+                    textColor={textColor}
+                    linkIconBg={linkIconBg}
+                  />
+                </Box>
+              ))}
+            </Box>
+          )}
         </Container>
       </Box>
-    </Box>
+    </>
   );
-};
-
-export default PortfolioV3;
+}

@@ -122,11 +122,14 @@ function ProjectCard({
           >
             <Heading
               as="h3"
-              fontSize="xl"
+              fontSize={{ base: "lg", md: "xl" }}
               fontWeight="bold"
               color="white"
               textAlign="center"
-              px={4}
+              px={6}
+              py={4}
+              lineHeight="tall"
+              textShadow="0 2px 8px rgba(0,0,0,0.2)"
             >
               {title}
             </Heading>
@@ -195,7 +198,17 @@ function ProjectCardList({
             _groupHover={{ opacity: 1 }}
             zIndex={1}
           >
-            <Heading as="h3" fontSize="xl" fontWeight="bold" color="white" textAlign="center" px={4}>
+            <Heading
+              as="h3"
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight="bold"
+              color="white"
+              textAlign="center"
+              px={6}
+              py={4}
+              lineHeight="tall"
+              textShadow="0 2px 8px rgba(0,0,0,0.2)"
+            >
               {title}
             </Heading>
           </Box>
@@ -257,7 +270,6 @@ export default function PortfolioV3() {
   const menuBg = useColorModeValue("white", "charcoal.700");
   const menuBorder = useColorModeValue("gray.200", "whiteAlpha.200");
   const linkIconBg = useColorModeValue("teal.500", "teal.500");
-  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
 
   return (
     <>
@@ -335,9 +347,9 @@ export default function PortfolioV3() {
             </Box>
           </Box>
 
-          {/* Filter bar - light gray bg, vertical dividers touch horizontal borders */}
+          {/* Filter bar - bg matches page (transparent, gradient shows through) */}
           <Box
-            bg={sectionBg}
+            bg="transparent"
             py={2}
             px={6}
             mx={-6}

@@ -69,7 +69,7 @@ const Services = () => {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
-      image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
+      image: "/assets/portfolio/New/Pack Assist.png",
       alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
     },
     {

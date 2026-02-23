@@ -19,11 +19,10 @@ const HERO_LIGHT_NAV_PATHS = [
   "/portfolio/meatery",
   "/portfolio/avl-copilot",
   "/portfolio/avl-copilot-v3",
+  "/portfolio-v4",
 ];
 
 const NO_THEME_TOGGLE_PATHS = [
-  "/portfolio-v3",
-  "/portfolio-v4",
   "/index-v2",
   "/index-v3",
 ];

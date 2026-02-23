@@ -190,16 +190,7 @@ const CaseStudyAVLCoPilotV3 = () => {
             flexDir={{ base: "column", lg: "row" }}
             w="full">
             <VStack align="start" spacing={6} flex={1} maxW="4xl">
-              <Badge
-                bg={accentColor}
-                color="white"
-                px={4}
-                py={2}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold">
-                AI SOLUTION
-              </Badge>
+              
               <Heading
                 as="h1"
                 fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}

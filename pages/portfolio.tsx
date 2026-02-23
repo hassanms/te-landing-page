@@ -154,7 +154,7 @@ const PortfolioV3 = () => {
       title: "Pack Assist",
       platform: "AI Solution",
       industry: "Packaging",
-      image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
+      image: "/assets/portfolio/New/Pack Assist.png",
       alt: "Pack Assist",
       href: "/portfolio/packassist",
     },

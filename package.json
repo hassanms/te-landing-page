@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.11.5",
     "@fontsource/inter": "^4.5.15",
     "@lottiefiles/react-lottie-player": "^3.5.4",
+    "@radix-ui/react-accordion": "^1.2.12",
     "@saas-ui/auth": "^3.0.6",
     "@saas-ui/react": "^2.7.2",
     "@supabase/supabase-js": "^2.90.1",
@@ -26,6 +27,7 @@
     "date-fns": "^2.30.0",
     "formidable": "^3.5.4",
     "framer-motion": "^10.18.0",
+    "lucide-react": "^0.575.0",
     "next": "^16.1.2",
     "next-seo": "^6.5.0",
     "nodemailer": "^6.9.14",
@@ -36,10 +38,10 @@
     "react-quill": "^2.0.0",
     "react-remove-scroll": "^2.5.9",
     "react-slick": "^0.30.2",
+    "recharts": "^2.12.0",
     "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
-    "yup": "^1.4.0",
-    "recharts": "^2.12.0"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",

@@ -24,6 +24,7 @@ import NextLink from "next/link";
 import { Icon } from "@chakra-ui/react";
 import { FiChevronDown, FiGrid, FiList, FiArrowUpRight } from "react-icons/fi";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
+import { BackgroundGradient } from "components/gradients/background-gradient";
 import { ButtonLink } from "components/button-link";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -249,7 +250,6 @@ export default function PortfolioV3() {
     });
   }, [selectedTech, selectedIndustry]);
 
-  const bgColor = useColorModeValue("gray.50", "charcoal.800");
   const headingColor = useColorModeValue("gray.800", "white");
   const textColor = useColorModeValue("gray.600", "gray.100");
   const filterColor = useColorModeValue("gray.800", "white");
@@ -268,10 +268,15 @@ export default function PortfolioV3() {
         canonicalUrl="https://techemulsion.com/portfolio-v3"
       />
 
-      <Box bg={bgColor} minH="100vh" color={headingColor}>
+      <Box position="relative" minH="100vh" color={headingColor}>
+        {/* Full-page gradient - scrolls with content (not fixed) - same as portfolio-v2 */}
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={-1} overflow="hidden" pointerEvents="none">
+          <BackgroundGradient height="100%" width="100%" />
+        </Box>
+
         {/* Top margin - significant empty space above content */}
         <Box pt={{ base: 24, md: 32 }} />
-        <Container maxW="container.xl" py={20}>
+        <Container maxW="container.xl" py={20} position="relative" zIndex={1}>
           {/* Breadcrumb */}
           <Flex justify="flex-end" mb={8}>
             <ButtonGroup sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}>
@@ -333,7 +338,7 @@ export default function PortfolioV3() {
           {/* Filter bar - light gray bg, vertical dividers touch horizontal borders */}
           <Box
             bg={sectionBg}
-            py={3}
+            py={2}
             px={6}
             mx={-6}
             borderTopWidth="1px"
@@ -342,7 +347,7 @@ export default function PortfolioV3() {
           >
             <Flex justify="space-between" align="center" flexWrap="wrap">
               {/* Filter buttons - left: Technologies | Industries */}
-              <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="8" />} align="center">
+              <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="6" />} align="center">
                 <Menu>
                   <MenuButton
                     as={Box}
@@ -350,8 +355,8 @@ export default function PortfolioV3() {
                     display="flex"
                     alignItems="center"
                     gap={2}
-                    px={5}
-                    py={3}
+                    px={4}
+                    py={2}
                     color={filterColor}
                     fontSize="sm"
                     _hover={{ opacity: 0.8 }}
@@ -380,8 +385,8 @@ export default function PortfolioV3() {
                     display="flex"
                     alignItems="center"
                     gap={2}
-                    px={5}
-                    py={3}
+                    px={4}
+                    py={2}
                     color={filterColor}
                     fontSize="sm"
                     _hover={{ opacity: 0.8 }}
@@ -405,15 +410,15 @@ export default function PortfolioV3() {
                 </Menu>
               </HStack>
               {/* View toggles - right side: Grid | List */}
-              <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="8" />} align="center">
+              <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="6" />} align="center">
                 <IconButton
                   aria-label="Grid view"
                   icon={<FiGrid />}
                   variant="ghost"
                   color={viewMode === "grid" ? filterColor : "gray.500"}
                   borderRadius={0}
-                  px={4}
-                  py={3}
+                  px={3}
+                  py={2}
                   onClick={() => setViewMode("grid")}
                   _hover={{ bg: "transparent", color: filterColor, opacity: 0.8 }}
                 />
@@ -423,8 +428,8 @@ export default function PortfolioV3() {
                   variant="ghost"
                   color={viewMode === "list" ? filterColor : "gray.500"}
                   borderRadius={0}
-                  px={4}
-                  py={3}
+                  px={3}
+                  py={2}
                   onClick={() => setViewMode("list")}
                   _hover={{ bg: "transparent", color: filterColor, opacity: 0.8 }}
                 />

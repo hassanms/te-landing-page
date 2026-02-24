@@ -1956,7 +1956,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball.png"
+              src="/assets/clients/crystal_ball_white.png"
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -2163,24 +2163,6 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Moodtube Extension" hasArrow>
-            <Image
-              src="/assets/clients/moodtube_img.png"
-              alt="Republic Power"
-              width={80}
-              height={80}
-              loading="lazy"
-              decoding="async"
-              style={{
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "80px",
-                maxWidth: "80px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
           <Tooltip label="Bipcards" hasArrow>
             <Box cursor="pointer" filter="brightness(0) invert(1)">
               <Logo2 />
@@ -2322,7 +2304,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball.png"
+              src="/assets/clients/crystal_ball_white.png"
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -2526,24 +2508,6 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 filter: "brightness(0) invert(1)",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Moodtube Extension" hasArrow>
-            <Image
-              src="/assets/clients/moodtube_img.png"
-              alt="Republic Power"
-              width={80}
-              height={80}
-              loading="lazy"
-              decoding="async"
-              style={{
-                objectFit: "contain",
-                maxHeight: "80px",
-                maxWidth: "80px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
               }}
             />
           </Tooltip>

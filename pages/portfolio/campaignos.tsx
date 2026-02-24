@@ -1,141 +1,80 @@
 import {
   Box,
   Container,
-  List,
-  ListIcon,
-  ListItem,
   Text,
   useColorMode,
   Heading,
   HStack,
   VStack,
   SimpleGrid,
-  Card,
-  CardHeader,
-  CardBody,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  Tag,
-  Wrap,
-  WrapItem,
-  Icon,
   Divider,
   Button,
   ButtonGroup,
-  Flex,
-  Badge,
   useColorModeValue,
-  Progress,
-  AspectRatio,
+  Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { BackgroundGradient } from "components/gradients/background-gradient";
+import { keyframes } from "@emotion/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
-import React from "react";
-import {
-  FaAsterisk,
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaChartLine,
-  FaClock,
-  FaGlobe,
-  FaChevronRight,
-  FaChevronDown,
-  FaDatabase,
-  FaShieldAlt,
-  FaSync,
-  FaEye,
-  FaDollarSign,
-  FaMapMarkerAlt,
-  FaCog,
-  FaRobot,
-  FaFileExport,
-  FaUsers,
-} from "react-icons/fa";
-import {
-  SiReact,
-  SiSupabase,
-  SiPostgresql,
-  SiTypescript,
-  SiTailwindcss,
-} from "react-icons/si";
+import React, { useState } from "react";
+import { FaChevronRight } from "react-icons/fa";
+
+const BILLBOARDIQ_CASE_STUDY_IMAGES = [
+  { src: "/assets/portfolio/New/BillboardIQ/DashBoard.png", alt: "BillboardIQ Dashboard - Booked Media & Budget Analytics", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/1.png", alt: "BillboardIQ - Screen 1", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/2.png", alt: "BillboardIQ - Screen 2", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/3.png", alt: "BillboardIQ - Screen 3", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/4.png", alt: "BillboardIQ - Screen 4", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/5.png", alt: "BillboardIQ - Screen 5", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/6.png", alt: "BillboardIQ - Screen 6", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/7.png", alt: "BillboardIQ - Screen 7", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/8.png", alt: "BillboardIQ - Screen 8", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/9.png", alt: "BillboardIQ - Screen 9", isPortrait: false },
+  { src: "/assets/portfolio/New/BillboardIQ/10.png", alt: "BillboardIQ - Screen 10", isPortrait: false },
+];
+
+const scrollRightToLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
 
 const CaseStudyCampaignOS = () => {
   const { colorMode } = useColorMode();
-  const bgColor = useColorModeValue("gray.50", "gray.800");
-  const cardBg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.100");
+  const [isGalleryPaused, setIsGalleryPaused] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const bgColor = useColorModeValue("white", "charcoal.800");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const textColor = useColorModeValue("gray.700", "gray.100");
+  const headingColor = useColorModeValue("gray.900", "white");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const dividerColor = useColorModeValue("gray.200", "gray.700");
+  const numberColor = accentColor;
+
+  const subtlePattern = useColorModeValue(
+    "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
+    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
+  );
 
   return (
-    <Box id="services">
+    <Box bg={bgColor}>
       <Head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
       </Head>
       <EnhancedSEO
-        title="Case Study: BillboardIQ (Premium Design) - Tech Emulsion"
-        description="BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting."
+        title="Case Study: BillboardIQ - Precision-Engineered Management Platform for OOH Advertising - Tech Emulsion"
+        description="BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting—intelligent inventory management, automated reconciliation, lunar-period availability tracking, and role-based dashboards."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/campaignos"
-        portfolioData={{
-          title: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
-          description:
-            "A comprehensive, end-to-end management platform for Out-of-Home advertising. Features intelligent inventory management, automated financial reconciliation, lunar-period availability tracking, multi-format exports, and role-based dashboards.",
-          dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/Campaign_Porfolio.jpg",
-          url: "https://techemulsion.com/portfolio/campaignos",
-          genre: "SaaS Platform, Out-of-Home Advertising, Campaign Management",
-          keywords: [
-            "BillboardIQ",
-            "OOH advertising",
-            "campaign management",
-            "inventory management",
-            "advertising platform",
-            "Tech Emulsion",
-          ],
-        }}
-        breadcrumbData={{
-          items: [
-            { name: "Home", url: "https://techemulsion.com" },
-            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
-            {
-              name: "BillboardIQ",
-              url: "https://techemulsion.com/portfolio/campaignos",
-            },
-          ],
-        }}
-        faqData={{
-          questions: [
-            {
-              question: "What is BillboardIQ?",
-              answer:
-                "BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. It handles the entire lifecycle of an advertising campaign—from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
-            },
-            {
-              question: "What problems does BillboardIQ solve?",
-              answer:
-                "BillboardIQ addresses inventory fragmentation across multiple countries, complex availability logic for lunar-period calculations, reporting bottlenecks through automated exports, and visibility control with role-based dashboards for management and sales teams.",
-            },
-            {
-              question: "What technologies power BillboardIQ?",
-              answer:
-                "Frontend: React 18, TypeScript, and Vite. Styling: Tailwind CSS and Shadcn UI (Radix UI). Backend: Supabase (PostgreSQL) with Row Level Security and Edge Functions. Real-Time: Supabase Realtime for instant synchronization. Analytics: Recharts for financial data visualization.",
-            },
-          ],
-        }}
       />
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF" />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -156,25 +95,18 @@ const CaseStudyCampaignOS = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Premium Hero Section with Gradient Overlay */}
+      {/* Hero Section */}
       <Box
         position="relative"
         color="white"
-        pt={{ base: 8, md: 20 }}
-        pb={{ base: 12, md: 24 }}
+        pt={{ base: 20, md: 32 }}
+        pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "600px", md: "700px" }}>
-        {/* Background Image with Overlay */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          zIndex={0}>
+        minH={{ base: "500px", md: "600px" }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/Campaign_Porfolio.jpg"
-            alt="BillboardIQ"
+            src="/assets/portfolio/New/List Images/BillboardIQ.jpg"
+            alt="BillboardIQ - OOH Advertising Management Platform"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -194,676 +126,405 @@ const CaseStudyCampaignOS = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - white in light mode for visibility on dark hero */}
-          <Box mb={8} display="flex" justifyContent="flex-end">
+          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup
               style={{
                 backgroundColor: "none",
                 fontSize: "1rem",
-                color: colorMode === "light" ? "white" : "muted",
+                color: "white",
                 display: "flex",
                 alignItems: "center",
               }}>
-              <ButtonLink
-                href="/"
-                size="lg"
-                sx={{
-                  bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+              <ButtonLink href="/" size="lg" sx={{ bg: "none", color: "white", padding: "0", "&:hover": { bg: "none" } }}>
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <ButtonLink
-                href="/portfolio"
-                size="lg"
-                sx={{
-                  bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <ButtonLink href="/portfolio" size="lg" sx={{ bg: "none", color: "white", padding: "0", "&:hover": { bg: "none" } }}>
                 Portfolio
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: "white",
-                }}>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Text as="span" ml="2" color="white">
                 BillboardIQ
               </Text>
             </ButtonGroup>
           </Box>
 
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center">
-            {/* Left Side - Content */}
-            <VStack align="start" spacing={6}>
-              <Badge
-                bg="brand.500"
-                color="white"
-                px={4}
-                py={2}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold"
-                letterSpacing="wide">
-                OOH ADVERTISING PLATFORM
-              </Badge>
-              <Heading
-                as="h1"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
-                fontWeight="bold"
-                lineHeight="1.1"
-                color="white">
+          <Flex
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap={{ base: 10, lg: 12 }}
+            flexDir={{ base: "column", lg: "row" }}
+            w="full">
+            <VStack align="start" spacing={6} flex={1} minW={0} maxW="4xl">
+              <Heading as="h1" fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }} fontWeight="bold" lineHeight="1.1" color="white">
                 BillboardIQ
               </Heading>
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="300"
+                lineHeight="1.3"
+                color="rgba(255,255,255,0.9)">
+                A Precision-Engineered Management Ecosystem for Out-of-Home Advertising
+              </Heading>
               <Text
-                fontSize={{ base: "xl", md: "2xl" }}
-                color="rgba(255,255,255,0.9)"
-                lineHeight="1.6"
-                fontWeight="300">
-                A Precision-Engineered Management Ecosystem for Out-of-Home
-                Advertising
-              </Text>
-              <Text
-                fontSize="lg"
+                fontSize={{ base: "lg", md: "xl" }}
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
-                maxW="2xl">
-                A comprehensive, end-to-end management platform that handles the
-                entire campaign lifecycle—from initial briefing and inventory
-                site selection to real-time availability tracking and
-                multi-format financial reporting.
+                maxW="3xl">
+                A comprehensive, end-to-end management platform that handles the entire campaign lifecycle—from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting. Built for data accuracy, role-based visibility, and high-fidelity automated exports.
               </Text>
-
-              {/* Key Metrics */}
-              <SimpleGrid columns={3} spacing={6} w="full" mt={4}>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    2
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Countries
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    80%+
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Time Saved
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    13
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Lunar Periods
-                  </Text>
-                </VStack>
-              </SimpleGrid>
-
             </VStack>
-
-            {/* Right Side - Visual Element */}
-            <Box position="relative" h={{ base: "400px", lg: "500px" }}>
-              <Box
-                position="absolute"
-                inset={0}
-                bgGradient="radial(circle, brand.500 0%, transparent 70%)"
-                opacity={0.2}
-                borderRadius="full"
-                filter="blur(60px)"
-              />
+            <Box flexShrink={0} w={{ base: "100%", lg: "40%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/Campaign_Porfolio.jpg"
-                alt="BillboardIQ Dashboard"
-                fill
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "16px",
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.5)",
-                }}
+                src="/assets/portfolio/New/BillboardIQ/BillboardIQ Show Case Screen Image white.png"
+                alt="BillboardIQ - Dashboard Showcase"
+                width={500}
+                height={500}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
               />
             </Box>
-          </SimpleGrid>
+          </Flex>
         </Container>
       </Box>
 
-      {/* Impact Stats Section */}
-      <Box bg={bgColor} py={16} position="relative">
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="teal" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                IMPACT METRICS
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Real Results, Real Impact
-              </Heading>
-            </Box>
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} w="full">
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaGlobe} boxSize={8} color="brand.500" mb={3} />
-                <StatNumber fontSize="4xl" color="brand.500" fontWeight="bold">
-                  Unified
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Multi-Country Inventory
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Single source of truth for AU & NZ
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaFileExport} boxSize={8} color="green.500" mb={3} />
-                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
-                  Automated
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Export Generation
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  80% reduction in reporting time
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaChartLine} boxSize={8} color="orange.500" mb={3} />
-                <StatNumber fontSize="4xl" color="orange.500" fontWeight="bold">
-                  Accurate
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Booking Management
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Zero booking overlaps
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaUsers} boxSize={8} color="purple.500" mb={3} />
-                <StatNumber fontSize="4xl" color="purple.500" fontWeight="bold">
-                  Role-Based
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Dashboard Views
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Tailored for management & sales
-                </StatHelpText>
-              </Stat>
+      {/* Executive Snapshot */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack spacing={10} align="stretch">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Industry</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Out-of-Home (OOH) Advertising</Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Client</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Multi-Country OOH Media Operator</Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Engagement</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">End-to-end Platform Architecture & Production</Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Outcome</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">80%+ reduction in reporting time</Text>
+              </Box>
             </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* Project Overview */}
-      <Container maxW="container.xl" py={20}>
-        <VStack align="start" spacing={8}>
-          <Box w="full">
-            <Badge colorScheme="blue" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              OVERVIEW
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={6}
-              color={useColorModeValue("gray.900", "white")}>
-              Project Overview
-            </Heading>
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} borderLeft="4px solid" borderColor="brand.500">
-              <VStack align="start" spacing={4}>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  BillboardIQ is a comprehensive, end-to-end management platform
-                  designed specifically for the Out-of-Home (OOH) advertising industry. The
-                  project involved building a high-performance React and Supabase-powered
-                  ecosystem to handle the entire lifecycle of an advertising campaign—from
-                  initial briefing and inventory site selection to real-time availability
-                  tracking and multi-format financial reporting.
-                </Text>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  The platform emphasizes data accuracy, role-based visibility, and
-                  high-fidelity automated exports. It manages thousands of advertising sites
-                  across Australia and New Zealand, with sophisticated geo-logic and
-                  lunar-period availability tracking.
-                </Text>
-              </VStack>
-            </Card>
-          </Box>
-        </VStack>
-      </Container>
-
-      {/* Challenge Section */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="red" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                THE CHALLENGE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                When Scale Meets Complexity
-              </Heading>
-              <Text
-                fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.100")}
-                maxW="2xl"
-                mx="auto">
-                Before the implementation of this system, the management of large-scale
-                OOH inventory faced several critical operational bottlenecks that
-                threatened efficiency and accuracy.
+            <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
+              <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Tech Stack</Text>
+              <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">
+                React 18, TypeScript, Vite, Tailwind CSS, Shadcn UI, Supabase (PostgreSQL), Recharts
               </Text>
             </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-              {[
-                {
-                  icon: FaMapMarkerAlt,
-                  color: "red.500",
-                  title: "Inventory Fragmentation",
-                  description:
-                    "Managing thousands of advertising sites across different countries (Australia and New Zealand) with varying regional rules and timezone complexities.",
-                },
-                {
-                  icon: FaClock,
-                  color: "orange.500",
-                  title: "Availability Logic Complexity",
-                  description:
-                    "Manually calculating \"slots\" for static and digital sites across 28-day \"lunar periods\" was prone to human error and booking overlaps.",
-                },
-                {
-                  icon: FaFileExport,
-                  color: "yellow.500",
-                  title: "Reporting Bottlenecks",
-                  description:
-                    "Sales teams spent hours manually generating PDF contracts, Excel summaries, and PowerPoint proposals for clients.",
-                },
-                {
-                  icon: FaEye,
-                  color: "purple.500",
-                  title: "Visibility Control",
-                  description:
-                    "Management lacked a real-time \"bird's-eye view\" of the sales pipeline, while sales teams needed a focused interface to manage their specific territories without data noise.",
-                },
-              ].map((challenge, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  borderTop="4px solid"
-                  borderColor={challenge.color}
-                  p={6}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <HStack mb={4}>
-                      <Icon as={challenge.icon} boxSize={6} color={challenge.color} />
-                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                        {challenge.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {challenge.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
           </VStack>
         </Container>
       </Box>
 
-      {/* Solution Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE SOLUTION
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              Cloud-Native Architecture for Precision & Scale
-            </Heading>
-            <Text
-              fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.100")}
-              maxW="2xl"
-              mx="auto">
-              We implemented a robust \"Cloud-Native\" architecture using a modern
-              TypeScript stack to ensure precision and real-time responsiveness.
-            </Text>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} w="full">
-            {[
-              {
-                number: "1",
-                icon: FaGlobe,
-                title: "Intelligent Inventory & Geo-Visualization",
-                description:
-                  "Sophisticated site management module that distinguishes between Australian and New Zealand inventory. Custom geo-logic automatically tags sites and visualizes revenue splits in the dashboard, providing immediate insights into international performance through distinct color-coded analytics.",
-                color: "blue",
-              },
-              {
-                number: "2",
-                icon: FaDollarSign,
-                title: "Automated Financial Reconciliation Engine",
-                description:
-                  "Logic layer that automatically calculates Gross Media, Net Media, and associated costs (Print, Install, De-install). Handles complex proportional distributions for campaigns spanning multiple months, ensuring \"Closed Won\" revenue is accurately tracked against annual targets.",
-                color: "green",
-              },
-              {
-                number: "3",
-                icon: FaClock,
-                title: "Lunar-Period Availability Tracking",
-                description:
-                  "Custom availability (Avails) engine operating on 13-period lunar cycles (28 days each), allowing for precise slot summation and conflict detection across thousands of digital and static faces.",
-                color: "orange",
-              },
-              {
-                number: "4",
-                icon: FaFileExport,
-                title: "Multi-Format Export Engine",
-                description:
-                  "High-fidelity export tools including Excel summaries with styled workbooks, automated PDF contracts with dynamic data insertion, and PowerPoint proposals that allow sales agents to export campaign site lists directly into branded presentation decks.",
-                color: "purple",
-              },
-              {
-                number: "5",
-                icon: FaUsers,
-                title: "Role-Based \"Command Center\" Dashboard",
-                description:
-                  "High-density dashboard featuring stacked performance charts visualizing Booked vs. Draft media against annual budgets, real-time status split showing sales pipeline breakdown, and tailored data visibility where Super Admins see global data while Sales Agents focus on individual performance metrics.",
-                color: "pink",
-              },
-            ].map((solution, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderLeft="4px solid"
-                borderColor={`${solution.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s"
-                position="relative"
-                overflow="hidden">
-                <Box
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  fontSize="6xl"
-                  fontWeight="bold"
-                  color={`${solution.color}.100`}
-                  opacity={0.3}
-                  lineHeight="1">
-                  {solution.number}
-                </Box>
-                <CardBody position="relative">
-                  <HStack mb={4}>
-                    <Icon
-                      as={solution.icon}
-                      boxSize={8}
-                      color={`${solution.color}.500`}
-                    />
-                    <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                      {solution.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {solution.description}
-                  </Text>
-                </CardBody>
-              </Card>
+      {/* Case Study Image Gallery Section */}
+      <Box
+        position="relative"
+        py={{ base: 6, md: 10 }}
+        overflow="hidden"
+        minH={{ base: "340px", md: "400px" }}
+        onMouseEnter={() => setIsGalleryPaused(true)}
+        onMouseLeave={() => setIsGalleryPaused(false)}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
+          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="" fill style={{ objectFit: "cover" }} />
+          <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
+        </Box>
+        <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            width="max-content"
+            animation={`${scrollRightToLeft} 45s linear infinite`}
+            sx={{ animationPlayState: isGalleryPaused ? "paused" : "running" }}>
+            {[...BILLBOARDIQ_CASE_STUDY_IMAGES, ...BILLBOARDIQ_CASE_STUDY_IMAGES].map((img, idx) => (
+              <Box
+                key={idx}
+                as="figure"
+                flexShrink={0}
+                mr={{ base: 6, md: 8 }}
+                overflow="hidden"
+                borderRadius={img.isPortrait ? "2xl" : "0"}
+                border="5px solid"
+                borderColor="gray.500"
+                _dark={{ borderColor: "whiteAlpha.150" }}
+                boxShadow="0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)"
+                lineHeight={0}
+                m={0}
+                h={{ base: "300px", md: "360px" }}
+                cursor="pointer"
+                onClick={() => setSelectedImage(img)}
+                _hover={{ opacity: 0.95, transform: "scale(1.02)", boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06)" }}
+                transition="all 0.25s ease"
+                sx={{ "& img": { display: "block", width: "auto", height: "100%", objectFit: "contain" } }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </Box>
             ))}
+          </Box>
+        </Box>
+      </Box>
+
+      <Modal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} size="6xl" isCentered>
+        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
+        <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
+          <ModalCloseButton
+            color="white"
+            bg="teal.500"
+            top={4}
+            right={4}
+            zIndex={10}
+            borderRadius="full"
+            w={10}
+            h={10}
+            fontSize="xl"
+            boxShadow="lg"
+            _hover={{ bg: "teal.600", color: "white" }}
+            _focus={{ boxShadow: "0 0 0 2px teal.400" }}
+          />
+          <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
+            {selectedImage && (
+              <Box maxW="100%" maxH="90vh">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={selectedImage.src} alt={selectedImage.alt} style={{ maxWidth: "100%", maxHeight: "90vh", objectFit: "contain", display: "block" }} />
+              </Box>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      {/* The Business Problem */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+                The Business Problem
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                Before BillboardIQ, managing large-scale OOH inventory across multiple countries faced critical operational bottlenecks that threatened efficiency and accuracy.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                The client needed a single source of truth that could handle inventory fragmentation, complex availability logic, reporting bottlenecks, and role-based visibility—all in real time.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Inventory fragmentation across Australia and New Zealand with varying regional rules",
+                "Manual lunar-period availability calculations prone to human error and booking overlaps",
+                "Reporting bottlenecks—hours spent on PDF contracts, Excel summaries, PowerPoint proposals",
+                "Visibility control—management lacked a bird's-eye view; sales needed focused territory views",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
           </SimpleGrid>
-        </VStack>
-      </Container>
+        </Container>
+      </Box>
+
+      {/* Our Approach */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+                Our Approach
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We implemented a cloud-native architecture using a modern TypeScript stack—React, Supabase, and Tailwind—to ensure precision and real-time responsiveness.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The platform emphasizes data accuracy, role-based visibility, and high-fidelity automated exports across thousands of advertising sites.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Intelligent inventory and geo-visualization",
+                "Automated financial reconciliation engine",
+                "Lunar-period availability tracking (13 periods × 28 days)",
+                "Multi-format export engine (Excel, PDF, PowerPoint)",
+                "Role-based command center dashboards",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* The Solution */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              The Solution: BillboardIQ Platform
+            </Heading>
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Intelligent Inventory & Geo-Visualization:</Text> Custom geo-logic tags sites by country, with distinct color-coded analytics for AU and NZ revenue splits.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Automated Financial Reconciliation:</Text> Logic layer calculates Gross Media, Net Media, and costs—handles proportional distributions for multi-month campaigns and tracks Closed Won revenue against targets.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Lunar-Period Availability Engine:</Text> Custom Avails engine on 13-period lunar cycles with slot summation and conflict detection across thousands of digital and static faces.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Multi-Format Export Engine:</Text> Excel workbooks, automated PDF contracts with dynamic data, and PowerPoint proposals for sales agents to export campaign site lists into branded decks.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Role-Based Dashboards:</Text> Stacked performance charts (Booked vs. Draft media vs. budgets), real-time sales pipeline status, and tailored visibility—Super Admins see global data, Sales Agents see individual metrics.
+                </Text>
+              </Box>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* Technical Architecture */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="purple" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                TECHNICAL EXCELLENCE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Built for Data Integrity & Performance
-              </Heading>
-            </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6} w="full">
-              {[
-                {
-                  icon: SiReact,
-                  name: "React 18",
-                  category: "Frontend",
-                  color: "blue",
-                  description: "Lightning-fast UI with TypeScript",
-                },
-                {
-                  icon: SiTypescript,
-                  name: "TypeScript",
-                  category: "Language",
-                  color: "blue",
-                  description: "Type-safe development",
-                },
-                {
-                  icon: SiTailwindcss,
-                  name: "Tailwind CSS",
-                  category: "Styling",
-                  color: "cyan",
-                  description: "Professional, accessible interface",
-                },
-                {
-                  icon: SiSupabase,
-                  name: "Supabase",
-                  category: "Backend",
-                  color: "green",
-                  description: "PostgreSQL with RLS & Edge Functions",
-                },
-                {
-                  icon: SiPostgresql,
-                  name: "PostgreSQL",
-                  category: "Database",
-                  color: "blue",
-                  description: "Secure, scalable data storage",
-                },
-              ].map((tech, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="md"
-                  p={6}
-                  textAlign="center"
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <Box display="flex" justifyContent="center" mb={4}>
-                      <Icon
-                        as={tech.icon}
-                        boxSize={10}
-                        color={`${tech.color}.500`}
-                      />
-                    </Box>
-                    <Box display="flex" justifyContent="center" mb={2}>
-                      <Badge
-                        colorScheme={tech.color}
-                        fontSize="xs"
-                        borderRadius="full">
-                        {tech.category}
-                      </Badge>
-                    </Box>
-                    <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
-                      {tech.name}
-                    </Heading>
-                    <Text
-                      fontSize="sm"
-                      color={useColorModeValue("gray.600", "gray.200")}
-                      lineHeight="1.6">
-                      {tech.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              Technical Architecture
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+              React 18, TypeScript, Vite, Tailwind CSS, Shadcn UI (Radix). Supabase with PostgreSQL, Row Level Security, and Edge Functions. Recharts for financial visualization. Supabase Realtime for instant sync.
+            </Text>
           </VStack>
         </Container>
       </Box>
 
-      {/* Results Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE RESULTS
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              From Fragmentation to Unified Control
-            </Heading>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-            {[
-              {
-                icon: FaCheckCircle,
-                title: "Unified Inventory Management",
-                description:
-                  "A single source of truth for all AU and NZ advertising assets, eliminating fragmentation and providing real-time visibility.",
-                color: "green",
-              },
-              {
-                icon: FaFileExport,
-                title: "Administrative Efficiency",
-                description:
-                  "Reduced reporting time by over 80% through automated Excel and PPTX generation, freeing sales teams to focus on client relationships.",
-                color: "blue",
-              },
-              {
-                icon: FaChartLine,
-                title: "Improved Sales Accuracy",
-                description:
-                  "Eliminated booking overlaps via the automated slot-summation logic in the Avails engine, ensuring precise availability tracking.",
-                color: "orange",
-              },
-              {
-                icon: FaGlobe,
-                title: "Enhanced Strategic Insight",
-                description:
-                  "Real-time visibility into international revenue splits, allowing for data-driven expansion into the New Zealand market.",
-                color: "purple",
-              },
-            ].map((result, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderTop="4px solid"
-                borderColor={`${result.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s">
-                <CardBody>
-                  <HStack mb={4}>
-                    <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
-                    <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                      {result.title}
-                    </Heading>
+      {/* Business Impact */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+                Business Impact
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                From fragmentation to unified control—a single source of truth for OOH advertising operations across Australia and New Zealand.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Unified inventory management for AU and NZ in one platform",
+                "80%+ reduction in reporting time via automated exports",
+                "Zero booking overlaps through automated slot-summation logic",
+                "Real-time visibility into international revenue splits",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
                   </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {result.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
           </SimpleGrid>
-        </VStack>
-      </Container>
+        </Container>
+      </Box>
+
+      {/* Why This Matters */}
+      <Box bg={bgColor} py={{ base: 20, md: 24 }} position="relative">
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} maxW="4xl">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              Why This Matters
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              At Tech Emulsion, we build precision-engineered management platforms that turn operational complexity into scalable, data-driven systems. BillboardIQ demonstrates how the right architecture can unify fragmented inventory, automate reporting, and empower teams with real-time visibility.
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* CTA Section */}
       <Box
-        bgGradient={
-          colorMode === "dark"
-            ? "linear(to-r, brand.600, brand.800)"
-            : "linear(to-r, brand.500, brand.600)"
-        }
-        py={20}
-        color={colorMode === "dark" ? "white" : "black"}>
+        bgGradient={colorMode === "dark" ? "linear(to-r, teal.600, teal.800)" : "linear(to-r, teal.500, teal.600)"}
+        py={{ base: 16, md: 20 }}
+        color="white">
         <Container maxW="container.xl">
-          <VStack spacing={8} textAlign="center">
-            <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold">
-              Ready to Build Your Precision-Engineered Management Platform?
+          <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
+            <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
+              Ready to Build Your Precision-Engineered Platform?
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} maxW="2xl" opacity={0.9}>
-              Transform your operational challenges into scalable, automated solutions.
-              Let&apos;s discuss how we can build a platform tailored to your industry
-              needs.
-            </Text>
-            <HStack spacing={4} flexWrap="wrap" justify="center">
+            <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
               <Button
                 as="a"
                 href="https://calendly.com/hassanms/discovery-call"
                 target="_blank"
                 size="lg"
-                bg="teal.500"
-                color="white"
-                _hover={{ bg: "teal.600", transform: "translateY(-2px)" }}
+                bg="white"
+                color="teal.500"
+                _hover={{ bg: "whiteAlpha.900" }}
                 rightIcon={<FaChevronRight />}
                 px={8}
                 py={6}
@@ -877,13 +538,10 @@ const CaseStudyCampaignOS = () => {
                 href="/portfolio"
                 size="lg"
                 variant="outline"
-                borderColor="teal.500"
+                borderColor="white"
                 borderWidth="2px"
-                color="teal.500"
-                _hover={{
-                  bg: colorMode === "dark" ? "whiteAlpha.200" : "blackAlpha.100",
-                  transform: "translateY(-2px)",
-                }}
+                color="white"
+                _hover={{ bg: "whiteAlpha.200" }}
                 px={8}
                 py={6}
                 fontSize="lg"

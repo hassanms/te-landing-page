@@ -404,13 +404,18 @@ const CaseStudyAVLCoPilotV3 = () => {
         <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
         <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
           <ModalCloseButton
-            color="black"
-            bg="transparent"
+            color="white"
+            bg="teal.500"
             top={4}
             right={4}
-            zIndex={2}
-            _hover={{ bg: "transparent", color: "gray.800" }}
-            _focus={{ boxShadow: "none" }}
+            zIndex={10}
+            borderRadius="full"
+            w={10}
+            h={10}
+            fontSize="xl"
+            boxShadow="lg"
+            _hover={{ bg: "teal.600", color: "white" }}
+            _focus={{ boxShadow: "0 0 0 2px teal.400" }}
           />
           <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
             {selectedImage && (

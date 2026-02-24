@@ -39,8 +39,8 @@ const portfolioItems: Array<{
   href: string;
 }> = [
   { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
-  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: "/assets/portfolio/New/List Images/StaffUp.png", href: "/portfolio/staffup" },
   { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/campaignos" },
+  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: "/assets/portfolio/New/List Images/StaffUp.png", href: "/portfolio/staffup" },
   { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/Macromascot.jpg", href: "/portfolio/macromascot" },
   { id: 4, title: "AutoCar Intelligence", platform: "SaaS Platform", industry: "Automotive", image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg", href: "/portfolio/autosync-intelligence" },
   { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/List Images/PackAssist.jpg", href: "/portfolio/packassist" },

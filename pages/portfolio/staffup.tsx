@@ -271,7 +271,20 @@ const CaseStudyStaffUp = () => {
       <Modal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} size="6xl" isCentered>
         <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
         <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
-          <ModalCloseButton color="black" bg="transparent" top={4} right={4} zIndex={2} _hover={{ bg: "transparent", color: "gray.800" }} _focus={{ boxShadow: "none" }} />
+          <ModalCloseButton
+            color="white"
+            bg="teal.500"
+            top={4}
+            right={4}
+            zIndex={10}
+            borderRadius="full"
+            w={10}
+            h={10}
+            fontSize="xl"
+            boxShadow="lg"
+            _hover={{ bg: "teal.600", color: "white" }}
+            _focus={{ boxShadow: "0 0 0 2px teal.400" }}
+          />
           <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
             {selectedImage && (
               <Box maxW="100%" maxH="90vh">

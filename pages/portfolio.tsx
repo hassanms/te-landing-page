@@ -40,11 +40,11 @@ const portfolioItems: Array<{
 }> = [
   { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
   { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/campaignos" },
-  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: "/assets/portfolio/New/List Images/StaffUp.png", href: "/portfolio/staffup" },
+  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/List Images/The Meatery.jpg", href: "/portfolio/meatery" },
   { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/Macromascot.jpg", href: "/portfolio/macromascot" },
   { id: 4, title: "AutoCar Intelligence", platform: "SaaS Platform", industry: "Automotive", image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg", href: "/portfolio/autosync-intelligence" },
   { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/List Images/PackAssist.jpg", href: "/portfolio/packassist" },
-  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/List Images/The Meatery.jpg", href: "/portfolio/meatery" },
+  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: "/assets/portfolio/New/List Images/StaffUp.png", href: "/portfolio/staffup" },
   { id: 7, title: "SuperHeart", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/SuperHeart.jpg", href: "/portfolio/superheart" },
   { id: 8, title: "Podcast Beacon", platform: "SaaS Platform", industry: "Media", image: "/assets/portfolio/mic.jpg", href: "/portfolio/podcastbeacon" },
   { id: 9, title: "Rack Room", platform: "SaaS Platform", industry: "Retail", image: "/assets/portfolio/download.jpg", href: "/portfolio/rackroom" },

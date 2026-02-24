@@ -277,17 +277,17 @@ const CaseStudyCampaignOS = () => {
         <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
           <ModalCloseButton
             color="white"
-            bg="teal.500"
+            bg="transparent"
+            border="none"
             top={4}
             right={4}
             zIndex={10}
-            borderRadius="full"
-            w={10}
-            h={10}
-            fontSize="xl"
-            boxShadow="lg"
-            _hover={{ bg: "teal.600", color: "white" }}
-            _focus={{ boxShadow: "0 0 0 2px teal.400" }}
+            fontSize="2xl"
+            sx={{
+              filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.9)) drop-shadow(0 0 4px rgba(0,0,0,0.6))",
+            }}
+            _hover={{ bg: "transparent", color: "white", opacity: 0.9 }}
+            _focus={{ boxShadow: "none" }}
           />
           <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
             {selectedImage && (

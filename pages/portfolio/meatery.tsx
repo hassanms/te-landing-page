@@ -1,142 +1,74 @@
 import {
   Box,
   Container,
-  List,
-  ListIcon,
-  ListItem,
   Text,
   useColorMode,
   Heading,
   HStack,
   VStack,
   SimpleGrid,
-  Card,
-  CardHeader,
-  CardBody,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  Tag,
-  Wrap,
-  WrapItem,
-  Icon,
   Divider,
   Button,
   ButtonGroup,
-  Flex,
-  Badge,
   useColorModeValue,
-  Progress,
-  AspectRatio,
+  Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { BackgroundGradient } from "components/gradients/background-gradient";
+import { keyframes } from "@emotion/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
-import React from "react";
-import {
-  FaAsterisk,
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaChartLine,
-  FaClock,
-  FaGlobe,
-  FaChevronRight,
-  FaChevronDown,
-  FaDatabase,
-  FaShieldAlt,
-  FaSync,
-  FaEye,
-  FaDollarSign,
-  FaMapMarkerAlt,
-  FaCog,
-  FaRobot,
-  FaPhone,
-  FaShoppingCart,
-  FaUsers,
-} from "react-icons/fa";
-import {
-  SiReact,
-  SiNodedotjs,
-  SiPostgresql,
-  SiShopify,
-} from "react-icons/si";
+import React, { useState } from "react";
+import { FaChevronRight } from "react-icons/fa";
+
+const MEATERY_CASE_STUDY_IMAGES = [
+  { src: "/assets/portfolio/New/Meatery/Dashboard.png", alt: "The Meatery Dashboard", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124129.png", alt: "The Meatery - Screen 1", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124252.png", alt: "The Meatery - Screen 2", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124330.png", alt: "The Meatery - Screen 3", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/screencapture-localhost-3001-crm-reports-2026-02-13-12_43_49.png", alt: "The Meatery - CRM Reports", isPortrait: false },
+];
+
+const scrollRightToLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
 
 const CaseStudyMeatery = () => {
   const { colorMode } = useColorMode();
-  const bgColor = useColorModeValue("gray.50", "gray.800");
-  const cardBg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.100");
+  const [isGalleryPaused, setIsGalleryPaused] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const bgColor = useColorModeValue("white", "charcoal.800");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const textColor = useColorModeValue("gray.700", "gray.100");
+  const headingColor = useColorModeValue("gray.900", "white");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const dividerColor = useColorModeValue("gray.200", "gray.700");
+  const numberColor = accentColor;
+
+  const subtlePattern = useColorModeValue(
+    "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
+    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
+  );
 
   return (
-    <Box id="services">
+    <Box bg={bgColor}>
       <Head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
       </Head>
       <EnhancedSEO
-        title="Case Study: The Meatery (Premium Design) - Tech Emulsion"
+        title="Case Study: The Meatery - AI-Driven Voice CRM & Multi-Tenant Agency - Tech Emulsion"
         description="The Meatery is an AI-Driven Voice CRM and e-commerce platform for a premium meat distributor. Tech Emulsion scaled it into a Multi-Tenant Agency with DNC Gatekeeper, Shopify integration, n8n AI Judge, and real-time draft orders."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/meatery"
-        portfolioData={{
-          title:
-            "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
-          description:
-            "Proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper, Shopify integration, n8n AI Judge, and real-time draft orders.",
-          dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
-          url: "https://techemulsion.com/portfolio/meatery",
-          genre: "Voice AI, CRM, E-commerce, Multi-Tenant",
-          keywords: [
-            "The Meatery",
-            "Voice AI",
-            "CRM",
-            "Shopify",
-            "Retell AI",
-            "Tech Emulsion",
-          ],
-        }}
-        breadcrumbData={{
-          items: [
-            { name: "Home", url: "https://techemulsion.com" },
-            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
-            {
-              name: "The Meatery",
-              url: "https://techemulsion.com/portfolio/meatery",
-            },
-          ],
-        }}
-        faqData={{
-          questions: [
-            {
-              question: "What is The Meatery?",
-              answer:
-                "The Meatery is a proprietary e-commerce CRM and Voice AI platform designed to automate high-ticket customer interactions for a premium meat distributor. It uses human-like voice agents for inbound support and outbound sales campaigns, including abandoned checkout recovery and cold outreach.",
-            },
-            {
-              question: "How did Tech Emulsion address DNC compliance for The Meatery?",
-              answer:
-                "We built a centralized PostgreSQL DNC Gatekeeper that checks every phone number against both Global and Client-Specific Do Not Call tables before any call is triggered, allowing the client to run automation flows with confidence and reactivate revenue drivers like Abandoned Checkout recovery.",
-            },
-            {
-              question: "What tech stack powers The Meatery?",
-              answer:
-                "Voice AI: Retell AI (LLM + Voice). Backend: Node.js (Express) with Shopify API. Automation: n8n for orchestration. Database: PostgreSQL (Railway) refactored for multi-tenancy. Frontend: React Admin Dashboard for call logs and sentiment analysis.",
-            },
-          ],
-        }}
       />
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF" />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -157,25 +89,18 @@ const CaseStudyMeatery = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Premium Hero Section with Gradient Overlay */}
+      {/* Hero Section */}
       <Box
         position="relative"
         color="white"
-        pt={{ base: 8, md: 20 }}
-        pb={{ base: 12, md: 24 }}
+        pt={{ base: 20, md: 32 }}
+        pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "600px", md: "700px" }}>
-        {/* Background Image with Overlay */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          zIndex={0}>
+        minH={{ base: "500px", md: "600px" }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg"
-            alt="The Meatery"
+            src="/assets/portfolio/New/List Images/The Meatery.jpg"
+            alt="The Meatery - AI-Driven Voice CRM"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -195,665 +120,405 @@ const CaseStudyMeatery = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - white in light mode for visibility on dark hero */}
-          <Box mb={8} display="flex" justifyContent="flex-end">
+          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup
               style={{
                 backgroundColor: "none",
                 fontSize: "1rem",
-                color: colorMode === "light" ? "white" : "muted",
+                color: "white",
                 display: "flex",
                 alignItems: "center",
               }}>
-              <ButtonLink
-                href="/"
-                size="lg"
-                sx={{
-                  bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+              <ButtonLink href="/" size="lg" sx={{ bg: "none", color: "white", padding: "0", "&:hover": { bg: "none" } }}>
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <ButtonLink
-                href="/portfolio"
-                size="lg"
-                sx={{
-                  bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <ButtonLink href="/portfolio" size="lg" sx={{ bg: "none", color: "white", padding: "0", "&:hover": { bg: "none" } }}>
                 Portfolio
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: "white",
-                }}>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Text as="span" ml="2" color="white">
                 The Meatery
               </Text>
             </ButtonGroup>
           </Box>
 
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center">
-            {/* Left Side - Content */}
-            <VStack align="start" spacing={6}>
-              <Badge
-                bg="brand.500"
-                color="white"
-                px={4}
-                py={2}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold"
-                letterSpacing="wide">
-                VOICE AI CRM
-              </Badge>
-              <Heading
-                as="h1"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
-                fontWeight="bold"
-                lineHeight="1.1"
-                color="white">
+          <Flex
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap={{ base: 10, lg: 12 }}
+            flexDir={{ base: "column", lg: "row" }}
+            w="full">
+            <VStack align="start" spacing={6} flex={1} minW={0} maxW="4xl">
+              <Heading as="h1" fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }} fontWeight="bold" lineHeight="1.1" color="white">
                 The Meatery
               </Heading>
-              <Text
-                fontSize={{ base: "xl", md: "2xl" }}
-                color="rgba(255,255,255,0.9)"
-                lineHeight="1.6"
-                fontWeight="300">
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="300"
+                lineHeight="1.3"
+                color="rgba(255,255,255,0.9)">
                 Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency
-              </Text>
+              </Heading>
               <Text
-                fontSize="lg"
+                fontSize={{ base: "lg", md: "xl" }}
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
-                maxW="2xl">
-                A proprietary e-commerce CRM and Voice AI platform for a premium meat
-                distributor. Human-like voice agents, DNC Gatekeeper compliance, Shopify
-                integration, and real-time draft orders for abandoned checkout recovery
-                and inventory campaigns.
+                maxW="3xl">
+                A proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. Human-like voice agents, DNC Gatekeeper compliance, Shopify integration, and real-time draft orders for abandoned checkout recovery and inventory campaigns.
               </Text>
-
-              {/* Key Metrics */}
-              <SimpleGrid columns={3} spacing={6} w="full" mt={4}>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    Multi
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Tenant Ready
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    DNC
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Compliant
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    Real-Time
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Order Creation
-                  </Text>
-                </VStack>
-              </SimpleGrid>
-
             </VStack>
-
-            {/* Right Side - Visual Element */}
-            <Box position="relative" h={{ base: "400px", lg: "500px" }}>
-              <Box
-                position="absolute"
-                inset={0}
-                bgGradient="radial(circle, brand.500 0%, transparent 70%)"
-                opacity={0.2}
-                borderRadius="full"
-                filter="blur(60px)"
-              />
+            <Box flexShrink={0} w={{ base: "100%", lg: "45%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg"
-                alt="The Meatery Dashboard"
-                fill
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "16px",
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.5)",
-                }}
+                src="/assets/portfolio/New/Meatery/The Meatrey Show case screen image.png"
+                alt="The Meatery - Voice CRM Showcase"
+                width={500}
+                height={400}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
               />
             </Box>
-          </SimpleGrid>
+          </Flex>
         </Container>
       </Box>
 
-      {/* Impact Stats Section */}
-      <Box bg={bgColor} py={16} position="relative">
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="teal" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                IMPACT METRICS
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Real Results, Real Impact
-              </Heading>
-            </Box>
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} w="full">
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaUsers} boxSize={8} color="brand.500" mb={3} />
-                <StatNumber fontSize="4xl" color="brand.500" fontWeight="bold">
-                  Multi-Tenant
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Agency MVP
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Enables external client onboarding
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaShieldAlt} boxSize={8} color="green.500" mb={3} />
-                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
-                  DNC
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Gatekeeper
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Reactivated revenue drivers safely
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaShoppingCart} boxSize={8} color="orange.500" mb={3} />
-                <StatNumber fontSize="4xl" color="orange.500" fontWeight="bold">
-                  Real-Time
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Draft Orders
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Instant checkout link generation
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaChartLine} boxSize={8} color="purple.500" mb={3} />
-                <StatNumber fontSize="4xl" color="purple.500" fontWeight="bold">
-                  Enhanced
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Sales Agility
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Rapid-fire AI voice campaigns
-                </StatHelpText>
-              </Stat>
+      {/* Executive Snapshot */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack spacing={10} align="stretch">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Industry</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">E-commerce & Food Distribution</Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Client</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Premium Meat Distributor</Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Engagement</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Multi-Tenant Agency Architecture & Voice AI</Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Outcome</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Multi-tenant agency MVP, DNC compliance</Text>
+              </Box>
             </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* Project Overview */}
-      <Container maxW="container.xl" py={20}>
-        <VStack align="start" spacing={8}>
-          <Box w="full">
-            <Badge colorScheme="blue" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              OVERVIEW
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={6}
-              color={useColorModeValue("gray.900", "white")}>
-              Project Overview
-            </Heading>
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} borderLeft="4px solid" borderColor="brand.500">
-              <VStack align="start" spacing={4}>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  The Meatery is a proprietary e-commerce CRM and Voice AI platform
-                  designed to automate high-ticket customer interactions. Initially
-                  developed as an internal tool for a premium meat distributor, the
-                  project focused on evolving the platform into a Multi-Tenant
-                  Agency Model.
-                </Text>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  The system utilizes human-like voice agents to manage inbound support
-                  and outbound sales campaigns, such as abandoned checkout recovery and
-                  cold outreach. It features DNC Gatekeeper compliance, Shopify integration,
-                  n8n AI Judge for prompt iteration, and real-time draft orders.
-                </Text>
-              </VStack>
-            </Card>
-          </Box>
-        </VStack>
-      </Container>
-
-      {/* Challenge Section */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="red" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                THE CHALLENGE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                From Internal Tool to Scalable Agency Solution
-              </Heading>
-              <Text
-                fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.100")}
-                maxW="2xl"
-                mx="auto">
-                The transition from an internal tool to a scalable agency
-                solution presented several technical and operational hurdles.
+            <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
+              <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Tech Stack</Text>
+              <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">
+                React, Node.js (Express), Shopify API, Retell AI, n8n, PostgreSQL (Railway)
               </Text>
             </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-              {[
-                {
-                  icon: FaShieldAlt,
-                  color: "red.500",
-                  title: "Compliance Risks",
-                  description:
-                    "A \"DNC (Do Not Call) Fear\" prevented the reactivation of high-revenue automation flows like Abandoned Checkout recovery, limiting revenue potential.",
-                },
-                {
-                  icon: FaDatabase,
-                  color: "orange.500",
-                  title: "Data Reliability",
-                  description:
-                    "Unreliable webhooks led to missing call logs and inaccurate CRM attribution, making it impossible to bill future agency clients accurately.",
-                },
-                {
-                  icon: FaRobot,
-                  color: "yellow.500",
-                  title: "Lack of Personalization",
-                  description:
-                    "Early AI iterations often sounded \"robotic\" and lacked deep customer context (e.g., VIP status or purchase history) needed for effective sales.",
-                },
-                {
-                  icon: FaCog,
-                  color: "purple.500",
-                  title: "Operational Friction",
-                  description:
-                    "Launching new inventory-specific campaigns (like a surplus sale) took days of manual intervention instead of minutes, reducing agility.",
-                },
-              ].map((challenge, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  borderTop="4px solid"
-                  borderColor={challenge.color}
-                  p={6}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <HStack mb={4}>
-                      <Icon as={challenge.icon} boxSize={6} color={challenge.color} />
-                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                        {challenge.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {challenge.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
           </VStack>
         </Container>
       </Box>
 
-      {/* Solution Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE SOLUTION
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              Infrastructure Overhaul: Compliance, Intelligence & Scalability
-            </Heading>
-            <Text
-              fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.100")}
-              maxW="2xl"
-              mx="auto">
-              We implemented a robust infrastructure overhaul focused on
-              compliance, intelligence, and multi-tenant scalability.
-            </Text>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} w="full">
-            {[
-              {
-                number: "1",
-                icon: FaShieldAlt,
-                title: "DNC \"Gatekeeper\" Architecture",
-                description:
-                  "Built a centralized PostgreSQL exclusion list that checks every phone number against both Global and Client-Specific DNC tables before a call is ever triggered, allowing the client to run automation flows with total confidence.",
-                color: "blue",
-              },
-              {
-                number: "2",
-                icon: FaShoppingCart,
-                title: "Smart Agent Context & Shopify Integration",
-                description:
-                  "Transformed the AI from a generic caller into a savvy sales agent by injecting Shopify Data (Order Count, LTV, Subscription Status) directly into the AI's dynamic variables, enabling personalized discounts and add-ons.",
-                color: "green",
-              },
-              {
-                number: "3",
-                icon: FaRobot,
-                title: "\"Prompt Ops\" Feedback Loop",
-                description:
-                  "Developed an n8n-based AI Judge that automatically ingests call recordings, grades conversations based on rebuttal handling and tone, and aggregates data for rapid prompt iteration, eliminating \"robotic\" behavior.",
-                color: "orange",
-              },
-              {
-                number: "4",
-                icon: FaSync,
-                title: "Campaign Injection System",
-                description:
-                  "Streamlined inventory liquidation by creating a flexible CSV upload tool. Admins can now map specific customer lists (e.g., \"Prime Rib Buyers\") to specific agents and scripts instantly, reducing production time from days to minutes.",
-                color: "purple",
-              },
-              {
-                number: "5",
-                icon: FaShoppingCart,
-                title: "Real-Time Sales Execution",
-                description:
-                  "Empowered agents with the ability to programmatically create discounted \"Draft Orders\" in Shopify and text the checkout link to the customer immediately during the call, enabling instant conversion.",
-                color: "pink",
-              },
-            ].map((solution, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderLeft="4px solid"
-                borderColor={`${solution.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s"
-                position="relative"
-                overflow="hidden">
-                <Box
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  fontSize="6xl"
-                  fontWeight="bold"
-                  color={`${solution.color}.100`}
-                  opacity={0.3}
-                  lineHeight="1">
-                  {solution.number}
-                </Box>
-                <CardBody position="relative">
-                  <HStack mb={4}>
-                    <Icon
-                      as={solution.icon}
-                      boxSize={8}
-                      color={`${solution.color}.500`}
-                    />
-                    <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                      {solution.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {solution.description}
-                  </Text>
-                </CardBody>
-              </Card>
+      {/* Case Study Image Gallery Section */}
+      <Box
+        position="relative"
+        py={{ base: 6, md: 10 }}
+        overflow="hidden"
+        minH={{ base: "340px", md: "400px" }}
+        onMouseEnter={() => setIsGalleryPaused(true)}
+        onMouseLeave={() => setIsGalleryPaused(false)}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
+          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="" fill style={{ objectFit: "cover" }} />
+          <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
+        </Box>
+        <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            width="max-content"
+            animation={`${scrollRightToLeft} 45s linear infinite`}
+            sx={{ animationPlayState: isGalleryPaused ? "paused" : "running" }}>
+            {[...MEATERY_CASE_STUDY_IMAGES, ...MEATERY_CASE_STUDY_IMAGES].map((img, idx) => (
+              <Box
+                key={idx}
+                as="figure"
+                flexShrink={0}
+                mr={{ base: 6, md: 8 }}
+                overflow="hidden"
+                borderRadius={img.isPortrait ? "2xl" : "0"}
+                border="5px solid"
+                borderColor="gray.500"
+                _dark={{ borderColor: "whiteAlpha.150" }}
+                boxShadow="0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)"
+                lineHeight={0}
+                m={0}
+                h={{ base: "300px", md: "360px" }}
+                cursor="pointer"
+                onClick={() => setSelectedImage(img)}
+                _hover={{ opacity: 0.95, transform: "scale(1.02)", boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06)" }}
+                transition="all 0.25s ease"
+                sx={{ "& img": { display: "block", width: "auto", height: "100%", objectFit: "contain" } }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </Box>
             ))}
+          </Box>
+        </Box>
+      </Box>
+
+      <Modal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} size="6xl" isCentered>
+        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
+        <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
+          <ModalCloseButton
+            color="white"
+            bg="transparent"
+            border="none"
+            top={4}
+            right={4}
+            zIndex={10}
+            fontSize="2xl"
+            sx={{
+              filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.9)) drop-shadow(0 0 4px rgba(0,0,0,0.6))",
+            }}
+            _hover={{ bg: "transparent", color: "white", opacity: 0.9 }}
+            _focus={{ boxShadow: "none" }}
+          />
+          <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
+            {selectedImage && (
+              <Box maxW="100%" maxH="90vh">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={selectedImage.src} alt={selectedImage.alt} style={{ maxWidth: "100%", maxHeight: "90vh", objectFit: "contain", display: "block" }} />
+              </Box>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      {/* The Business Problem */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+                The Business Problem
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The transition from an internal tool to a scalable agency solution presented several technical and operational hurdles.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                DNC compliance fears, unreliable webhooks, robotic AI voices, and operational friction blocked scaling from a single-tenant tool to a multi-tenant agency.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "DNC (Do Not Call) fear prevented reactivating high-revenue automation flows like Abandoned Checkout",
+                "Unreliable webhooks led to missing call logs and inaccurate CRM attribution",
+                "Early AI iterations sounded robotic and lacked deep customer context",
+                "Launching new inventory campaigns took days of manual intervention instead of minutes",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
           </SimpleGrid>
-        </VStack>
-      </Container>
+        </Container>
+      </Box>
+
+      {/* Our Approach */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+                Our Approach
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We implemented an infrastructure overhaul focused on compliance, intelligence, and multi-tenant scalability.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The goal was to transform a single-tenant Voice AI CRM into an agency-ready platform with DNC Gatekeeper, smart context injection, and real-time sales execution.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "DNC Gatekeeper architecture for compliance",
+                "Smart agent context & Shopify integration",
+                "Prompt Ops feedback loop with n8n AI Judge",
+                "Campaign injection system for rapid launch",
+                "Real-time draft orders during calls",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* The Solution */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              The Solution: The Meatery Platform
+            </Heading>
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>DNC Gatekeeper Architecture:</Text> Centralized PostgreSQL exclusion list checks every phone number against Global and Client-Specific DNC tables before any call, enabling confident automation.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Smart Agent Context & Shopify Integration:</Text> AI receives Shopify data (Order Count, LTV, Subscription Status) for personalized discounts and add-ons during calls.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Prompt Ops Feedback Loop:</Text> n8n-based AI Judge ingests call recordings, grades conversations on rebuttal handling and tone, and aggregates data for rapid prompt iteration.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Campaign Injection System:</Text> CSV upload tool maps customer lists to specific agents and scripts—reducing campaign launch time from days to minutes.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Real-Time Draft Orders:</Text> Agents create discounted Draft Orders in Shopify and text checkout links to customers during the call for instant conversion.
+                </Text>
+              </Box>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* Technical Architecture */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="purple" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                TECHNICAL EXCELLENCE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Built for Low Latency & High Reliability
-              </Heading>
-            </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="full">
-              {[
-                {
-                  icon: SiReact,
-                  name: "React",
-                  category: "Frontend",
-                  color: "blue",
-                  description: "Admin Dashboard for call logs",
-                },
-                {
-                  icon: SiNodedotjs,
-                  name: "Node.js",
-                  category: "Backend",
-                  color: "green",
-                  description: "Express with Shopify API",
-                },
-                {
-                  icon: SiShopify,
-                  name: "Shopify",
-                  category: "E-commerce",
-                  color: "green",
-                  description: "Order & inventory management",
-                },
-                {
-                  icon: SiPostgresql,
-                  name: "PostgreSQL",
-                  category: "Database",
-                  color: "blue",
-                  description: "Multi-tenant data architecture",
-                },
-              ].map((tech, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="md"
-                  p={6}
-                  textAlign="center"
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <Box display="flex" justifyContent="center" mb={4}>
-                      <Icon
-                        as={tech.icon}
-                        boxSize={10}
-                        color={`${tech.color}.500`}
-                      />
-                    </Box>
-                    <Box display="flex" justifyContent="center" mb={2}>
-                      <Badge
-                        colorScheme={tech.color}
-                        fontSize="xs"
-                        borderRadius="full">
-                        {tech.category}
-                      </Badge>
-                    </Box>
-                    <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
-                      {tech.name}
-                    </Heading>
-                    <Text
-                      fontSize="sm"
-                      color={useColorModeValue("gray.600", "gray.200")}
-                      lineHeight="1.6">
-                      {tech.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              Technical Architecture
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+              Voice AI: Retell AI (LLM + Voice). Backend: Node.js (Express) with Shopify API. Automation: n8n for orchestration. Database: PostgreSQL (Railway) refactored for multi-tenancy. Frontend: React Admin Dashboard for call logs and sentiment analysis.
+            </Text>
           </VStack>
         </Container>
       </Box>
 
-      {/* Results Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE RESULTS
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              From Single-Tenant Tool to Multi-Tenant Agency
-            </Heading>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-            {[
-              {
-                icon: FaCheckCircle,
-                title: "Multi-Tenant Agency MVP",
-                description:
-                  "Transitioned from a single-tenant tool to a Multi-Tenant Agency MVP, enabling the onboarding of external clients and scaling the business model.",
-                color: "green",
-              },
-              {
-                icon: FaShieldAlt,
-                title: "Reactivated Revenue Drivers",
-                description:
-                  "Reactivated the primary revenue driver (Abandoned Checkout flows) by securing the system with a hardened DNC Gatekeeper, enabling confident automation.",
-                color: "blue",
-              },
-              {
-                icon: FaDatabase,
-                title: "Improved Data Integrity",
-                description:
-                  "Improved data integrity by refactoring webhooks to ensure 100% of call outcomes and CRM attributions are captured, enabling accurate billing.",
-                color: "orange",
-              },
-              {
-                icon: FaChartLine,
-                title: "Enhanced Sales Agility",
-                description:
-                  "Enhanced sales agility, allowing the client to liquidate surplus stock through rapid-fire AI voice campaigns, reducing campaign launch time from days to minutes.",
-                color: "purple",
-              },
-            ].map((result, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderTop="4px solid"
-                borderColor={`${result.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s">
-                <CardBody>
-                  <HStack mb={4}>
-                    <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
-                    <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                      {result.title}
-                    </Heading>
+      {/* Business Impact */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+                Business Impact
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                From single-tenant tool to multi-tenant agency—with compliance-safe automation and enhanced sales agility.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Multi-Tenant Agency MVP enabling external client onboarding",
+                "Reactivated Abandoned Checkout flows via DNC Gatekeeper",
+                "100% call outcome and CRM attribution capture for accurate billing",
+                "Campaign launch time reduced from days to minutes",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
                   </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {result.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
           </SimpleGrid>
-        </VStack>
-      </Container>
+        </Container>
+      </Box>
+
+      {/* Why This Matters */}
+      <Box bg={bgColor} py={{ base: 20, md: 24 }} position="relative">
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} maxW="4xl">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              Why This Matters
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              At Tech Emulsion, we scale Voice AI and CRM platforms from internal tools into compliance-safe, multi-tenant agencies. The Meatery demonstrates how DNC Gatekeeper architecture, smart context injection, and real-time sales execution can reactivate revenue drivers and accelerate growth.
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* CTA Section */}
       <Box
-        bgGradient={
-          colorMode === "dark"
-            ? "linear(to-r, brand.600, brand.800)"
-            : "linear(to-r, brand.500, brand.600)"
-        }
-        py={20}
-        color={colorMode === "dark" ? "white" : "black"}>
+        bgGradient={colorMode === "dark" ? "linear(to-r, teal.600, teal.800)" : "linear(to-r, teal.500, teal.600)"}
+        py={{ base: 16, md: 20 }}
+        color="white">
         <Container maxW="container.xl">
-          <VStack spacing={8} textAlign="center">
-            <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold">
+          <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
+            <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
               Ready to Scale Your Voice AI and CRM?
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} maxW="2xl" opacity={0.9}>
-              Transform your voice AI and CRM into a multi-tenant agency. Let&apos;s
-              discuss compliance-safe, intelligent automation for your business.
-            </Text>
-            <HStack spacing={4} flexWrap="wrap" justify="center">
+            <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
               <Button
                 as="a"
                 href="https://calendly.com/hassanms/discovery-call"
                 target="_blank"
                 size="lg"
-                bg="teal.500"
-                color="white"
-                _hover={{ bg: "teal.600", transform: "translateY(-2px)" }}
+                bg="white"
+                color="teal.500"
+                _hover={{ bg: "whiteAlpha.900" }}
                 rightIcon={<FaChevronRight />}
                 px={8}
                 py={6}
@@ -867,13 +532,10 @@ const CaseStudyMeatery = () => {
                 href="/portfolio"
                 size="lg"
                 variant="outline"
-                borderColor="teal.500"
+                borderColor="white"
                 borderWidth="2px"
-                color="teal.500"
-                _hover={{
-                  bg: colorMode === "dark" ? "whiteAlpha.200" : "blackAlpha.100",
-                  transform: "translateY(-2px)",
-                }}
+                color="white"
+                _hover={{ bg: "whiteAlpha.200" }}
                 px={8}
                 py={6}
                 fontSize="lg"

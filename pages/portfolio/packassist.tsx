@@ -1,143 +1,100 @@
 import {
   Box,
   Container,
-  List,
-  ListIcon,
-  ListItem,
   Text,
   useColorMode,
   Heading,
   HStack,
   VStack,
   SimpleGrid,
-  Card,
-  CardHeader,
-  CardBody,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  Tag,
-  Wrap,
-  WrapItem,
-  Icon,
   Divider,
   Button,
   ButtonGroup,
-  Flex,
   Badge,
   useColorModeValue,
-  Progress,
-  AspectRatio,
+  Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { BackgroundGradient } from "components/gradients/background-gradient";
+import { keyframes } from "@emotion/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
-import React from "react";
-import {
-  FaAsterisk,
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaChartLine,
-  FaClock,
-  FaGlobe,
-  FaChevronRight,
-  FaChevronDown,
-  FaDatabase,
-  FaShieldAlt,
-  FaSync,
-  FaEye,
-  FaDollarSign,
-  FaMapMarkerAlt,
-  FaCog,
-  FaRobot,
-  FaComments,
-  FaBrain,
-  FaUserCheck,
-} from "react-icons/fa";
-import {
-  SiReact,
-  SiPython,
-  SiOpenai,
-  SiPostgresql,
-  SiFastapi,
-  SiMongodb,
-} from "react-icons/si";
+import React, { useState } from "react";
+import { FaChevronRight } from "react-icons/fa";
+
+const PACK_ASSIST_CASE_STUDY_IMAGES = [
+  {
+    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Main Page.png",
+    alt: "Pack Assist - Main Chatbot Page",
+    isPortrait: false,
+  },
+  {
+    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Websites Allow List.png",
+    alt: "Pack Assist - Websites Allow List Configuration",
+    isPortrait: false,
+  },
+  {
+    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Knowledgebase.png",
+    alt: "Pack Assist - Knowledgebase Management",
+    isPortrait: false,
+  },
+  {
+    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/CSR Management.PNG",
+    alt: "Pack Assist - CSR Management Dashboard",
+    isPortrait: false,
+  },
+  {
+    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Human in Loop.PNG",
+    alt: "Pack Assist - Human in the Loop Controls",
+    isPortrait: false,
+  },
+  {
+    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Visitor - CSR Flow (1).PNG",
+    alt: "Pack Assist - Visitor to CSR Flow",
+    isPortrait: false,
+  },
+];
+
+const scrollRightToLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
 
 const CaseStudyPackAssist = () => {
   const { colorMode } = useColorMode();
-  const bgColor = useColorModeValue("gray.50", "gray.800");
-  const cardBg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.100");
+  const [isGalleryPaused, setIsGalleryPaused] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const bgColor = useColorModeValue("white", "charcoal.800");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const textColor = useColorModeValue("gray.700", "gray.100");
+  const headingColor = useColorModeValue("gray.900", "white");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const dividerColor = useColorModeValue("gray.200", "gray.700");
+  const numberColor = accentColor;
+
+  const subtlePattern = useColorModeValue(
+    "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
+    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
+  );
 
   return (
-    <Box id="services">
+    <Box bg={bgColor}>
       <Head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
       </Head>
       <EnhancedSEO
-        title="Case Study: Pack Assist (Premium Design) - Tech Emulsion"
+        title="Case Study: Pack Assist - Cost-Optimized AI Sales Agent for Packaging - Tech Emulsion"
         description="Pack Assist is an AI-Assisted Sales Qualification Chatbot for the packaging industry. Tech Emulsion delivered a cost-optimized hybrid architecture, Zendesk-style agent dashboard, RAG-based fact-checking, and weekend automation in 8 weeks."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/packassist"
-        portfolioData={{
-          title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
-          description:
-            "Advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. Python FastAPI backend, hybrid cost-saving architecture, Zendesk-style agent dashboard, RAG to eliminate AI hallucinations, weekend automation.",
-          dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/Pack Assist.png",
-          url: "https://techemulsion.com/portfolio/packassist",
-          genre: "AI, Sales Automation, Packaging Industry",
-          keywords: [
-            "Pack Assist",
-            "AI chatbot",
-            "packaging sales",
-            "FastAPI",
-            "RAG",
-            "Tech Emulsion",
-          ],
-        }}
-        breadcrumbData={{
-          items: [
-            { name: "Home", url: "https://techemulsion.com" },
-            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
-            {
-              name: "Pack Assist",
-              url: "https://techemulsion.com/portfolio/packassist",
-            },
-          ],
-        }}
-        faqData={{
-          questions: [
-            {
-              question: "What is Pack Assist?",
-              answer:
-                "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot designed for the packaging industry. It helps qualify leads through a hybrid flow: static questions first (Name, Email, Product), then paid AI logic only for qualified visitors, reducing costs and improving accuracy.",
-            },
-            {
-              question: "How did Tech Emulsion reduce AI costs for Pack Assist?",
-              answer:
-                "We built a Hybrid Init workflow. The first 3–4 questions (Name, Email, Product) are static system questions. Paid AI is triggered only after these qualifications are met, filtering out casual browsers before incurring token costs.",
-            },
-            {
-              question: "What technical stack powers Pack Assist?",
-              answer:
-                "Frontend: React, Tailwind CSS, Socket.io Client. Backend: Python, FastAPI, Socket.io Server. AI: OpenAI (GPT-4o-mini & GPT-4.1), LangChain, Pinecone for memory. Database: MongoDB for chat logs.",
-            },
-          ],
-        }}
       />
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF" />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -158,25 +115,19 @@ const CaseStudyPackAssist = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Premium Hero Section with Gradient Overlay */}
+      {/* Hero Section */}
       <Box
         position="relative"
         color="white"
-        pt={{ base: 8, md: 20 }}
-        pb={{ base: 12, md: 24 }}
+        pt={{ base: 20, md: 32 }}
+        pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "600px", md: "700px" }}>
-        {/* Background Image with Overlay */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          zIndex={0}>
+        minH={{ base: "500px", md: "600px" }}
+      >
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/Pack Assist.png"
-            alt="Pack Assist"
+            src="/assets/portfolio/New/List Images/PackAssist.jpg"
+            alt="Pack Assist - AI Sales Qualification Platform"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -196,672 +147,786 @@ const CaseStudyPackAssist = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - white in light mode for visibility on dark hero */}
-          <Box mb={8} display="flex" justifyContent="flex-end">
+          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup
               style={{
                 backgroundColor: "none",
                 fontSize: "1rem",
-                color: colorMode === "light" ? "white" : "muted",
+                color: "white",
                 display: "flex",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <ButtonLink
                 href="/"
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
+                  color: "white",
                   padding: "0",
                   "&:hover": {
                     bg: "none",
                   },
-                }}>
+                }}
+              >
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
+              <FaChevronRight size={15} style={{ color: "white" }} />
               <ButtonLink
                 href="/portfolio"
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
+                  color: "white",
                   padding: "0",
                   "&:hover": {
                     bg: "none",
                   },
-                }}>
+                }}
+              >
                 Portfolio
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: "white",
-                }}>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Text as="span" ml="2" color="white">
                 Pack Assist
               </Text>
             </ButtonGroup>
           </Box>
 
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center">
-            {/* Left Side - Content */}
-            <VStack align="start" spacing={6}>
-              <Badge
-                bg="brand.500"
-                color="white"
-                px={4}
-                py={2}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold"
-                letterSpacing="wide">
-                AI SALES AUTOMATION
-              </Badge>
+          <Flex
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap={{ base: 10, lg: 12 }}
+            flexDir={{ base: "column", lg: "row" }}
+            w="full"
+          >
+            <VStack align="start" spacing={6} flex={1} minW={0} maxW="4xl">
               <Heading
                 as="h1"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
                 fontWeight="bold"
                 lineHeight="1.1"
-                color="white">
+                color="white"
+              >
                 Pack Assist
               </Heading>
-              <Text
-                fontSize={{ base: "xl", md: "2xl" }}
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="300"
+                lineHeight="1.3"
                 color="rgba(255,255,255,0.9)"
-                lineHeight="1.6"
-                fontWeight="300">
+              >
                 Revolutionizing Packaging Sales with a Cost-Optimized AI Agent
-              </Text>
+              </Heading>
               <Text
-                fontSize="lg"
+                fontSize={{ base: "lg", md: "xl" }}
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
-                maxW="2xl">
-                An advanced AI-Assisted Sales Qualification Chatbot for the packaging
-                industry. Python FastAPI backend, hybrid qualification flow,
-                Zendesk-style agent dashboard, and RAG to eliminate AI hallucinations—delivered
-                in 8 weeks.
+                maxW="3xl"
+              >
+                An advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. Python FastAPI backend, hybrid
+                qualification flow, Zendesk-style agent dashboard, and RAG to eliminate AI hallucinations—delivered in 8 weeks.
               </Text>
-
-              {/* Key Metrics */}
-              <SimpleGrid columns={3} spacing={6} w="full" mt={4}>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    8
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Weeks Delivery
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    Cost
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Optimized
-                  </Text>
-                </VStack>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    30+
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Concurrent Chats
-                  </Text>
-                </VStack>
-              </SimpleGrid>
-
             </VStack>
-
-            {/* Right Side - Visual Element */}
-            <Box position="relative" h={{ base: "400px", lg: "500px" }}>
-              <Box
-                position="absolute"
-                inset={0}
-                bgGradient="radial(circle, brand.500 0%, transparent 70%)"
-                opacity={0.2}
-                borderRadius="full"
-                filter="blur(60px)"
-              />
+            <Box
+              flexShrink={0}
+              w={{ base: "100%", lg: "45%" }}
+              maxW={{ lg: "500px" }}
+              position="relative"
+              alignSelf={{ base: "center", lg: "flex-end" }}
+            >
               <Image
-                src="/assets/portfolio/New/Pack Assist.png"
-                alt="Pack Assist Dashboard"
-                fill
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "16px",
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.5)",
-                }}
+                src="/assets/portfolio/New/Pack Assist Case Study Gallery/Pack Assist Show Case Screen Image.png"
+                alt="Pack Assist - Dashboard Showcase"
+                width={500}
+                height={400}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
               />
             </Box>
-          </SimpleGrid>
+          </Flex>
         </Container>
       </Box>
 
-      {/* Impact Stats Section */}
-      <Box bg={bgColor} py={16} position="relative">
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="teal" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                IMPACT METRICS
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Real Results, Real Impact
-              </Heading>
-            </Box>
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} w="full">
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaDollarSign} boxSize={8} color="brand.500" mb={3} />
-                <StatNumber fontSize="4xl" color="brand.500" fontWeight="bold">
-                  Reduced
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  AI Costs
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Hybrid architecture filters casual browsers
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaUserCheck} boxSize={8} color="green.500" mb={3} />
-                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
-                  Accurate
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Data Quality
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  RAG eliminates AI hallucinations
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaComments} boxSize={8} color="orange.500" mb={3} />
-                <StatNumber fontSize="4xl" color="orange.500" fontWeight="bold">
-                  High-Density
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Agent Dashboard
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Zendesk-style interface
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaClock} boxSize={8} color="purple.500" mb={3} />
-                <StatNumber fontSize="4xl" color="purple.500" fontWeight="bold">
-                  24/7
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Weekend Coverage
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Automated weekend mode
-                </StatHelpText>
-              </Stat>
+      {/* Executive Snapshot */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack spacing={10} align="stretch">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
+              <Box>
+                <Text
+                  fontSize="xs"
+                  color={textColor}
+                  mb={3}
+                  fontWeight="medium"
+                  letterSpacing="wide"
+                  textTransform="uppercase"
+                >
+                  Industry
+                </Text>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color={headingColor}
+                  fontWeight="semibold"
+                  lineHeight="1.5"
+                >
+                  Packaging & Manufacturing
+                </Text>
+              </Box>
+              <Box>
+                <Text
+                  fontSize="xs"
+                  color={textColor}
+                  mb={3}
+                  fontWeight="medium"
+                  letterSpacing="wide"
+                  textTransform="uppercase"
+                >
+                  Client
+                </Text>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color={headingColor}
+                  fontWeight="semibold"
+                  lineHeight="1.5"
+                >
+                  B2B Packaging Supplier
+                </Text>
+              </Box>
+              <Box>
+                <Text
+                  fontSize="xs"
+                  color={textColor}
+                  mb={3}
+                  fontWeight="medium"
+                  letterSpacing="wide"
+                  textTransform="uppercase"
+                >
+                  Engagement
+                </Text>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color={headingColor}
+                  fontWeight="semibold"
+                  lineHeight="1.5"
+                >
+                  End-to-end AI Sales Qualification Platform
+                </Text>
+              </Box>
+              <Box>
+                <Text
+                  fontSize="xs"
+                  color={textColor}
+                  mb={3}
+                  fontWeight="medium"
+                  letterSpacing="wide"
+                  textTransform="uppercase"
+                >
+                  Outcome
+                </Text>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color={headingColor}
+                  fontWeight="semibold"
+                  lineHeight="1.5"
+                >
+                  Reduced AI costs with accurate, 24/7 coverage
+                </Text>
+              </Box>
             </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* Project Overview */}
-      <Container maxW="container.xl" py={20}>
-        <VStack align="start" spacing={8}>
-          <Box w="full">
-            <Badge colorScheme="blue" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              OVERVIEW
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={6}
-              color={useColorModeValue("gray.900", "white")}>
-              Project Overview
-            </Heading>
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} borderLeft="4px solid" borderColor="brand.500">
-              <VStack align="start" spacing={4}>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  Pack Assist is an advanced AI-Assisted Sales Qualification
-                  Chatbot specifically designed for the packaging industry. The
-                  project focused on upgrading an existing system to a robust
-                  Python FastAPI backend, implementing advanced AI logic, and
-                  delivering a high-density agent dashboard to streamline sales
-                  operations.
-                </Text>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  Delivered in an 8-week timeframe, the project emphasizes
-                  operational stability and significant cost control. The system
-                  features a hybrid qualification flow, Zendesk-style agent
-                  dashboard, RAG-based fact-checking, and weekend automation.
-                </Text>
-              </VStack>
-            </Card>
-          </Box>
-        </VStack>
-      </Container>
-
-      {/* Challenge Section */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="red" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                THE CHALLENGE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Critical Operational Hurdles
-              </Heading>
+            <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
               <Text
-                fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.100")}
-                maxW="2xl"
-                mx="auto">
-                Before the upgrade, the client faced several critical operational
-                hurdles that threatened efficiency and accuracy.
+                fontSize="xs"
+                color={textColor}
+                mb={3}
+                fontWeight="medium"
+                letterSpacing="wide"
+                textTransform="uppercase"
+              >
+                Tech Stack
+              </Text>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color={headingColor}
+                fontWeight="semibold"
+                lineHeight="1.6"
+              >
+                React, Tailwind CSS, Socket.io, Python, FastAPI, OpenAI (GPT-4o-mini & GPT-4.1), LangChain, Pinecone, MongoDB
               </Text>
             </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-              {[
-                {
-                  icon: FaDollarSign,
-                  color: "red.500",
-                  title: "High AI Operational Costs",
-                  description:
-                    "Every interaction triggered paid AI tokens, even for \"window shoppers\", leading to unnecessary expenses for casual browsers.",
-                },
-                {
-                  icon: FaExclamationTriangle,
-                  color: "orange.500",
-                  title: "AI Hallucinations",
-                  description:
-                    "The chatbot frequently \"invented\" details, such as incorrect shipping locations or non-existent business rules, damaging credibility.",
-                },
-                {
-                  icon: FaCog,
-                  color: "yellow.500",
-                  title: "Inefficient Management",
-                  description:
-                    "Agents lacked the tools to manage high volumes of chats effectively, needing a more professional, high-density interface.",
-                },
-                {
-                  icon: FaClock,
-                  color: "purple.500",
-                  title: "Coverage Gaps",
-                  description:
-                    "The system lacked a reliable automated strategy for weekend inquiries, missing potential leads during off-hours.",
-                },
-              ].map((challenge, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  borderTop="4px solid"
-                  borderColor={challenge.color}
-                  p={6}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <HStack mb={4}>
-                      <Icon as={challenge.icon} boxSize={6} color={challenge.color} />
-                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                        {challenge.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {challenge.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
           </VStack>
         </Container>
       </Box>
 
-      {/* Solution Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE SOLUTION
-            </Badge>
+      {/* Case Study Image Gallery Section */}
+      <Box
+        position="relative"
+        py={{ base: 6, md: 10 }}
+        overflow="hidden"
+        minH={{ base: "340px", md: "400px" }}
+        onMouseEnter={() => setIsGalleryPaused(true)}
+        onMouseLeave={() => setIsGalleryPaused(false)}
+      >
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
+          <Image
+            src="/assets/portfolio/New/banner of case studies.webp"
+            alt=""
+            fill
+            style={{ objectFit: "cover" }}
+          />
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            bg="blackAlpha.6"
+            _dark={{ bg: "blackAlpha.5" }}
+          />
+        </Box>
+        <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            width="max-content"
+            animation={`${scrollRightToLeft} 45s linear infinite`}
+            sx={{ animationPlayState: isGalleryPaused ? "paused" : "running" }}
+          >
+            {[...PACK_ASSIST_CASE_STUDY_IMAGES, ...PACK_ASSIST_CASE_STUDY_IMAGES].map((img, idx) => (
+              <Box
+                key={idx}
+                as="figure"
+                flexShrink={0}
+                mr={{ base: 6, md: 8 }}
+                overflow="hidden"
+                borderRadius={img.isPortrait ? "2xl" : "0"}
+                border="5px solid"
+                borderColor="gray.500"
+                _dark={{ borderColor: "whiteAlpha.150" }}
+                boxShadow="0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)"
+                lineHeight={0}
+                m={0}
+                h={{ base: "300px", md: "360px" }}
+                cursor="pointer"
+                onClick={() => setSelectedImage(img)}
+                _hover={{
+                  opacity: 0.95,
+                  transform: "scale(1.02)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06)",
+                }}
+                transition="all 0.25s ease"
+                sx={{
+                  "& img": {
+                    display: "block",
+                    width: "auto",
+                    height: "100%",
+                    objectFit: "contain",
+                  },
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+
+      <Modal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} size="6xl" isCentered>
+        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
+        <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
+          <ModalCloseButton
+            color="white"
+            bg="transparent"
+            border="none"
+            top={4}
+            right={4}
+            zIndex={10}
+            fontSize="2xl"
+            sx={{
+              filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.9)) drop-shadow(0 0 4px rgba(0,0,0,0.6))",
+            }}
+            _hover={{ bg: "transparent", color: "white", opacity: 0.9 }}
+            _focus={{ boxShadow: "none" }}
+          />
+          <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
+            {selectedImage && (
+              <Box maxW="100%" maxH="90vh">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "90vh",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+              </Box>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      {/* The Business Problem */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+              >
+                The Business Problem
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                Before the upgrade, every interaction triggered paid AI tokens—even for window shoppers—driving up costs. At the
+                same time, hallucinated answers, limited agent tooling, and weekend coverage gaps hurt trust and conversion.
+              </Text>
+              <Text
+                fontSize={{ base: "lg", md: "xl" }}
+                color={headingColor}
+                fontWeight="semibold"
+                lineHeight="1.8"
+              >
+                The client needed a cost-optimized AI assistant that could qualify leads accurately, empower human agents, and
+                provide 24/7 support without sacrificing control.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "High AI operational costs from triggering LLM calls for every visitor",
+                "AI hallucinations inventing shipping locations and business rules",
+                "Agents lacked a high-density interface for managing concurrent chats",
+                "No reliable weekend strategy, leading to missed leads after hours",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text
+                      fontSize={{ base: "2xl", md: "3xl" }}
+                      fontWeight="bold"
+                      color={numberColor}
+                      lineHeight="1.2"
+                      minW="60px"
+                    >
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color={headingColor}
+                      fontWeight="medium"
+                      lineHeight="1.5"
+                    >
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Our Approach */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+              >
+                Our Approach
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We treated the chatbot as production infrastructure—not a demo. That meant cost-aware architecture, strong guardrails
+                against hallucinations, and a human-first control layer for sales teams.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The focus was on building a hybrid AI workflow, a high-density agent dashboard, and intelligent retrieval that only
+                answers from verified business knowledge.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Design a hybrid flow that filters out casual visitors before using paid AI",
+                "Wrap the LLM with RAG and strict business rules",
+                "Give agents Zendesk-style tools to manage 30+ chats",
+                "Introduce a weekend automation mode without losing safety",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text
+                      fontSize={{ base: "2xl", md: "3xl" }}
+                      fontWeight="bold"
+                      color={numberColor}
+                      lineHeight="1.2"
+                      minW="60px"
+                    >
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color={headingColor}
+                      fontWeight="medium"
+                      lineHeight="1.5"
+                    >
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* The Solution */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
             <Heading
               as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              Hybrid Architecture & Modern Tech Stack
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
+            >
+              The Solution: Pack Assist Platform
             </Heading>
-            <Text
-              fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.100")}
-              maxW="2xl"
-              mx="auto">
-              We implemented a \"Hybrid\" architecture and migrated the system to a modern
-              tech stack to enhance control and scalability.
-            </Text>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} w="full">
-            {[
-              {
-                number: "1",
-                icon: FaDollarSign,
-                title: "Cost-Saving Hybrid Architecture",
-                description:
-                  "Built a \"Hybrid Init\" workflow where the first 3–4 questions (requesting Name, Email, and Product) are static system questions. Paid AI logic is only triggered after these initial qualifications are met, effectively filtering out casual browsers before incurring costs.",
-                color: "blue",
-              },
-              {
-                number: "2",
-                icon: FaUserCheck,
-                title: "Zendesk-Style Agent Dashboard",
-                description:
-                  "Redesigned the agent interface to match Zendesk standards, creating a high-density view that allows a single agent to manage 30+ simultaneous chats with features like ghost typing, visitor path tracking, manual AI toggle, and rich media support.",
-                color: "green",
-              },
-              {
-                number: "3",
-                icon: FaBrain,
-                title: "Eliminating AI Hallucinations",
-                description:
-                  "Using RAG (Retrieval-Augmented Generation) fact-checking, we enforced strict business rules. The AI was programmed to stop inventing shipping locations and to adhere to industry-specific standards, with localization logic for US vs. UK IPs.",
-                color: "orange",
-              },
-              {
-                number: "4",
-                icon: FaClock,
-                title: "Weekend Automation Strategy",
-                description:
-                  "The system now features a \"Weekend Mode.\" While the bot acts as a support tool for \"manned\" hours during the week, it transitions into a full AI safety net on Saturdays and Sundays, ensuring no lead is missed.",
-                color: "purple",
-              },
-            ].map((solution, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderLeft="4px solid"
-                borderColor={`${solution.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s"
-                position="relative"
-                overflow="hidden">
-                <Box
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  fontSize="6xl"
-                  fontWeight="bold"
-                  color={`${solution.color}.100`}
-                  opacity={0.3}
-                  lineHeight="1">
-                  {solution.number}
-                </Box>
-                <CardBody position="relative">
-                  <HStack mb={4}>
-                    <Icon
-                      as={solution.icon}
-                      boxSize={8}
-                      color={`${solution.color}.500`}
-                    />
-                    <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                      {solution.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {solution.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Cost-Saving Hybrid Architecture:
+                  </Text>{" "}
+                  Implemented a hybrid init workflow where the first 3–4 questions (Name, Email, Product) are static. Paid AI only
+                  runs once visitors are qualified, filtering out casual browsers before incurring token costs.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Zendesk-Style Agent Dashboard:
+                  </Text>{" "}
+                  Built a high-density interface so a single agent can manage 30+ concurrent chats, with ghost typing, visitor path
+                  tracking, manual AI toggle, and rich context.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    RAG to Eliminate Hallucinations:
+                  </Text>{" "}
+                  Wrapped the LLM with Retrieval-Augmented Generation and strict policies so the bot only answers from verified
+                  knowledgebase content and location rules.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Weekend Automation Strategy:
+                  </Text>{" "}
+                  Introduced a safe weekend mode—during the week, the bot supports human-led chats; on weekends, it becomes a
+                  full AI safety net to capture leads while the team is offline.
+                </Text>
+              </Box>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* Technical Architecture */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="purple" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                TECHNICAL EXCELLENCE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Built for High Performance & Real-Time Responsiveness
-              </Heading>
-            </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6} w="full">
-              {[
-                {
-                  icon: SiReact,
-                  name: "React",
-                  category: "Frontend",
-                  color: "blue",
-                  description: "Modern UI with Tailwind CSS",
-                },
-                {
-                  icon: SiPython,
-                  name: "Python",
-                  category: "Backend",
-                  color: "yellow",
-                  description: "FastAPI for high performance",
-                },
-                {
-                  icon: SiFastapi,
-                  name: "FastAPI",
-                  category: "API Framework",
-                  color: "green",
-                  description: "High-performance API",
-                },
-                {
-                  icon: SiOpenai,
-                  name: "OpenAI",
-                  category: "AI Engine",
-                  color: "purple",
-                  description: "GPT-4o-mini & GPT-4.1",
-                },
-                {
-                  icon: SiMongodb,
-                  name: "MongoDB",
-                  category: "Database",
-                  color: "green",
-                  description: "Secure chat logs",
-                },
-              ].map((tech, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="md"
-                  p={6}
-                  textAlign="center"
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <Box display="flex" justifyContent="center" mb={4}>
-                      <Icon
-                        as={tech.icon}
-                        boxSize={10}
-                        color={`${tech.color}.500`}
-                      />
-                    </Box>
-                    <Box display="flex" justifyContent="center" mb={2}>
-                      <Badge
-                        colorScheme={tech.color}
-                        fontSize="xs"
-                        borderRadius="full">
-                        {tech.category}
-                      </Badge>
-                    </Box>
-                    <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
-                      {tech.name}
-                    </Heading>
-                    <Text
-                      fontSize="sm"
-                      color={useColorModeValue("gray.600", "gray.200")}
-                      lineHeight="1.6">
-                      {tech.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
+            >
+              Technical Architecture
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+              React + Tailwind on the frontend, Python FastAPI and Socket.io on the backend, OpenAI GPT models orchestrated via
+              LangChain and Pinecone for memory, with MongoDB capturing full chat logs for analysis and compliance.
+            </Text>
           </VStack>
         </Container>
       </Box>
 
-      {/* Results Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE RESULTS
-            </Badge>
+      {/* Business Impact */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+              >
+                Business Impact
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                Pack Assist evolved from a cost concern into a reliable, production-grade AI assistant—controlling spend while
+                unlocking 24/7 lead capture and richer insight into visitor behavior.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Significant reduction in AI overhead via hybrid static-question model",
+                "RAG-enforced rules eliminated damaging hallucinations",
+                "Agents manage 30+ concurrent chats from a single dashboard",
+                "Weekend mode ensures no inbound lead is missed outside business hours",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text
+                      fontSize={{ base: "2xl", md: "3xl" }}
+                      fontWeight="bold"
+                      color={numberColor}
+                      lineHeight="1.2"
+                      minW="60px"
+                    >
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color={headingColor}
+                      fontWeight="medium"
+                      lineHeight="1.5"
+                    >
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Why This Matters */}
+      <Box bg={bgColor} py={{ base: 20, md: 24 }} position="relative">
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} maxW="4xl">
             <Heading
               as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              From Cost Concerns to Operational Excellence
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
+            >
+              Why This Matters
             </Heading>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-            {[
-              {
-                icon: FaCheckCircle,
-                title: "Fully Functional V2 Platform",
-                description:
-                  "A fully functional V2 platform with a modernized Python backend, delivering enhanced performance and scalability.",
-                color: "green",
-              },
-              {
-                icon: FaDollarSign,
-                title: "Significant Cost Reduction",
-                description:
-                  "Significant reduction in AI overhead through the hybrid static-question model, filtering out casual browsers before incurring token costs.",
-                color: "blue",
-              },
-              {
-                icon: FaBrain,
-                title: "Improved Data Accuracy",
-                description:
-                  "Improved data accuracy via RAG-enforced business rules and the elimination of AI hallucinations, ensuring reliable information delivery.",
-                color: "orange",
-              },
-              {
-                icon: FaChartLine,
-                title: "Enhanced Marketing Insights",
-                description:
-                  "Enhanced marketing insights through a new analytics report comparing website visitors vs. chatbot engagement, enabling data-driven decisions.",
-                color: "purple",
-              },
-            ].map((result, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderTop="4px solid"
-                borderColor={`${result.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s">
-                <CardBody>
-                  <HStack mb={4}>
-                    <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
-                    <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                      {result.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {result.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              Pack Assist shows how to turn an AI chatbot from an experimental widget into core sales infrastructure—balancing
+              cost, control, and customer experience. At Tech Emulsion, we design AI systems that behave like reliable teammates,
+              not unpredictable black boxes.
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* CTA Section */}
       <Box
         bgGradient={
-          colorMode === "dark"
-            ? "linear(to-r, brand.600, brand.800)"
-            : "linear(to-r, brand.500, brand.600)"
+          colorMode === "dark" ? "linear(to-r, teal.600, teal.800)" : "linear(to-r, teal.500, teal.600)"
         }
-        py={20}
-        color={colorMode === "dark" ? "white" : "black"}>
+        py={{ base: 16, md: 20 }}
+        color="white"
+      >
         <Container maxW="container.xl">
-          <VStack spacing={8} textAlign="center">
-            <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold">
-              Ready to Elevate Your Business with Cost-Optimized AI?
+          <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
+            <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
+              Building Cost-Optimized AI for Sales?
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} maxW="2xl" opacity={0.9}>
-              Transform your sales and support challenges into scalable, accurate
-              experiences. Let&apos;s discuss how we can build a cost-optimized AI
-              solution tailored to your industry needs.
-            </Text>
-            <HStack spacing={4} flexWrap="wrap" justify="center">
+            <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
               <Button
                 as="a"
                 href="https://calendly.com/hassanms/discovery-call"
                 target="_blank"
                 size="lg"
-                bg="teal.500"
-                color="white"
-                _hover={{ bg: "teal.600", transform: "translateY(-2px)" }}
+                bg="white"
+                color="teal.500"
+                _hover={{ bg: "whiteAlpha.900" }}
                 rightIcon={<FaChevronRight />}
                 px={8}
                 py={6}
                 fontSize="lg"
                 fontWeight="bold"
-                boxShadow="xl">
+                boxShadow="xl"
+              >
                 Schedule a Call
               </Button>
               <Button
@@ -869,17 +934,15 @@ const CaseStudyPackAssist = () => {
                 href="/portfolio"
                 size="lg"
                 variant="outline"
-                borderColor="teal.500"
+                borderColor="white"
                 borderWidth="2px"
-                color="teal.500"
-                _hover={{
-                  bg: colorMode === "dark" ? "whiteAlpha.200" : "blackAlpha.100",
-                  transform: "translateY(-2px)",
-                }}
+                color="white"
+                _hover={{ bg: "whiteAlpha.200" }}
                 px={8}
                 py={6}
                 fontSize="lg"
-                fontWeight="bold">
+                fontWeight="bold"
+              >
                 View More Case Studies
               </Button>
             </HStack>
@@ -891,3 +954,4 @@ const CaseStudyPackAssist = () => {
 };
 
 export default CaseStudyPackAssist;
+

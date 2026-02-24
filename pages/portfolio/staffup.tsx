@@ -28,7 +28,12 @@ import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 
 const STAFFUP_CASE_STUDY_IMAGES = [
-  { src: "/assets/portfolio/New/List Images/StaffUp.png", alt: "StaffUp - AI Recruitment Platform with Candidate Cards", isPortrait: false },
+  { src: "/assets/portfolio/New/StaffUp/Welcome_Section.PNG", alt: "StaffUp - Welcome Section", isPortrait: false },
+  { src: "/assets/portfolio/New/StaffUp/Process.png", alt: "StaffUp - Recruitment Process Flow", isPortrait: false },
+  { src: "/assets/portfolio/New/StaffUp/staffuphq.com_job-list_.png", alt: "StaffUp - Job List Screen", isPortrait: false },
+  { src: "/assets/portfolio/New/StaffUp/staffuphq.com_job-list_ (2).png", alt: "StaffUp - Job List Variant", isPortrait: false },
+  { src: "/assets/portfolio/New/StaffUp/staffuphq.com_job.png", alt: "StaffUp - Job Detail Page", isPortrait: false },
+  { src: "/assets/portfolio/New/StaffUp/Job Details.png", alt: "StaffUp - Job Details View", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -173,8 +178,8 @@ const CaseStudyStaffUp = () => {
             </VStack>
             <Box flexShrink={0} w={{ base: "100%", lg: "45%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/List Images/StaffUp.png"
-                alt="StaffUp - AI Recruitment Platform Showcase"
+                src="/assets/portfolio/New/StaffUp/StaffUp Show Case Screen Image.png"
+                alt="StaffUp - AI Recruitment SaaS Showcase"
                 width={500}
                 height={400}
                 style={{ width: "100%", height: "auto", objectFit: "contain", borderRadius: "12px" }}

@@ -18,6 +18,7 @@ const HERO_LIGHT_NAV_PATHS = [
   "/portfolio/meatery",
   "/portfolio/avl-copilot",
   "/portfolio/avl-copilot-v3",
+  "/portfolio/staffup",
   "/portfolio-v4",
 ];
 

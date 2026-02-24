@@ -28,27 +28,18 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { ButtonLink } from "components/button-link";
 import { FaChevronRight } from "react-icons/fa";
 
-// Tech Emulsion portfolio data - use platforms array for items with multiple platform tags
-const portfolioItems: Array<{
-  id: number;
-  title: string;
-  platform: string;
-  platforms?: string[];
-  industry: string;
-  image: string;
-  href: string;
-}> = [
-  { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
-  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/campaignos" },
-  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/List Images/The Meatery.jpg", href: "/portfolio/meatery" },
-  { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/Macromascot.jpg", href: "/portfolio/macromascot" },
-  { id: 4, title: "AutoCar Intelligence", platform: "SaaS Platform", industry: "Automotive", image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg", href: "/portfolio/autosync-intelligence" },
-  { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/List Images/PackAssist.jpg", href: "/portfolio/packassist" },
-  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: "/assets/portfolio/New/List Images/StaffUp.png", href: "/portfolio/staffup" },
-  { id: 7, title: "SuperHeart", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/SuperHeart.jpg", href: "/portfolio/superheart" },
-  { id: 8, title: "Podcast Beacon", platform: "SaaS Platform", industry: "Media", image: "/assets/portfolio/mic.jpg", href: "/portfolio/podcastbeacon" },
-  { id: 9, title: "Rack Room", platform: "SaaS Platform", industry: "Retail", image: "/assets/portfolio/download.jpg", href: "/portfolio/rackroom" },
-  { id: 10, title: "Content Compass", platform: "AI Solution", industry: "Marketing", image: "/assets/portfolio/linkedin.jpg", href: "/portfolio/contentcompass" },
+// Tech Emulsion portfolio data
+const portfolioItems = [
+  { id: 1, title: "AVL Copilot", platform: "AI Solution", industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
+  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/Campaign_Porfolio.jpg", href: "/portfolio/campaignos" },
+  { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/Health_app.jpg", href: "/portfolio/macromascot" },
+  { id: 4, title: "AutoCar Intelligence", platform: "Enterprise SaaS", industry: "Automotive", image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg", href: "/portfolio/autosync-intelligence" },
+  { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/Pack Assist.png", href: "/portfolio/packassist" },
+  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg", href: "/portfolio/meatery" },
+  { id: 7, title: "Podcast Beacon", platform: "SaaS Platform", industry: "Media", image: "/assets/portfolio/mic.jpg", href: "/portfolio/podcastbeacon" },
+  { id: 8, title: "Rack Room", platform: "Enterprise SaaS", industry: "Retail", image: "/assets/portfolio/download.jpg", href: "/portfolio/rackroom" },
+  { id: 9, title: "Content Compass", platform: "AI Solution", industry: "Marketing", image: "/assets/portfolio/linkedin.jpg", href: "/portfolio/contentcompass" },
+  { id: 10, title: "SuperHeart", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/food.webp", href: "/portfolio/superheart" },
   { id: 11, title: "Atarim", platform: "SaaS Platform", industry: "Design & Development", image: "/assets/portfolio/atarim.png", href: "/portfolio/atarim" },
   { id: 12, title: "JarvisReach", platform: "SaaS Platform", industry: "Sales & Marketing", image: "/assets/portfolio/jarvis.png", href: "/portfolio/jarvisreach" },
   { id: 13, title: "Levellup", platform: "AI Solution", industry: "Gaming", image: "/assets/portfolio/level.png", href: "/portfolio/levellup" },
@@ -59,14 +50,13 @@ const portfolioItems: Array<{
   { id: 18, title: "Alifa App", platform: "AI Solution", industry: "AI & Automation", image: "/assets/portfolio/file.jpg", href: "/portfolio/alifa" },
 ];
 
-const technologies = ["All", "AI Solution", "SaaS Platform", "Mobile App", "Blockchain"];
-const industries = ["All", "Advertising", "Healthcare", "Automotive", "Packaging", "E-commerce", "Media", "Retail", "Marketing", "Design & Development", "Sales & Marketing", "Gaming", "Agriculture", "Business", "NFT & Digital Art", "AI & Automation", "Media & Entertainment", "Enterprise", "Recruitment"];
+const technologies = ["All", "AI Solution", "SaaS Platform", "Mobile App", "Enterprise SaaS", "Blockchain"];
+const industries = ["All", "Advertising", "Healthcare", "Automotive", "Packaging", "E-commerce", "Media", "Retail", "Marketing", "Design & Development", "Sales & Marketing", "Gaming", "Agriculture", "Business", "NFT & Digital Art", "AI & Automation", "Media & Entertainment", "Enterprise"];
 
 function ProjectCard({
   title,
   industry,
   platform,
-  platforms,
   image,
   href,
   headingColor,
@@ -75,13 +65,11 @@ function ProjectCard({
   title: string;
   industry: string;
   platform: string;
-  platforms?: string[];
   image: string;
   href: string;
   headingColor: string;
   textColor: string;
 }) {
-  const platformLabel = platforms ? platforms.join(" + ") : platform;
   return (
     <Link as={NextLink} href={href} _hover={{ textDecoration: "none" }}>
       <Box role="group">
@@ -91,7 +79,7 @@ function ProjectCard({
           </Heading>
           <HStack spacing={2} flexWrap="wrap" justifyContent="flex-end" flexShrink={0}>
             <Text color={textColor} fontSize="sm" whiteSpace="nowrap">
-              {industry}, {platformLabel}
+              {industry}, {platform}
             </Text>
           </HStack>
         </Flex>
@@ -107,6 +95,7 @@ function ProjectCard({
             inset={0}
             opacity={1}
             transition="opacity 0.3s"
+            _groupHover={{ opacity: 0 }}
           >
             <Image
               src={image}
@@ -116,10 +105,11 @@ function ProjectCard({
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </Box>
-          {/* Hover state - teal 30% visible, text 100% visible */}
+          {/* Hover state - teal bg + title (visible on hover) */}
           <Box
             position="absolute"
             inset={0}
+            bg="teal.500"
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -128,11 +118,8 @@ function ProjectCard({
             _groupHover={{ opacity: 1 }}
             zIndex={1}
           >
-            <Box position="absolute" inset={0} bg="teal.500" opacity={0.55} />
             <Heading
               as="h3"
-              position="relative"
-              zIndex={1}
               fontSize={{ base: "lg", md: "xl" }}
               fontWeight="bold"
               color="white"
@@ -140,7 +127,7 @@ function ProjectCard({
               px={6}
               py={4}
               lineHeight="tall"
-              textShadow="0 2px 8px rgba(0,0,0,0.4)"
+              textShadow="0 2px 8px rgba(0,0,0,0.2)"
             >
               {title}
             </Heading>
@@ -155,7 +142,6 @@ function ProjectCardList({
   title,
   industry,
   platform,
-  platforms,
   image,
   href,
   headingColor,
@@ -165,14 +151,12 @@ function ProjectCardList({
   title: string;
   industry: string;
   platform: string;
-  platforms?: string[];
   image: string;
   href: string;
   headingColor: string;
   textColor: string;
   linkIconBg: string;
 }) {
-  const platformLabel = platforms ? platforms.join(" + ") : platform;
   return (
     <Link as={NextLink} href={href} _hover={{ textDecoration: "none" }}>
       <Flex
@@ -191,12 +175,19 @@ function ProjectCardList({
           sx={{ aspectRatio: "4/3" }}
           bg="teal.500"
         >
-          <Box position="absolute" inset={0} opacity={1} transition="opacity 0.3s">
+          <Box
+            position="absolute"
+            inset={0}
+            opacity={1}
+            transition="opacity 0.3s"
+            _groupHover={{ opacity: 0 }}
+          >
             <Image src={image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 45vw" />
           </Box>
           <Box
             position="absolute"
             inset={0}
+            bg="teal.500"
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -205,11 +196,8 @@ function ProjectCardList({
             _groupHover={{ opacity: 1 }}
             zIndex={1}
           >
-            <Box position="absolute" inset={0} bg="teal.500" opacity={0.45} />
             <Heading
               as="h3"
-              position="relative"
-              zIndex={1}
               fontSize={{ base: "lg", md: "xl" }}
               fontWeight="bold"
               color="white"
@@ -217,7 +205,7 @@ function ProjectCardList({
               px={6}
               py={4}
               lineHeight="tall"
-              textShadow="0 2px 8px rgba(0,0,0,0.4)"
+              textShadow="0 2px 8px rgba(0,0,0,0.2)"
             >
               {title}
             </Heading>
@@ -235,7 +223,7 @@ function ProjectCardList({
         >
           <Flex justify="space-between" align="flex-start" mb={2} gap={4} w="100%">
             <Text color={textColor} fontSize="sm" fontWeight="medium">
-              {industry}, {platformLabel}
+              {industry}, {platform}
             </Text>
             <Box
               as="span"
@@ -260,16 +248,14 @@ function ProjectCardList({
   );
 }
 
-export default function Portfolio() {
+export default function PortfolioV3() {
   const [selectedTech, setSelectedTech] = useState("All");
   const [selectedIndustry, setSelectedIndustry] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const filteredItems = useMemo(() => {
     return portfolioItems.filter((item) => {
-      const techMatch =
-        selectedTech === "All" ||
-        (item.platforms ? item.platforms.includes(selectedTech) : item.platform === selectedTech);
+      const techMatch = selectedTech === "All" || item.platform === selectedTech;
       const industryMatch = selectedIndustry === "All" || item.industry === selectedIndustry;
       return techMatch && industryMatch;
     });
@@ -289,11 +275,11 @@ export default function Portfolio() {
         title="Our Portfolio - Tech Emulsion"
         description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, and custom software development."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio"
+        canonicalUrl="https://techemulsion.com/portfolio-v3"
       />
 
       <Box position="relative" minH="100vh" color={headingColor}>
-        {/* Full-page gradient - scrolls with content (not fixed) */}
+        {/* Full-page gradient - scrolls with content (not fixed) - same as portfolio-v2 */}
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={-1} overflow="hidden" pointerEvents="none">
           <BackgroundGradient height="100%" width="100%" />
         </Box>
@@ -314,15 +300,13 @@ export default function Portfolio() {
             </ButtonGroup>
           </Flex>
 
-          {/* Header section - no bg, tall height, vertical line aligns with grid columns; mx/px match filter bar for aligned dividers */}
+          {/* Header section - no bg, tall height, vertical line aligns with grid columns */}
           <Box
             minH={{ base: "280px", md: "35vh" }}
             display={{ base: "block", md: "grid" }}
             gridTemplateColumns={{ md: "1fr 1fr" }}
             borderTopWidth="1px"
             borderColor={dividerColor}
-            mx={-6}
-            px={6}
           >
             {/* Left: Our work - top aligned, borderRight aligns with grid divider */}
             <Box
@@ -372,7 +356,7 @@ export default function Portfolio() {
             borderColor={dividerColor}
           >
             <Flex justify="space-between" align="center" flexWrap="wrap">
-              {/* Filter buttons - left: Platforms | Industries */}
+              {/* Filter buttons - left: Technologies | Industries */}
               <HStack spacing={0} divider={<Box w="1px" bg={dividerColor} alignSelf="stretch" minH="6" />} align="center">
                 <Menu>
                   <MenuButton
@@ -463,7 +447,7 @@ export default function Portfolio() {
             </Flex>
           </Box>
 
-          {/* Project grid or list */}
+          {/* Project grid or list - vertical dividers use Box (bg) like header/filter to match color */}
           {viewMode === "grid" ? (
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0}>
               {filteredItems.map((item, idx) => (
@@ -483,16 +467,15 @@ export default function Portfolio() {
                   }}
                 >
                   <ProjectCard
-                    key={item.id}
-                    title={item.title}
-                    industry={item.industry}
-                    platform={item.platform}
-                    platforms={item.platforms}
-                    image={item.image}
-                    href={item.href}
-                    headingColor={headingColor}
-                    textColor={textColor}
-                  />
+                  key={item.id}
+                  title={item.title}
+                  industry={item.industry}
+                  platform={item.platform}
+                  image={item.image}
+                  href={item.href}
+                  headingColor={headingColor}
+                  textColor={textColor}
+                />
                 </Box>
               ))}
             </SimpleGrid>
@@ -502,17 +485,16 @@ export default function Portfolio() {
                 <Box key={item.id}>
                   {idx > 0 && <Divider borderColor={dividerColor} my={4} />}
                   <ProjectCardList
-                    key={item.id}
-                    title={item.title}
-                    industry={item.industry}
-                    platform={item.platform}
-                    platforms={item.platforms}
-                    image={item.image}
-                    href={item.href}
-                    headingColor={headingColor}
-                    textColor={textColor}
-                    linkIconBg={linkIconBg}
-                  />
+                  key={item.id}
+                  title={item.title}
+                  industry={item.industry}
+                  platform={item.platform}
+                  image={item.image}
+                  href={item.href}
+                  headingColor={headingColor}
+                  textColor={textColor}
+                  linkIconBg={linkIconBg}
+                />
                 </Box>
               ))}
             </Box>

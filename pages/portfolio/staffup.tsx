@@ -27,12 +27,8 @@ import Script from "next/script";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 
-const MEATERY_CASE_STUDY_IMAGES = [
-  { src: "/assets/portfolio/New/Meatery/Dashboard.png", alt: "The Meatery Dashboard", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124129.png", alt: "The Meatery - Screen 1", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124252.png", alt: "The Meatery - Screen 2", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124330.png", alt: "The Meatery - Screen 3", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/screencapture-localhost-3001-crm-reports-2026-02-13-12_43_49.png", alt: "The Meatery - CRM Reports", isPortrait: false },
+const STAFFUP_CASE_STUDY_IMAGES = [
+  { src: "/assets/portfolio/New/List Images/StaffUp.png", alt: "StaffUp - AI Recruitment Platform with Candidate Cards", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -40,7 +36,7 @@ const scrollRightToLeft = keyframes`
   100% { transform: translateX(-50%); }
 `;
 
-const CaseStudyMeatery = () => {
+const CaseStudyStaffUp = () => {
   const { colorMode } = useColorMode();
   const [isGalleryPaused, setIsGalleryPaused] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
@@ -60,15 +56,21 @@ const CaseStudyMeatery = () => {
   return (
     <Box bg={bgColor}>
       <Head>
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
       </Head>
       <EnhancedSEO
-        title="Case Study: The Meatery - AI-Driven Voice CRM & Multi-Tenant Agency - Tech Emulsion"
-        description="The Meatery is an AI-Driven Voice CRM and e-commerce platform for a premium meat distributor. Tech Emulsion scaled it into a Multi-Tenant Agency with DNC Gatekeeper, Shopify integration, n8n AI Judge, and real-time draft orders."
+        title="Case Study: StaffUp - AI Recruitment SaaS with Intelligent Matching Engine - Tech Emulsion"
+        description="Built StaffUp, a serverless recruitment SaaS powered by a proprietary 7-criteria scoring engine using Next.js 15 and Firebase. Automated candidate ranking through availability matching, psychometric alignment, certification validation, and experience weighting. Reduced manual screening time by 70%, introduced real-time dashboards for employers and admins, and created a transparent, data-driven matching system handling thousands of users at scale."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio/meatery"
+        canonicalUrl="https://techemulsion.com/portfolio/staffup"
       />
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF" />
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
+      />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -99,8 +101,8 @@ const CaseStudyMeatery = () => {
         minH={{ base: "500px", md: "600px" }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/The Meatery.jpg"
-            alt="The Meatery - AI-Driven Voice CRM"
+            src="/assets/portfolio/New/List Images/StaffUp.png"
+            alt="StaffUp - AI Recruitment Platform"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -138,7 +140,7 @@ const CaseStudyMeatery = () => {
               </ButtonLink>
               <FaChevronRight size={15} style={{ color: "white" }} />
               <Text as="span" ml="2" color="white">
-                The Meatery
+                StaffUp
               </Text>
             </ButtonGroup>
           </Box>
@@ -149,9 +151,9 @@ const CaseStudyMeatery = () => {
             gap={{ base: 10, lg: 12 }}
             flexDir={{ base: "column", lg: "row" }}
             w="full">
-            <VStack align="start" spacing={6} flex={1} minW={0} maxW="4xl">
+            <VStack align="start" spacing={6} flex={1} maxW="4xl">
               <Heading as="h1" fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }} fontWeight="bold" lineHeight="1.1" color="white">
-                The Meatery
+                StaffUp
               </Heading>
               <Heading
                 as="h2"
@@ -159,23 +161,23 @@ const CaseStudyMeatery = () => {
                 fontWeight="300"
                 lineHeight="1.3"
                 color="rgba(255,255,255,0.9)">
-                Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency
+                AI Recruitment SaaS with Intelligent Matching Engine
               </Heading>
               <Text
                 fontSize={{ base: "lg", md: "xl" }}
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
                 maxW="3xl">
-                A proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. Human-like voice agents, DNC Gatekeeper compliance, Shopify integration, and real-time draft orders for abandoned checkout recovery and inventory campaigns.
+                Built StaffUp, a serverless recruitment SaaS powered by a proprietary 7-criteria scoring engine using Next.js 15 and Firebase. Automated candidate ranking through availability matching, psychometric alignment, certification validation, and experience weighting. Reduced manual screening time by 70%, introduced real-time dashboards for employers and admins.
               </Text>
             </VStack>
             <Box flexShrink={0} w={{ base: "100%", lg: "45%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/Meatery/The Meatrey Show case screen image.png"
-                alt="The Meatery - Voice CRM Showcase"
+                src="/assets/portfolio/New/List Images/StaffUp.png"
+                alt="StaffUp - AI Recruitment Platform Showcase"
                 width={500}
                 height={400}
-                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                style={{ width: "100%", height: "auto", objectFit: "contain", borderRadius: "12px" }}
               />
             </Box>
           </Flex>
@@ -194,25 +196,25 @@ const CaseStudyMeatery = () => {
             <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Industry</Text>
-                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">E-commerce & Food Distribution</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Recruitment & HR Tech</Text>
               </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Client</Text>
-                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Premium Meat Distributor</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">High-Volume Seasonal Staffing</Text>
               </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Engagement</Text>
-                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Multi-Tenant Agency Architecture & Voice AI</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">End-to-end Serverless SaaS Architecture</Text>
               </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Outcome</Text>
-                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">Multi-tenant agency MVP, DNC compliance</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">70% reduction in manual screening time</Text>
               </Box>
             </SimpleGrid>
             <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
               <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">Tech Stack</Text>
               <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">
-                React, Node.js (Express), Shopify API, Retell AI, n8n, PostgreSQL (Railway)
+                Next.js 15 (App Router), React 19, Tailwind CSS, Firebase Admin, Firestore, Redux Toolkit, Resend API
               </Text>
             </Box>
           </VStack>
@@ -238,7 +240,7 @@ const CaseStudyMeatery = () => {
             width="max-content"
             animation={`${scrollRightToLeft} 45s linear infinite`}
             sx={{ animationPlayState: isGalleryPaused ? "paused" : "running" }}>
-            {[...MEATERY_CASE_STUDY_IMAGES, ...MEATERY_CASE_STUDY_IMAGES].map((img, idx) => (
+            {[...STAFFUP_CASE_STUDY_IMAGES, ...STAFFUP_CASE_STUDY_IMAGES].map((img, idx) => (
               <Box
                 key={idx}
                 as="figure"
@@ -249,13 +251,13 @@ const CaseStudyMeatery = () => {
                 border="5px solid"
                 borderColor="gray.500"
                 _dark={{ borderColor: "whiteAlpha.150" }}
-                boxShadow="0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)"
+                boxShadow="0 4px 24px rgba(0,0,0,0.12)"
                 lineHeight={0}
                 m={0}
                 h={{ base: "300px", md: "360px" }}
                 cursor="pointer"
                 onClick={() => setSelectedImage(img)}
-                _hover={{ opacity: 0.95, transform: "scale(1.02)", boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06)" }}
+                _hover={{ opacity: 0.95, transform: "scale(1.02)", boxShadow: "0 8px 32px rgba(0,0,0,0.18)" }}
                 transition="all 0.25s ease"
                 sx={{ "& img": { display: "block", width: "auto", height: "100%", objectFit: "contain" } }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -294,7 +296,7 @@ const CaseStudyMeatery = () => {
         </ModalContent>
       </Modal>
 
-      {/* The Business Problem */}
+      {/* The Core Problem */}
       <Box
         bg={sectionBg}
         py={{ base: 20, md: 24 }}
@@ -305,21 +307,22 @@ const CaseStudyMeatery = () => {
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
             <VStack align="start" spacing={6}>
               <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
-                The Business Problem
+                The Core Problem
               </Heading>
               <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                The transition from an internal tool to a scalable agency solution presented several technical and operational hurdles.
+                Traditional hiring relied on manual resume screening, subjective judgment, and reactive filtering. Employers were overwhelmed by unqualified applicants, while strong candidates were overlooked due to availability or documentation mismatches.
               </Text>
               <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
-                DNC compliance fears, unreliable webhooks, robotic AI voices, and operational friction blocked scaling from a single-tenant tool to a multi-tenant agency.
+                The client needed a data-driven system that could automatically rank candidates by job fit in real time.
               </Text>
             </VStack>
             <VStack align="start" spacing={0} pt={2}>
               {[
-                "DNC (Do Not Call) fear prevented reactivating high-revenue automation flows like Abandoned Checkout",
-                "Unreliable webhooks led to missing call logs and inaccurate CRM attribution",
-                "Early AI iterations sounded robotic and lacked deep customer context",
-                "Launching new inventory campaigns took days of manual intervention instead of minutes",
+                "Resume fatigue and slow manual review",
+                "Availability mismatches for fixed seasonal dates",
+                "No objective scoring for psychometric alignment",
+                "Lack of transparency for candidates",
+                "No structured ranking logic for employers",
               ].map((item, i) => (
                 <Box key={i} w="full">
                   <HStack spacing={5} py={5} align="flex-start">
@@ -338,7 +341,7 @@ const CaseStudyMeatery = () => {
         </Container>
       </Box>
 
-      {/* Our Approach */}
+      {/* Our Solution */}
       <Box
         bg={bgColor}
         py={{ base: 20, md: 24 }}
@@ -346,44 +349,32 @@ const CaseStudyMeatery = () => {
         _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
         <Container maxW="6xl" position="relative" zIndex={1}>
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
-            <VStack align="start" spacing={6}>
-              <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
-                Our Approach
-              </Heading>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                We implemented an infrastructure overhaul focused on compliance, intelligence, and multi-tenant scalability.
-              </Text>
-              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                The goal was to transform a single-tenant Voice AI CRM into an agency-ready platform with DNC Gatekeeper, smart context injection, and real-time sales execution.
-              </Text>
-            </VStack>
-            <VStack align="start" spacing={0} pt={2}>
+          <VStack align="start" spacing={12} w="full">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              Our Solution: 7-Criteria Scoring Engine
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              We built a proprietary scoring engine that calculates match percentage dynamically. The system generates rank-ordered employer views, eliminating resume scanning.
+            </Text>
+            <VStack align="start" spacing={6} maxW="4xl" w="full">
               {[
-                "DNC Gatekeeper architecture for compliance",
-                "Smart agent context & Shopify integration",
-                "Prompt Ops feedback loop with n8n AI Judge",
-                "Campaign injection system for rapid launch",
-                "Real-time draft orders during calls",
+                "Availability overlap algorithm",
+                "Psychometric benchmark comparison",
+                "Quantified seasonal experience",
+                "Certification validation checks",
+                "Profile completeness weighting",
               ].map((item, i) => (
-                <Box key={i} w="full">
-                  <HStack spacing={5} py={5} align="flex-start">
-                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
-                      {String(i + 1).padStart(2, "0")}.
-                    </Text>
-                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
-                      {item}
-                    </Text>
-                  </HStack>
-                  <Divider borderColor={dividerColor} opacity={0.5} />
-                </Box>
+                <HStack key={i} spacing={4} align="flex-start" w="full">
+                  <Text fontSize="xl" fontWeight="bold" color={accentColor}>•</Text>
+                  <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.7">{item}</Text>
+                </HStack>
               ))}
             </VStack>
-          </SimpleGrid>
+          </VStack>
         </Container>
       </Box>
 
-      {/* The Solution */}
+      {/* Intelligent Candidate Feedback */}
       <Box
         bg={sectionBg}
         py={{ base: 20, md: 24 }}
@@ -391,42 +382,32 @@ const CaseStudyMeatery = () => {
         _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
         <Container maxW="6xl" position="relative" zIndex={1}>
-          <VStack align="start" spacing={12} w="full">
+          <VStack align="start" spacing={10} maxW="4xl">
             <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
-              The Solution: The Meatery Platform
+              Intelligent Candidate Feedback
             </Heading>
-            <VStack align="start" spacing={8} maxW="4xl" w="full">
-              <Box>
-                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                  <Text as="span" fontWeight="semibold" color={headingColor}>DNC Gatekeeper Architecture:</Text> Centralized PostgreSQL exclusion list checks every phone number against Global and Client-Specific DNC tables before any call, enabling confident automation.
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              Instead of rejecting applicants silently, the system generates automated improvement roadmaps.
+            </Text>
+            <VStack align="start" spacing={4}>
+              {[
+                "Complete required training modules",
+                "Upload missing certifications",
+                "Improve psychometric threshold score",
+              ].map((item, i) => (
+                <Text key={i} fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.6">
+                  • {item}
                 </Text>
-              </Box>
-              <Box>
-                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                  <Text as="span" fontWeight="semibold" color={headingColor}>Smart Agent Context & Shopify Integration:</Text> AI receives Shopify data (Order Count, LTV, Subscription Status) for personalized discounts and add-ons during calls.
-                </Text>
-              </Box>
-              <Box>
-                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                  <Text as="span" fontWeight="semibold" color={headingColor}>Prompt Ops Feedback Loop:</Text> n8n-based AI Judge ingests call recordings, grades conversations on rebuttal handling and tone, and aggregates data for rapid prompt iteration.
-                </Text>
-              </Box>
-              <Box>
-                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                  <Text as="span" fontWeight="semibold" color={headingColor}>Campaign Injection System:</Text> CSV upload tool maps customer lists to specific agents and scripts—reducing campaign launch time from days to minutes.
-                </Text>
-              </Box>
-              <Box>
-                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                  <Text as="span" fontWeight="semibold" color={headingColor}>Real-Time Draft Orders:</Text> Agents create discounted Draft Orders in Shopify and text checkout links to customers during the call for instant conversion.
-                </Text>
-              </Box>
+              ))}
             </VStack>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              This increases talent quality over time and gamifies professional growth.
+            </Text>
           </VStack>
         </Container>
       </Box>
 
-      {/* Technical Architecture */}
+      {/* Multi-Role Dashboard Architecture */}
       <Box
         bg={bgColor}
         py={{ base: 20, md: 24 }}
@@ -436,16 +417,30 @@ const CaseStudyMeatery = () => {
         <Container maxW="6xl" position="relative" zIndex={1}>
           <VStack align="start" spacing={10} maxW="4xl">
             <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
-              Technical Architecture
+              Multi-Role Dashboard Architecture
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
-              Voice AI: Retell AI (LLM + Voice). Backend: Node.js (Express) with Shopify API. Automation: n8n for orchestration. Database: PostgreSQL (Railway) refactored for multi-tenancy. Frontend: React Admin Dashboard for call logs and sentiment analysis.
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8" mb={4}>
+              We designed three separate experiences:
             </Text>
+            <VStack align="start" spacing={6}>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">Employer Dashboard</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={textColor} lineHeight="1.7">Real-time rank and filter system for top-fit candidates.</Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">Admin Command Center</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={textColor} lineHeight="1.7">Performance analytics, growth visualization, placement insights.</Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">Candidate Portal</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={textColor} lineHeight="1.7">Personalized job feed sorted by match percentage.</Text>
+              </Box>
+            </VStack>
           </VStack>
         </Container>
       </Box>
 
-      {/* Business Impact */}
+      {/* Technical Architecture */}
       <Box
         bg={sectionBg}
         py={{ base: 20, md: 24 }}
@@ -453,21 +448,58 @@ const CaseStudyMeatery = () => {
         _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.3} pointerEvents="none" />
         <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
+              Technical Architecture
+            </Heading>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
+              <Box>
+                <Text fontSize="sm" color={textColor} mb={2} fontWeight="semibold" textTransform="uppercase">Frontend</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} lineHeight="1.6">Next.js 15 (App Router), React 19, Tailwind CSS</Text>
+              </Box>
+              <Box>
+                <Text fontSize="sm" color={textColor} mb={2} fontWeight="semibold" textTransform="uppercase">Backend</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} lineHeight="1.6">Next.js Server Actions with Firebase Admin</Text>
+              </Box>
+              <Box>
+                <Text fontSize="sm" color={textColor} mb={2} fontWeight="semibold" textTransform="uppercase">Database</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} lineHeight="1.6">Firestore with real-time mutations</Text>
+              </Box>
+              <Box>
+                <Text fontSize="sm" color={textColor} mb={2} fontWeight="semibold" textTransform="uppercase">State & Email</Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} lineHeight="1.6">Redux Toolkit, Resend API for transactional messaging</Text>
+              </Box>
+            </SimpleGrid>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+              Architecture Model: Serverless, horizontally scalable, low-maintenance infrastructure.
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* Results / Business Impact */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{ content: '""', position: "absolute", top: 0, left: 0, right: 0, height: "1px", bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`, opacity: 0.2 }}>
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} backgroundImage={subtlePattern} backgroundSize="20px 20px" opacity={0.5} pointerEvents="none" />
+        <Container maxW="6xl" position="relative" zIndex={1}>
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
             <VStack align="start" spacing={6}>
               <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
-                Business Impact
+                Results
               </Heading>
               <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-                From single-tenant tool to multi-tenant agency—with compliance-safe automation and enhanced sales agility.
+                A structured data-driven recruitment engine that replaced manual processes with scalable, automated systems.
               </Text>
             </VStack>
             <VStack align="start" spacing={0} pt={2}>
               {[
-                "Multi-Tenant Agency MVP enabling external client onboarding",
-                "Reactivated Abandoned Checkout flows via DNC Gatekeeper",
-                "100% call outcome and CRM attribution capture for accurate billing",
-                "Campaign launch time reduced from days to minutes",
+                "70% reduction in manual screening time",
+                "Higher placement success through structured psychometric thresholds",
+                "Full transparency in candidate ranking",
+                "Real-time matching engine handling thousands of users",
               ].map((item, i) => (
                 <Box key={i} w="full">
                   <HStack spacing={5} py={5} align="flex-start">
@@ -487,14 +519,17 @@ const CaseStudyMeatery = () => {
       </Box>
 
       {/* Why This Matters */}
-      <Box bg={bgColor} py={{ base: 20, md: 24 }} position="relative">
+      <Box bg={sectionBg} py={{ base: 20, md: 24 }} position="relative">
         <Container maxW="6xl" position="relative" zIndex={1}>
           <VStack align="start" spacing={12} maxW="4xl">
             <Heading as="h2" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight="bold" color={headingColor} letterSpacing="-0.02em" lineHeight="1.1">
               Why This Matters
             </Heading>
             <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
-              At Tech Emulsion, we scale Voice AI and CRM platforms from internal tools into compliance-safe, multi-tenant agencies. The Meatery demonstrates how DNC Gatekeeper architecture, smart context injection, and real-time sales execution can reactivate revenue drivers and accelerate growth.
+              This wasn&apos;t a job board. It was a structured data-driven recruitment engine built with custom scoring algorithms, serverless SaaS architecture, automated ranking systems, and real-time data mutations.
+            </Text>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+              At Tech Emulsion, we design intelligent SaaS platforms that replace manual processes with scalable, automated systems. If you&apos;re building a recruitment tech product, matching engine, or data-driven SaaS platform, we can architect it end-to-end.
             </Text>
           </VStack>
         </Container>
@@ -508,7 +543,7 @@ const CaseStudyMeatery = () => {
         <Container maxW="container.xl">
           <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
             <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
-              Ready to Scale Your Voice AI and CRM?
+              Building Recruitment Tech or Data-Driven SaaS?
             </Heading>
             <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
               <Button
@@ -550,4 +585,4 @@ const CaseStudyMeatery = () => {
   );
 };
 
-export default CaseStudyMeatery;
+export default CaseStudyStaffUp;

@@ -190,16 +190,7 @@ const CaseStudyAVLCoPilotV3 = () => {
             flexDir={{ base: "column", lg: "row" }}
             w="full">
             <VStack align="start" spacing={6} flex={1} maxW="4xl">
-              <Badge
-                bg={accentColor}
-                color="white"
-                px={4}
-                py={2}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold">
-                AI SOLUTION
-              </Badge>
+              
               <Heading
                 as="h1"
                 fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
@@ -413,12 +404,17 @@ const CaseStudyAVLCoPilotV3 = () => {
         <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
         <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
           <ModalCloseButton
-            color="black"
+            color="white"
             bg="transparent"
+            border="none"
             top={4}
             right={4}
-            zIndex={2}
-            _hover={{ bg: "transparent", color: "gray.800" }}
+            zIndex={10}
+            fontSize="2xl"
+            sx={{
+              filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.9)) drop-shadow(0 0 4px rgba(0,0,0,0.6))",
+            }}
+            _hover={{ bg: "transparent", color: "white", opacity: 0.9 }}
             _focus={{ boxShadow: "none" }}
           />
           <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">

@@ -92,7 +92,7 @@ const CaseStudyPackAssist = () => {
           description:
             "Advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. Python FastAPI backend, hybrid cost-saving architecture, Zendesk-style agent dashboard, RAG to eliminate AI hallucinations, weekend automation.",
           dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
+          image: "https://techemulsion.com/assets/portfolio/New/Pack Assist.png",
           url: "https://techemulsion.com/portfolio/packassist",
           genre: "AI, Sales Automation, Packaging Industry",
           keywords: [
@@ -175,7 +175,7 @@ const CaseStudyPackAssist = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg"
+            src="/assets/portfolio/New/Pack Assist.png"
             alt="Pack Assist"
             fill
             style={{ objectFit: "cover" }}
@@ -329,7 +329,7 @@ const CaseStudyPackAssist = () => {
                 filter="blur(60px)"
               />
               <Image
-                src="/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg"
+                src="/assets/portfolio/New/Pack Assist.png"
                 alt="Pack Assist Dashboard"
                 fill
                 style={{

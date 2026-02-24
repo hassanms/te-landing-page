@@ -9,9 +9,8 @@ import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
-// Only the 6 case studies shown in the home page Recent Works section
+// Only the 6 case studies shown in the home page Recent Works section (excludes /portfolio - keeps default menu in light mode at top)
 const HERO_LIGHT_NAV_PATHS = [
-  "/portfolio",
   "/portfolio/campaignos",
   "/portfolio/macromascot",
   "/portfolio/autosync-intelligence",
@@ -19,11 +18,10 @@ const HERO_LIGHT_NAV_PATHS = [
   "/portfolio/meatery",
   "/portfolio/avl-copilot",
   "/portfolio/avl-copilot-v3",
+  "/portfolio-v4",
 ];
 
 const NO_THEME_TOGGLE_PATHS = [
-  "/portfolio-v3",
-  "/portfolio-v4",
   "/index-v2",
   "/index-v3",
 ];

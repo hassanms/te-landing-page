@@ -129,7 +129,7 @@ export const FloatingUICards: React.FC = () => {
       </FloatingCard>
 
       {/* ── Card 2: Code Snippet ── */}
-      <FloatingCard className="hero-float-delayed" animClass="hero-float-delayed" sx={{ top: "144px", right: "16px", w: "240px" }}>
+      <FloatingCard className="hero-float-delayed" animClass="hero-float-delayed" sx={{ top: "144px", right: "0px", w: "280px" }}>
         <HStack spacing={2} mb={3}>
           <HStack spacing={1}>
             <Box w="8px" h="8px" borderRadius="full" bg="rgba(248, 113, 113, 0.6)" />
@@ -228,18 +228,31 @@ export const FloatingUICards: React.FC = () => {
       </FloatingCard>
 
       {/* ── Card 4: Stats Pill ── */}
-      <FloatingCard className="hero-float-delayed" animClass="hero-float-delayed" sx={{ bottom: "128px", right: "48px", w: "192px" }}>
+      <FloatingCard className="hero-float-delayed" animClass="hero-float-delayed" sx={{ bottom: "128px", right: "32px", w: "224px" }}>
         <HStack spacing={3}>
           <Box
-            w="40px"
-            h="40px"
+            position="relative"
+            w="52px"
+            h="52px"
+            minW="52px"
+            minH="52px"
             borderRadius="full"
             bgGradient="linear(to-br, rgba(20, 184, 166, 0.2), rgba(34, 211, 238, 0.2))"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
+            flexShrink={0}
           >
-            <Text fontSize="smaller" fontWeight="bold" color={accentColor}>
+            <Text
+              position="absolute"
+              top="50%"
+              left="50%"
+              transform="translate(-50%, -50%)"
+              m={0}
+              p={0}
+              fontSize="xs"
+              fontWeight="bold"
+              color={accentColor}
+              textAlign="center"
+              lineHeight="1"
+              whiteSpace="nowrap">
               100%
             </Text>
           </Box>

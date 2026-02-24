@@ -614,7 +614,11 @@ const HeroSection: React.FC = () => {
       minH={{ base: "auto", lg: "90vh" }}>
       <AnimatedMeshBackground height="100%" zIndex="0" />
       <BackgroundGradient height="100%" zIndex="-1" />
-      <Container maxW="container.xl" pt={{ base: 20, lg: 20 }}>
+      <Container
+        maxW="container.xl"
+        pt={{ base: 20, lg: 20 }}
+        position="relative"
+        zIndex={1}>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justifyContent={{ base: "center", lg: "space-between" }}
@@ -1419,11 +1423,11 @@ const Portfolio: React.FC = () => {
   const accentColor = useColorModeValue("teal.500", "pearlAqua.400");
   const HighlightsItems = [
     {
-      title: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      title: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
       description:
-        "Campaign Management System is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
+        "BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
       image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
-      alt: "Campaign Management System – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
+      alt: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
     {
       title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
@@ -1443,7 +1447,7 @@ const Portfolio: React.FC = () => {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
-      image: "/assets/portfolio/New/Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent.jpg",
+      image: "/assets/portfolio/New/Pack Assist.png",
       alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
     },
     {
@@ -1574,7 +1578,7 @@ const Portfolio: React.FC = () => {
               ? "/portfolio/autosync-intelligence"
               : item.title.includes("Macromascot")
               ? "/portfolio/macromascot"
-              : item.title.includes("Campaign Management System") || item.title.includes("Campaign")
+              : item.title.includes("BillboardIQ") || item.title.includes("Campaign")
               ? "/portfolio/campaignos"
               : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
               ? "/portfolio/avl-copilot"
@@ -1952,7 +1956,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball.png"
+              src="/assets/clients/crystal_ball_white.png"
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -2159,24 +2163,6 @@ const SocialProofSection: React.FC = () => {
               }}
             />
           </Tooltip>
-          <Tooltip label="Moodtube Extension" hasArrow>
-            <Image
-              src="/assets/clients/moodtube_img.png"
-              alt="Republic Power"
-              width={80}
-              height={80}
-              loading="lazy"
-              decoding="async"
-              style={{
-                objectFit: "contain", // Ensures proper aspect ratio
-                maxHeight: "80px",
-                maxWidth: "80px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
-          </Tooltip>
           <Tooltip label="Bipcards" hasArrow>
             <Box cursor="pointer" filter="brightness(0) invert(1)">
               <Logo2 />
@@ -2318,7 +2304,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball.png"
+              src="/assets/clients/crystal_ball_white.png"
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -2522,24 +2508,6 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 filter: "brightness(0) invert(1)",
-              }}
-            />
-          </Tooltip>
-          <Tooltip label="Moodtube Extension" hasArrow>
-            <Image
-              src="/assets/clients/moodtube_img.png"
-              alt="Republic Power"
-              width={80}
-              height={80}
-              loading="lazy"
-              decoding="async"
-              style={{
-                objectFit: "contain",
-                maxHeight: "80px",
-                maxWidth: "80px",
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
               }}
             />
           </Tooltip>

@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
   HStack,
+  Flex,
   ButtonGroup,
   Button,
   Icon,
@@ -1457,14 +1458,56 @@ const Portfolio: React.FC = () => {
       image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
+  ];
+
+  // Homepage portfolio cards – first six case studies matching the /portfolio page
+  const homePortfolioItems = [
     {
-      title: "AVL-CoPilot – Intelligent Conversational AI Platform",
-      description:
-        "An advanced AI-powered conversational assistant solution designed to transform customer engagement through intelligent automation, natural language processing, and context-aware interactions. Built with cutting-edge AI frameworks to deliver 24/7 availability, sub-second response times, and continuous learning capabilities.",
-      image: "/assets/portfolio/New/ai-chatbot-avl-case-study.png",
-      alt: "AVL-CoPilot – Intelligent Conversational AI Platform",
+      title: "AVL Copilot",
+      industry: "Enterprise",
+      platform: "AI Solution",
+      image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
+      href: "/portfolio/avl-copilot",
+    },
+    {
+      title: "BillboardIQ",
+      industry: "Advertising",
+      platform: "SaaS Platform",
+      image: "/assets/portfolio/New/List Images/BillboardIQ.jpg",
+      href: "/portfolio/campaignos",
+    },
+    {
+      title: "The Meatery",
+      industry: "E-commerce",
+      platform: "AI Solution",
+      image: "/assets/portfolio/New/List Images/The Meatery.jpg",
+      href: "/portfolio/meatery",
+    },
+    {
+      title: "StaffUp",
+      industry: "Recruitment",
+      platform: "SaaS Platform",
+      image: "/assets/portfolio/New/List Images/StaffUp.png",
+      href: "/portfolio/staffup",
+    },
+    {
+      title: "AutoCar Intelligence",
+      industry: "Automotive",
+      platform: "SaaS Platform",
+      image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg",
+      href: "/portfolio/autosync-intelligence",
+    },
+    {
+      title: "Pack Assist",
+      industry: "Packaging",
+      platform: "AI Solution",
+      image: "/assets/portfolio/New/List Images/PackAssist.jpg",
+      href: "/portfolio/packassist",
     },
   ];
+
+  const cardHeadingColor = useColorModeValue("gray.800", "white");
+  const cardTextColor = useColorModeValue("gray.600", "gray.100");
 
   // Listen for hash change to #portfolio (when nav is clicked)
   React.useEffect(() => {
@@ -1555,192 +1598,71 @@ const Portfolio: React.FC = () => {
           </Box>
         </Box>
 
-        {/* Image-first masonry grid */}
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, md: 6 }} w="100%" mt={8}>
-          {HighlightsItems.map((item, index) => {
-            const href = item.title.includes("Pack Assist")
-              ? "/portfolio/packassist"
-              : item.title.includes("The Meatery")
-              ? "/portfolio/meatery"
-              : item.title.includes("Atarim")
-              ? "/portfolio/atarim"
-              : item.title.includes("JarvisReach")
-              ? "/portfolio/jarvisreach"
-              : item.title.includes("Content Compass")
-              ? "/portfolio/contentcompass"
-              : item.title.includes("SuperHeart")
-              ? "/portfolio/superheart"
-              : item.title.includes("Rack Room")
-              ? "/portfolio/rackroom"
-              : item.title.includes("Podcast Beacon")
-              ? "/portfolio/podcastbeacon"
-              : item.title.includes("AutoCar Intelligence")
-              ? "/portfolio/autosync-intelligence"
-              : item.title.includes("Macromascot")
-              ? "/portfolio/macromascot"
-              : item.title.includes("BillboardIQ") || item.title.includes("Campaign")
-              ? "/portfolio/campaignos"
-              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
-              ? "/portfolio/avl-copilot"
-              : null;
-
-            // Platform + industry (must match portfolio page)
-            const platform =
-              item.title.includes("Campaign") ? "SaaS Platform"
-              : item.title.includes("Macromascot") ? "Mobile App"
-              : item.title.includes("AutoCar") ? "Enterprise SaaS"
-              : item.title.includes("Pack Assist") || item.title.includes("Meatery") || item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co")
-                ? "AI Solution"
-              : "SaaS Platform";
-            const industry =
-              item.title.includes("Campaign") ? "Advertising"
-              : item.title.includes("Macromascot") ? "Healthcare"
-              : item.title.includes("AutoCar") ? "Automotive"
-              : item.title.includes("Pack Assist") ? "Packaging"
-              : item.title.includes("Meatery") ? "E-commerce"
-              : item.title.includes("AVL-CoPilot") || item.title.includes("AVL-Co") ? "Enterprise"
-              : "Business";
-
-            return (
-              <NextLink href={href || "/"} passHref legacyBehavior key={index}>
-                <MotionCard
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  as={Link}
-                  position="relative"
-                  w="100%"
-                  aspectRatio="4/3"
-                borderRadius="md"
-                overflow="hidden"
-                  cursor="pointer"
-                  bg={cardBg}
-                  border="1px solid"
-                  borderColor={cardBorder}
-                  transition="transform 0.3s ease, box-shadow 0.3s ease"
-                  _hover={{
-                    transform: "translateY(-6px)",
-                    boxShadow:
-                      colorMode === "dark"
-                        ? "0 20px 40px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)"
-                        : "0 20px 40px -12px rgba(0, 0, 0, 0.15)",
-                    "& .project-image": {
-                      transform: "scale(1.06)",
-                    },
-                    "& .project-overlay": {
-                      opacity: 0.85,
-                    },
-                    "& .project-cta": {
-                      opacity: 1,
-                      transform: "translateY(0)",
-                    },
-                  }}
-                >
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    zIndex={0}
-                    className="project-image"
-                    transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-                    sx={{
-                      filter: "brightness(0.85) contrast(1.02)",
-                    }}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      loading="lazy"
-                      style={{ objectFit: "cover", objectPosition: "center" }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </Box>
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bgGradient="linear(to-t, blackAlpha.950 0%, blackAlpha.700 35%, blackAlpha.400 65%, transparent)"
-                    opacity={0.75}
-                    className="project-overlay"
-                    transition="opacity 0.3s ease"
-                    zIndex={1}
-                  />
-                  <VStack
-                    position="absolute"
-                    bottom={0}
-                    left={0}
-                    right={0}
-                    p={4}
-                    zIndex={2}
-                    align="flex-start"
-                    spacing={2}
-                  >
-                    <Heading
-                      as="h3"
-                      fontSize={{ base: "sm", md: "md" }}
-                      fontWeight="700"
-                      color="white"
-                      lineHeight="short"
-                      noOfLines={2}
-                      textShadow="0 1px 8px rgba(0,0,0,0.6)"
-                    >
+        {/* Homepage portfolio cards using same layout as the main portfolio page */}
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="100%" mt={8}>
+          {homePortfolioItems.map((item) => (
+            <Box key={item.title}>
+              <Link as={NextLink} href={item.href} _hover={{ textDecoration: "none" }}>
+                <Box role="group">
+                  <Flex justify="space-between" align="flex-start" mb={3} gap={4}>
+                    <Heading as="h3" size="lg" color={cardHeadingColor} fontWeight="bold" flex="1" minW={0}>
                       {item.title}
                     </Heading>
-                    <HStack spacing={2} flexWrap="wrap" gap={1}>
-                      <Badge
-                        bg="blackAlpha.85"
-                        color="white"
-                        px={2.5}
-                        py={1}
-                        borderRadius="md"
-                        fontSize="xs"
-                        fontWeight="semibold"
-                        letterSpacing="0.02em"
-                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
-                        borderWidth="1px"
-                        borderColor="whiteAlpha.400"
-                      >
-                        {industry}
-                      </Badge>
-                      <Badge
-                        bg="blackAlpha.85"
-                        color="white"
-                        px={2.5}
-                        py={1}
-                        borderRadius="md"
-                        fontSize="xs"
-                        fontWeight="semibold"
-                        letterSpacing="0.02em"
-                        textShadow="0 1px 2px rgba(0,0,0,0.5)"
-                        borderWidth="1px"
-                        borderColor="whiteAlpha.400"
-                      >
-                        {platform}
-                      </Badge>
+                    <HStack spacing={2} flexWrap="wrap" justifyContent="flex-end" flexShrink={0}>
+                      <Text color={cardTextColor} fontSize="sm" whiteSpace="nowrap">
+                        {item.industry}, {item.platform}
+                      </Text>
                     </HStack>
-                    <HStack
-                      className="project-cta"
+                  </Flex>
+                  <Box
+                    position="relative"
+                    aspectRatio={4 / 3}
+                    overflow="hidden"
+                    bg="teal.500"
+                    cursor="pointer"
+                  >
+                    <Box position="absolute" inset={0} opacity={1} transition="opacity 0.3s">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </Box>
+                    <Box
+                      position="absolute"
+                      inset={0}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
                       opacity={0}
-                      transform="translateY(6px)"
-                      transition="opacity 0.25s ease, transform 0.25s ease"
-                      spacing={1}
-                      color="pearlAqua.200"
-                      fontSize="xs"
-                      fontWeight="600"
+                      transition="opacity 0.3s"
+                      _groupHover={{ opacity: 1 }}
+                      zIndex={1}
                     >
-                      <Text as="span">View case study</Text>
-                      <Icon as={FiArrowUpRight} boxSize={3} />
-                    </HStack>
-                  </VStack>
-                </MotionCard>
-              </NextLink>
-            );
-          })}
+                      <Box position="absolute" inset={0} bg="teal.500" opacity={0.55} />
+                      <Heading
+                        as="h3"
+                        position="relative"
+                        zIndex={1}
+                        fontSize={{ base: "lg", md: "xl" }}
+                        fontWeight="bold"
+                        color="white"
+                        textAlign="center"
+                        px={6}
+                        py={4}
+                        lineHeight="tall"
+                        textShadow="0 2px 8px rgba(0,0,0,0.4)"
+                      >
+                        {item.title}
+                      </Heading>
+                    </Box>
+                  </Box>
+                </Box>
+              </Link>
+            </Box>
+          ))}
         </SimpleGrid>
       </Container>
     </Box>

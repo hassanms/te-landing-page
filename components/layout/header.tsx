@@ -22,6 +22,7 @@ const HERO_DARK_NAVBAR_PATHS = [
   "/portfolio/meatery",
   "/portfolio/avl-copilot",
   "/portfolio/avl-copilot-v3",
+  "/portfolio/staffup",
   "/portfolio-v4",
 ];
 

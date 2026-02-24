@@ -1,139 +1,76 @@
 import {
   Box,
   Container,
-  List,
-  ListIcon,
-  ListItem,
   Text,
   useColorMode,
   Heading,
   HStack,
   VStack,
   SimpleGrid,
-  Card,
-  CardHeader,
-  CardBody,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  Tag,
-  Wrap,
-  WrapItem,
-  Icon,
   Divider,
   Button,
   ButtonGroup,
-  Flex,
   Badge,
   useColorModeValue,
-  Progress,
-  AspectRatio,
+  Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { BackgroundGradient } from "components/gradients/background-gradient";
+import { keyframes } from "@emotion/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
-import React from "react";
-import {
-  FaAsterisk,
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaChartLine,
-  FaClock,
-  FaGlobe,
-  FaChevronRight,
-  FaChevronDown,
-  FaDatabase,
-  FaShieldAlt,
-  FaSync,
-  FaEye,
-  FaDollarSign,
-  FaMapMarkerAlt,
-  FaCog,
-  FaRobot,
-} from "react-icons/fa";
-import {
-  SiReact,
-  SiSupabase,
-  SiPostgresql,
-  SiGooglechrome,
-} from "react-icons/si";
+import React, { useState } from "react";
+import { FaChevronRight } from "react-icons/fa";
+
+const AUTO_CAR_CASE_STUDY_IMAGES = [
+  { src: "/assets/portfolio/New/AutoCar Intelligence/01-dashboard (1).png", alt: "AutoCar Intelligence - Company Dashboard", isPortrait: false },
+  { src: "/assets/portfolio/New/AutoCar Intelligence/02-historical-performance top.png", alt: "AutoCar Intelligence - Historical Performance Top", isPortrait: false },
+  { src: "/assets/portfolio/New/AutoCar Intelligence/02-historical-performance b.png", alt: "AutoCar Intelligence - Historical Performance Bottom", isPortrait: false },
+  { src: "/assets/portfolio/New/AutoCar Intelligence/03-agging-work-in-progress top.png", alt: "AutoCar Intelligence - Aging Work In Progress", isPortrait: false },
+  { src: "/assets/portfolio/New/AutoCar Intelligence/05-wicked-file-page-1.png", alt: "AutoCar Intelligence - Risk File Page 1", isPortrait: false },
+  { src: "/assets/portfolio/New/AutoCar Intelligence/06-wicked-file-page.png", alt: "AutoCar Intelligence - Risk File Page 2", isPortrait: false },
+];
+
+const scrollRightToLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
 
 const CaseStudyAutoSyncIntelligence = () => {
   const { colorMode } = useColorMode();
-  const bgColor = useColorModeValue("gray.50", "gray.800");
-  const cardBg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const textColor = useColorModeValue("gray.600", "gray.100");
+  const [isGalleryPaused, setIsGalleryPaused] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const bgColor = useColorModeValue("white", "charcoal.800");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const textColor = useColorModeValue("gray.700", "gray.100");
+  const headingColor = useColorModeValue("gray.900", "white");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const dividerColor = useColorModeValue("gray.200", "gray.700");
+  const numberColor = accentColor;
+
+  const subtlePattern = useColorModeValue(
+    "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
+    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
+  );
 
   return (
-    <Box id="services">
+    <Box bg={bgColor}>
       <Head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
       </Head>
       <EnhancedSEO
         title="Case Study: AutoCar Intelligence (Premium Design) - Tech Emulsion"
         description="AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business. Tech Emulsion rebuilt an unreliable prototype into a scalable data aggregation and analytics system."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/autosync-intelligence"
-        portfolioData={{
-          title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
-          description:
-            "A centralized operational intelligence platform for multi-location automotive repair businesses. Rebuilt from unreliable prototype into scalable data aggregation system with multi-shop aggregation, hardened sales calculations, aging WIP intelligence, and AI-ready architecture.",
-          dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/DADS_Sales_Reborn.jpg",
-          url: "https://techemulsion.com/portfolio/autosync-intelligence",
-          genre: "Data Analytics, Automotive Intelligence, Operational Control System",
-          keywords: [
-            "AutoCar Intelligence",
-            "automotive intelligence",
-            "data aggregation",
-            "multi-location business",
-            "operational control",
-            "Tekmetric",
-            "Tech Emulsion",
-          ],
-        }}
-        breadcrumbData={{
-          items: [
-            { name: "Home", url: "https://techemulsion.com" },
-            { name: "Portfolio", url: "https://techemulsion.com/portfolio" },
-            {
-              name: "AutoCar Intelligence",
-              url: "https://techemulsion.com/portfolio/autosync-intelligence",
-            },
-          ],
-        }}
-        faqData={{
-          questions: [
-            {
-              question: "What is AutoCar Intelligence?",
-              answer:
-                "AutoCar Intelligence is a centralized operational intelligence platform built for multi-location automotive repair businesses. It consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
-            },
-            {
-              question: "What problems does AutoCar Intelligence solve?",
-              answer:
-                "The platform addresses fragmented visibility across multiple shops, inaccurate and incomplete data from unreliable APIs, operational risk blind spots, and the lack of automation or intelligence for proactive warnings.",
-            },
-            {
-              question: "What technologies power AutoCar Intelligence?",
-              answer:
-                "Frontend: React-based dashboard. Backend: Supabase (PostgreSQL) with Edge Functions. Data Sources: Tekmetric API, with planned Chrome extension ingestion and future integrations.",
-            },
-          ],
-        }}
       />
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF" />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -154,25 +91,19 @@ const CaseStudyAutoSyncIntelligence = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Premium Hero Section with Gradient Overlay */}
+      {/* Hero Section */}
       <Box
         position="relative"
         color="white"
-        pt={{ base: 8, md: 20 }}
-        pb={{ base: 12, md: 24 }}
+        pt={{ base: 20, md: 32 }}
+        pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "600px", md: "700px" }}>
-        {/* Background Image with Overlay */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          zIndex={0}>
+        minH={{ base: "500px", md: "600px" }}
+      >
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-            alt="AutoCar Intelligence"
+            src="/assets/portfolio/New/List Images/AutoCar Intelligence.jpg"
+            alt="AutoCar Intelligence - Multi-Location Automotive Intelligence"
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -192,759 +123,703 @@ const CaseStudyAutoSyncIntelligence = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          {/* Breadcrumb - white in light mode for visibility on dark hero */}
-          <Box mb={8} display="flex" justifyContent="flex-end">
+          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup
               style={{
                 backgroundColor: "none",
                 fontSize: "1rem",
-                color: colorMode === "light" ? "white" : "muted",
+                color: "white",
                 display: "flex",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <ButtonLink
                 href="/"
                 size="lg"
-                sx={{
-                  bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+                sx={{ bg: "none", color: "white", padding: "0", "&:hover": { bg: "none" } }}
+              >
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
+              <FaChevronRight size={15} style={{ color: "white" }} />
               <ButtonLink
                 href="/portfolio"
                 size="lg"
-                sx={{
-                  bg: "none",
-                  color: colorMode === "light" ? "white" : "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+                sx={{ bg: "none", color: "white", padding: "0", "&:hover": { bg: "none" } }}
+              >
                 Portfolio
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "inherit" }} />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: "white",
-                }}>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Text as="span" ml="2" color="white">
                 AutoCar Intelligence
               </Text>
             </ButtonGroup>
           </Box>
 
-          <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            spacing={{ base: 8, lg: 12 }}
-            alignItems="center">
-            {/* Left Side - Content */}
-            <VStack align="start" spacing={6}>
-              <Badge
-                bg="brand.500"
-                color="white"
-                px={4}
-                py={2}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold"
-                letterSpacing="wide">
-                OPERATIONAL INTELLIGENCE PLATFORM
-              </Badge>
+          <Flex
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap={{ base: 10, lg: 12 }}
+            flexDir={{ base: "column", lg: "row" }}
+            w="full"
+          >
+            <VStack align="start" spacing={6} flex={1} minW={0} maxW="4xl">
               <Heading
                 as="h1"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
                 fontWeight="bold"
                 lineHeight="1.1"
-                color="white">
+                color="white"
+              >
                 AutoCar Intelligence
               </Heading>
-              <Text
-                fontSize={{ base: "xl", md: "2xl" }}
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="300"
+                lineHeight="1.3"
                 color="rgba(255,255,255,0.9)"
-                lineHeight="1.6"
-                fontWeight="300">
-                Rebuilding Multi-Location Automotive Intelligence from Broken SaaS
-                Data
-              </Text>
+              >
+                Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data
+              </Heading>
               <Text
-                fontSize="lg"
+                fontSize={{ base: "lg", md: "xl" }}
                 color="rgba(255,255,255,0.8)"
                 lineHeight="1.7"
-                maxW="2xl">
-                A centralized operational intelligence platform that gives owners a
-                single, trustworthy source of truth across all shops without logging
-                into multiple systems. This is not a reporting toy—it&apos;s an
-                operational control system.
+                maxW="3xl"
+              >
+                A centralized operational intelligence platform that gives owners a single, trustworthy source of truth
+                across all shops without logging into multiple systems. Not a reporting toy—an operational control system.
               </Text>
-
-              {/* Key Metrics */}
-              <SimpleGrid columns={3} spacing={6} w="full" mt={4}>
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    9+
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Automotive Shops
-                  </Text>
-                </VStack>
-                {/* <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    3
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    US States
-                  </Text>
-                </VStack> */}
-                <VStack align="start" spacing={1}>
-                  <Text fontSize="4xl" color="brand.400" fontWeight="bold">
-                    100%
-                  </Text>
-                  <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-                    Single Source of Truth
-                  </Text>
-                </VStack>
-              </SimpleGrid>
-
             </VStack>
-
-            {/* Right Side - Visual Element */}
-            <Box position="relative" h={{ base: "400px", lg: "500px" }}>
-              <Box
-                position="absolute"
-                inset={0}
-                bgGradient="radial(circle, brand.500 0%, transparent 70%)"
-                opacity={0.2}
-                borderRadius="full"
-                filter="blur(60px)"
-              />
-              <Image
-                src="/assets/portfolio/New/DADS_Sales_Reborn.jpg"
-                alt="AutoCar Intelligence Dashboard"
-                fill
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "16px",
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.5)",
-                }}
-              />
-            </Box>
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      {/* Impact Stats Section */}
-      <Box bg={bgColor} py={16} position="relative">
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="teal" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                IMPACT METRICS
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Real Results, Real Impact
-              </Heading>
-            </Box>
-            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8} w="full">
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaEye} boxSize={8} color="brand.500" mb={3} />
-                <StatNumber fontSize="4xl" color="brand.500" fontWeight="bold">
-                  Unified
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Multi-Location Visibility
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Single dashboard replaces 10+ systems
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaChartLine} boxSize={8} color="green.500" mb={3} />
-                <StatNumber fontSize="4xl" color="green.500" fontWeight="bold">
-                  Reliable
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Data Accuracy
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Deterministic calculations eliminate errors
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaShieldAlt} boxSize={8} color="orange.500" mb={3} />
-                <StatNumber fontSize="4xl" color="orange.500" fontWeight="bold">
-                  Protected
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Risk Visibility
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Aging WIP & unprotected orders tracked
-                </StatHelpText>
-              </Stat>
-              <Stat textAlign="center" bg={cardBg} p={6} borderRadius="xl" boxShadow="md">
-                <Icon as={FaRobot} boxSize={8} color="purple.500" mb={3} />
-                <StatNumber fontSize="4xl" color="purple.500" fontWeight="bold">
-                  AI-Ready
-                </StatNumber>
-                <StatLabel fontSize="md" mt={2} fontWeight="semibold">
-                  Future-Proof Architecture
-                </StatLabel>
-                <StatHelpText fontSize="sm" color={textColor}>
-                  Built for automation & intelligence
-                </StatHelpText>
-              </Stat>
-            </SimpleGrid>
-          </VStack>
-        </Container>
-      </Box>
-
-      {/* Project Overview */}
-      <Container maxW="container.xl" py={20}>
-        <VStack align="start" spacing={8}>
-          <Box w="full">
-            <Badge colorScheme="blue" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              OVERVIEW
-            </Badge>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
-              fontWeight="bold"
-              mb={6}
-              color={useColorModeValue("gray.900", "white")}>
-              Project Overview
-            </Heading>
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} borderLeft="4px solid" borderColor="brand.500">
-              <VStack align="start" spacing={4}>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  AutoCar Intelligence is a centralized operational intelligence platform
-                  built for a multi-location automotive repair business operating across
-                  multiple US states. The goal was simple but brutal to execute:{" "}
-                  <Text as="span" fontWeight="bold" color="brand.500">
-                    give the owner a single, trustworthy source of truth across all shops
-                    without logging into Tekmetric, QuickBooks, banks, or third-party
-                    tools.
-                  </Text>
-                </Text>
-                <Text
-                  fontSize={{ base: "lg", md: "xl" }}
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  lineHeight="1.8">
-                  The project focuses on rebuilding an unreliable prototype into a
-                  scalable data aggregation and analytics system, capable of handling
-                  incomplete APIs, inconsistent data, and real-world automotive edge
-                  cases. The system consolidates sales, repair orders, inspections,
-                  work-in-progress, and profitability signals into one executive
-                  dashboard, with AI-driven automation planned as a second phase.
-                </Text>
-                {/* <Box
-                  mt={4}
-                  p={4}
-                  bg={useColorModeValue("brand.50", "brand.800")}
-                  borderRadius="md"
-                  borderLeft="3px solid"
-                  borderColor="brand.500">
-                  <Text
-                    fontSize="lg"
-                    fontWeight="bold"
-                    color={useColorModeValue("gray.900", "white")}
-                    fontStyle="italic">
-                    &quot;This is not a reporting toy. It&apos;s an operational control
-                    system.&quot;
-                  </Text>
-                </Box> */}
-              </VStack>
-            </Card>
-          </Box>
-        </VStack>
-      </Container>
-
-      {/* Challenge Section */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="red" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                THE CHALLENGE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                When Data Chaos Meets Business Reality
-              </Heading>
-              <Text
-                fontSize="lg"
-                color={useColorModeValue("gray.600", "gray.100")}
-                maxW="2xl"
-                mx="auto">
-                The client owned 9 automotive shops (growing to 10+) across Georgia,
-                Texas, and North Carolina. Their Shop Management System (Tekmetric)
-                exposed a limited and inconsistent API, forcing manual workflows and
-                unreliable dashboards.
-              </Text>
-            </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-              {[
-                {
-                  icon: FaExclamationTriangle,
-                  color: "red.500",
-                  title: "Fragmented Visibility",
-                  description:
-                    "Tekmetric required logging into each shop individually. No reliable way to view company-wide performance, trends, or risk exposure in one place.",
-                },
-                {
-                  icon: FaDatabase,
-                  color: "orange.500",
-                  title: "Inaccurate & Incomplete Data",
-                  description:
-                    "API data often lagged or returned partial results. Critical metrics like inspections, approvals, and aging WIP were missing entirely. Some values were flat-out wrong.",
-                },
-                {
-                  icon: FaDollarSign,
-                  color: "yellow.500",
-                  title: "Operational Risk Blind Spots",
-                  description:
-                    "High-dollar repair orders sat open without deposits. Managers could approve $10k engine jobs on cars worth $5k, creating serious financial risk with no automated alerts.",
-                },
-                {
-                  icon: FaCog,
-                  color: "purple.500",
-                  title: "No Automation or Intelligence",
-                  description:
-                    "Everything relied on manual oversight. No proactive warnings. No anomaly detection. No way to enforce business rules at scale.",
-                },
-              ].map((challenge, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="lg"
-                  borderTop="4px solid"
-                  borderColor={challenge.color}
-                  p={6}
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <HStack mb={4}>
-                      <Icon as={challenge.icon} boxSize={6} color={challenge.color} />
-                      <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                        {challenge.title}
-                      </Heading>
-                    </HStack>
-                    <Text
-                      fontSize="md"
-                      color={useColorModeValue("gray.600", "gray.100")}
-                      lineHeight="1.7">
-                      {challenge.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
-
             <Box
-              mt={8}
-              p={6}
-              bg={useColorModeValue("teal.50", "teal.900")}
-              borderRadius="xl"
-              borderLeft="4px solid"
-              borderColor="teal.500"
-              maxW="3xl"
-              w="full">
-              <Text
-                fontSize="lg"
-                fontWeight="semibold"
-                color={useColorModeValue("gray.900", "white")}
-                fontStyle="italic"
-                textAlign="center">
-                In short: data existed, but it was unusable for decision-making.
+              flexShrink={0}
+              w={{ base: "100%", lg: "45%" }}
+              maxW={{ lg: "500px" }}
+              position="relative"
+              alignSelf={{ base: "center", lg: "flex-end" }}
+            >
+              <Image
+                src="/assets/portfolio/New/AutoCar Intelligence/AutoCar Intelligence Show Case Screen Image.png"
+                alt="AutoCar Intelligence - Dashboard Showcase"
+                width={500}
+                height={400}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+              />
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Executive Snapshot */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack spacing={10} align="stretch">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Industry
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Automotive Repair & Maintenance
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Client
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  9+ Shop Multi-Location Operator (US)
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Engagement
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Data Aggregation Platform & Operational Dashboard
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Outcome
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Unified, AI-ready intelligence across all locations
+                </Text>
+              </Box>
+            </SimpleGrid>
+            <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
+              <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                Tech Stack
+              </Text>
+              <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">
+                React dashboard, Supabase (PostgreSQL) with Edge Functions, Tekmetric API, Chrome extension–based ingestion,
+                AI-ready data model for future agents.
               </Text>
             </Box>
           </VStack>
         </Container>
       </Box>
 
-      {/* Solution Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE SOLUTION
-            </Badge>
+      {/* Case Study Image Gallery Section */}
+      <Box
+        position="relative"
+        py={{ base: 6, md: 10 }}
+        overflow="hidden"
+        minH={{ base: "340px", md: "400px" }}
+        onMouseEnter={() => setIsGalleryPaused(true)}
+        onMouseLeave={() => setIsGalleryPaused(false)}
+      >
+        <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
+          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="" fill style={{ objectFit: "cover" }} />
+          <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
+        </Box>
+        <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            width="max-content"
+            animation={`${scrollRightToLeft} 45s linear infinite`}
+            sx={{ animationPlayState: isGalleryPaused ? "paused" : "running" }}
+          >
+            {[...AUTO_CAR_CASE_STUDY_IMAGES, ...AUTO_CAR_CASE_STUDY_IMAGES].map((img, idx) => (
+              <Box
+                key={idx}
+                as="figure"
+                flexShrink={0}
+                mr={{ base: 6, md: 8 }}
+                overflow="hidden"
+                borderRadius={img.isPortrait ? "2xl" : "0"}
+                border="5px solid"
+                borderColor="gray.500"
+                _dark={{ borderColor: "whiteAlpha.150" }}
+                boxShadow="0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)"
+                lineHeight={0}
+                m={0}
+                h={{ base: "300px", md: "360px" }}
+                cursor="pointer"
+                onClick={() => setSelectedImage(img)}
+                _hover={{
+                  opacity: 0.95,
+                  transform: "scale(1.02)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.06)",
+                }}
+                transition="all 0.25s ease"
+                sx={{
+                  "& img": {
+                    display: "block",
+                    width: "auto",
+                    height: "100%",
+                    objectFit: "contain",
+                  },
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+
+      <Modal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} size="6xl" isCentered>
+        <ModalOverlay bg="blackAlpha.800" backdropFilter="blur(4px)" />
+        <ModalContent bg="transparent" boxShadow="none" maxW="90vw" maxH="90vh">
+          <ModalCloseButton
+            color="white"
+            bg="transparent"
+            border="none"
+            top={4}
+            right={4}
+            zIndex={10}
+            fontSize="2xl"
+            sx={{
+              filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.9)) drop-shadow(0 0 4px rgba(0,0,0,0.6))",
+            }}
+            _hover={{ bg: "transparent", color: "white", opacity: 0.9 }}
+            _focus={{ boxShadow: "none" }}
+          />
+          <ModalBody p={0} display="flex" justifyContent="center" alignItems="center">
+            {selectedImage && (
+              <Box maxW="100%" maxH="90vh">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  style={{ maxWidth: "100%", maxHeight: "90vh", objectFit: "contain", display: "block" }}
+                />
+              </Box>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      {/* The Business Problem */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+              >
+                The Business Problem
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The client owned 9 automotive shops (growing to 10+) across multiple US states. Their Shop Management System exposed
+                a limited and inconsistent API, forcing manual workflows and unreliable dashboards.
+              </Text>
+              <Text
+                fontSize={{ base: "lg", md: "xl" }}
+                color={headingColor}
+                fontWeight="semibold"
+                lineHeight="1.8"
+              >
+                Data existed—but it was unusable for decision-making. The owner lacked a single, trustworthy view of performance and
+                risk across the company.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Fragmented visibility—Tekmetric required logging into each shop individually",
+                "Inaccurate and incomplete API data, missing key metrics like inspections and aging WIP",
+                "Operational risk blind spots: high-dollar jobs with no deposits and over-exposure on low-value vehicles",
+                "No automation or intelligence—everything relied on manual oversight and spreadsheets",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text
+                      fontSize={{ base: "2xl", md: "3xl" }}
+                      fontWeight="bold"
+                      color={numberColor}
+                      lineHeight="1.2"
+                      minW="60px"
+                    >
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color={headingColor}
+                      fontWeight="medium"
+                      lineHeight="1.5"
+                    >
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Our Approach */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+              >
+                Our Approach
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We rebuilt AutoCar Intelligence around a data-first architecture: never trust upstream aggregates, calculate
+                everything ourselves, and store raw and derived data separately for historical analysis.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The system was designed to survive bad APIs and still produce reliable insights—laying the foundation for future AI
+                agents without refactoring.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Centralize data from all shops into a single aggregation engine",
+                "Normalize inconsistent fields and structures across APIs and reports",
+                "Rebuild sales, profit, and WIP logic using deterministic calculations",
+                "Expose risk and performance via drill-down dashboards instead of static reports",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text
+                      fontSize={{ base: "2xl", md: "3xl" }}
+                      fontWeight="bold"
+                      color={numberColor}
+                      lineHeight="1.2"
+                      minW="60px"
+                    >
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color={headingColor}
+                      fontWeight="medium"
+                      lineHeight="1.5"
+                    >
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* The Solution */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
             <Heading
               as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              Data-First Architecture Built to Survive Bad APIs
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
+            >
+              The Solution: AutoCar Intelligence Platform
             </Heading>
-            <Text
-              fontSize="lg"
-              color={useColorModeValue("gray.600", "gray.100")}
-              maxW="2xl"
-              mx="auto">
-              We rebuilt the system around a data-first, aggregation-driven
-              architecture, designed to survive bad APIs and still produce reliable
-              insights.
-            </Text>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} w="full">
-            {[
-              {
-                number: "1",
-                icon: FaGlobe,
-                title: "Centralized Multi-Shop Aggregation Engine",
-                description:
-                  "Unified aggregation layer that pulls data shop-by-shop via Tekmetric's API, normalizes inconsistent fields and structures, and stores historical snapshots for month-over-month and year-over-year comparison.",
-                color: "blue",
-              },
-              {
-                number: "2",
-                icon: FaChartLine,
-                title: "Hardened Sales & Profit Calculations",
-                description:
-                  "Deterministic aggregation logic for labor, parts, and sublet sales; authorized vs unauthorized sublets; Repair Order counts and averages; and gross vs profit comparisons across months and years.",
-                color: "green",
-              },
-              {
-                number: "3",
-                icon: FaClock,
-                title: "Aging Work-In-Progress Intelligence",
-                description:
-                  "Tracks approved repair orders across all shops, flags high-dollar jobs with no deposits, shows vehicle age, RO age, and exposure risk. Enables drill-down from company → shop → repair order.",
-                color: "orange",
-              },
-              {
-                number: "4",
-                icon: FaSync,
-                title: "Inspection & Compliance Tracking",
-                description:
-                  "Hybrid data strategy: API data where available, Chrome extension–based extraction for non-API reports, normalized inspection metrics stored centrally for performance analysis.",
-                color: "purple",
-              },
-              {
-                number: "5",
-                icon: FaRobot,
-                title: "AI-Ready Architecture",
-                description:
-                  "Intentionally built to support AI agents without retrofitting: clear event boundaries, deterministic business rules first, AI second. Planned agents for monitoring deposits, WIP aging, and anomalies.",
-                color: "pink",
-              },
-            ].map((solution, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderLeft="4px solid"
-                borderColor={`${solution.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s"
-                position="relative"
-                overflow="hidden">
-                <Box
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  fontSize="6xl"
-                  fontWeight="bold"
-                  color={`${solution.color}.100`}
-                  opacity={0.3}
-                  lineHeight="1">
-                  {solution.number}
-                </Box>
-                <CardBody position="relative">
-                  <HStack mb={4}>
-                    <Icon
-                      as={solution.icon}
-                      boxSize={8}
-                      color={`${solution.color}.500`}
-                    />
-                    <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                      {solution.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {solution.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Centralized Multi-Shop Aggregation:
+                  </Text>{" "}
+                  Unified aggregation layer pulls data shop-by-shop, normalizes inconsistent fields, and stores historical snapshots
+                  for month-over-month and year-over-year comparison.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Hardened Sales & Profit Calculations:
+                  </Text>{" "}
+                  Deterministic logic for labor, parts, and sublet sales, along with authorized vs unauthorized sublets and RO
+                  averages, so owners can trust every number.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Aging Work-In-Progress Intelligence:
+                  </Text>{" "}
+                  Tracks approved repair orders across all shops, flags high-dollar jobs without deposits, and surfaces aging risk by
+                  RO age, vehicle value, and exposure.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    Hybrid Inspection & Compliance Tracking:
+                  </Text>{" "}
+                  Uses both API data and Chrome extension–based extraction to capture inspection metrics that Tekmetric’s API
+                  doesn&apos;t expose, then normalizes them into the central model.
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>
+                    AI-Ready Architecture:
+                  </Text>{" "}
+                  Clear event boundaries and deterministic rules first, AI second—so future agents can safely monitor deposits, WIP
+                  aging, and anomalies without rearchitecting the system.
+                </Text>
+              </Box>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* Technical Architecture */}
-      <Box bg={bgColor} py={20}>
-        <Container maxW="container.xl">
-          <VStack spacing={12}>
-            <Box textAlign="center" maxW="3xl">
-              <Badge colorScheme="purple" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-                TECHNICAL EXCELLENCE
-              </Badge>
-              <Heading
-                as="h2"
-                fontSize={{ base: "3xl", md: "4xl" }}
-                fontWeight="bold"
-                mb={4}
-                color={useColorModeValue("gray.900", "white")}>
-                Built for Control, Scalability & Long-Term Maintainability
-              </Heading>
-            </Box>
-
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="full">
-              {[
-                {
-                  icon: SiReact,
-                  name: "React",
-                  category: "Frontend",
-                  color: "blue",
-                  description: "React-based dashboard with Lovable for rapid UI iteration",
-                },
-                {
-                  icon: SiSupabase,
-                  name: "Supabase",
-                  category: "Backend",
-                  color: "green",
-                  description: "PostgreSQL with Row Level Security and Edge Functions",
-                },
-                {
-                  icon: SiPostgresql,
-                  name: "PostgreSQL",
-                  category: "Database",
-                  color: "blue",
-                  description: "Structured relational data with historical snapshots",
-                },
-                {
-                  icon: SiGooglechrome,
-                  name: "Chrome Extension",
-                  category: "Data Ingestion",
-                  color: "yellow",
-                  description: "Hybrid strategy for non-API report extraction",
-                },
-              ].map((tech, index) => (
-                <Card
-                  key={index}
-                  bg={cardBg}
-                  borderRadius="xl"
-                  boxShadow="md"
-                  p={6}
-                  textAlign="center"
-                  _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                  transition="all 0.3s">
-                  <CardBody>
-                    <Box display="flex" justifyContent="center" mb={4}>
-                      <Icon
-                        as={tech.icon}
-                        boxSize={10}
-                        color={`${tech.color}.500`}
-                      />
-                    </Box>
-                    <Box display="flex" justifyContent="center" mb={2}>
-                      <Badge
-                        colorScheme={tech.color}
-                        fontSize="xs"
-                        borderRadius="full">
-                        {tech.category}
-                      </Badge>
-                    </Box>
-                    <Heading size="md" mb={2} color={useColorModeValue("gray.900", "white")}>
-                      {tech.name}
-                    </Heading>
-                    <Text
-                      fontSize="sm"
-                      color={useColorModeValue("gray.600", "gray.200")}
-                      lineHeight="1.6">
-                      {tech.description}
-                    </Text>
-                  </CardBody>
-                </Card>
-              ))}
-            </SimpleGrid>
-
-            <Card bg={cardBg} borderRadius="xl" boxShadow="lg" p={8} w="full" maxW="4xl">
-              <VStack align="start" spacing={4}>
-                <Heading size="lg" color={useColorModeValue("gray.900", "white")}>
-                  Design Principles
-                </Heading>
-                <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} w="full">
-                  <Box
-                    p={4}
-                    bg={useColorModeValue("blue.50", "blue.900")}
-                    borderRadius="md">
-                    <Text fontWeight="bold" mb={2} fontSize="sm" color={useColorModeValue("gray.900", "white")}>
-                      Never Trust Upstream Aggregates
-                    </Text>
-                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.200")}>
-                      Calculate everything ourselves
-                    </Text>
-                  </Box>
-                  <Box
-                    p={4}
-                    bg={useColorModeValue("green.50", "green.900")}
-                    borderRadius="md">
-                    <Text fontWeight="bold" mb={2} fontSize="sm" color={useColorModeValue("gray.900", "white")}>
-                      Store Raw + Derived Separately
-                    </Text>
-                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.200")}>
-                      Historical analysis enabled
-                    </Text>
-                  </Box>
-                  <Box
-                    p={4}
-                    bg={useColorModeValue("purple.50", "purple.900")}
-                    borderRadius="md">
-                    <Text fontWeight="bold" mb={2} fontSize="sm" color={useColorModeValue("gray.900", "white")}>
-                      Optimize for Historical Analysis
-                    </Text>
-                    <Text fontSize="xs" color={useColorModeValue("gray.600", "gray.200")}>
-                      Not just current state
-                    </Text>
-                  </Box>
-                </SimpleGrid>
-              </VStack>
-            </Card>
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
+            >
+              Technical Architecture
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+              React-based dashboard, Supabase with PostgreSQL and Edge Functions, Tekmetric API integration, and a Chrome
+              extension ingestion path for non-API reports. Raw and derived data are stored separately to enable deep historical
+              analysis, not just current-state reporting.
+            </Text>
           </VStack>
         </Container>
       </Box>
 
-      {/* Results Section */}
-      <Container maxW="container.xl" py={20}>
-        <VStack spacing={12}>
-          <Box textAlign="center" maxW="3xl">
-            <Badge colorScheme="green" mb={4} px={4} py={2} borderRadius="full" fontSize="sm">
-              THE RESULTS
-            </Badge>
+      {/* Business Impact */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+              >
+                Business Impact
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                AutoCar Intelligence transformed fragmented, unreliable data into a unified control system—giving leadership
+                confidence in their numbers and visibility into risk before it becomes loss.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Company-wide performance and risk in a single dashboard",
+                "Reliable month-over-month and year-over-year comparisons",
+                "Visibility into financial risk from aging WIP and unprotected ROs",
+                "An AI-ready foundation without rework when agents are introduced",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text
+                      fontSize={{ base: "2xl", md: "3xl" }}
+                      fontWeight="bold"
+                      color={numberColor}
+                      lineHeight="1.2"
+                      minW="60px"
+                    >
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text
+                      fontSize={{ base: "lg", md: "xl" }}
+                      color={headingColor}
+                      fontWeight="medium"
+                      lineHeight="1.5"
+                    >
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Why This Matters */}
+      <Box bg={bgColor} py={{ base: 20, md: 24 }} position="relative">
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} maxW="4xl">
             <Heading
               as="h2"
-              fontSize={{ base: "3xl", md: "4xl" }}
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
-              mb={4}
-              color={useColorModeValue("gray.900", "white")}>
-              From Chaos to Control
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
+            >
+              Why This Matters
             </Heading>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="full">
-            {[
-              {
-                icon: FaCheckCircle,
-                title: "Unified Inventory Management",
-                description:
-                  "A single source of truth for all AU and NZ advertising assets.",
-                color: "green",
-              },
-              {
-                icon: FaChartLine,
-                title: "Reliable Comparisons",
-                description:
-                  "Month-over-month and year-over-year comparisons you can trust.",
-                color: "blue",
-              },
-              {
-                icon: FaShieldAlt,
-                title: "Financial Risk Visibility",
-                description:
-                  "Visibility into financial risk from aging WIP and unprotected repair orders.",
-                color: "orange",
-              },
-              {
-                icon: FaRobot,
-                title: "AI-Ready Foundation",
-                description:
-                  "A foundation ready for AI-driven automation without rework.",
-                color: "purple",
-              },
-            ].map((result, index) => (
-              <Card
-                key={index}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="lg"
-                p={6}
-                borderTop="4px solid"
-                borderColor={`${result.color}.500`}
-                _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
-                transition="all 0.3s">
-                <CardBody>
-                  <HStack mb={4}>
-                    <Icon as={result.icon} boxSize={6} color={`${result.color}.500`} />
-                    <Heading size="md" color={useColorModeValue("gray.900", "white")}>
-                      {result.title}
-                    </Heading>
-                  </HStack>
-                  <Text
-                    fontSize="md"
-                    color={useColorModeValue("gray.600", "gray.100")}
-                    lineHeight="1.7">
-                    {result.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+            <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+              At Tech Emulsion, we specialize in turning messy, real-world data into production-grade intelligence systems. AutoCar
+              Intelligence shows how a data-first architecture can transform broken SaaS APIs into a durable strategic asset—and
+              lay the groundwork for safe, effective AI.
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
 
       {/* CTA Section */}
       <Box
-        bgGradient={
-          colorMode === "dark"
-            ? "linear(to-r, brand.600, brand.800)"
-            : "linear(to-r, brand.500, brand.600)"
-        }
-        py={20}
-        color={colorMode === "dark" ? "white" : "black"}>
+        bgGradient={colorMode === "dark" ? "linear(to-r, teal.600, teal.800)" : "linear(to-r, teal.500, teal.600)"}
+        py={{ base: 16, md: 20 }}
+        color="white"
+      >
         <Container maxW="container.xl">
-          <VStack spacing={8} textAlign="center">
-            <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold">
-              Ready to Build Your Operational Intelligence Platform?
+          <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
+            <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
+              Building Operational Intelligence for Your Locations?
             </Heading>
-            <Text fontSize={{ base: "lg", md: "xl" }} maxW="2xl" opacity={0.9}>
-              Transform fragmented data into a unified operational intelligence
-              platform. Let&apos;s discuss how we can turn your multi-location
-              challenges into scalable, reliable insights.
-            </Text>
-            <HStack spacing={4} flexWrap="wrap" justify="center">
+            <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
               <Button
                 as="a"
                 href="https://calendly.com/hassanms/discovery-call"
                 target="_blank"
                 size="lg"
-                bg="teal.500"
-                color="white"
-                _hover={{ bg: "teal.600", transform: "translateY(-2px)" }}
+                bg="white"
+                color="teal.500"
+                _hover={{ bg: "whiteAlpha.900" }}
                 rightIcon={<FaChevronRight />}
                 px={8}
                 py={6}
                 fontSize="lg"
                 fontWeight="bold"
-                boxShadow="xl">
+                boxShadow="xl"
+              >
                 Schedule a Call
               </Button>
               <Button
@@ -952,17 +827,15 @@ const CaseStudyAutoSyncIntelligence = () => {
                 href="/portfolio"
                 size="lg"
                 variant="outline"
-                borderColor="teal.500"
+                borderColor="white"
                 borderWidth="2px"
-                color="teal.500"
-                _hover={{
-                  bg: colorMode === "dark" ? "whiteAlpha.200" : "blackAlpha.100",
-                  transform: "translateY(-2px)",
-                }}
+                color="white"
+                _hover={{ bg: "whiteAlpha.200" }}
                 px={8}
                 py={6}
                 fontSize="lg"
-                fontWeight="bold">
+                fontWeight="bold"
+              >
                 View More Case Studies
               </Button>
             </HStack>
@@ -974,3 +847,4 @@ const CaseStudyAutoSyncIntelligence = () => {
 };
 
 export default CaseStudyAutoSyncIntelligence;
+

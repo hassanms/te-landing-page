@@ -176,7 +176,7 @@ const CaseStudyStaffUp = () => {
                 Built StaffUp, a serverless recruitment SaaS powered by a proprietary 7-criteria scoring engine using Next.js 15 and Firebase. Automated candidate ranking through availability matching, psychometric alignment, certification validation, and experience weighting. Reduced manual screening time by 70%, introduced real-time dashboards for employers and admins.
               </Text>
             </VStack>
-            <Box flexShrink={0} w={{ base: "100%", lg: "45%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
+            <Box flexShrink={0} w={{ base: "100%", lg: "50%" }} maxW={{ lg: "560px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
                 src="/assets/portfolio/New/StaffUp/StaffUp Show Case Screen Image.png"
                 alt="StaffUp - AI Recruitment SaaS Showcase"

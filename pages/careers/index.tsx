@@ -66,7 +66,7 @@ const CareersPage = () => {
       <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
         <CareersHeroSection />
 
-        <Stack spacing={16} mt={8}>
+        <Stack spacing={16}>
           {loading ? (
             <Box textAlign="center" py={10}>
               <Spinner size="xl" />

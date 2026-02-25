@@ -16,7 +16,6 @@ import {
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import Head from "next/head";
-import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
@@ -121,42 +120,19 @@ const CaseStudyMacromascot = () => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Hero Section - no right side image */}
+      {/* Hero Section */}
       <Box
         position="relative"
         color="white"
         pt={{ base: 20, md: 32 }}
         pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "500px", md: "600px" }}>
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          zIndex={0}>
-          <Image
-            src="/assets/portfolio/New/List Images/Macromascot.jpg"
-            alt="Macromascot - Mobile Health App"
-            fill
-            style={{ objectFit: "cover" }}
-            priority
-          />
-          <Box
-            position="absolute"
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            bgGradient={
-              colorMode === "dark"
-                ? "linear(to-b, rgba(0,0,0,0.7), rgba(0,0,0,0.9))"
-                : "linear(to-b, rgba(0,0,0,0.6), rgba(0,0,0,0.85))"
-            }
-          />
-        </Box>
-
+        minH={{ base: "500px", md: "600px" }}
+        bgGradient={
+          colorMode === "dark"
+            ? "linear(to-b, teal.700, teal.900)"
+            : "linear(to-b, teal.500, teal.700)"
+        }>
         <Container maxW="container.xl" position="relative" zIndex={1}>
           <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup

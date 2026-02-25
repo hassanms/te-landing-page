@@ -155,8 +155,8 @@ const CaseStudyRackroom = () => {
                 ? "linear(to-b, rgba(0,0,0,0.7), rgba(0,0,0,0.9))"
                 : "linear(to-b, rgba(0,0,0,0.6), rgba(0,0,0,0.85))"
             }
-          />
-        </Box>
+              />
+            </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
           <Box mb={8} display="flex" justifyContent="flex-end" w="full">
@@ -276,8 +276,8 @@ const CaseStudyRackroom = () => {
                 </Text>
                 <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
                   Single Owner
-                </Text>
-              </Box>
+              </Text>
+            </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
                   Engagement
@@ -285,7 +285,7 @@ const CaseStudyRackroom = () => {
                 <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
                   End-to-end resource management platform
                 </Text>
-              </Box>
+          </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
                   Outcome
@@ -293,23 +293,23 @@ const CaseStudyRackroom = () => {
                 <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
                   Clear visibility and control over business operations
                 </Text>
-              </Box>
+        </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
                   Tech Stack
-                </Text>
+            </Text>
                 <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
                   Next.js, Supabase, Railway
-                </Text>
-              </Box>
+            </Text>
+                  </Box>
               <Box>
                 <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
                   Link
                 </Text>
                 <HStack spacing={2} align="center" flexWrap="wrap">
                   <ChakraLink
-                    href="https://app.therackroom.co.uk/"
-                    target="_blank"
+                        href="https://app.therackroom.co.uk/"
+                        target="_blank"
                     rel="noopener noreferrer"
                     color={linkColor}
                     fontWeight="semibold"
@@ -534,13 +534,13 @@ const CaseStudyRackroom = () => {
                 <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
                   <Text as="span" fontWeight="semibold" color={headingColor}>Financial Calculations:</Text> Accurate billing and revenue tracking for informed decision-making.
                 </Text>
-              </Box>
+                  </Box>
 
               <Box>
                 <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
                   <Text as="span" fontWeight="semibold" color={headingColor}>Automated SMS Notifications:</Text> Twilio integration for appointment reminders and updates.
-                </Text>
-              </Box>
+            </Text>
+          </Box>
 
               <Box>
                 <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
@@ -638,7 +638,7 @@ const CaseStudyRackroom = () => {
             <VStack align="start" spacing={6}>
               <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
                 Rackroom is tailored, secure, and scalable. Built with a robust database schema, it is optimized for the owner&apos;s specific business needs with flexibility for future enhancements.
-              </Text>
+            </Text>
             </VStack>
           </VStack>
         </Container>
@@ -785,7 +785,7 @@ const CaseStudyRackroom = () => {
             </HStack>
           </VStack>
         </Container>
-      </Box>
+          </Box>
     </Box>
   );
 };

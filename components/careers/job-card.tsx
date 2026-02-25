@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { Job } from "data/jobs/types";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Icon } from "@chakra-ui/react";
@@ -18,6 +19,8 @@ interface JobCardProps {
 }
 
 export const JobCard: React.FC<JobCardProps> = ({ job }) => {
+  const router = useRouter();
+  const href = `/careers/${job.slug || job.id}`;
   const headingColor = useColorModeValue("gray.800", "white");
   const textColor = useColorModeValue("gray.600", "gray.100");
   const linkIconBg = useColorModeValue("teal.500", "teal.500");
@@ -25,7 +28,8 @@ export const JobCard: React.FC<JobCardProps> = ({ job }) => {
   return (
     <Box
       as={NextLink}
-      href={`/careers/${job.slug || job.id}`}
+      href={href}
+      onMouseEnter={() => router.prefetch(href)}
       _hover={{ textDecoration: "none" }}
       role="group"
       p={3}

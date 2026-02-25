@@ -9,18 +9,9 @@ import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
-// Only the 6 case studies shown in the home page Recent Works section (excludes /portfolio - keeps default menu in light mode at top)
-const HERO_LIGHT_NAV_PATHS = [
-  "/portfolio/campaignos",
-  "/portfolio/macromascot",
-  "/portfolio/autosync-intelligence",
-  "/portfolio/packassist",
-  "/portfolio/meatery",
-  "/portfolio/avl-copilot",
-  "/portfolio/avl-copilot-v3",
-  "/portfolio/staffup",
-  "/portfolio-v4",
-];
+// All portfolio case study detail pages get white nav text at top (excludes /portfolio list page)
+const isPortfolioCaseStudyPage = (pathname: string) =>
+  pathname.startsWith("/portfolio/") || pathname === "/portfolio-v4";
 
 const NO_THEME_TOGGLE_PATHS = [
   "/index-v2",
@@ -38,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
   const useWhiteNav =
     colorMode === "light" &&
     !isScrolled &&
-    HERO_LIGHT_NAV_PATHS.some((path) => router.pathname === path);
+    isPortfolioCaseStudyPage(router.pathname);
   
   const hideThemeToggle = NO_THEME_TOGGLE_PATHS.some((path) => router.pathname === path);
 

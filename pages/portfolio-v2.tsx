@@ -424,20 +424,12 @@ export default function PortfolioV2() {
               </Text>
             </Box>
 
-            {/* Breadcrumb - same as Services page */}
-            <VStack
-              spacing={4}
-              display="flex"
-              justifyContent={{ base: "flex-start", md: "flex-end" }}
-              width={{ base: "100%", md: "auto" }}
-              alignItems={{ base: "flex-start", md: "flex-end" }}
-              mt={4}
-            >
+            {/* Breadcrumb - matches portfolio style */}
+            <Flex justify={{ base: "flex-start", md: "flex-end" }} mt={4}>
               <ButtonGroup
-                style={{
-                  backgroundColor: "none",
+                sx={{
+                  bg: "none",
                   fontSize: "1rem",
-                  color: "muted",
                   display: "flex",
                   alignItems: "center",
                 }}
@@ -447,27 +439,19 @@ export default function PortfolioV2() {
                   size="lg"
                   sx={{
                     bg: "none",
-                    color: "muted",
-                    padding: "0",
-                    "&:hover": {
-                      bg: "none",
-                    },
+                    color: textColor,
+                    p: 0,
+                    "&:hover": { bg: "none", color: headingColor },
                   }}
                 >
                   Home
                 </ButtonLink>
-                <Icon as={FaChevronRight} boxSize={4} color="muted" />
-                <Text
-                  as="span"
-                  ml="2"
-                  sx={{
-                    color: colorMode === "light" ? "#004c4c !important" : "white",
-                  }}
-                >
+                <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+                <Text as="span" ml="2" color={headingColor}>
                   Portfolio
                 </Text>
               </ButtonGroup>
-            </VStack>
+            </Flex>
           </Box>
 
           {/* Portfolio Grid */}

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import {
   Box,
   Container,
+  Flex,
   Heading,
   Text,
   Stack,
@@ -22,6 +23,7 @@ import {
 import { FiArrowUpRight } from "react-icons/fi";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
+import { BackgroundGradient } from "components/gradients/background-gradient";
 import axios from "axios";
 
 interface BlogPost {
@@ -45,9 +47,10 @@ interface Category {
 
 const Blog: NextPage = () => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
-  const bgColor = useColorModeValue("white", "gray.800");
+  const textColor = useColorModeValue("gray.600", "gray.100");
+  const headingColor = useColorModeValue("gray.800", "white");
   const titleColor = useColorModeValue("gray.800", "white");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
   const [selectedFilter, setSelectedFilter] = useState("All Insights");
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -91,7 +94,7 @@ const Blog: NextPage = () => {
       : allInsightsPosts.filter((post) => post.category === selectedFilter);
 
   return (
-    <Box bg={bgColor} minH="100vh" py="20">
+    <Box position="relative" minH="100vh" color={headingColor}>
       <EnhancedSEO
         title="Insights - Tech Emulsion"
         description="Read the latest articles, insights, and updates from Tech Emulsion about digital transformation, AI solutions, custom software development, and technology trends."
@@ -105,56 +108,118 @@ const Blog: NextPage = () => {
         }}
       />
 
-      <Container maxW="container.xl" py="10">
-        {/* Breadcrumb Navigation - Top */}
-        <Box mb="4">
+      {/* Full-page gradient - same as portfolio, services, careers */}
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={-1}
+        overflow="hidden"
+        pointerEvents="none"
+      >
+        <BackgroundGradient height="100%" width="100%" />
+      </Box>
+
+      {/* Top margin - clear fixed navbar */}
+      <Box pt={{ base: 20, md: 24 }} />
+      <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
+        {/* Breadcrumb */}
+        <Flex justify="flex-end" mb={8}>
           <ButtonGroup
-            style={{
-              backgroundColor: " none",
+            sx={{
+              bg: "none",
               fontSize: "1rem",
-              color: "muted",
               display: "flex",
               alignItems: "center",
-            }}>
+            }}
+          >
             <ButtonLink
               href="/"
               size="lg"
               sx={{
                 bg: "none",
-                color: "muted",
-                padding: "0",
-                "&:hover": {
-                  bg: "none",
-                },
-              }}>
+                color: textColor,
+                p: 0,
+                "&:hover": { bg: "none", color: headingColor },
+              }}
+            >
               Home
             </ButtonLink>
-            <FaChevronRight size={15} />
-            <Text
-              as="span"
-              ml="2"
-              sx={{
-                color: colorMode === "light" ? "#004c4c !important" : "white",
-              }}>
+            <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+            <Text as="span" ml="2" color={headingColor}>
               Insights
             </Text>
           </ButtonGroup>
+        </Flex>
+
+        {/* Header section - same layout as portfolio, services, careers */}
+        <Box
+          minH={{ base: "280px", md: "35vh" }}
+          display={{ base: "block", md: "grid" }}
+          gridTemplateColumns={{ md: "1fr 1fr" }}
+          borderTopWidth="1px"
+          borderColor={dividerColor}
+          mx={-6}
+          px={6}
+        >
+          {/* Left: Heading - top aligned */}
+          <Box
+            py={8}
+            pr={{ base: 0, md: 6 }}
+            display="flex"
+            alignItems="flex-start"
+            borderRightWidth={{ md: "1px" }}
+            borderColor={dividerColor}
+            sx={{
+              borderColor: "gray.200 !important",
+              _dark: { borderColor: "gray.600 !important" },
+            }}
+          >
+            <Heading
+              as="h1"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+            >
+              Insights
+            </Heading>
+          </Box>
+          {/* Right: Description - bottom aligned */}
+          <Box
+            pl={{ base: 0, md: 6 }}
+            py={{ base: 4, md: 8 }}
+            display="flex"
+            alignItems={{ base: "flex-start", md: "flex-end" }}
+            justifyContent={{ base: "flex-start", md: "flex-end" }}
+          >
+            <Text
+              color={textColor}
+              fontSize="lg"
+              lineHeight="tall"
+              textAlign={{ base: "left", md: "left" }}
+              maxW={{ md: "420px" }}
+            >
+              Explore our latest articles, insights, and updates on digital
+              transformation, AI solutions, custom software development, and
+              technology trends.
+            </Text>
+          </Box>
         </Box>
 
-        {/* Main Heading */}
-        <Box mb="8">
-          <Heading
-            as="h1"
-            size="2xl"
-            mb="4"
-            color={titleColor}
-            fontWeight="bold">
-            Tech Emulsion Insights
-          </Heading>
-          <Divider />
-        </Box>
+        {/* Divider bar - matches portfolio, services, careers */}
+        <Box
+          bg="transparent"
+          py={2}
+          px={6}
+          mx={-6}
+          borderTopWidth="1px"
+          borderColor={dividerColor}
+        />
 
-        {/* Body Content - loading state */}
+        {/* Body Content */}
+        <Box mt={8}>
         {loading ? (
           <Box textAlign="center" py={16}>
             <Spinner size="xl" color="teal.500" />
@@ -320,6 +385,7 @@ const Blog: NextPage = () => {
         </Stack>
           </>
         )}
+        </Box>
       </Container>
     </Box>
   );

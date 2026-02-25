@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  ButtonGroup,
+  Flex,
+  Icon,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 
@@ -10,61 +17,58 @@ interface CareersBreadcrumbProps {
 export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
   items,
 }) => {
-  const { colorMode } = useColorMode();
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
 
   return (
-    <Box mb="4">
-      <Flex
-        flexWrap="wrap"
-        alignItems="center"
-        gap={{ base: 1, md: 2 }}
-        fontSize={{ base: "xs", md: "sm" }}
-      >
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
+    <Box mb={8}>
+      <Flex justify="flex-end">
+        <ButtonGroup
+          sx={{
+            bg: "none",
+            fontSize: "1rem",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {items.map((item, index) => {
+            const isLast = index === items.length - 1;
 
-          if (item.href && !isLast) {
-            return (
-              <React.Fragment key={`${item.label}-${index}`}>
-                <ButtonLink
-                  href={item.href}
-                  size={{ base: "xs", md: "sm" }}
-                  sx={{
-                    bg: "none",
-                    color: colorMode === "light" ? "muted" : "gray.200",
-                    padding: "0",
-                    fontSize: "inherit",
-                    height: "auto",
-                    minW: "auto",
-                    "&:hover": {
+            if (item.href && !isLast) {
+              return (
+                <React.Fragment key={`${item.label}-${index}`}>
+                  <ButtonLink
+                    href={item.href}
+                    size="lg"
+                    sx={{
                       bg: "none",
-                    },
-                  }}
-                >
-                  {item.label}
-                </ButtonLink>
-                <FaChevronRight size={10} style={{ flexShrink: 0 }} />
-              </React.Fragment>
-            );
-          }
+                      color: textColor,
+                      p: 0,
+                      "&:hover": { bg: "none", color: headingColor },
+                    }}
+                  >
+                    {item.label}
+                  </ButtonLink>
+                  <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+                </React.Fragment>
+              );
+            }
 
-          return (
-            <Text
-              key={`${item.label}-${index}`}
-              as="span"
-              fontWeight="medium"
-              sx={{
-                color: colorMode === "light" ? "teal.700" : "teal.300",
-              }}
-            >
-              {item.label}
-            </Text>
-          );
-        })}
+            return (
+              <Text
+                key={`${item.label}-${index}`}
+                as="span"
+                ml={isLast && index > 0 ? "2" : 0}
+                color={headingColor}
+              >
+                {item.label}
+              </Text>
+            );
+          })}
+        </ButtonGroup>
       </Flex>
     </Box>
   );
 };
 
 export default CareersBreadcrumb;
-

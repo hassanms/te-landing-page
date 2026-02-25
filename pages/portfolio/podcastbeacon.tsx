@@ -10,6 +10,7 @@ import {
   Divider,
   Button,
   ButtonGroup,
+  Icon,
   useColorModeValue,
   Flex,
 } from "@chakra-ui/react";
@@ -159,10 +160,9 @@ const CaseStudyPodcastBeacon = () => {
         <Container maxW="container.xl" position="relative" zIndex={1}>
           <Box mb={8} display="flex" justifyContent="flex-end" w="full">
             <ButtonGroup
-              style={{
-                backgroundColor: "none",
+              sx={{
+                bg: "none",
                 fontSize: "1rem",
-                color: "white",
                 display: "flex",
                 alignItems: "center",
               }}>
@@ -172,24 +172,26 @@ const CaseStudyPodcastBeacon = () => {
                 sx={{
                   bg: "none",
                   color: "white",
-                  padding: "0",
-                  "&:hover": { bg: "none" },
-                }}>
+                  p: 0,
+                  "&:hover": { bg: "none", color: "white" },
+                }}
+              >
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Icon as={FaChevronRight} color="white" boxSize={4} />
               <ButtonLink
                 href="/portfolio"
                 size="lg"
                 sx={{
                   bg: "none",
                   color: "white",
-                  padding: "0",
-                  "&:hover": { bg: "none" },
-                }}>
+                  p: 0,
+                  "&:hover": { bg: "none", color: "white" },
+                }}
+              >
                 Portfolio
               </ButtonLink>
-              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Icon as={FaChevronRight} color="white" boxSize={4} />
               <Text as="span" ml="2" color="white">
                 Podcast Beacon
               </Text>

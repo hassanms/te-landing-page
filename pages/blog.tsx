@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import {
   Box,
@@ -46,6 +47,7 @@ interface Category {
 }
 
 const Blog: NextPage = () => {
+  const router = useRouter();
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "gray.100");
   const headingColor = useColorModeValue("gray.800", "white");
@@ -222,7 +224,9 @@ const Blog: NextPage = () => {
         <Box mt={8}>
         {loading ? (
           <Box textAlign="center" py={16}>
-            <Spinner size="xl" color="teal.500" />
+            <Box color="teal.500" display="inline-block">
+              <Spinner size="xl" />
+            </Box>
             <Text mt={4} color={textColor}>
               Loading insights...
             </Text>
@@ -296,7 +300,11 @@ const Blog: NextPage = () => {
                   <Text color={textColor} fontSize="lg" mb="6" lineHeight="1.8">
                     {featuredPost.excerpt}
                   </Text>
-                  <NextLink href={`/blog/${featuredPost.slug}`} passHref>
+                  <NextLink
+                    href={`/blog/${featuredPost.slug}`}
+                    passHref
+                    onMouseEnter={() => router.prefetch(`/blog/${featuredPost.slug}`)}
+                  >
                     <Button
                       as="a"
                       size="lg"
@@ -392,12 +400,17 @@ const Blog: NextPage = () => {
 };
 
 function PostCard({ post }: { post: BlogPost }) {
+  const router = useRouter();
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const titleColor = useColorModeValue("gray.800", "white");
 
   return (
-    <NextLink href={`/blog/${post.slug}`} passHref>
+    <NextLink
+      href={`/blog/${post.slug}`}
+      passHref
+      onMouseEnter={() => router.prefetch(`/blog/${post.slug}`)}
+    >
       <Box
         w="100%"
         cursor="pointer"

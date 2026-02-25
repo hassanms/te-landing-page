@@ -529,7 +529,12 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
                   </Heading>
                   <VStack align="stretch" spacing="4">
                     {relatedPosts.map((relatedPost) => (
-                      <NextLink key={relatedPost.id} href={`/blog/${relatedPost.slug}`} passHref>
+                      <NextLink
+                        key={relatedPost.id}
+                        href={`/blog/${relatedPost.slug}`}
+                        passHref
+                        onMouseEnter={() => router.prefetch(`/blog/${relatedPost.slug}`)}
+                      >
                         <Link
                           display="block"
                           p="4"

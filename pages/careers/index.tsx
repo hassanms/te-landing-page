@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Text, Spinner } from "@chakra-ui/react";
+import { Box, Container, Stack, Text, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { CareersHeroSection } from "components/careers/hero-section";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { Job } from "data/jobs/types";
 
 const CareersPage = () => {
+  const textColor = useColorModeValue("gray.600", "gray.100");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,8 +70,10 @@ const CareersPage = () => {
         <Stack spacing={16}>
           {loading ? (
             <Box textAlign="center" py={10}>
-              <Spinner size="xl" />
-              <Text mt={4}>Loading jobs...</Text>
+              <Box color="teal.500" display="inline-block">
+                <Spinner size="xl" />
+              </Box>
+              <Text mt={4} color={textColor}>Loading jobs...</Text>
             </Box>
           ) : error ? (
             <Box textAlign="center" py={10}>

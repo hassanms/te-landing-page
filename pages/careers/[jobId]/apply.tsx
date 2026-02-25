@@ -16,6 +16,7 @@ interface ApplyPageProps {
 
 const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
   const separatorColor = useColorModeValue("gray.400", "gray.200");
+  const textColor = useColorModeValue("gray.600", "gray.100");
 
   if (error) {
     return (
@@ -36,8 +37,10 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
     return (
       <Box minH="100vh" py={20}>
         <Container maxW="container.xl" textAlign="center">
-          <Spinner size="xl" />
-          <Text mt={4}>Loading job details...</Text>
+          <Box color="teal.500" display="inline-block">
+            <Spinner size="xl" />
+          </Box>
+          <Text mt={4} color={textColor}>Loading job details...</Text>
         </Container>
       </Box>
     );

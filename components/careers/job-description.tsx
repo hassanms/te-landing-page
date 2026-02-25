@@ -2,12 +2,15 @@ import React from "react";
 import { Box, Button, Heading, List, ListItem, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 interface JobDescriptionProps {
   job: Job;
 }
 
 export const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
+  const router = useRouter();
+  const applyHref = `/careers/${job.slug || job.id}/apply`;
   const noteTextColor = useColorModeValue("gray.600", "gray.200");
 
   return (
@@ -95,7 +98,8 @@ export const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
           <Box>
             <Button
               as={NextLink}
-              href={`/careers/${job.slug || job.id}/apply`}
+              href={applyHref}
+              onMouseEnter={() => router.prefetch(applyHref)}
               colorScheme="teal"
               size="sm"
             >

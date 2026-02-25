@@ -12,12 +12,15 @@ import {
 import { Job } from "data/jobs/types";
 import { SocialShareButtons } from "./social-share-buttons";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 interface JobDetailHeaderProps {
   job: Job;
 }
 
 export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
+  const router = useRouter();
+  const applyHref = `/careers/${job.slug || job.id}/apply`;
   const subTextColor = useColorModeValue("gray.600", "gray.200");
   
   // Get the current job URL
@@ -79,7 +82,8 @@ export const JobDetailHeader: React.FC<JobDetailHeaderProps> = ({ job }) => {
               </Button>
               <Button
                 as={NextLink}
-                href={`/careers/${job.slug || job.id}/apply`}
+                href={applyHref}
+                onMouseEnter={() => router.prefetch(applyHref)}
                 colorScheme="teal"
                 size="sm"
               >

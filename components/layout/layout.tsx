@@ -1,5 +1,6 @@
-import { Box, Spinner } from "@chakra-ui/react";
+import { Box, Spinner, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
+import { useRouter } from "next/router";
 
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav";
 
@@ -21,10 +22,29 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = (props) => {
   const { children, announcementProps, headerProps, footerProps } = props;
   const [mount, setMount] = React.useState(false);
+  const [isRouteChanging, setIsRouteChanging] = React.useState(false);
+  const router = useRouter();
+  const textColor = useColorModeValue("gray.600", "gray.100");
 
   React.useEffect(() => {
     setMount(true);
   }, []);
+
+  React.useEffect(() => {
+    const handleRouteChangeStart = () => setIsRouteChanging(true);
+    const handleRouteChangeComplete = () => setIsRouteChanging(false);
+    const handleRouteChangeError = () => setIsRouteChanging(false);
+
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    router.events.on("routeChangeError", handleRouteChangeError);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChangeStart);
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+      router.events.off("routeChangeError", handleRouteChangeError);
+    };
+  }, [router.events]);
 
   if (!mount) {
     return (
@@ -49,7 +69,25 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       <Header {...headerProps} />
       <Box as="main">
         <SkipNavContent />
-        {children}
+        {isRouteChanging ? (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            minH="60vh"
+            py={16}
+          >
+            <Box color="teal.500" display="inline-block">
+              <Spinner size="xl" />
+            </Box>
+            <Text mt={4} color={textColor}>
+              Loading...
+            </Text>
+          </Box>
+        ) : (
+          children
+        )}
       </Box>
       <Footer {...footerProps} />
     </Box>

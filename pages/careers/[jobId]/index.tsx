@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Container, Flex, Stack, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Stack, Spinner, Text, useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
@@ -16,6 +16,8 @@ interface JobDetailPageProps {
 }
 
 const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
+  const textColor = useColorModeValue("gray.600", "gray.100");
+
   if (error) {
     return (
       <Box minH="100vh" py={20}>
@@ -35,8 +37,10 @@ const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
     return (
       <Box minH="100vh" py={20}>
         <Container maxW="container.xl" textAlign="center">
-          <Spinner size="xl" />
-          <Text mt={4}>Loading job details...</Text>
+          <Box color="teal.500" display="inline-block">
+            <Spinner size="xl" />
+          </Box>
+          <Text mt={4} color={textColor}>Loading job details...</Text>
         </Container>
       </Box>
     );

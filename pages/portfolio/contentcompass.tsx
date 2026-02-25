@@ -1,26 +1,43 @@
 import {
   Box,
   Container,
-  Image,
-  List,
-  ListIcon,
-  ListItem,
   Text,
   useColorMode,
+  Heading,
+  HStack,
+  VStack,
+  SimpleGrid,
+  Divider,
+  Button,
+  ButtonGroup,
+  useColorModeValue,
+  Flex,
 } from "@chakra-ui/react";
-import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
+import { ButtonLink } from "components/button-link";
 import Head from "next/head";
-import Link from "next/link";
+import Image from "next/image";
 import Script from "next/script";
 import React from "react";
-import { FaAsterisk } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 
 const CaseStudyContentCompass = () => {
   const { colorMode } = useColorMode();
+  const bgColor = useColorModeValue("white", "charcoal.800");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const textColor = useColorModeValue("gray.700", "gray.100");
+  const headingColor = useColorModeValue("gray.900", "white");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const dividerColor = useColorModeValue("gray.200", "gray.700");
+  const numberColor = accentColor;
+
+  const subtlePattern = useColorModeValue(
+    "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
+    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
+  );
 
   return (
-    <Box id="services">
+    <Box bg={bgColor}>
       <Head>
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
@@ -28,25 +45,24 @@ const CaseStudyContentCompass = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Case Study: Content Compass - Tech Emulsion"
-        description="Content Compass is a LinkedIn content analysis and inspiration tool that scrapes top creators, analyzes tone and engagement using OpenAI, and helps users generate similar high-performing posts with AI-powered suggestions."
+        title="Case Study: Content Compass - LinkedIn Content Analytics & Intelligence - Tech Emulsion"
+        description="Content Compass is a high-performance analytics platform that empowers creators and businesses with data-driven LinkedIn strategies. Automated scraping, multimodal AI analysis, and real-time data visualization transform raw social data into actionable insights."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio/contentcompass"
         portfolioData={{
-          title:
-            "Content Compass – LinkedIn Content Analysis and Inspiration Tool",
+          title: "Content Compass – The Ultimate LinkedIn Content Analytics & Intelligence Platform",
           description:
-            "Content Compass helps users get inspired by top LinkedIn creators by scraping their profiles, analyzing posts with OpenAI LLMs, and providing insights into tone, hooks, CTAs, and engagement. Users can generate similar posts and compare performance across creators.",
-          dateCreated: "2023",
+            "A high-performance analytics platform designed to empower creators and businesses with data-driven LinkedIn strategies. By leveraging automated scraping, multimodal AI analysis, and real-time data visualization, the platform transforms raw social data into actionable insights.",
+          dateCreated: "2024",
           image: "https://techemulsion.com/assets/portfolio/linkedin.jpg",
           url: "https://techemulsion.com/portfolio/contentcompass",
-          genre: "AI, Social Media Analytics",
+          genre: "AI Solution, LinkedIn Analytics, Marketing",
           keywords: [
-            "LinkedIn content",
-            "content analysis",
-            "OpenAI",
-            "social media tool",
             "Content Compass",
+            "LinkedIn analytics",
+            "content intelligence",
+            "multimodal AI",
+            "social media analytics",
             "Tech Emulsion",
           ],
         }}
@@ -63,26 +79,27 @@ const CaseStudyContentCompass = () => {
         faqData={{
           questions: [
             {
-              question: "What is Content Compass and how does it help LinkedIn creators?",
+              question: "What is Content Compass?",
               answer:
-                "Content Compass is a LinkedIn content analysis and inspiration tool that helps users get inspired by top LinkedIn creators and improve their own content strategy. Users can create a personalized dashboard by entering LinkedIn profiles they want to follow. The system scrapes those profiles every 3 days (or on demand) and collects all types of post formats including text, carousels, videos, images, multi-image posts, and reshared content. It uses OpenAI's LLM to analyze posts for tone, writing patterns, common hooks, CTAs, and engagement trends.",
+                "Content Compass is a high-performance analytics platform that empowers creators and businesses with data-driven LinkedIn strategies. It uses automated scraping, multimodal AI analysis (text, images, videos, PDFs), and real-time data visualization to transform raw social data into actionable insights for engagement and content quality.",
             },
             {
-              question: "What insights does Content Compass provide?",
+              question: "How does Content Compass analyze non-text content?",
               answer:
-                "Content Compass provides comprehensive insights including tone analysis to understand the writing style of top creators, writing pattern detection to identify successful content structures, common hooks identification to learn what captures attention, CTA analysis to see effective call-to-action strategies, engagement trend analysis to understand what content performs best, and AI-powered content generation that helps users create similar posts based on their favorite creators' styles while maintaining their unique voice.",
+                "Content Compass uses OpenAI for text, image (Base64), and document analysis, and Twelve Labs for advanced video indexing and summarization. Documents are extracted for thematic analysis; images are converted to Base64 for vision-based analysis; videos are indexed and summarized for insights.",
             },
             {
-              question: "How does Content Compass use AI to help with content creation?",
+              question: "What technologies power Content Compass?",
               answer:
-                "Content Compass leverages AI in several ways including analyzing posts using OpenAI's LLM to detect tone, writing patterns, hooks, and CTAs, suggesting engaging hooks based on successful patterns, helping users write complete posts tailored to their voice, generating content ideas inspired by top creators, and providing an analytics panel that compares tone and engagement across different creators to help users understand what content styles perform best. The platform offers subscription-based access with no current limits on creators or post generations.",
+                "Frontend: React 18, TypeScript, Tailwind CSS, Recharts. Backend: Supabase (PostgreSQL) with Row Level Security. Processing: Supabase Edge Functions for serverless scraping and AI enrichment. AI: OpenAI (text/image/document), Twelve Labs (video), Apify (LinkedIn data extraction).",
             },
           ],
         }}
       />
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
+        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
+      />
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
@@ -100,272 +117,659 @@ const CaseStudyContentCompass = () => {
         {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
-      <Container maxW="container.8xl" py={{ base: "0", md: "20", lg: "5" }}>
+
+      {/* Hero Section - no right side image */}
+      <Box
+        position="relative"
+        color="white"
+        pt={{ base: 20, md: 32 }}
+        pb={{ base: 16, md: 24 }}
+        overflow="hidden"
+        minH={{ base: "500px", md: "600px" }}>
         <Box
-          display={{ base: "block", md: "flex" }}
-          // px="15"
-          justifyContent={"space-between"}
-          mb={10}>
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          zIndex={0}>
+          <Image
+            src="/assets/portfolio/linkedin.jpg"
+            alt="Content Compass - LinkedIn Content Analytics"
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+          />
           <Box
-            sx={{
-              position: "relative",
-              width: "100%",
-              py: { base: 0, md: 4, lg: 1 },
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              h: "100%",
-              textAlign: "center",
-            }}>
-            <Box>
-              <Image
-                src="/assets/portfolio/linkedin.jpg"
-                alt="Artis"
-                width={1200}
-                height={300}
-                style={{
-                  width: "100vw",
-                  height: "100vh",
-                  marginTop: 45,
-                  objectFit: "contain",
-                }}
-              />
-            </Box>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              textAlign="center"
-              borderRadius="md"
-              // width=
-              p={5}
-              boxShadow="md"
-              mt={{ base: "-40vh", md: "-15vh", lg: "-15vh" }}
-              maxWidth={{ base: "90%", lg: "50%" }}
-              width={{ base: "90%", lg: "50%" }}
-              height={{ base: "90%", lg: "50%" }}
-              sx={{
-                backgroundImage:
-                  colorMode === "dark"
-                    ? "url('/assets/background/pattern.jpg')"
-                    : "url('/assets/background/light-pattern.jpg')",
-                backdropBlur: "md",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                textAlign: "center",
-                borderRadius: "md",
-                p: 5,
-                boxShadow: "md",
-              }}>
-              <Text
-                color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
-                }
-                fontSize="3xl"
-                fontWeight={"500"}
-                mt="4"
-                width={"100%"}
-                align={"center"}>
-                Content Compass – Case Study
-              </Text>
-              <Text
-                color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
-                }
-                fontSize="xl"
-                mt="4"
-                width={["auto", null, "100%"]}>
-                This tool helps users get inspired by top LinkedIn creators and
-                level up their own content game. Users can create a personalized
-                dashboard by entering the LinkedIn profiles they want to follow.
-                The system scrapes those profiles every 3 days (or on demand)
-                and collects all types of post formats including text,
-                carousels, videos, images, multi-image posts, reshared and
-                reposted content. We analyze the posts using OpenAI's LLM to
-                detect tone, writing patterns, common hooks, CTAs, and
-                engagement trends. Users get insights into what works and why
-                and can use the AI to generate similar posts based on their
-                favorite creators. The AI suggests engaging hooks and helps
-                users write complete posts tailored to their voice. A built-in
-                analytics panel also compares tone and engagement across
-                different creators to help users understand what content styles
-                perform best. This will be offered on a subscription basis with
-                no current limits on creators or post generations.
-              </Text>
-            </Box>
-          </Box>
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            bgGradient={
+              colorMode === "dark"
+                ? "linear(to-b, rgba(0,0,0,0.7), rgba(0,0,0,0.9))"
+                : "linear(to-b, rgba(0,0,0,0.6), rgba(0,0,0,0.85))"
+            }
+          />
         </Box>
-        <Container maxW="container.xl" py={{ base: "2", lg: "10" }}>
-          <BackgroundGradient height="100%" zIndex="-1" />
 
-          {/* Case Study Content */}
-          <Box mt={10} px="5">
-            <Text
-              fontSize="3xl"
-              w={["100%", null, "70%"]}
-              fontWeight="bold"
-              mb={10}
-              sx={{
-                color: colorMode === "dark" ? "white" : "#004c4c",
+        <Container maxW="container.xl" position="relative" zIndex={1}>
+          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
+            <ButtonGroup
+              style={{
+                backgroundColor: "none",
+                fontSize: "1rem",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
               }}>
-              Building Content Compass – A Comprehensive Platform for Business
-              Management
-            </Text>
-
-            <Text
-              fontSize="3xl"
-              fontWeight="bold"
-              mb={2}
-              mt={10}
-              sx={{
-                color: colorMode === "dark" ? "white" : "#004c4c",
-              }}>
-              {" "}
-              Project Background
-            </Text>
-            <Text
-              mb={10}
-              sx={{
-                whiteSpace: "pre-wrap",
-                fontSize: "2xl",
-                fontWeight: "normal",
-                lineHeight: "1.5",
-                letterSpacing: "normal",
-                textAlign: "left",
-                color: colorMode === "dark" ? "white" : "gray.600",
-              }}>
-              <List spacing={3} mt={5}>
-                <ListItem
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}>
-                  <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <strong>Industry:</strong>
-                    <span>Social Media Analytics / Creator Tools</span>
-                  </Box>
-                </ListItem>
-                <ListItem
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}>
-                  <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <strong>Link:</strong>
-                    <span>
-                      <Link
-                        href="http://content-compass.ai/"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        http://content-compass.ai/
-                      </Link>
-                    </span>
-                  </Box>
-                </ListItem>
-                <ListItem
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                  }}>
-                  <ListIcon as={FaAsterisk} color="brand.500" mt={1} />
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <strong>Tech Stack:</strong>
-                    <span>Next.js + Lovable + Supabase + OpenAI + Apify</span>
-                  </Box>
-                </ListItem>
-              </List>
-            </Text>
+              <ButtonLink
+                href="/"
+                size="lg"
+                sx={{
+                  bg: "none",
+                  color: "white",
+                  padding: "0",
+                  "&:hover": { bg: "none" },
+                }}>
+                Home
+              </ButtonLink>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <ButtonLink
+                href="/portfolio"
+                size="lg"
+                sx={{
+                  bg: "none",
+                  color: "white",
+                  padding: "0",
+                  "&:hover": { bg: "none" },
+                }}>
+                Portfolio
+              </ButtonLink>
+              <FaChevronRight size={15} style={{ color: "white" }} />
+              <Text as="span" ml="2" color="white">
+                Content Compass
+              </Text>
+            </ButtonGroup>
           </Box>
 
-          {/* Visual Showcase / Gallery Section */}
-
-          <Box
-            sx={{
-              width: "100%",
-              backgroundImage:
-                colorMode === "dark"
-                  ? "url('/assets/background/pattern.jpg')"
-                  : "url('/assets/background/light-pattern.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              py: 10,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              h: "100%",
-              textAlign: "center",
-            }}>
-            <Text
-              mb={10}
-              textAlign="center"
-              color={
-                colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "GrayText"
-              }
-              fontSize="xl"
-              fontWeight="bold"
-              width={["auto", null, "60%"]}>
-              Looking to elevate your business with a custom, scalable SaaS
-              solution? Contact Tech Emulsion today to turn your innovative
-              ideas into reality.
-            </Text>
-
-            <Box>
-              <Text fontSize="2xl" fontWeight="bold" mb={6}>
-                Ready to Get Started?
-              </Text>
+          <Flex
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap={{ base: 10, lg: 12 }}
+            flexDir={{ base: "column", lg: "row" }}
+            w="full">
+            <VStack align="start" spacing={6} flex={1} maxW="4xl">
+              <Heading
+                as="h1"
+                fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
+                fontWeight="bold"
+                lineHeight="1.1"
+                color="white">
+                Content Compass
+              </Heading>
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="300"
+                lineHeight="1.3"
+                color="rgba(255,255,255,0.9)">
+                The Ultimate LinkedIn Content Analytics & Intelligence Platform
+              </Heading>
               <Text
-                fontSize="xl"
-                mb={10}
-                color={
-                  colorMode === "dark" ? "rgba(255, 255, 255, 100)" : "gray.700"
-                }>
-                Let&apos;s discuss how we can help you achieve your business
-                goals.
+                fontSize={{ base: "lg", md: "xl" }}
+                color="rgba(255,255,255,0.8)"
+                lineHeight="1.7"
+                maxW="3xl">
+                A high-performance analytics platform designed to empower creators and businesses with data-driven LinkedIn strategies. By leveraging automated scraping, multimodal AI analysis, and real-time data visualization, the platform transforms raw social data into actionable insights, helping users optimize engagement and content quality.
               </Text>
-              <Box
+            </VStack>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Executive Snapshot */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack spacing={10} align="stretch">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8}>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Industry
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Marketing / AI Solution
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Client
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Creators & Businesses
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Engagement
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  End-to-end analytics platform
+                </Text>
+              </Box>
+              <Box>
+                <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                  Outcome
+                </Text>
+                <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.5">
+                  Data-driven LinkedIn strategies
+                </Text>
+              </Box>
+            </SimpleGrid>
+            <Box pt={4} borderTop="1px solid" borderColor={dividerColor}>
+              <Text fontSize="xs" color={textColor} mb={3} fontWeight="medium" letterSpacing="wide" textTransform="uppercase">
+                Tech Stack
+              </Text>
+              <Text fontSize={{ base: "md", md: "lg" }} color={headingColor} fontWeight="semibold" lineHeight="1.6">
+                React 18, TypeScript, Tailwind CSS, Recharts, Supabase (PostgreSQL), Edge Functions, OpenAI, Twelve Labs, Apify
+              </Text>
+            </Box>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* The Challenge */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                The Challenge
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                LinkedIn creators often struggle to identify what truly drives engagement. Manual tracking of metrics across multiple profiles is time-consuming, and qualitative analysis—tone, content pillars, hook effectiveness—is subjective and difficult to scale.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                There was a clear need for a centralized tool that could automate data collection, analyze non-text content with AI, and provide a unified dashboard for historical performance tracking.
+              </Text>
+            </VStack>
+
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Automate data collection from diverse LinkedIn profiles",
+                "Analyze non-text content (images, videos, and PDFs) using AI",
+                "Provide a unified dashboard for historical performance tracking",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Our Approach */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Our Approach
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We built a modern, scalable stack designed for real-time responsiveness and security. The platform had to support automated scraping, multimodal AI enrichment, and a unified dashboard—all without blocking the user experience.
+              </Text>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                We designed serverless Edge Functions for background scraping and AI pipelines, integrated OpenAI and Twelve Labs for text, image, and video analysis, and ensured robust security with rate limiting and data isolation via Row Level Security.
+              </Text>
+            </VStack>
+
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Automate scraping and enrichment in the background",
+                "Apply multimodal AI to documents, images, and video",
+                "Deliver a unified real-time dashboard",
+                "Enforce rate limiting and secure data isolation",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* The Solution: Technical Architecture & Key Features */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              The Solution: Technical Architecture & Key Features
+            </Heading>
+
+            <VStack align="start" spacing={8} maxW="4xl" w="full">
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Frontend:</Text> React 18, TypeScript, and Tailwind CSS for a type-safe, responsive UI. Recharts handles complex data visualizations.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Backend:</Text> Supabase (PostgreSQL) provides the core infrastructure, utilizing Row Level Security (RLS) to ensure data isolation.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Processing:</Text> Supabase Edge Functions manage serverless tasks, including background scraping and AI enrichment.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Intelligent Multimodal Enrichment:</Text> Unlike standard analytics tools, Content Compass &quot;reads&quot; the content within media—documents (PDFs/carousels) for thematic analysis, images (Base64) for OpenAI vision-based analysis, and videos via Twelve Labs for indexing and summarization.
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Creator & Post Intelligence:</Text> The system tracks up to 500 creators per user, providing Content Pillars (main themes), Hook Analysis (effectiveness of opening lines), and Posting Patterns (optimal timing and frequency from historical data).
+                </Text>
+              </Box>
+
+              <Box>
+                <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                  <Text as="span" fontWeight="semibold" color={headingColor}>Robust Security & Performance:</Text> IP-based rate limiting (20 attempts/min) prevents brute-force attacks. Scraping and enrichment run asynchronously so users can navigate the dashboard without interruption.
+                </Text>
+              </Box>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* Data Flow & Workflow */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              Data Flow & Workflow
+            </Heading>
+            <VStack align="start" spacing={6}>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                Ingestion: User submits a LinkedIn URL and the background scraper triggers. Processing: Data is filtered and stored in PostgreSQL. Enrichment: AI pipelines analyze the post&apos;s tone, hooks, and media. Visualization: Data is aggregated and served via real-time subscriptions to the dashboard.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* Built for High Performance & Scalability */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={10} maxW="4xl">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              Built for High Performance & Scalability
+            </Heading>
+            <VStack align="start" spacing={6}>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                The architecture supports batch processing of hundreds of profiles simultaneously. Rate limiting and background processing ensure the system remains responsive and secure under load.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* Business Impact */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 20 }} alignItems="start">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Impact & Results
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={textColor} lineHeight="1.8">
+                The platform delivers measurable value: automated scraping saves hours of manual data entry, users gain a clear Content Pillar map for brand consistency, and the architecture scales to batch process hundreds of profiles at once.
+              </Text>
+            </VStack>
+
+            <VStack align="start" spacing={0} pt={2}>
+              {[
+                "Efficiency: Automated scraping saves hours of manual data entry",
+                "Clarity: Users gain a clear Content Pillar map, ensuring brand consistency",
+                "Scalability: Architecture supports batch processing of hundreds of profiles simultaneously",
+              ].map((item, i) => (
+                <Box key={i} w="full">
+                  <HStack spacing={5} py={5} align="flex-start">
+                    <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={numberColor} lineHeight="1.2" minW="60px">
+                      {String(i + 1).padStart(2, "0")}.
+                    </Text>
+                    <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="medium" lineHeight="1.5">
+                      {item}
+                    </Text>
+                  </HStack>
+                  <Divider borderColor={dividerColor} opacity={0.5} />
+                </Box>
+              ))}
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Why This Matters & What's Next */}
+      <Box
+        bg={bgColor}
+        py={{ base: 20, md: 24 }}
+        position="relative">
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} maxW="4xl">
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Why This Matters
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                Tech Emulsion delivered a high-performance analytics platform that transforms raw LinkedIn data into actionable insights—empowering creators and businesses to optimize engagement and content quality with data they can trust.
+              </Text>
+            </VStack>
+            <VStack align="start" spacing={6}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontWeight="bold"
+                color={headingColor}
+                letterSpacing="-0.02em"
+                lineHeight="1.1">
+                Future Roadmap
+              </Heading>
+              <Text fontSize={{ base: "lg", md: "xl" }} color={headingColor} fontWeight="semibold" lineHeight="1.8">
+                AI Content Generation: Using performance data to draft high-converting posts. Deep Enrichment: Expanding the Enrich feature for even deeper sentiment and predictive analytics.
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* CTA Section */}
+      <Box
+        bgGradient={
+          colorMode === "dark"
+            ? "linear(to-r, teal.600, teal.800)"
+            : "linear(to-r, teal.500, teal.600)"
+        }
+        py={{ base: 16, md: 20 }}
+        color="white">
+        <Container maxW="container.xl">
+          <VStack spacing={8} textAlign="center" maxW="3xl" mx="auto">
+            <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
+              Ready to Build Your LinkedIn Analytics Platform?
+            </Heading>
+            <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>
+              <Button
                 as="a"
                 href="https://calendly.com/hassanms/discovery-call"
                 target="_blank"
-                rel="noopener noreferrer"
-                bg="brand.500"
-                color="white"
+                size="lg"
+                bg="white"
+                color="teal.500"
+                _hover={{ bg: "whiteAlpha.900" }}
+                rightIcon={<FaChevronRight />}
                 px={8}
-                py={4}
-                borderRadius="md"
-                fontSize="xl"
+                py={6}
+                fontSize="lg"
                 fontWeight="bold"
-                _hover={{ bg: "brand.600" }}
-                sx={{
-                  textDecoration: "none",
-                  boxShadow: "md",
-                  backdropFilter: "saturate(180%) blur(20px)",
-                  backgroundClip: "padding-box",
-                  backgroundColor: "rgba(255, 255, 255, 0.8)",
-                  color: "#004c4c",
-                }}>
-                Book a Call
-              </Box>
-            </Box>
-          </Box>
-        </Container>{" "}
-      </Container>{" "}
+                boxShadow="xl">
+                Schedule a Call
+              </Button>
+              <Button
+                as="a"
+                href="/portfolio"
+                size="lg"
+                variant="outline"
+                borderColor="white"
+                borderWidth="2px"
+                color="white"
+                _hover={{ bg: "whiteAlpha.200" }}
+                px={8}
+                py={6}
+                fontSize="lg"
+                fontWeight="bold">
+                View More Case Studies
+              </Button>
+            </HStack>
+          </VStack>
+        </Container>
+      </Box>
     </Box>
   );
 };

@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import {
   Box,
   Container,
+  Flex,
   Heading,
+  Icon,
   Text,
   VStack,
   HStack,
@@ -68,7 +70,8 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
   const router = useRouter();
   const { slug } = router.query;
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
   const bgColor = useColorModeValue("white", "gray.800");
   const titleColor = useColorModeValue("gray.800", "white");
   const sidebarBg = useColorModeValue("white", "gray.700");
@@ -215,58 +218,51 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
       )}
 
       <Container maxW="container.xl" py="10">
-        {/* Breadcrumb Navigation */}
-        <Box px="15" mt={10} mb="4">
+        {/* Breadcrumb - matches portfolio style */}
+        <Flex justify="flex-end" mb={8} px={{ base: 0, md: 6 }}>
           <ButtonGroup
-            style={{
-              backgroundColor: "none",
+            sx={{
+              bg: "none",
               fontSize: "1rem",
-              color: "muted",
               display: "flex",
               alignItems: "center",
-            }}>
+            }}
+          >
             <ButtonLink
               href="/"
               size="lg"
               sx={{
                 bg: "none",
-                color: "muted",
-                padding: "0",
-                "&:hover": {
-                  bg: "none",
-                },
-              }}>
+                color: textColor,
+                p: 0,
+                "&:hover": { bg: "none", color: headingColor },
+              }}
+            >
               Home
             </ButtonLink>
-            <FaChevronRight size={15} />
+            <Icon as={FaChevronRight} color={textColor} boxSize={4} />
             <ButtonLink
               href="/blog"
               size="lg"
               sx={{
                 bg: "none",
-                color: "muted",
-                padding: "0",
-                "&:hover": {
-                  bg: "none",
-                },
-              }}>
+                color: textColor,
+                p: 0,
+                "&:hover": { bg: "none", color: headingColor },
+              }}
+            >
               Insights
             </ButtonLink>
-            <FaChevronRight size={15} />
+            <Icon as={FaChevronRight} color={textColor} boxSize={4} />
             {loading ? (
-              <Skeleton height="20px" width="100px" />
+              <Skeleton height="20px" width="100px" ml="2" />
             ) : (
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
-                }}>
+              <Text as="span" ml="2" color={headingColor}>
                 {post?.category || "Loading..."}
               </Text>
             )}
           </ButtonGroup>
-        </Box>
+        </Flex>
 
         {/* Title */}
         <Box px="15" mb="8">

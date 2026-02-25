@@ -2,7 +2,9 @@ import {
   Box,
   ButtonGroup,
   Container,
+  Flex,
   Heading,
+  Icon,
   List,
   ListItem,
   ListIcon,
@@ -20,7 +22,8 @@ import { FaChevronRight, FaAsterisk } from "react-icons/fa";
 
 const TermsOfService = () => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
   return (
     <Box id="services">
       <Head>
@@ -78,52 +81,34 @@ const TermsOfService = () => {
             </Text>
           </Box>
 
-          {/* Explore Services */}
-          <VStack
-            spacing={4}
-            display="flex"
-            justifyContent={["flex-start", null, "flex-end"]}
-            width={["100%", null, "auto"]}
-            alignItems="end"
-            mt="4">
+          {/* Breadcrumb - matches portfolio style */}
+          <Flex justify="flex-end" mt="4">
             <ButtonGroup
-              style={{
-                backgroundColor: " none",
+              sx={{
+                bg: "none",
                 fontSize: "1rem",
-                color: "muted",
                 display: "flex",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <ButtonLink
                 href="/"
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+                  color: textColor,
+                  p: 0,
+                  "&:hover": { bg: "none", color: headingColor },
+                }}
+              >
                 Home
               </ButtonLink>
-              <FaChevronRight
-                size={12}
-                style={{
-                  color: colorMode === "light" ? "#004c4c" : "white",
-                }}
-              />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
-                  whiteSpace: "nowrap",
-                }}>
+              <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+              <Text as="span" ml="2" color={headingColor}>
                 Terms of Service
               </Text>
             </ButtonGroup>
-          </VStack>
+          </Flex>
         </Box>
         <Box mt={10} px="5">
           <Text

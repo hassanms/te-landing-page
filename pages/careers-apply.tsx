@@ -4,6 +4,7 @@ import {
   Container,
   Flex,
   Heading,
+  Icon,
   Input,
   Stack,
   Text,
@@ -103,7 +104,8 @@ const inputStyles = (colorMode: "light" | "dark") => ({
 
 const CareersApply = () => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
   const cardBg = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.100", "gray.700");
   const router = useRouter();
@@ -351,47 +353,40 @@ const CareersApply = () => {
             alignItems="end"
             mt="4">
             <ButtonGroup
-              style={{
-                backgroundColor: " none",
-                fontSize: "lg",
-                color: "muted",
+              sx={{
+                bg: "none",
+                fontSize: "1rem",
                 display: "flex",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <ButtonLink
                 href="/"
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+                  color: textColor,
+                  p: 0,
+                  "&:hover": { bg: "none", color: headingColor },
+                }}
+              >
                 Home
               </ButtonLink>
-              <FaChevronRight size={15} />
+              <Icon as={FaChevronRight} color={textColor} boxSize={4} />
               <ButtonLink
                 href="/careers"
                 size="lg"
                 sx={{
                   bg: "none",
-                  color: "muted",
-                  padding: "0",
-                  "&:hover": {
-                    bg: "none",
-                  },
-                }}>
+                  color: textColor,
+                  p: 0,
+                  "&:hover": { bg: "none", color: headingColor },
+                }}
+              >
                 Careers
               </ButtonLink>
-              <FaChevronRight size={15} />
-              <Text
-                as="span"
-                ml="2"
-                sx={{
-                  color: colorMode === "light" ? "#004c4c !important" : "white",
-                }}>
+              <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+              <Text as="span" ml="2" color={headingColor}>
                 Apply
               </Text>
             </ButtonGroup>

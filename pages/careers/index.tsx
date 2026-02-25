@@ -3,7 +3,6 @@ import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { CareersHeroSection } from "components/careers/hero-section";
 import { JobListingsGrid } from "components/careers/job-listings-grid";
-import CareersBreadcrumb from "components/layout/careers-breadcrumb";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Job } from "data/jobs/types";
@@ -34,7 +33,7 @@ const CareersPage = () => {
   };
 
   return (
-    <Box position="relative" overflow="hidden">
+    <Box position="relative" minH="100vh" overflow="hidden">
       <EnhancedSEO
         title="Careers - Tech Emulsion"
         description="Explore career opportunities at Tech Emulsion. Discover open roles and apply to join our team."
@@ -48,36 +47,40 @@ const CareersPage = () => {
         }}
       />
 
-      <BackgroundGradient height="100%" zIndex="-1" />
-
-      <CareersHeroSection />
-
-      <Box py={{ base: 10, md: 16 }}>
-        <Container maxW="container.xl">
-          {/* <Box mb={6}>
-            <CareersBreadcrumb
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Careers" },
-              ]}
-            />
-          </Box> */}
-          <Stack spacing={16}>
-            {loading ? (
-              <Box textAlign="center" py={10}>
-                <Spinner size="xl" />
-                <Text mt={4}>Loading jobs...</Text>
-              </Box>
-            ) : error ? (
-              <Box textAlign="center" py={10}>
-                <Text color="red.500">{error}</Text>
-              </Box>
-            ) : (
-              <JobListingsGrid jobs={jobs} />
-            )}
-          </Stack>
-        </Container>
+      {/* Full-page gradient - same as services and portfolio */}
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={-1}
+        overflow="hidden"
+        pointerEvents="none"
+      >
+        <BackgroundGradient height="100%" width="100%" />
       </Box>
+
+      {/* Top margin - clear fixed navbar */}
+      <Box pt={{ base: 20, md: 24 }} />
+      <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
+        <CareersHeroSection />
+
+        <Stack spacing={16}>
+          {loading ? (
+            <Box textAlign="center" py={10}>
+              <Spinner size="xl" />
+              <Text mt={4}>Loading jobs...</Text>
+            </Box>
+          ) : error ? (
+            <Box textAlign="center" py={10}>
+              <Text color="red.500">{error}</Text>
+            </Box>
+          ) : (
+            <JobListingsGrid jobs={jobs} />
+          )}
+        </Stack>
+      </Container>
     </Box>
   );
 };

@@ -1,5 +1,11 @@
 import React from "react";
-import { SimpleGrid, Stack, Heading, Text, Box, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  SimpleGrid,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 import JobCard from "./job-card";
 
@@ -8,15 +14,29 @@ interface JobListingsGridProps {
 }
 
 export const JobListingsGrid: React.FC<JobListingsGridProps> = ({ jobs }) => {
-  const textColor = useColorModeValue("gray.500", "gray.200");
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
 
   if (!jobs.length) {
     return (
-      <Box textAlign="center" py={16}>
-        <Heading size="md" mb={2}>
+      <Box
+        pt={16}
+        pb={16}
+        mt={12}
+        mx={-6}
+        px={6}
+        borderTopWidth="1px"
+        borderColor={dividerColor}
+        sx={{
+          borderColor: "gray.200 !important",
+          _dark: { borderColor: "gray.600 !important" },
+        }}
+      >
+        <Heading as="h2" size="lg" color={headingColor} mb={2}>
           No open roles right now
         </Heading>
-        <Text color={textColor}>
+        <Text color={textColor} fontSize="md">
           Check back soon or reach out to us at contact@techemulsion.com.
         </Text>
       </Box>
@@ -24,21 +44,55 @@ export const JobListingsGrid: React.FC<JobListingsGridProps> = ({ jobs }) => {
   }
 
   return (
-    <Stack spacing={8} id="open-roles" align="center">
-      <Stack spacing={2} textAlign="center">
-        <Heading as="h2" size="lg">
-          Some opportunities for you to explore
-        </Heading>
-      </Stack>
-
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="full">
-        {jobs.map((job) => (
-          <JobCard key={job.id} job={job} />
+    <Box
+      id="open-roles"
+      mt={12}
+      pt={10}
+      mx={-6}
+      px={6}
+      borderTopWidth="1px"
+      borderColor={dividerColor}
+      sx={{
+        borderColor: "gray.200 !important",
+        _dark: { borderColor: "gray.600 !important" },
+      }}
+    >
+      <Heading
+        as="h2"
+        size="md"
+        color={headingColor}
+        fontWeight="semibold"
+        mb={8}
+        letterSpacing="tight"
+      >
+        Open roles
+      </Heading>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0}>
+        {jobs.map((job, idx) => (
+          <Box
+            key={job.id}
+            py={6}
+            pr={{ base: 0, md: idx % 2 === 0 ? 6 : 0 }}
+            pl={{ base: 0, md: idx % 2 === 1 ? 6 : 0 }}
+            borderRight={{
+              base: "none",
+              md: idx % 2 === 0 ? "1px solid" : "none",
+            }}
+            borderBottom={
+              idx < 2 * Math.floor((jobs.length - 1) / 2) ? "1px solid" : "none"
+            }
+            borderColor={dividerColor}
+            sx={{
+              borderColor: "gray.200 !important",
+              _dark: { borderColor: "gray.600 !important" },
+            }}
+          >
+            <JobCard job={job} />
+          </Box>
         ))}
       </SimpleGrid>
-    </Stack>
+    </Box>
   );
 };
 
 export default JobListingsGrid;
-

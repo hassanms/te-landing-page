@@ -13,18 +13,9 @@ import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
-// Only the 6 case studies shown in the home page Recent Works section (excludes /portfolio - keeps default menu in light mode at top)
-const HERO_DARK_NAVBAR_PATHS = [
-  "/portfolio/campaignos",
-  "/portfolio/macromascot",
-  "/portfolio/autosync-intelligence",
-  "/portfolio/packassist",
-  "/portfolio/meatery",
-  "/portfolio/avl-copilot",
-  "/portfolio/avl-copilot-v3",
-  "/portfolio/staffup",
-  "/portfolio-v4",
-];
+// All portfolio case study detail pages get white navbar at top (excludes /portfolio list page)
+const isPortfolioCaseStudyPage = (pathname: string) =>
+  pathname.startsWith("/portfolio/") || pathname === "/portfolio-v4";
 
 export interface HeaderProps extends Omit<BoxProps, "children"> {}
 
@@ -47,11 +38,10 @@ export const Header = (props: HeaderProps) => {
   const darkNavbar =
     colorMode === "light" &&
     !isScrolled &&
-    HERO_DARK_NAVBAR_PATHS.some((path) => router.pathname === path);
+    isPortfolioCaseStudyPage(router.pathname);
 
   const isHeroPageAtTop =
-    !isScrolled &&
-    HERO_DARK_NAVBAR_PATHS.some((path) => router.pathname === path);
+    !isScrolled && isPortfolioCaseStudyPage(router.pathname);
 
   return (
     <Box

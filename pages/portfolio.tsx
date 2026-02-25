@@ -298,9 +298,9 @@ export default function Portfolio() {
           <BackgroundGradient height="100%" width="100%" />
         </Box>
 
-        {/* Top margin - significant empty space above content */}
-        <Box pt={{ base: 24, md: 32 }} />
-        <Container maxW="container.xl" py={20} position="relative" zIndex={1}>
+        {/* Top margin - clear fixed navbar only */}
+        <Box pt={{ base: 20, md: 24 }} />
+        <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
           {/* Breadcrumb */}
           <Flex justify="flex-end" mb={8}>
             <ButtonGroup sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}>

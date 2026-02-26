@@ -1,11 +1,19 @@
 import React from "react";
-import { Box, Container, Flex, Link, Stack, Text, Spinner, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Stack,
+  Text,
+  Spinner,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { Job } from "data/jobs/types";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
+import { BackgroundGradient } from "components/gradients/background-gradient";
 import { ApplicationHeader } from "components/careers/application-header";
 import { ApplicationForm } from "components/careers/application-form";
-import CareersBreadcrumb from "components/layout/careers-breadcrumb";
 import NextLink from "next/link";
 import axios from "axios";
 
@@ -15,7 +23,6 @@ interface ApplyPageProps {
 }
 
 const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
-  const separatorColor = useColorModeValue("gray.400", "gray.200");
   const textColor = useColorModeValue("gray.600", "gray.100");
 
   if (error) {
@@ -25,9 +32,9 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
           <Text color="red.500" fontSize="lg" mb={4}>
             {error}
           </Text>
-          <Link as={NextLink} href="/careers" color="teal.600" fontWeight="medium">
+          <Button as={NextLink} href="/careers" colorScheme="teal">
             View all jobs
-          </Link>
+          </Button>
         </Container>
       </Box>
     );
@@ -47,7 +54,7 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
   }
 
   return (
-    <Box>
+    <Box position="relative" minH="100vh" overflow="hidden">
       <EnhancedSEO
         title={`Apply - ${job.title} | Tech Emulsion`}
         description={`Apply for the ${job.title} role at Tech Emulsion.`}
@@ -69,45 +76,34 @@ const ApplyPage: React.FC<ApplyPageProps> = ({ job, error }) => {
         }}
       />
 
-      <ApplicationHeader job={job} />
+      {/* Full-page gradient - same as careers, portfolio, services, blog */}
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={-1}
+        overflow="hidden"
+        pointerEvents="none"
+      >
+        <BackgroundGradient height="100%" width="100%" />
+      </Box>
 
-      <Container maxW="container.xl" pb={{ base: 16, md: 24 }}>
-        <Box mb={4}>
-          <CareersBreadcrumb
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Careers", href: "/careers" },
-              { label: "Job details", href: `/careers/${job.slug || job.id}` },
-              { label: "Job application" },
-            ]}
-          />
+      {/* Top margin - clear fixed navbar */}
+      <Box pt={{ base: 20, md: 24 }} />
+      <Container maxW="container.xl" pt={6} pb={12} position="relative" zIndex={1}>
+        <ApplicationHeader job={job} />
+
+        <Box pt={8}>
+          <Stack spacing={8}>
+            <ApplicationForm
+              job={job}
+              cancelHref={`/careers/${job.slug || job.id}`}
+              buttonsInFooter
+            />
+          </Stack>
         </Box>
-        <Stack spacing={8}>
-          <ApplicationForm job={job} />
-        </Stack>
-
-        {/* Footer Links */}
-        <Flex
-          direction={{ base: "column", md: "row" }}
-          justify="center"
-          align="center"
-          gap={4}
-          mt={12}
-          mb={8}
-        >
-          <Link as={NextLink} href="/careers" color="teal.600" fontWeight="medium">
-            View all jobs
-          </Link>
-          <Text color={separatorColor}>|</Text>
-          <Link
-            href="https://techemulsion.com"
-            isExternal
-            color="teal.600"
-            fontWeight="medium"
-          >
-            Visit website
-          </Link>
-        </Flex>
       </Container>
     </Box>
   );

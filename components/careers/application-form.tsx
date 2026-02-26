@@ -8,6 +8,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
+  Icon,
   Input,
   InputGroup,
   InputRightAddon,
@@ -21,7 +22,8 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FiChevronDown } from "react-icons/fi";
+import NextLink from "next/link";
+import { FiChevronDown, FiArrowLeft, FiSend } from "react-icons/fi";
 import { sortedCountryCodes, CountryCode } from "data/country-codes";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -33,6 +35,10 @@ import { ResumeUpload } from "components/forms/resume-upload";
 
 interface ApplicationFormProps {
   job: Job;
+  /** When provided, Cancel navigates to this URL instead of clearing the form */
+  cancelHref?: string;
+  /** When true, render Submit/Cancel in a footer section with divider */
+  buttonsInFooter?: boolean;
 }
 
 interface FormState {
@@ -60,20 +66,17 @@ interface FormState {
 // Reusable Section Header Component
 interface FormSectionProps {
   title: string;
-  stepNumber: number;
   description?: string;
   children: React.ReactNode;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
   title,
-  stepNumber,
   description,
   children,
 }) => {
   const sectionBg = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
-  const stepBg = useColorModeValue("teal.500", "teal.400");
   const descriptionColor = useColorModeValue("gray.600", "gray.200");
   const headingColor = useColorModeValue("teal.700", "teal.300");
 
@@ -85,40 +88,29 @@ const FormSection: React.FC<FormSectionProps> = ({
       borderRadius="lg"
       p={{ base: 4, md: 6 }}
       mb={6}
+      boxShadow="sm"
     >
-      <Flex align="center" gap={3} mb={4}>
-        <Flex
-          align="center"
-          justify="center"
-          w="32px"
-          h="32px"
-          borderRadius="full"
-          bg={stepBg}
-          color="white"
-          fontWeight="bold"
-          fontSize="sm"
-          flexShrink={0}
-        >
-          {stepNumber}
-        </Flex>
-        <Box>
-          <Heading as="h3" fontSize="lg" fontWeight="semibold" color={headingColor}>
-            {title}
-          </Heading>
-          {description && (
-            <Text fontSize="sm" color={descriptionColor} mt={0.5}>
-              {description}
-            </Text>
-          )}
-        </Box>
-      </Flex>
+      <Box mb={4}>
+        <Heading as="h3" fontSize="lg" fontWeight="semibold" color={headingColor}>
+          {title}
+        </Heading>
+        {description && (
+          <Text fontSize="sm" color={descriptionColor} mt={0.5}>
+            {description}
+          </Text>
+        )}
+      </Box>
       <Divider mb={5} />
       {children}
     </Box>
   );
 };
 
-export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
+export const ApplicationForm: React.FC<ApplicationFormProps> = ({
+  job,
+  cancelHref,
+  buttonsInFooter,
+}) => {
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
@@ -151,6 +143,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
   const labelColor = useColorModeValue("gray.800", "gray.100");
   const menuBg = useColorModeValue("white", "gray.800");
   const menuHoverBg = useColorModeValue("gray.100", "gray.700");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
 
   // Find selected country for display
   const selectedCountry = sortedCountryCodes.find(
@@ -327,26 +320,91 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
     setErrors({});
   };
 
+  const cancelButtonSx = {
+    "&:hover": {
+      bg: "teal.500",
+      borderColor: "teal.500",
+      color: "white !important",
+      "& *, & span, & svg": { color: "white !important" },
+    },
+  };
+
+  const renderButtons = () => (
+    <Flex
+      justify={buttonsInFooter ? "center" : "flex-end"}
+      align="center"
+      gap={4}
+      mt={buttonsInFooter ? 0 : 8}
+      pt={buttonsInFooter ? 0 : 4}
+      flexWrap="wrap"
+    >
+      {cancelHref ? (
+        <Button
+          as={NextLink}
+          href={cancelHref}
+          variant="outline"
+          colorScheme="teal"
+          size="lg"
+          leftIcon={<Icon as={FiArrowLeft} boxSize={4} />}
+          transition="all 0.2s"
+          sx={cancelButtonSx}
+        >
+          Cancel
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          onClick={clearForm}
+          colorScheme="teal"
+          size="lg"
+          leftIcon={<Icon as={FiArrowLeft} boxSize={4} />}
+          transition="all 0.2s"
+          sx={cancelButtonSx}
+        >
+          Cancel
+        </Button>
+      )}
+      <Button
+        colorScheme="teal"
+        type="submit"
+        form={buttonsInFooter ? "application-form" : undefined}
+        isLoading={submitting}
+        size="lg"
+        rightIcon={<Icon as={FiSend} boxSize={4} />}
+        _hover={{ bg: "teal.600" }}
+        transition="all 0.2s"
+      >
+        Submit Application
+      </Button>
+    </Flex>
+  );
+
   return (
-    <Box as="form" onSubmit={handleSubmit}>
+    <>
+      <Box as="form" id="application-form" onSubmit={handleSubmit}>
       {/* Form Header */}
-      <Flex justify="space-between" align="center" mb={6}>
+      <Flex justify="space-between" align="center" mb={8}>
         <Box>
-          <Heading as="h2" fontSize="xl" fontWeight="semibold">
+          <Heading as="h2" fontSize="2xl" fontWeight="semibold" color={labelColor}>
             Job Application
           </Heading>
           <Text fontSize="sm" color={helperTextColor} mt={1}>
             Please fill out all required fields marked with *
           </Text>
         </Box>
-        <Button variant="link" size="sm" onClick={clearForm} color={linkColor}>
+        <Button
+          variant="link"
+          size="sm"
+          onClick={clearForm}
+          color={linkColor}
+          _hover={{ color: "teal.500", textDecoration: "underline" }}
+        >
           Clear All
         </Button>
       </Flex>
 
       {/* Section 1: Personal Information */}
       <FormSection
-        stepNumber={1}
         title="Personal Information"
         description="Tell us about yourself"
       >
@@ -477,7 +535,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
       {/* Section 2: Professional Experience */}
       <FormSection
-        stepNumber={2}
         title="Professional Experience"
         description="Share your work history and skills"
       >
@@ -599,7 +656,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
       {/* Section 3: Preferences */}
       <FormSection
-        stepNumber={3}
         title="Preferences"
         description="Your location and referral information"
       >
@@ -652,7 +708,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
 
       {/* Section 4: Documents */}
       <FormSection
-        stepNumber={4}
         title="Documents"
         description="Upload your resume and add a cover letter"
       >
@@ -676,16 +731,21 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ job }) => {
         </Stack>
       </FormSection>
 
-      {/* Submit Buttons */}
-      <Flex justify="flex-end" gap={4} mt={2}>
-        <Button variant="outline" onClick={clearForm} colorScheme="gray">
-          Cancel
-        </Button>
-        <Button colorScheme="teal" type="submit" isLoading={submitting}>
-          Submit Application
-        </Button>
-      </Flex>
+      {!buttonsInFooter && renderButtons()}
     </Box>
+      {buttonsInFooter && (
+        <>
+          <Box
+            bg="transparent"
+            py={2}
+            mt={{ base: 6, md: 8 }}
+            borderTopWidth="1px"
+            borderColor={dividerColor}
+          />
+          <Box mt={6} mb={6}>{renderButtons()}</Box>
+        </>
+      )}
+    </>
   );
 };
 

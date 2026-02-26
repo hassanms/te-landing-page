@@ -1,79 +1,154 @@
 import React from "react";
-import { Box, Button, Container, Heading, Stack, Tag, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  ButtonGroup,
+  Flex,
+  Heading,
+  Icon,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
-import { SocialShareButtons } from "./social-share-buttons";
+import { FaChevronRight } from "react-icons/fa";
+import { ButtonLink } from "components/button-link";
 
 interface ApplicationHeaderProps {
   job: Job;
 }
 
 export const ApplicationHeader: React.FC<ApplicationHeaderProps> = ({ job }) => {
-  const subTextColor = useColorModeValue("gray.600", "gray.200");
-  
-  // Get the job detail page URL (not the apply page)
-  const jobUrl = typeof window !== "undefined"
-    ? window.location.origin + `/careers/${job.slug || job.id}`
-    : `https://techemulsion.com/careers/${job.slug || job.id}`;
-
-  // Create email share link with subject and body
-  const emailSubject = encodeURIComponent(`Job opportunity: ${job.title} at ${job.company}`);
-  const emailBody = encodeURIComponent(
-    `Check out this job opportunity:\n\n${job.title}\n${job.company}\n\nView details: ${jobUrl}`
-  );
-  const emailShareLink = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
 
   return (
-    <Box
-      borderBottomWidth="1px"
-      borderColor={useColorModeValue("gray.100", "gray.700")}
-      bg={useColorModeValue("white", "charcoal.900")}
-      pt={{ base: 20, md: 24 }}
-      pb={{ base: 10, md: 12 }}
-      mb={8}
-    >
-      <Container maxW="container.xl">
-        <Stack spacing={6} align="center" textAlign="center">
-          <Stack spacing={1}>
-            <Text
-              fontSize={{ base: "md", md: "lg" }}
-              fontWeight="semibold"
-              color={subTextColor}
-            >
-              {job.company} &nbsp;|&nbsp; {job.employmentType}
-            </Text>
-            <Heading fontSize={{ base: "2xl", md: "3xl", lg: "3.5xl" }}>{job.title}</Heading>
-            <Stack direction="row" spacing={3} justify="center">
-              <Tag size="sm" colorScheme="teal">
-                {job.department}
-              </Tag>
-              {job.locations[0] && (
-                <Tag size="sm" variant="subtle">
-                  {job.locations[0]}
-                </Tag>
-              )}
-            </Stack>
-          </Stack>
+    <>
+      {/* Breadcrumb - matches portfolio, services, blog, careers */}
+      <Flex justify="flex-end" mb={8}>
+        <ButtonGroup
+          sx={{
+            bg: "none",
+            fontSize: "1rem",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <ButtonLink
+            href="/"
+            size="lg"
+            sx={{
+              bg: "none",
+              color: textColor,
+              p: 0,
+              "&:hover": { bg: "none", color: headingColor },
+            }}
+          >
+            Home
+          </ButtonLink>
+          <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+          <ButtonLink
+            href="/careers"
+            size="lg"
+            sx={{
+              bg: "none",
+              color: textColor,
+              p: 0,
+              "&:hover": { bg: "none", color: headingColor },
+            }}
+          >
+            Careers
+          </ButtonLink>
+          <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+          <ButtonLink
+            href={`/careers/${job.slug || job.id}`}
+            size="lg"
+            sx={{
+              bg: "none",
+              color: textColor,
+              p: 0,
+              "&:hover": { bg: "none", color: headingColor },
+            }}
+          >
+            Job details
+          </ButtonLink>
+          <Icon as={FaChevronRight} color={textColor} boxSize={4} />
+          <Text as="span" ml="2" color={headingColor}>
+            Apply
+          </Text>
+        </ButtonGroup>
+      </Flex>
 
-          <Stack spacing={3} align="center">
-            <Button
-              variant="outline"
-              colorScheme="teal"
-              size="sm"
-              as="a"
-              href={emailShareLink}
+      {/* Header section - same layout as portfolio, services, blog, careers */}
+      <Box
+        minH={{ base: "280px", md: "35vh" }}
+        display={{ base: "block", md: "grid" }}
+        gridTemplateColumns={{ md: "1fr 1fr" }}
+        borderTopWidth="1px"
+        borderColor={dividerColor}
+        mx={-6}
+        px={6}
+      >
+        {/* Left: Apply heading - top aligned */}
+        <Box
+          py={8}
+          pr={{ base: 0, md: 6 }}
+          display="flex"
+          alignItems="flex-start"
+          borderRightWidth={{ md: "1px" }}
+          borderColor={dividerColor}
+          sx={{
+            borderColor: "gray.200 !important",
+            _dark: { borderColor: "gray.600 !important" },
+          }}
+        >
+          <Heading
+            as="h1"
+            fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+            fontWeight="bold"
+            color={headingColor}
+          >
+            Apply
+          </Heading>
+        </Box>
+        {/* Right: Job info - matches portfolio/services description style */}
+        <Box
+          pl={{ base: 0, md: 6 }}
+          py={{ base: 4, md: 8 }}
+          display="flex"
+          alignItems={{ base: "flex-start", md: "flex-end" }}
+          justifyContent={{ base: "flex-start", md: "flex-end" }}
+        >
+          <Box maxW={{ md: "420px" }}>
+            <Heading
+              as="h2"
+              size="md"
+              color={headingColor}
+              fontWeight="semibold"
+              lineHeight="1.3"
+              mb={2}
             >
-              Share job via email
-            </Button>
-            <Text fontSize="sm" color={subTextColor}>
-              Share this job with your network
+              {job.title}
+            </Heading>
+            <Text fontSize="lg" color={textColor} lineHeight="tall">
+              {[job.department, job.locations?.[0], job.employmentType]
+                .filter(Boolean)
+                .join(" · ")}
             </Text>
-            <SocialShareButtons title={job.title} url={jobUrl} />
-          </Stack>
-        </Stack>
-      </Container>
-    </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Divider bar - matches portfolio, services, careers */}
+      <Box
+        bg="transparent"
+        py={2}
+        px={6}
+        mx={-6}
+        borderTopWidth="1px"
+        borderColor={dividerColor}
+      />
+    </>
   );
 };
 
 export default ApplicationHeader;
-

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HStack } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import siteConfig from "data/config";
 import { NavLink } from "components/nav-link";
@@ -22,15 +22,24 @@ const NO_THEME_TOGGLE_PATHS = [
 
 interface NavigationProps {
   isScrolled?: boolean;
+  isServicesOpen?: boolean;
+  onServicesOpen?: () => void;
+  onServicesClose?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
+const Navigation: React.FC<NavigationProps> = ({
+  isScrolled = true,
+  isServicesOpen = false,
+  onServicesOpen,
+  onServicesClose,
+}) => {
   const { colorMode } = useColorMode();
   const mobileNav = useDisclosure();
   const router = useRouter();
   const useWhiteNav =
     colorMode === "light" &&
     !isScrolled &&
+    !isServicesOpen &&
     isHeroDetailPage(router.pathname);
   
   const hideThemeToggle = NO_THEME_TOGGLE_PATHS.some((path) => router.pathname === path);
@@ -54,37 +63,60 @@ const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
 
   return (
     <HStack spacing="2" flexShrink={0}>
-      {siteConfig.header.links.map(({ href, variant, ...props }, i) => (
-        <NavLink
-          display={["none", null, "block"]}
-          href={href}
-          onClick={(
-            e:
-              | React.MouseEvent<HTMLAnchorElement, MouseEvent>
-              | MouseEvent
-              | any
-          ) => handleNavigation(e, href)}
-          key={i}
-          isActive={
-            !!(href && !!router.asPath.match(new RegExp(href)))
-          }
-          {...props}
-          sx={{
-            background: variant === "varient" ? "teal.500" : "",
-            color:
-              variant === "varient" ? "white" : useWhiteNav ? "white" : "",
-            "&:hover": {
-              backgroundColor: variant === "varient" ? "teal.600" : "",
+      {siteConfig.header.links.map(({ href, variant, ...props }, i) => {
+        const isServices = href === "/services";
+        const linkEl = (
+          <NavLink
+            display={["none", null, "block"]}
+            href={href}
+            onClick={(
+              e:
+                | React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                | MouseEvent
+                | any
+            ) => {
+              if (isServices) {
+                e.preventDefault();
+                return;
+              }
+              handleNavigation(e, href);
+            }}
+            key={i}
+            isActive={
+              !!(href && !!router.asPath.match(new RegExp(href)))
+            }
+            {...props}
+            sx={{
+              background: variant === "varient" ? "teal.500" : "",
               color:
-                variant === "varient" || colorMode === "dark" || useWhiteNav
-                  ? "white"
-                  : "teal.500",
-            },
-          }}
-        >
-          {props.label}
-        </NavLink>
-      ))}
+                variant === "varient" ? "white" : useWhiteNav ? "white" : "",
+              "&:hover": {
+                backgroundColor: variant === "varient" ? "teal.600" : "",
+                color:
+                  variant === "varient" || colorMode === "dark" || useWhiteNav
+                    ? "white"
+                    : "teal.500",
+              },
+            }}
+          >
+            {props.label}
+          </NavLink>
+        );
+        if (isServices && onServicesOpen && onServicesClose) {
+          return (
+            <Box
+              key={i}
+              display={["none", null, "block"]}
+              position="relative"
+              onMouseEnter={onServicesOpen}
+              onMouseLeave={onServicesClose}
+            >
+              {linkEl}
+            </Box>
+          );
+        }
+        return linkEl;
+      })}
 
       {!hideThemeToggle && <ThemeToggle color={useWhiteNav ? "white" : undefined} />}
 

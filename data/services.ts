@@ -18,11 +18,13 @@ export interface ServiceOffering {
 export interface IndustryItem {
   name: string;
   description: string;
+  icon: string;
 }
 
 export interface BenefitItem {
   title: string;
   description: string;
+  icon: string;
 }
 
 export interface FAQItem {
@@ -45,37 +47,83 @@ export interface ServiceData {
   faqs: FAQItem[];
 }
 
-// Shared benefits across all services
+// Shared benefits across all services (PureLogics-style copy)
 export const sharedBenefits: BenefitItem[] = [
   {
-    title: "Unmatched Expertise",
+    title: "Unmatched Talent",
     description:
       "Our engineers possess best-in-class expertise to integrate cutting-edge solutions into your business.",
+    icon: "FiUsers",
   },
   {
     title: "Custom Solutions",
     description:
-      "We develop tailored solutions to fit your industry and requirements for maximum output.",
+      "We do custom software development to fit your industry and requirements so that you can get maximum output from it.",
+    icon: "FiSettings",
   },
   {
     title: "Transformative Innovation",
     description:
-      "We strive to grow your business with innovative practices and modern technology.",
+      "We strive to grow your business progress with innovative practices and modern technology.",
+    icon: "FiGlobe",
   },
   {
     title: "Exceptional UX",
     description:
-      "From usability to seamless interaction, we create intuitive experiences in everything we build.",
+      "From usability to seamless interaction, user experience matters a lot. That's why our development services always endeavor to create an intuitive experience in everything we build.",
+    icon: "FiSmartphone",
   },
   {
     title: "Elite Security & Privacy",
     description:
-      "Your data privacy is paramount. We're ready to sign NDAs to assure your data is protected.",
+      "Your data privacy is a primal responsibility that we fulfill remarkably. We are ready to sign an NDA to assure you that your data is protected without any breaches.",
+    icon: "FiShield",
   },
   {
     title: "Maintenance & Support",
     description:
-      "After delivery, we don't leave you alone. Our engineers are available for ongoing support.",
+      "After delivery, we don't leave you alone. Our engineers are always available for 24/7 support and maintenance to keep your applications updated.",
+    icon: "FiHeadphones",
+  },
+];
+
+// Shared industries across services (image-style: icon, heading, description)
+export const sharedIndustries: IndustryItem[] = [
+  {
+    name: "Internet & Technology",
+    description:
+      "Accelerating business operations with automation, data solutions, and digital tools is a genuine benefit. Our team has accomplished various development projects for the IT industry.",
+    icon: "FiCpu",
+  },
+  {
+    name: "Healthcare",
+    description:
+      "We have worked on technology solutions for the healthcare industry, enabling exceptional patient care, robust systems, and better treatment workflows with our software solutions.",
+    icon: "FiActivity",
+  },
+  {
+    name: "Retail",
+    description:
+      "Our solutions improve inventory management, demand forecasting, and customer satisfaction, ultimately leading to revenue growth for retail businesses.",
+    icon: "FiShoppingCart",
+  },
+  {
+    name: "Banking & Finance",
+    description:
+      "Businesses are experiencing advanced customer engagement, early fraud detection, deep data insights, and financial services optimization by integrating our solutions into their systems.",
+    icon: "FiDollarSign",
+  },
+  {
+    name: "Travel",
+    description:
+      "From online booking to destination recommendation, modern technology has enhanced the competencies of travel agencies. We aid travel companies by breaking barriers to traditional travel and equipping them with modern technology.",
+    icon: "FiGlobe",
+  },
+  {
+    name: "Web 3.0",
+    description:
+      "3D ecosystems, avatar modeling, and NFTs can come into existence quickly with our technology solutions collectively empowering the Web 3.0 world. Our experts have the proper expertise to redefine your industry.",
+    icon: "FiBox",
   },
 ];
 
@@ -200,12 +248,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiTool",
       },
     ],
-    industries: [
-      { name: "Professional Services", description: "Automate client onboarding, research, and reporting." },
-      { name: "Healthcare", description: "Clinical decision support and patient engagement." },
-      { name: "E-commerce", description: "Personalized recommendations and customer support." },
-      { name: "Enterprise", description: "Internal knowledge bases and workflow automation." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -283,12 +326,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiBarChart",
       },
     ],
-    industries: [
-      { name: "B2B SaaS", description: "B2B platforms for sales, marketing, and operations." },
-      { name: "Healthcare", description: "HIPAA-compliant patient and practice management." },
-      { name: "E-commerce", description: "Marketplaces, inventory, and order management." },
-      { name: "Education", description: "LMS, course platforms, and student engagement." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -366,12 +404,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiCode",
       },
     ],
-    industries: [
-      { name: "Marketing & Agencies", description: "Portfolios, campaign sites, and client work." },
-      { name: "Startups", description: "Product pages, waitlists, and investor decks." },
-      { name: "Retail", description: "Online stores and product catalogs." },
-      { name: "Professional Services", description: "Consulting, legal, and B2B service sites." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -449,12 +482,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiUpload",
       },
     ],
-    industries: [
-      { name: "SaaS Companies", description: "Extend your product into the browser." },
-      { name: "Marketing", description: "Lead capture, social tools, and analytics." },
-      { name: "Research", description: "Data collection and annotation tools." },
-      { name: "Enterprise", description: "Internal tools and workflow automation." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -532,12 +560,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiCode",
       },
     ],
-    industries: [
-      { name: "SaaS", description: "Deploy and scale multi-tenant applications." },
-      { name: "Healthcare", description: "HIPAA-compliant infrastructure." },
-      { name: "Fintech", description: "Secure, compliant deployment pipelines." },
-      { name: "E-commerce", description: "High-availability and auto-scaling." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -615,12 +638,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiSettings",
       },
     ],
-    industries: [
-      { name: "Professional Services", description: "Research, drafting, and client deliverables." },
-      { name: "Healthcare", description: "Clinical documentation and decision support." },
-      { name: "E-commerce", description: "Product descriptions, recommendations, and support." },
-      { name: "Legal & Finance", description: "Contract analysis, compliance, and reporting." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -698,12 +716,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiCode",
       },
     ],
-    industries: [
-      { name: "SaaS", description: "Regression and release testing." },
-      { name: "E-commerce", description: "Checkout, payment, and inventory flows." },
-      { name: "Healthcare", description: "Compliance and critical path testing." },
-      { name: "Fintech", description: "Security and accuracy testing." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {
@@ -781,12 +794,7 @@ export const servicesData: ServiceData[] = [
         icon: "FiClock",
       },
     ],
-    industries: [
-      { name: "Professional Services", description: "Client onboarding, reporting, and billing." },
-      { name: "Healthcare", description: "Scheduling, reminders, and compliance." },
-      { name: "Retail", description: "Inventory, orders, and supplier sync." },
-      { name: "Finance", description: "Reconciliation, reporting, and compliance." },
-    ],
+    industries: sharedIndustries,
     benefits: sharedBenefits,
     faqs: [
       {

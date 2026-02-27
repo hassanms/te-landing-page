@@ -13,9 +13,11 @@ import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { useScroll } from "framer-motion";
 
-// All portfolio case study detail pages get white navbar at top (excludes /portfolio list page)
-const isPortfolioCaseStudyPage = (pathname: string) =>
-  pathname.startsWith("/portfolio/") || pathname === "/portfolio-v4";
+// Portfolio and services detail pages get white navbar at top (excludes list pages)
+const isHeroDetailPage = (pathname: string) =>
+  pathname.startsWith("/portfolio/") ||
+  pathname === "/portfolio-v4" ||
+  pathname.startsWith("/services/");
 
 export interface HeaderProps extends Omit<BoxProps, "children"> {}
 
@@ -38,10 +40,10 @@ export const Header = (props: HeaderProps) => {
   const darkNavbar =
     colorMode === "light" &&
     !isScrolled &&
-    isPortfolioCaseStudyPage(router.pathname);
+    isHeroDetailPage(router.pathname);
 
   const isHeroPageAtTop =
-    !isScrolled && isPortfolioCaseStudyPage(router.pathname);
+    !isScrolled && isHeroDetailPage(router.pathname);
 
   return (
     <Box

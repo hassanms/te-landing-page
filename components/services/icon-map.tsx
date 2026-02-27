@@ -59,6 +59,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   FiSmartphone: Fi.FiSmartphone,
   FiTarget: Fi.FiTarget,
   FiGlobe: Fi.FiGlobe,
+  FiShoppingCart: Fi.FiShoppingCart,
   FiDatabase: Fi.FiDatabase,
   FiGitMerge: Fi.FiGitMerge,
   FiTool: Fi.FiTool,

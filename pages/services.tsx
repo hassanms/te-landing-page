@@ -248,7 +248,7 @@ const Services = () => {
             >
               Our Services
             </Heading> */}
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="100%" px="4">
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={0} w="100%">
               {servicesData.map((service, idx) => {
                 const len = servicesData.length;
                 const lastRowStartMd = 2 * Math.floor((len - 1) / 2);

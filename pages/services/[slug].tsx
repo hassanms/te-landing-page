@@ -3,7 +3,6 @@ import {
   Button,
   ButtonGroup,
   Container,
-  Flex,
   Heading,
   HStack,
   Icon,
@@ -26,14 +25,13 @@ import Script from "next/script";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ButtonLink } from "components/button-link";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronRight, FaPlus, FaMinus } from "react-icons/fa";
 import {
   getServiceBySlug,
   getAllServiceSlugs,
   type ServiceData,
 } from "data/services";
 import { getServiceIcon } from "components/services/icon-map";
-import { ValuePropositionCard } from "components/services";
 
 interface ServicePageProps {
   service: ServiceData;
@@ -138,14 +136,14 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
-      {/* Hero Section */}
+      {/* Hero Section - portfolio style */}
       <Box
         position="relative"
         color="white"
         pt={{ base: 20, md: 32 }}
         pb={{ base: 16, md: 24 }}
         overflow="hidden"
-        minH={{ base: "420px", md: "500px" }}
+        minH={{ base: "500px", md: "600px" }}
       >
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
@@ -250,36 +248,52 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
       </Box>
 
       {/* Value Props */}
-      <Box bg={bgColor} py={{ base: 12, md: 16 }} {...sectionStyles}>
-        <Box {...patternOverlay} />
+      <Box bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
+        <Box {...patternOverlay} opacity={0.3} />
         <Container maxW="6xl" position="relative" zIndex={1}>
+          <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+            Value Proposition
+          </Text>
           <Heading
             as="h2"
-            size="md"
+            fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
             fontWeight="bold"
-            color={colorMode === "dark" ? "white" : "teal.500"}
-            mb={8}
-            sx={{ textTransform: "uppercase" }}
+            color={headingColor}
+            letterSpacing="-0.02em"
+            lineHeight="1.1"
+            mb={12}
           >
             How We Help You Succeed
           </Heading>
-          <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
             {service.valueProps.map((vp, i) => (
-              <ValuePropositionCard
+              <Box
                 key={i}
-                title={vp.title}
-                description={vp.description}
-                icon={vp.icon}
-              />
+                p={8}
+                bg={bgColor}
+                borderRadius="lg"
+                borderWidth="1px"
+                borderColor={dividerColor}
+              >
+                <Heading as="h3" size="md" color={headingColor} fontWeight="bold" mb={3}>
+                  {vp.title}
+                </Heading>
+                <Text color={textColor} fontSize="md" lineHeight="1.7">
+                  {vp.description}
+                </Text>
+              </Box>
             ))}
           </SimpleGrid>
         </Container>
       </Box>
 
-      {/* Service Offerings - portfolio-style section heading */}
-      <Box bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
-        <Box {...patternOverlay} opacity={0.3} />
+      {/* Service Offerings */}
+      <Box bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+        <Box {...patternOverlay} />
         <Container maxW="6xl" position="relative" zIndex={1}>
+          <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+            Deliverables
+          </Text>
           <Heading
             as="h2"
             fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -295,7 +309,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
             {service.offerings.map((off, i) => {
               const IconComponent = getServiceIcon(off.icon);
               return (
-                <HStack key={i} align="flex-start" spacing={6} p={6} bg={bgColor} borderRadius="lg">
+                <HStack key={i} align="flex-start" spacing={6} p={6} bg={sectionBg} borderRadius="lg">
                   <Icon as={IconComponent} boxSize={10} color={accentColor} flexShrink={0} />
                   <VStack align="start" spacing={2}>
                     <Heading as="h3" size="md" color={headingColor}>
@@ -312,11 +326,14 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         </Container>
       </Box>
 
-      {/* Industries (optional) */}
+      {/* Industries - 3-col grid, icon cards with shadow */}
       {service.industries && service.industries.length > 0 && (
-        <Box bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
-          <Box {...patternOverlay} />
+        <Box bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box {...patternOverlay} opacity={0.3} />
           <Container maxW="6xl" position="relative" zIndex={1}>
+            <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+              Industries
+            </Text>
             <Heading
               as="h2"
               fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -328,26 +345,42 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
             >
               Industries We Serve
             </Heading>
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
-              {service.industries.map((ind, i) => (
-                <Box key={i} p={6} borderWidth="1px" borderColor={dividerColor} borderRadius="lg">
-                  <Heading as="h3" size="sm" color={accentColor} mb={2}>
-                    {ind.name}
-                  </Heading>
-                  <Text color={textColor} fontSize="sm" lineHeight="1.6">
-                    {ind.description}
-                  </Text>
-                </Box>
-              ))}
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+              {service.industries.map((ind, i) => {
+                const IconComponent = getServiceIcon(ind.icon);
+                return (
+                  <Box
+                    key={i}
+                    p={6}
+                    bg={bgColor}
+                    borderRadius="lg"
+                    boxShadow="md"
+                    borderWidth="1px"
+                    borderColor={dividerColor}
+                  >
+                    <HStack align="flex-start" spacing={4} mb={3}>
+                      <Icon as={IconComponent} boxSize={6} color={accentColor} flexShrink={0} mt={0.5} />
+                      <Heading as="h3" size="md" color={headingColor} fontWeight="bold">
+                        {ind.name}
+                      </Heading>
+                    </HStack>
+                    <Text color={textColor} fontSize="sm" lineHeight="1.6">
+                      {ind.description}
+                    </Text>
+                  </Box>
+                );
+              })}
             </SimpleGrid>
           </Container>
         </Box>
       )}
 
-      {/* Why Choose Us - Benefits */}
-      <Box bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
-        <Box {...patternOverlay} opacity={0.3} />
+      {/* Benefits - 3x2 icon cards */}
+      <Box bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
         <Container maxW="6xl" position="relative" zIndex={1}>
+          <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+            Why Choose Us
+          </Text>
           <Heading
             as="h2"
             fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -359,28 +392,49 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
           >
             Why Partner with Tech Emulsion
           </Heading>
-          <Text color={textColor} maxW="2xl" mb={12}>
-            Our services augment your business with unparalleled expertise. Here&apos;s what you get:
+          <Text color={textColor} fontSize={{ base: "lg", md: "xl" }} maxW="2xl" mb={12} lineHeight="1.8">
+            Our services augment your business with unparalleled expertise. Unveil hallmarks that you&apos;ll get working with us:
           </Text>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
-            {service.benefits.map((b, i) => (
-              <VStack key={i} align="start" spacing={3} p={6} bg={bgColor} borderRadius="lg">
-                <Heading as="h3" size="sm" color={accentColor}>
-                  {b.title}
-                </Heading>
-                <Text color={textColor} fontSize="md" lineHeight="1.6">
-                  {b.description}
-                </Text>
-              </VStack>
-            ))}
+            {service.benefits.map((b, i) => {
+              const IconComponent = getServiceIcon(b.icon);
+              return (
+                <Box key={i} textAlign="center">
+                  <Box
+                    w={14}
+                    h={14}
+                    borderRadius="full"
+                    bg={sectionBg}
+                    borderWidth="1px"
+                    borderColor={dividerColor}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    mb={4}
+                    mx="auto"
+                  >
+                    <Icon as={IconComponent} boxSize={7} color={headingColor} />
+                  </Box>
+                  <Heading as="h3" size="md" color={headingColor} fontWeight="bold" mb={2}>
+                    {b.title}
+                  </Heading>
+                  <Text color={textColor} fontSize="md" lineHeight="1.6">
+                    {b.description}
+                  </Text>
+                </Box>
+              );
+            })}
           </SimpleGrid>
         </Container>
       </Box>
 
-      {/* FAQ */}
-      <Box bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+      {/* FAQ - Card grid layout with plus icon, accordion on click */}
+      <Box bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
         <Box {...patternOverlay} />
         <Container maxW="6xl" position="relative" zIndex={1}>
+          <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+            Support
+          </Text>
           <Heading
             as="h2"
             fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -388,24 +442,77 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
             color={headingColor}
             letterSpacing="-0.02em"
             lineHeight="1.1"
-            mb={12}
+            mb={4}
           >
             Frequently Asked Questions
           </Heading>
+          <Text color={textColor} fontSize={{ base: "lg", md: "xl" }} mb={12}>
+            Let&apos;s Explore Your Most Pressing Questions!
+          </Text>
           <Accordion allowMultiple>
-            {service.faqs.map((faq, i) => (
-              <AccordionItem key={i} borderColor={dividerColor}>
-                <AccordionButton py={6} _expanded={{ color: accentColor }}>
-                  <Box flex="1" textAlign="left" fontWeight="semibold">
-                    {faq.question}
+            <Box
+              display="grid"
+              gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+              gap={6}
+            >
+              {service.faqs.map((faq, i) => {
+                const isLastOdd =
+                  i === service.faqs.length - 1 && service.faqs.length % 2 === 1;
+                return (
+                  <Box
+                    key={i}
+                    gridColumn={isLastOdd ? { base: "1", md: "1 / -1" } : undefined}
+                    justifySelf={isLastOdd ? "center" : undefined}
+                    maxW={isLastOdd ? { base: "100%", md: "50%" } : undefined}
+                  >
+                    <AccordionItem
+                      borderRadius="lg"
+                      bg={bgColor}
+                      boxShadow="sm"
+                      borderWidth="1px"
+                      borderColor={dividerColor}
+                      overflow="hidden"
+                      _focusWithin={{ boxShadow: "md" }}
+                    >
+                      <AccordionButton
+                        py={6}
+                        px={6}
+                        textAlign="left"
+                        _expanded={{ color: accentColor }}
+                        sx={{
+                          "&[data-expanded] .icon-plus": { display: "none" },
+                          "&[data-expanded] .icon-minus": { display: "block" },
+                          "&:not([data-expanded]) .icon-plus": { display: "block" },
+                          "&:not([data-expanded]) .icon-minus": { display: "none" },
+                        }}
+                      >
+                        <Box flex="1" fontWeight="semibold" color={headingColor} pr={4}>
+                          {faq.question}
+                        </Box>
+                        <Icon
+                          as={FaPlus}
+                          className="icon-plus"
+                          boxSize={5}
+                          color={accentColor}
+                          flexShrink={0}
+                        />
+                        <Icon
+                          as={FaMinus}
+                          className="icon-minus"
+                          boxSize={5}
+                          color={accentColor}
+                          flexShrink={0}
+                          display="none"
+                        />
+                      </AccordionButton>
+                      <AccordionPanel px={6} pb={6} pt={0} color={textColor} lineHeight="1.7">
+                        {faq.answer}
+                      </AccordionPanel>
+                    </AccordionItem>
                   </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={6} color={textColor} lineHeight="1.7">
-                  {faq.answer}
-                </AccordionPanel>
-              </AccordionItem>
-            ))}
+                );
+              })}
+            </Box>
           </Accordion>
         </Container>
       </Box>

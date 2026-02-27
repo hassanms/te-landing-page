@@ -9,9 +9,11 @@ import { useDisclosure, useUpdateEffect } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import ThemeToggle from "./theme-toggle";
 
-// All portfolio case study detail pages get white nav text at top (excludes /portfolio list page)
-const isPortfolioCaseStudyPage = (pathname: string) =>
-  pathname.startsWith("/portfolio/") || pathname === "/portfolio-v4";
+// Portfolio and services detail pages get white nav text at top (excludes list pages)
+const isHeroDetailPage = (pathname: string) =>
+  pathname.startsWith("/portfolio/") ||
+  pathname === "/portfolio-v4" ||
+  pathname.startsWith("/services/");
 
 const NO_THEME_TOGGLE_PATHS = [
   "/index-v2",
@@ -29,7 +31,7 @@ const Navigation: React.FC<NavigationProps> = ({ isScrolled = true }) => {
   const useWhiteNav =
     colorMode === "light" &&
     !isScrolled &&
-    isPortfolioCaseStudyPage(router.pathname);
+    isHeroDetailPage(router.pathname);
   
   const hideThemeToggle = NO_THEME_TOGGLE_PATHS.some((path) => router.pathname === path);
 

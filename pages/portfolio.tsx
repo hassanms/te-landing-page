@@ -38,7 +38,7 @@ const portfolioItems: Array<{
   image: string;
   href: string;
 }> = [
-  { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Enterprise", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
+  { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Professional Audiovisual (Pro AV)", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
   { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/campaignos" },
   { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/List Images/The Meatery.jpg", href: "/portfolio/meatery" },
   { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/Macromascot.jpg", href: "/portfolio/macromascot" },
@@ -60,7 +60,7 @@ const portfolioItems: Array<{
 ];
 
 const technologies = ["All", "AI Solution", "SaaS Platform", "Mobile App", "Blockchain"];
-const industries = ["All", "Advertising", "Healthcare", "Automotive", "Packaging", "E-commerce", "Media", "Retail", "Marketing", "Design & Development", "Sales & Marketing", "Gaming", "Agriculture", "Business", "NFT & Digital Art", "AI & Automation", "Media & Entertainment", "Enterprise", "Recruitment"];
+const industries = ["All", "Advertising", "Healthcare", "Automotive", "Packaging", "E-commerce", "Media", "Retail", "Marketing", "Design & Development", "Sales & Marketing", "Gaming", "Agriculture", "Business", "NFT & Digital Art", "AI & Automation", "Media & Entertainment", "Enterprise", "Professional Audiovisual (Pro AV)", "Recruitment"];
 
 function ProjectCard({
   title,
@@ -85,12 +85,36 @@ function ProjectCard({
   return (
     <Link as={NextLink} href={href} _hover={{ textDecoration: "none" }}>
       <Box role="group">
-        <Flex justify="space-between" align="flex-start" mb={3} gap={4}>
-          <Heading as="h3" size="lg" color={headingColor} fontWeight="bold" flex="1" minW={0}>
+        <Flex
+          justify="space-between"
+          align="flex-start"
+          mb={3}
+          gap={4}
+          direction={{ base: "column", md: "row" }}
+        >
+          <Heading
+            as="h3"
+            fontSize={{ base: "xl", md: "2xl" }}
+            color={headingColor}
+            fontWeight="bold"
+            flex="1"
+            minW={0}
+          >
             {title}
           </Heading>
-          <HStack spacing={2} flexWrap="wrap" justifyContent="flex-end" flexShrink={0}>
-            <Text color={textColor} fontSize="sm" whiteSpace="nowrap">
+          <HStack
+            spacing={2}
+            flexWrap="wrap"
+            justifyContent={{ base: "flex-start", md: "flex-end" }}
+            alignItems="flex-start"
+            flexShrink={0}
+          >
+            <Text
+              color={textColor}
+              fontSize={{ base: "xs", md: "sm" }}
+              whiteSpace="normal"
+              textAlign={{ base: "left", md: "right" }}
+            >
               {industry}, {platformLabel}
             </Text>
           </HStack>

@@ -62,8 +62,11 @@ import {
   HighlightsItem,
   HighlightsWhatWeDo,
 } from "components/highlights";
+import { ServiceCard, ImpactBar } from "components/services";
+import { servicesData, impactStats } from "data/services";
 
 import { FiLinkedin, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { FaChevronRight } from "react-icons/fa";
 import Contact from "components/Contact";
 import FirstIcon from "components/icons/firstIcon";
 import Innovation from "components/icons/Inovation";
@@ -1249,108 +1252,61 @@ const AboutUsSection: React.FC = () => {
 };
 
 const HighlightsSection: React.FC = () => {
-  const { value, onCopy, hasCopied } = useClipboard("yarn add @saas-ui/react");
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
-  const HighlightsItems = [
-    {
-      title: "Agentic AI Engineering",
-      description:
-        "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
-      image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
-      alt: "Agentic AI Engineering",
-    },
-    {
-      title: "Next-Gen SaaS Development",
-      description:
-        "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",
-      image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
-      alt: "Next-Gen SaaS Development",
-    },
-    {
-      title: "Innovative Website Development",
-      description:
-        "From concept to launch, we create responsive and visually stunning websites that captivate your audience and drive business growth.",
-      image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
-      alt: "Innovative Website Development",
-    },
-    {
-      title: "Custom Chrome Extensions",
-      description:
-        "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives.",
-      image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
-      alt: "Custom Chrome Extensions",
-    },
-    {
-      title: "Expert DevOps Solutions",
-      description:
-        "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases.",
-      image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
-      alt: "Expert DevOps Solutions",
-    },
-    {
-      title: "Generative AI Integration",
-      description:
-        "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency.",
-      image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
-      alt: "Generative AI Integration",
-    },
-    {
-      title: "QA Testing & Automation",
-      description:
-        "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision.",
-      image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
-      alt: "QA Testing & Automation",
-    },
-    {
-      title: "Automation Solutions",
-      description:
-        "Streamline your business processes with our cutting-edge automation services. We design and implement automated workflows to enhance productivity, reduce manual errors, and optimize efficiency.",
-      image: "/assets/whatWeDo/automation.png",
-      alt: "Automation Solutions",
-    },
-  ];
+
   return (
-    <Box
-      id="services"
-      sx={{
-        scrollMarginTop: "50px",
-      }}>
-      <Container maxW="container.xl" py="5">
-        <Divider />
+    <Box id="services" sx={{ scrollMarginTop: "50px" }}>
+      <Container maxW="container.xl" py="5" mb="5">
+        <Box
+          h="1px"
+          w="100%"
+          bgGradient={
+            colorMode === "dark"
+              ? "linear(to-r, transparent, teal.400, transparent)"
+              : "linear(to-r, transparent, teal.500, transparent)"
+          }
+          opacity={0.6}
+        />
+
         <Box
           display={{ base: "block", md: "flex" }}
           px="4"
           mt={10}
-          justifyContent={"space-between"}>
-          <Box>
+          justifyContent="space-between"
+          alignItems="flex-end"
+          gap={8}>
+          <Box flex={1}>
             <Heading
               as="h2"
               size="md"
               color={colorMode === "dark" ? "white" : "teal.500"}
-              sx={{
-                textTransform: "uppercase",
-              }}>
+              sx={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>
               What We Do
             </Heading>
             <Heading
               as="h1"
               mt="2"
               sx={{
-                fontSize: {
-                  base: "2rem",
-                  md: "2rem",
-                },
-                width: {
-                  base: "100%",
-                  md: "70%",
-                },
+                fontSize: { base: "2.25rem", md: "2.5rem" },
+                width: { base: "100%", md: "70%" },
               }}>
-              We help to build clients their dream projects
+              We design, build, and scale AI-driven software systems for ambitious teams
             </Heading>
+            <Text
+              py="4"
+              color={textColor}
+              fontSize="lg"
+              fontWeight="500"
+              mt="2"
+              width={{ base: "100%", md: "75%" }}
+              textAlign="left"
+              lineHeight="1.7">
+              From AI-powered agents to scalable SaaS platforms, custom websites, and
+              automation—we deliver technology solutions that drive growth and efficiency.
+            </Text>
           </Box>
 
-          {/* Explore services */}
           <ButtonGroup
             spacing={4}
             display="flex"
@@ -1362,8 +1318,8 @@ const HighlightsSection: React.FC = () => {
               size="lg"
               href="/services"
               sx={{
-                bg: " none",
-                fontSize: "1.5rem",
+                bg: "none",
+                fontSize: "1.25rem",
                 color: colorMode === "light" ? "teal.500 !important" : "white",
                 textDecoration: "underline",
                 ":hover": {
@@ -1372,43 +1328,30 @@ const HighlightsSection: React.FC = () => {
                   textDecoration: "none",
                 },
               }}>
-              Explore Services
+              View all services
             </ButtonLink>
           </ButtonGroup>
         </Box>
 
-        <HighlightsWhatWeDo>
-          {HighlightsItems?.map((item, index) => (
-            <HighlightsItem
-              key={index}
-              colSpan={[1, null, 2]}
-              title={""}
-              padding={0}>
-              <Image
-                src={item.image}
-                alt={item.alt}
-                width={1200}
-                height={300}
-                style={{
-                  width: "100%",
-                  height: "300px",
-                  objectFit:
-                    item.title === "Agentic AI Engineering" ? "cover" : "fill",
-                }}
-              />
-              <Box px="4" py="6" borderRadius="8px" w="100%">
-                <Heading as="h2" size="lg" mb={4}>
-                  {item.title}
-                </Heading>
-                <VStack alignItems="flex-start" spacing="8">
-                  <Text color={textColor} fontSize="lg">
-                    {item.description}
-                  </Text>
-                </VStack>
-              </Box>
-            </HighlightsItem>
+        {/* Services grid */}
+        <SimpleGrid
+          columns={{ base: 1, md: 2, lg: 3 }}
+          spacing={6}
+          w="100%"
+          mt={10}
+          px="4"
+        >
+          {servicesData.map((service) => (
+            <ServiceCard
+              key={service.id}
+              slug={service.slug}
+              title={service.title}
+              shortDescription={service.shortDescription}
+              image={service.image}
+              compact
+            />
           ))}
-        </HighlightsWhatWeDo>
+        </SimpleGrid>
       </Container>
     </Box>
   );
@@ -1464,8 +1407,9 @@ const Portfolio: React.FC = () => {
   const homePortfolioItems = [
     {
       title: "AVL Copilot",
-      industry: "Enterprise",
+      industry: "Professional Audiovisual (Pro AV)",
       platform: "AI Solution",
+      platforms: ["AI Solution", "SaaS Platform"],
       image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
       href: "/portfolio/avl-copilot",
     },
@@ -1487,6 +1431,7 @@ const Portfolio: React.FC = () => {
       title: "StaffUp",
       industry: "Recruitment",
       platform: "SaaS Platform",
+      platforms: ["AI Solution", "SaaS Platform"],
       image: "/assets/portfolio/New/List Images/StaffUp.png",
       href: "/portfolio/staffup",
     },
@@ -1604,13 +1549,37 @@ const Portfolio: React.FC = () => {
             <Box key={item.title}>
               <Link as={NextLink} href={item.href} _hover={{ textDecoration: "none" }}>
                 <Box role="group">
-                  <Flex justify="space-between" align="flex-start" mb={3} gap={4}>
-                    <Heading as="h3" size="lg" color={cardHeadingColor} fontWeight="bold" flex="1" minW={0}>
+                  <Flex
+                    justify="space-between"
+                    align="flex-start"
+                    mb={3}
+                    gap={4}
+                    direction={{ base: "column", md: "row" }}
+                  >
+                    <Heading
+                      as="h3"
+                      fontSize={{ base: "xl", md: "2xl" }}
+                      color={cardHeadingColor}
+                      fontWeight="bold"
+                      flex="1"
+                      minW={0}
+                    >
                       {item.title}
                     </Heading>
-                    <HStack spacing={2} flexWrap="wrap" justifyContent="flex-end" flexShrink={0}>
-                      <Text color={cardTextColor} fontSize="sm" whiteSpace="nowrap">
-                        {item.industry}, {item.platform}
+                    <HStack
+                      spacing={2}
+                      flexWrap="wrap"
+                      justifyContent={{ base: "flex-start", md: "flex-end" }}
+                      alignItems="flex-start"
+                      flexShrink={0}
+                    >
+                      <Text
+                        color={cardTextColor}
+                        fontSize={{ base: "xs", md: "sm" }}
+                        whiteSpace="normal"
+                        textAlign={{ base: "left", md: "right" }}
+                      >
+                        {item.industry}, {item.platforms ? item.platforms.join(" + ") : item.platform}
                       </Text>
                     </HStack>
                   </Flex>
@@ -1679,6 +1648,9 @@ const heroScrollAnimation = keyframes`
 const SocialProofSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
+  const logoFilterLight = "brightness(0) invert(1)";
+  const logoFilterDark = "brightness(0) invert(1)";
+  const logoFilter = useColorModeValue(logoFilterLight, logoFilterDark);
 
   return (
     <Box
@@ -1764,7 +1736,7 @@ const SocialProofSection: React.FC = () => {
                 width: "110px",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1783,7 +1755,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1801,7 +1773,7 @@ const SocialProofSection: React.FC = () => {
                 width: "100px",
                 cursor: "pointer",
                 marginTop: "11px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1819,7 +1791,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1837,7 +1809,7 @@ const SocialProofSection: React.FC = () => {
                 width: "180px",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1855,7 +1827,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1906,7 +1878,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "30px",
                 width: "auto",
                 cursor: "pointer",
-                // Already white, no filter needed
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1924,7 +1896,7 @@ const SocialProofSection: React.FC = () => {
                 width: "120px",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1941,7 +1913,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1960,7 +1932,7 @@ const SocialProofSection: React.FC = () => {
                 height: "120px",
                 cursor: "pointer",
                 marginTop: "5px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1979,7 +1951,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -1996,7 +1968,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "120px",
                 width: "120",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2013,7 +1985,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2047,7 +2019,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "130px",
                 cursor: "pointer",
-                // Already white, no filter needed
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2064,7 +2036,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "60px",
                 width: "90px",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2081,12 +2053,12 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
           <Tooltip label="Bipcards" hasArrow>
-            <Box cursor="pointer" filter="brightness(0) invert(1)">
+            <Box cursor="pointer" filter={logoFilter}>
               <Logo2 />
             </Box>
           </Tooltip>
@@ -2112,7 +2084,7 @@ const SocialProofSection: React.FC = () => {
                 width: "110px",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2131,7 +2103,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2149,7 +2121,7 @@ const SocialProofSection: React.FC = () => {
                 width: "100px",
                 cursor: "pointer",
                 marginTop: "11px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2167,7 +2139,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2185,7 +2157,7 @@ const SocialProofSection: React.FC = () => {
                 width: "180px",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2203,7 +2175,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2254,7 +2226,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "30px",
                 width: "auto",
                 cursor: "pointer",
-                // Already white, no filter needed
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2272,7 +2244,7 @@ const SocialProofSection: React.FC = () => {
                 width: "120px",
                 cursor: "pointer",
                 marginTop: "10px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2289,7 +2261,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2308,7 +2280,7 @@ const SocialProofSection: React.FC = () => {
                 height: "120px",
                 cursor: "pointer",
                 marginTop: "5px",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2327,7 +2299,7 @@ const SocialProofSection: React.FC = () => {
                 width: "auto",
                 height: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2344,7 +2316,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "120px",
                 width: "120",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2361,7 +2333,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2395,7 +2367,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "40px",
                 width: "130px",
                 cursor: "pointer",
-                // Already white, no filter needed
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2412,7 +2384,7 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "60px",
                 width: "90px",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
@@ -2429,12 +2401,12 @@ const SocialProofSection: React.FC = () => {
                 maxHeight: "50px",
                 width: "auto",
                 cursor: "pointer",
-                filter: "brightness(0) invert(1)",
+                filter: logoFilter,
               }}
             />
           </Tooltip>
           <Tooltip label="Bipcards" hasArrow>
-            <Box cursor="pointer" filter="brightness(0) invert(1)">
+            <Box cursor="pointer" filter={logoFilter}>
               <Logo2 />
             </Box>
           </Tooltip>

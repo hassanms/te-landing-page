@@ -52,7 +52,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Faq } from "components/faq";
 
 import { ButtonLink } from "components/button-link/button-link";
-import { Testimonial, Testimonials } from "components/testimonials";
+import { Testimonial } from "components/testimonials";
 
 import faq from "data/faq";
 import testimonials from "data/testimonials";
@@ -2418,313 +2418,83 @@ const SocialProofSection: React.FC = () => {
 
 const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
-  const [showMore, setShowMore] = React.useState(false);
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.items.length - 1 ? 0 : prevIndex + 1,
-    );
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.items.length - 1 : prevIndex - 1,
-    );
-  };
 
   React.useEffect(() => {
-    // Only auto-rotate testimonials on larger screens and at a slower interval
-    if (isSmall) return;
-
     const interval = setInterval(() => {
-      handleNext();
-    }, 8000);
-
+      setCurrentIndex((prev) =>
+        prev === testimonials.items.length - 1 ? 0 : prev + 1,
+      );
+    }, 6000);
     return () => clearInterval(interval);
-  }, [isSmall]);
-  const columns = React.useMemo(() => {
-    return testimonials.items.reduce<Array<typeof testimonials.items>>(
-      (columns, t, i) => {
-        columns[i % 2 || i % 3].push(t);
-
-        return columns;
-      },
-      [[], [], []],
-    );
   }, []);
 
-  if (isSmall) {
-    return (
-      <Box position="relative" overflow="hidden">
-        <Container
-          maxW="container.xl"
-          pt={{ base: 40, md: 40, lg: 20 }}
-          pb="20"
-          id="testimonials">
-          <Stack
-            direction={{
-              base: "column",
-              md: "column",
-              lg: "column",
-              xl: "row",
-            }}
-            alignItems="flex-start">
-            <Testimonials
-              title={testimonials.title}
-              columns={[1, 1, 1, 2, 3]}
-              innerWidth="container.xl">
-              {!showMore ? (
-                <>
-                  {columns
-                    ?.map((column) => column.slice(0, 1))
-                    .map((column, i) => (
-                      <Stack key={i}>
-                        {column.map((t, i) => (
-                          <Testimonial key={i} {...t} />
-                        ))}
-                      </Stack>
-                    ))}
-                  <Link
-                    href="#testimonials"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}>
-                    <Button
-                      onClick={() => {
-                        setShowMore(true);
-                      }}
-                      sx={{
-                        fontSize: "xl",
-                        marginTop: "2rem",
-                        padding: "30px",
-                        background: "transparent",
-                        color: colorMode === "dark" ? "white" : "teal.500",
-                        boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
-                        textDecoration: "none",
-                      }}>
-                      Show more
-                      <ChevronDownIcon
-                        style={{
-                          width: "25px",
-                          height: "25px",
-                          marginLeft: 3,
-                          marginTop: 2,
-                          color: colorMode === "dark" ? "white" : "teal.500",
-                        }}
-                      />
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <FallInPlace delay={0.8}>
-                    <Box
-                      height={showMore ? "800px" : "auto"}
-                      overflow={showMore ? "auto" : ""}>
-                      {columns?.map((column, i) => (
-                        <Stack key={i}>
-                          {column.map((t, i) => (
-                            <Testimonial key={i} {...t} />
-                          ))}
-                        </Stack>
-                      ))}
-                    </Box>
-                  </FallInPlace>
-                  <Link
-                    href="#testimonials"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}>
-                    <Button
-                      onClick={() => {
-                        setShowMore(false);
-                      }}
-                      sx={{
-                        fontSize: "xl",
-                        marginTop: "2rem",
-                        padding: "30px",
-                        background: "transparent",
-                        color: colorMode === "dark" ? "white" : "teal.500",
-                        boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
-                        textDecoration: "none",
-                      }}>
-                      Show less
-                      <ChevronUpIcon
-                        style={{
-                          width: "25px",
-                          height: "25px",
-                          marginLeft: 3,
-                          marginTop: 2,
-                          color: colorMode === "dark" ? "white" : "teal.500",
-                        }}
-                      />
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </Testimonials>
-          </Stack>
-        </Container>
-      </Box>
-    );
-  }
   return (
     <Box
       id="testimonials"
-      py="10"
-      color="white"
-      textAlign="center"
-      height={[null, null, null]}>
-      <Container maxW="container.xl" py="5" mb="5">
+      position="relative"
+      overflow="hidden"
+      py={{ base: 16, md: 20 }}
+      pt={{ base: 40, md: 40, lg: 20 }}
+    >
+      <Container maxW="container.xl">
         <Box
           display="flex"
-          flexDirection={"column"}
+          flexDirection="column"
+          alignItems="center"
+          textAlign="center"
+          mb={{ base: 10, md: 14 }}
+        >
+          <Heading
+            as="h2"
+            size="md"
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            sx={{
+              textTransform: "uppercase",
+              letterSpacing: "wider",
+            }}
+          >
+            TESTIMONIALS
+          </Heading>
+          <Heading
+            as="h1"
+            mt={3}
+            color={colorMode === "dark" ? "white" : "gray.800"}
+            fontSize={{ base: "2rem", md: "2.5rem" }}
+            fontWeight="bold"
+          >
+            Hear From Our Clients
+          </Heading>
+        </Box>
+
+        <Box
+          display="flex"
           justifyContent="center"
           alignItems="center"
-          gap="4"
-          sx={{
-            // add transition upo changing the testimonial
-            transition: "all 0.5s ease",
-          }}
-          mt={0}
-          w={"95%"}
-          marginLeft={"20px"}>
-          <Box mb={5} maxW={"60%"}>
-            <Heading
-              as="h2"
-              size="md"
-              color={colorMode === "dark" ? "white" : "teal.500"}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "100%",
-                textTransform: "uppercase",
-              }}>
-              TESTIMONIALS
-            </Heading>
-            <Heading
-              as="h1"
-              mt="5"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                color: colorMode === "dark" ? "white" : "black",
-                fontSize: {
-                  base: "2rem",
-                  md: "2rem",
-                },
-                width: "100%",
-              }}>
-              Hear From Our Clients
-            </Heading>
-            <Text
-              color={textColor}
-              fontSize="lg"
-              fontWeight={"500"}
-              mt="5"
-              px="10"
-              justifyContent={"center"}
-              width={{ base: "100%", md: "100%" }}
-              align={"center"}>
-              {`Discover what our clients have to say about their experiences with us.
-              Hear firsthand how we've helped businesses grow, innovate, and achieve success through our dedicated services and collaborative approach.`}
-            </Text>
-          </Box>
+          w="100%"
+          minH={{ base: "320px", md: "360px" }}
+        >
           <Box
-            display="flex"
-            flexDirection={"row"}
-            justifyContent="space-between"
-            alignItems="center"
+            key={currentIndex}
+            w="100%"
+            maxW={{ base: "340px", md: "480px", lg: "560px" }}
+            mx="auto"
             sx={{
-              width: "100%",
-              padding: "0px",
-              margin: "0px",
+              animation: "fadeIn 0.5s ease-in-out",
+              "@keyframes fadeIn": {
+                "0%": { opacity: 0 },
+                "100%": { opacity: 1 },
+              },
             }}
-            width={"100%"}
-            height={"50vh"}>
-            {/* Previous button */}
-            <Button
-              onClick={handlePrev}
-              variant="contained"
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                ml: 2,
-                background: "gray.300",
-                color: "gray.800",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                ":hover": {
-                  bg: "teal.500",
-                  color: "white",
-                  fontWeight: "bold",
-                },
-              }}>
-              <ChevronLeftIcon
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginRight: 3,
-                }}
-              />
-            </Button>
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                transition: "all 0.5s ease",
-                animation: `${
-                  currentIndex % 2 === 0 || currentIndex % 3 === 0
-                    ? "fadeOut"
-                    : "fadeIn"
-                } 0.5s`,
-              }}>
-              {/* Testimonial item */}
-              <Testimonial {...testimonials.items[currentIndex]} />
-            </Box>
-
-            {/* Next button */}
-            <Button
-              onClick={handleNext}
-              variant="contained"
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-
-                ml: 2,
-                background: "gray.300",
-                color: "gray.800",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                ":hover": {
-                  bg: "teal.500",
-                  color: "white",
-                  fontWeight: "bold",
-                },
-              }}>
-              <ChevronRightIcon
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginLeft: 3,
-                }}
-              />
-            </Button>
+          >
+            <Testimonial
+              {...testimonials.items[currentIndex]}
+              minW="100%"
+              maxW="100%"
+            />
           </Box>
         </Box>
+
         <Box flex="1" mt={20}>
           <Heading
             as="h2"

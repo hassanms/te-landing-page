@@ -33,6 +33,7 @@ import {
 const Services = () => {
   const { colorMode } = useColorMode();
   const headingColor = useColorModeValue("gray.800", "white");
+  const mainHeadingColor = useColorModeValue("black", "white");
   const textColor = useColorModeValue("gray.600", "gray.100");
   const dividerColor = useColorModeValue("gray.200", "gray.600");
 
@@ -208,18 +209,27 @@ const Services = () => {
             borderColor={dividerColor}
           />
 
-          {/* Value propositions - same style as home "How We Empower Your Business" */}
+          {/* Value propositions - same style as Trusted by Leading Brands */}
           <Box py={{ base: 12, md: 16 }}>
-            <Heading
-              as="h2"
-              size="md"
-              fontWeight="bold"
-              color={colorMode === "dark" ? "white" : "teal.500"}
-              mb={8}
-              sx={{ textTransform: "uppercase" }}
-            >
-              How We Help You Succeed
-            </Heading>
+            <Box mb={8} maxW="100%" textAlign="center">
+              <Heading
+                as="h2"
+                size="md"
+                color={colorMode === "dark" ? "white" : "teal.500"}
+                sx={{ textTransform: "uppercase" }}
+              >
+                How We
+              </Heading>
+              <Heading
+                as="h1"
+                mt={2}
+                color={mainHeadingColor}
+                fontSize={{ base: "2rem", md: "2rem" }}
+                fontWeight="bold"
+              >
+                Help You Succeed
+              </Heading>
+            </Box>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={6}>
               {mainValueProps.map((vp, i) => (
                 <ValuePropositionCard

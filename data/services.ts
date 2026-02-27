@@ -195,57 +195,57 @@ export const servicesData: ServiceData[] = [
     slug: "agentic-ai-engineering",
     title: "Agentic AI Engineering",
     shortDescription:
-      "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
+      "We build autonomous AI agents that reason, plan, and execute multi-step tasks—from sales qualification chatbots to RAG-powered knowledge systems. Proven with Pack Assist, Farmin, and Content Compass.",
     fullDescription:
-      "Agentic AI Engineering empowers your business with autonomous AI agents that can perform complex tasks, make decisions, and interact with users naturally. We build intelligent systems that automate workflows, provide intelligent support, analyze data, and integrate seamlessly with your existing infrastructure.",
+      "Agentic AI Engineering delivers autonomous AI systems that perform complex tasks with minimal human intervention. We've built cost-optimized AI sales agents (Pack Assist) with hybrid qualification flows and RAG-based fact-checking, object detection platforms (Farmin) using YOLO and satellite imagery, and multimodal analytics (Content Compass) with OpenAI and Twelve Labs. Our agents use LangGraph, LangChain, and custom frameworks—integrating with your APIs, databases, and tools for workflows that scale.",
     image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
     tags: ["AI", "Automation", "Agents"],
     valueProps: [
       {
-        title: "Autonomous Decision-Making",
-        description: "AI agents that reason, plan, and execute tasks with minimal human intervention.",
+        title: "Cost-Optimized Agents",
+        description: "Hybrid flows and model selection to reduce AI costs while maintaining accuracy—as we did with Pack Assist.",
         icon: "FiZap",
       },
       {
-        title: "Seamless Integration",
-        description: "Connect agents to your existing systems, APIs, and data sources.",
-        icon: "FiLink",
+        title: "RAG & Fact-Checking",
+        description: "Eliminate hallucinations with retrieval-augmented generation and knowledge bases.",
+        icon: "FiDatabase",
       },
       {
-        title: "Personalized Interactions",
-        description: "Deliver tailored experiences that adapt to each user's context.",
+        title: "Tool & API Integration",
+        description: "Agents that connect to your APIs, databases, and business tools for real workflows.",
+        icon: "FiTool",
+      },
+      {
+        title: "Human-in-the-Loop",
+        description: "CSR dashboards and escalation paths for when agents need human support.",
         icon: "FiUser",
-      },
-      {
-        title: "Continuous Learning",
-        description: "Agents that improve over time through feedback and new data.",
-        icon: "FiTrendingUp",
       },
     ],
     offerings: [
       {
-        title: "AI Agent Architecture",
+        title: "AI Sales & Qualification Agents",
         description:
-          "Design and implement scalable agent architectures using LangGraph, LangChain, or custom frameworks.",
-        icon: "FiCpu",
+          "Chatbots that qualify leads, answer FAQs, and hand off to humans—like Pack Assist for packaging sales.",
+        icon: "FiMessageCircle",
       },
       {
         title: "RAG & Knowledge Systems",
         description:
-          "Build retrieval-augmented generation systems for document Q&A, knowledge bases, and intelligent search.",
+          "Document Q&A, semantic search, and fact-checking with Pinecone, pgvector, or custom vector stores.",
         icon: "FiDatabase",
       },
       {
-        title: "Multi-Agent Orchestration",
+        title: "Object Detection & Computer Vision",
         description:
-          "Coordinate multiple specialized agents to handle complex, multi-step workflows.",
-        icon: "FiGitMerge",
+          "YOLO, OpenCV, and satellite imagery analysis—as in Farmin for cars, ships, and change detection.",
+        icon: "FiImage",
       },
       {
-        title: "Tool & API Integration",
+        title: "Multimodal AI Analysis",
         description:
-          "Integrate agents with external APIs, databases, and business tools.",
-        icon: "FiTool",
+          "Text, image, video, and document analysis with OpenAI, Twelve Labs, and custom pipelines.",
+        icon: "FiCpu",
       },
     ],
     industries: sharedIndustries,
@@ -254,17 +254,17 @@ export const servicesData: ServiceData[] = [
       {
         question: "What is agentic AI and how does it differ from traditional AI?",
         answer:
-          "Agentic AI refers to AI systems that can autonomously plan, reason, and execute multi-step tasks. Unlike traditional AI that responds to single prompts, agentic AI can use tools, access external data, and make decisions to achieve complex goals with minimal human intervention.",
+          "Agentic AI refers to AI systems that can autonomously plan, reason, and execute multi-step tasks. Unlike traditional AI that responds to single prompts, agentic AI can use tools, access external data, and make decisions to achieve complex goals with minimal human intervention. We've built agents like Pack Assist (sales qualification) and Content Compass (multimodal analytics) that demonstrate this capability.",
       },
       {
         question: "What technologies do you use for agentic AI development?",
         answer:
-          "We use frameworks like LangGraph, LangChain, and custom Python/TypeScript implementations. We integrate with OpenAI, Anthropic, and open-source models, along with vector databases (Pinecone, pgvector) and tool-calling APIs.",
+          "We use LangGraph, LangChain, Python FastAPI, React, and custom implementations. We integrate OpenAI (GPT-4o-mini, GPT-4.1), Anthropic, Pinecone, MongoDB, and tool-calling APIs—as seen in Pack Assist, Farmin, and Content Compass.",
       },
       {
         question: "Can agentic AI integrate with our existing systems?",
         answer:
-          "Yes. We design agents to integrate with your existing APIs, databases, CRMs, and internal tools. We ensure secure, authenticated access and minimal disruption to current workflows.",
+          "Yes. We design agents to integrate with your existing APIs, databases, CRMs, and internal tools. Pack Assist uses a Zendesk-style agent dashboard; Farmin integrates with Mapbox and AWS; Content Compass connects to Supabase and Apify. We ensure secure, authenticated access and minimal disruption.",
       },
     ],
   },
@@ -273,56 +273,56 @@ export const servicesData: ServiceData[] = [
     slug: "next-gen-saas",
     title: "Next-Gen SaaS Development",
     shortDescription:
-      "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",
+      "We build scalable SaaS platforms from MVP to enterprise—proven with Atarim ($500K funded), Rack Room, Farmin, and Podcast Beacon. Cloud-native, subscription billing, and integrations built in.",
     fullDescription:
-      "Next-Gen SaaS Development delivers cloud-native, scalable platforms that grow with your business. From MVP to enterprise-grade applications, we build SaaS products with modern tech stacks, multi-tenancy, billing, and analytics built in.",
+      "Next-Gen SaaS Development delivers cloud-native platforms that scale with your business. We transformed Atarim from a WordPress plugin into a universal visual collaboration SaaS with AWS, region-based load balancing, and auto-scaling. We built Rack Room for complex booking management, Twilio SMS, and Gantt dashboards. Farmin combines AI and SaaS for satellite image analysis. Our stack: Next.js, React, Supabase, AWS, Stripe—with multi-tenancy, billing, and analytics from day one.",
     image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
     tags: ["SaaS", "Cloud", "Scalable"],
     valueProps: [
       {
-        title: "Cloud-Native Architecture",
-        description: "Built for scale, reliability, and global distribution from day one.",
+        title: "Cloud-Native & Scalable",
+        description: "AWS, region-based load balancing, and auto-scaling—as we did for Atarim.",
         icon: "FiCloud",
-      },
-      {
-        title: "Multi-Tenancy",
-        description: "Secure, isolated data and configs for each customer or organization.",
-        icon: "FiUsers",
-      },
-      {
-        title: "Modern Tech Stack",
-        description: "React, Next.js, Node.js, and cloud services for fast, maintainable apps.",
-        icon: "FiCode",
       },
       {
         title: "Subscription & Billing",
         description: "Stripe, Paddle, or custom billing integrated from the start.",
         icon: "FiCreditCard",
       },
+      {
+        title: "Modern Tech Stack",
+        description: "Next.js, React, Supabase, Railway—fast, maintainable, and proven.",
+        icon: "FiCode",
+      },
+      {
+        title: "Integrations Built-In",
+        description: "Slack, Jira, Asana, Twilio—we integrate with the tools your users already use.",
+        icon: "FiLink",
+      },
     ],
     offerings: [
       {
         title: "SaaS MVP Development",
         description:
-          "Rapidly build and launch your SaaS MVP with core features and scalable architecture.",
+          "Rapidly build and launch your SaaS MVP—Pack Assist was delivered in 8 weeks with full agent dashboard.",
         icon: "FiSend",
       },
       {
-        title: "Full-Stack SaaS Platforms",
+        title: "Visual Collaboration & Project Management",
         description:
-          "End-to-end development of CRM, project management, analytics, and industry-specific tools.",
+          "Kanban boards, WYSIWYG editors, visual feedback—like Atarim for design teams.",
         icon: "FiLayers",
       },
       {
-        title: "API & Integrations",
+        title: "Resource & Booking Management",
         description:
-          "REST APIs, webhooks, and integrations with third-party services.",
-        icon: "FiZap",
+          "Complex scheduling, Gantt charts, client tracking—as in Rack Room.",
+        icon: "FiClock",
       },
       {
         title: "Admin & Analytics Dashboards",
         description:
-          "Powerful dashboards for insights, user management, and business metrics.",
+          "Real-time insights, user management, and business metrics.",
         icon: "FiBarChart",
       },
     ],
@@ -332,17 +332,17 @@ export const servicesData: ServiceData[] = [
       {
         question: "What types of SaaS platforms does Tech Emulsion develop?",
         answer:
-          "We develop CRM systems, project management tools, e-commerce platforms, learning management systems, analytics dashboards, and industry-specific solutions. All are tailored to your business needs with scalable, secure architecture.",
+          "We develop visual collaboration tools (Atarim), resource and booking management (Rack Room), AI-powered analytics (Farmin, Content Compass), and industry-specific SaaS. All are tailored to your business with scalable, secure architecture.",
       },
       {
         question: "How long does it take to build a SaaS MVP?",
         answer:
-          "Typical MVP timelines range from 8–16 weeks depending on scope, integrations, and complexity. We can provide a detailed timeline after a discovery call.",
+          "Typical MVP timelines range from 8–16 weeks. Pack Assist was delivered in 8 weeks; we can provide a detailed timeline after a discovery call.",
       },
       {
         question: "Do you support ongoing maintenance and updates?",
         answer:
-          "Yes. We offer ongoing maintenance, feature updates, and 24/7 support to keep your SaaS running smoothly and securely.",
+          "Yes. We offer ongoing maintenance, feature updates, and 24/7 support. Atarim and Rack Room run on infrastructure we built and continue to support.",
       },
     ],
   },
@@ -351,9 +351,9 @@ export const servicesData: ServiceData[] = [
     slug: "website-development",
     title: "Innovative Website Development",
     shortDescription:
-      "From concept to launch, we create responsive and visually stunning websites that captivate your audience and drive business growth.",
+      "High-performance, SEO-friendly websites and landing pages built with Next.js and React. Marketing sites, portfolios, and conversion-focused pages that drive growth.",
     fullDescription:
-      "Innovative Website Development delivers high-performance, SEO-friendly websites using Next.js, React, and modern design principles. We build marketing sites, landing pages, and web applications that convert visitors into customers.",
+      "Innovative Website Development delivers fast, SEO-optimized websites using Next.js, React, and modern design principles. We build marketing sites, landing pages, portfolios, and web applications—server-side rendering, optimized images, and Core Web Vitals in mind. Our portfolio includes client sites, campaign pages, and the Tech Emulsion site itself.",
     image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
     tags: ["Web", "Next.js", "SEO"],
     valueProps: [
@@ -410,7 +410,7 @@ export const servicesData: ServiceData[] = [
       {
         question: "Can you help with Next.js website development?",
         answer:
-          "Yes. We specialize in Next.js for high-performance, SEO-friendly websites. We handle responsive design, server-side rendering, API integration, and performance optimization.",
+          "Yes. We specialize in Next.js for high-performance, SEO-friendly websites. The Tech Emulsion site and our client projects use Next.js with responsive design, server-side rendering, and performance optimization.",
       },
       {
         question: "Do you offer custom website development?",
@@ -429,16 +429,16 @@ export const servicesData: ServiceData[] = [
     slug: "chrome-extensions",
     title: "Custom Chrome Extensions",
     shortDescription:
-      "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives.",
+      "We build Chrome extensions that extend your SaaS or workflow—like Atarim's extension for visual feedback on any website. Manifest V3 compliant, Web Store ready.",
     fullDescription:
-      "Custom Chrome Extensions extend your workflow and your users' experience. We build extensions for productivity, data capture, automation, and integrations—all compliant with Chrome Web Store policies and Manifest V3.",
+      "Custom Chrome Extensions extend your product into the browser. We built Atarim's Chrome extension to enable visual feedback on any website—not just WordPress. We build extensions for productivity, data capture, SaaS companions, and integrations—all compliant with Manifest V3 and Chrome Web Store policies.",
     image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
     tags: ["Chrome", "Productivity", "Extensions"],
     valueProps: [
       {
-        title: "Productivity Boost",
-        description: "Automate repetitive tasks and streamline workflows in the browser.",
-        icon: "FiZap",
+        title: "SaaS Companion",
+        description: "Extend your product into the browser—like Atarim's extension for feedback on any site.",
+        icon: "FiPackage",
       },
       {
         title: "Seamless Integration",
@@ -458,27 +458,27 @@ export const servicesData: ServiceData[] = [
     ],
     offerings: [
       {
+        title: "SaaS Companion Extensions",
+        description:
+          "Browser extensions that extend your SaaS—visual feedback, data capture, or workflow tools.",
+        icon: "FiPackage",
+      },
+      {
         title: "Productivity Extensions",
         description:
           "Bookmark managers, note-taking, tab management, and workflow automation.",
         icon: "FiTool",
       },
       {
-        title: "Data Capture & Scraping",
+        title: "Data Capture & Sync",
         description:
           "Extract and sync data from web pages to your systems (with consent and ToS compliance).",
         icon: "FiDatabase",
       },
       {
-        title: "SaaS Companion Extensions",
-        description:
-          "Browser extensions that extend your SaaS product's functionality.",
-        icon: "FiPackage",
-      },
-      {
         title: "Chrome Web Store Publishing",
         description:
-          "We handle submission, compliance, and updates for the Chrome Web Store.",
+          "We handle submission, compliance, and ongoing updates for the Chrome Web Store.",
         icon: "FiUpload",
       },
     ],
@@ -488,7 +488,7 @@ export const servicesData: ServiceData[] = [
       {
         question: "What can Chrome extensions be used for?",
         answer:
-          "Chrome extensions can automate tasks, capture data, integrate with SaaS products, enhance productivity, and provide custom browser experiences. We build extensions for productivity, data sync, and business-specific workflows.",
+          "Chrome extensions can extend your SaaS (like Atarim's visual feedback on any website), automate tasks, capture data, and integrate with your product. We build extensions for productivity, data sync, and business-specific workflows.",
       },
       {
         question: "Are your extensions Manifest V3 compliant?",
@@ -507,26 +507,26 @@ export const servicesData: ServiceData[] = [
     slug: "devops-solutions",
     title: "Expert DevOps Solutions",
     shortDescription:
-      "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases.",
+      "We scale and secure your infrastructure—AWS, region-based load balancing, auto-scaling, and CI/CD. Proven with Atarim, Farmin, and Rack Room.",
     fullDescription:
-      "Expert DevOps Solutions modernize your infrastructure and delivery pipeline. We implement CI/CD, containerization, cloud infrastructure, and monitoring so your team can ship faster and with confidence.",
+      "Expert DevOps Solutions modernize your infrastructure and delivery pipeline. We scaled Atarim on AWS with region-based load balancing and auto-scaling. We deployed Farmin for satellite image processing and Content Compass on Supabase Edge Functions. We implement CI/CD, containerization, cloud migration, and monitoring so your team can ship faster and with confidence.",
     image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
     tags: ["DevOps", "CI/CD", "Cloud"],
     valueProps: [
+      {
+        title: "Cloud Scaling",
+        description: "AWS, region-based load balancing, and auto-scaling—as we did for Atarim.",
+        icon: "FiCloud",
+      },
       {
         title: "CI/CD Pipelines",
         description: "Automated build, test, and deploy pipelines for faster releases.",
         icon: "FiGitMerge",
       },
       {
-        title: "Cloud Infrastructure",
-        description: "AWS, GCP, or Azure—infrastructure as code and best practices.",
-        icon: "FiCloud",
-      },
-      {
-        title: "Containerization",
-        description: "Docker, Kubernetes, and container orchestration for scalability.",
-        icon: "FiBox",
+        title: "Serverless & Edge",
+        description: "Supabase Edge Functions, serverless processing for scalable workloads.",
+        icon: "FiZap",
       },
       {
         title: "Monitoring & Alerts",
@@ -536,6 +536,12 @@ export const servicesData: ServiceData[] = [
     ],
     offerings: [
       {
+        title: "Cloud Infrastructure & Scaling",
+        description:
+          "AWS, GCP, or Azure—region-based load balancing, auto-scaling, and infrastructure as code.",
+        icon: "FiCloud",
+      },
+      {
         title: "CI/CD Setup",
         description:
           "GitHub Actions, GitLab CI, or Jenkins pipelines for automated testing and deployment.",
@@ -544,20 +550,14 @@ export const servicesData: ServiceData[] = [
       {
         title: "Cloud Migration",
         description:
-          "Migrate from on-prem or legacy cloud to modern cloud architecture.",
-        icon: "FiCloud",
+          "Migrate from on-prem or legacy cloud to modern cloud architecture with minimal downtime.",
+        icon: "FiTrendingUp",
       },
       {
-        title: "Kubernetes & Containers",
+        title: "Containerization",
         description:
-          "Container orchestration, Helm charts, and scalable deployments.",
+          "Docker, Kubernetes, and container orchestration for scalability.",
         icon: "FiBox",
-      },
-      {
-        title: "Infrastructure as Code",
-        description:
-          "Terraform, Pulumi, or CloudFormation for reproducible, version-controlled infra.",
-        icon: "FiCode",
       },
     ],
     industries: sharedIndustries,
@@ -566,7 +566,7 @@ export const servicesData: ServiceData[] = [
       {
         question: "What DevOps tools do you use?",
         answer:
-          "We use GitHub Actions, GitLab CI, Jenkins, Docker, Kubernetes, Terraform, and cloud-native tools (AWS, GCP, Azure). We tailor the stack to your needs and existing tools.",
+          "We use AWS (Atarim, Farmin), Supabase (Content Compass, Rack Room), Railway, GitHub Actions, Docker, and Terraform. We tailor the stack to your needs and existing tools.",
       },
       {
         question: "Can you help migrate existing infrastructure?",
@@ -663,9 +663,9 @@ export const servicesData: ServiceData[] = [
     slug: "qa-testing-automation",
     title: "QA Testing & Automation",
     shortDescription:
-      "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision.",
+      "We ensure your software is bug-free and production-ready—functional, performance, and security testing, plus automated test suites in CI/CD for every project we deliver.",
     fullDescription:
-      "QA Testing & Automation ensures your software meets quality standards before and after release. We provide functional testing, performance testing, security testing, and automated test suites that integrate into your CI/CD pipeline.",
+      "QA Testing & Automation ensures your software meets quality standards before and after release. We integrate testing into every project—from Pack Assist and Atarim to Rack Room and Content Compass. We provide functional testing, performance testing, security testing, and automated test suites (Cypress, Playwright, Jest) that run in your CI/CD pipeline.",
     image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
     tags: ["QA", "Testing", "Automation"],
     valueProps: [
@@ -722,7 +722,7 @@ export const servicesData: ServiceData[] = [
       {
         question: "What QA testing services do you provide?",
         answer:
-          "We provide functional testing, performance testing, security testing, usability testing, and automated testing. We ensure your software is bug-free, reliable, and ready for market.",
+          "We provide functional testing, performance testing, security testing, usability testing, and automated testing. Every project we deliver—Pack Assist, Atarim, Rack Room, Content Compass—includes QA to ensure bug-free, production-ready software.",
       },
       {
         question: "Do you offer test automation services?",
@@ -741,9 +741,9 @@ export const servicesData: ServiceData[] = [
     slug: "automation-solutions",
     title: "Automation Solutions",
     shortDescription:
-      "Streamline your business processes with our cutting-edge automation services. We design and implement automated workflows to enhance productivity, reduce manual errors, and optimize efficiency.",
+      "We automate workflows and integrate your systems—Slack, Jira, Asana, Twilio, and more. Proven with Atarim's integrations, Rack Room's SMS automation, and Content Compass's scraping pipelines.",
     fullDescription:
-      "Automation Solutions transform manual, repetitive processes into efficient, error-free workflows. We analyze your operations, identify automation opportunities, and implement solutions that save time and reduce costs.",
+      "Automation Solutions transform manual, repetitive processes into efficient, error-free workflows. We built Atarim's integrations with Slack, Jira, and Asana. We automated Rack Room's Twilio SMS notifications for bookings. Content Compass uses automated scraping and AI enrichment. We analyze your operations, identify automation opportunities, and implement solutions that save time and reduce costs.",
     image: "/assets/whatWeDo/automation.png",
     tags: ["Automation", "Workflows", "Integration"],
     valueProps: [
@@ -800,17 +800,17 @@ export const servicesData: ServiceData[] = [
       {
         question: "Do you offer workflow automation services?",
         answer:
-          "Yes. We analyze your workflows, identify automation opportunities, and implement solutions that reduce manual errors, improve efficiency, and save time.",
+          "Yes. We analyze your workflows, identify automation opportunities, and implement solutions. We've built Atarim's Slack/Jira/Asana integrations, Rack Room's Twilio SMS automation, and Content Compass's scraping pipelines.",
       },
       {
         question: "What systems can you integrate?",
         answer:
-          "We integrate CRMs (Salesforce, HubSpot), ERPs, databases, APIs, email, and many third-party tools. We can connect to your existing systems with secure, authenticated integrations.",
+          "We integrate Slack, Jira, Asana, Twilio, CRMs (Salesforce, HubSpot), ERPs, databases, APIs, and many third-party tools. We connect to your existing systems with secure, authenticated integrations.",
       },
       {
         question: "Do you provide AI automation services?",
         answer:
-          "Yes. We combine AI with automation for intelligent document processing, data extraction, classification, and decision-making workflows.",
+          "Yes. We combine AI with automation for intelligent document processing, data extraction, classification, and decision-making workflows—as in Content Compass's multimodal AI analysis.",
       },
     ],
   },

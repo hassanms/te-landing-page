@@ -52,11 +52,12 @@ function NavLink({ href, children, isActive, onClick, ...rest }: NavLinkProps) {
       py="3"
       transition="0.2s all"
       fontWeight={isActive ? 'semibold' : 'medium'}
-      borderColor={isActive ? 'purple.400' : undefined}
+      borderColor={isActive ? 'teal.400' : undefined}
       borderBottomWidth="1px"
-      color={isActive ? 'white' : undefined}
+      color={isActive ? 'teal.500' : undefined}
       _hover={{
-        bg: isActive ? 'purple.500' : bgActiveHoverColor,
+        bg: isActive ? 'teal.500' : bgActiveHoverColor,
+        color: isActive ? 'white' : undefined,
       }}
       onClick={handleClick}
       {...rest}

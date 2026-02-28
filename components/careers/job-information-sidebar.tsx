@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Card, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { Job } from "data/jobs/types";
 
 interface JobInformationSidebarProps {
@@ -10,7 +10,8 @@ export const JobInformationSidebar: React.FC<JobInformationSidebarProps> = ({
   job,
 }) => {
   const cardBg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.100", "gray.700");
+  const headingColor = useColorModeValue("gray.800", "white");
+  const textColor = useColorModeValue("gray.600", "gray.100");
 
   const infoItems: { label: string; value?: string }[] = [
     { label: "Country", value: job.country },
@@ -27,18 +28,19 @@ export const JobInformationSidebar: React.FC<JobInformationSidebarProps> = ({
 
   return (
     <Box
-      flex="1"
+      w="100%"
       position={{ base: "static", md: "sticky" }}
       top={{ base: 0, md: 24 }}
     >
-      <Box
-        borderWidth="1px"
-        borderRadius="lg"
-        borderColor={borderColor}
+      <Card
+        w="100%"
+        borderRadius="md"
+        p={4}
+        overflow="hidden"
         bg={cardBg}
-        p={6}
+        variant="elevated"
       >
-        <Heading as="h2" size="md" mb={4}>
+        <Heading as="h2" size="md" mb={4} color={headingColor}>
           Job Information
         </Heading>
         <Stack spacing={3} fontSize="sm">
@@ -46,12 +48,12 @@ export const JobInformationSidebar: React.FC<JobInformationSidebarProps> = ({
             .filter((item) => item.value)
             .map((item) => (
               <Box key={item.label}>
-                <Text fontWeight="semibold">{item.label}</Text>
-                <Text>{item.value}</Text>
+                <Text fontWeight="semibold" color={headingColor}>{item.label}</Text>
+                <Text color={textColor}>{item.value}</Text>
               </Box>
             ))}
         </Stack>
-      </Box>
+      </Card>
     </Box>
   );
 };

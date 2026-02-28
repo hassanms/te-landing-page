@@ -8,79 +8,32 @@ import {
   Flex,
   Heading,
   Icon,
+  SimpleGrid,
   Text,
-  VStack,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import Image from "next/image";
 import { ButtonLink } from "components/button-link";
-import { HighlightsItem, HighlightsWhatWeDo } from "components/highlights";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { FaChevronRight } from "react-icons/fa";
 import Script from "next/script";
-
-const serviceItems = [
-  {
-    id: 1,
-    title: "Agentic AI Engineering",
-    description:
-      "We create intelligent AI-driven agent systems tailored to your business needs, delivering cutting-edge automation, personalized interactions, and exceptional user experiences.",
-    image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
-  },
-  {
-    id: 2,
-    title: "Next-Gen SaaS Development",
-    description:
-      "We design and develop scalable, custom SaaS solutions tailored to your business needs, ensuring robust performance and seamless user experiences.",
-    image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
-  },
-  {
-    id: 3,
-    title: "Innovative Website Development",
-    description:
-      "From concept to launch, we create responsive and visually stunning websites that captivate your audience and drive business growth.",
-    image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
-  },
-  {
-    id: 4,
-    title: "Custom Chrome Extensions",
-    description:
-      "We build powerful Chrome extensions that enhance productivity and offer unique functionalities, perfectly aligned with your business objectives.",
-    image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
-  },
-  {
-    id: 5,
-    title: "Expert DevOps Solutions",
-    description:
-      "Our DevOps services streamline your development process, enhance collaboration, and ensure continuous integration and deployment for faster, reliable releases.",
-    image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
-  },
-  {
-    id: 6,
-    title: "Generative AI Integration",
-    description:
-      "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency.",
-    image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
-  },
-  {
-    id: 7,
-    title: "QA Testing & Automation",
-    description:
-      "We deliver comprehensive QA testing and automation services, ensuring your software is bug-free, reliable, and ready for market with speed and precision.",
-    image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
-  },
-  {
-    id: 8,
-    title: "Automation Solutions",
-    description:
-      "Streamline your business processes with our cutting-edge automation services. We design and implement automated workflows to enhance productivity, reduce manual errors, and optimize efficiency.",
-    image: "/assets/whatWeDo/automation.png",
-  },
-];
+import {
+  servicesData,
+  mainValueProps,
+  impactStats,
+} from "data/services";
+import {
+  ServiceCard,
+  ValuePropositionCard,
+  ImpactBar,
+  TrustedByStrip,
+} from "components/services";
 
 const Services = () => {
+  const { colorMode } = useColorMode();
   const headingColor = useColorModeValue("gray.800", "white");
+  const mainHeadingColor = useColorModeValue("black", "white");
   const textColor = useColorModeValue("gray.600", "gray.100");
   const dividerColor = useColorModeValue("gray.200", "gray.600");
 
@@ -99,52 +52,34 @@ const Services = () => {
         faqData={{
           questions: [
             {
-              question:
-                "What types of SaaS platforms does Tech Emulsion develop?",
+              question: "What types of SaaS platforms does Tech Emulsion develop?",
               answer:
-                "Tech Emulsion develops various SaaS platforms including customer relationship management (CRM) systems, project management tools, e-commerce platforms, learning management systems, analytics dashboards, and industry-specific solutions. Our SaaS development services encompass custom SaaS development tailored to your business needs, ensuring scalable, secure, and high-performance solutions.",
+                "Tech Emulsion develops various SaaS platforms including customer relationship management (CRM) systems, project management tools, e-commerce platforms, learning management systems, analytics dashboards, and industry-specific solutions.",
             },
             {
-              question:
-                "How does Tech Emulsion handle data security and privacy?",
+              question: "How does Tech Emulsion handle data security and privacy?",
               answer:
-                "Tech Emulsion implements enterprise-grade security measures including data encryption, secure authentication systems, regular security audits, compliance with GDPR and other privacy regulations, and comprehensive backup and disaster recovery plans.",
+                "Tech Emulsion implements enterprise-grade security measures including data encryption, secure authentication systems, regular security audits, and compliance with GDPR and other privacy regulations.",
             },
             {
-              question:
-                "What are your AI agent development services?",
+              question: "What are your AI agent development services?",
               answer:
-                "Our AI agent development services include creating intelligent, autonomous AI agents that can perform complex tasks, make decisions, and interact with users naturally. We specialize in agentic AI development, building AI agents that can automate business processes, provide intelligent customer support, analyze data, and integrate seamlessly with your existing systems. Our AI agent development services cover conversational AI, task automation agents, data analysis agents, and custom AI agent solutions tailored to your specific business requirements.",
+                "Our AI agent development services include creating intelligent, autonomous AI agents that can perform complex tasks, make decisions, and interact with users naturally.",
             },
             {
-              question:
-                "Do you offer workflow automation services?",
+              question: "Do you offer workflow automation services?",
               answer:
-                "Yes, we provide comprehensive workflow automation services that help streamline your business processes. Our workflow automation services include analyzing your current workflows, identifying automation opportunities, designing automated workflows, and implementing solutions that reduce manual errors, improve efficiency, and save time. We also offer business automation solutions that encompass end-to-end process automation, integration with existing systems, and continuous optimization of automated workflows.",
+                "Yes, we provide comprehensive workflow automation services that help streamline your business processes.",
             },
             {
-              question:
-                "What QA testing services do you provide?",
+              question: "What QA testing services do you provide?",
               answer:
-                "We offer comprehensive QA testing services including functional testing, performance testing, security testing, usability testing, and automated testing. Our QA testing services ensure your software is bug-free, reliable, and ready for market. Additionally, we provide test automation services that help you maintain quality while accelerating your development cycles through automated test suites, continuous testing integration, and comprehensive test coverage.",
+                "We offer comprehensive QA testing services including functional testing, performance testing, security testing, usability testing, and automated testing.",
             },
             {
-              question:
-                "Can you help with Next.js website development?",
+              question: "Can you help with Next.js website development?",
               answer:
-                "Absolutely! We specialize in Next.js website development, creating high-performance, SEO-friendly websites using the Next.js framework. Our Next.js website development services include custom website development, responsive design, server-side rendering, static site generation, API integration, and performance optimization. We also provide custom website development services for businesses looking for unique, tailored web solutions that align with their brand and business objectives.",
-            },
-            {
-              question:
-                "What AI integration services do you offer?",
-              answer:
-                "Our AI integration services help businesses seamlessly integrate artificial intelligence into their existing systems and workflows. We provide AI integration services for various AI technologies including generative AI solutions, machine learning models, natural language processing, computer vision, and predictive analytics. Our AI integration services ensure smooth integration, minimal disruption to existing operations, and maximum value from AI technologies.",
-            },
-            {
-              question:
-                "Do you provide AI automation services?",
-              answer:
-                "Yes, we offer comprehensive AI automation services that combine artificial intelligence with automation to create intelligent, self-learning automated systems. Our AI automation services include intelligent process automation, AI-powered decision-making systems, automated data analysis, intelligent document processing, and AI-driven workflow optimization. These services help businesses achieve higher levels of automation while maintaining flexibility and adaptability.",
+                "Absolutely! We specialize in Next.js website development, creating high-performance, SEO-friendly websites.",
             },
           ],
         }}
@@ -170,12 +105,10 @@ const Services = () => {
         {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-DJFC9CERLF')`}
       </Script>
 
       <Box position="relative" minH="100vh" color={headingColor}>
-        {/* Full-page gradient - scrolls with content (not fixed) */}
         <Box
           position="absolute"
           top={0}
@@ -189,28 +122,17 @@ const Services = () => {
           <BackgroundGradient height="100%" width="100%" />
         </Box>
 
-        {/* Top margin - clear fixed navbar only */}
         <Box pt={{ base: 20, md: 24 }} />
         <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
           {/* Breadcrumb */}
           <Flex justify="flex-end" mb={8}>
             <ButtonGroup
-              sx={{
-                bg: "none",
-                fontSize: "1rem",
-                display: "flex",
-                alignItems: "center",
-              }}
+              sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}
             >
               <ButtonLink
                 href="/"
                 size="lg"
-                sx={{
-                  bg: "none",
-                  color: textColor,
-                  p: 0,
-                  "&:hover": { bg: "none", color: headingColor },
-                }}
+                sx={{ bg: "none", color: textColor, p: 0, "&:hover": { bg: "none", color: headingColor } }}
               >
                 Home
               </ButtonLink>
@@ -221,7 +143,7 @@ const Services = () => {
             </ButtonGroup>
           </Flex>
 
-          {/* Header section - same layout as portfolio */}
+          {/* Header section - same layout as portfolio, contact */}
           <Box
             minH={{ base: "280px", md: "35vh" }}
             display={{ base: "block", md: "grid" }}
@@ -253,11 +175,12 @@ const Services = () => {
                 Our services
               </Heading>
             </Box>
-            {/* Right: Description - bottom aligned */}
+            {/* Right: Description + CTA - bottom aligned */}
             <Box
               pl={{ base: 0, md: 6 }}
               py={{ base: 4, md: 8 }}
               display="flex"
+              flexDirection="column"
               alignItems={{ base: "flex-start", md: "flex-end" }}
               justifyContent={{ base: "flex-start", md: "flex-end" }}
             >
@@ -267,15 +190,16 @@ const Services = () => {
                 lineHeight="tall"
                 textAlign={{ base: "left", md: "left" }}
                 maxW={{ md: "420px" }}
+                mb={4}
               >
-                We believe that building a product should be fun and rewarding.
-                Our mission is to provide you with the best tools to make that
-                happen.
+                We build scalable software, AI-powered solutions, and automation that
+                transform your business. From cutting-edge SaaS platforms to intelligent
+                agent systems—our expertise delivers results.
               </Text>
             </Box>
           </Box>
 
-          {/* Divider bar - matches portfolio filter bar styling */}
+          {/* Divider bar - header bottom */}
           <Box
             bg="transparent"
             py={2}
@@ -285,34 +209,117 @@ const Services = () => {
             borderColor={dividerColor}
           />
 
-          {/* Services cards - previous HighlightsWhatWeDo style */}
-          <HighlightsWhatWeDo>
-            {serviceItems.map((item) => (
-              <HighlightsItem key={item.id} colSpan={[1, null, 2]} title="" p={0}>
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={1200}
-                  height={300}
-                  style={{
-                    width: "100%",
-                    height: "300px",
-                    objectFit: item.title === "Agentic AI Engineering" ? "cover" : "fill",
-                  }}
+          {/* Value propositions - same style as Trusted by Leading Brands */}
+          <Box py={{ base: 12, md: 16 }}>
+            <Box mb={8} maxW="100%" textAlign="center">
+              <Heading
+                as="h2"
+                size="md"
+                color={colorMode === "dark" ? "white" : "teal.500"}
+                sx={{ textTransform: "uppercase" }}
+              >
+                How We
+              </Heading>
+              <Heading
+                as="h1"
+                mt={2}
+                color={mainHeadingColor}
+                fontSize={{ base: "2rem", md: "2rem" }}
+                fontWeight="bold"
+              >
+                Help You Succeed
+              </Heading>
+            </Box>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={6}>
+              {mainValueProps.map((vp, i) => (
+                <ValuePropositionCard
+                  key={i}
+                  title={vp.title}
+                  description={vp.description}
+                  icon={vp.icon}
                 />
-                <Box px="4" pb="6" borderRadius="8px" w="100%">
-                  <Heading as="h2" size="lg" sx={{ py: "6" }}>
-                    {item.title}
-                  </Heading>
-                  <VStack alignItems="flex-start" spacing="8">
-                    <Text color={textColor} fontSize="xl">
-                      {item.description}
-                    </Text>
-                  </VStack>
-                </Box>
-              </HighlightsItem>
-            ))}
-          </HighlightsWhatWeDo>
+              ))}
+            </SimpleGrid>
+          </Box>
+
+          {/* Impact stats bar - social proof */}
+          <Box py={{ base: 8, md: 10 }} mx={-6} px={6}>
+            <ImpactBar items={impactStats} />
+          </Box>
+
+          {/* Services grid - same layout as home page */}
+          <Box py={{ base: 12, md: 16 }}>
+            {/* <Heading
+              as="h2"
+              fontSize={{ base: "2xl", md: "3xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              mb={8}
+            >
+              Our Services
+            </Heading> */}
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={0} w="100%">
+              {servicesData.map((service, idx) => {
+                const len = servicesData.length;
+                const lastRowStartMd = 2 * Math.floor((len - 1) / 2);
+                const lastRowStartLg = 3 * Math.floor((len - 1) / 3);
+                return (
+                  <Box
+                    key={service.id}
+                    py={6}
+                    pr={{
+                      base: 0,
+                      md: idx % 2 === 0 ? 6 : 0,
+                      lg: idx % 3 === 0 || idx % 3 === 1 ? 6 : 0,
+                    }}
+                    pl={{
+                      base: 0,
+                      md: idx % 2 === 1 ? 6 : 0,
+                      lg: idx % 3 === 1 || idx % 3 === 2 ? 6 : 0,
+                    }}
+                    borderRight={{
+                      base: "none",
+                      md: idx % 2 === 0 ? "1px solid" : "none",
+                      lg: idx % 3 < 2 ? "1px solid" : "none",
+                    }}
+                    borderBottom={{
+                      base: idx < len - 1 ? "1px solid" : "none",
+                      md: idx < lastRowStartMd ? "1px solid" : "none",
+                      lg: idx < lastRowStartLg ? "1px solid" : "none",
+                    }}
+                    borderColor={dividerColor}
+                    sx={{
+                      borderColor: "gray.200 !important",
+                      _dark: { borderColor: "gray.600 !important" },
+                    }}
+                  >
+                    <ServiceCard
+                      slug={service.slug}
+                      title={service.title}
+                      shortDescription={service.shortDescription}
+                      image={service.image}
+                      compact
+                    />
+                  </Box>
+                );
+              })}
+            </SimpleGrid>
+          </Box>
+
+          {/* Divider above Trusted by */}
+          <Box
+            bg="transparent"
+            py={2}
+            px={6}
+            mx={-6}
+            borderTopWidth="1px"
+            borderColor={dividerColor}
+          />
+
+          {/* Trusted by strip (moved below services grid) */}
+          <Box py={{ base: 8, md: 10 }}>
+            <TrustedByStrip />
+          </Box>
         </Container>
       </Box>
     </>

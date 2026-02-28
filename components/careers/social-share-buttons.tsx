@@ -1,72 +1,63 @@
 import React from "react";
-import { HStack, IconButton, useColorModeValue } from "@chakra-ui/react";
-import {
-  FaFacebook,
-  FaLinkedin,
-  FaWhatsapp,
-} from "react-icons/fa6";
+import { HStack, Icon, Link, useColorModeValue } from "@chakra-ui/react";
+import { FaEnvelope, FaWhatsapp } from "react-icons/fa6";
 
 interface SocialShareButtonsProps {
   url?: string;
   title: string;
+  company?: string;
 }
 
 export const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   url,
   title,
+  company = "Tech Emulsion",
 }) => {
-  // Use provided URL or fallback to current page URL
-  const shareUrl = url || (typeof window !== "undefined" 
-    ? window.location.href 
+  const shareUrl = url || (typeof window !== "undefined"
+    ? window.location.href
     : "https://techemulsion.com/careers");
-  
+
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
-  const bg = useColorModeValue("white", "gray.800");
+  const emailSubject = encodeURIComponent(`Job opportunity: ${title} at ${company}`);
+  const emailBody = encodeURIComponent(
+    `Check out this job opportunity:\n\n${title}\n${company}\n\nView details: ${shareUrl}`
+  );
+  const emailShareLink = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+  const whatsappShareLink = `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`;
 
-  const openShare = (shareLink: string) => {
-    if (typeof window === "undefined") return;
-    window.open(shareLink, "_blank", "noopener,noreferrer");
+  const iconColor = useColorModeValue("gray.700", "gray.100");
+
+  const iconStyle = {
+    boxSize: "10",
+    color: iconColor,
+    sx: {
+      padding: "10px",
+      borderRadius: "20%",
+      border: "1px solid",
+      borderColor: "teal.500",
+      ":hover": {
+        bg: "teal.500",
+        color: "white",
+      },
+    },
   };
 
   return (
-    <HStack spacing={2}>
-      <IconButton
-        aria-label="Share on Facebook"
-        icon={<FaFacebook />}
-        size="sm"
-        variant="outline"
-        bg={bg}
-        onClick={() =>
-          openShare(
-            `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-          )
-        }
-      />
-      <IconButton
-        aria-label="Share on LinkedIn"
-        icon={<FaLinkedin />}
-        size="sm"
-        variant="outline"
-        bg={bg}
-        onClick={() =>
-          openShare(
-            `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-          )
-        }
-      />
-      <IconButton
+    <HStack spacing="4">
+      <Link
+        href={emailShareLink}
+        aria-label="Share via email"
+      >
+        <Icon as={FaEnvelope} {...iconStyle} />
+      </Link>
+      <Link
+        href={whatsappShareLink}
+        isExternal
         aria-label="Share on WhatsApp"
-        icon={<FaWhatsapp />}
-        size="sm"
-        variant="outline"
-        bg={bg}
-        onClick={() =>
-          openShare(
-            `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-          )
-        }
-      />
+      >
+        <Icon as={FaWhatsapp} {...iconStyle} />
+      </Link>
     </HStack>
   );
 };

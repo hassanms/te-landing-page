@@ -1,13 +1,15 @@
 import React from "react";
-import { Box, Button, Container, Flex, Stack, Spinner, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Icon, Stack, Spinner, Text, useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { FiArrowRight, FiList } from "react-icons/fi";
 import { GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
+import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Job } from "data/jobs/types";
 import { JobDetailHeader } from "components/careers/job-detail-header";
 import { JobDescription } from "components/careers/job-description";
 import { JobInformationSidebar } from "components/careers/job-information-sidebar";
-import CareersBreadcrumb from "components/layout/careers-breadcrumb";
+import { ShareJobCard } from "components/careers/share-job-card";
 import axios from "axios";
 
 interface JobDetailPageProps {
@@ -17,6 +19,7 @@ interface JobDetailPageProps {
 
 const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
   const textColor = useColorModeValue("gray.600", "gray.100");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
 
   if (error) {
     return (
@@ -47,7 +50,7 @@ const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
   }
 
   return (
-    <Box>
+    <Box position="relative" minH="100vh" overflow="hidden">
       <EnhancedSEO
         title={`${job.title} - Careers | Tech Emulsion`}
         description={job.shortDescription}
@@ -65,34 +68,80 @@ const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
         }}
       />
 
-      <JobDetailHeader job={job} />
+      {/* Full-page gradient - same as careers, portfolio, services, blog */}
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={-1}
+        overflow="hidden"
+        pointerEvents="none"
+      >
+        <BackgroundGradient height="100%" width="100%" />
+      </Box>
 
-      <Container maxW="container.xl" pb={{ base: 16, md: 24 }}>
-        <Box mb={4}>
-          <CareersBreadcrumb
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Careers", href: "/careers" },
-              { label: "Job details" },
-            ]}
-          />
+      {/* Top margin - clear fixed navbar */}
+      <Box pt={{ base: 20, md: 24 }} />
+      <Container maxW="container.xl" pt={6} pb={{ base: 16, md: 24 }} position="relative" zIndex={1}>
+        <JobDetailHeader job={job} />
+
+        <Box pt={8}>
+          <Flex direction={{ base: "column", md: "row" }} gap={{ base: 12, md: 16 }} align="flex-start">
+            <JobDescription job={job} />
+            <Stack spacing={6} w={{ base: "100%", md: "320px" }} flexShrink={0} align="stretch">
+              <JobInformationSidebar job={job} />
+              <ShareJobCard job={job} />
+            </Stack>
+          </Flex>
         </Box>
-        <Flex direction={{ base: "column", md: "row" }} gap={{ base: 12, md: 16 }}>
-          <JobDescription job={job} />
-          <JobInformationSidebar job={job} />
-        </Flex>
 
-        <Stack align="center" mt={{ base: 12, md: 16 }}>
+        {/* Divider bar - same width as header dividers */}
+        <Box
+          bg="transparent"
+          py={2}
+          px={6}
+          mx={-6}
+          mt={{ base: 12, md: 16 }}
+          borderTopWidth="1px"
+          borderColor={dividerColor}
+        />
+
+        <Flex justify="center" align="center" gap={4} mt={8} flexWrap="wrap">
           <Button
             as={NextLink}
             href="/careers"
             variant="outline"
             colorScheme="teal"
-            size="sm"
+            size="lg"
+            leftIcon={<Icon as={FiList} boxSize={4} />}
+            transition="all 0.2s"
+            sx={{
+              "&:hover": {
+                bg: "teal.500",
+                borderColor: "teal.500",
+                color: "white !important",
+                "& *, & span, & svg": { color: "white !important" },
+              },
+            }}
           >
             View all jobs
           </Button>
-        </Stack>
+          <Button
+            as={NextLink}
+            href={`/careers/${job.slug || job.id}/apply`}
+            colorScheme="teal"
+            size="lg"
+            rightIcon={<Icon as={FiArrowRight} boxSize={4} />}
+            _hover={{
+              bg: "teal.600",
+            }}
+            transition="all 0.2s"
+          >
+            Apply now
+          </Button>
+        </Flex>
       </Container>
     </Box>
   );

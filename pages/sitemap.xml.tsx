@@ -9,6 +9,23 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const baseUrl = "https://techemulsion.com";
   const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
+  // Service subpages (from data/services.ts slugs)
+  const serviceSlugs = [
+    "agentic-ai-engineering",
+    "next-gen-saas",
+    "website-development",
+    "chrome-extensions",
+    "devops-solutions",
+    "generative-ai-integration",
+    "qa-testing-automation",
+    "automation-solutions",
+  ];
+  const servicePages = serviceSlugs.map((slug) => ({
+    path: `/services/${slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.8",
+  }));
+
   // Define static pages with their metadata
   const staticPages = [
     { path: "", changefreq: "weekly", priority: "1.0" },
@@ -110,9 +127,13 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     // Continue without career pages if there's an error
   }
 
-  // Combine static pages and blog posts
+  // Combine static pages, service subpages, blog posts, and career pages
   const allPages = [
     ...staticPages.map((page) => ({
+      ...page,
+      lastmod: currentDate,
+    })),
+    ...servicePages.map((page) => ({
       ...page,
       lastmod: currentDate,
     })),

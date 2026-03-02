@@ -220,7 +220,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
               {service.title}
             </Heading>
             <Text
-              fontSize={{ base: "lg", md: "xl" }}
+              fontSize="16px"
               color="rgba(255,255,255,0.9)"
               lineHeight="1.7"
             >
@@ -278,7 +278,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                 <Heading as="h3" size="md" color={headingColor} fontWeight="bold" mb={3}>
                   {vp.title}
                 </Heading>
-                <Text color={textColor} fontSize="md" lineHeight="1.7">
+                <Text color={textColor} fontSize="16px" lineHeight="1.7">
                   {vp.description}
                 </Text>
               </Box>
@@ -315,7 +315,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                     <Heading as="h3" size="md" color={headingColor}>
                       {off.title}
                     </Heading>
-                    <Text color={textColor} fontSize="md" lineHeight="1.6">
+                    <Text color={textColor} fontSize="16px" lineHeight="1.6">
                       {off.description}
                     </Text>
                   </VStack>
@@ -364,7 +364,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                         {ind.name}
                       </Heading>
                     </HStack>
-                    <Text color={textColor} fontSize="sm" lineHeight="1.6">
+                    <Text color={textColor} fontSize="16px" lineHeight="1.6">
                       {ind.description}
                     </Text>
                   </Box>
@@ -392,7 +392,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
           >
             Why Partner with Tech Emulsion
           </Heading>
-          <Text color={textColor} fontSize={{ base: "lg", md: "xl" }} maxW="2xl" mb={12} lineHeight="1.8">
+          <Text color={textColor} fontSize="16px" maxW="2xl" mb={12} lineHeight="1.8">
             Our services augment your business with unparalleled expertise. Unveil hallmarks that you&apos;ll get working with us:
           </Text>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
@@ -418,7 +418,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                   <Heading as="h3" size="md" color={headingColor} fontWeight="bold" mb={2}>
                     {b.title}
                   </Heading>
-                  <Text color={textColor} fontSize="md" lineHeight="1.6">
+                  <Text color={textColor} fontSize="16px" lineHeight="1.6">
                     {b.description}
                   </Text>
                 </Box>
@@ -446,7 +446,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
           >
             Frequently Asked Questions
           </Heading>
-          <Text color={textColor} fontSize={{ base: "lg", md: "xl" }} mb={12}>
+          <Text color={textColor} fontSize="16px" mb={12}>
             Let&apos;s Explore Your Most Pressing Questions!
           </Text>
           <Accordion allowMultiple>
@@ -486,7 +486,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                           "&:not([data-expanded]) .icon-minus": { display: "none" },
                         }}
                       >
-                        <Box flex="1" fontWeight="semibold" color={headingColor} pr={4}>
+                        <Box flex="1" fontWeight="semibold" color={headingColor} pr={4} fontSize="16px">
                           {faq.question}
                         </Box>
                         <Icon
@@ -505,7 +505,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                           display="none"
                         />
                       </AccordionButton>
-                      <AccordionPanel px={6} pb={6} pt={0} color={textColor} lineHeight="1.7">
+                      <AccordionPanel px={6} pb={6} pt={0} color={textColor} fontSize="16px" lineHeight="1.7">
                         {faq.answer}
                       </AccordionPanel>
                     </AccordionItem>
@@ -532,7 +532,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
             <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="bold">
               Ready to Transform Your Business?
             </Heading>
-            <Text fontSize="lg" opacity={0.95}>
+            <Text fontSize="16px" opacity={0.95}>
               Schedule a free discovery call with our experts to discuss your project.
             </Text>
             <HStack spacing={4} flexWrap="wrap" justify="center" pt={4}>

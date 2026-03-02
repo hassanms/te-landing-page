@@ -186,7 +186,7 @@ const Services = () => {
             >
               <Text
                 color={textColor}
-                fontSize="lg"
+                fontSize="16px"
                 lineHeight="tall"
                 textAlign={{ base: "left", md: "left" }}
                 maxW={{ md: "420px" }}
@@ -224,7 +224,7 @@ const Services = () => {
                 as="h1"
                 mt={2}
                 color={mainHeadingColor}
-                fontSize={{ base: "2rem", md: "2rem" }}
+                fontSize={{ base: "2rem", md: "2.5rem" }}
                 fontWeight="bold"
               >
                 Help You Succeed

@@ -993,7 +993,7 @@ const AboutUsSection: React.FC = () => {
               as="h1"
               mt="2"
               sx={{
-                fontSize: "2rem",
+                fontSize: { base: "2rem", md: "2.5rem" },
               }}>
               Impactful Product Design,
               <Br /> Memorable Experience
@@ -1010,7 +1010,7 @@ const AboutUsSection: React.FC = () => {
               as="h1"
               fontWeight={600}
               sx={{
-                fontSize: "2rem",
+                fontSize: { base: "2rem", md: "2.5rem" },
               }}>
               Connect With Us
             </Heading>
@@ -1288,7 +1288,7 @@ const HighlightsSection: React.FC = () => {
               as="h1"
               mt="2"
               sx={{
-                fontSize: { base: "2.25rem", md: "2.5rem" },
+                fontSize: { base: "2rem", md: "2.5rem" },
                 width: { base: "100%", md: "70%" },
               }}>
               We design, build, and scale AI-driven software systems for ambitious teams
@@ -1489,14 +1489,8 @@ const Portfolio: React.FC = () => {
               as="h1"
               mt="2"
               sx={{
-                fontSize: {
-                  base: "2rem",
-                  md: "2rem",
-                },
-                width: {
-                  base: "100%",
-                  md: "70%",
-                },
+                fontSize: { base: "2rem", md: "2.5rem" },
+                width: { base: "100%", md: "70%" },
               }}>
               Recent Works
             </Heading>
@@ -1527,7 +1521,7 @@ const Portfolio: React.FC = () => {
                 href="/portfolio"
                 sx={{
                   bg: " none",
-                  fontSize: "1.5rem",
+                  fontSize: "1.25rem",
                   color: colorMode === "light" ? "teal.500 !important" : "white",
                   textDecoration: "underline",
                   ":hover": {
@@ -1682,11 +1676,7 @@ const SocialProofSection: React.FC = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-
-              fontSize: {
-                base: "2rem",
-                md: "2rem",
-              },
+              fontSize: { base: "2rem", md: "2.5rem" },
               width: "100%",
             }}>
             Trusted by Leading Brands
@@ -2557,10 +2547,7 @@ const TestimonialsSection: React.FC = () => {
               flexDirection: "column",
               alignItems: "center",
               color: colorMode === "dark" ? "white" : "black",
-              fontSize: {
-                base: "2rem",
-                md: "2rem",
-              },
+              fontSize: { base: "2rem", md: "2.5rem" },
               width: "100%",
             }}>
             Our Core Values
@@ -3177,10 +3164,7 @@ const TechnologySection: React.FC = () => {
               flexDirection: "column",
               alignItems: "center",
               color: colorMode === "dark" ? "white" : "black",
-              fontSize: {
-                base: "2rem",
-                md: "2rem",
-              },
+              fontSize: { base: "2rem", md: "2.5rem" },
               width: "100%",
             }}>
             Technologies We Use
@@ -3376,14 +3360,8 @@ const BlogSection: React.FC = () => {
               as="h1"
               mt="2"
               sx={{
-                fontSize: {
-                  base: "2rem",
-                  md: "2rem",
-                },
-                width: {
-                  base: "100%",
-                  md: "70%",
-                },
+                fontSize: { base: "2rem", md: "2.5rem" },
+                width: { base: "100%", md: "70%" },
               }}>
               Software Development Insights from Our Team
             </Heading>
@@ -3402,7 +3380,7 @@ const BlogSection: React.FC = () => {
               href="/blog"
               sx={{
                 bg: " none",
-                fontSize: "1.5rem",
+                fontSize: "1.25rem",
                 color: colorMode === "light" ? "teal.500 !important" : "white",
                 textDecoration: "underline",
                 ":hover": {
@@ -3469,7 +3447,7 @@ const BlogSection: React.FC = () => {
                 <VStack align="flex-start" spacing="2">
                   <Heading
                     as="h4"
-                    size="sm"
+                    size="md"
                     color={titleColor}
                     fontWeight="semibold"
                     lineHeight="1.4">

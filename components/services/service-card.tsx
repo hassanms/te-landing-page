@@ -115,7 +115,7 @@ export const ServiceCard = ({
             </Heading>
             <Text
               color={textColor}
-              fontSize="md"
+              fontSize="16px"
               lineHeight="1.65"
               mb={compact ? 0 : 4}
               flex={1}

@@ -32,7 +32,7 @@ export const TrustedByStrip = () => {
         </Heading>
         <Text
           color={textColor}
-          fontSize={{ base: "md", sm: "lg" }}
+          fontSize="16px"
           fontWeight="500"
           mt={5}
           px={{ base: 2, sm: 4, md: 10 }}

@@ -28,7 +28,7 @@ export const ValuePropositionCard = ({
       <Heading as="h3" size="md" color={titleColor} fontWeight="bold">
         {title}
       </Heading>
-      <Text color={textColor} fontSize="md" lineHeight="1.6">
+      <Text color={textColor} fontSize="16px" lineHeight="1.6">
         {description}
       </Text>
     </VStack>

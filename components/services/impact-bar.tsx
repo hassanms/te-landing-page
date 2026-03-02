@@ -45,7 +45,7 @@ export const ImpactBar = ({ items }: ImpactBarProps) => {
           <Text fontWeight="bold" fontSize="lg" color={headingColor}>
             {item.stat}
           </Text>
-          <Text fontSize="sm" color={textColor}>
+          <Text fontSize="16px" color={textColor}>
             {item.label}
           </Text>
         </Flex>

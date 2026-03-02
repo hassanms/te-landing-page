@@ -1,102 +1,118 @@
 import {
   Avatar,
   Box,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardProps,
+  BoxProps,
   Heading,
-  Stack,
   Text,
-  useBreakpointValue,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Link } from "@saas-ui/react";
-import { Logo } from "components/layout/logo";
-import { FaTwitter } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
-export interface TestimonialProps extends CardProps {
+export interface TestimonialProps extends BoxProps {
   name: string;
-  company: string;
-  description: React.ReactNode;
+  company?: string;
+  description?: React.ReactNode;
   avatar: string;
   href?: string;
   children?: React.ReactNode;
+  rating?: number;
 }
+
+const StarRating = ({
+  rating = 5,
+  color,
+}: {
+  rating?: number;
+  color: string;
+}) => {
+  const fullStars = Math.min(5, Math.max(0, Math.floor(rating)));
+  const emptyStars = 5 - fullStars;
+
+  return (
+    <Box display="flex" gap={1} mt={3} justifyContent="center">
+      {Array.from({ length: fullStars }).map((_, i) => (
+        <FaStar key={`full-${i}`} color={color} size={18} />
+      ))}
+      {Array.from({ length: emptyStars }).map((_, i) => (
+        <FaStar
+          key={`empty-${i}`}
+          color={color}
+          style={{ opacity: 0.35 }}
+          size={18}
+        />
+      ))}
+    </Box>
+  );
+};
 
 export const Testimonial = ({
   name,
-  description,
   avatar,
-  company,
-  href,
   children,
+  rating = 5,
   ...rest
 }: TestimonialProps) => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("gray.600", "lightGrey.400");
-  const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
-  return (
-    <Card
-      position="relative"
-      {...rest}
-      maxWidth="100%"
-      width="100%"
-      overflow="hidden"
-    >
-      <CardHeader display="flex" flexDirection="row" alignItems="center">
-        <Stack
-          spacing="3"
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
-        >
-          <Logo />
-          <Heading size="sm">{company}</Heading>
-        </Stack>
-      </CardHeader>
-      <CardBody 
-        width="100%" 
-        maxWidth="100%"
-        overflow="hidden"
-        wordBreak="break-word">
-        <Box
-          maxW="100%"
-          overflow="hidden"
-          sx={{
-            "& > *": {
-              maxW: "100%",
-              wordWrap: "break-word",
-              overflowWrap: "break-word",
-            },
-          }}>
-          {children}
-        </Box>
+  const nameColor = useColorModeValue("gray.800", "white");
+  const quoteColor = useColorModeValue("gray.700", "lightGrey.300");
+  const starColor = "#E8B923";
 
-        {href && (
-          <Link href={href} position="absolute" top="4" right="4">
-            <FaTwitter />
-          </Link>
-        )}
-      </CardBody>
-      <CardFooter
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        sx={{
-          color: colorMode === "dark" ? "white" : "#004c4c",
-        }}
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      textAlign="center"
+      flexShrink={0}
+      minW={{ base: "280px", md: "320px", lg: "360px" }}
+      maxW={{ base: "280px", md: "320px", lg: "360px" }}
+      px={{ base: 4, md: 6 }}
+      {...rest}
+    >
+      <Box
+        w="80px"
+        h="80px"
+        flexShrink={0}
+        borderRadius="full"
+        border="2px solid"
+        borderColor={useColorModeValue("gray.300", "white")}
+        overflow="hidden"
+        bg="#004c4c"
       >
-        <Avatar src={avatar} size="lg" bg={"#004c4c"} />
-        <Stack spacing="1" ms="4" textAlign={{ base: "center", md: "left" }}>
-          <Heading size="sm">{name}</Heading>
-          <Text color={textColor} size="xs">
-            {description}
-          </Text>
-        </Stack>
-      </CardFooter>
-    </Card>
+        <Avatar
+          src={avatar || undefined}
+          name={name}
+          size="xl"
+          bg="#004c4c"
+          color="white"
+          w="100%"
+          h="100%"
+          borderRadius="full"
+          sx={{ border: "none" }}
+        />
+      </Box>
+      <Heading
+        as="h3"
+        size="md"
+        mt={4}
+        fontWeight="bold"
+        color={nameColor}
+      >
+        {name}
+      </Heading>
+      <StarRating rating={rating} color={starColor} />
+      <Box mt={4} textAlign="left" w="100%">
+        <Text
+          as="span"
+          fontSize={{ base: "xl", md: "2xl" }}
+          lineHeight="tall"
+          color={quoteColor}
+          fontWeight="500"
+        >
+          {children}
+        </Text>
+      </Box>
+    </Box>
   );
 };

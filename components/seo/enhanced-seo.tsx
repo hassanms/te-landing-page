@@ -86,7 +86,7 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
         : keywords;
   // Enhanced description with semantic keywords for AI engines (keep meta description ~150–160 chars when possible)
   const getEnhancedDescription = () => {
-    const baseDescription = description || siteConfig.seo.description;
+    const baseDescription = description || siteConfig.seo.description || "";
     if (baseDescription.length >= 155) return baseDescription;
 
     const semanticKeywords = [

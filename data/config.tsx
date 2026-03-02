@@ -29,6 +29,10 @@ const siteConfig = {
         label: "Services",
       },
       {
+        href: "/engagement-models",
+        label: "Engagement models",
+      },
+      {
         href: "/portfolio",
         label: "Portfolio",
       },

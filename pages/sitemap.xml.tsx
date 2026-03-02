@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSupabaseAdmin } from "lib/supabase/server";
 import { getAllServiceSlugs } from "data/services";
+import { engagementModelsData } from "data/engagement-models";
 
 const Sitemap = () => {
   return null;
@@ -18,6 +19,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   }));
 
   // Define static pages with their metadata
+  const engagementModelPages = engagementModelsData.map((model) => ({
+    path: `/engagement-models/${model.slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.8",
+  }));
+
   const staticPages = [
     { path: "", changefreq: "weekly", priority: "1.0" },
     { path: "/services", changefreq: "monthly", priority: "0.9" },
@@ -118,13 +125,17 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     // Continue without career pages if there's an error
   }
 
-  // Combine static pages, service subpages, blog posts, and career pages
+  // Combine static pages, service subpages, engagement model pages, blog posts, and career pages
   const allPages = [
     ...staticPages.map((page) => ({
       ...page,
       lastmod: currentDate,
     })),
     ...servicePages.map((page) => ({
+      ...page,
+      lastmod: currentDate,
+    })),
+    ...engagementModelPages.map((page) => ({
       ...page,
       lastmod: currentDate,
     })),

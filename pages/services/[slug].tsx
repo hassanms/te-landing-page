@@ -29,8 +29,11 @@ import { FaChevronRight, FaPlus, FaMinus } from "react-icons/fa";
 import {
   getServiceBySlug,
   getAllServiceSlugs,
+  processSteps,
+  portfolioLabels,
   type ServiceData,
 } from "data/services";
+import NextLink from "next/link";
 import { getServiceIcon } from "components/services/icon-map";
 
 interface ServicePageProps {
@@ -86,13 +89,18 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         />
       </Head>
       <EnhancedSEO
-        title={`${service.title} - Tech Emulsion`}
+        title={service.seoTitle || `${service.title} - Tech Emulsion`}
         description={service.shortDescription}
         pageType="services"
+        keywords={service.seoKeywords}
+        ogImage={service.image}
         serviceData={{
           name: service.title,
           description: service.fullDescription,
           serviceType: "Technology Services",
+          url: `https://techemulsion.com/services/${service.slug}`,
+          image: service.image,
+          dateModified: service.dateModified,
         }}
         canonicalUrl={`https://techemulsion.com/services/${service.slug}`}
         breadcrumbData={{
@@ -148,7 +156,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
             src={service.image}
-            alt={service.title}
+            alt={`${service.title} - Tech Emulsion ${service.title.toLowerCase()} services`}
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -244,6 +252,94 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
               Schedule a Discovery Call
             </Button>
           </VStack>
+        </Container>
+      </Box>
+
+      {/* What is / Key takeaways - GEO & AEO */}
+      {(service.whatIs || (service.keyTakeaways && service.keyTakeaways.length > 0)) && (
+        <Box bg={bgColor} py={{ base: 12, md: 16 }} {...sectionStyles}>
+          <Container maxW="6xl" position="relative" zIndex={1}>
+            {service.whatIs && (
+              <Box mb={service.keyTakeaways?.length ? 10 : 0}>
+                <Heading
+                  as="h2"
+                  size="md"
+                  color={accentColor}
+                  mb={3}
+                  fontWeight="bold"
+                  letterSpacing="wider"
+                  textTransform="uppercase"
+                >
+                  What is {service.title}?
+                </Heading>
+                <Text color={textColor} fontSize="16px" lineHeight="1.8" maxW="3xl">
+                  {service.whatIs}
+                </Text>
+              </Box>
+            )}
+            {service.keyTakeaways && service.keyTakeaways.length > 0 && (
+              <Box>
+                <Heading
+                  as="h2"
+                  size="md"
+                  color={accentColor}
+                  mb={4}
+                  fontWeight="bold"
+                  letterSpacing="wider"
+                  textTransform="uppercase"
+                >
+                  In short
+                </Heading>
+                <Box as="ul" listStyleType="disc" pl={6}>
+                  {service.keyTakeaways.map((takeaway, i) => (
+                    <Text
+                      key={i}
+                      as="li"
+                      color={textColor}
+                      fontSize="16px"
+                      lineHeight="1.7"
+                      mb={2}
+                    >
+                      {takeaway}
+                    </Text>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </Container>
+        </Box>
+      )}
+
+      {/* How to get started - competitor-style process */}
+      <Box bg={sectionBg} py={{ base: 12, md: 16 }} {...sectionStyles}>
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+            How to get started
+          </Text>
+          <Heading
+            as="h2"
+            fontSize={{ base: "2xl", md: "3xl" }}
+            fontWeight="bold"
+            color={headingColor}
+            mb={8}
+          >
+            Three steps to your project
+          </Heading>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+            {processSteps.map(({ step, title, description }) => (
+              <Box key={step}>
+                <Text fontSize="3xl" fontWeight="bold" color={accentColor} mb={2}>
+                  {String(step).padStart(2, "0")}
+                </Text>
+                <Heading as="h3" size="md" color={headingColor} mb={2}>
+                  {title}
+                </Heading>
+                <Text color={textColor} fontSize="16px" lineHeight="1.6">
+                  {description}
+                </Text>
+              </Box>
+            ))}
+          </SimpleGrid>
         </Container>
       </Box>
 
@@ -428,6 +524,58 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         </Container>
       </Box>
 
+      {/* See our work - portfolio case studies */}
+      {service.portfolioSlugs && service.portfolioSlugs.length > 0 && (
+        <Box bg={sectionBg} py={{ base: 16, md: 20 }} {...sectionStyles}>
+          <Container maxW="6xl" position="relative" zIndex={1}>
+            <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+              Our work
+            </Text>
+            <Heading
+              as="h2"
+              fontSize={{ base: "2xl", md: "3xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              mb={6}
+            >
+              See our work
+            </Heading>
+            <Text color={textColor} fontSize="16px" mb={6} maxW="2xl">
+              Real projects we&apos;ve delivered for this service area.
+            </Text>
+            <HStack flexWrap="wrap" spacing={4} gap={2}>
+              {service.portfolioSlugs.map((slug) => (
+                <Button
+                  key={slug}
+                  as={NextLink}
+                  href={`/portfolio/${slug}`}
+                  size="md"
+                  variant="outline"
+                  borderColor={dividerColor}
+                  color={headingColor}
+                  _hover={{ bg: bgColor, borderColor: accentColor }}
+                  fontWeight="semibold"
+                >
+                  {portfolioLabels[slug] || slug}
+                </Button>
+              ))}
+              <Button
+                as={NextLink}
+                href="/portfolio"
+                size="md"
+                variant="outline"
+                borderColor={dividerColor}
+                color={headingColor}
+                _hover={{ bg: bgColor, borderColor: accentColor }}
+                fontWeight="semibold"
+              >
+                All portfolio
+              </Button>
+            </HStack>
+          </Container>
+        </Box>
+      )}
+
       {/* FAQ - Card grid layout with plus icon, accordion on click */}
       <Box bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
         <Box {...patternOverlay} />
@@ -516,6 +664,58 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
           </Accordion>
         </Container>
       </Box>
+
+      {/* Related services - internal linking */}
+      {service.relatedServiceSlugs && service.relatedServiceSlugs.length > 0 && (
+        <Box bg={bgColor} py={{ base: 16, md: 20 }} {...sectionStyles}>
+          <Container maxW="6xl" position="relative" zIndex={1}>
+            <Text fontSize="xs" color={accentColor} mb={4} fontWeight="bold" letterSpacing="wider" textTransform="uppercase">
+              Explore more
+            </Text>
+            <Heading
+              as="h2"
+              fontSize={{ base: "2xl", md: "3xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              mb={6}
+            >
+              Related services
+            </Heading>
+            <HStack flexWrap="wrap" spacing={4} gap={2}>
+              {service.relatedServiceSlugs
+                .map((slug) => getServiceBySlug(slug))
+                .filter(Boolean)
+                .map((related) => (
+                  <Button
+                    key={related!.slug}
+                    as={NextLink}
+                    href={`/services/${related!.slug}`}
+                    size="md"
+                    variant="outline"
+                    borderColor={dividerColor}
+                    color={headingColor}
+                    _hover={{ bg: sectionBg, borderColor: accentColor }}
+                    fontWeight="semibold"
+                  >
+                    {related!.title}
+                  </Button>
+                ))}
+              <Button
+                as={NextLink}
+                href="/services"
+                size="md"
+                variant="outline"
+                borderColor={dividerColor}
+                color={headingColor}
+                _hover={{ bg: sectionBg, borderColor: accentColor }}
+                fontWeight="semibold"
+              >
+                All services
+              </Button>
+            </HStack>
+          </Container>
+        </Box>
+      )}
 
       {/* CTA Section */}
       <Box

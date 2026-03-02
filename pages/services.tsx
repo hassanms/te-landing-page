@@ -40,13 +40,30 @@ const Services = () => {
   return (
     <>
       <EnhancedSEO
-        title="Services - Tech Emulsion"
-        description="Tech Emulsion provides comprehensive technology services including SaaS development services, AI agent development, and custom software solutions. We specialize in generative AI solutions, business automation, workflow automation services, DevOps services, QA testing services, Chrome extension development, and Next.js website development."
+        title="Generative AI Development Services | Tech Emulsion"
+        description="Generative AI development services and a leading generative AI development company. Tech Emulsion provides SaaS development services, AI agent development, custom software, workflow automation, DevOps, QA testing, Chrome extensions, and Next.js website development."
         pageType="services"
+        keywords={[
+          "generative ai development services",
+          "generative ai development company",
+          "ai agent development services",
+          "saas development services",
+          "custom saas development",
+          "generative ai integration services",
+          "business automation solutions",
+          "workflow automation services",
+          "devops as a service",
+          "qa and testing services",
+          "qa automation testing services",
+          "develop chrome extension",
+          "custom website development company",
+          "next.js website development agency",
+          "ai automation service",
+        ]}
         serviceData={{
           name: "Digital Transformation Services",
           description:
-            "Comprehensive digital transformation services including agentic AI development, AI agent development services, SaaS development services, custom SaaS development, generative AI solutions, AI integration services, business automation solutions, workflow automation services, DevOps services, QA testing services, test automation services, Chrome extension development, custom website development, Next.js website development, and AI automation services.",
+            "Tech Emulsion offers generative AI development services and operates as a generative AI development company. Comprehensive services include agentic AI development, AI agent development services, SaaS development services, custom SaaS development, generative AI integration, business automation solutions, workflow automation services, DevOps services, QA testing services, Chrome extension development, custom website development, Next.js website development, and AI automation services.",
           serviceType: "Technology Services",
         }}
         faqData={{

@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { getSupabaseAdmin } from "lib/supabase/server";
+import { getAllServiceSlugs } from "data/services";
 
 const Sitemap = () => {
   return null;
@@ -9,17 +10,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const baseUrl = "https://techemulsion.com";
   const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
-  // Service subpages (from data/services.ts slugs)
-  const serviceSlugs = [
-    "agentic-ai-engineering",
-    "next-gen-saas",
-    "website-development",
-    "chrome-extensions",
-    "devops-solutions",
-    "generative-ai-integration",
-    "qa-testing-automation",
-    "automation-solutions",
-  ];
+  const serviceSlugs = getAllServiceSlugs();
   const servicePages = serviceSlugs.map((slug) => ({
     path: `/services/${slug}`,
     changefreq: "monthly" as const,

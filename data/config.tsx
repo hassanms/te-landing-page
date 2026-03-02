@@ -14,7 +14,7 @@ const siteConfig = {
   logo: Logo,
   seo: {
     title: "Tech Emulsion",
-    description: "Imageineering digital transformation for your business",
+    description: "Imagineering digital transformation for your business",
   } as NextSeoProps,
   termsUrl: "#",
   privacyUrl: "#",

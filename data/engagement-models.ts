@@ -7,10 +7,21 @@ export interface EngagementModelItem {
   id: number;
   slug: string;
   title: string;
+  /** Optional hero title for detail page (defaults to title). */
+  heroTitle?: string;
+  /** Optional hero description for detail page (can contain multiple paragraphs separated by \n\n). */
+  heroDescription?: string;
 }
 
 export const engagementModelsData: EngagementModelItem[] = [
-  { id: 1, slug: "ai-enabled-teams", title: "AI-enabled teams" },
+  {
+    id: 1,
+    slug: "ai-enabled-teams",
+    title: "AI-enabled teams",
+    heroTitle: "AI-enabled teams",
+    heroDescription:
+      "Bringing AI into your development lifecycle shouldn't mean giving up control, quality, security, or team harmony. Backed by 20+ years of delivery excellence, our AI-powered development teams drive 15 percent more efficiency, without disruption, delays, or bumping up your rate card.\n\nPre-vetted tools, built-in compliance, and seamless day-to-day collaboration mean you scale faster, ship smarter, and stay fully in control at every step.",
+  },
   { id: 2, slug: "staff-augmentation", title: "Staff augmentation" },
   { id: 3, slug: "dedicated-teams", title: "Dedicated teams" },
   { id: 4, slug: "project-outsourcing", title: "Project outsourcing" },

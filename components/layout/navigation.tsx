@@ -74,7 +74,6 @@ const Navigation: React.FC<NavigationProps> = ({
       {siteConfig.header.links.map(({ href, variant, ...props }, i) => {
         const isServices = href === "/services";
         const isEngagement = href === "/engagement-models";
-        const isDropdown = isServices || isEngagement;
         const linkEl = (
           <NavLink
             display={["none", null, "block"]}
@@ -85,10 +84,6 @@ const Navigation: React.FC<NavigationProps> = ({
                 | MouseEvent
                 | any
             ) => {
-              if (isDropdown) {
-                e.preventDefault();
-                return;
-              }
               handleNavigation(e, href);
             }}
             key={i}

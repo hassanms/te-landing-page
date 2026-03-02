@@ -2419,6 +2419,8 @@ const SocialProofSection: React.FC = () => {
 const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const { colorMode } = useColorMode();
+  const navButtonBg = useColorModeValue("gray.200", "whiteAlpha.200");
+  const navButtonHoverBg = useColorModeValue("gray.300", "whiteAlpha.300");
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -2469,15 +2471,35 @@ const TestimonialsSection: React.FC = () => {
 
         <Box
           display="flex"
+          flexDirection="row"
           justifyContent="center"
           alignItems="center"
           w="100%"
           minH={{ base: "320px", md: "360px" }}
+          gap={{ base: 2, md: 4 }}
         >
+          <Button
+            onClick={() =>
+              setCurrentIndex((prev) =>
+                prev === 0 ? testimonials.items.length - 1 : prev - 1,
+              )
+            }
+            variant="ghost"
+            aria-label="Previous testimonial"
+            minW={{ base: "40px", md: "48px" }}
+            h={{ base: "40px", md: "48px" }}
+            borderRadius="full"
+            bg={navButtonBg}
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            _hover={{ bg: navButtonHoverBg, color: "#004c4c" }}
+          >
+            <ChevronLeftIcon boxSize={6} />
+          </Button>
+
           <Box
             key={currentIndex}
-            w="100%"
-            maxW={{ base: "340px", md: "480px", lg: "560px" }}
+            flex="1"
+            maxW={{ base: "400px", md: "560px", lg: "680px" }}
             mx="auto"
             sx={{
               animation: "fadeIn 0.5s ease-in-out",
@@ -2493,6 +2515,24 @@ const TestimonialsSection: React.FC = () => {
               maxW="100%"
             />
           </Box>
+
+          <Button
+            onClick={() =>
+              setCurrentIndex((prev) =>
+                prev === testimonials.items.length - 1 ? 0 : prev + 1,
+              )
+            }
+            variant="ghost"
+            aria-label="Next testimonial"
+            minW={{ base: "40px", md: "48px" }}
+            h={{ base: "40px", md: "48px" }}
+            borderRadius="full"
+            bg={navButtonBg}
+            color={colorMode === "dark" ? "white" : "#004c4c"}
+            _hover={{ bg: navButtonHoverBg, color: "#004c4c" }}
+          >
+            <ChevronRightIcon boxSize={6} />
+          </Button>
         </Box>
 
         <Box flex="1" mt={20}>

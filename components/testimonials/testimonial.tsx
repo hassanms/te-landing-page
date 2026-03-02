@@ -35,7 +35,12 @@ const StarRating = ({
         <FaStar key={`full-${i}`} color={color} size={18} />
       ))}
       {Array.from({ length: emptyStars }).map((_, i) => (
-        <FaStar key={`empty-${i}`} color={color} style={{ opacity: 0.3 }} size={18} />
+        <FaStar
+          key={`empty-${i}`}
+          color={color}
+          style={{ opacity: 0.35 }}
+          size={18}
+        />
       ))}
     </Box>
   );
@@ -51,7 +56,7 @@ export const Testimonial = ({
   const { colorMode } = useColorMode();
   const nameColor = useColorModeValue("gray.800", "white");
   const quoteColor = useColorModeValue("gray.700", "lightGrey.300");
-  const starColor = useColorModeValue("#E8B923", "#E8B923");
+  const starColor = "#E8B923";
 
   return (
     <Box
@@ -96,17 +101,8 @@ export const Testimonial = ({
       >
         {name}
       </Heading>
+      <StarRating rating={rating} color={starColor} />
       <Box mt={4} textAlign="left" w="100%">
-        <Text
-          as="span"
-          fontSize="3xl"
-          color={quoteColor}
-          fontWeight="bold"
-          lineHeight="1"
-          mr={1}
-        >
-          &ldquo;
-        </Text>
         <Text
           as="span"
           fontSize={{ base: "xl", md: "2xl" }}
@@ -117,7 +113,6 @@ export const Testimonial = ({
           {children}
         </Text>
       </Box>
-      <StarRating rating={rating} color={starColor} />
     </Box>
   );
 };

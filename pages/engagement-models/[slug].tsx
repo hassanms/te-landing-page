@@ -455,40 +455,106 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           <Box id="the-model" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} />
             <Container maxW="6xl" position="relative" zIndex={1}>
-              <Text
-                fontSize="xs"
-                color={accentColor}
-                mb={4}
-                fontWeight="bold"
-                letterSpacing="wider"
-                textTransform="uppercase"
-              >
-                The model
-              </Text>
-              <Heading
-                as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
-                fontWeight="bold"
-                color={headingColor}
-                letterSpacing="-0.02em"
-                lineHeight="1.1"
-                mb={6}
-              >
-                AI-enabled development teams: Everything you need to know
-              </Heading>
-              <Text color={textColor} fontSize="16px" lineHeight="1.8" mb={8} maxW="3xl">
-                {content.everythingYouNeedToKnow.intro}
-              </Text>
-              <Box as="ul" pl={6} maxW="3xl" mb={8}>
-                {content.everythingYouNeedToKnow.researchBullets.map((item, i) => (
-                  <Text key={i} as="li" color={textColor} fontSize="16px" lineHeight="1.8" mb={3}>
-                    <strong>{item.cite}:</strong> {item.text}
-                  </Text>
-                ))}
+              {/* Full width: headline + large paragraph (no empty space on left) */}
+              <Box w="100%" mb={{ base: 10, md: 12 }}>
+                <Heading
+                  as="h2"
+                  fontSize={{ base: "xl", md: "2xl" }}
+                  fontWeight="semibold"
+                  color={accentColor}
+                  letterSpacing="-0.02em"
+                  lineHeight="1.3"
+                  mb={8}
+                >
+                  AI-enabled development teams: Everything you need to know
+                </Heading>
+                <Text
+                  color={headingColor}
+                  fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+                  fontWeight="bold"
+                  lineHeight="1.35"
+                  letterSpacing="-0.02em"
+                  maxW="100%"
+                >
+                  {(() => {
+                    const main =
+                      content.everythingYouNeedToKnow.introMain ?? content.everythingYouNeedToKnow.intro;
+                    const parts = main.split(/(Staff augmentation|dedicated development teams)/);
+                    return parts.map((p, i) =>
+                      p === "Staff augmentation" || p === "dedicated development teams" ? (
+                        <Box
+                          key={i}
+                          as="span"
+                          textDecoration="underline"
+                          textDecorationColor={accentColor}
+                        >
+                          {p}
+                        </Box>
+                      ) : (
+                        <span key={i}>{p}</span>
+                      )
+                    );
+                  })()}
+                </Text>
               </Box>
-              <Text color={textColor} fontSize="16px" lineHeight="1.8" maxW="3xl">
-                With great AI comes great responsibility, and Tech Emulsion takes that responsibility seriously.
-              </Text>
+
+              {/* Right-side content starts from center */}
+              <Box
+                display={{ base: "block", md: "grid" }}
+                gridTemplateColumns={{ md: "1fr 1fr" }}
+                gap={0}
+                alignItems="start"
+              >
+                <Box display={{ base: "none", md: "block" }} />
+                <Box pt={{ base: 0, md: 4 }}>
+                  {content.everythingYouNeedToKnow.introRight && (
+                    <>
+                      <Text color={textColor} fontSize="16px" lineHeight="1.8" mb={6}>
+                        {content.everythingYouNeedToKnow.introRight}
+                      </Text>
+                      <Box as="ul" pl={6} listStyleType="disc">
+                        {content.everythingYouNeedToKnow.researchBullets.map((item, i) => (
+                          <Text key={i} as="li" color={textColor} fontSize="16px" lineHeight="1.8" mb={3}>
+                            <strong>{item.cite}:</strong> {item.text}
+                          </Text>
+                        ))}
+                      </Box>
+                    </>
+                  )}
+                  {!content.everythingYouNeedToKnow.introRight && (
+                    <>
+                      <Text color={textColor} fontSize="16px" lineHeight="1.8" mb={6}>
+                        {content.everythingYouNeedToKnow.intro}
+                      </Text>
+                      <Box as="ul" pl={6} listStyleType="disc">
+                        {content.everythingYouNeedToKnow.researchBullets.map((item, i) => (
+                          <Text key={i} as="li" color={textColor} fontSize="16px" lineHeight="1.8" mb={3}>
+                            <strong>{item.cite}:</strong> {item.text}
+                          </Text>
+                        ))}
+                      </Box>
+                    </>
+                  )}
+                </Box>
+              </Box>
+
+              {/* Bottom line: starts from center */}
+              <Box
+                display={{ base: "block", md: "grid" }}
+                gridTemplateColumns={{ md: "1fr 1fr" }}
+                alignItems="center"
+                mt="18px"
+              >
+                <Box display={{ base: "none", md: "block" }} />
+                <Text
+                  color={headingColor}
+                  fontSize={{ base: "lg", md: "xl" }}
+                  fontWeight="semibold"
+                  lineHeight="1.5"
+                >
+                  With great AI comes great responsibility, and Tech Emulsion takes that responsibility seriously.
+                </Text>
+              </Box>
             </Container>
           </Box>
 

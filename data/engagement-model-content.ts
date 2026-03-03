@@ -13,6 +13,8 @@ export interface AIEnabledTeamsContent {
   };
   everythingYouNeedToKnow: {
     intro: string;
+    introMain?: string;
+    introRight?: string;
     researchBullets: { cite: string; text: string }[];
     cta?: { title: string; description: string; buttonText: string; buttonHref: string };
   };
@@ -50,6 +52,10 @@ export const aiEnabledTeamsContent: AIEnabledTeamsContent = {
   everythingYouNeedToKnow: {
     intro:
       "Traditional approaches each have their strengths. Staff augmentation gives companies the flexibility to expand headcount as needed, while dedicated development teams provide continuity, structure, and accountability across delivery. AI-enabled teams combine both, and raise the bar. With typical productivity gains of 15 percent or more, they offer clearer oversight, smarter workflows, and greater transparency into how tools are used and value is delivered. That uplift comes through using AI tools and practices that accelerate software development, streamline workflows, and reduce repetitive work, leaving engineers free to focus on high-value delivery. Independent research reinforces what we see in practice. AI-assisted software development is delivering measurable, scalable productivity gains:",
+    introMain:
+      "Traditional approaches each have their strengths. Staff augmentation gives companies the flexibility to expand headcount as needed, while dedicated development teams provide continuity, structure, and accountability across delivery. AI-enabled teams combine both, and raise the bar. With typical productivity gains of 15 percent or more, they offer clearer oversight, smarter workflows, and greater transparency into how tools are used and value is delivered.",
+    introRight:
+      "That uplift comes through using AI tools and practices that accelerate software development, streamline workflows, and reduce repetitive work, leaving engineers free to focus on high-value delivery. Independent research reinforces what we see in practice. AI-assisted software development is delivering measurable, scalable productivity gains:",
     researchBullets: [
       {
         cite: "Accenture",

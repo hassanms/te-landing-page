@@ -265,7 +265,7 @@ export const aiEnabledTeamsContent: AIEnabledTeamsContent = {
     },
   ],
   stats: [
-    { value: "20+", label: "Years of proven delivery expertise with 550+ global clients" },
+    { value: "100%", label: "Customer satisfaction across 50+ clients" },
     { value: "150+", label: "Deep AI experience rooted in successful projects across industries" },
     { value: "CTO-led", label: "CTO-led consulting is available to guide you through the evolving AI tooling landscape" },
     { value: "Human-first", label: "A human-first AI model where technology augments engineers without replacing them" },

@@ -8,7 +8,14 @@ import {
   HStack,
   Icon,
   SimpleGrid,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   VStack,
   useColorMode,
   useColorModeValue,
@@ -23,7 +30,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { ButtonLink } from "components/button-link";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import { FaChevronRight, FaPlus, FaMinus } from "react-icons/fa";
+import { FaChevronRight, FaPlus, FaMinus, FaStar, FaComments, FaGem, FaCheck, FaShieldAlt } from "react-icons/fa";
 import {
   engagementModelsData,
   type EngagementModelItem,
@@ -45,6 +52,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
   const bgColor = useColorModeValue("white", "charcoal.800");
   const sectionBg = useColorModeValue("gray.50", "charcoal.900");
   const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+  const sdlcHighlightBg = useColorModeValue("teal.50", "teal.900");
 
   const heroTitle = model.heroTitle ?? model.title;
   const heroDescription =
@@ -558,7 +566,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
             </Container>
           </Box>
 
-          {/* What makes AI-powered teams special - full-width accent section (Vention-style) */}
+          {/* What makes AI-powered teams special - full-width accent section */}
           <Box
             id="what-makes-special"
             py={{ base: 20, md: 24 }}
@@ -576,22 +584,34 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 fontWeight="bold"
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
-                mb={12}
+                textAlign="center"
+                mb={{ base: 12, md: 16 }}
               >
                 What makes AI-powered teams special
               </Heading>
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
+              <VStack spacing={{ base: 8, md: 10 }} align="stretch">
                 {content.whatMakesSpecial.map((item, i) => (
-                  <Box key={i}>
-                    <Heading as="h3" size="md" fontWeight="bold" mb={3} opacity={0.95}>
+                  <Box
+                    key={i}
+                    display={{ base: "block", md: "grid" }}
+                    gridTemplateColumns={{ md: "minmax(0, 200px) 1fr" }}
+                    gap={{ base: 2, md: 8 }}
+                    alignItems="start"
+                  >
+                    <Heading
+                      as="h3"
+                      fontSize={{ base: "lg", md: "xl" }}
+                      fontWeight="bold"
+                      pt={{ md: 1 }}
+                    >
                       {item.title}
                     </Heading>
-                    <Text fontSize="16px" lineHeight="1.7" opacity={0.9}>
+                    <Text fontSize="16px" lineHeight="1.7" opacity={0.95}>
                       {item.description}
                     </Text>
                   </Box>
                 ))}
-              </SimpleGrid>
+              </VStack>
             </Container>
           </Box>
 
@@ -634,16 +654,6 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           <Box id="sdlc" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} />
             <Container maxW="6xl" position="relative" zIndex={1}>
-              <Text
-                fontSize="xs"
-                color={accentColor}
-                mb={4}
-                fontWeight="bold"
-                letterSpacing="wider"
-                textTransform="uppercase"
-              >
-                Software development lifecycle
-              </Text>
               <Heading
                 as="h2"
                 fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -651,50 +661,76 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 color={headingColor}
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
-                mb={12}
+                textAlign="center"
+                mb={4}
               >
                 Where AI adds value across the SDLC
               </Heading>
-              <VStack align="stretch" spacing={10}>
-                {content.sdlcPhases.map((phase, i) => (
-                  <Box
-                    key={i}
-                    p={8}
-                    bg={sectionBg}
-                    borderRadius="lg"
-                    borderWidth="1px"
-                    borderColor={dividerColor}
-                  >
-                    <HStack align="center" mb={4} gap={4}>
-                      <Text
-                        fontSize="2xl"
-                        fontWeight="bold"
-                        color={accentColor}
-                        minW="48px"
+              <Text
+                color={textColor}
+                fontSize="16px"
+                textAlign="center"
+                mb={12}
+              >
+                AI accelerates delivery at every stage of the software development lifecycle:
+              </Text>
+              <Box borderTopWidth="1px" borderColor={dividerColor}>
+                {content.sdlcPhases.map((phase, i) => {
+                  const isLast = i === content.sdlcPhases.length - 1;
+                  const isAnalytics = phase.number === "07";
+                  return (
+                    <Box
+                      key={i}
+                      borderBottomWidth={isLast ? 0 : "1px"}
+                      borderColor={dividerColor}
+                      bg={isAnalytics ? sdlcHighlightBg : "transparent"}
+                      px={{ base: 4, md: 8 }}
+                      py={{ base: 5, md: 6 }}
+                    >
+                      <Box
+                        display="grid"
+                        gridTemplateColumns="minmax(48px, 60px) 1fr"
+                        gap={{ base: 4, md: 8 }}
+                        alignItems={isAnalytics ? "start" : "center"}
                       >
-                        {phase.number}
-                      </Text>
-                      <Heading as="h3" size="md" color={headingColor}>
-                        {phase.title}
-                      </Heading>
-                    </HStack>
-                    <Box as="ul" pl={6}>
-                      {phase.bullets.map((bullet, j) => (
                         <Text
-                          key={j}
-                          as="li"
-                          color={textColor}
-                          fontSize="16px"
-                          lineHeight="1.7"
-                          mb={2}
+                          fontSize="xl"
+                          fontWeight="bold"
+                          color={headingColor}
                         >
-                          {bullet}
+                          {phase.number}
                         </Text>
-                      ))}
+                        <Box>
+                          <Text
+                            fontSize="lg"
+                            fontWeight="bold"
+                            color={headingColor}
+                            mb={isAnalytics ? 4 : 0}
+                          >
+                            {phase.title}
+                          </Text>
+                          {isAnalytics && (
+                            <Box as="ul" pl={6} listStyleType="disc">
+                              {phase.bullets.map((bullet, j) => (
+                                <Text
+                                  key={j}
+                                  as="li"
+                                  color={textColor}
+                                  fontSize="16px"
+                                  lineHeight="1.7"
+                                  mb={3}
+                                >
+                                  {bullet}
+                                </Text>
+                              ))}
+                            </Box>
+                          )}
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
-                ))}
-              </VStack>
+                  );
+                })}
+              </Box>
             </Container>
           </Box>
 
@@ -702,16 +738,6 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           <Box id="client-outcomes" bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} opacity={0.3} />
             <Container maxW="6xl" position="relative" zIndex={1}>
-              <Text
-                fontSize="xs"
-                color={accentColor}
-                mb={4}
-                fontWeight="bold"
-                letterSpacing="wider"
-                textTransform="uppercase"
-              >
-                Tracked results
-              </Text>
               <Heading
                 as="h2"
                 fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -719,53 +745,103 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 color={headingColor}
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
+                textAlign="left"
                 mb={4}
               >
                 Client outcomes powered by AI-enabled teams
               </Heading>
-              <Text color={textColor} fontSize="16px" mb={12} maxW="2xl">
+              <Text
+                color={textColor}
+                fontSize="16px"
+                mb={12}
+                maxW="2xl"
+              >
                 {content.outcomesIntro ??
-                  "We've tracked use cases across delivery and documented the results. The examples below show how AI translates into tangible time savings and measurable efficiency gains."}
+                  "We've tracked hundreds of use cases across delivery and documented the results. The examples below show how AI translates into tangible time savings and measurable efficiency gains."}
               </Text>
-              <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={6}>
-                {content.outcomes.map((row, i) => (
-                  <Box
-                    key={i}
-                    p={6}
-                    bg={bgColor}
-                    borderRadius="lg"
-                    borderWidth="1px"
-                    borderColor={dividerColor}
-                  >
-                    <Heading as="h3" size="sm" color={headingColor} mb={4} fontWeight="semibold">
-                      {row.task}
-                    </Heading>
-                    <VStack align="stretch" spacing={2}>
-                      <HStack justify="space-between" fontSize="sm">
-                        <Text color={textColor} fontWeight="medium">
-                          Task duration before AI
-                        </Text>
-                        <Text color={headingColor}>{row.before}</Text>
-                      </HStack>
-                      <HStack justify="space-between" fontSize="sm">
-                        <Text color={textColor} fontWeight="medium">
-                          Task duration with AI
-                        </Text>
-                        <Text color={headingColor}>{row.after}</Text>
-                      </HStack>
-                      <HStack justify="space-between" fontSize="sm" pt={2} borderTopWidth="1px" borderColor={dividerColor}>
-                        <Text color={textColor} fontWeight="medium">
-                          Time savings
-                        </Text>
-                        <Text color={accentColor} fontWeight="bold">
+              <TableContainer
+                borderWidth="1px"
+                borderColor={dividerColor}
+                borderRadius="md"
+                overflow="hidden"
+                mb={12}
+              >
+                <Table variant="simple" size="md">
+                  <Thead bg={bgColor}>
+                    <Tr>
+                      <Th
+                        color={accentColor}
+                        fontWeight="medium"
+                        textAlign="left"
+                        py={5}
+                        px={6}
+                        borderBottomWidth="1px"
+                        borderColor={dividerColor}
+                      >
+                        Task
+                      </Th>
+                      <Th
+                        color={accentColor}
+                        fontWeight="medium"
+                        textAlign="center"
+                        py={5}
+                        px={6}
+                        borderBottomWidth="1px"
+                        borderColor={dividerColor}
+                      >
+                        Task duration before AI
+                      </Th>
+                      <Th
+                        color={accentColor}
+                        fontWeight="medium"
+                        textAlign="center"
+                        py={5}
+                        px={6}
+                        borderBottomWidth="1px"
+                        borderColor={dividerColor}
+                      >
+                        Task duration with AI
+                      </Th>
+                      <Th
+                        color={accentColor}
+                        fontWeight="medium"
+                        textAlign="center"
+                        py={5}
+                        px={6}
+                        borderBottomWidth="1px"
+                        borderColor={dividerColor}
+                      >
+                        Time savings
+                      </Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {content.outcomes.map((row, i) => (
+                      <Tr key={i} borderBottomWidth={i < content.outcomes.length - 1 ? "1px" : 0} borderColor={dividerColor}>
+                        <Td color={headingColor} py={5} px={6} fontWeight="medium">
+                          {row.task}
+                        </Td>
+                        <Td color={headingColor} py={5} px={6} textAlign="center">
+                          {row.before}
+                        </Td>
+                        <Td color={headingColor} py={5} px={6} textAlign="center">
+                          {row.after}
+                        </Td>
+                        <Td color={headingColor} py={5} px={6} textAlign="center" fontWeight="medium">
                           {row.savings}
-                        </Text>
-                      </HStack>
-                    </VStack>
-                  </Box>
-                ))}
-              </SimpleGrid>
-              <Text color={textColor} fontSize="16px" mt={8} maxW="2xl">
+                        </Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+              <Text
+                color={headingColor}
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="bold"
+                lineHeight="1.5"
+                w="100%"
+              >
                 {content.outcomesClosing ??
                   "Our experience shows that AI cuts minutes and hours from individual tasks, and at scale, entire days fall off delivery cycles. We work with you to set the right KPIs for your project and track every result transparently."}
               </Text>
@@ -856,48 +932,97 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
             </Container>
           </Box>
 
-          {/* Stats */}
-          <Box id="why-tech-emulsion" bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
-            <Box {...patternOverlay} opacity={0.3} />
-            <Container maxW="6xl" position="relative" zIndex={1}>
-              <Text
-                fontSize="xs"
-                color={accentColor}
-                mb={4}
-                fontWeight="bold"
-                letterSpacing="wider"
-                textTransform="uppercase"
-              >
-                Why Tech Emulsion
-              </Text>
-              <Heading
-                as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
-                fontWeight="bold"
-                color={headingColor}
-                letterSpacing="-0.02em"
-                lineHeight="1.1"
-                mb={12}
-              >
-                What makes Tech Emulsion your reliable AI-powered development partner?
-              </Heading>
-              <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={8}>
-                {content.stats.map((stat, i) => (
-                  <Box key={i} textAlign="center">
-                    <Text
-                      fontSize={{ base: "3xl", md: "4xl" }}
-                      fontWeight="bold"
-                      color={accentColor}
-                      mb={2}
-                    >
-                      {stat.value}
-                    </Text>
-                    <Text color={textColor} fontSize="16px">
-                      {stat.label}
-                    </Text>
+          {/* Why Tech Emulsion - full background image + right-side cards */}
+          <Box
+            id="why-tech-emulsion"
+            position="relative"
+            minH="auto"
+            bg={bgColor}
+            overflow="hidden"
+          >
+            <Box
+              position="absolute"
+              inset={0}
+              bgImage="url(/assets/engagement-models/Why%20Tech%20Emulsion%20Image.jpg)"
+              bgSize="cover"
+              bgPosition="center"
+              bgRepeat="no-repeat"
+            />
+            <Box
+              position="absolute"
+              inset={0}
+              bgGradient={{
+                base: "linear(to-r, blackAlpha.800 30%, blackAlpha.900 70%)",
+                md: "linear(to-r, transparent 0%, blackAlpha.700 45%, blackAlpha.900 55%)",
+              }}
+            />
+            <Container maxW="6xl" position="relative" zIndex={1} py={{ base: 16, md: 20 }}>
+              <Flex justify={{ base: "flex-start", md: "flex-end" }} align="flex-start">
+                <Box
+                  w={{ base: "100%", md: "55%", lg: "52%" }}
+                  maxW={{ md: "640px" }}
+                  bg={{ base: "blackAlpha.800", md: "transparent" }}
+                  p={{ base: 6, md: 0 }}
+                  borderRadius={{ base: "md", md: 0 }}
+                >
+                  <Heading
+                    as="h2"
+                    fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                    fontWeight="bold"
+                    color="white"
+                    letterSpacing="-0.02em"
+                    lineHeight="1.2"
+                    mb={{ base: 8, md: 10 }}
+                  >
+                    What makes Tech Emulsion your reliable AI-powered development partner?
+                  </Heading>
+                  <Box
+                    display="grid"
+                    gridTemplateColumns="repeat(3, 1fr)"
+                    borderWidth="1px"
+                    borderColor="whiteAlpha.200"
+                    borderRadius="md"
+                    overflow="hidden"
+                  >
+                    {content.stats.map((stat, i) => {
+                      const icons = [null, FaStar, FaComments, FaGem, FaCheck, FaShieldAlt];
+                      const IconComponent = icons[i];
+                      const isNumberLead = i === 0;
+                      return (
+                        <Box
+                          key={i}
+                          p={5}
+                          borderRightWidth={i % 3 !== 2 ? "1px" : 0}
+                          borderBottomWidth={i < 3 ? "1px" : 0}
+                          borderColor="whiteAlpha.200"
+                        >
+                          {isNumberLead ? (
+                            <Text
+                              fontSize={{ base: "2xl", md: "3xl" }}
+                              fontWeight="bold"
+                              color={accentColor}
+                              mb={2}
+                            >
+                              {stat.value}
+                            </Text>
+                          ) : IconComponent ? (
+                            <Icon
+                              as={IconComponent}
+                              color={accentColor}
+                              boxSize={8}
+                              mb={3}
+                              display="block"
+                            />
+                          ) : null}
+                          <Text color="white" fontSize="15px" lineHeight="1.5">
+                            {stat.label}
+                          </Text>
+                        </Box>
+                      );
+                    })}
                   </Box>
-                ))}
-              </SimpleGrid>
+                </Box>
+              </Flex>
             </Container>
           </Box>
 
@@ -927,67 +1052,82 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 FAQs
               </Heading>
               <Accordion allowMultiple>
-                <VStack align="stretch" spacing={4}>
-                  {content.faqs.map((faq, i) => (
-                    <AccordionItem
-                      key={i}
-                      borderRadius="lg"
-                      bg={sectionBg}
-                      borderWidth="1px"
-                      borderColor={dividerColor}
-                      overflow="hidden"
-                      _focusWithin={{ boxShadow: "md" }}
-                    >
-                      <AccordionButton
-                        py={6}
-                        px={6}
-                        textAlign="left"
-                        _expanded={{ color: accentColor }}
-                        sx={{
-                          "&[data-expanded] .icon-plus": { display: "none" },
-                          "&[data-expanded] .icon-minus": { display: "block" },
-                          "&:not([data-expanded]) .icon-plus": { display: "block" },
-                          "&:not([data-expanded]) .icon-minus": { display: "none" },
-                        }}
+                <Box
+                  display="grid"
+                  gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+                  gap={6}
+                >
+                  {content.faqs.map((faq, i) => {
+                    const isLastOdd =
+                      i === content.faqs.length - 1 && content.faqs.length % 2 === 1;
+                    return (
+                      <Box
+                        key={i}
+                        gridColumn={isLastOdd ? { base: "1", md: "1 / -1" } : undefined}
+                        justifySelf={isLastOdd ? "center" : undefined}
+                        maxW={isLastOdd ? { base: "100%", md: "50%" } : undefined}
                       >
-                        <Box
-                          flex="1"
-                          fontWeight="semibold"
-                          color={headingColor}
-                          pr={4}
-                          fontSize="16px"
+                        <AccordionItem
+                          borderRadius="lg"
+                          bg={sectionBg}
+                          boxShadow="sm"
+                          borderWidth="1px"
+                          borderColor={dividerColor}
+                          overflow="hidden"
+                          _focusWithin={{ boxShadow: "md" }}
                         >
-                          {faq.question}
-                        </Box>
-                        <Icon
-                          as={FaPlus}
-                          className="icon-plus"
-                          boxSize={5}
-                          color={accentColor}
-                          flexShrink={0}
-                        />
-                        <Icon
-                          as={FaMinus}
-                          className="icon-minus"
-                          boxSize={5}
-                          color={accentColor}
-                          flexShrink={0}
-                          display="none"
-                        />
-                      </AccordionButton>
-                      <AccordionPanel
-                        px={6}
-                        pb={6}
-                        pt={0}
-                        color={textColor}
-                        fontSize="16px"
-                        lineHeight="1.7"
-                      >
-                        {faq.answer}
-                      </AccordionPanel>
-                    </AccordionItem>
-                  ))}
-                </VStack>
+                          <AccordionButton
+                            py={6}
+                            px={6}
+                            textAlign="left"
+                            _expanded={{ color: accentColor }}
+                            sx={{
+                              "&[data-expanded] .icon-plus": { display: "none" },
+                              "&[data-expanded] .icon-minus": { display: "block" },
+                              "&:not([data-expanded]) .icon-plus": { display: "block" },
+                              "&:not([data-expanded]) .icon-minus": { display: "none" },
+                            }}
+                          >
+                            <Box
+                              flex="1"
+                              fontWeight="semibold"
+                              color={headingColor}
+                              pr={4}
+                              fontSize="16px"
+                            >
+                              {faq.question}
+                            </Box>
+                            <Icon
+                              as={FaPlus}
+                              className="icon-plus"
+                              boxSize={5}
+                              color={accentColor}
+                              flexShrink={0}
+                            />
+                            <Icon
+                              as={FaMinus}
+                              className="icon-minus"
+                              boxSize={5}
+                              color={accentColor}
+                              flexShrink={0}
+                              display="none"
+                            />
+                          </AccordionButton>
+                          <AccordionPanel
+                            px={6}
+                            pb={6}
+                            pt={0}
+                            color={textColor}
+                            fontSize="16px"
+                            lineHeight="1.7"
+                          >
+                            {faq.answer}
+                          </AccordionPanel>
+                        </AccordionItem>
+                      </Box>
+                    );
+                  })}
+                </Box>
               </Accordion>
             </Container>
           </Box>

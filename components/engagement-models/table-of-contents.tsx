@@ -22,6 +22,18 @@ interface TableOfContentsProps {
   textColor?: string;
 }
 
+const linkStyles = {
+  align: "center" as const,
+  gap: 3,
+  py: 2,
+  textAlign: "left" as const,
+  bg: "transparent",
+  border: "none",
+  cursor: "pointer",
+  _hover: { opacity: 0.9 },
+  w: "full",
+};
+
 function TocLink({
   item,
   headingColor,
@@ -32,30 +44,13 @@ function TocLink({
   accentColor: string;
 }) {
   const handleClick = (e: React.MouseEvent) => {
-    if (item.external) return;
     e.preventDefault();
     const el = document.querySelector(item.href);
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  return (
-    <Flex
-      as={item.external ? "a" : "button"}
-      href={item.external ? item.href : undefined}
-      target={item.external ? "_blank" : undefined}
-      rel={item.external ? "noopener noreferrer" : undefined}
-      type={item.external ? undefined : "button"}
-      align="center"
-      gap={3}
-      py={2}
-      textAlign="left"
-      bg="transparent"
-      border="none"
-      cursor="pointer"
-      _hover={{ opacity: 0.9 }}
-      onClick={item.external ? undefined : handleClick}
-      w="full"
-    >
+  const content = (
+    <>
       <Text
         as="span"
         color={headingColor}
@@ -79,6 +74,20 @@ function TocLink({
       >
         <Icon as={FaChevronRight} color="white" boxSize={3} />
       </Box>
+    </>
+  );
+
+  if (item.external) {
+    return (
+      <Flex as="a" href={item.href} target="_blank" rel="noopener noreferrer" {...linkStyles}>
+        {content}
+      </Flex>
+    );
+  }
+
+  return (
+    <Flex as="button" type="button" onClick={handleClick} {...linkStyles}>
+      {content}
     </Flex>
   );
 }

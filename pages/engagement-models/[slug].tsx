@@ -31,6 +31,7 @@ import {
 import { getEngagementModelContent } from "data/engagement-model-content";
 import { TableOfContents } from "components/engagement-models/table-of-contents";
 import NextLink from "next/link";
+import Image from "next/image";
 
 interface EngagementModelPageProps {
   model: EngagementModelItem;
@@ -161,7 +162,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </ButtonGroup>
         </Flex>
 
-        {/* Header section - two column */}
+        {/* Header section - two column, Vention-style */}
         <Box
           minH={{ base: "280px", md: "35vh" }}
           display={{ base: "block", md: "grid" }}
@@ -175,6 +176,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
             py={8}
             pr={{ base: 0, md: 6 }}
             display="flex"
+            flexDirection="column"
             alignItems="flex-start"
             borderRightWidth={{ md: "1px" }}
             borderColor={dividerColor}
@@ -183,11 +185,24 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               _dark: { borderColor: "gray.600 !important" },
             }}
           >
+            {model.heroTagline && (
+              <Text
+                color={accentColor}
+                fontSize="sm"
+                fontWeight="semibold"
+                letterSpacing="wider"
+                mb={3}
+              >
+                {model.heroTagline}
+              </Text>
+            )}
             <Heading
               as="h1"
               fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
               color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
             >
               {heroTitle}
             </Heading>
@@ -213,18 +228,61 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                   {paragraph}
                 </Text>
               ))}
+              {model.heroCta && hasFullContent && (
+                <ButtonLink
+                  href="/contact"
+                  mt={6}
+                  colorScheme="teal"
+                  size="lg"
+                  sx={{ _before: { display: "none" } }}
+                >
+                  {model.heroCta}
+                </ButtonLink>
+              )}
             </Box>
           </Box>
         </Box>
 
         <Box
           bg="transparent"
-          py={2}
+          py={0}
           px={6}
           mx={-6}
           borderTopWidth="1px"
           borderColor={dividerColor}
         />
+
+        {content && (
+          <>
+            <Box mx={-6} px={6}>
+              <Box position="relative" zIndex={1} mx={-6} minW="calc(100% + 48px)" w="calc(100% + 48px)">
+                <TableOfContents
+                  leftColumn={[
+                    { label: "Tech Emulsion's approach to AI", href: "#our-approach" },
+                    { label: "Our AI software development tools", href: "#ai-tools" },
+                    { label: "Our AI-powered development teams", href: "#the-model" },
+                    { label: "Our AI projects", href: "/portfolio", external: true },
+                    { label: "What makes AI-enabled teams special", href: "#what-makes-special" },
+                    { label: "Testimonials", href: "/#social", external: true },
+                  ]}
+                  rightColumn={[
+                    { label: "AI's role across SDLC", href: "#sdlc" },
+                    { label: "About Tech Emulsion", href: "#why-tech-emulsion" },
+                    { label: "Tracked gains across our internal projects", href: "#client-outcomes" },
+                    { label: "FAQs", href: "#faqs" },
+                  ]}
+                  sectionBg={sectionBg}
+                  collapsedBg={bgColor}
+                  dividerColor={dividerColor}
+                  accentColor={accentColor}
+                  headingColor={headingColor}
+                  textColor={textColor}
+                />
+              </Box>
+            </Box>
+            <Box h="1px" bg={dividerColor} mx={-6} px={6} flexShrink={0} />
+          </>
+        )}
 
         {!hasFullContent && (
           <Box pt={8}>
@@ -238,41 +296,49 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
       {/* Full content sections for ai-enabled-teams */}
       {content && (
         <>
-          {/* Table of contents - first section after header, width aligned with header divider */}
-          <Box bg={sectionBg} py={{ base: 12, md: 16 }} {...sectionStyles}>
-            <Box {...patternOverlay} opacity={0.3} />
-            <Container maxW="container.xl" px={6} position="relative" zIndex={1}>
-              <TableOfContents
-                leftColumn={[
-                  { label: "Our approach to AI", href: "#our-approach" },
-                  { label: "Our AI-powered development teams", href: "#the-model" },
-                  { label: "What makes AI-enabled teams special", href: "#what-makes-special" },
-                  { label: "AI's role across SDLC", href: "#sdlc" },
-                  { label: "Tracked gains across our internal projects", href: "#client-outcomes" },
-                ]}
-                rightColumn={[
-                  { label: "Our AI software development tools", href: "#ai-tools" },
-                  { label: "Our AI projects", href: "/portfolio", external: true },
-                  { label: "Testimonials", href: "/#social", external: true },
-                  { label: "About Tech Emulsion", href: "#why-tech-emulsion" },
-                  { label: "FAQs", href: "#faqs" },
-                ]}
-                sectionBg={sectionBg}
-                dividerColor={dividerColor}
-                accentColor={accentColor}
-                headingColor={headingColor}
-                textColor={textColor}
-              />
-            </Container>
-          </Box>
-
           {/* You will feel safe and empowered */}
-          <Box id="our-approach" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box id="our-approach" bg={bgColor} position="relative">
             <Box {...patternOverlay} opacity={0.3} />
-            <Container maxW="6xl" position="relative" zIndex={1}>
+
+            {/* Section 1: Tagline, large statement, subtext, divider */}
+            <Container maxW="6xl" position="relative" zIndex={1} pt={0} pb={{ base: 20, md: 24 }}>
+              {content.peaceOfMindIntro && (
+                <Box
+                  display={{ base: "block", md: "grid" }}
+                  gridTemplateColumns={{ md: "1fr 1fr" }}
+                  alignItems="center"
+                  py={{ base: 20, md: 24 }}
+                  mb={0}
+                  minH={{ md: "200px" }}
+                  position="relative"
+                  _after={{
+                    content: '""',
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "1px",
+                    bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+                    opacity: 0.2,
+                  }}
+                >
+                  <Box display={{ base: "none", md: "block" }} />
+                  <Text
+                    as="blockquote"
+                    color={headingColor}
+                    fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                    fontWeight="bold"
+                    lineHeight="1.25"
+                    letterSpacing="-0.02em"
+                  >
+                    {content.peaceOfMindIntro}
+                  </Text>
+                </Box>
+              )}
               <Text
                 fontSize="xs"
                 color={accentColor}
+                mt={{ base: 10, md: 12 }}
                 mb={4}
                 fontWeight="bold"
                 letterSpacing="wider"
@@ -282,35 +348,106 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               </Text>
               <Heading
                 as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
-                fontWeight="bold"
-                color={headingColor}
+                fontSize={{ base: "xl", md: "2xl" }}
+                fontWeight="semibold"
+                color={accentColor}
                 letterSpacing="-0.02em"
-                lineHeight="1.1"
-                mb={6}
+                lineHeight="1.3"
+                mb={8}
               >
                 You will feel safe and empowered with us. Here&apos;s why
               </Heading>
-              <Text color={textColor} fontSize="16px" lineHeight="1.8" mb={8} maxW="3xl">
+              <Text
+                color={headingColor}
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontWeight="bold"
+                lineHeight="1.3"
+                letterSpacing="-0.02em"
+                mb={6}
+                maxW={{ base: "100%", md: "65%" }}
+              >
                 {content.safeAndEmpowered.intro}
               </Text>
-              <Box as="ul" mb={8} pl={6} maxW="3xl">
-                {content.safeAndEmpowered.bullets.map((bullet, i) => (
+              {content.safeAndEmpowered.introSubtext && (
+                <Box
+                  display={{ base: "block", md: "grid" }}
+                  gridTemplateColumns={{ md: "1fr 1fr" }}
+                  alignItems="center"
+                  mb={0}
+                >
+                  <Box display={{ base: "none", md: "block" }} />
                   <Text
-                    key={i}
-                    as="li"
                     color={textColor}
                     fontSize="16px"
                     lineHeight="1.8"
-                    mb={3}
                   >
-                    {bullet}
+                    {content.safeAndEmpowered.introSubtext}
                   </Text>
-                ))}
+                </Box>
+              )}
+            </Container>
+
+            {/* Divider between section 1 and section 2 */}
+            <Box mx="auto" maxW="6xl" px={6}>
+              <Box
+                height="1px"
+                bgGradient={`linear(to-r, transparent, ${accentColor}, transparent)`}
+                opacity={0.2}
+              />
+            </Box>
+
+            {/* Section 2: Image left, bullets + closing right */}
+            <Container maxW="6xl" position="relative" zIndex={1} py={{ base: 12, md: 16 }}>
+              <Box
+                display={{ base: "block", md: "grid" }}
+                gridTemplateColumns={{ md: "minmax(0, 0.45fr) minmax(0, 0.55fr)" }}
+                gap={{ base: 8, md: 12 }}
+                alignItems="stretch"
+              >
+                <Box
+                  position="relative"
+                  w="100%"
+                  minH={{ base: "240px" }}
+                  aspectRatio={{ base: "16/10", md: "unset" }}
+                  h={{ base: "auto", md: "100%" }}
+                >
+                  <Image
+                    src="/assets/engagement-models/safe-empowered-section.jpg"
+                    alt="Team collaborating on AI and delivery"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                </Box>
+                <Box>
+                  <Text color={headingColor} fontWeight="semibold" mb={3} fontSize="16px">
+                    Here&apos;s what backs every engagement:
+                  </Text>
+                  <Box as="ul" mb={6} pl={6}>
+                    {content.safeAndEmpowered.bullets.map((bullet, i) => (
+                      <Text
+                        key={i}
+                        as="li"
+                        color={textColor}
+                        fontSize="16px"
+                        lineHeight="1.8"
+                        mb={3}
+                      >
+                        {bullet}
+                      </Text>
+                    ))}
+                  </Box>
+                  <Text
+                    color={headingColor}
+                    fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+                    fontWeight="bold"
+                    lineHeight="1.3"
+                    letterSpacing="-0.02em"
+                  >
+                    {content.safeAndEmpowered.closing}
+                  </Text>
+                </Box>
               </Box>
-              <Text color={textColor} fontSize="16px" lineHeight="1.8" maxW="3xl">
-                {content.safeAndEmpowered.closing}
-              </Text>
             </Container>
           </Box>
 
@@ -350,31 +487,27 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 ))}
               </Box>
               <Text color={textColor} fontSize="16px" lineHeight="1.8" maxW="3xl">
-                With great AI comes great responsibility, and Tech Emulsion takes that responsibility
-                seriously.
+                With great AI comes great responsibility, and Tech Emulsion takes that responsibility seriously.
               </Text>
             </Container>
           </Box>
 
-          {/* What makes AI-powered teams special */}
-          <Box id="what-makes-special" bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
-            <Box {...patternOverlay} opacity={0.3} />
+          {/* What makes AI-powered teams special - full-width accent section (Vention-style) */}
+          <Box
+            id="what-makes-special"
+            py={{ base: 20, md: 24 }}
+            bgGradient={
+              colorMode === "dark"
+                ? "linear(to-r, teal.700, teal.900)"
+                : "linear(to-r, teal.500, teal.600)"
+            }
+            color="white"
+          >
             <Container maxW="6xl" position="relative" zIndex={1}>
-              <Text
-                fontSize="xs"
-                color={accentColor}
-                mb={4}
-                fontWeight="bold"
-                letterSpacing="wider"
-                textTransform="uppercase"
-              >
-                Why choose us
-              </Text>
               <Heading
                 as="h2"
                 fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                 fontWeight="bold"
-                color={headingColor}
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
                 mb={12}
@@ -383,18 +516,11 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               </Heading>
               <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
                 {content.whatMakesSpecial.map((item, i) => (
-                  <Box
-                    key={i}
-                    p={8}
-                    bg={bgColor}
-                    borderRadius="lg"
-                    borderWidth="1px"
-                    borderColor={dividerColor}
-                  >
-                    <Heading as="h3" size="md" color={headingColor} fontWeight="bold" mb={3}>
+                  <Box key={i}>
+                    <Heading as="h3" size="md" fontWeight="bold" mb={3} opacity={0.95}>
                       {item.title}
                     </Heading>
-                    <Text color={textColor} fontSize="16px" lineHeight="1.7">
+                    <Text fontSize="16px" lineHeight="1.7" opacity={0.9}>
                       {item.description}
                     </Text>
                   </Box>
@@ -532,9 +658,8 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 Client outcomes powered by AI-enabled teams
               </Heading>
               <Text color={textColor} fontSize="16px" mb={12} maxW="2xl">
-                We&apos;ve tracked use cases across delivery and documented the results. The
-                examples below show how AI translates into tangible time savings and measurable
-                efficiency gains.
+                {content.outcomesIntro ??
+                  "We've tracked use cases across delivery and documented the results. The examples below show how AI translates into tangible time savings and measurable efficiency gains."}
               </Text>
               <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={6}>
                 {content.outcomes.map((row, i) => (
@@ -549,24 +674,34 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     <Heading as="h3" size="sm" color={headingColor} mb={4} fontWeight="semibold">
                       {row.task}
                     </Heading>
-                    <HStack justify="space-between" mb={2} flexWrap="wrap" gap={2}>
-                      <Text color={textColor} fontSize="sm">
-                        Before: {row.before}
-                      </Text>
-                      <Text color={textColor} fontSize="sm">
-                        With AI: {row.after}
-                      </Text>
-                    </HStack>
-                    <Text color={accentColor} fontWeight="bold" fontSize="lg">
-                      Time savings: {row.savings}
-                    </Text>
+                    <VStack align="stretch" spacing={2}>
+                      <HStack justify="space-between" fontSize="sm">
+                        <Text color={textColor} fontWeight="medium">
+                          Task duration before AI
+                        </Text>
+                        <Text color={headingColor}>{row.before}</Text>
+                      </HStack>
+                      <HStack justify="space-between" fontSize="sm">
+                        <Text color={textColor} fontWeight="medium">
+                          Task duration with AI
+                        </Text>
+                        <Text color={headingColor}>{row.after}</Text>
+                      </HStack>
+                      <HStack justify="space-between" fontSize="sm" pt={2} borderTopWidth="1px" borderColor={dividerColor}>
+                        <Text color={textColor} fontWeight="medium">
+                          Time savings
+                        </Text>
+                        <Text color={accentColor} fontWeight="bold">
+                          {row.savings}
+                        </Text>
+                      </HStack>
+                    </VStack>
                   </Box>
                 ))}
               </SimpleGrid>
               <Text color={textColor} fontSize="16px" mt={8} maxW="2xl">
-                Our experience shows that AI cuts minutes and hours from individual tasks, and at
-                scale, entire days fall off delivery cycles. We work with you to set the right KPIs
-                for your project and track every result transparently.
+                {content.outcomesClosing ??
+                  "Our experience shows that AI cuts minutes and hours from individual tasks, and at scale, entire days fall off delivery cycles. We work with you to set the right KPIs for your project and track every result transparently."}
               </Text>
             </Container>
           </Box>
@@ -632,9 +767,8 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 AI tools to power your development lifecycle
               </Heading>
               <Text color={textColor} fontSize="16px" mb={12} maxW="2xl">
-                We work with a curated set of AI products trusted across industries. If your team
-                already has preferred platforms, we integrate them seamlessly—secure, scalable, and
-                built to deliver peace of mind at every step.
+                {content.toolsIntro ??
+                  "We work with a curated set of AI products trusted across industries. If your team already has preferred platforms, we integrate them seamlessly—secure, scalable, and built to deliver peace of mind at every step."}
               </Text>
               <Flex flexWrap="wrap" gap={3}>
                 {content.tools.map((tool, i) => (
@@ -681,7 +815,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               >
                 What makes Tech Emulsion your reliable AI-powered development partner?
               </Heading>
-              <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={8}>
+              <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={8}>
                 {content.stats.map((stat, i) => (
                   <Box key={i} textAlign="center">
                     <Text

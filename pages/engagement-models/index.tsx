@@ -16,6 +16,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { TableOfContents } from "components/engagement-models/table-of-contents";
 import { engagementModelsData } from "data/engagement-models";
 
 const EngagementModelsPage = () => {
@@ -25,6 +26,17 @@ const EngagementModelsPage = () => {
   const dividerColor = useColorModeValue("gray.200", "gray.600");
   const cardBg = useColorModeValue("white", "gray.800");
   const cardBorder = useColorModeValue("gray.200", "gray.700");
+  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
+  const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
+
+  const tocItems = engagementModelsData.map((m) => ({
+    label: m.title,
+    href: `/engagement-models/${m.slug}`,
+    external: true,
+  }));
+  const mid = Math.ceil(tocItems.length / 2);
+  const leftToc = tocItems.slice(0, mid);
+  const rightToc = tocItems.slice(mid);
 
   return (
     <Box position="relative" minH="100vh" color={headingColor}>
@@ -90,6 +102,7 @@ const EngagementModelsPage = () => {
             py={8}
             pr={{ base: 0, md: 6 }}
             display="flex"
+            flexDirection="column"
             alignItems="flex-start"
             borderRightWidth={{ md: "1px" }}
             borderColor={dividerColor}
@@ -103,11 +116,12 @@ const EngagementModelsPage = () => {
               fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
               fontWeight="bold"
               color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1"
             >
               Engagement models
             </Heading>
           </Box>
-          {/* Right: Description - bottom aligned */}
           <Box
             pl={{ base: 0, md: 6 }}
             py={{ base: 4, md: 8 }}
@@ -116,37 +130,53 @@ const EngagementModelsPage = () => {
             alignItems={{ base: "flex-start", md: "flex-end" }}
             justifyContent={{ base: "flex-start", md: "flex-end" }}
           >
-            <Text
-              color={textColor}
-              fontSize="16px"
-              lineHeight="tall"
-              textAlign={{ base: "left", md: "left" }}
-              maxW={{ md: "420px" }}
-              mb={4}
-            >
-              We offer flexible engagement models—from AI-enabled teams and staff
-              augmentation to dedicated teams and full project outsourcing—so you
-              can scale delivery in the way that best fits your stage and goals.
-            </Text>
+            <Box maxW={{ md: "420px" }}>
+              <Text
+                color={textColor}
+                fontSize="16px"
+                lineHeight="tall"
+                textAlign="left"
+                mb={6}
+              >
+                We offer flexible engagement models—from AI-enabled teams and staff augmentation to
+                dedicated teams and full project outsourcing—so you can scale delivery in the way
+                that best fits your stage and goals.
+              </Text>
+              <ButtonLink href="/contact" colorScheme="teal" size="lg">
+                Get a Quote
+              </ButtonLink>
+            </Box>
           </Box>
         </Box>
 
-        {/* Divider bar - header bottom */}
         <Box
           bg="transparent"
-          py={2}
+          py={0}
           px={6}
           mx={-6}
           borderTopWidth="1px"
           borderColor={dividerColor}
         />
 
+        {/* Table of contents - same width as header divider */}
+        <Box mt={0} mx={-6} px={6}>
+          <Box mx={-6} minW="calc(100% + 48px)" w="calc(100% + 48px)">
+            <TableOfContents
+              leftColumn={leftToc}
+              rightColumn={rightToc}
+              sectionBg={sectionBg}
+              collapsedBg="transparent"
+              dividerColor={dividerColor}
+              accentColor={accentColor}
+              headingColor={headingColor}
+              textColor={textColor}
+            />
+          </Box>
+        </Box>
+        <Box h="1px" bg={dividerColor} mx={-6} px={6} flexShrink={0} />
+
         {/* Models grid */}
-        <SimpleGrid
-          columns={{ base: 1, md: 2, lg: 3 }}
-          spacing={6}
-          pb={12}
-        >
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} pt={12} pb={12}>
           {engagementModelsData.map((model) => (
             <Box
               key={model.id}

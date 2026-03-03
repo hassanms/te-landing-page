@@ -15,12 +15,12 @@ import { ServicesDropdown } from "./services-dropdown";
 import { EngagementModelsDropdown } from "./engagement-models-dropdown";
 import { useScroll } from "framer-motion";
 
-// Portfolio, services, and engagement models detail pages get white navbar at top (excludes list pages)
+// Portfolio and services detail pages get white navbar at top (excludes list pages).
+// Engagement models slug uses same navbar as main pages (home, engagement-models, services).
 const isHeroDetailPage = (pathname: string) =>
   pathname.startsWith("/portfolio/") ||
   pathname === "/portfolio-v4" ||
-  pathname.startsWith("/services/") ||
-  pathname.startsWith("/engagement-models/");
+  pathname.startsWith("/services/");
 
 export interface HeaderProps extends Omit<BoxProps, "children"> {}
 

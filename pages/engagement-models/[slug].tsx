@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -19,6 +20,7 @@ import {
   VStack,
   useColorMode,
   useColorModeValue,
+  Collapse,
 } from "@chakra-ui/react";
 import {
   Accordion,
@@ -62,6 +64,9 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
 
   const content = getEngagementModelContent(model.slug);
   const hasFullContent = !!content;
+  const [activeSdlcPhase, setActiveSdlcPhase] = useState(
+    content?.sdlcPhases?.[0]?.number ?? null
+  );
 
   const subtlePattern = useColorModeValue(
     "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
@@ -97,8 +102,20 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
       position="relative"
       minH="100vh"
       color={headingColor}
-      bg={hasFullContent ? bgColor : undefined}
+      bg="transparent"
     >
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={-1}
+        overflow="hidden"
+        pointerEvents="none"
+      >
+        <BackgroundGradient height="100%" width="100%" />
+      </Box>
       <EnhancedSEO
         title={`${model.title} | Tech Emulsion`}
         description={
@@ -119,21 +136,6 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           ],
         }}
       />
-
-      {!hasFullContent && (
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          zIndex={-1}
-          overflow="hidden"
-          pointerEvents="none"
-        >
-          <BackgroundGradient height="100%" width="100%" />
-        </Box>
-      )}
 
       <Box pt={{ base: 20, md: 24 }} />
       <Container
@@ -172,7 +174,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
 
         {/* Header section - two column, Vention-style */}
         <Box
-          minH={{ base: "280px", md: "35vh" }}
+          minH={{ base: "360px", md: "48vh" }}
           display={{ base: "block", md: "grid" }}
           gridTemplateColumns={{ md: "1fr 1fr" }}
           borderTopWidth="1px"
@@ -193,20 +195,9 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               _dark: { borderColor: "gray.600 !important" },
             }}
           >
-            {model.heroTagline && (
-              <Text
-                color={accentColor}
-                fontSize="sm"
-                fontWeight="semibold"
-                letterSpacing="wider"
-                mb={3}
-              >
-                {model.heroTagline}
-              </Text>
-            )}
             <Heading
               as="h1"
-              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontSize={{ base: "2xl", md: "3xl", lg: "48px" }}
               fontWeight="bold"
               color={headingColor}
               letterSpacing="-0.02em"
@@ -236,16 +227,17 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                   {paragraph}
                 </Text>
               ))}
-              {model.heroCta && hasFullContent && (
-                <ButtonLink
-                  href="/contact"
-                  mt={6}
-                  colorScheme="teal"
-                  size="lg"
-                  sx={{ _before: { display: "none" } }}
+              {model.heroTagline && (
+                <Text
+                  color={accentColor}
+                  fontSize="sm"
+                  fontWeight="semibold"
+                  letterSpacing="wider"
+                  mt={2}
+                  textAlign="left"
                 >
-                  {model.heroCta}
-                </ButtonLink>
+                  {model.heroTagline}
+                </Text>
               )}
             </Box>
           </Box>
@@ -271,16 +263,16 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     { label: "Our AI-powered development teams", href: "#the-model" },
                     { label: "Our AI projects", href: "/portfolio", external: true },
                     { label: "What makes AI-enabled teams special", href: "#what-makes-special" },
-                    { label: "Testimonials", href: "/#social", external: true },
                   ]}
                   rightColumn={[
                     { label: "AI's role across SDLC", href: "#sdlc" },
                     { label: "About Tech Emulsion", href: "#why-tech-emulsion" },
                     { label: "Tracked gains across our internal projects", href: "#client-outcomes" },
                     { label: "FAQs", href: "#faqs" },
+                    { label: "Testimonials", href: "/#social", external: true },
                   ]}
-                  sectionBg={sectionBg}
-                  collapsedBg={bgColor}
+                  sectionBg="transparent"
+                  collapsedBg="transparent"
                   dividerColor={dividerColor}
                   accentColor={accentColor}
                   headingColor={headingColor}
@@ -305,7 +297,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
       {content && (
         <>
           {/* You will feel safe and empowered */}
-          <Box id="our-approach" bg={bgColor} position="relative">
+          <Box id="our-approach" bg="transparent" position="relative">
             <Box {...patternOverlay} opacity={0.3} />
 
             {/* Section 1: Tagline, large statement, subtext, divider */}
@@ -334,9 +326,9 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                   <Text
                     as="blockquote"
                     color={headingColor}
-                    fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                    fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
                     fontWeight="bold"
-                    lineHeight="1.25"
+                    lineHeight="1.4"
                     letterSpacing="-0.02em"
                   >
                     {content.peaceOfMindIntro}
@@ -347,29 +339,28 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 fontSize="xs"
                 color={accentColor}
                 mt={{ base: 10, md: 12 }}
-                mb={4}
+                mb={0}
                 fontWeight="bold"
                 letterSpacing="wider"
                 textTransform="uppercase"
               >
-                Our approach
               </Text>
               <Heading
                 as="h2"
-                fontSize={{ base: "xl", md: "2xl" }}
-                fontWeight="semibold"
-                color={accentColor}
+                fontSize={{ base: "4xl", md: "5xl", lg: "3xl" }}
+                fontWeight="bold"
+                color={headingColor}
                 letterSpacing="-0.02em"
-                lineHeight="1.3"
-                mb={8}
+                lineHeight="1.1"
+                mb={0}
               >
                 You will feel safe and empowered with us. Here&apos;s why
               </Heading>
               <Text
                 color={headingColor}
-                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
                 fontWeight="bold"
-                lineHeight="1.3"
+                lineHeight="1.4"
                 letterSpacing="-0.02em"
                 mb={6}
                 maxW={{ base: "100%", md: "65%" }}
@@ -460,19 +451,19 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </Box>
 
           {/* Everything you need to know */}
-          <Box id="the-model" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box id="the-model" bg="transparent" py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} />
             <Container maxW="6xl" position="relative" zIndex={1}>
               {/* Full width: headline + large paragraph (no empty space on left) */}
               <Box w="100%" mb={{ base: 10, md: 12 }}>
                 <Heading
                   as="h2"
-                  fontSize={{ base: "xl", md: "2xl" }}
-                  fontWeight="semibold"
-                  color={accentColor}
+                  fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+                  fontWeight="bold"
+                  color={headingColor}
                   letterSpacing="-0.02em"
-                  lineHeight="1.3"
-                  mb={8}
+                  lineHeight="1.1"
+                  mb={4}
                 >
                   AI-enabled development teams: Everything you need to know
                 </Heading>
@@ -580,11 +571,11 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
             <Container maxW="6xl" position="relative" zIndex={1}>
               <Heading
                 as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "2xl", md: "3xl", lg: "48px" }}
                 fontWeight="bold"
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
-                textAlign="center"
+                textAlign="left"
                 mb={{ base: 12, md: 16 }}
               >
                 What makes AI-powered teams special
@@ -651,17 +642,17 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </Box>
 
           {/* Where AI adds value across the SDLC */}
-          <Box id="sdlc" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box id="sdlc" bg="transparent" py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} />
             <Container maxW="6xl" position="relative" zIndex={1}>
               <Heading
                 as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "2xl", md: "3xl", lg: "48px" }}
                 fontWeight="bold"
                 color={headingColor}
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
-                textAlign="center"
+                textAlign="left"
                 mb={4}
               >
                 Where AI adds value across the SDLC
@@ -669,7 +660,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               <Text
                 color={textColor}
                 fontSize="16px"
-                textAlign="center"
+                textAlign="left"
                 mb={12}
               >
                 AI accelerates delivery at every stage of the software development lifecycle:
@@ -677,21 +668,23 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               <Box borderTopWidth="1px" borderColor={dividerColor}>
                 {content.sdlcPhases.map((phase, i) => {
                   const isLast = i === content.sdlcPhases.length - 1;
-                  const isAnalytics = phase.number === "07";
+                  const isActive = activeSdlcPhase === phase.number;
                   return (
                     <Box
                       key={i}
                       borderBottomWidth={isLast ? 0 : "1px"}
                       borderColor={dividerColor}
-                      bg={isAnalytics ? sdlcHighlightBg : "transparent"}
+                      bg={isActive ? sdlcHighlightBg : "transparent"}
                       px={{ base: 4, md: 8 }}
                       py={{ base: 5, md: 6 }}
+                      onMouseEnter={() => setActiveSdlcPhase(phase.number)}
+                      _hover={{ bg: sdlcHighlightBg }}
                     >
                       <Box
                         display="grid"
                         gridTemplateColumns="minmax(48px, 60px) 1fr"
                         gap={{ base: 4, md: 8 }}
-                        alignItems={isAnalytics ? "start" : "center"}
+                        alignItems={isActive ? "start" : "center"}
                       >
                         <Text
                           fontSize="xl"
@@ -705,11 +698,11 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                             fontSize="lg"
                             fontWeight="bold"
                             color={headingColor}
-                            mb={isAnalytics ? 4 : 0}
+                            mb={isActive ? 4 : 0}
                           >
                             {phase.title}
                           </Text>
-                          {isAnalytics && (
+                          <Collapse in={isActive} animateOpacity unmountOnExit>
                             <Box as="ul" pl={6} listStyleType="disc">
                               {phase.bullets.map((bullet, j) => (
                                 <Text
@@ -724,7 +717,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                                 </Text>
                               ))}
                             </Box>
-                          )}
+                          </Collapse>
                         </Box>
                       </Box>
                     </Box>
@@ -735,12 +728,12 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </Box>
 
           {/* Client outcomes */}
-          <Box id="client-outcomes" bg={sectionBg} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box id="client-outcomes" bg="transparent" py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} opacity={0.3} />
             <Container maxW="6xl" position="relative" zIndex={1}>
               <Heading
                 as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "2xl", md: "3xl", lg: "48px" }}
                 fontWeight="bold"
                 color={headingColor}
                 letterSpacing="-0.02em"
@@ -884,22 +877,21 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </Box>
 
           {/* AI tools */}
-          <Box id="ai-tools" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box id="ai-tools" bg="transparent" py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} />
             <Container maxW="6xl" position="relative" zIndex={1}>
               <Text
                 fontSize="xs"
                 color={accentColor}
-                mb={4}
+                mb={0}
                 fontWeight="bold"
                 letterSpacing="wider"
                 textTransform="uppercase"
               >
-                Tooling
               </Text>
               <Heading
                 as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "2xl", md: "3xl", lg: "48px" }}
                 fontWeight="bold"
                 color={headingColor}
                 letterSpacing="-0.02em"
@@ -1027,7 +1019,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </Box>
 
           {/* FAQs */}
-          <Box id="faqs" bg={bgColor} py={{ base: 20, md: 24 }} {...sectionStyles}>
+          <Box id="faqs" bg="transparent" py={{ base: 20, md: 24 }} {...sectionStyles}>
             <Box {...patternOverlay} />
             <Container maxW="6xl" position="relative" zIndex={1}>
               <Text
@@ -1038,18 +1030,17 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 letterSpacing="wider"
                 textTransform="uppercase"
               >
-                Support
               </Text>
               <Heading
                 as="h2"
-                fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                fontSize={{ base: "2xl", md: "3xl", lg: "48px" }}
                 fontWeight="bold"
                 color={headingColor}
                 letterSpacing="-0.02em"
                 lineHeight="1.1"
                 mb={12}
               >
-                FAQs
+                Frequently asked questions
               </Heading>
               <Accordion allowMultiple>
                 <Box

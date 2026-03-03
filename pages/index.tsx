@@ -1418,7 +1418,7 @@ const Portfolio: React.FC = () => {
       industry: "Advertising",
       platform: "SaaS Platform",
       image: "/assets/portfolio/New/List Images/BillboardIQ.jpg",
-      href: "/portfolio/campaignos",
+      href: "/portfolio/billboardiq",
     },
     {
       title: "The Meatery",

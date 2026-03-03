@@ -115,7 +115,7 @@ export function TableOfContents({
   accentColor = "teal.500",
   headingColor = "gray.800",
 }: TableOfContentsProps) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const bg = isExpanded ? sectionBg : (collapsedBg ?? sectionBg);
 
   return (

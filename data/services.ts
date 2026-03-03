@@ -440,7 +440,7 @@ export const servicesData: ServiceData[] = [
     ],
     dateModified: "2026-03-02",
     relatedServiceSlugs: ["next-gen-saas", "chrome-extensions", "qa-testing-automation"],
-    portfolioSlugs: ["atarim", "campaignos", "genai"],
+    portfolioSlugs: ["atarim", "billboardiq", "genai"],
     valueProps: [
       {
         title: "SEO-Optimized",
@@ -1029,7 +1029,7 @@ export const portfolioLabels: Record<string, string> = {
   atarim: "Atarim",
   rackroom: "Rack Room",
   podcastbeacon: "Podcast Beacon",
-  campaignos: "CampaignOS",
+  billboardiq: "CampaignOS",
   genai: "GenAI",
 };
 

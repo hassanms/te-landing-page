@@ -73,7 +73,7 @@ const CaseStudyCampaignOS = () => {
         title="Case Study: BillboardIQ - Precision-Engineered Management Platform for OOH Advertising - Tech Emulsion"
         description="BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from briefing to financial reporting—intelligent inventory management, automated reconciliation, lunar-period availability tracking, and role-based dashboards."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio/campaignos"
+        canonicalUrl="https://techemulsion.com/portfolio/billboardiq"
       />
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF" />
       <Script

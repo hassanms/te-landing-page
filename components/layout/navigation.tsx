@@ -13,8 +13,7 @@ import ThemeToggle from "./theme-toggle";
 const isHeroDetailPage = (pathname: string) =>
   pathname.startsWith("/portfolio/") ||
   pathname === "/portfolio-v4" ||
-  pathname.startsWith("/services/") ||
-  pathname.startsWith("/engagement-models/");
+  pathname.startsWith("/services/");
 
 const NO_THEME_TOGGLE_PATHS = [
   "/index-v2",

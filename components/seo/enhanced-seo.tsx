@@ -60,12 +60,6 @@ export interface EnhancedSEOProps extends NextSeoProps {
   };
   canonicalUrl?: string;
   ogImage?: string;
-  /** Portfolio listing: ItemList schema so crawlers/LLMs can read project list without executing JS */
-  portfolioListData?: {
-    name?: string;
-    description?: string;
-    items: Array<{ name: string; url: string; description?: string }>;
-  };
 }
 
 export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
@@ -82,7 +76,6 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   reviewData,
   canonicalUrl,
   ogImage,
-  portfolioListData,
   ...props
 }) => {
   const keywordsContent =
@@ -291,11 +284,6 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       {/* Review Schema - Conditional */}
       {reviewData && (
         <StructuredData type="review" data={reviewData} />
-      )}
-
-      {/* ItemList Schema - e.g. portfolio listing for crawlers/LLMs */}
-      {portfolioListData && portfolioListData.items?.length > 0 && (
-        <StructuredData type="itemList" data={portfolioListData} />
       )}
     </>
   );

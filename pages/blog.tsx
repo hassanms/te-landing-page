@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -26,9 +26,8 @@ import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import axios from "axios";
-import { getSupabaseAdmin } from "lib/supabase/server";
 
-interface BlogPost {
+export interface BlogPost {
   id: string;
   slug: string;
   title: string;
@@ -41,18 +40,18 @@ interface BlogPost {
   reading_time_minutes: number;
 }
 
-interface Category {
+export interface Category {
   id: string;
   name: string;
   slug: string;
 }
 
-export interface BlogPageProps {
+interface BlogPageProps {
   initialPosts: BlogPost[];
   initialCategories: Category[];
 }
 
-const Blog: NextPage<BlogPageProps> = ({ initialPosts = [], initialCategories = [] }) => {
+const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
   const router = useRouter();
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "gray.100");
@@ -60,34 +59,10 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts = [], initialCategories = 
   const titleColor = useColorModeValue("gray.800", "white");
   const dividerColor = useColorModeValue("gray.200", "gray.600");
   const [selectedFilter, setSelectedFilter] = useState("All Insights");
-  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const [loading, setLoading] = useState(initialPosts.length === 0);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (initialPosts.length > 0) return;
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const [postsRes, categoriesRes] = await Promise.all([
-          axios.get("/api/blog"),
-          axios.get("/api/blog/categories"),
-        ]);
-        setPosts(postsRes.data.posts || []);
-        setCategories(categoriesRes.data.categories || []);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching blog data:", err);
-        setError("Failed to load insights. Please try again later.");
-        setPosts([]);
-        setCategories([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [initialPosts.length]);
+  const [posts] = useState<BlogPost[]>(initialPosts);
+  const [categories] = useState<Category[]>(initialCategories);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
 
   // Build filter categories from database categories
   const filterCategories = ["All Insights", ...categories.map((c) => c.name)];
@@ -114,15 +89,6 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts = [], initialCategories = 
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Insights", url: "https://techemulsion.com/blog" },
           ],
-        }}
-        portfolioListData={{
-          name: "Tech Emulsion Insights",
-          description: "Latest articles and insights from Tech Emulsion on digital transformation, AI solutions, and custom software development.",
-          items: posts.map((post) => ({
-            name: post.title,
-            url: `https://techemulsion.com/blog/${post.slug}`,
-            description: post.excerpt || undefined,
-          })),
         }}
       />
 
@@ -508,32 +474,34 @@ function PostCard({ post }: { post: BlogPost }) {
 
 export const getServerSideProps: GetServerSideProps<BlogPageProps> = async () => {
   try {
-    const supabase = getSupabaseAdmin();
-    const [
-      { data: postsData, error: postsError },
-      { data: categoriesData, error: categoriesError },
-    ] = await Promise.all([
-      supabase
-        .from("blog_posts")
-        .select("id, slug, title, excerpt, featured_image, category, author_name, is_featured, published_at, reading_time_minutes")
-        .eq("is_published", true)
-        .order("published_at", { ascending: false })
-        .limit(100),
-      supabase
-        .from("blog_categories")
-        .select("*")
-        .order("sort_order", { ascending: true }),
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+    const [postsRes, categoriesRes] = await Promise.all([
+      fetch(`${baseUrl}/api/blog`),
+      fetch(`${baseUrl}/api/blog/categories`),
     ]);
 
-    if (postsError || categoriesError) {
-      return { props: { initialPosts: [], initialCategories: [] } };
+    if (!postsRes.ok || !categoriesRes.ok) {
+      throw new Error("Failed to fetch blog data");
     }
 
-    const initialPosts = (postsData || []) as BlogPost[];
-    const initialCategories = (categoriesData || []) as Category[];
-    return { props: { initialPosts, initialCategories } };
-  } catch {
-    return { props: { initialPosts: [], initialCategories: [] } };
+    const postsJson = await postsRes.json();
+    const categoriesJson = await categoriesRes.json();
+
+    return {
+      props: {
+        initialPosts: postsJson.posts || [],
+        initialCategories: categoriesJson.categories || [],
+      },
+    };
+  } catch (error) {
+    console.error("Error in getServerSideProps for /blog:", error);
+    return {
+      props: {
+        initialPosts: [],
+        initialCategories: [],
+      },
+    };
   }
 };
 

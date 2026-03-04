@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Box,
@@ -97,15 +99,6 @@ const Services = () => {
                 "Absolutely! We specialize in Next.js website development, creating high-performance, SEO-friendly websites.",
             },
           ],
-        }}
-        portfolioListData={{
-          name: "Tech Emulsion Services",
-          description: "Generative AI development, SaaS, automation, DevOps, QA, and Next.js development services.",
-          items: servicesData.map((s) => ({
-            name: s.title,
-            url: `https://techemulsion.com/services/${s.slug}`,
-            description: s.shortDescription || undefined,
-          })),
         }}
       />
       <Script

@@ -51,14 +51,6 @@ const EngagementModelsPage = () => {
             { name: "Engagement models", url: "https://techemulsion.com/engagement-models" },
           ],
         }}
-        portfolioListData={{
-          name: "Tech Emulsion Engagement Models",
-          description: "How to work with Tech Emulsion: AI-enabled teams, staff augmentation, dedicated teams, project outsourcing, and solutions for startups and enterprises.",
-          items: engagementModelsData.map((m) => ({
-            name: m.title,
-            url: `https://techemulsion.com/engagement-models/${m.slug}`,
-          })),
-        }}
       />
 
       <Box

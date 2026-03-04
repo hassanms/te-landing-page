@@ -62,7 +62,6 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   height={30}
                   style={{
                     objectFit: "contain",
-                    height: "32px",
                   }}
                 />
               </Flex>

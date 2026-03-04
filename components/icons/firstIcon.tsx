@@ -15,7 +15,7 @@ const FirstIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
         transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
         fill="#004c4c"
         stroke="#004c4c"
-        stroke-width="150"
+        strokeWidth="150"
       >
         <path
           d="M3546 5024 c-222 -54 -379 -257 -379 -489 2 -449 537 -672 854 -356

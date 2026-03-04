@@ -1,5 +1,7 @@
+"use client";
+
 import * as React from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Image from "next/image";
 import {
   Container,
@@ -107,21 +109,7 @@ const FloatingUICards = dynamic(
 const MotionBox = motion(Box);
 const MotionCard = motion(Box);
 
-export interface HomeBlogCard {
-  id: string;
-  slug: string;
-  title: string;
-  fullTitle: string;
-  date: string | null;
-  url: string;
-  image: string | null;
-}
-
-export interface HomePageProps {
-  initialHomeBlogPosts: HomeBlogCard[];
-}
-
-const Home: NextPage<HomePageProps> = ({ initialHomeBlogPosts = [] }) => {
+const Home: NextPage = () => {
   return (
     <Box>
       <Script
@@ -300,7 +288,7 @@ const Home: NextPage<HomePageProps> = ({ initialHomeBlogPosts = [] }) => {
 
         <TestimonialsSection />
         <TechnologySection />
-        <BlogSection initialPosts={initialHomeBlogPosts} />
+        <BlogSection />
         <FaqSection />
         <Divider />
         <Contact />
@@ -399,18 +387,20 @@ const HeroSection: React.FC = () => {
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
               mt="10">
-              <Text
-                fontSize="sm"
-                color={textColor}
-                fontWeight="medium"
-                maxW="lg"
-                textAlign="left"
-                display={"flex"}
-                alignItems={"center"}
-                width={"100%"}>
-                Trusted By the Best{"  "}
-                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
-              </Text>
+              <HStack
+                width="100%"
+                alignItems="center"
+                spacing={4}>
+                <Text
+                  fontSize="sm"
+                  color={textColor}
+                  fontWeight="medium"
+                  maxW="lg"
+                  textAlign="left">
+                  Trusted By the Best
+                </Text>
+                <Divider height="1.5px" bg="muted" width="20%" />
+              </HStack>
               <FallInPlace delay={0.6}>
                 {/* Static version for screens >= 600px */}
                 <Box
@@ -699,18 +689,20 @@ const HeroSection: React.FC = () => {
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
               mt="10">
-              <Text
-                fontSize="sm"
-                color={textColor}
-                fontWeight="medium"
-                maxW="lg"
-                textAlign="left"
-                display={"flex"}
-                alignItems={"center"}
-                width={"100%"}>
-                Trusted By the Best{"  "}
-                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
-              </Text>
+              <HStack
+                width="100%"
+                alignItems="center"
+                spacing={4}>
+                <Text
+                  fontSize="sm"
+                  color={textColor}
+                  fontWeight="medium"
+                  maxW="lg"
+                  textAlign="left">
+                  Trusted By the Best
+                </Text>
+                <Divider height="1.5px" bg="muted" width="20%" />
+              </HStack>
               <FallInPlace delay={0.6}>
                 {/* Static version for screens >= 600px */}
                 <Box
@@ -3287,17 +3279,26 @@ const TechnologySection: React.FC = () => {
   );
 };
 
-const BlogSection: React.FC<{ initialPosts?: HomeBlogCard[] }> = ({ initialPosts = [] }) => {
+const BlogSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const bgColor = useColorModeValue("white", "gray.800");
   const cardBgColor = useColorModeValue("charcoal.800", "charcoal.900");
   const titleColor = useColorModeValue("gray.800", "white");
 
-  const [blogPosts, setBlogPosts] = React.useState<HomeBlogCard[]>(initialPosts);
+  type HomeBlogCard = {
+    id: string;
+    slug: string;
+    title: string;
+    fullTitle: string;
+    date: string | null;
+    url: string;
+    image: string | null;
+  };
+
+  const [blogPosts, setBlogPosts] = React.useState<HomeBlogCard[]>([]);
 
   React.useEffect(() => {
-    if (initialPosts.length > 0) return;
     let isMounted = true;
 
     const loadHomepageBlogs = async () => {
@@ -3309,7 +3310,7 @@ const BlogSection: React.FC<{ initialPosts?: HomeBlogCard[] }> = ({ initialPosts
         }
         const json = await res.json();
         const posts = (json.posts || []) as any[];
-        const mapped: HomeBlogCard[] = posts.map((post: any) => ({
+        const mapped: HomeBlogCard[] = posts.map((post) => ({
           id: post.id as string,
           slug: post.slug as string,
           title: post.title as string,
@@ -3332,7 +3333,7 @@ const BlogSection: React.FC<{ initialPosts?: HomeBlogCard[] }> = ({ initialPosts
     return () => {
       isMounted = false;
     };
-  }, [initialPosts.length]);
+  }, []);
 
   return (
     <Box
@@ -3500,33 +3501,6 @@ const FaqSection: React.FC = () => {
       <Faq {...faq} />
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<HomePageProps> = async () => {
-  try {
-    const { getSupabaseAdmin } = await import("lib/supabase/server");
-    const supabase = getSupabaseAdmin();
-    const { data } = await supabase
-      .from("blog_posts")
-      .select("id, slug, title, featured_image, published_at")
-      .eq("is_published", true)
-      .eq("show_on_homepage", true)
-      .order("published_at", { ascending: false })
-      .limit(4);
-    const posts = (data || []) as any[];
-    const initialHomeBlogPosts: HomeBlogCard[] = posts.map((post: any) => ({
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      fullTitle: post.title || "",
-      date: post.published_at || null,
-      url: `/blog/${post.slug}`,
-      image: post.featured_image || null,
-    }));
-    return { props: { initialHomeBlogPosts } };
-  } catch {
-    return { props: { initialHomeBlogPosts: [] } };
-  }
 };
 
 export default Home;

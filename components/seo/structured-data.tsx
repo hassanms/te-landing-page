@@ -11,8 +11,7 @@ interface StructuredDataProps {
     | "breadcrumb"
     | "review"
     | "website"
-    | "article"
-    | "itemList";
+    | "article";
   data: any;
 }
 
@@ -226,25 +225,6 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
               }
             : undefined,
         };
-      case "itemList": {
-        const baseUrl = "https://techemulsion.com";
-        return {
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: data.name || "Tech Emulsion Portfolio",
-          description:
-            data.description ||
-            "Portfolio of projects by Tech Emulsion: AI solutions, SaaS platforms, mobile apps, and custom software.",
-          numberOfItems: data.items?.length ?? 0,
-          itemListElement: (data.items || []).map((item: any, index: number) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            name: item.name,
-            url: item.url?.startsWith("http") ? item.url : `${baseUrl}${item.url || ""}`,
-            description: item.description || undefined,
-          })),
-        };
-      }
       default:
         return {};
     }

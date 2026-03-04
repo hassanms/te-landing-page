@@ -502,11 +502,115 @@ const CaseStudyArtis = () => {
         </Container>
       </Box>
 
-      {/* Why This Matters */}
+      {/* What Our Client Says */}
       <Box
         bg={bgColor}
         py={{ base: 20, md: 24 }}
-        position="relative">
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.5}
+          pointerEvents="none"
+        />
+        <Container maxW="6xl" position="relative" zIndex={1}>
+          <VStack align="start" spacing={12} w="full">
+            <Heading
+              as="h2"
+              fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              letterSpacing="-0.02em"
+              lineHeight="1.1">
+              What Our Client Says
+            </Heading>
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              color={textColor}
+              lineHeight="1.6"
+              maxW="4xl">
+              Hear from Martin Kunert on partnering with Tech Emulsion to build Artis.
+            </Text>
+            <Box
+              position="relative"
+              w="100%"
+              overflow="hidden"
+              borderColor={dividerColor}
+              boxShadow="0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)"
+              _dark={{
+                boxShadow: "0 4px 24px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.06)",
+              }}
+              sx={{ aspectRatio: "16/9" }}>
+              <iframe
+                src="https://www.youtube.com/embed/0zdDZG2x5wM?si=nwXbMH2DwyadByx4&start=5"
+                title="Client testimonial - Artis by Martin Kunert"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: 0,
+                }}
+              />
+            </Box>
+            <VStack spacing={1} align="start" pt={1}>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color={headingColor}
+                fontWeight="semibold"
+                letterSpacing="-0.01em">
+                — Martin Kunert
+              </Text>
+            </VStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      {/* Why This Matters */}
+      <Box
+        bg={sectionBg}
+        py={{ base: 20, md: 24 }}
+        position="relative"
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          bgGradient: `linear(to-r, transparent, ${accentColor}, transparent)`,
+          opacity: 0.2,
+        }}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          backgroundImage={subtlePattern}
+          backgroundSize="20px 20px"
+          opacity={0.3}
+          pointerEvents="none"
+        />
         <Container maxW="6xl" position="relative" zIndex={1}>
           <VStack align="start" spacing={12} maxW="4xl">
             <VStack align="start" spacing={6}>

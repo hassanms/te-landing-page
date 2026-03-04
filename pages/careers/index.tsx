@@ -1,3 +1,4 @@
+import type { GetServerSideProps } from "next";
 import { Box, Container, Stack, Text, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
@@ -6,32 +7,50 @@ import { JobListingsGrid } from "components/careers/job-listings-grid";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Job } from "data/jobs/types";
+import { getSupabaseAdmin } from "lib/supabase/server";
 
-const CareersPage = () => {
+function stripHtmlTags(html: string): string {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export interface CareersPageProps {
+  initialJobs: Job[];
+}
+
+const CareersPage = ({ initialJobs = [] }: CareersPageProps) => {
   const textColor = useColorModeValue("gray.600", "gray.100");
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [jobs, setJobs] = useState<Job[]>(initialJobs);
+  const [loading, setLoading] = useState(initialJobs.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (initialJobs.length > 0) return;
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("/api/jobs");
+        setJobs(response.data.jobs || []);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching jobs:", err);
+        setError("Failed to load jobs. Please try again later.");
+        setJobs([]);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchJobs();
-  }, []);
-
-  const fetchJobs = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get("/api/jobs");
-      setJobs(response.data.jobs || []);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching jobs:", err);
-      setError("Failed to load jobs. Please try again later.");
-      // Fallback to empty array
-      setJobs([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [initialJobs.length]);
 
   return (
     <Box position="relative" minH="100vh" overflow="hidden">
@@ -45,6 +64,15 @@ const CareersPage = () => {
             { name: "Home", url: "https://techemulsion.com" },
             { name: "Careers", url: "https://techemulsion.com/careers" },
           ],
+        }}
+        portfolioListData={{
+          name: "Tech Emulsion Careers",
+          description: "Open positions and career opportunities at Tech Emulsion.",
+          items: jobs.map((job) => ({
+            name: job.title,
+            url: `https://techemulsion.com/careers/${job.slug}`,
+            description: job.shortDescription || undefined,
+          })),
         }}
       />
 
@@ -86,6 +114,52 @@ const CareersPage = () => {
       </Container>
     </Box>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<CareersPageProps> = async () => {
+  try {
+    const supabase = getSupabaseAdmin();
+    const { data, error } = await supabase
+      .from("jobs")
+      .select("*")
+      .eq("status", "open")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      return { props: { initialJobs: [] } };
+    }
+
+    const initialJobs: Job[] = (data || []).map((job: any) => {
+      const plain = stripHtmlTags(job.description || "");
+      const shortDesc = plain.length > 150 ? plain.substring(0, 150) + "..." : plain;
+      return {
+        id: job.id,
+        slug: job.slug,
+        title: job.title,
+        company: "Tech Emulsion",
+        employmentType: job.employment_type,
+        department: job.department,
+        locations: [job.location],
+        region: "APAC",
+        country: "Pakistan",
+        industry: "Technology",
+        shortDescription: shortDesc,
+        description: job.description,
+        requirements: job.requirements || [],
+        responsibilities: [],
+        experienceLevel: "Mid-level",
+        skills: [],
+        benefits: [],
+        postedDate: job.created_at,
+        applicationDeadline: null,
+        status: job.status,
+        totalPositions: job.total_positions || null,
+      };
+    });
+    return { props: { initialJobs } };
+  } catch {
+    return { props: { initialJobs: [] } };
+  }
 };
 
 export default CareersPage;

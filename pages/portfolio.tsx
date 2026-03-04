@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useMemo } from "react";
 import {
   Box,
@@ -314,6 +312,16 @@ export default function Portfolio() {
         description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, and custom software development."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio"
+        portfolioListData={{
+          name: "Tech Emulsion Portfolio",
+          description:
+            "Portfolio of projects by Tech Emulsion: AI solutions, SaaS platforms, mobile apps, and custom software for startups and enterprises.",
+          items: portfolioItems.map((item) => ({
+            name: item.title,
+            url: `https://techemulsion.com${item.href}`,
+            description: `${item.title} – ${item.industry}, ${item.platforms ? item.platforms.join(" + ") : item.platform}.`,
+          })),
+        }}
       />
 
       <Box position="relative" minH="100vh" color={headingColor}>

@@ -21,14 +21,10 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = (props) => {
   const { children, announcementProps, headerProps, footerProps } = props;
-  const [mount, setMount] = React.useState(false);
+  // Render full content on server and initial client so crawlers/LLMs get readable HTML (no JS required).
   const [isRouteChanging, setIsRouteChanging] = React.useState(false);
   const router = useRouter();
   const textColor = useColorModeValue("gray.600", "gray.100");
-
-  React.useEffect(() => {
-    setMount(true);
-  }, []);
 
   React.useEffect(() => {
     const handleRouteChangeStart = () => setIsRouteChanging(true);
@@ -46,22 +42,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     };
   }, [router.events]);
 
-  if (!mount) {
-    return (
-      <Box
-        display="flex"
-        alignItems="center"
-        flexDirection="column"
-        gap={4}
-        justifyContent="center"
-        height="100vh"
-      >
-        <Logo />
-        {/* spinner */}
-        <Spinner />
-      </Box>
-    );
-  }
   return (
     <Box>
       <SkipNavLink>Skip to content</SkipNavLink>

@@ -1,9 +1,9 @@
 /**
  * Rich content for engagement model detail pages.
- * Used when a model has full page content (e.g. ai-enabled-teams).
+ * Used when a model has full page content (e.g. ai-enabled-teams, staff-augmentation).
  */
 
-export interface AIEnabledTeamsContent {
+export interface EngagementModelContent {
   peaceOfMindIntro?: string;
   safeAndEmpowered: {
     intro: string;
@@ -30,7 +30,7 @@ export interface AIEnabledTeamsContent {
   stats: { value: string; label: string }[];
 }
 
-export const aiEnabledTeamsContent: AIEnabledTeamsContent = {
+export const aiEnabledTeamsContent: EngagementModelContent = {
   peaceOfMindIntro:
     "At Tech Emulsion, peace of mind isn't a fine-print phrase in the contract. It's the standard we bring to every day and every engagement.",
   safeAndEmpowered: {
@@ -274,7 +274,215 @@ export const aiEnabledTeamsContent: AIEnabledTeamsContent = {
   ],
 };
 
-export function getEngagementModelContent(slug: string): AIEnabledTeamsContent | null {
+export const staffAugmentationContent: EngagementModelContent = {
+  peaceOfMindIntro:
+    "With Tech Emulsion, staff augmentation isn’t about throwing bodies at a problem. It’s about giving you the right people, plugged into your way of working, so you can move faster without losing control.",
+  safeAndEmpowered: {
+    intro:
+      "We’ve spent years refining how external engineers can integrate with in-house teams without slowing them down. From clear communication protocols to shared tooling and delivery standards, our staff augmentation model is designed to feel like an extension of your own engineering organization.",
+    introSubtext:
+      "You stay in the driver’s seat on priorities, scope, and direction. We make sure every augmented engineer understands your context, respects your processes, and adds value from the first sprint instead of needing months to ramp.",
+    bullets: [
+      "Engineers matched to your tech stack, domain, and collaboration style",
+      "Structured onboarding playbooks to align on rituals, standards, and expectations",
+      "Clear ownership boundaries so augmented engineers support your team rather than disrupt it",
+      "Ongoing performance monitoring and feedback loops managed by Tech Emulsion",
+      "Flexible engagement models that let you scale up or down without HR overhead",
+      "Transparent communication and reporting so you always know who is doing what and why",
+    ],
+    closing:
+      "The result is a leaner, more capable team that can take on more work, hit deadlines with less stress, and keep quality high—without the long timelines or risk of traditional hiring.",
+  },
+  everythingYouNeedToKnow: {
+    intro:
+      "Different engagement models solve different problems. Staff augmentation gives you the flexibility to add specific skills to your existing team, while dedicated teams and project outsourcing shift more responsibility to an external partner. With Tech Emulsion, staff augmentation means you stay in full control of product decisions and priorities, while we shoulder the burden of finding, vetting, and supporting the right engineers. It’s a fit when you want to move faster, cover skill gaps, or kick off new work streams—without expanding permanent headcount.",
+    introMain:
+      "Staff augmentation lets you quickly add the skills and capacity you’re missing, while keeping ownership and decision-making inside your organization. You remain in charge of the roadmap, sprint planning, and architecture; we provide engineers who integrate into your tools, ceremonies, and standards as if they were in-house.",
+    introRight:
+      "Compared with traditional hiring, you save time and reduce risk. Compared with fully outsourced projects, you keep closer control over scope, quality, and trade-offs. Staff augmentation from Tech Emulsion is built for teams that know where they’re going and need a reliable way to get there faster.",
+    researchBullets: [],
+  },
+  whatMakesSpecial: [
+    {
+      title: "Built-in flexibility",
+      description:
+        "Scale your team up or down as priorities change—without the lag and long-term commitments of traditional hiring. Add a single specialist or an entire pod to support a critical initiative, then adjust as your roadmap evolves.",
+    },
+    {
+      title: "Tight integration with your team",
+      description:
+        "Our engineers work in your tools, follow your processes, and participate in your ceremonies. That keeps communication tight, reduces handoff friction, and ensures that decisions stay grounded in your product context.",
+    },
+    {
+      title: "Reduced hiring and operational overhead",
+      description:
+        "We handle sourcing, vetting, contracts, benefits, and ongoing professional development. You get committed, high-performing engineers without adding to your HR, legal, or people management load.",
+    },
+    {
+      title: "Access to specialized skills on demand",
+      description:
+        "Need short-term support in DevOps, data, mobile, or architecture? You can bring in targeted expertise for as long as you need it, without creating permanent roles that may be hard to keep fully utilized.",
+    },
+    {
+      title: "Predictable costs",
+      description:
+        "Transparent rates and simple commercial terms make it easy to plan budgets. There are no surprise fees, and you can align engagement length and scope with business milestones.",
+    },
+  ],
+  ctaBlocks: [
+    {
+      title: "Augment your team without the hiring headache",
+      subtitle:
+        "Skip the long search. We’ll introduce you to engineers who are ready to contribute quickly, aligned with your culture, stack, and ways of working.",
+      buttonText: "Talk to us about staff augmentation",
+    },
+    {
+      title: "Start small, scale with confidence",
+      subtitle:
+        "Begin with one or two engineers, see how the collaboration feels, and grow the team when you’re ready. We’ll support you at every step.",
+      buttonText: "Plan your augmented team",
+    },
+  ],
+  sdlcPhases: [
+    {
+      number: "01",
+      title: "Discovery and planning",
+      bullets: [
+        "Bring in senior engineers, architects, or product-aligned technologists to stress-test assumptions and shape realistic delivery plans.",
+        "Use augmented capacity to validate feasibility, plan technical spikes, and prepare your backlog without overloading your core team.",
+        "Cover temporary gaps when internal leaders are focused on fundraising, restructuring, or other strategic work.",
+      ],
+    },
+    {
+      number: "02",
+      title: "Design and prototyping",
+      bullets: [
+        "Pair UI/UX designers and frontend developers to move from concept to clickable prototypes faster.",
+        "Leverage experienced engineers to create technical proof-of-concepts that de-risk major decisions before full build-out.",
+        "Support internal teams by handling secondary features and experiments while your core team focuses on the main flows.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Implementation",
+      bullets: [
+        "Expand your feature teams with additional backend, frontend, or full-stack engineers to accelerate delivery.",
+        "Assign augmented engineers to well-defined epics or services so they can make progress independently while staying aligned with your architecture.",
+        "Use external specialists to handle integrations, migrations, or refactoring that your core team hasn’t had bandwidth to tackle.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Quality assurance",
+      bullets: [
+        "Add QA engineers or SDETs to strengthen test coverage and automation without pulling developers away from feature work.",
+        "Use augmented QA capacity to run regression suites, exploratory testing, and cross-device validation ahead of major releases.",
+        "Stabilize legacy systems by dedicating augmented engineers to bug fixing and hardening while your internal team focuses on new initiatives.",
+      ],
+    },
+    {
+      number: "05",
+      title: "DevOps and operations",
+      bullets: [
+        "Bring in DevOps and cloud specialists to optimize CI/CD pipelines, infrastructure, and observability.",
+        "Have augmented engineers own routine operational tasks and incident response playbooks so your core team can stay focused on roadmap work.",
+        "Use external experts to guide cloud cost optimization, environment standardization, and security hardening.",
+      ],
+    },
+    {
+      number: "06",
+      title: "Maintenance and continuous improvement",
+      bullets: [
+        "Keep critical systems healthy by dedicating augmented engineers to ongoing maintenance and incremental improvements.",
+        "Smoothly roll out new features and refactors by using augmentation to manage technical debt alongside new development.",
+        "Ensure knowledge is captured and shared so that your internal team stays in control, even as augmented engineers cycle on and off initiatives.",
+      ],
+    },
+  ],
+  outcomes: [
+    {
+      task: "Add two senior engineers to unblock a critical release",
+      before: "8–10 weeks of hiring and onboarding",
+      after: "2–3 weeks to ramp augmented team",
+      savings: "70% faster",
+    },
+    {
+      task: "Cover a short-term skill gap in DevOps",
+      before: "3–4 months to recruit, hire, and train",
+      after: "2 weeks to onboard an experienced DevOps engineer",
+      savings: "60–70% faster",
+    },
+    {
+      task: "Increase feature throughput for a key product",
+      before: "Roadmap slipping by 1–2 sprints every quarter",
+      after: "On-track delivery with added augmented capacity",
+      savings: "1–2 sprints regained per quarter",
+    },
+    {
+      task: "Support legacy system stabilization while building a new platform",
+      before: "Core team context-switched between old and new systems",
+      after: "Augmented engineers own stabilization, core team focuses on new platform",
+      savings: "Significant reduction in context switching and unplanned work",
+    },
+  ],
+  outcomesIntro:
+    "Staff augmentation is ultimately about outcomes: more done, with less stress, at a predictable cost. Here are examples of how Tech Emulsion’s augmented teams help clients hit their goals faster.",
+  outcomesClosing:
+    "In practice, the impact shows up as more predictable delivery, fewer project delays, and teams that feel supported rather than stretched. We work with you to define the right success metrics for your augmented team and review them regularly.",
+  tools: [
+    "Jira, Azure Boards, or similar backlog tools",
+    "GitHub, GitLab, or Bitbucket for version control and code review",
+    "Slack, Microsoft Teams, or preferred communication platforms",
+    "Zoom, Google Meet, or similar for ceremonies and ad-hoc collaboration",
+    "CI/CD pipelines using GitHub Actions, GitLab CI, Azure DevOps, or similar",
+    "Cloud platforms such as AWS, Azure, or Google Cloud",
+  ],
+  toolsIntro:
+    "Our augmented engineers work inside your existing toolchain wherever possible, so there’s no disruption to how your team ships. When helpful, we’ll recommend improvements to your workflow and tooling—but decisions always remain with you.",
+  faqs: [
+    {
+      question: "How is staff augmentation different from outsourcing a project?",
+      answer:
+        "With staff augmentation, you stay in control of the roadmap, backlog, and day-to-day direction. Our engineers join your team, work in your tools, and follow your processes. With full project outsourcing, more ownership of scope, planning, and delivery shifts to the vendor. Staff augmentation is a better fit when you have an established team and want to increase capacity or cover skill gaps while keeping product decisions in-house.",
+    },
+    {
+      question: "How quickly can augmented engineers start contributing?",
+      answer:
+        "Most engineers begin adding tangible value within the first couple of sprints. We accelerate this by aligning on expectations upfront, using structured onboarding checklists, and ensuring they have access to the right documentation, people, and environments from day one.",
+    },
+    {
+      question: "What level of control do we retain over augmented engineers?",
+      answer:
+        "You decide what they work on, how work is prioritized, and how success is measured. We stay closely involved to support performance, resolve any issues, and make sure expectations on both sides remain aligned. You get the benefit of extra capacity without losing managerial control.",
+    },
+    {
+      question: "Can we start with a small engagement and grow later?",
+      answer:
+        "Yes. Many clients begin with one or two engineers to validate fit and collaboration, then expand the team once they see the impact. Our model is designed to scale up or down based on your needs, without lock-in to a fixed team size.",
+    },
+    {
+      question: "How do you handle time zones and communication?",
+      answer:
+        "We match you with engineers who can collaborate effectively within your core working hours and who are comfortable with your preferred communication style. Clear overlap windows, agreed-upon response times, and shared rituals (like standups and demos) keep everyone aligned.",
+    },
+    {
+      question: "What happens if a particular engineer isn’t the right fit?",
+      answer:
+        "If something isn’t working, we address it quickly and transparently. We can provide coaching, adjust responsibilities, or, when necessary, transition to a different engineer. Our goal is a long-term, healthy partnership, not forcing a mismatch.",
+    },
+  ],
+  stats: [
+    { value: "20+ years", label: "Experience building and integrating remote development teams" },
+    { value: "30+ industries", label: "Domain experience spanning fintech, healthtech, ecommerce, and more" },
+    { value: "Flexible", label: "Engagement structures that adapt to your roadmap, not the other way around" },
+    { value: "Specialists", label: "Access to engineers across backend, frontend, mobile, DevOps, data, and QA" },
+    { value: "Low overhead", label: "We handle HR, contracts, and people ops so you can focus on delivery" },
+    { value: "Partner-first", label: "A collaboration model built on transparency, long-term fit, and shared outcomes" },
+  ],
+};
+
+export function getEngagementModelContent(slug: string): EngagementModelContent | null {
   if (slug === "ai-enabled-teams") return aiEnabledTeamsContent;
+  if (slug === "staff-augmentation") return staffAugmentationContent;
   return null;
 }

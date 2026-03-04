@@ -258,16 +258,16 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               <Box position="relative" zIndex={1} mx={-6} minW="calc(100% + 48px)" w="calc(100% + 48px)">
                 <TableOfContents
                   leftColumn={[
-                    { label: "Tech Emulsion's approach to AI", href: "#our-approach" },
-                    { label: "Our AI software development tools", href: "#ai-tools" },
-                    { label: "Our AI-powered development teams", href: "#the-model" },
-                    { label: "Our AI projects", href: "/portfolio", external: true },
-                    { label: "What makes AI-enabled teams special", href: "#what-makes-special" },
+                    { label: "Our approach", href: "#our-approach" },
+                    { label: `${model.title} at a glance`, href: "#the-model" },
+                    { label: "What makes this model different", href: "#what-makes-special" },
+                    { label: "Our projects", href: "/portfolio", external: true },
+                    { label: "Tools and platforms we use", href: "#ai-tools" },
                   ]}
                   rightColumn={[
-                    { label: "AI's role across SDLC", href: "#sdlc" },
+                    { label: "Where this model adds value across the SDLC", href: "#sdlc" },
                     { label: "About Tech Emulsion", href: "#why-tech-emulsion" },
-                    { label: "Tracked gains across our internal projects", href: "#client-outcomes" },
+                    { label: "Client outcomes", href: "#client-outcomes" },
                     { label: "FAQs", href: "#faqs" },
                     { label: "Testimonials", href: "/#social", external: true },
                   ]}
@@ -465,7 +465,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                   lineHeight="1.1"
                   mb={4}
                 >
-                  AI-enabled development teams: Everything you need to know
+                  {heroTitle}: Everything you need to know
                 </Heading>
                 <Text
                   color={headingColor}
@@ -578,7 +578,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textAlign="left"
                 mb={{ base: 12, md: 16 }}
               >
-                What makes AI-powered teams special
+                What makes this engagement model special
               </Heading>
               <VStack spacing={{ base: 8, md: 10 }} align="stretch">
                 {content.whatMakesSpecial.map((item, i) => (
@@ -654,8 +654,8 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 lineHeight="1.1"
                 textAlign="left"
                 mb={4}
-              >
-                Where AI adds value across the SDLC
+                >
+                  Where this model adds value across the SDLC
               </Heading>
               <Text
                 color={textColor}
@@ -741,7 +741,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textAlign="left"
                 mb={4}
               >
-                Client outcomes powered by AI-enabled teams
+                Client outcomes powered by this engagement model
               </Heading>
               <Text
                 color={textColor}
@@ -898,7 +898,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 lineHeight="1.1"
                 mb={4}
               >
-                AI tools to power your development lifecycle
+                Tools and platforms that support delivery
               </Heading>
               <Text color={textColor} fontSize="16px" mb={12} maxW="2xl">
                 {content.toolsIntro ??
@@ -966,7 +966,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     lineHeight="1.2"
                     mb={{ base: 8, md: 10 }}
                   >
-                    What makes Tech Emulsion your reliable AI-powered development partner?
+                    What makes Tech Emulsion your reliable development partner?
                   </Heading>
                   <Box
                     display="grid"

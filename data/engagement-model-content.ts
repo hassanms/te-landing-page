@@ -481,8 +481,503 @@ export const staffAugmentationContent: EngagementModelContent = {
   ],
 };
 
+export const dedicatedTeamsContent: EngagementModelContent = {
+  peaceOfMindIntro:
+    "Finding and keeping the right engineers can drag on for months and slow your roadmap. With Tech Emulsion dedicated development teams, you can spin up a cross-functional squad in weeks, reduce hiring overhead, and keep your focus on building the right product — without endless do-overs.",
+  safeAndEmpowered: {
+    intro:
+      "The dedicated development team model is built for companies that need an agile, long-term engineering partner rather than a series of short-term contracts. Instead of piecing together capacity through individual hires, you work with Tech Emulsion to form a remote team that behaves like an extension of your in‑house staff, focused entirely on your projects.",
+    introSubtext:
+      "Your dedicated team can include developers, designers, QA engineers, project managers, and other specialists. They adopt your goals, stack, and delivery practices, so you get the flexibility to scale and innovate quickly — without the full overhead of hiring, onboarding, and managing every role internally.",
+    bullets: [
+      "A team of experts focused exclusively on your products and initiatives",
+      "Cross-functional composition across engineering, QA, product, and design as needed",
+      "Deep integration into your processes, tools, and culture, even when the team is fully remote",
+      "Long-term engagement that preserves context and momentum across releases",
+      "Ability to expand development capacity without adding permanent in‑house headcount",
+      "Tech Emulsion handling recruiting, HR, and administrative burden so you can stay focused on outcomes",
+    ],
+    closing:
+      "You get the right model to build the right product: a team that feels like your own, but with the flexibility and operational support of a specialist partner.",
+  },
+  everythingYouNeedToKnow: {
+    intro:
+      "Dedicated teams, staff augmentation, and time-and-materials all have a place — but they solve different problems. Dedicated teams give you a long-term, product-focused unit that owns delivery end to end. Staff augmentation is better for filling short-term skill gaps inside existing squads. Time-and-materials models work well when scope is evolving and you want maximum flexibility in what gets built next.",
+    introMain:
+      "With a dedicated team from Tech Emulsion, you get a stable group that learns your business, iterates with you, and stays accountable for outcomes. It’s particularly effective for complex, multi-technology projects, long-term initiatives, and products where requirements will naturally evolve over time.",
+    introRight:
+      "Compared to staff augmentation, you spend less time coordinating individual contributors and more time steering a cohesive team. Compared to classic time-and-materials work, you gain stronger commitment, clearer ownership, and easier scaling as your roadmap expands.",
+    researchBullets: [
+      {
+        cite: "Dedicated teams",
+        text: "Best suited for long-term, complex initiatives where you want a cross-functional group focused solely on your product, with strong ownership and continuity.",
+      },
+      {
+        cite: "Staff augmentation",
+        text: "Ideal when you need to temporarily plug gaps in your existing team or add specific expertise without changing your overall delivery model.",
+      },
+      {
+        cite: "Time and material",
+        text: "Useful for projects with unclear or changing requirements where you want the option to adjust scope frequently and stay closely involved in day-to-day decisions.",
+      },
+    ],
+  },
+  whatMakesSpecial: [
+    {
+      title: "Focused expertise and commitment",
+      description:
+        "Your Tech Emulsion dedicated team shows up every day to build your solution — not to juggle unrelated engagements. Each member is selected to fill real skill gaps and stay invested in your product’s success over the long term.",
+    },
+    {
+      title: "Long-term cost efficiency",
+      description:
+        "While there’s an initial investment to stand up a dedicated team, over time it’s more efficient than stringing together short contracts and one-off vendors. You avoid repeated ramp-up periods and reduce the hidden costs of context switching and rework.",
+    },
+    {
+      title: "Access to global talent",
+      description:
+        "You’re no longer constrained by your local hiring market. We tap into a global talent pool so you can assemble the right mix of seniority and specialties, then align working hours and communication patterns to your needs.",
+    },
+    {
+      title: "Lower delivery and legal risk",
+      description:
+        "Tech Emulsion takes on the operational load of building and supporting the team — from contracts and compliance to performance management — so you don’t have to navigate every jurisdiction or HR nuance yourself.",
+    },
+    {
+      title: "Faster time‑to‑market",
+      description:
+        "Because we maintain a ready pipeline of vetted engineers, you can get a dedicated team in place in weeks instead of months. Once embedded, their focus and familiarity with your product accelerate the delivery of new features and improvements.",
+    },
+    {
+      title: "Scalability and flexibility",
+      description:
+        "You can adjust team size and composition as your product moves through discovery, launch, scaling, and optimization — without the friction and cost of hiring or laying off permanent staff.",
+    },
+  ],
+  ctaBlocks: [
+    {
+      title: "Build a dedicated team that feels in‑house",
+      subtitle:
+        "Partner with Tech Emulsion to assemble a cross-functional team that works in your tools, follows your rituals, and focuses entirely on your roadmap.",
+      buttonText: "Talk to us about dedicated teams",
+    },
+    {
+      title: "Scale your product with confidence",
+      subtitle:
+        "Use a dedicated team to support long-term initiatives, accelerate delivery, and adapt to changing requirements without overloading your core organization.",
+      buttonText: "Design your dedicated team",
+    },
+  ],
+  sdlcPhases: [
+    {
+      number: "01",
+      title: "Complex software development projects",
+      bullets: [
+        "Leverage a team with diverse skills across multiple technologies to handle complex, interconnected systems.",
+        "Use dedicated engineers who can navigate intricate architectures instead of stitching together multiple short-term vendors.",
+        "Maintain consistent standards and patterns across services, platforms, and integrations.",
+      ],
+    },
+    {
+      number: "02",
+      title: "Long‑term initiatives",
+      bullets: [
+        "Keep the same team engaged over months or years so knowledge accumulates rather than resets with every new contractor.",
+        "Align long-running programs — such as platform rebuilds or multi-phase rollouts — with a stable squad that understands your history and goals.",
+        "Protect continuity even as priorities shift, thanks to a core group that stays close to your strategy.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Startups, product launches, and scale‑ups",
+      bullets: [
+        "Give early-stage products a full team without building an entire engineering department from scratch.",
+        "Pivot more easily as you validate market fit, because your dedicated team can adjust scope and priorities alongside you.",
+        "For scale-ups, add the bandwidth you need to expand features and markets without losing speed or quality.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Projects with evolving requirements",
+      bullets: [
+        "Adapt to user feedback and market signals with a team that expects and embraces change.",
+        "Iterate continuously rather than being locked into a rigid, one‑off project plan.",
+        "Keep your backlog prioritized and your roadmap current with regular check-ins and transparent reporting.",
+      ],
+    },
+    {
+      number: "05",
+      title: "Specialized and R&D‑heavy work",
+      bullets: [
+        "Tap into niche skills — whether that’s AI/ML, data, AR/VR, or complex integrations — that may be hard to hire locally.",
+        "Explore new technologies or markets with a team that can experiment, learn, and refine the approach.",
+        "Ring‑fence innovation work so it moves forward without disrupting your core engineering squads.",
+      ],
+    },
+    {
+      number: "06",
+      title: "Enterprise‑level digital transformations",
+      bullets: [
+        "Assign a dedicated team to manage modernization, migration, or re‑platforming programs across legacy systems.",
+        "Coordinate with your internal stakeholders to align technical changes with broader business processes.",
+        "Reduce disruption by having a single, accountable team orchestrate complex change instead of scattering responsibility.",
+      ],
+    },
+  ],
+  outcomes: [
+    {
+      task: "Replace months of hiring with a ready dedicated team",
+      before: "4–6 months to recruit, hire, and onboard an in‑house team",
+      after: "A few weeks to assemble and integrate a Tech Emulsion dedicated team",
+      savings: "Significant reduction in time‑to‑start",
+    },
+    {
+      task: "Control costs on long‑term development efforts",
+      before: "Multiple short-term contracts and vendors with overlapping overhead",
+      after: "One dedicated team with a predictable monthly cost structure",
+      savings: "Lower total cost of ownership over the life of the project",
+    },
+    {
+      task: "Accelerate feature time‑to‑market",
+      before: "Internal team stretched thin across roadmap, bugs, and maintenance",
+      after: "Dedicated squad focused on new delivery while core team handles strategy and critical operations",
+      savings: "Faster release cycles and fewer bottlenecks",
+    },
+    {
+      task: "Scale safely through growth and transformation",
+      before: "Ad‑hoc scaling with inconsistent quality and limited continuity",
+      after: "Structured, scalable team that can grow or reconfigure without losing context",
+      savings: "Reduced risk during periods of rapid change",
+    },
+  ],
+  outcomesIntro:
+    "Dedicated teams are about sustained, predictable progress on ambitious work — from greenfield products to major transformations. The gains show up in how quickly you can start, how steadily you can ship, and how clearly you can see the impact of your investment.",
+  outcomesClosing:
+    "Over time, a Tech Emulsion dedicated team becomes a true strategic partner: a group that understands your product as deeply as your internal stakeholders and can keep delivering value through every stage of its lifecycle.",
+  tools: [
+    "Modern frontend frameworks such as React, Next.js, Angular, and Vue",
+    "Backend stacks including .NET, Java, Node.js, PHP, Python, Go, and more",
+    "Cloud platforms like AWS, Azure, and Google Cloud for scalable, resilient infrastructure",
+    "Mobile technologies including iOS, Android, React Native, Flutter, and PWA",
+    "Testing stacks such as Selenium, Cypress, Jest, and other automation frameworks",
+    "Data and analytics tooling across SQL/NoSQL databases and modern data platforms",
+    "Collaboration and delivery tools including Jira, Azure Boards, GitHub, GitLab, Slack, and Teams",
+  ],
+  toolsIntro:
+    "Your dedicated team is powered by a modern tech stack across frontend, backend, cloud, mobile, testing, and data. We work within your existing standards wherever possible and recommend additions only when they clearly improve reliability, velocity, or maintainability.",
+  faqs: [
+    {
+      question: "What happens if we don’t define our project goals clearly?",
+      answer:
+        "Vague objectives lead to misaligned expectations and rework. Before we start, we work with you to clarify desired outcomes, priorities, and constraints so the dedicated team knows exactly what success looks like and how to measure it.",
+    },
+    {
+      question: "Why is cultural fit so important for a dedicated team?",
+      answer:
+        "A strong cultural match — in communication style, pace, and values — reduces friction and helps remote teams collaborate as if they were in the same room. We evaluate not just technical skills but also how well candidates align with your existing culture and working norms.",
+    },
+    {
+      question: "How critical is technical evaluation when forming the team?",
+      answer:
+        "Thorough technical vetting is essential. We combine interviews, code reviews, and project history checks to ensure every engineer has the capabilities your project demands, so you don’t discover gaps mid‑delivery.",
+    },
+    {
+      question: "What project management practices should we have in place?",
+      answer:
+        "Even the best team can drift without structure. We help you put in place a clear framework with regular check‑ins, progress tracking, visible metrics, and transparent reporting so you always know where things stand.",
+    },
+    {
+      question: "How important is onboarding for a dedicated team?",
+      answer:
+        "Onboarding is where expectations, context, and culture are transferred. We use a structured onboarding plan that covers technical setup, processes, and ways of working so the team can contribute meaningfully within the first sprints.",
+    },
+    {
+      question: "How should we plan for future scalability?",
+      answer:
+        "Scalability shouldn’t be an afterthought. Early in the engagement, we look at your growth trajectory and design the team and architecture so they can expand or reconfigure without chaos — whether that means adding more engineers, spinning off additional squads, or integrating new capabilities.",
+    },
+  ],
+  stats: [
+    { value: "20+ years", label: "Experience delivering complex software products and platforms" },
+    { value: "Cross‑functional", label: "Teams combining engineering, QA, design, and delivery leadership" },
+    { value: "Global", label: "Access to remote talent across multiple regions and time zones" },
+    { value: "Scalable", label: "Engagements that can grow, shrink, or re-balance as your roadmap evolves" },
+    { value: "ISO‑aligned", label: "Security and quality practices designed for enterprise expectations" },
+    { value: "Weeks", label: "Typical time to kick off an initial dedicated team squad" },
+  ],
+};
+
+export const projectOutsourcingContent: EngagementModelContent = {
+  peaceOfMindIntro:
+    "When competitors outpace you on technology, every month of delay increases risk. Our project-based development model helps you close that gap fast with a focused delivery team that understands your vision and ships solutions that drive profit and growth.",
+  safeAndEmpowered: {
+    intro:
+      "Project-based engagements are ideal when you have a clearly defined outcome in mind but don’t want to stand up a full internal product organization to get there. Tech Emulsion takes responsibility for delivery while you stay focused on business strategy and customers.",
+    introSubtext:
+      "Looking to turn your business idea into reality, but don’t think you have enough technical savvy to address its engineering challenges? Here are the scenarios where a project-based model is the right answer.",
+    bullets: [
+      "You run a small to midsize business where technology isn’t your core offering or service, but you still need a robust digital solution.",
+      "You’re a large enterprise taking the leap into digital transformation and want a specialist partner to own a defined initiative.",
+      "You’ve never worked with an external software development partner before and want a low-risk engagement to get started.",
+    ],
+    closing:
+      "In each case, you get a team that can scope, design, build, test, and launch your solution — so you can focus on running and growing the business.",
+  },
+  everythingYouNeedToKnow: {
+    intro:
+      "In a project-based engagement, you bring Tech Emulsion a defined goal — a new product, a critical feature set, a migration, or a modernization initiative. We scope the work, assemble a team, and deliver against agreed milestones, using a Time and Materials contract so you only pay for the time and resources actually invested.",
+    introMain:
+      "Project-based development is a strong fit when you want an experienced partner to take the reins on a specific initiative, from discovery through release. It’s especially useful when technology isn’t your core business, when you’re exploring digital transformation, or when you want to test the waters with a clearly bounded engagement.",
+    introRight:
+      "Compared to long-term dedicated teams or staff augmentation, project-based delivery gives you a tightly scoped, outcome-oriented engagement with clear budgets and timelines. You retain final say on priorities and approvals, while we handle day-to-day execution and risk management.",
+    researchBullets: [
+      {
+        cite: "Best for SMBs",
+        text: "Small and midsize businesses that need a one-off or limited-scope solution without building a full internal tech team.",
+      },
+      {
+        cite: "Best for enterprises",
+        text: "Large organizations that want to launch or modernize specific systems as part of a broader digital transformation program.",
+      },
+      {
+        cite: "Best for first-time buyers",
+        text: "Companies that haven’t worked with external developers before and prefer a low-risk, project-scoped engagement to start.",
+      },
+    ],
+  },
+  whatMakesSpecial: [
+    {
+      title: "A value-based approach",
+      description:
+        "We combine startup thinking with decades of delivery experience to design project scopes that maximize business value. From prototypes and MVPs to full custom builds, we focus on outcomes, not just outputs.",
+    },
+    {
+      title: "Real-time visibility into the project",
+      description:
+        "You stay informed at every stage. Your Tech Emulsion project manager provides regular status updates, test reports, and milestone reviews so you always know what’s been delivered, what’s coming next, and where risks lie.",
+    },
+    {
+      title: "Optimize your resources",
+      description:
+        "With a Time and Materials contract, you pay only for the time and resources actually spent on your project. That keeps costs transparent, lets you adjust scope as you learn, and preserves control over your budget.",
+    },
+    {
+      title: "Ramp up fast",
+      description:
+        "Once the scope is agreed, we assemble a project team quickly so work can start without long hiring cycles. As needs evolve, we can add engineers or specialists to keep pace with customer demands and new opportunities.",
+    },
+  ],
+  ctaBlocks: [
+    {
+      title: "Turn your project vision into a working product",
+      subtitle:
+        "Bring us your goals, constraints, and timelines — we’ll handle scoping, staffing, and delivery so you can stay focused on the business.",
+      buttonText: "Start a project-based engagement",
+    },
+    {
+      title: "A low-risk way to work with an external partner",
+      subtitle:
+        "If it’s your first time collaborating with a software company, a project-based model gives you a clear, time-boxed way to see how we work.",
+      buttonText: "Talk to us about project outsourcing",
+    },
+  ],
+  sdlcPhases: [
+    {
+      number: "01",
+      title: "Discovery",
+      bullets: [
+        "We dive into your company’s goals, challenges, and constraints to understand what success looks like.",
+        "Our team estimates the time, cost, and resources needed to complete the project and validates feasibility.",
+        "Together, we agree on scope, priorities, and initial milestones so expectations are aligned from the start.",
+      ],
+    },
+    {
+      number: "02",
+      title: "Staffing",
+      bullets: [
+        "We build a project team that typically includes engineers, designers, and a project manager, tailored to your technical and strategic needs.",
+        "Each team member is chosen for both technical fit and communication skills, so collaboration feels natural.",
+        "We define collaboration tools, channels, and cadence so your stakeholders can stay involved at the right level.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Engineering",
+      bullets: [
+        "We design, build, and test the solution according to the agreed scope, using modern engineering practices and quality controls.",
+        "Regular demos and checkpoints keep you close to the work, with room to refine details without derailing timelines.",
+        "Our goal is a finished product that is on time, on budget, and within your anticipated project scope.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Release",
+      bullets: [
+        "Extensive QA and testing — functional, performance, and, where needed, security — are completed before launch.",
+        "We help plan and execute a smooth rollout, from deployment steps to user communications if required.",
+        "Post-release, we can support hypercare, handover to your internal team, or follow-on iterations depending on your needs.",
+      ],
+    },
+  ],
+  outcomes: [
+    {
+      task: "Deliver a new product without building an internal tech team",
+      before: "12+ months to hire, onboard, and coordinate a full in‑house team",
+      after: "A few weeks to kick off with a Tech Emulsion project squad",
+      savings: "Significant reduction in time‑to‑first‑release",
+    },
+    {
+      task: "Control spend on a one‑off initiative",
+      before: "Unclear total cost when spreading work across ad hoc contractors",
+      after: "Transparent Time and Materials engagement with clear reporting",
+      savings: "Improved budget predictability and fewer hidden costs",
+    },
+    {
+      task: "Launch a digital initiative in a non‑tech business",
+      before: "Internal team lacks the engineering depth to deliver reliably",
+      after: "Project-based team owning architecture, build, and testing",
+      savings: "Lower delivery risk and faster path from idea to impact",
+    },
+    {
+      task: "Test a new vendor relationship with low risk",
+      before: "High commitment needed to build long-term teams or hire",
+      after: "Clearly scoped project engagement with defined start and end",
+      savings: "Lower organizational risk while you evaluate fit and results",
+    },
+  ],
+  outcomesIntro:
+    "Project outsourcing is about translating a well-defined goal into a working solution without adding permanent complexity to your organization. The impact shows up in faster starts, clearer budgets, and reduced delivery risk.",
+  outcomesClosing:
+    "Whether you’re building an MVP, modernizing a legacy workflow, or piloting a new digital initiative, Tech Emulsion project-based engagements give you a focused way to get it done — and a foundation for future collaboration if you choose to expand.",
+  tools: [
+    // Frontend
+    "React",
+    "Next.js",
+    "Angular",
+    "Vue",
+    "React Native",
+    "Ember",
+    // Backend
+    ".NET",
+    "PHP",
+    "Java",
+    "Golang",
+    "Node.js",
+    "Python",
+    "Elixir",
+    "Scala",
+    // Cloud
+    "AWS",
+    "Azure",
+    "Google Cloud",
+    "Oracle Cloud",
+    "Kubernetes",
+    "Serverless architectures",
+    // Mobile
+    "iOS",
+    "Android",
+    "React Native (mobile)",
+    "Flutter",
+    "Xamarin",
+    "Progressive Web Apps (PWA)",
+    // Testing
+    "Selenium",
+    "Cucumber",
+    "TestNG",
+    "SpecFlow",
+    "TestComplete",
+    // Blockchain
+    "Solidity",
+    "EOSJS",
+    "Corda",
+    "Web3",
+    "Ethereum",
+    // AI / ML
+    "NumPy",
+    "OpenNLP",
+    "Google Cloud AutoML",
+    "TensorFlow",
+    "Azure Cognitive Services",
+    "IBM Watson",
+    // Big data & data science
+    "Hadoop",
+    "Cassandra",
+    "Pandas",
+    "Apache Spark",
+    "Matplotlib",
+    "Caret",
+    "Kafka",
+    // Methodologies
+    "Scrum",
+    "Kanban",
+    "TDD/BDD/DDD",
+    // Databases
+    "MySQL",
+    "Oracle",
+    "DynamoDB",
+    "PostgreSQL",
+    "MongoDB",
+    // 3rd party integrations
+    "Multimedia APIs",
+    "Social media APIs",
+    "Booking APIs",
+    "Google Maps APIs",
+    "Payment gateways",
+    // Salesforce
+    "Salesforce Clouds and products",
+    "Salesforce Lightning Platform",
+    "Salesforce Apex",
+    "Salesforce AppExchange",
+    "Salesforce Pardot",
+  ],
+  toolsIntro:
+    "Market leaders share a commitment to using the right technology at the right time. We harness a mix of proven platforms and emerging tools — from modern web and mobile frameworks to AI, IoT, and data platforms — to design a stack that supports your mission today and can evolve with it tomorrow.",
+  faqs: [
+    {
+      question: "When should we choose a project-based engagement instead of a dedicated team or staff augmentation?",
+      answer:
+        "Choose a project-based model when you have a clearly defined initiative with a start and end point — like an MVP, a specific integration, or a modernization effort — and you want a partner to own delivery end to end. Dedicated teams and staff augmentation are better when you need ongoing capacity and long-term product ownership.",
+    },
+    {
+      question: "How fixed is the scope in a project-based engagement?",
+      answer:
+        "We start with a well-defined scope so expectations are clear, but use a Time and Materials structure so we can adapt within agreed guardrails as we learn more. If larger changes are needed, we handle them through transparent change management to keep budgets and timelines under control.",
+    },
+    {
+      question: "What do we see during the project — will we have visibility?",
+      answer:
+        "Yes. You get regular status updates, test reports, demos, and milestone reviews from your Tech Emulsion project manager. You’ll always know what’s been delivered, what’s in progress, and what’s coming next.",
+    },
+    {
+      question: "Can we expand the engagement if the project is successful?",
+      answer:
+        "Absolutely. Many clients start with a single project-based engagement and then expand into follow-on projects, dedicated teams, or a hybrid model once they see the value of the collaboration.",
+    },
+    {
+      question: "What happens after release?",
+      answer:
+        "After launch, we can provide hypercare, hand off the solution to your internal team, or scope a new engagement for maintenance and further enhancements. The right approach depends on how critical the system is and what internal capacity you have.",
+    },
+    {
+      question: "Which industries are a good fit for project outsourcing with Tech Emulsion?",
+      answer:
+        "Our project-based work spans more than 30 industries, including fintech, healthcare, real estate, greentech, retail and consumer, education, marketing, logistics, insurance, and govtech. That breadth lets us apply proven patterns from one domain to another.",
+    },
+  ],
+  stats: [
+    { value: "30+ industries", label: "Custom software projects delivered across diverse business verticals" },
+    { value: "End‑to‑end", label: "From discovery and architecture through build, test, and launch" },
+    { value: "Time & Materials", label: "Transparent contracts that align cost with actual work delivered" },
+    { value: "Modern stack", label: "Frontend, backend, cloud, mobile, and data tools tuned to your use case" },
+    { value: "SMB & enterprise", label: "Experience working with both smaller businesses and large organizations" },
+    { value: "Low‑risk start", label: "A bounded engagement that lets you evaluate Tech Emulsion as a long‑term partner" },
+  ],
+};
+
 export function getEngagementModelContent(slug: string): EngagementModelContent | null {
   if (slug === "ai-enabled-teams") return aiEnabledTeamsContent;
   if (slug === "staff-augmentation") return staffAugmentationContent;
+  if (slug === "dedicated-teams") return dedicatedTeamsContent;
+  if (slug === "project-outsourcing") return projectOutsourcingContent;
   return null;
 }

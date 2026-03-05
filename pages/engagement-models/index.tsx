@@ -16,7 +16,6 @@ import { FaChevronRight } from "react-icons/fa";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { ButtonLink } from "components/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import { TableOfContents } from "components/engagement-models/table-of-contents";
 import { engagementModelsData } from "data/engagement-models";
 
 const EngagementModelsPage = () => {
@@ -25,18 +24,7 @@ const EngagementModelsPage = () => {
   const textColor = useColorModeValue("gray.600", "gray.100");
   const dividerColor = useColorModeValue("gray.200", "gray.600");
   const cardBg = useColorModeValue("white", "gray.800");
-  const cardBorder = useColorModeValue("gray.200", "gray.700");
-  const sectionBg = useColorModeValue("gray.50", "charcoal.900");
   const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
-
-  const tocItems = engagementModelsData.map((m) => ({
-    label: m.title,
-    href: `/engagement-models/${m.slug}`,
-    external: true,
-  }));
-  const mid = Math.ceil(tocItems.length / 2);
-  const leftToc = tocItems.slice(0, mid);
-  const rightToc = tocItems.slice(mid);
 
   return (
     <Box position="relative" minH="100vh" color={headingColor}>
@@ -136,15 +124,11 @@ const EngagementModelsPage = () => {
                 fontSize="16px"
                 lineHeight="tall"
                 textAlign="left"
-                mb={6}
               >
                 We offer flexible engagement models—from AI-enabled teams and staff augmentation to
                 dedicated teams and full project outsourcing—so you can scale delivery in the way
                 that best fits your stage and goals.
               </Text>
-              <ButtonLink href="/contact" colorScheme="teal" size="lg">
-                Get a Quote
-              </ButtonLink>
             </Box>
           </Box>
         </Box>
@@ -158,84 +142,150 @@ const EngagementModelsPage = () => {
           borderColor={dividerColor}
         />
 
-        {/* Table of contents - same width as header divider */}
-        <Box mt={0} mx={-6} px={6}>
-          <Box mx={-6} minW="calc(100% + 48px)" w="calc(100% + 48px)">
-            <TableOfContents
-              leftColumn={leftToc}
-              rightColumn={rightToc}
-              sectionBg={sectionBg}
-              collapsedBg="transparent"
-              dividerColor={dividerColor}
-              accentColor={accentColor}
-              headingColor={headingColor}
-              textColor={textColor}
-            />
+        {/* Overview section - mirrors services/portfolio intro hierarchy */}
+        <Box py={{ base: 12, md: 16 }}>
+          <Box maxW="3xl">
+            <Heading
+              as="h2"
+              size="md"
+              color={colorMode === "dark" ? "pearlAqua.400" : "teal.500"}
+              textTransform="uppercase"
+              letterSpacing="widest"
+            >
+              How we work together
+            </Heading>
+            <Heading
+              as="h1"
+              mt={3}
+              color={headingColor}
+              fontSize={{ base: "2rem", md: "2.5rem" }}
+              fontWeight="bold"
+            >
+              Engagement models tailored to your roadmap
+            </Heading>
+            <Text
+              mt={4}
+              color={textColor}
+              fontSize="16px"
+              lineHeight="tall"
+            >
+              Whether you need to boost an existing team, spin up a dedicated squad, or outsource an
+              entire initiative, these models give you clear options for how to collaborate with Tech
+              Emulsion.
+            </Text>
           </Box>
         </Box>
-        <Box h="1px" bg={dividerColor} mx={-6} px={6} flexShrink={0} />
 
-        {/* Models grid */}
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} pt={12} pb={12}>
-          {engagementModelsData.map((model) => (
-            <Box
-              key={model.id}
-              as={NextLink}
-              href={`/engagement-models/${model.slug}`}
-              _hover={{ textDecoration: "none" }}
-            >
+        {/* Divider above models grid - aligns with other main pages */}
+        <Box
+          bg="transparent"
+          py={2}
+          px={6}
+          mx={-6}
+          borderTopWidth="1px"
+          borderColor={dividerColor}
+        />
+
+        {/* Models grid - aligned with portfolio/services grid layout */}
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={0} pt={8} pb={12}>
+          {engagementModelsData.map((model, idx) => {
+            const len = engagementModelsData.length;
+            const lastRowStartMd = 2 * Math.floor((len - 1) / 2);
+            const lastRowStartLg = 3 * Math.floor((len - 1) / 3);
+            return (
               <Box
-                role="group"
-                position="relative"
-                h="full"
-                bg={cardBg}
-                borderWidth="1px"
-                borderColor={cardBorder}
-                borderRadius="lg"
-                p={6}
-                overflow="hidden"
-                transition="all 0.3s ease"
-                cursor="pointer"
-                _hover={{
-                  borderColor: colorMode === "light" ? "teal.500" : "pearlAqua.400",
+                key={model.id}
+                as={NextLink}
+                href={`/engagement-models/${model.slug}`}
+                _hover={{ textDecoration: "none" }}
+                py={6}
+                pr={{
+                  base: 0,
+                  md: idx % 2 === 0 ? 6 : 0,
+                  lg: idx % 3 === 0 || idx % 3 === 1 ? 6 : 0,
+                }}
+                pl={{
+                  base: 0,
+                  md: idx % 2 === 1 ? 6 : 0,
+                  lg: idx % 3 === 1 || idx % 3 === 2 ? 6 : 0,
+                }}
+                borderRight={{
+                  base: "none",
+                  md: idx % 2 === 0 ? "1px solid" : "none",
+                  lg: idx % 3 < 2 ? "1px solid" : "none",
+                }}
+                borderBottom={{
+                  base: idx < len - 1 ? "1px solid" : "none",
+                  md: idx < lastRowStartMd ? "1px solid" : "none",
+                  lg: idx < lastRowStartLg ? "1px solid" : "none",
+                }}
+                borderColor={dividerColor}
+                sx={{
+                  borderColor: "gray.200 !important",
+                  _dark: { borderColor: "gray.600 !important" },
                 }}
               >
-                {/* Teal overlay on hover - same as home page portfolio/service cards */}
                 <Box
-                  position="absolute"
-                  inset={0}
-                  bg="teal.500"
-                  opacity={0}
-                  transition="opacity 0.3s"
-                  _groupHover={{ opacity: 0.55 }}
-                  zIndex={1}
-                />
-                <Box position="relative" zIndex={2}>
-                  <Heading
-                    as="h2"
-                    size="md"
-                    color={headingColor}
-                    mb={3}
-                    fontWeight="semibold"
-                    transition="color 0.3s"
-                    _groupHover={{ color: "white" }}
-                  >
-                    {model.title}
-                  </Heading>
-                  <Text
-                    color={textColor}
-                    fontSize="16px"
-                    lineHeight="1.6"
-                    transition="color 0.3s"
-                    _groupHover={{ color: "white" }}
-                  >
-                    Tech Emulsion delivers {model.title.toLowerCase()} to help you
-                    scale engineering capacity, move faster, and reduce delivery risk.
-                  </Text>
+                  role="group"
+                  position="relative"
+                  h="full"
+                  bg={cardBg}
+                  p={6}
+                  overflow="hidden"
+                  transition="all 0.3s ease"
+                  cursor="pointer"
+                >
+                  {/* Teal overlay on hover - same as home page portfolio/service cards */}
+                  <Box
+                    position="absolute"
+                    inset={0}
+                    bg="teal.500"
+                    opacity={0}
+                    transition="opacity 0.3s"
+                    _groupHover={{ opacity: 0.55 }}
+                    zIndex={1}
+                  />
+                  <Box position="relative" zIndex={2}>
+                    {model.heroTagline && (
+                      <Text
+                        color={accentColor}
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        textTransform="uppercase"
+                        letterSpacing="widest"
+                        mb={2}
+                        transition="color 0.3s"
+                        _groupHover={{ color: "white" }}
+                      >
+                        {model.heroTagline}
+                      </Text>
+                    )}
+                    <Heading
+                      as="h3"
+                      fontSize={{ base: "xl", md: "2xl" }}
+                      color={headingColor}
+                      mb={3}
+                      fontWeight="bold"
+                      transition="color 0.3s"
+                      _groupHover={{ color: "white" }}
+                    >
+                      {model.title}
+                    </Heading>
+                    <Text
+                      color={textColor}
+                      fontSize="16px"
+                      lineHeight="1.6"
+                      transition="color 0.3s"
+                      _groupHover={{ color: "white" }}
+                    >
+                      Tech Emulsion delivers {model.title.toLowerCase()} to help you
+                      scale engineering capacity, move faster, and reduce delivery risk.
+                    </Text>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          ))}
+            );
+          })}
         </SimpleGrid>
       </Container>
     </Box>

@@ -28,7 +28,12 @@ export const engagementModelsData: EngagementModelItem[] = [
       "Bringing AI into your development lifecycle shouldn't mean giving up control, quality, security, or team harmony. Backed by 3+ years of delivery excellence, our AI-powered development teams drive 15 percent more efficiency, without disruption, delays, or bumping up your rate card.\n\nPre-vetted tools, built-in compliance, and seamless day-to-day collaboration mean you scale faster, ship smarter, and stay fully in control at every step.",
     heroCta: "Get 15% more, same rate",
   },
-  { id: 2, slug: "staff-augmentation", title: "Staff augmentation" },
+  {
+    id: 2,
+    slug: "staff-augmentation",
+    title: "Staff augmentation",
+    heroTagline: "Add vetted engineers to your existing team, without hiring overhead",
+  },
   {
     id: 3,
     slug: "dedicated-teams",

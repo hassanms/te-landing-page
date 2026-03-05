@@ -998,29 +998,30 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 md: "linear(to-r, transparent 0%, blackAlpha.700 45%, blackAlpha.900 55%)",
               }}
             />
-            <Container maxW="6xl" position="relative" zIndex={1} py={{ base: 16, md: 20 }}>
+            <Container maxW="6xl" position="relative" zIndex={1} py={{ base: 10, md: 20 }} px={{ base: 4, md: 6 }}>
               <Flex justify={{ base: "flex-start", md: "flex-end" }} align="flex-start">
                 <Box
                   w={{ base: "100%", md: "55%", lg: "52%" }}
                   maxW={{ md: "640px" }}
                   bg={{ base: "blackAlpha.800", md: "transparent" }}
-                  p={{ base: 6, md: 0 }}
+                  p={{ base: 4, sm: 5, md: 0 }}
                   borderRadius={{ base: "md", md: 0 }}
+                  mx={{ base: 0, md: 0 }}
                 >
                   <Heading
                     as="h2"
-                    fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                    fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
                     fontWeight="bold"
                     color="white"
                     letterSpacing="-0.02em"
                     lineHeight="1.2"
-                    mb={{ base: 8, md: 10 }}
+                    mb={{ base: 6, md: 10 }}
                   >
                     {content.sectionHeadings?.whyPartner ?? "What makes Tech Emulsion your reliable development partner?"}
                   </Heading>
                   <Box
                     display="grid"
-                    gridTemplateColumns="repeat(3, 1fr)"
+                    gridTemplateColumns={{ base: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }}
                     borderWidth="1px"
                     borderColor="whiteAlpha.200"
                     borderRadius="md"
@@ -1034,20 +1035,24 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                         model.slug === "ai-enabled-teams" && i === content.stats.length - 1;
                       const showBigValue = isNumberLead || isAiEnabledLastStat;
                       const showIcon = !showBigValue && IconComponent;
+                      const isLastColMd = i % 3 === 2;
+                      const isLastColBase = i % 2 === 1;
+                      const isInLastRowMd = i >= 3;
+                      const isInLastRowBase = i >= 4;
                       return (
                         <Box
                           key={i}
-                          p={5}
-                          borderRightWidth={i % 3 !== 2 ? "1px" : 0}
-                          borderBottomWidth={i < 3 ? "1px" : 0}
+                          p={{ base: 3, sm: 4, md: 5 }}
+                          borderRightWidth={{ base: isLastColBase ? 0 : "1px", md: isLastColMd ? 0 : "1px" }}
+                          borderBottomWidth={{ base: isInLastRowBase ? 0 : "1px", md: isInLastRowMd ? 0 : "1px" }}
                           borderColor="whiteAlpha.200"
                         >
                           {showBigValue ? (
                             <Text
-                              fontSize={{ base: "2xl", md: "3xl" }}
+                              fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}
                               fontWeight="bold"
                               color={accentColor}
-                              mb={2}
+                              mb={{ base: 1, md: 2 }}
                             >
                               {stat.value}
                             </Text>
@@ -1055,12 +1060,12 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                             <Icon
                               as={IconComponent}
                               color={accentColor}
-                              boxSize={8}
-                              mb={3}
+                              boxSize={{ base: 6, md: 8 }}
+                              mb={{ base: 2, md: 3 }}
                               display="block"
                             />
                           ) : null}
-                          <Text color="white" fontSize="15px" lineHeight="1.5">
+                          <Text color="white" fontSize={{ base: "13px", sm: "14px", md: "15px" }} lineHeight="1.5">
                             {stat.label}
                           </Text>
                         </Box>

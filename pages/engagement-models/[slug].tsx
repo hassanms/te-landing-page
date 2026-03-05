@@ -172,7 +172,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           </ButtonGroup>
         </Flex>
 
-        {/* Header section - two column, Vention-style */}
+        {/* Header section - two-column split layout */}
         <Box
           minH={{ base: "360px", md: "48vh" }}
           display={{ base: "block", md: "grid" }}
@@ -261,7 +261,6 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     { label: "Our approach", href: "#our-approach" },
                     { label: `${model.title} at a glance`, href: "#the-model" },
                     { label: "What makes this model different", href: "#what-makes-special" },
-                    { label: "Our projects", href: "/portfolio", external: true },
                     { label: "Tools and platforms we use", href: "#ai-tools" },
                   ]}
                   rightColumn={[
@@ -269,7 +268,6 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     { label: "About Tech Emulsion", href: "#why-tech-emulsion" },
                     { label: "Client outcomes", href: "#client-outcomes" },
                     { label: "FAQs", href: "#faqs" },
-                    { label: "Testimonials", href: "/#social", external: true },
                   ]}
                   sectionBg="transparent"
                   collapsedBg="transparent"
@@ -345,7 +343,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textTransform="uppercase"
               >
               </Text>
-              <Heading
+              {/* <Heading
                 as="h2"
                 fontSize={{ base: "4xl", md: "5xl", lg: "3xl" }}
                 fontWeight="bold"
@@ -354,8 +352,8 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 lineHeight="1.1"
                 mb={0}
               >
-                You will feel safe and empowered with us. Here&apos;s why
-              </Heading>
+                {content.sectionHeadings?.safeAndEmpowered ?? "You will feel safe and empowered with us. Here's why"}
+              </Heading> */}
               <Text
                 color={headingColor}
                 fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
@@ -456,17 +454,17 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
             <Container maxW="6xl" position="relative" zIndex={1}>
               {/* Full width: headline + large paragraph (no empty space on left) */}
               <Box w="100%" mb={{ base: 10, md: 12 }}>
-                <Heading
+                {/* <Heading
                   as="h2"
                   fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
                   fontWeight="bold"
                   color={headingColor}
                   letterSpacing="-0.02em"
                   lineHeight="1.1"
-                  mb={4}
+                  mb={0}
                 >
-                  {heroTitle}: Everything you need to know
-                </Heading>
+                  {content.sectionHeadings?.everythingYouNeedToKnow ?? `${heroTitle}: Everything you need to know`}
+                </Heading> */}
                 <Text
                   color={headingColor}
                   fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
@@ -578,7 +576,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textAlign="left"
                 mb={{ base: 12, md: 16 }}
               >
-                What makes this engagement model special
+                {content.sectionHeadings?.whatMakesSpecial ?? "What makes this engagement model special"}
               </Heading>
               <VStack spacing={{ base: 8, md: 10 }} align="stretch">
                 {content.whatMakesSpecial.map((item, i) => (
@@ -655,7 +653,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textAlign="left"
                 mb={4}
                 >
-                  Where this model adds value across the SDLC
+                  {content.sectionHeadings?.sdlc ?? "Where this model adds value across the SDLC"}
               </Heading>
               <Text
                 color={textColor}
@@ -663,7 +661,9 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textAlign="left"
                 mb={12}
               >
-                AI accelerates delivery at every stage of the software development lifecycle:
+                {content.sectionHeadings?.sdlc
+                  ? "From discovery and architecture through development, integration, and optimization:"
+                  : "AI accelerates delivery at every stage of the software development lifecycle:"}
               </Text>
               <Box borderTopWidth="1px" borderColor={dividerColor}>
                 {content.sdlcPhases.map((phase, i) => {
@@ -741,7 +741,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 textAlign="left"
                 mb={4}
               >
-                Client outcomes powered by this engagement model
+                {content.sectionHeadings?.clientOutcomes ?? "Client outcomes powered by this engagement model"}
               </Heading>
               <Text
                 color={textColor}
@@ -756,10 +756,11 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 borderWidth="1px"
                 borderColor={dividerColor}
                 borderRadius="md"
-                overflow="hidden"
+                overflowX="auto"
+                overflowY="visible"
                 mb={12}
               >
-                <Table variant="simple" size="md">
+                <Table variant="simple" size="md" sx={{ minW: "720px", tableLayout: "fixed" }}>
                   <Thead bg={bgColor}>
                     <Tr>
                       <Th
@@ -770,6 +771,10 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                         px={6}
                         borderBottomWidth="1px"
                         borderColor={dividerColor}
+                        w="22%"
+                        minW="140px"
+                        whiteSpace="normal"
+                        wordBreak="break-word"
                       >
                         Task
                       </Th>
@@ -781,8 +786,12 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                         px={6}
                         borderBottomWidth="1px"
                         borderColor={dividerColor}
+                        w="26%"
+                        minW="160px"
+                        whiteSpace="normal"
+                        wordBreak="break-word"
                       >
-                        Task duration before AI
+                        Before
                       </Th>
                       <Th
                         color={accentColor}
@@ -792,8 +801,12 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                         px={6}
                         borderBottomWidth="1px"
                         borderColor={dividerColor}
+                        w="26%"
+                        minW="160px"
+                        whiteSpace="normal"
+                        wordBreak="break-word"
                       >
-                        Task duration with AI
+                        After
                       </Th>
                       <Th
                         color={accentColor}
@@ -803,24 +816,61 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                         px={6}
                         borderBottomWidth="1px"
                         borderColor={dividerColor}
+                        w="26%"
+                        minW="140px"
+                        whiteSpace="normal"
+                        wordBreak="break-word"
                       >
-                        Time savings
+                        Impact
                       </Th>
                     </Tr>
                   </Thead>
                   <Tbody>
                     {content.outcomes.map((row, i) => (
                       <Tr key={i} borderBottomWidth={i < content.outcomes.length - 1 ? "1px" : 0} borderColor={dividerColor}>
-                        <Td color={headingColor} py={5} px={6} fontWeight="medium">
+                        <Td
+                          color={headingColor}
+                          py={5}
+                          px={6}
+                          fontWeight="medium"
+                          whiteSpace="normal"
+                          wordBreak="break-word"
+                          verticalAlign="top"
+                        >
                           {row.task}
                         </Td>
-                        <Td color={headingColor} py={5} px={6} textAlign="center">
+                        <Td
+                          color={headingColor}
+                          py={5}
+                          px={6}
+                          textAlign="center"
+                          whiteSpace="normal"
+                          wordBreak="break-word"
+                          verticalAlign="top"
+                        >
                           {row.before}
                         </Td>
-                        <Td color={headingColor} py={5} px={6} textAlign="center">
+                        <Td
+                          color={headingColor}
+                          py={5}
+                          px={6}
+                          textAlign="center"
+                          whiteSpace="normal"
+                          wordBreak="break-word"
+                          verticalAlign="top"
+                        >
                           {row.after}
                         </Td>
-                        <Td color={headingColor} py={5} px={6} textAlign="center" fontWeight="medium">
+                        <Td
+                          color={headingColor}
+                          py={5}
+                          px={6}
+                          textAlign="center"
+                          fontWeight="medium"
+                          whiteSpace="normal"
+                          wordBreak="break-word"
+                          verticalAlign="top"
+                        >
                           {row.savings}
                         </Td>
                       </Tr>
@@ -898,7 +948,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 lineHeight="1.1"
                 mb={4}
               >
-                Tools and platforms that support delivery
+                {content.sectionHeadings?.tools ?? "Tools and platforms that support delivery"}
               </Heading>
               <Text color={textColor} fontSize="16px" mb={12} maxW="2xl">
                 {content.toolsIntro ??
@@ -966,7 +1016,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     lineHeight="1.2"
                     mb={{ base: 8, md: 10 }}
                   >
-                    What makes Tech Emulsion your reliable development partner?
+                    {content.sectionHeadings?.whyPartner ?? "What makes Tech Emulsion your reliable development partner?"}
                   </Heading>
                   <Box
                     display="grid"
@@ -980,6 +1030,10 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                       const icons = [null, FaStar, FaComments, FaGem, FaCheck, FaShieldAlt];
                       const IconComponent = icons[i];
                       const isNumberLead = i === 0;
+                      const isAiEnabledLastStat =
+                        model.slug === "ai-enabled-teams" && i === content.stats.length - 1;
+                      const showBigValue = isNumberLead || isAiEnabledLastStat;
+                      const showIcon = !showBigValue && IconComponent;
                       return (
                         <Box
                           key={i}
@@ -988,7 +1042,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                           borderBottomWidth={i < 3 ? "1px" : 0}
                           borderColor="whiteAlpha.200"
                         >
-                          {isNumberLead ? (
+                          {showBigValue ? (
                             <Text
                               fontSize={{ base: "2xl", md: "3xl" }}
                               fontWeight="bold"
@@ -997,7 +1051,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                             >
                               {stat.value}
                             </Text>
-                          ) : IconComponent ? (
+                          ) : showIcon ? (
                             <Icon
                               as={IconComponent}
                               color={accentColor}
@@ -1040,7 +1094,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 lineHeight="1.1"
                 mb={12}
               >
-                Frequently asked questions
+                {content.sectionHeadings?.faqs ?? "Frequently asked questions"}
               </Heading>
               <Accordion allowMultiple>
                 <Box

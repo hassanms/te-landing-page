@@ -28,6 +28,17 @@ export interface EngagementModelContent {
   toolsIntro?: string;
   faqs: { question: string; answer: string }[];
   stats: { value: string; label: string }[];
+  /** Optional section headings to override default H2s on the page (e.g. for Solutions for enterprises). */
+  sectionHeadings?: {
+    safeAndEmpowered?: string;
+    everythingYouNeedToKnow?: string;
+    whatMakesSpecial?: string;
+    sdlc?: string;
+    clientOutcomes?: string;
+    tools?: string;
+    whyPartner?: string;
+    faqs?: string;
+  };
 }
 
 export const aiEnabledTeamsContent: EngagementModelContent = {
@@ -270,8 +281,18 @@ export const aiEnabledTeamsContent: EngagementModelContent = {
     { value: "CTO-led", label: "CTO-led consulting is available to guide you through the evolving AI tooling landscape" },
     { value: "Human-first", label: "A human-first AI model where technology augments engineers without replacing them" },
     { value: "Procurement", label: "Procurement- and legal-friendly delivery setup designed for fast, secure sign-off" },
-    { value: "ISO-27001", label: "ISO-27001 certified security management system ensuring compliance and peace of mind at scale" },
+    { value: "3+ years", label: "Experience building and integrating remote development teams" },
   ],
+  sectionHeadings: {
+    safeAndEmpowered: "AI-Driven Development with Confidence",
+    everythingYouNeedToKnow: "AI-Enabled Development Teams Explained",
+    whatMakesSpecial: "What Makes AI-Powered Development Teams Unique",
+    sdlc: "AI Across the Software Development Lifecycle",
+    clientOutcomes: "Real Productivity Gains from AI-Enabled Development",
+    tools: "AI Tools Used in Modern Development Workflows",
+    whyPartner: "Why Organizations Choose AI-Enabled Development Teams",
+    faqs: "Frequently Asked Questions",
+  },
 };
 
 export const staffAugmentationContent: EngagementModelContent = {
@@ -472,13 +493,23 @@ export const staffAugmentationContent: EngagementModelContent = {
     },
   ],
   stats: [
-    { value: "20+ years", label: "Experience building and integrating remote development teams" },
+    { value: "3+ years", label: "Experience building and integrating remote development teams" },
     { value: "30+ industries", label: "Domain experience spanning fintech, healthtech, ecommerce, and more" },
     { value: "Flexible", label: "Engagement structures that adapt to your roadmap, not the other way around" },
     { value: "Specialists", label: "Access to engineers across backend, frontend, mobile, DevOps, data, and QA" },
     { value: "Low overhead", label: "We handle HR, contracts, and people ops so you can focus on delivery" },
     { value: "Partner-first", label: "A collaboration model built on transparency, long-term fit, and shared outcomes" },
   ],
+  sectionHeadings: {
+    safeAndEmpowered: "Win with Software Team Augmentation",
+    everythingYouNeedToKnow: "Staff Augmentation at a Glance",
+    whatMakesSpecial: "Proven Expertise Across Industries",
+    sdlc: "Staff Augmentation Process",
+    clientOutcomes: "Client outcomes powered by this engagement model",
+    tools: "Tools and platforms that support delivery",
+    whyPartner: "What makes Tech Emulsion your reliable development partner?",
+    faqs: "Frequently Asked Questions",
+  },
 };
 
 export const dedicatedTeamsContent: EngagementModelContent = {
@@ -698,13 +729,23 @@ export const dedicatedTeamsContent: EngagementModelContent = {
     },
   ],
   stats: [
-    { value: "20+ years", label: "Experience delivering complex software products and platforms" },
+    { value: "3+ years", label: "Experience delivering complex software products and platforms" },
     { value: "Cross‑functional", label: "Teams combining engineering, QA, design, and delivery leadership" },
     { value: "Global", label: "Access to remote talent across multiple regions and time zones" },
     { value: "Scalable", label: "Engagements that can grow, shrink, or re-balance as your roadmap evolves" },
     { value: "ISO‑aligned", label: "Security and quality practices designed for enterprise expectations" },
     { value: "Weeks", label: "Typical time to kick off an initial dedicated team squad" },
   ],
+  sectionHeadings: {
+    safeAndEmpowered: "The Dedicated Team Model",
+    everythingYouNeedToKnow: "Dedicated Teams vs Other Engagement Models",
+    whatMakesSpecial: "Benefits of Dedicated Development Teams",
+    sdlc: "Projects Best Suited for Dedicated Teams",
+    clientOutcomes: "Engineering Teams Built for Success",
+    tools: "Technology Expertise",
+    whyPartner: "Engineering Teams Built for Success",
+    faqs: "Frequently Asked Questions",
+  },
 };
 
 export const projectOutsourcingContent: EngagementModelContent = {
@@ -749,7 +790,7 @@ export const projectOutsourcingContent: EngagementModelContent = {
     {
       title: "A value-based approach",
       description:
-        "We combine startup thinking with decades of delivery experience to design project scopes that maximize business value. From prototypes and MVPs to full custom builds, we focus on outcomes, not just outputs.",
+        "We combine startup thinking with 3+ years of delivery experience to design project scopes that maximize business value. From prototypes and MVPs to full custom builds, we focus on outcomes, not just outputs.",
     },
     {
       title: "Real-time visibility into the project",
@@ -972,6 +1013,716 @@ export const projectOutsourcingContent: EngagementModelContent = {
     { value: "SMB & enterprise", label: "Experience working with both smaller businesses and large organizations" },
     { value: "Low‑risk start", label: "A bounded engagement that lets you evaluate Tech Emulsion as a long‑term partner" },
   ],
+  sectionHeadings: {
+    safeAndEmpowered: "When to consider a project-based engagement",
+    everythingYouNeedToKnow: "Tap into project-based development",
+    whatMakesSpecial: "A value-based approach",
+    sdlc: "How we do it",
+    clientOutcomes: "Client outcomes powered by this engagement model",
+    tools: "Our technology stack",
+    whyPartner: "What makes Tech Emulsion your reliable development partner?",
+    faqs: "Frequently Asked Questions",
+  },
+};
+
+export const solutionsForStartupsContent: EngagementModelContent = {
+  peaceOfMindIntro:
+    "Startups often need to shift direction or scale up on a dime. That means you need built-in flexibility and a partner who can move in lockstep with you as conditions change. Tech Emulsion offers exactly that: a deep understanding of what technical solutions you need at each stage, plus engineering teams that are just as ambitious as you are.",
+  safeAndEmpowered: {
+    intro:
+      "Our services for startups are designed to match where you are today and where you want to be tomorrow — whether you need a part-time CTO, full-cycle software development, technology advisory, help scaling a mature startup, or a market-ready MVP.",
+    introSubtext:
+      "Here’s how we support startups at every stage:",
+    bullets: [
+      "CTO as a Service — Hiring in-house technical leadership is slow; when you need guidance before committing to a full-time CTO, tap our CTO for support on everything from choosing a tech stack to planning your next steps.",
+      "Software development services — We bring 3+ years of experience to full-cycle application development and time-saving integrations so you can outpace the competition.",
+      "Technology advisory and consulting — Our consultants provide strategic guidance and technical expertise to build a roadmap and turn IT complexity into growth opportunities, from tech stack choices to implementation and launch plans.",
+      "Scaling mature startups — When your product is already on the market, we deliver engineering teams and experienced leadership to help you catapult into the next stage of growth.",
+      "MVP development — With swift iterations, comprehensive testing, and a focus on scalability, our engineers take you from initial concept to a high-performing, market-ready product.",
+    ],
+    closing:
+      "Whatever stage you’re at, we’re built to move at startup speed without sacrificing quality or security.",
+  },
+  everythingYouNeedToKnow: {
+    intro:
+      "We meet startups wherever they are — pre-product, post-MVP, or scaling — and offer flexible partnership models so you can choose what fits best: staff augmentation for plug-and-play capacity, dedicated teams for long-term ownership, or project-based delivery for defined initiatives.",
+    introMain:
+      "Staff augmentation reinforces your operations with seasoned engineers who work in sync with your in-house team using shared tools and methodologies. Dedicated teams give you a long-term engineering partner to boost time-to-market and maintain a sustainable edge. Project-based delivery lets us manage the full development process so you can focus on growing the company.",
+    introRight:
+      "All three models are designed for startups that need to move fast and adapt quickly. We help you not only grow and increase profit but also continuously reinvent your business in the face of whatever comes next.",
+    researchBullets: [
+      {
+        cite: "Staff augmentation",
+        text: "Ideal for reinforcing operations without burning unnecessary resources, critical projects with tight deadlines and budgets, and seamless integration with your existing team.",
+      },
+      {
+        cite: "Dedicated teams",
+        text: "Ideal for long-term projects with growth potential, access to diverse technical expertise, and situations where local hiring is too slow or costly.",
+      },
+      {
+        cite: "Project-based delivery",
+        text: "Ideal for first-time collaboration with an external software provider, product expansion requiring specialized expertise, and end-to-end development projects. We handle business analysis, technical documentation, prototyping, design, development, and QA.",
+      },
+    ],
+  },
+  whatMakesSpecial: [
+    {
+      title: "Fintech",
+      description:
+        "We design robust fintech solutions that streamline financial operations and engage users. Secure transaction solutions, AI-driven analytics, and digital wallet capabilities help financial startups drive innovation and fuel growth they can bank on.",
+    },
+    {
+      title: "Healthtech",
+      description:
+        "We build healthtech solutions that enhance provider and patient experiences and improve health outcomes, with security always prioritized. Our engineers help startups deliver more personalized, efficient, and accessible healthcare services at lower cost.",
+    },
+    {
+      title: "Edtech",
+      description:
+        "We fuse technology and education to create transformative learning experiences — from interactive, digital-first platforms to gamification tools — with the needs of learners and educators front and center.",
+    },
+    {
+      title: "Marketing and advertising",
+      description:
+        "With big data and AI, we equip marketing and advertising startups with personalized automation platforms that amplify customer engagement and drive strong campaigns, optimizing your startup’s brand, performance, and reach.",
+    },
+    {
+      title: "Trusted by ambitious builders",
+      description:
+        "We help startups and forward-thinking enterprises not just grow and increase profit but continuously reinvent their businesses and industries in the face of whatever comes next.",
+    },
+    {
+      title: "Security and compliance",
+      description:
+        "We develop solutions quickly without sacrificing quality or security. Tech Emulsion solutions prioritize compliance with country- or industry-specific regulations and emphasize continuous improvement. Your product — like our partnerships — is designed for long-term resilience, security, and results.",
+    },
+  ],
+  ctaBlocks: [
+    {
+      title: "Engineer startup success with a partner that moves at your speed",
+      subtitle:
+        "From CTO-as-a-Service and MVP development to scaling mature startups, we bring 3+ years of industry experience and flexible engagement models built for fast-moving teams.",
+      buttonText: "Explore solutions for startups",
+    },
+    {
+      title: "Ready to build, scale, or reinvent?",
+      subtitle:
+        "Whether you’re choosing a tech stack, shipping an MVP, or preparing for your next growth stage, we’re here to help.",
+      buttonText: "Talk to us about your startup",
+    },
+  ],
+  sdlcPhases: [
+    {
+      number: "01",
+      title: "CTO as a Service",
+      bullets: [
+        "Get strategic technical leadership before you’re ready to hire a full-time CTO.",
+        "Support on tech stack selection, architecture decisions, and planning your next steps.",
+        "A flexible, high-impact option for early-stage and scaling startups.",
+      ],
+    },
+    {
+      number: "02",
+      title: "Software development services",
+      bullets: [
+        "Full-cycle application development and time-saving integrations backed by 3+ years of delivery experience.",
+        "Expertise tailored so you can outpace the competition without overbuilding.",
+        "Flexibility to scale the team up or down as your roadmap changes.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Technology advisory and consulting",
+      bullets: [
+        "Strategic guidance and technical expertise to build a roadmap and navigate IT complexity.",
+        "Deep dive into your business requirements to inform decisions on technology investments.",
+        "Support from tech stack choice through implementation and launch plans.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Scaling mature startups",
+      bullets: [
+        "For businesses that already have product-market fit and are ready for the next stage.",
+        "Engineering teams and experienced leadership to catapult growth without losing focus.",
+        "Processes and practices that support sustainable scaling.",
+      ],
+    },
+    {
+      number: "05",
+      title: "MVP development",
+      bullets: [
+        "Swift iterations, comprehensive testing, and a signature focus on scalability.",
+        "Efficient navigation from initial concept to a high-performing, market-ready product.",
+        "A foundation that can grow with you from launch to scale.",
+      ],
+    },
+  ],
+  outcomes: [
+    {
+      task: "Average client savings per year",
+      before: "Higher cost when building and maintaining everything in-house",
+      after: "Efficient use of external expertise and flexible models",
+      savings: "Meaningful cost savings per year",
+    },
+    {
+      task: "Client exits and growth",
+      before: "Slower path to acquisition or IPO without the right tech partner",
+      after: "Startups supported through IPOs, acquisitions, and rapid expansion",
+      savings: "Proven track record with high-growth outcomes",
+    },
+    {
+      task: "Time to market",
+      before: "Months lost to hiring and indecision on stack and architecture",
+      after: "Faster path from idea to MVP and from MVP to scale",
+      savings: "Quicker launches and iterations",
+    },
+    {
+      task: "Partnership longevity",
+      before: "Short-term vendors that churn",
+      after: "Long-term partnerships designed for resilience and results",
+      savings: "Multi-year relationships that compound value",
+    },
+  ],
+  outcomesIntro:
+    "We help startups and forward-thinking enterprises grow, increase profit, and continuously reinvent their businesses. The numbers below reflect the kind of outcomes our startup partners achieve.",
+  outcomesClosing:
+    "With access to experienced engineers and 3+ years of industry expertise, Tech Emulsion has helped startups reach major milestones including IPOs, acquisitions, and rapid expansion. We’re built to be your long-term technology partner.",
+  tools: [
+    "React, Next.js, Angular, Vue, React Native, Ember",
+    ".NET, PHP, Java, Golang, Node.js, Python, Elixir, Scala",
+    "AWS, Azure, Google Cloud, Kubernetes, Serverless",
+    "iOS, Android, React Native, Flutter, Xamarin, PWA",
+    "Selenium, Cucumber, TestNG, SpecFlow, TestComplete",
+    "Solidity, Web3, Ethereum (blockchain)",
+    "NumPy, TensorFlow, Azure Cognitive Services, Google Cloud AutoML (AI/ML)",
+    "Hadoop, Apache Spark, Pandas, Kafka (big data)",
+    "Scrum, Kanban, TDD/BDD/DDD",
+    "MySQL, PostgreSQL, MongoDB, DynamoDB",
+    "Payment gateways, Google Maps, social and booking APIs",
+    "Salesforce (Lightning, Apex, AppExchange, Pardot)",
+  ],
+  toolsIntro:
+    "We use a modern, battle-tested tech stack across frontend, backend, cloud, mobile, AI/ML, and data — so your startup builds on tools that scale and stay relevant as you grow.",
+  faqs: [
+    {
+      question: "Which partnership model is best for an early-stage startup?",
+      answer:
+        "It depends on your stage and needs. Staff augmentation works well when you have a small in-house team and need to reinforce it for a critical push. Dedicated teams suit long-term product ownership and scaling. Project-based delivery is ideal for a first engagement or a clearly scoped initiative like an MVP or a single product expansion.",
+    },
+    {
+      question: "Do you offer CTO-level support without a full-time hire?",
+      answer:
+        "Yes. Our CTO-as-a-Service gives you strategic technical leadership — from tech stack and architecture to roadmap planning — on a flexible basis until you’re ready to bring a full-time CTO in-house.",
+    },
+    {
+      question: "How do you handle security and compliance for startups?",
+      answer:
+        "We develop quickly without sacrificing quality or security. Our solutions prioritize compliance with country- or industry-specific regulations and emphasize continuous improvement. Your product is designed for long-term resilience and security from day one.",
+    },
+    {
+      question: "Can you help us scale after we’ve found product-market fit?",
+      answer:
+        "Yes. Our scaling-mature-startups offering delivers engineering teams and experienced leadership to support your next stage of growth — without the delay and cost of hiring everything in-house.",
+    },
+    {
+      question: "What industries do you serve for startup solutions?",
+      answer:
+        "We work across fintech, healthtech, edtech, marketing and advertising, and many other domains. Our 3+ years of industry experience let us apply proven patterns so you can move faster and avoid common pitfalls.",
+    },
+    {
+      question: "How long do typical startup partnerships last?",
+      answer:
+        "Our partnerships are designed for the long term. Many last multiple years as startups move from MVP to scale to exit. We focus on resilience, security, and results so the relationship and the product both stand the test of time.",
+    },
+  ],
+  stats: [
+    { value: "3+ years", label: "Industry expertise powering startup delivery and advisory" },
+    { value: "Flexible models", label: "Staff augmentation, dedicated teams, and project-based delivery" },
+    { value: "Client milestones", label: "Startups supported through IPOs, acquisitions, and rapid expansion" },
+    { value: "Multi-year", label: "Partnerships built for long-term resilience and results" },
+    { value: "Full stack", label: "From CTO-as-a-Service and MVP development to scaling mature startups" },
+    { value: "Security-first", label: "Compliance and quality without slowing down your roadmap" },
+  ],
+  sectionHeadings: {
+    safeAndEmpowered: "Our IT Services for Startups",
+    everythingYouNeedToKnow: "Partnership Models",
+    whatMakesSpecial: "IT Solutions for Every Domain",
+    sdlc: "Our IT Services for Startups",
+    clientOutcomes: "We Engineer Startup Success",
+    tools: "Tools and platforms that support delivery",
+    whyPartner: "We Engineer Startup Success",
+    faqs: "Frequently Asked Questions",
+  },
+};
+
+export const solutionsForEnterprisesContent: EngagementModelContent = {
+  peaceOfMindIntro:
+    "Enterprise organizations operate in complex environments where technology must scale, integrate with existing systems, and support continuous innovation. Tech Emulsion’s enterprise software development services help large organizations modernize infrastructure, build resilient digital platforms, and accelerate product innovation while maintaining security, reliability, and compliance.",
+  safeAndEmpowered: {
+    intro:
+      "Our engineering teams partner with enterprise organizations to design and deliver large-scale technology solutions that improve operational efficiency and enable long-term growth. By combining deep technical expertise with strategic collaboration, we help enterprises transform ideas into high-impact digital products.",
+    introSubtext:
+      "From discovery and architecture planning through development, integration, and optimization, we ensure every solution is built for scalability, performance, and reliability.",
+    bullets: [
+      "Full-cycle software development — Strategic discovery and planning, scalable architecture, enterprise-grade applications, automated testing, and technical audits to keep systems performing efficiently.",
+      "Enterprise-grade security and compliance — Secure software development, strict quality standards, and compliance with global industry regulations through secure infrastructure, code reviews, and continuous monitoring.",
+      "Transparent and agile delivery — Regular progress updates, transparent workflows, and dedicated delivery management so you have clear oversight of milestones, timelines, and outcomes.",
+      "DevOps, cloud, and infrastructure optimization — Advanced DevOps practices, cloud-native architecture, and migration strategies for flexible, scalable platforms.",
+      "Enterprise modernization and legacy transformation — Refactoring legacy applications, cloud migration, and modern architectures to increase efficiency and unlock new opportunities.",
+      "Flexible engagement models — Product discovery workshops, project outsourcing, staff augmentation, and dedicated engineering teams tailored to your enterprise needs.",
+    ],
+    closing:
+      "With access to experienced engineers and 3+ years of enterprise delivery experience, we help organizations scale teams efficiently, align with enterprise goals, and maintain high standards of technical excellence.",
+  },
+  everythingYouNeedToKnow: {
+    intro:
+      "Every enterprise operates differently, so we offer flexible engagement models that adapt to your business needs and project requirements. You can combine discovery, outsourcing, augmentation, and dedicated teams in the way that fits your organization.",
+    introMain:
+      "Product discovery workshops help define project goals and technology strategies before development begins. Project outsourcing delegates complete software development projects to our engineering teams, who manage the entire lifecycle. Staff augmentation provides specialized engineers who integrate with your internal teams to accelerate development. Dedicated engineering teams act as long-term partners for complex initiatives and evolving product ecosystems.",
+    introRight:
+      "Our global network of engineering talent allows enterprises to build high-performing development teams quickly — without the challenges of traditional hiring — while collaborating closely with internal stakeholders to align with enterprise goals and maintain technical excellence.",
+    researchBullets: [
+      {
+        cite: "Discovery workshops",
+        text: "Define project goals and technology strategies before development begins, so investments are aligned with business outcomes.",
+      },
+      {
+        cite: "Project outsourcing",
+        text: "Delegate complete software development projects to experienced engineering teams who manage the full lifecycle from concept to deployment.",
+      },
+      {
+        cite: "Staff augmentation",
+        text: "Access specialized engineers who integrate directly with internal teams to accelerate development and fill skill gaps.",
+      },
+      {
+        cite: "Dedicated teams",
+        text: "Long-term engineering partners who support complex enterprise initiatives and evolving product ecosystems.",
+      },
+    ],
+  },
+  whatMakesSpecial: [
+    {
+      title: "Full-Cycle Software Development",
+      description:
+        "Our enterprise development services cover the complete software lifecycle. Strategic discovery and planning workshops set the right technical direction; our engineers design scalable architectures, build enterprise-grade applications, and ensure long-term maintainability. Automated testing and robust QA ensure reliability, while technical audits and optimization keep systems performing efficiently.",
+    },
+    {
+      title: "Enterprise-Grade Security and Compliance",
+      description:
+        "Security and reliability are fundamental. Our processes prioritize secure software development, strict quality standards, and compliance with global industry regulations. Through secure infrastructure design, code reviews, and continuous monitoring, we help enterprises protect systems, data, and users while maintaining high performance and resilience.",
+    },
+    {
+      title: "Transparent and Agile Delivery",
+      description:
+        "Enterprise development requires visibility and alignment. Our agile processes keep you fully informed and involved throughout the lifecycle. Regular progress updates, transparent workflows, and dedicated delivery management provide clear oversight of milestones, timelines, and outcomes — eliminating uncertainty and enabling faster, more confident decision-making.",
+    },
+    {
+      title: "DevOps, Cloud, and Infrastructure Optimization",
+      description:
+        "Modern enterprise platforms depend on reliable, scalable infrastructure. We implement advanced DevOps practices that streamline deployment, automate workflows, and improve reliability. Cloud-native architecture, infrastructure optimization, and seamless migration strategies give you flexible platforms that support evolving business demands.",
+    },
+    {
+      title: "Enterprise Modernization and Legacy Transformation",
+      description:
+        "We help enterprises transform legacy systems into flexible, modern platforms. By refactoring applications, migrating to the cloud, and implementing modern architectures, we enable increased efficiency, improved performance, and new opportunities for innovation.",
+    },
+    {
+      title: "Engineering Teams Built for Enterprise Growth",
+      description:
+        "Our global network of engineering talent lets you build high-performing development teams quickly. With access to experienced engineers and specialists across multiple technology domains, organizations can scale efficiently without the challenges of traditional hiring, while maintaining high standards of technical excellence.",
+    },
+  ],
+  ctaBlocks: [
+    {
+      title: "Modernize, scale, and innovate with confidence",
+      subtitle:
+        "From infrastructure modernization and legacy transformation to new digital platforms, we help enterprises balance operational stability with continuous innovation.",
+      buttonText: "Explore enterprise solutions",
+    },
+    {
+      title: "Partner with an engineering team built for enterprise scale",
+      subtitle:
+        "Flexible engagement models, enterprise-grade security, and transparent delivery — so you can move faster without compromising compliance or quality.",
+      buttonText: "Talk to us about enterprise solutions",
+    },
+  ],
+  sdlcPhases: [
+    {
+      number: "01",
+      title: "Full-Cycle Software Development",
+      bullets: [
+        "Strategic discovery and planning workshops help identify the right technical direction for complex enterprise projects.",
+        "Our engineers design scalable architectures, build enterprise-grade applications, and ensure long-term maintainability through modern engineering practices.",
+        "Automated testing and robust quality assurance processes help ensure reliability, while targeted technical audits and optimization strategies keep systems performing efficiently.",
+      ],
+    },
+    {
+      number: "02",
+      title: "Enterprise-Grade Security and Compliance",
+      bullets: [
+        "Security and reliability are fundamental for enterprise systems. Our engineering processes prioritize secure software development, strict quality standards, and compliance with global industry regulations.",
+        "Through secure infrastructure design, code reviews, and continuous monitoring, we help enterprises protect their systems, data, and users.",
+        "High performance and resilience are maintained throughout the lifecycle.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Transparent and Agile Delivery",
+      bullets: [
+        "Enterprise software development requires visibility and alignment across teams. Our agile processes ensure that organizations remain fully informed and involved throughout the development lifecycle.",
+        "Regular progress updates, transparent workflows, and dedicated delivery management provide clear oversight of project milestones, timelines, and outcomes.",
+        "This approach eliminates uncertainty and enables faster, more confident decision-making.",
+      ],
+    },
+    {
+      number: "04",
+      title: "DevOps, Cloud, and Infrastructure Optimization",
+      bullets: [
+        "Modern enterprise platforms depend on reliable infrastructure and scalable cloud environments. Our teams implement advanced DevOps practices that streamline deployment, automate workflows, and improve system reliability.",
+        "Through cloud-native architecture, infrastructure optimization, and seamless migration strategies, enterprises gain flexible and scalable platforms.",
+        "Platforms are capable of supporting evolving business demands.",
+      ],
+    },
+    {
+      number: "05",
+      title: "Enterprise Modernization and Legacy Transformation",
+      bullets: [
+        "Many enterprise organizations rely on legacy systems that limit innovation and scalability. Our modernization services help companies transform existing platforms into flexible, modern systems.",
+        "By refactoring legacy applications, migrating systems to the cloud, and implementing modern architectures, we enable enterprises to increase efficiency, improve performance, and unlock new opportunities for innovation.",
+      ],
+    },
+  ],
+  outcomes: [
+    {
+      task: "Scale development capacity without traditional hiring",
+      before: "Long cycles to recruit, onboard, and retain enterprise-grade talent",
+      after: "Access to experienced engineers and specialists who integrate with your goals",
+      savings: "Faster time to full productivity",
+    },
+    {
+      task: "Modernize legacy systems and infrastructure",
+      before: "Legacy systems limiting innovation and scalability",
+      after: "Refactored applications, cloud migration, and modern architectures",
+      savings: "Increased efficiency and new opportunities",
+    },
+    {
+      task: "Maintain security and compliance at scale",
+      before: "Compliance and security gaps as systems grow",
+      after: "Secure development practices and continuous monitoring aligned with regulations",
+      savings: "Reduced risk and sustained compliance",
+    },
+    {
+      task: "Improve delivery visibility and decision-making",
+      before: "Uncertainty around milestones, timelines, and outcomes",
+      after: "Regular updates, transparent workflows, and dedicated delivery management",
+      savings: "Faster, more confident decisions",
+    },
+  ],
+  outcomesIntro:
+    "Enterprise software development demands scale, security, and clarity. The outcomes below reflect how Tech Emulsion helps large organizations modernize, deliver with confidence, and stay ahead in rapidly evolving markets.",
+  outcomesClosing:
+    "Through collaborative partnerships, advanced technology expertise, and scalable development processes, we help enterprises transform their digital capabilities and balance immediate needs with long-term strategic growth.",
+  tools: [
+    "Cloud: AWS, Azure, Google Cloud, Kubernetes, serverless",
+    "Backend: .NET, Java, Node.js, Python, Go, Scala",
+    "Frontend: React, Angular, Vue, Next.js",
+    "Data & AI: Big data systems, advanced analytics, AI/ML platforms",
+    "DevOps: CI/CD, infrastructure as code, monitoring and observability",
+    "Databases: SQL and NoSQL, data warehouses, streaming",
+    "Security: Secure SDLC, compliance frameworks, identity and access management",
+    "Enterprise: ERP/CRM integration, legacy modernization, API ecosystems",
+  ],
+  toolsIntro:
+    "Our engineers work across a wide range of technologies and enterprise platforms — including modern cloud infrastructure, artificial intelligence, big data systems, and advanced analytics. By integrating cutting-edge technology with proven engineering practices, we help enterprises build intelligent digital platforms that support innovation, automation, and scalable growth.",
+  faqs: [
+    {
+      question: "How do you ensure security and compliance for enterprise systems?",
+      answer:
+        "We prioritize secure software development, strict quality standards, and compliance with global industry regulations. Our processes include secure infrastructure design, code reviews, and continuous monitoring so enterprises can protect their systems, data, and users while maintaining high performance and resilience.",
+    },
+    {
+      question: "What engagement models do you offer for enterprises?",
+      answer:
+        "We offer product discovery workshops, project outsourcing, staff augmentation, and dedicated engineering teams. Each model can be used alone or combined so you can adapt to unique business needs and project requirements.",
+    },
+    {
+      question: "Can you help us modernize legacy systems?",
+      answer:
+        "Yes. Our modernization services help enterprises transform legacy platforms into flexible, modern systems through refactoring, cloud migration, and modern architecture — increasing efficiency, improving performance, and unlocking new opportunities for innovation.",
+    },
+    {
+      question: "How do you keep us informed during large enterprise projects?",
+      answer:
+        "We use agile processes with regular progress updates, transparent workflows, and dedicated delivery management. You get clear oversight of milestones, timelines, and outcomes so you can make faster, more confident decisions without uncertainty.",
+    },
+    {
+      question: "Do you work with our existing infrastructure and tools?",
+      answer:
+        "Yes. We design solutions to integrate with your existing systems, cloud environments, and tooling. Our focus is on scalability, performance, and long-term maintainability so new work fits seamlessly into your enterprise landscape.",
+    },
+    {
+      question: "How do you support both innovation and operational stability?",
+      answer:
+        "Enterprise companies need to innovate while maintaining stability. We deliver technology solutions that support immediate operational needs and long-term strategic growth through collaborative partnerships, advanced expertise, and scalable development processes.",
+    },
+  ],
+  stats: [
+    { value: "3+ years", label: "Enterprise software development and delivery experience" },
+    { value: "Full-cycle", label: "From discovery and architecture through development, security, and optimization" },
+    { value: "Flexible models", label: "Discovery workshops, project outsourcing, staff augmentation, dedicated teams" },
+    { value: "Security & compliance", label: "Secure SDLC, quality standards, and alignment with global regulations" },
+    { value: "Modernization", label: "Legacy transformation, cloud migration, and modern architecture" },
+    { value: "Transparent delivery", label: "Agile processes, regular updates, and dedicated delivery management" },
+  ],
+  sectionHeadings: {
+    safeAndEmpowered: "Enterprise Software Engineering Expertise",
+    everythingYouNeedToKnow: "Flexible Enterprise Engagement Models",
+    whatMakesSpecial: "Enterprise Software Engineering Expertise",
+    sdlc: "Full-Cycle Software Development and Delivery",
+    clientOutcomes: "Driving Enterprise Innovation",
+    tools: "Enterprise Technology Expertise",
+    whyPartner: "Engineering Teams Built for Enterprise Growth",
+    faqs: "Frequently Asked Questions",
+  },
+};
+
+export const solutionsForAiCompaniesContent: EngagementModelContent = {
+  peaceOfMindIntro:
+    "Artificial intelligence is transforming how businesses innovate, automate processes, and unlock new opportunities for growth. With the right combination of high-quality data, advanced algorithms, and scalable infrastructure, AI solutions can turn complex challenges into powerful business outcomes. Our AI software development approach combines strong engineering expertise, proven methodologies, and continuous monitoring to ensure that every solution delivers measurable value and long-term performance.",
+  safeAndEmpowered: {
+    intro:
+      "Our AI software development services help companies move from idea to production — whether you need a new AI product, enterprise-grade AI solutions, a proof of concept, or AI integrated into existing systems. We support the full lifecycle with consulting, training, and optimization so your AI initiatives align with business goals and deliver reliable results.",
+    introSubtext:
+      "Here’s how we support AI companies and product teams:",
+    bullets: [
+      "AI product development — We help transform innovative ideas into fully functional AI-powered products. From concept validation and feature prioritization to full implementation and ongoing improvements, we build high-performance AI products using both open-source and custom models, with market and audience analysis so the product aligns with real user needs.",
+      "Enterprise AI development — Our engineers design enterprise-grade AI solutions that unlock the full value of your data, streamline operations, enhance decision-making, and integrate seamlessly with existing systems. From data preparation and model selection through training, optimization, and deployment, we ensure solutions operate efficiently and deliver reliable results.",
+      "Proof of concept and MVP development — When you want to validate an AI idea or reduce development risk, a PoC helps determine technical feasibility and an MVP enables early user testing and feedback. These early stages let you refine the product and build confidence before full-scale implementation.",
+      "AI integration for existing software — We enhance your current products and internal systems with intelligent features such as predictive analytics, automation, and natural language capabilities while maintaining system stability and compliance with industry regulations.",
+      "AI consulting and advisory — Our consultants help you define your AI roadmap, select the right technologies, and identify the most valuable opportunities for AI implementation so every initiative aligns with business goals and delivers measurable results.",
+      "AI training and optimization — We prepare datasets, train machine learning models, and evaluate performance for high accuracy and reliability. We also analyze existing AI models and recommend improvements to increase efficiency and output quality.",
+    ],
+    closing:
+      "From NLP and computer vision to structured data analysis and industry-specific use cases, we combine deep technical expertise with scalable infrastructure and modern development practices so you can unlock new levels of efficiency, automation, and business intelligence.",
+  },
+  everythingYouNeedToKnow: {
+    intro:
+      "Next-generation AI solutions span natural language processing, computer vision, and structured data analysis — and apply across fintech, healthtech, real estate, retail, education, and more. Tech Emulsion helps you choose the right use cases, build and deploy models responsibly, and integrate AI into products and operations without compromising stability or compliance.",
+    introMain:
+      "Natural language processing enables systems to understand and process human language at scale — from chatbots and virtual assistants to speech recognition, sentiment analysis, and machine translation. Computer vision lets machines interpret and analyze visual information for image recognition, OCR, and augmented reality. Structured data analysis extracts insights from large datasets to support predictive and prescriptive analytics, recommendation engines, and segmentation.",
+    introRight:
+      "We apply these capabilities across industries: fintech for risk analysis, fraud detection, and algorithmic trading; healthtech for diagnostics, remote monitoring, and personalized care; real estate for property chatbots and virtual tours; retail and ecommerce for recommendations, dynamic pricing, and demand forecasting; and education for adaptive learning and administrative automation.",
+    researchBullets: [
+      {
+        cite: "NLP",
+        text: "Chatbots, virtual assistants, speech recognition, text-to-speech, summarization, sentiment analysis, machine translation, and multilingual content localization.",
+      },
+      {
+        cite: "Computer vision",
+        text: "Image recognition, facial recognition, OCR, and augmented reality applications.",
+      },
+      {
+        cite: "Structured data analysis",
+        text: "Predictive and prescriptive analytics, recommendation engines, and customer or market segmentation.",
+      },
+    ],
+  },
+  whatMakesSpecial: [
+    {
+      title: "AI product development",
+      description:
+        "We help companies transform innovative ideas into fully functional AI-powered products. From concept validation and feature prioritization to full implementation and ongoing improvements, our teams build high-performance AI products using both open-source and custom models, with market and audience analysis to ensure alignment with real user needs and competitiveness in rapidly evolving markets.",
+    },
+    {
+      title: "Enterprise AI development",
+      description:
+        "Our engineers design enterprise-grade AI solutions that help organizations unlock the full value of their data. These solutions streamline operations, enhance decision-making, and integrate seamlessly with existing enterprise systems — from data preparation and model selection through training, optimization, and deployment.",
+    },
+    {
+      title: "Proof of concept and MVP development",
+      description:
+        "When businesses want to validate an AI idea or reduce development risks, a PoC helps determine technical feasibility while an MVP enables early user testing and feedback. These early stages allow organizations to refine their product and build confidence before full-scale implementation.",
+    },
+    {
+      title: "AI integration for existing software",
+      description:
+        "Organizations can enhance their current products and internal systems by integrating AI capabilities. Our teams integrate intelligent features such as predictive analytics, automation, and natural language capabilities while maintaining system stability and compliance with industry regulations.",
+    },
+    {
+      title: "AI consulting and advisory",
+      description:
+        "Choosing the right AI strategy requires careful planning. Our consultants help organizations define their AI roadmap, select the right technologies, and identify the most valuable opportunities for AI implementation so every initiative aligns with business goals and delivers measurable results.",
+    },
+    {
+      title: "AI training and optimization",
+      description:
+        "Successful AI systems require high-quality data and continuous improvement. Our engineers prepare datasets, train machine learning models, and evaluate performance to achieve high accuracy and reliability. We also analyze existing AI models and recommend improvements to increase efficiency and output quality.",
+    },
+  ],
+  ctaBlocks: [
+    {
+      title: "Turn data into actionable insights with AI",
+      subtitle:
+        "From PoC and MVP to enterprise AI and integration, we help you build intelligent products and future-ready platforms that support sustainable growth.",
+      buttonText: "Explore AI solutions",
+    },
+    {
+      title: "AI solutions built for innovation",
+      subtitle:
+        "Our AI engineering teams help businesses create intelligent products and build technology platforms that unlock new levels of efficiency, automation, and business intelligence.",
+      buttonText: "Talk to us about AI development",
+    },
+  ],
+  sdlcPhases: [
+    {
+      number: "01",
+      title: "Mathematical formalization",
+      bullets: [
+        "Every AI project begins with clearly defined objectives and measurable performance metrics.",
+        "We establish accuracy, precision, recall, and other evaluation indicators so success is defined up front.",
+      ],
+    },
+    {
+      number: "02",
+      title: "Data collection",
+      bullets: [
+        "Reliable data sources are identified and prepared through structured data pipelines and ETL processes.",
+        "We ensure high-quality inputs for AI training and validate data availability and suitability.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Exploratory data analysis",
+      bullets: [
+        "Data scientists analyze datasets to uncover patterns, identify anomalies, and validate key assumptions before model development begins.",
+        "Findings inform feature design and model selection.",
+      ],
+    },
+    {
+      number: "04",
+      title: "Data preparation",
+      bullets: [
+        "Data is cleaned, structured, and enhanced to improve model performance.",
+        "This stage may involve feature engineering, data transformation, and dataset augmentation.",
+      ],
+    },
+    {
+      number: "05",
+      title: "Model training and validation",
+      bullets: [
+        "Machine learning models are trained using selected datasets and validated using independent test data.",
+        "We ensure accurate predictions and reliable outputs before deployment.",
+      ],
+    },
+    {
+      number: "06",
+      title: "AI deployment",
+      bullets: [
+        "Once validated, the model is integrated into production environments.",
+        "We connect the model to applications, APIs, or enterprise systems to deliver real-time insights.",
+      ],
+    },
+    {
+      number: "07",
+      title: "AI monitoring",
+      bullets: [
+        "Continuous monitoring ensures that models maintain performance over time.",
+        "We track system behavior, retrain models when necessary, and improve results as new data becomes available.",
+      ],
+    },
+  ],
+  outcomes: [
+    {
+      task: "Deliver AI products from concept to production",
+      before: "Long cycles and unclear feasibility without specialized AI teams",
+      after: "Structured PoC, MVP, and full implementation with measurable outcomes",
+      savings: "Faster path to market and reduced risk",
+    },
+    {
+      task: "Integrate AI into existing systems",
+      before: "Legacy systems and siloed data limiting AI adoption",
+      after: "Intelligent features and analytics with stability and compliance",
+      savings: "Higher efficiency and better decisions",
+    },
+    {
+      task: "Scale AI across the organization",
+      before: "Ad hoc models and limited engineering capacity",
+      after: "Enterprise-grade AI with training, optimization, and monitoring",
+      savings: "Reliable, long-term performance",
+    },
+    {
+      task: "Align AI initiatives with business goals",
+      before: "Unclear ROI and scattered AI experiments",
+      after: "Defined roadmap, right technologies, and measurable results",
+      savings: "Strategic impact and sustainable growth",
+    },
+  ],
+  outcomesIntro:
+    "AI solutions built for innovation require the right expertise, data, and infrastructure. The outcomes below reflect how Tech Emulsion helps AI companies and product teams deliver measurable value and long-term performance.",
+  outcomesClosing:
+    "Artificial intelligence has become a core driver of digital transformation across industries. By combining deep technical expertise with scalable infrastructure and modern development practices, our AI engineering teams help businesses turn data into actionable insights, create intelligent products, and build future-ready technology platforms that support sustainable growth.",
+  tools: [
+    "Programming: Python, R, C++",
+    "Machine learning: TensorFlow, PyTorch, scikit-learn, Keras, XGBoost, LightGBM, CatBoost",
+    "Deep learning: fast.ai, PyTorch, Transformers, PyTorch Lightning",
+    "NLP: NLTK, spaCy, Transformers, Gensim, FastText",
+    "Computer vision: OpenCV, YOLO, Mask R-CNN, Detectron2, Torchvision",
+    "Cloud: Amazon SageMaker, Azure Machine Learning, Google AI Platform, Google Cloud AutoML",
+    "Big data: Apache Hadoop, Apache Spark, Apache Kafka",
+  ],
+  toolsIntro:
+    "Our AI technology stack spans programming languages, machine learning and deep learning frameworks, NLP and computer vision tools, and major cloud and big data platforms. We use the right combination of open-source and cloud-native tools to build, train, deploy, and monitor AI solutions at scale.",
+  faqs: [
+    {
+      question: "How do you approach AI product development?",
+      answer:
+        "We help transform innovative ideas into fully functional AI-powered products. From concept validation and feature prioritization to full implementation and ongoing improvements, we build high-performance AI products using both open-source and custom models. Our process includes market and audience analysis so the product aligns with real user needs and stays competitive.",
+    },
+    {
+      question: "Can you help us validate an AI idea before full-scale development?",
+      answer:
+        "Yes. We offer proof of concept (PoC) and MVP development. A PoC helps determine technical feasibility, while an MVP enables early user testing and feedback. These stages let you refine the product and build confidence before committing to full-scale implementation.",
+    },
+    {
+      question: "Do you integrate AI into existing software and systems?",
+      answer:
+        "Yes. We enhance current products and internal systems with intelligent features such as predictive analytics, automation, and natural language capabilities while maintaining system stability and compliance with industry regulations.",
+    },
+    {
+      question: "What industries do you serve for AI solutions?",
+      answer:
+        "We deliver AI solutions across fintech, healthtech, real estate, retail and ecommerce, education, and more. Use cases include risk analysis, fraud detection, diagnostics, recommendation engines, dynamic pricing, adaptive learning, and intelligent automation.",
+    },
+    {
+      question: "How do you ensure AI models perform well over time?",
+      answer:
+        "We focus on high-quality data, rigorous training and validation, and continuous monitoring. We track system behavior, retrain models when necessary, and recommend improvements to increase efficiency and output quality as new data becomes available.",
+    },
+    {
+      question: "Do you provide AI consulting and strategy?",
+      answer:
+        "Yes. Our consultants help organizations define their AI roadmap, select the right technologies, and identify the most valuable opportunities for AI implementation so every initiative aligns with business goals and delivers measurable results.",
+    },
+  ],
+  stats: [
+    { value: "3+ years", label: "Experience in AI and software development" },
+    { value: "AI specialists", label: "Engineers and specialists focused on AI, ML, and data" },
+    { value: "AI projects", label: "Completed AI projects across industries and use cases" },
+    { value: "Cloud partnerships", label: "Strategic experience with AWS, Microsoft, and Google AI and cloud platforms" },
+    { value: "Full lifecycle", label: "From PoC and MVP to enterprise AI, integration, and monitoring" },
+    { value: "Measurable value", label: "Focus on outcomes, accuracy, and long-term performance" },
+  ],
+  sectionHeadings: {
+    safeAndEmpowered: "AI Software Development Services",
+    everythingYouNeedToKnow: "Next-Generation AI Solutions",
+    whatMakesSpecial: "AI Software Development Services",
+    sdlc: "AI Model Development Process",
+    clientOutcomes: "AI Expertise and Experience",
+    tools: "AI Technology Stack",
+    whyPartner: "AI Solutions Built for Innovation",
+    faqs: "Frequently Asked Questions",
+  },
 };
 
 export function getEngagementModelContent(slug: string): EngagementModelContent | null {
@@ -979,5 +1730,8 @@ export function getEngagementModelContent(slug: string): EngagementModelContent 
   if (slug === "staff-augmentation") return staffAugmentationContent;
   if (slug === "dedicated-teams") return dedicatedTeamsContent;
   if (slug === "project-outsourcing") return projectOutsourcingContent;
+  if (slug === "solutions-for-startups") return solutionsForStartupsContent;
+  if (slug === "solutions-for-enterprises") return solutionsForEnterprisesContent;
+  if (slug === "solutions-for-ai-companies") return solutionsForAiCompaniesContent;
   return null;
 }

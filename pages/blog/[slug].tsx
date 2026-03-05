@@ -219,7 +219,12 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
 
       <Container maxW="container.xl" py="10">
         {/* Breadcrumb - matches portfolio style */}
-        <Flex justify="flex-end" mb={8} px={{ base: 0, md: 6 }}>
+        <Flex
+          justify="flex-end"
+          mb={8}
+          px={{ base: 0, md: 6 }}
+          display={{ base: "none", md: "flex" }}
+        >
           <ButtonGroup
             sx={{
               bg: "none",

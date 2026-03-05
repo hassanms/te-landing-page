@@ -110,7 +110,7 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
       <Box pt={{ base: 20, md: 24 }} />
       <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
         {/* Breadcrumb */}
-        <Flex justify="flex-end" mb={8}>
+        <Flex justify="flex-end" mb={8} display={{ base: "none", md: "flex" }}>
           <ButtonGroup
             sx={{
               bg: "none",

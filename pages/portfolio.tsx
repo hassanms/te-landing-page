@@ -326,7 +326,7 @@ export default function Portfolio() {
         <Box pt={{ base: 20, md: 24 }} />
         <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
           {/* Breadcrumb */}
-          <Flex justify="flex-end" mb={8}>
+          <Flex justify="flex-end" mb={8} display={{ base: "none", md: "flex" }}>
             <ButtonGroup sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}>
               <ButtonLink href="/" size="lg" sx={{ bg: "none", color: textColor, p: 0, "&:hover": { bg: "none", color: headingColor } }}>
                 Home

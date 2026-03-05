@@ -154,7 +154,12 @@ const CaseStudyArtis = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
+          <Box
+            mb={8}
+            display={{ base: "none", md: "flex" }}
+            justifyContent="flex-end"
+            w="full"
+          >
             <ButtonGroup
               sx={{
                 bg: "none",

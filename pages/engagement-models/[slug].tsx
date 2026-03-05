@@ -146,7 +146,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
         zIndex={1}
       >
         {/* Breadcrumb */}
-        <Flex justify="flex-end" mb={8}>
+        <Flex justify="flex-end" mb={8} display={{ base: "none", md: "flex" }}>
           <ButtonGroup
             sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}
           >

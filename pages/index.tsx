@@ -736,7 +736,7 @@ const HeroSection: React.FC = () => {
                       priority={true}
                       style={{
                         objectFit: "contain",
-                        marginBottom: "2px",
+                        marginBottom: "0px",
                       }}
                     />
                     <Image

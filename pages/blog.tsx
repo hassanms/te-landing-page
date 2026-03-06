@@ -282,23 +282,19 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
                   <Text color={textColor} fontSize="lg" mb="6" lineHeight="1.8">
                     {featuredPost.excerpt}
                   </Text>
-                  <NextLink
+                  <Button
+                    as={NextLink}
                     href={`/blog/${featuredPost.slug}`}
-                    passHref
-                    onMouseEnter={() => router.prefetch(`/blog/${featuredPost.slug}`)}
-                  >
-                    <Button
-                      as="a"
-                      size="lg"
-                      bg="teal.500"
-                      color="white"
-                      _hover={{
-                        bg: "teal.600",
-                      }}
-                      maxW="200px">
-                      READ MORE
-                    </Button>
-                  </NextLink>
+                    size="lg"
+                    bg="teal.500"
+                    color="white"
+                    _hover={{
+                      bg: "teal.600",
+                    }}
+                    maxW="200px"
+                    onMouseEnter={() => router.prefetch(`/blog/${featuredPost.slug}`)}>
+                    READ MORE
+                  </Button>
                 </Box>
               </Box>
             </Stack>
@@ -323,13 +319,19 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
             <VStack align="stretch" spacing="0">
               {filterCategories.map((category, idx) => (
                 <Box key={idx}>
-                  <Link
+                  <Box
+                    as="button"
+                    type="button"
                     onClick={() => setSelectedFilter(category)}
                     _hover={{ textDecoration: "none" }}
                     display="block"
                     py="3"
                     px="0"
-                    cursor="pointer">
+                    cursor="pointer"
+                    w="full"
+                    textAlign="left"
+                    bg="transparent"
+                    border="none">
                     <Text
                       fontSize="sm"
                       fontWeight={selectedFilter === category ? "semibold" : "normal"}
@@ -346,7 +348,7 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
                       transition="color 0.2s">
                       {category}
                     </Text>
-                  </Link>
+                  </Box>
                   {idx < filterCategories.length - 1 && <Divider mt="3" />}
                 </Box>
               ))}
@@ -388,14 +390,12 @@ function PostCard({ post }: { post: BlogPost }) {
   const titleColor = useColorModeValue("gray.800", "white");
 
   return (
-    <NextLink
+    <Box
+      as={NextLink}
       href={`/blog/${post.slug}`}
-      passHref
+      w="100%"
+      cursor="pointer"
       onMouseEnter={() => router.prefetch(`/blog/${post.slug}`)}
-    >
-      <Box
-        w="100%"
-        cursor="pointer"
         _hover={{
           "& > div:first-of-type": {
             transform: "translateY(-4px)",
@@ -468,7 +468,6 @@ function PostCard({ post }: { post: BlogPost }) {
           </Link>
         </VStack>
       </Box>
-    </NextLink>
   );
 }
 

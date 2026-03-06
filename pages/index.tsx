@@ -50,6 +50,7 @@ import { Em } from "components/typography";
 import { Features } from "components/features";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Faq } from "components/faq";
+import { SectionDivider } from "components/section";
 
 import { ButtonLink } from "components/button-link/button-link";
 import { Testimonial } from "components/testimonials";
@@ -290,7 +291,7 @@ const Home: NextPage = () => {
         <TechnologySection />
         <BlogSection />
         <FaqSection />
-        <Divider />
+        <SectionDivider />
         <Contact />
       </Box>
     </Box>
@@ -1262,16 +1263,7 @@ const HighlightsSection: React.FC = () => {
   return (
     <Box id="services" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
-        <Box
-          h="1px"
-          w="100%"
-          bgGradient={
-            colorMode === "dark"
-              ? "linear(to-r, transparent, teal.400, transparent)"
-              : "linear(to-r, transparent, teal.500, transparent)"
-          }
-          opacity={0.6}
-        />
+        <SectionDivider />
 
         <Box
           display={{ base: "block", md: "flex" }}
@@ -1472,7 +1464,7 @@ const Portfolio: React.FC = () => {
   return (
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
-        <Divider />
+        <SectionDivider />
 
         <Box
           display={{ base: "block", md: "flex" }}
@@ -3144,7 +3136,7 @@ const TechnologySection: React.FC = () => {
       textAlign="center"
       height={["100%", "100%", "100%"]}
       bg={colorMode === "dark" ? "gray.800" : ""}>
-      <Divider />
+      <SectionDivider />
       <Container maxW="container.xl" py="5" mb="5">
         <Box flex="1" mt={20}>
           <Heading
@@ -3343,7 +3335,7 @@ const BlogSection: React.FC = () => {
       color={textColor}
       sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5">
-        <Divider />
+        <SectionDivider />
         <Box
           display={{ base: "block", md: "flex" }}
           px="4"
@@ -3496,7 +3488,7 @@ const BlogSection: React.FC = () => {
 const FaqSection: React.FC = () => {
   return (
     <>
-      <Divider />
+      <SectionDivider />
 
       <Faq {...faq} />
     </>

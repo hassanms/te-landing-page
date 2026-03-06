@@ -341,6 +341,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
                     {tocItems.map((item, idx) => (
                       <Box key={idx}>
                         <Link
+                          as={NextLink}
                           href={`#${item.id}`}
                           onClick={(e) => {
                             e.preventDefault();
@@ -391,17 +392,18 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
                     "QA Testing & Automation",
                     "Automation Solutions",
                   ].map((service, idx) => (
-                    <NextLink key={idx} href="/services" passHref>
-                      <Link
-                        color={textColor}
-                        fontSize="sm"
-                        _hover={{
-                          color: "teal.500",
-                          textDecoration: "none",
-                        }}>
-                        {service}
-                      </Link>
-                    </NextLink>
+                    <Link
+                      key={idx}
+                      as={NextLink}
+                      href="/services"
+                      color={textColor}
+                      fontSize="sm"
+                      _hover={{
+                        color: "teal.500",
+                        textDecoration: "none",
+                      }}>
+                      {service}
+                    </Link>
                   ))}
                 </VStack>
               </Box>
@@ -534,24 +536,22 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
                   </Heading>
                   <VStack align="stretch" spacing="4">
                     {relatedPosts.map((relatedPost) => (
-                      <NextLink
+                      <Link
                         key={relatedPost.id}
+                        as={NextLink}
                         href={`/blog/${relatedPost.slug}`}
-                        passHref
-                        onMouseEnter={() => router.prefetch(`/blog/${relatedPost.slug}`)}
-                      >
-                        <Link
-                          display="block"
-                          p="4"
-                          border="1px solid"
-                          borderColor={borderColor}
-                          borderRadius="lg"
-                          _hover={{
-                            textDecoration: "none",
-                            borderColor: "teal.500",
-                            transform: "translateY(-2px)",
-                          }}
-                          transition="all 0.3s">
+                        display="block"
+                        p="4"
+                        border="1px solid"
+                        borderColor={borderColor}
+                        borderRadius="lg"
+                        _hover={{
+                          textDecoration: "none",
+                          borderColor: "teal.500",
+                          transform: "translateY(-2px)",
+                        }}
+                        transition="all 0.3s"
+                        onMouseEnter={() => router.prefetch(`/blog/${relatedPost.slug}`)}>
                           <Text
                             fontSize="sm"
                             color="teal.500"
@@ -565,8 +565,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
                           <Text fontSize="sm" color={textColor}>
                             {formatDate(relatedPost.published_at)} · {relatedPost.reading_time_minutes} min read
                           </Text>
-                        </Link>
-                      </NextLink>
+                      </Link>
                     ))}
                   </VStack>
                 </Box>

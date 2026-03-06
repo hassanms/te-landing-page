@@ -1031,8 +1031,8 @@ export const solutionsForStartupsContent: EngagementModelContent = {
   safeAndEmpowered: {
     intro:
       "Our services for startups are designed to match where you are today and where you want to be tomorrow — whether you need a part-time CTO, full-cycle software development, technology advisory, help scaling a mature startup, or a market-ready MVP.",
-    introSubtext:
-      "Here’s how we support startups at every stage:",
+    introSubtext:"",
+      // "Here’s how we support startups at every stage:",
     bullets: [
       "CTO as a Service — Hiring in-house technical leadership is slow; when you need guidance before committing to a full-time CTO, tap our CTO for support on everything from choosing a tech stack to planning your next steps.",
       "Software development services — We bring 3+ years of experience to full-cycle application development and time-saving integrations so you can outpace the competition.",

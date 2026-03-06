@@ -930,8 +930,7 @@ const CaseStudyPackAssist = () => {
               >
                 Schedule a Call
               </Button>
-              <Button
-                as="a"
+              <ButtonLink
                 href="/portfolio"
                 size="lg"
                 variant="outline"
@@ -945,7 +944,7 @@ const CaseStudyPackAssist = () => {
                 fontWeight="bold"
               >
                 View More Case Studies
-              </Button>
+              </ButtonLink>
             </HStack>
           </VStack>
         </Container>

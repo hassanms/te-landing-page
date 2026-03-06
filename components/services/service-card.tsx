@@ -1,4 +1,12 @@
-import { Box, Heading, HStack, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  HStack,
+  LinkBox,
+  LinkOverlay,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -30,16 +38,18 @@ export const ServiceCard = ({
   const tagColor = useColorModeValue("teal.600", "pearlAqua.400");
 
   return (
-    <Box h="full">
-      <NextLink href={`/services/${slug}`} passHref>
+    <LinkBox h="full" role="group">
+      <LinkOverlay
+        as={NextLink}
+        href={`/services/${slug}`}
+        _hover={{ textDecoration: "none" }}
+      >
         <Box
-          as="a"
           display="flex"
           flexDirection="column"
           h="full"
           bg={cardBg}
           overflow="hidden"
-          role="group"
           transition="all 0.3s ease"
         >
           <Box
@@ -138,7 +148,7 @@ export const ServiceCard = ({
             )}
           </Box>
         </Box>
-      </NextLink>
-    </Box>
+      </LinkOverlay>
+    </LinkBox>
   );
 };

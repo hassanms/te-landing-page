@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Box, Flex, Heading, VisuallyHidden } from '@chakra-ui/react'
-import { Link } from '@saas-ui/react'
+import NextLink from 'next/link'
+import { Box, Flex, Heading, VisuallyHidden, Link } from '@chakra-ui/react'
 
 export interface LogoProps {
   href?: string
@@ -32,6 +32,7 @@ export const Logo = ({ href = '/', onClick, useLightLogo }: LogoProps) => {
   return (
     <Flex h="8" flexShrink="0" alignItems="flex-start">
       <Link
+        as={NextLink}
         href={href}
         display="flex"
         p="1"

@@ -1,4 +1,11 @@
-import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  LinkBox,
+  LinkOverlay,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Icon } from "@chakra-ui/react";
@@ -16,16 +23,18 @@ export const ServiceListRow = ({ slug, title, description }: ServiceListRowProps
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
   return (
-    <NextLink href={`/services/${slug}`} passHref>
-      <Box
-        as="a"
-        display="block"
-        py={6}
-        borderBottomWidth="1px"
-        borderColor={borderColor}
-        _last={{ borderBottomWidth: 0 }}
-        _hover={{ "& .service-title": { color: linkColor } }}
-        transition="color 0.2s"
+    <LinkBox
+      py={6}
+      borderBottomWidth="1px"
+      borderColor={borderColor}
+      _last={{ borderBottomWidth: 0 }}
+      _hover={{ "& .service-title": { color: linkColor } }}
+      transition="color 0.2s"
+    >
+      <LinkOverlay
+        as={NextLink}
+        href={`/services/${slug}`}
+        _hover={{ textDecoration: "none" }}
       >
         <Flex
           direction={{ base: "column", md: "row" }}
@@ -54,7 +63,7 @@ export const ServiceListRow = ({ slug, title, description }: ServiceListRowProps
             opacity={0.7}
           />
         </Flex>
-      </Box>
-    </NextLink>
+      </LinkOverlay>
+    </LinkBox>
   );
 };

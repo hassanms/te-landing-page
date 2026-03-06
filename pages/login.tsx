@@ -5,6 +5,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { PageTransition } from "components/motion/page-transition";
 import { Section } from "components/section";
 import { NextPage } from "next";
+import NextLink from "next/link";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const providers = {
@@ -29,7 +30,11 @@ const Login: NextPage = () => {
           <Auth
             view="login"
             providers={providers}
-            signupLink={<Link href="/">Sign up</Link>}
+            signupLink={
+              <Link as={NextLink} href="/signup">
+                Sign up
+              </Link>
+            }
           />
         </PageTransition>
       </Center>

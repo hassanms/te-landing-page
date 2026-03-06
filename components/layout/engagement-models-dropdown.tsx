@@ -127,6 +127,26 @@ export const EngagementModelsDropdown: React.FC<EngagementModelsDropdownProps> =
               />
             </Box>
           ))}
+          <Box
+            key="all-engagement-models"
+            borderRightWidth={
+              (engagementModelsData.length % COLS_PER_ROW) < COLS_PER_ROW - 1
+                ? "1px"
+                : 0
+            }
+            borderBottomWidth="1px"
+            borderColor={dividerColor}
+          >
+            <EngagementModelItem
+              title="All Engagement Models"
+              href="/engagement-models"
+              isAccent
+              cardText={cardText}
+              dividerColor={dividerColor}
+              accentColor={accentColor}
+              itemHoverBg={itemHoverBg}
+            />
+          </Box>
         </SimpleGrid>
       </Container>
     </Box>

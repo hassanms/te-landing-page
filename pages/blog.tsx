@@ -25,7 +25,6 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import axios from "axios";
 
 export interface BlogPost {
   id: string;
@@ -471,9 +470,20 @@ function PostCard({ post }: { post: BlogPost }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<BlogPageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({
+  req,
+}) => {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const envBase = process.env.NEXT_PUBLIC_SITE_URL;
+    const hostBase =
+      (req.headers["x-forwarded-host"] as string) ||
+      (req.headers.host as string) ||
+      "localhost:3000";
+    const protocol =
+      (req.headers["x-forwarded-proto"] as string) ||
+      (hostBase.toString().includes("localhost") ? "http" : "https");
+
+    const baseUrl = envBase || `${protocol}://${hostBase}`;
 
     const [postsRes, categoriesRes] = await Promise.all([
       fetch(`${baseUrl}/api/blog`),

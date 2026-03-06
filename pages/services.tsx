@@ -40,7 +40,7 @@ const Services = () => {
   return (
     <>
       <EnhancedSEO
-        title="Generative AI Development Services | Tech Emulsion"
+        title="Services - Tech Emulsion"
         description="Generative AI development services and a leading generative AI development company. Tech Emulsion provides SaaS development services, AI agent development, custom software, workflow automation, DevOps, QA testing, Chrome extensions, and Next.js website development."
         pageType="services"
         keywords={[

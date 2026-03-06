@@ -563,8 +563,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
               >
                 Schedule a Call
               </Button>
-              <Button
-                as="a"
+              <ButtonLink
                 href="/services"
                 size="lg"
                 variant="outline"
@@ -578,7 +577,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
                 fontWeight="bold"
               >
                 View All Services
-              </Button>
+              </ButtonLink>
             </HStack>
           </VStack>
         </Container>

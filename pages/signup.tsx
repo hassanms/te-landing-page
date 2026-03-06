@@ -9,7 +9,7 @@ import siteConfig from "data/config";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { PageTransition } from "components/motion/page-transition";
 import { Auth } from "@saas-ui/auth";
-import Link from "next/link";
+import { Link } from "@saas-ui/react";
 
 const providers = {
   google: {
@@ -76,7 +76,11 @@ const Login: NextPage = () => {
                 view="signup"
                 title={siteConfig.signup.title}
                 providers={providers}
-                loginLink={<Link href="/login">Log in</Link>}
+                loginLink={
+                  <Link as={NextLink} href="/login">
+                    Log in
+                  </Link>
+                }
               >
                 <Text color={textColor} fontSize="sm">
                   By signing up you agree to our{" "}

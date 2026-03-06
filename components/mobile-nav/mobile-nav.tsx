@@ -5,6 +5,7 @@ import {
   HStack,
   IconButton,
   IconButtonProps,
+  Link,
   LinkProps,
   Stack,
   useBreakpointValue,
@@ -21,7 +22,6 @@ import { RemoveScroll } from 'react-remove-scroll'
 
 import siteConfig from 'data/config'
 import { Logo } from 'components/layout/logo'
-import { Link } from '@saas-ui/react'
 
 interface NavLinkProps extends LinkProps {
   label: string
@@ -44,6 +44,7 @@ function NavLink({ href, children, isActive, onClick, ...rest }: NavLinkProps) {
 
   return (
     <Link
+      as={NextLink}
       href={href}
       display="inline-flex"
       flex="1"

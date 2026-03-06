@@ -755,8 +755,7 @@ const CaseStudyMacromascot = () => {
                 boxShadow="xl">
                 Schedule a Call
               </Button>
-              <Button
-                as="a"
+              <ButtonLink
                 href="/portfolio"
                 size="lg"
                 variant="outline"
@@ -769,7 +768,7 @@ const CaseStudyMacromascot = () => {
                 fontSize="lg"
                 fontWeight="bold">
                 View More Case Studies
-              </Button>
+              </ButtonLink>
             </HStack>
           </VStack>
         </Container>

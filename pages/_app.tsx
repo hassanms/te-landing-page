@@ -5,6 +5,7 @@ import { AuthProvider as SaasAuthProvider } from "@saas-ui/auth";
 import { SaasProvider } from "@saas-ui/react";
 import { Layout } from "components/layout";
 import { AuthProvider } from "contexts/auth-context";
+import { ColorModeInit } from "components/color-mode-init";
 
 import theme from "../theme";
 import { Toaster } from "components/Toaster";
@@ -20,21 +21,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SaasProvider theme={theme}>
       <SaasAuthProvider>
+        <ColorModeInit />
         {isAdminPage ? (
-          // Admin pages use Supabase auth and their own layout
-          <AuthProvider>
-            <Component {...pageProps} />
-          </AuthProvider>
-        ) : (
-          // Regular pages use the main layout with header and footer
-          <Layout
-            announcementProps={announcement}
-            headerProps={header}
-            footerProps={footer}
-          >
-            <Component {...pageProps} />
-          </Layout>
-        )}
+            // Admin pages use Supabase auth and their own layout
+            <AuthProvider>
+              <Component {...pageProps} />
+            </AuthProvider>
+          ) : (
+            // Regular pages use the main layout with header and footer
+            <Layout
+              announcementProps={announcement}
+              headerProps={header}
+              footerProps={footer}
+            >
+              <Component {...pageProps} />
+            </Layout>
+          )}
         <Toaster />
       </SaasAuthProvider>
     </SaasProvider>

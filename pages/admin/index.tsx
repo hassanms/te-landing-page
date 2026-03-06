@@ -712,13 +712,19 @@ const AdminDashboard = () => {
                     />
                     <XAxis
                       dataKey="label"
-                      tick={{ fontSize: 11 }}
+                      tick={{
+                        fontSize: 11,
+                        fill: useColorModeValue("#4A5568", "#E2E8F0"),
+                      }}
                       tickMargin={8}
                       stroke={useColorModeValue("gray.400", "gray.300")}
                     />
                     <YAxis
                       allowDecimals={false}
-                      tick={{ fontSize: 11 }}
+                      tick={{
+                        fontSize: 11,
+                        fill: useColorModeValue("#4A5568", "#E2E8F0"),
+                      }}
                       stroke={useColorModeValue("gray.400", "gray.300")}
                     />
                     <RechartsTooltip content={<BlogViewsTooltip />} />

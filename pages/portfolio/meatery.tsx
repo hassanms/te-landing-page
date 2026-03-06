@@ -30,9 +30,9 @@ import { FaChevronRight } from "react-icons/fa";
 
 const MEATERY_CASE_STUDY_IMAGES = [
   { src: "/assets/portfolio/New/Meatery/Dashboard.png", alt: "The Meatery Dashboard", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124129.png", alt: "The Meatery - Screen 1", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124252.png", alt: "The Meatery - Screen 2", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/Screenshot 2026-02-13 124330.png", alt: "The Meatery - Screen 3", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/02.jpeg", alt: "The Meatery - Screen 1", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/03.jpeg", alt: "The Meatery - Screen 2", isPortrait: false },
+  { src: "/assets/portfolio/New/Meatery/04.jpeg", alt: "The Meatery - Screen 3", isPortrait: false },
   { src: "/assets/portfolio/New/Meatery/screencapture-localhost-3001-crm-reports-2026-02-13-12_43_49.png", alt: "The Meatery - CRM Reports", isPortrait: false },
 ];
 
@@ -121,7 +121,12 @@ const CaseStudyMeatery = () => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
+          <Box
+            mb={8}
+            display={{ base: "none", md: "flex" }}
+            justifyContent="flex-end"
+            w="full"
+          >
             <ButtonGroup
               sx={{
                 bg: "none",

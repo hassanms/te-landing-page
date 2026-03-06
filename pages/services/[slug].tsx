@@ -86,13 +86,18 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         />
       </Head>
       <EnhancedSEO
-        title={`${service.title} - Tech Emulsion`}
+        title={service.seoTitle || `${service.title} - Tech Emulsion`}
         description={service.shortDescription}
         pageType="services"
+        keywords={service.seoKeywords}
+        ogImage={service.image}
         serviceData={{
           name: service.title,
           description: service.fullDescription,
           serviceType: "Technology Services",
+          url: `https://techemulsion.com/services/${service.slug}`,
+          image: service.image,
+          dateModified: service.dateModified,
         }}
         canonicalUrl={`https://techemulsion.com/services/${service.slug}`}
         breadcrumbData={{
@@ -148,7 +153,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
             src={service.image}
-            alt={service.title}
+            alt={`${service.title} - Tech Emulsion ${service.title.toLowerCase()} services`}
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -168,7 +173,12 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         </Box>
 
         <Container maxW="container.xl" position="relative" zIndex={1}>
-          <Box mb={8} display="flex" justifyContent="flex-end" w="full">
+          <Box
+            mb={8}
+            display={{ base: "none", md: "flex" }}
+            justifyContent="flex-end"
+            w="full"
+          >
             <ButtonGroup
               sx={{
                 bg: "none",

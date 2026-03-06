@@ -14,8 +14,8 @@ const Staff: React.FC<React.SVGProps<SVGSVGElement>> = () => {
         cy="8"
         r="4"
         stroke="#004c4c"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <path
         fill-rule="evenodd"
@@ -26,14 +26,14 @@ const Staff: React.FC<React.SVGProps<SVGSVGElement>> = () => {
       <path
         d="M18 14L18 22"
         stroke="#004c4c"
-        stroke-width="2.5"
-        stroke-linecap="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
       <path
         d="M22 18L14 18"
         stroke="#004c4c"
-        stroke-width="2.5"
-        stroke-linecap="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
     </svg>
   );

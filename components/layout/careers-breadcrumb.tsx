@@ -21,7 +21,7 @@ export const CareersBreadcrumb: React.FC<CareersBreadcrumbProps> = ({
   const textColor = useColorModeValue("gray.600", "gray.100");
 
   return (
-    <Box mb={8}>
+    <Box mb={8} display={{ base: "none", md: "block" }}>
       <Flex justify="flex-end">
         <ButtonGroup
           sx={{

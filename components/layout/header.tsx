@@ -12,9 +12,11 @@ import { useRouter } from "next/router";
 import Navigation from "./navigation";
 import { Logo } from "./logo";
 import { ServicesDropdown } from "./services-dropdown";
+import { EngagementModelsDropdown } from "./engagement-models-dropdown";
 import { useScroll } from "framer-motion";
 
-// Portfolio and services detail pages get white navbar at top (excludes list pages)
+// Portfolio and services detail pages get white navbar at top (excludes list pages).
+// Engagement models slug uses same navbar as main pages (home, engagement-models, services).
 const isHeroDetailPage = (pathname: string) =>
   pathname.startsWith("/portfolio/") ||
   pathname === "/portfolio-v4" ||
@@ -26,7 +28,9 @@ export const Header = (props: HeaderProps) => {
   const ref = React.useRef<HTMLHeadingElement>(null);
   const [y, setY] = React.useState(0);
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
+  const [isEngagementOpen, setIsEngagementOpen] = React.useState(false);
   const closeTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const engagementCloseTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const { height = 0 } = ref.current?.getBoundingClientRect() ?? {};
   const { colorMode } = useColorMode();
   const router = useRouter();
@@ -42,6 +46,7 @@ export const Header = (props: HeaderProps) => {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
     }
+    setIsEngagementOpen(false);
     setIsServicesOpen(true);
   }, []);
 
@@ -49,13 +54,28 @@ export const Header = (props: HeaderProps) => {
     closeTimeoutRef.current = setTimeout(() => setIsServicesOpen(false), 120);
   }, []);
 
+  const onEngagementOpen = React.useCallback(() => {
+    if (engagementCloseTimeoutRef.current) {
+      clearTimeout(engagementCloseTimeoutRef.current);
+      engagementCloseTimeoutRef.current = null;
+    }
+    setIsServicesOpen(false);
+    setIsEngagementOpen(true);
+  }, []);
+
+  const onEngagementClose = React.useCallback(() => {
+    engagementCloseTimeoutRef.current = setTimeout(() => setIsEngagementOpen(false), 120);
+  }, []);
+
   React.useEffect(() => () => {
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    if (engagementCloseTimeoutRef.current) clearTimeout(engagementCloseTimeoutRef.current);
   }, []);
 
   // Close dropdown on route change
   React.useEffect(() => {
     setIsServicesOpen(false);
+    setIsEngagementOpen(false);
   }, [router.pathname]);
 
   const bg = useColorModeValue("whiteAlpha.700", "rgba(29, 32, 37, 0.7)");
@@ -73,9 +93,10 @@ export const Header = (props: HeaderProps) => {
     colorMode === "light" &&
     !isScrolled &&
     !isServicesOpen &&
+    !isEngagementOpen &&
     isHeroDetailPage(router.pathname);
 
-  const useLightLogo = isHeroPageAtTop && !isServicesOpen;
+  const useLightLogo = isHeroPageAtTop && !isServicesOpen && !isEngagementOpen;
 
   return (
     <Box
@@ -91,9 +112,9 @@ export const Header = (props: HeaderProps) => {
       borderColor="whiteAlpha.100"
       transitionProperty="common"
       transitionDuration="normal"
-      bg={isScrolled || isServicesOpen ? bg : ""}
-      boxShadow={isScrolled || isServicesOpen ? "md" : ""}
-      borderBottomWidth={isScrolled || isServicesOpen ? "1px" : ""}
+      bg={isScrolled || isServicesOpen || isEngagementOpen ? bg : ""}
+      boxShadow={isScrolled || isServicesOpen || isEngagementOpen ? "md" : ""}
+      borderBottomWidth={isScrolled || isServicesOpen || isEngagementOpen ? "1px" : ""}
       {...props}
     >
       <Container maxW="container.xl" px="8" py="4">
@@ -114,8 +135,11 @@ export const Header = (props: HeaderProps) => {
           <Navigation
             isScrolled={isScrolled}
             isServicesOpen={isServicesOpen}
+            isEngagementOpen={isEngagementOpen}
             onServicesOpen={onServicesOpen}
             onServicesClose={onServicesClose}
+            onEngagementOpen={onEngagementOpen}
+            onEngagementClose={onEngagementClose}
           />
         </Flex>
       </Container>
@@ -123,6 +147,12 @@ export const Header = (props: HeaderProps) => {
         isOpen={isServicesOpen}
         onOpen={onServicesOpen}
         onClose={onServicesClose}
+        useWhiteNav={useWhiteNav}
+      />
+      <EngagementModelsDropdown
+        isOpen={isEngagementOpen}
+        onOpen={onEngagementOpen}
+        onClose={onEngagementClose}
         useWhiteNav={useWhiteNav}
       />
     </Box>

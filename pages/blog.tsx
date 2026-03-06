@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -27,7 +27,7 @@ import { ButtonLink } from "components/button-link/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import axios from "axios";
 
-interface BlogPost {
+export interface BlogPost {
   id: string;
   slug: string;
   title: string;
@@ -40,13 +40,18 @@ interface BlogPost {
   reading_time_minutes: number;
 }
 
-interface Category {
+export interface Category {
   id: string;
   name: string;
   slug: string;
 }
 
-const Blog: NextPage = () => {
+interface BlogPageProps {
+  initialPosts: BlogPost[];
+  initialCategories: Category[];
+}
+
+const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
   const router = useRouter();
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "gray.100");
@@ -54,33 +59,10 @@ const Blog: NextPage = () => {
   const titleColor = useColorModeValue("gray.800", "white");
   const dividerColor = useColorModeValue("gray.200", "gray.600");
   const [selectedFilter, setSelectedFilter] = useState("All Insights");
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const [postsRes, categoriesRes] = await Promise.all([
-          axios.get("/api/blog"),
-          axios.get("/api/blog/categories"),
-        ]);
-        setPosts(postsRes.data.posts || []);
-        setCategories(categoriesRes.data.categories || []);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching blog data:", err);
-        setError("Failed to load insights. Please try again later.");
-        setPosts([]);
-        setCategories([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const [posts] = useState<BlogPost[]>(initialPosts);
+  const [categories] = useState<Category[]>(initialCategories);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
 
   // Build filter categories from database categories
   const filterCategories = ["All Insights", ...categories.map((c) => c.name)];
@@ -128,7 +110,7 @@ const Blog: NextPage = () => {
       <Box pt={{ base: 20, md: 24 }} />
       <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
         {/* Breadcrumb */}
-        <Flex justify="flex-end" mb={8}>
+        <Flex justify="flex-end" mb={8} display={{ base: "none", md: "flex" }}>
           <ButtonGroup
             sx={{
               bg: "none",
@@ -161,7 +143,7 @@ const Blog: NextPage = () => {
           minH={{ base: "280px", md: "35vh" }}
           display={{ base: "block", md: "grid" }}
           gridTemplateColumns={{ md: "1fr 1fr" }}
-          borderTopWidth="1px"
+          borderTopWidth={{ base: 0, md: "1px" }}
           borderColor={dividerColor}
           mx={-6}
           px={6}
@@ -489,5 +471,38 @@ function PostCard({ post }: { post: BlogPost }) {
     </NextLink>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<BlogPageProps> = async () => {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+    const [postsRes, categoriesRes] = await Promise.all([
+      fetch(`${baseUrl}/api/blog`),
+      fetch(`${baseUrl}/api/blog/categories`),
+    ]);
+
+    if (!postsRes.ok || !categoriesRes.ok) {
+      throw new Error("Failed to fetch blog data");
+    }
+
+    const postsJson = await postsRes.json();
+    const categoriesJson = await categoriesRes.json();
+
+    return {
+      props: {
+        initialPosts: postsJson.posts || [],
+        initialCategories: categoriesJson.categories || [],
+      },
+    };
+  } catch (error) {
+    console.error("Error in getServerSideProps for /blog:", error);
+    return {
+      props: {
+        initialPosts: [],
+        initialCategories: [],
+      },
+    };
+  }
+};
 
 export default Blog;

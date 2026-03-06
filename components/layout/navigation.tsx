@@ -23,15 +23,21 @@ const NO_THEME_TOGGLE_PATHS = [
 interface NavigationProps {
   isScrolled?: boolean;
   isServicesOpen?: boolean;
+  isEngagementOpen?: boolean;
   onServicesOpen?: () => void;
   onServicesClose?: () => void;
+  onEngagementOpen?: () => void;
+  onEngagementClose?: () => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
   isScrolled = true,
   isServicesOpen = false,
+  isEngagementOpen = false,
   onServicesOpen,
   onServicesClose,
+  onEngagementOpen,
+  onEngagementClose,
 }) => {
   const { colorMode } = useColorMode();
   const mobileNav = useDisclosure();
@@ -40,6 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({
     colorMode === "light" &&
     !isScrolled &&
     !isServicesOpen &&
+    !isEngagementOpen &&
     isHeroDetailPage(router.pathname);
   
   const hideThemeToggle = NO_THEME_TOGGLE_PATHS.some((path) => router.pathname === path);
@@ -65,6 +72,7 @@ const Navigation: React.FC<NavigationProps> = ({
     <HStack spacing="2" flexShrink={0}>
       {siteConfig.header.links.map(({ href, variant, ...props }, i) => {
         const isServices = href === "/services";
+        const isEngagement = href === "/engagement-models";
         const linkEl = (
           <NavLink
             display={["none", null, "block"]}
@@ -75,10 +83,6 @@ const Navigation: React.FC<NavigationProps> = ({
                 | MouseEvent
                 | any
             ) => {
-              if (isServices) {
-                e.preventDefault();
-                return;
-              }
               handleNavigation(e, href);
             }}
             key={i}
@@ -110,6 +114,19 @@ const Navigation: React.FC<NavigationProps> = ({
               position="relative"
               onMouseEnter={onServicesOpen}
               onMouseLeave={onServicesClose}
+            >
+              {linkEl}
+            </Box>
+          );
+        }
+        if (isEngagement && onEngagementOpen && onEngagementClose) {
+          return (
+            <Box
+              key={i}
+              display={["none", null, "block"]}
+              position="relative"
+              onMouseEnter={onEngagementOpen}
+              onMouseLeave={onEngagementClose}
             >
               {linkEl}
             </Box>

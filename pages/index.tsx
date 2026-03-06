@@ -50,6 +50,7 @@ import { Em } from "components/typography";
 import { Features } from "components/features";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { Faq } from "components/faq";
+import { SectionDivider } from "components/section";
 
 import { ButtonLink } from "components/button-link/button-link";
 import { Testimonial } from "components/testimonials";
@@ -290,7 +291,7 @@ const Home: NextPage = () => {
         <TechnologySection />
         <BlogSection />
         <FaqSection />
-        <Divider />
+        <SectionDivider />
         <Contact />
       </Box>
     </Box>
@@ -387,18 +388,20 @@ const HeroSection: React.FC = () => {
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
               mt="10">
-              <Text
-                fontSize="sm"
-                color={textColor}
-                fontWeight="medium"
-                maxW="lg"
-                textAlign="left"
-                display={"flex"}
-                alignItems={"center"}
-                width={"100%"}>
-                Trusted By the Best{"  "}
-                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
-              </Text>
+              <HStack
+                width="100%"
+                alignItems="center"
+                spacing={4}>
+                <Text
+                  fontSize="sm"
+                  color={textColor}
+                  fontWeight="medium"
+                  maxW="lg"
+                  textAlign="left">
+                  Trusted By the Best
+                </Text>
+                <Divider height="1.5px" bg="muted" width="20%" />
+              </HStack>
               <FallInPlace delay={0.6}>
                 {/* Static version for screens >= 600px */}
                 <Box
@@ -687,18 +690,20 @@ const HeroSection: React.FC = () => {
               alignItems="flex-start"
               display={{ base: "flex", lg: "flex" }}
               mt="10">
-              <Text
-                fontSize="sm"
-                color={textColor}
-                fontWeight="medium"
-                maxW="lg"
-                textAlign="left"
-                display={"flex"}
-                alignItems={"center"}
-                width={"100%"}>
-                Trusted By the Best{"  "}
-                <Divider height="1.5px" bg="muted" width="20%" ml="4" />
-              </Text>
+              <HStack
+                width="100%"
+                alignItems="center"
+                spacing={4}>
+                <Text
+                  fontSize="sm"
+                  color={textColor}
+                  fontWeight="medium"
+                  maxW="lg"
+                  textAlign="left">
+                  Trusted By the Best
+                </Text>
+                <Divider height="1.5px" bg="muted" width="20%" />
+              </HStack>
               <FallInPlace delay={0.6}>
                 {/* Static version for screens >= 600px */}
                 <Box
@@ -731,7 +736,7 @@ const HeroSection: React.FC = () => {
                       priority={true}
                       style={{
                         objectFit: "contain",
-                        marginBottom: "2px",
+                        marginBottom: "0px",
                       }}
                     />
                     <Image
@@ -1258,16 +1263,7 @@ const HighlightsSection: React.FC = () => {
   return (
     <Box id="services" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
-        <Box
-          h="1px"
-          w="100%"
-          bgGradient={
-            colorMode === "dark"
-              ? "linear(to-r, transparent, teal.400, transparent)"
-              : "linear(to-r, transparent, teal.500, transparent)"
-          }
-          opacity={0.6}
-        />
+        <SectionDivider />
 
         <Box
           display={{ base: "block", md: "flex" }}
@@ -1418,7 +1414,7 @@ const Portfolio: React.FC = () => {
       industry: "Advertising",
       platform: "SaaS Platform",
       image: "/assets/portfolio/New/List Images/BillboardIQ.jpg",
-      href: "/portfolio/campaignos",
+      href: "/portfolio/billboardiq",
     },
     {
       title: "The Meatery",
@@ -1468,7 +1464,7 @@ const Portfolio: React.FC = () => {
   return (
     <Box id="portfolio" sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5" mb="5">
-        <Divider />
+        <SectionDivider />
 
         <Box
           display={{ base: "block", md: "flex" }}
@@ -3140,7 +3136,7 @@ const TechnologySection: React.FC = () => {
       textAlign="center"
       height={["100%", "100%", "100%"]}
       bg={colorMode === "dark" ? "gray.800" : ""}>
-      <Divider />
+      <SectionDivider />
       <Container maxW="container.xl" py="5" mb="5">
         <Box flex="1" mt={20}>
           <Heading
@@ -3339,7 +3335,7 @@ const BlogSection: React.FC = () => {
       color={textColor}
       sx={{ scrollMarginTop: "50px" }}>
       <Container maxW="container.xl" py="5">
-        <Divider />
+        <SectionDivider />
         <Box
           display={{ base: "block", md: "flex" }}
           px="4"
@@ -3492,7 +3488,7 @@ const BlogSection: React.FC = () => {
 const FaqSection: React.FC = () => {
   return (
     <>
-      <Divider />
+      <SectionDivider />
 
       <Faq {...faq} />
     </>

@@ -25,7 +25,7 @@ const LayoutBottom = () => {
           cy="118"
           r="101"
           stroke="url(#paint0_linear_52:83)"
-          stroke-width="34"
+          strokeWidth="34"
         ></circle>
         <defs>
           <linearGradient
@@ -36,8 +36,8 @@ const LayoutBottom = () => {
             y2="173.773"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#008080"></stop>
-            <stop offset="1" stop-color="#006666" stop-opacity="0"></stop>
+            <stop stopColor="#008080"></stop>
+            <stop offset="1" stopColor="#006666" stopOpacity="0"></stop>
           </linearGradient>
         </defs>
       </svg>

@@ -83,12 +83,21 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
             },
           })),
         };
-      case "service":
+      case "service": {
+        const baseUrl = "https://techemulsion.com";
+        const imageUrl = data.image
+          ? data.image.startsWith("http")
+            ? data.image
+            : `${baseUrl}${data.image}`
+          : undefined;
         return {
           "@context": "https://schema.org",
           "@type": "Service",
           name: data.name,
           description: data.description,
+          url: data.url || undefined,
+          image: imageUrl,
+          dateModified: data.dateModified || undefined,
           provider: {
             "@type": "Organization",
             name: "Tech Emulsion",
@@ -101,6 +110,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
             availability: "https://schema.org/InStock",
           },
         };
+      }
       case "portfolio":
         return {
           "@context": "https://schema.org",

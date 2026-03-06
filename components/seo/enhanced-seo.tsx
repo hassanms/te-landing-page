@@ -5,12 +5,20 @@ import siteConfig from "data/config";
 
 export interface EnhancedSEOProps extends NextSeoProps {
   pageType?: "home" | "services" | "portfolio" | "about" | "contact" | "blog";
+  /** Comma-separated or array of keywords for meta keywords tag (used on service/subpages for SEO). */
+  keywords?: string[] | string;
   faqData?: { questions: Array<{ question: string; answer: string }> };
   serviceData?: {
     name: string;
     description: string;
     serviceType: string;
     areaServed?: string;
+    /** Full URL for Service schema (e.g. canonical page URL). */
+    url?: string;
+    /** Image URL for Service schema (absolute). */
+    image?: string;
+    /** ISO date for dateModified in Service schema. */
+    dateModified?: string;
   };
   portfolioData?: {
     title: string;
@@ -58,6 +66,7 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   title,
   description,
   pageType = "home",
+  keywords,
   faqData,
   serviceData,
   portfolioData,
@@ -69,41 +78,32 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   ogImage,
   ...props
 }) => {
-  // Enhanced description with semantic keywords for AI engines
+  const keywordsContent =
+    keywords === undefined
+      ? undefined
+      : Array.isArray(keywords)
+        ? keywords.join(", ")
+        : keywords;
+  // Enhanced description with semantic keywords for AI engines (keep meta description ~150–160 chars when possible)
   const getEnhancedDescription = () => {
-    const baseDescription = description || siteConfig.seo.description;
+    const baseDescription = description || siteConfig.seo.description || "";
+    if (baseDescription.length >= 155) return baseDescription;
 
-    // Add semantic context for AI engines
     const semanticKeywords = [
-      "agentic AI development",
+      "generative AI development services",
+      "generative AI development company",
       "AI agent development services",
       "SaaS development services",
       "custom SaaS development",
-      "generative AI solutions",
-      "AI integration services",
-      "business automation solutions",
       "workflow automation services",
       "DevOps services",
       "QA testing services",
-      "test automation services",
-      "Chrome extension development",
-      "custom website development",
       "Next.js website development",
       "AI automation services",
-      "digital transformation",
-      "AI solutions",
-      "custom software development",
-      "SaaS platforms",
-      "machine learning",
-      "artificial intelligence",
-      "web development",
-      "mobile apps",
-      "blockchain solutions",
     ];
-
-    return `${baseDescription} We specialize in ${semanticKeywords
-      .slice(0, 5)
-      .join(", ")} and more.`;
+    const suffix = ` We specialize in ${semanticKeywords.slice(0, 4).join(", ")} and more.`;
+    const combined = baseDescription + suffix;
+    return combined.length <= 160 ? combined : baseDescription;
   };
 
   // Generate FAQ schema if FAQ data is provided
@@ -238,6 +238,9 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
             content:
               "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
           },
+          ...(keywordsContent
+            ? [{ name: "keywords" as const, content: keywordsContent }]
+            : []),
         ]}
         {...props}
       />

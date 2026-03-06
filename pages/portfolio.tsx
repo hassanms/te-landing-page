@@ -39,7 +39,7 @@ const portfolioItems: Array<{
   href: string;
 }> = [
   { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Professional Audiovisual (Pro AV)", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
-  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/campaignos" },
+  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/billboardiq" },
   { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/List Images/The Meatery.jpg", href: "/portfolio/meatery" },
   { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/Macromascot.jpg", href: "/portfolio/macromascot" },
   { id: 4, title: "AutoCar Intelligence", platform: "SaaS Platform", industry: "Automotive", image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg", href: "/portfolio/autosync-intelligence" },
@@ -326,7 +326,7 @@ export default function Portfolio() {
         <Box pt={{ base: 20, md: 24 }} />
         <Container maxW="container.xl" pt={6} pb={20} position="relative" zIndex={1}>
           {/* Breadcrumb */}
-          <Flex justify="flex-end" mb={8}>
+          <Flex justify="flex-end" mb={8} display={{ base: "none", md: "flex" }}>
             <ButtonGroup sx={{ bg: "none", fontSize: "1rem", display: "flex", alignItems: "center" }}>
               <ButtonLink href="/" size="lg" sx={{ bg: "none", color: textColor, p: 0, "&:hover": { bg: "none", color: headingColor } }}>
                 Home
@@ -343,7 +343,7 @@ export default function Portfolio() {
             minH={{ base: "280px", md: "35vh" }}
             display={{ base: "block", md: "grid" }}
             gridTemplateColumns={{ md: "1fr 1fr" }}
-            borderTopWidth="1px"
+            borderTopWidth={{ base: 0, md: "1px" }}
             borderColor={dividerColor}
             mx={-6}
             px={6}

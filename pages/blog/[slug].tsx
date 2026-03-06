@@ -29,7 +29,7 @@ import { useRouter } from "next/router";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 
-interface BlogPost {
+export interface BlogPost {
   id: string;
   slug: string;
   title: string;
@@ -50,7 +50,7 @@ interface BlogPost {
   og_image: string | null;
 }
 
-interface RelatedPost {
+export interface RelatedPost {
   id: string;
   slug: string;
   title: string;
@@ -62,11 +62,11 @@ interface RelatedPost {
 }
 
 interface BlogPostPageProps {
-  post?: BlogPost;
-  relatedPosts?: RelatedPost[];
+  post: BlogPost | null;
+  relatedPosts: RelatedPost[];
 }
 
-const BlogPostPage: NextPage<BlogPostPageProps> = () => {
+const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedPosts: initialRelated }) => {
   const router = useRouter();
   const { slug } = router.query;
   const { colorMode } = useColorMode();
@@ -77,18 +77,18 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
   const sidebarBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [post, setPost] = useState<BlogPost | null>(initialPost || null);
+  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>(initialRelated || []);
+  const [loading, setLoading] = useState(!initialPost);
   const [error, setError] = useState<string | null>(null);
 
   // Generate table of contents from content
   const [tocItems, setTocItems] = useState<{ id: string; label: string }[]>([]);
   const [activeSection, setActiveSection] = useState("");
 
-  // Fetch blog post data client-side
+  // Optionally refetch on client if navigated without SSR data
   useEffect(() => {
-    if (!slug || typeof slug !== "string") return;
+    if (!slug || typeof slug !== "string" || initialPost) return;
 
     const fetchPost = async () => {
       try {
@@ -114,7 +114,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
     };
 
     fetchPost();
-  }, [slug, router]);
+  }, [slug, router, initialPost]);
 
   useEffect(() => {
     if (!post?.content) return;
@@ -219,7 +219,12 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
 
       <Container maxW="container.xl" py="10">
         {/* Breadcrumb - matches portfolio style */}
-        <Flex justify="flex-end" mb={8} px={{ base: 0, md: 6 }}>
+        <Flex
+          justify="flex-end"
+          mb={8}
+          px={{ base: 0, md: 6 }}
+          display={{ base: "none", md: "flex" }}
+        >
           <ButtonGroup
             sx={{
               bg: "none",
@@ -576,10 +581,53 @@ const BlogPostPage: NextPage<BlogPostPageProps> = () => {
 
 export default BlogPostPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  // Return empty props to allow immediate rendering
-  // Data will be fetched client-side for faster page load
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async ({ params, req }) => {
+  const slug = params?.slug as string | undefined;
+
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
+
+  try {
+    // Prefer absolute URL from env; fall back to current host
+    const envBase = process.env.NEXT_PUBLIC_SITE_URL;
+    const hostBase =
+      req.headers["x-forwarded-host"] ||
+      req.headers.host ||
+      "localhost:3000";
+    const protocol =
+      req.headers["x-forwarded-proto"] ||
+      (hostBase.toString().includes("localhost") ? "http" : "https");
+
+    const baseUrl = envBase || `${protocol}://${hostBase}`;
+
+    const res = await fetch(`${baseUrl}/api/blog/${slug}`);
+
+    if (res.status === 404) {
+      return { notFound: true };
+    }
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch blog post: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    return {
+      props: {
+        post: data.post || null,
+        relatedPosts: data.relatedPosts || [],
+      },
+    };
+  } catch (error) {
+    console.error("Error in getServerSideProps for /blog/[slug]:", error);
+    return {
+      props: {
+        post: null,
+        relatedPosts: [],
+      },
+    };
+  }
 };

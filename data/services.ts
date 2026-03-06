@@ -40,6 +40,20 @@ export interface ServiceData {
   fullDescription: string;
   image: string;
   tags: string[];
+  /** SEO keywords for meta keywords and semantic relevance (used on service subpages). */
+  seoKeywords?: string[];
+  /** One-sentence definition for GEO/AEO (e.g. "What is X?"). */
+  whatIs?: string;
+  /** 3–5 bullet takeaways for AEO/snippet potential. */
+  keyTakeaways?: string[];
+  /** ISO date for schema dateModified (e.g. "2026-03-02"). */
+  dateModified?: string;
+  /** Slugs of related services for internal linking. */
+  relatedServiceSlugs?: string[];
+  /** Optional meta title override (e.g. include primary keyword; keep 50–60 chars). */
+  seoTitle?: string;
+  /** Portfolio page slugs for "See our work" (e.g. ["packassist", "farmin", "contentcompass"]). */
+  portfolioSlugs?: string[];
   valueProps: ValueProp[];
   offerings: ServiceOffering[];
   industries?: IndustryItem[];
@@ -195,11 +209,31 @@ export const servicesData: ServiceData[] = [
     slug: "agentic-ai-engineering",
     title: "Agentic AI Engineering",
     shortDescription:
-      "We build autonomous AI agents that reason, plan, and execute multi-step tasks—from sales qualification chatbots to RAG-powered knowledge systems. Proven with Pack Assist, Farmin, and Content Compass.",
+      "Generative AI development services and a leading generative AI development company. We build autonomous AI agents that reason, plan, and execute multi-step tasks—from sales qualification chatbots to RAG-powered knowledge systems. Proven with Pack Assist, Farmin, and Content Compass.",
     fullDescription:
-      "Agentic AI Engineering delivers autonomous AI systems that perform complex tasks with minimal human intervention. We've built cost-optimized AI sales agents (Pack Assist) with hybrid qualification flows and RAG-based fact-checking, object detection platforms (Farmin) using YOLO and satellite imagery, and multimodal analytics (Content Compass) with OpenAI and Twelve Labs. Our agents use LangGraph, LangChain, and custom frameworks—integrating with your APIs, databases, and tools for workflows that scale.",
+      "Tech Emulsion is a generative AI development company offering generative AI development services through agentic AI engineering. We deliver autonomous AI systems that perform complex tasks with minimal human intervention. We've built cost-optimized AI sales agents (Pack Assist) with hybrid qualification flows and RAG-based fact-checking, object detection platforms (Farmin) using YOLO and satellite imagery, and multimodal analytics (Content Compass) with OpenAI and Twelve Labs. Our agents use LangGraph, LangChain, and custom frameworks—integrating with your APIs, databases, and tools for workflows that scale.",
     image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
     tags: ["AI", "Automation", "Agents"],
+    seoKeywords: [
+      "generative ai development services",
+      "generative ai development company",
+      "ai agent development services",
+      "agentic ai web development",
+      "developing an agentic ai system",
+    ],
+    whatIs:
+      "Agentic AI engineering is the practice of building autonomous AI systems that can plan, reason, and execute multi-step tasks with minimal human intervention. Tech Emulsion provides generative AI development services as a generative AI development company, delivering agentic AI agents that integrate with your APIs, databases, and tools.",
+    keyTakeaways: [
+      "We are a generative AI development company offering end-to-end generative AI development services.",
+      "Agentic AI agents that qualify leads, power RAG knowledge systems, and perform multimodal analysis.",
+      "Built with LangGraph, LangChain, OpenAI, and custom frameworks—proven in Pack Assist, Farmin, Content Compass.",
+      "Cost-optimized flows, human-in-the-loop controls, and secure integration with your existing systems.",
+      "From MVP to production: 24/7 support and maintenance included.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["generative-ai-integration", "automation-solutions", "next-gen-saas"],
+    seoTitle: "Agentic AI Engineering | Generative AI Development - Tech Emulsion",
+    portfolioSlugs: ["packassist", "farmin", "contentcompass"],
     valueProps: [
       {
         title: "Cost-Optimized Agents",
@@ -266,6 +300,16 @@ export const servicesData: ServiceData[] = [
         answer:
           "Yes. We design agents to integrate with your existing APIs, databases, CRMs, and internal tools. Pack Assist uses a Zendesk-style agent dashboard; Farmin integrates with Mapbox and AWS; Content Compass connects to Supabase and Apify. We ensure secure, authenticated access and minimal disruption.",
       },
+      {
+        question: "What is a generative AI development company?",
+        answer:
+          "A generative AI development company builds AI systems that generate content, make decisions, and automate complex tasks. Tech Emulsion offers generative AI development services including agentic AI agents, RAG systems, and multimodal AI—from MVP to enterprise.",
+      },
+      {
+        question: "What is the typical timeline for agentic AI or generative AI development?",
+        answer:
+          "An MVP or proof-of-concept often takes 8–16 weeks. Full production-ready agentic AI systems typically take 3–6 months depending on scope, integrations, and data. We provide a detailed timeline after a discovery call.",
+      },
     ],
   },
   {
@@ -273,11 +317,29 @@ export const servicesData: ServiceData[] = [
     slug: "next-gen-saas",
     title: "Next-Gen SaaS Development",
     shortDescription:
-      "We build scalable SaaS platforms from MVP to enterprise—proven with Atarim ($500K funded), Rack Room, Farmin, and Podcast Beacon. Cloud-native, subscription billing, and integrations built in.",
+      "SaaS development services and custom SaaS development from MVP to enterprise—proven with Atarim ($500K funded), Rack Room, Farmin, and Podcast Beacon. Cloud-native, subscription billing, and integrations built in.",
     fullDescription:
-      "Next-Gen SaaS Development delivers cloud-native platforms that scale with your business. We transformed Atarim from a WordPress plugin into a universal visual collaboration SaaS with AWS, region-based load balancing, and auto-scaling. We built Rack Room for complex booking management, Twilio SMS, and Gantt dashboards. Farmin combines AI and SaaS for satellite image analysis. Our stack: Next.js, React, Supabase, AWS, Stripe—with multi-tenancy, billing, and analytics from day one.",
+      "Tech Emulsion provides SaaS development services and custom SaaS development for scalable, cloud-native platforms. We transformed Atarim from a WordPress plugin into a universal visual collaboration SaaS with AWS, region-based load balancing, and auto-scaling. We built Rack Room for complex booking management, Twilio SMS, and Gantt dashboards. Farmin combines AI and SaaS for satellite image analysis. Our stack: Next.js, React, Supabase, AWS, Stripe—with multi-tenancy, billing, and analytics from day one.",
     image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
     tags: ["SaaS", "Cloud", "Scalable"],
+    seoKeywords: [
+      "saas development services",
+      "saas application development services",
+      "saas product development services",
+      "custom saas development",
+    ],
+    whatIs:
+      "SaaS development services cover the design, build, and launch of software-as-a-service platforms. Tech Emulsion offers custom SaaS development from MVP to enterprise—cloud-native, with subscription billing, multi-tenancy, and integrations built in.",
+    keyTakeaways: [
+      "Full SaaS development services: MVP to enterprise, cloud-native architecture.",
+      "Custom SaaS development with Stripe/Paddle billing, multi-tenancy, and analytics.",
+      "Proven with Atarim, Rack Room, Farmin, Podcast Beacon—Next.js, React, AWS, Supabase.",
+      "Visual collaboration, booking management, and AI-powered SaaS solutions.",
+      "Ongoing maintenance, 24/7 support, and scalable infrastructure.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["agentic-ai-engineering", "website-development", "devops-solutions"],
+    portfolioSlugs: ["atarim", "rackroom", "farmin", "podcastbeacon"],
     valueProps: [
       {
         title: "Cloud-Native & Scalable",
@@ -344,6 +406,11 @@ export const servicesData: ServiceData[] = [
         answer:
           "Yes. We offer ongoing maintenance, feature updates, and 24/7 support. Atarim and Rack Room run on infrastructure we built and continue to support.",
       },
+      {
+        question: "What are SaaS application development services?",
+        answer:
+          "SaaS application development services include building scalable, multi-tenant web applications with subscription billing, user management, and integrations. We deliver custom SaaS development from MVP to enterprise with modern stacks like Next.js and AWS.",
+      },
     ],
   },
   {
@@ -351,11 +418,29 @@ export const servicesData: ServiceData[] = [
     slug: "website-development",
     title: "Innovative Website Development",
     shortDescription:
-      "High-performance, SEO-friendly websites and landing pages built with Next.js and React. Marketing sites, portfolios, and conversion-focused pages that drive growth.",
+      "A custom website development company and Next.js website development agency. High-performance, SEO-friendly websites and custom ecommerce website development. Marketing sites, portfolios, and conversion-focused pages that drive growth.",
     fullDescription:
-      "Innovative Website Development delivers fast, SEO-optimized websites using Next.js, React, and modern design principles. We build marketing sites, landing pages, portfolios, and web applications—server-side rendering, optimized images, and Core Web Vitals in mind. Our portfolio includes client sites, campaign pages, and the Tech Emulsion site itself.",
+      "Tech Emulsion is a custom website development company and Next.js website development agency. We deliver fast, SEO-optimized websites using Next.js, React, and modern design principles—including custom ecommerce website development. We build marketing sites, landing pages, portfolios, and web applications with server-side rendering, optimized images, and Core Web Vitals in mind. Our portfolio includes client sites, campaign pages, and the Tech Emulsion site itself.",
     image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
     tags: ["Web", "Next.js", "SEO"],
+    seoKeywords: [
+      "custom website development company",
+      "custom ecommerce website development",
+      "next.js website development agency",
+      "next js website development agency",
+    ],
+    whatIs:
+      "Innovative website development means building fast, SEO-friendly sites and apps with modern frameworks. As a custom website development company and Next.js website development agency, we deliver marketing sites, ecommerce, and web applications tailored to your brand and goals.",
+    keyTakeaways: [
+      "Custom website development company: unique sites, no templates, built for your brand.",
+      "Next.js website development agency—SSR, static generation, and Core Web Vitals optimized.",
+      "Custom ecommerce website development: Shopify, headless commerce, and conversion-focused stores.",
+      "SEO-friendly, responsive, and performance-first—landing pages to full web apps.",
+      "Portfolio includes Tech Emulsion and multiple client sites and campaigns.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["next-gen-saas", "chrome-extensions", "qa-testing-automation"],
+    portfolioSlugs: ["atarim", "billboardiq", "genai"],
     valueProps: [
       {
         title: "SEO-Optimized",
@@ -422,6 +507,11 @@ export const servicesData: ServiceData[] = [
         answer:
           "We use Next.js for SSR/SSG, optimize images and assets, implement proper meta tags and structured data, and follow Core Web Vitals best practices.",
       },
+      {
+        question: "What does a Next.js website development agency do?",
+        answer:
+          "A Next.js website development agency builds high-performance, SEO-friendly websites using the Next.js framework. We offer custom website development and custom ecommerce website development with server-side rendering, fast load times, and mobile-responsive design.",
+      },
     ],
   },
   {
@@ -429,11 +519,24 @@ export const servicesData: ServiceData[] = [
     slug: "chrome-extensions",
     title: "Custom Chrome Extensions",
     shortDescription:
-      "We build Chrome extensions that extend your SaaS or workflow—like Atarim's extension for visual feedback on any website. Manifest V3 compliant, Web Store ready.",
+      "We develop Chrome extensions that extend your SaaS or workflow—like Atarim's extension for visual feedback on any website. How to develop Chrome extension: we handle design, build, and Web Store publishing. Manifest V3 compliant.",
     fullDescription:
-      "Custom Chrome Extensions extend your product into the browser. We built Atarim's Chrome extension to enable visual feedback on any website—not just WordPress. We build extensions for productivity, data capture, SaaS companions, and integrations—all compliant with Manifest V3 and Chrome Web Store policies.",
+      "Tech Emulsion helps you develop Chrome extensions that extend your product into the browser. We built Atarim's Chrome extension to enable visual feedback on any website—not just WordPress. Whether you need to develop a Chrome extension for productivity, data capture, or SaaS companions, we deliver Manifest V3–compliant extensions and Chrome Web Store publishing.",
     image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
     tags: ["Chrome", "Productivity", "Extensions"],
+    seoKeywords: ["develop chrome extension", "how to develop chrome extension"],
+    whatIs:
+      "Chrome extension development is building browser add-ons that run inside Chrome. We help you develop Chrome extensions for SaaS companions, productivity, and data capture—Manifest V3 compliant and Web Store ready.",
+    keyTakeaways: [
+      "Develop Chrome extension with us: from idea to Chrome Web Store listing.",
+      "How to develop Chrome extension: we handle architecture, build, and publishing.",
+      "SaaS companion extensions (e.g. Atarim visual feedback on any site), productivity tools, data sync.",
+      "Manifest V3 compliant; secure, minimal permissions, privacy-first.",
+      "Full support for submission, compliance, and ongoing updates.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["next-gen-saas", "website-development", "automation-solutions"],
+    portfolioSlugs: ["atarim"],
     valueProps: [
       {
         title: "SaaS Companion",
@@ -500,6 +603,11 @@ export const servicesData: ServiceData[] = [
         answer:
           "Yes. We handle submission, compliance, and ongoing updates for the Chrome Web Store.",
       },
+      {
+        question: "How to develop a Chrome extension?",
+        answer:
+          "To develop a Chrome extension: define your use case, choose Manifest V3, build the extension (popup, background, content scripts), test in Chrome, then submit to the Chrome Web Store. We handle the full process—design, development, and publishing.",
+      },
     ],
   },
   {
@@ -507,11 +615,24 @@ export const servicesData: ServiceData[] = [
     slug: "devops-solutions",
     title: "Expert DevOps Solutions",
     shortDescription:
-      "We scale and secure your infrastructure—AWS, region-based load balancing, auto-scaling, and CI/CD. Proven with Atarim, Farmin, and Rack Room.",
+      "DevOps as a service and devops managed services—we scale and secure your infrastructure with AWS, region-based load balancing, auto-scaling, and CI/CD. Proven with Atarim, Farmin, and Rack Room.",
     fullDescription:
-      "Expert DevOps Solutions modernize your infrastructure and delivery pipeline. We scaled Atarim on AWS with region-based load balancing and auto-scaling. We deployed Farmin for satellite image processing and Content Compass on Supabase Edge Functions. We implement CI/CD, containerization, cloud migration, and monitoring so your team can ship faster and with confidence.",
+      "Tech Emulsion offers DevOps as a service and devops managed services to modernize your infrastructure and delivery pipeline. We scaled Atarim on AWS with region-based load balancing and auto-scaling. We deployed Farmin for satellite image processing and Content Compass on Supabase Edge Functions. We implement CI/CD, containerization, cloud migration, and monitoring so your team can ship faster and with confidence.",
     image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
     tags: ["DevOps", "CI/CD", "Cloud"],
+    seoKeywords: ["devops as a service", "devops managed services"],
+    whatIs:
+      "DevOps as a service means a team manages your CI/CD, cloud infrastructure, and deployment pipeline for you. Our devops managed services include AWS/GCP scaling, GitHub Actions pipelines, containerization, and 24/7 monitoring.",
+    keyTakeaways: [
+      "DevOps as a service: we own your CI/CD, cloud scaling, and deployment pipeline.",
+      "DevOps managed services—AWS, Supabase, Railway; region-based load balancing and auto-scaling.",
+      "CI/CD with GitHub Actions, GitLab CI, or Jenkins; Docker and Kubernetes when needed.",
+      "Cloud migration from on-prem or legacy cloud with minimal downtime.",
+      "Monitoring, alerting, and ongoing support included.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["next-gen-saas", "qa-testing-automation", "automation-solutions"],
+    portfolioSlugs: ["atarim", "farmin", "rackroom"],
     valueProps: [
       {
         title: "Cloud Scaling",
@@ -578,6 +699,11 @@ export const servicesData: ServiceData[] = [
         answer:
           "Yes. We can set up monitoring, alerting, and provide ongoing support for your infrastructure.",
       },
+      {
+        question: "What are devops managed services?",
+        answer:
+          "DevOps managed services are ongoing infrastructure and pipeline management—CI/CD, cloud scaling, monitoring, and support. We offer devops as a service so you can focus on product while we keep deployments and infrastructure reliable.",
+      },
     ],
   },
   {
@@ -585,11 +711,32 @@ export const servicesData: ServiceData[] = [
     slug: "generative-ai-integration",
     title: "Generative AI Integration",
     shortDescription:
-      "Harness the power of AI to revolutionize your operations. We integrate advanced generative AI solutions to automate tasks, enhance creativity, and boost efficiency.",
+      "Generative AI integration services and AI and GPT integration services. We deliver AI visibility solutions with best generative engine optimization—LLMs, RAG, and AI-powered workflows. Best rated AI generative expand solutions for your product.",
     fullDescription:
-      "Generative AI Integration brings LLMs, image generation, and AI-powered features into your products and workflows. We integrate OpenAI, Anthropic, open-source models, and custom fine-tuned solutions to transform how you work.",
+      "Tech Emulsion provides generative AI integration services and AI and GPT integration services. We bring LLMs, image generation, and AI-powered features into your products and workflows—with AI visibility solutions and best generative engine optimization. As a generative AI development company we offer best rated AI generative expand solutions: OpenAI, Anthropic, open-source models, RAG, and custom fine-tuned integrations.",
     image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
     tags: ["AI", "LLM", "Automation"],
+    seoKeywords: [
+      "generative ai development services",
+      "generative ai development company",
+      "generative ai integration services",
+      "ai and gpt integration services",
+      "ai visibility solutions with best generative engine optimization",
+      "best rated ai generative expand solutions",
+    ],
+    whatIs:
+      "Generative AI integration is embedding LLMs, RAG, and AI-generated content into your apps and workflows. We offer generative AI integration services and AI and GPT integration services—with generative engine optimization so your product is visible and effective in AI-driven search and experiences.",
+    keyTakeaways: [
+      "Generative AI integration services: LLM integration, RAG, image generation, and GPT integration.",
+      "AI and GPT integration services—OpenAI, Claude, Llama; APIs and custom fine-tuning.",
+      "AI visibility solutions with best generative engine optimization (GEO) for discoverability.",
+      "Best rated AI generative expand solutions: token optimization, guardrails, and cost control.",
+      "Industry-specific AI solutions and ongoing support.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["agentic-ai-engineering", "automation-solutions", "next-gen-saas"],
+    seoTitle: "Generative AI Integration Services | AI & GPT Integration - Tech Emulsion",
+    portfolioSlugs: ["contentcompass", "farmin", "genai"],
     valueProps: [
       {
         title: "LLM Integration",
@@ -656,6 +803,16 @@ export const servicesData: ServiceData[] = [
         answer:
           "Yes. We develop industry-specific AI solutions with fine-tuned models, custom prompts, and domain-aware RAG systems.",
       },
+      {
+        question: "What are generative AI integration services?",
+        answer:
+          "Generative AI integration services include embedding LLMs, RAG, and AI content generation into your apps. We provide generative AI development services: OpenAI and GPT integration, vector databases, fine-tuning, and generative engine optimization for visibility.",
+      },
+      {
+        question: "What is the typical timeline for generative AI integration?",
+        answer:
+          "Simple integrations (e.g. one LLM API) can be live in 2–4 weeks. Full generative AI integration with RAG, fine-tuning, and workflows typically takes 6–12 weeks. We scope timeline in the discovery phase.",
+      },
     ],
   },
   {
@@ -663,11 +820,24 @@ export const servicesData: ServiceData[] = [
     slug: "qa-testing-automation",
     title: "QA Testing & Automation",
     shortDescription:
-      "We ensure your software is bug-free and production-ready—functional, performance, and security testing, plus automated test suites in CI/CD for every project we deliver.",
+      "QA and testing services and QA automation testing services. We ensure your software is bug-free and production-ready—functional, performance, and security testing, plus automated test suites in CI/CD for every project we deliver.",
     fullDescription:
-      "QA Testing & Automation ensures your software meets quality standards before and after release. We integrate testing into every project—from Pack Assist and Atarim to Rack Room and Content Compass. We provide functional testing, performance testing, security testing, and automated test suites (Cypress, Playwright, Jest) that run in your CI/CD pipeline.",
+      "Tech Emulsion provides QA and testing services and QA automation testing services. We ensure your software meets quality standards before and after release. We integrate testing into every project—from Pack Assist and Atarim to Rack Room and Content Compass. We deliver functional testing, performance testing, security testing, and automated test suites (Cypress, Playwright, Jest) that run in your CI/CD pipeline.",
     image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
     tags: ["QA", "Testing", "Automation"],
+    seoKeywords: ["qa and testing services", "qa automation testing services"],
+    whatIs:
+      "QA and testing services cover functional, performance, security, and usability testing. Our QA automation testing services add automated test suites (Cypress, Playwright, Jest) that run in your CI/CD so every release is validated before deployment.",
+    keyTakeaways: [
+      "QA and testing services: functional, performance, security, and usability testing.",
+      "QA automation testing services with Cypress, Playwright, Jest, or Selenium in CI/CD.",
+      "Every delivered project includes QA—Pack Assist, Atarim, Rack Room, Content Compass.",
+      "Catch bugs early, ship with confidence, and accelerate release cycles.",
+      "Integrated with your pipeline (GitHub Actions, GitLab CI) for continuous testing.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["devops-solutions", "next-gen-saas", "automation-solutions"],
+    portfolioSlugs: ["packassist", "atarim", "rackroom", "contentcompass"],
     valueProps: [
       {
         title: "Comprehensive Coverage",
@@ -734,6 +904,11 @@ export const servicesData: ServiceData[] = [
         answer:
           "We integrate test automation into your CI/CD pipeline (GitHub Actions, GitLab CI, etc.) so tests run on every commit and before deployment.",
       },
+      {
+        question: "What are QA automation testing services?",
+        answer:
+          "QA automation testing services include building and maintaining automated test suites (e.g. Cypress, Playwright, Jest) that run in your CI/CD. We provide qa and testing services plus automation so you get fast feedback and consistent quality on every release.",
+      },
     ],
   },
   {
@@ -741,11 +916,29 @@ export const servicesData: ServiceData[] = [
     slug: "automation-solutions",
     title: "Automation Solutions",
     shortDescription:
-      "We automate workflows and integrate your systems—Slack, Jira, Asana, Twilio, and more. Proven with Atarim's integrations, Rack Room's SMS automation, and Content Compass's scraping pipelines.",
+      "Business automation solutions and workflow automation services. We automate workflows and integrate your systems—Slack, Jira, Asana, Twilio—including automated customer service workflows utilizing process builder. AI automation service for intelligent, error-free operations.",
     fullDescription:
-      "Automation Solutions transform manual, repetitive processes into efficient, error-free workflows. We built Atarim's integrations with Slack, Jira, and Asana. We automated Rack Room's Twilio SMS notifications for bookings. Content Compass uses automated scraping and AI enrichment. We analyze your operations, identify automation opportunities, and implement solutions that save time and reduce costs.",
+      "Tech Emulsion delivers business automation solutions and workflow automation services. We transform manual, repetitive processes into efficient, error-free workflows—including automated customer service workflows utilizing process builder. Our AI automation service combines AI with automation for intelligent document processing and decision-making. We built Atarim's integrations with Slack, Jira, and Asana; Rack Room's Twilio SMS automation; and Content Compass's scraping pipelines. We analyze your operations, identify automation opportunities, and implement solutions that save time and reduce costs.",
     image: "/assets/whatWeDo/automation.png",
     tags: ["Automation", "Workflows", "Integration"],
+    seoKeywords: [
+      "business automation solutions",
+      "workflow automation services",
+      "automated customer service workflows utilizing process builder",
+      "ai automation service",
+    ],
+    whatIs:
+      "Business automation solutions replace manual, repetitive work with automated workflows and integrations. Our workflow automation services and AI automation service include automated customer service workflows utilizing process builder, API integrations, and intelligent process automation.",
+    keyTakeaways: [
+      "Business automation solutions: we analyze and automate workflows across sales, ops, and support.",
+      "Workflow automation services—Slack, Jira, Asana, Twilio, CRMs, and custom integrations.",
+      "Automated customer service workflows utilizing process builder and event-driven automation.",
+      "AI automation service: intelligent document processing, data extraction, and decision workflows.",
+      "Proven with Atarim, Rack Room, Content Compass; 24/7 support and optimization.",
+    ],
+    dateModified: "2026-03-02",
+    relatedServiceSlugs: ["agentic-ai-engineering", "generative-ai-integration", "devops-solutions"],
+    portfolioSlugs: ["atarim", "rackroom", "contentcompass"],
     valueProps: [
       {
         title: "Workflow Automation",
@@ -812,9 +1005,33 @@ export const servicesData: ServiceData[] = [
         answer:
           "Yes. We combine AI with automation for intelligent document processing, data extraction, classification, and decision-making workflows—as in Content Compass's multimodal AI analysis.",
       },
+      {
+        question: "What are workflow automation services?",
+        answer:
+          "Workflow automation services help you automate repetitive tasks and multi-step processes. We offer business automation solutions and AI automation service—including automated customer service workflows utilizing process builder—so you save time and reduce errors.",
+      },
     ],
   },
 ];
+
+/** Shared "How to get started" steps for service subpages (competitor-style process). */
+export const processSteps = [
+  { step: 1, title: "Share your goal", description: "Tell us your vision, constraints, and success criteria in a discovery call." },
+  { step: 2, title: "We scope & plan", description: "We outline approach, timeline, and deliverables tailored to your needs." },
+  { step: 3, title: "We deliver", description: "We build, test, and hand over—with ongoing support and maintenance available." },
+];
+
+/** Display labels for portfolio slugs used in "See our work" links. */
+export const portfolioLabels: Record<string, string> = {
+  packassist: "Pack Assist",
+  farmin: "Farmin",
+  contentcompass: "Content Compass",
+  atarim: "Atarim",
+  rackroom: "Rack Room",
+  podcastbeacon: "Podcast Beacon",
+  billboardiq: "CampaignOS",
+  genai: "GenAI",
+};
 
 export function getServiceBySlug(slug: string): ServiceData | undefined {
   return servicesData.find((s) => s.slug === slug);

@@ -1,5 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSupabaseAdmin } from "lib/supabase/server";
+import { getAllServiceSlugs } from "data/services";
+import { engagementModelsData } from "data/engagement-models";
 
 const Sitemap = () => {
   return null;
@@ -9,17 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const baseUrl = "https://techemulsion.com";
   const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
-  // Service subpages (from data/services.ts slugs)
-  const serviceSlugs = [
-    "agentic-ai-engineering",
-    "next-gen-saas",
-    "website-development",
-    "chrome-extensions",
-    "devops-solutions",
-    "generative-ai-integration",
-    "qa-testing-automation",
-    "automation-solutions",
-  ];
+  const serviceSlugs = getAllServiceSlugs();
   const servicePages = serviceSlugs.map((slug) => ({
     path: `/services/${slug}`,
     changefreq: "monthly" as const,
@@ -27,6 +19,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   }));
 
   // Define static pages with their metadata
+  const engagementModelPages = engagementModelsData.map((model) => ({
+    path: `/engagement-models/${model.slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.8",
+  }));
+
   const staticPages = [
     { path: "", changefreq: "weekly", priority: "1.0" },
     { path: "/services", changefreq: "monthly", priority: "0.9" },
@@ -43,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { path: "/portfolio/atarim", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/bipcards", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/contentcompass", changefreq: "monthly", priority: "0.7" },
-    { path: "/portfolio/campaignos", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/billboardiq", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/dadssalesreborn", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/farmin", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/macromascot", changefreq: "monthly", priority: "0.7" },
@@ -127,13 +125,17 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     // Continue without career pages if there's an error
   }
 
-  // Combine static pages, service subpages, blog posts, and career pages
+  // Combine static pages, service subpages, engagement model pages, blog posts, and career pages
   const allPages = [
     ...staticPages.map((page) => ({
       ...page,
       lastmod: currentDate,
     })),
     ...servicePages.map((page) => ({
+      ...page,
+      lastmod: currentDate,
+    })),
+    ...engagementModelPages.map((page) => ({
       ...page,
       lastmod: currentDate,
     })),

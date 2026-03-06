@@ -325,7 +325,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                     as="blockquote"
                     color={headingColor}
                     fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
-                    fontWeight="bold"
+                    // fontWeight="bold"
                     lineHeight="1.4"
                     letterSpacing="-0.02em"
                   >
@@ -357,7 +357,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
               <Text
                 color={headingColor}
                 fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
-                fontWeight="bold"
+                // fontWeight="bold"
                 lineHeight="1.4"
                 letterSpacing="-0.02em"
                 mb={6}
@@ -437,7 +437,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                   <Text
                     color={headingColor}
                     fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
-                    fontWeight="bold"
+                    // fontWeight="bold"
                     lineHeight="1.3"
                     letterSpacing="-0.02em"
                   >
@@ -468,7 +468,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 <Text
                   color={headingColor}
                   fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
-                  fontWeight="bold"
+                  // fontWeight="bold"
                   lineHeight="1.35"
                   letterSpacing="-0.02em"
                   maxW="100%"
@@ -546,7 +546,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                 <Text
                   color={headingColor}
                   fontSize={{ base: "lg", md: "xl" }}
-                  fontWeight="semibold"
+                  // fontWeight="semibold"
                   lineHeight="1.5"
                 >
                   With great AI comes great responsibility, and Tech Emulsion takes that responsibility seriously.

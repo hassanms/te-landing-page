@@ -177,7 +177,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
           minH={{ base: "360px", md: "48vh" }}
           display={{ base: "block", md: "grid" }}
           gridTemplateColumns={{ md: "1fr 1fr" }}
-          borderTopWidth="1px"
+          borderTopWidth={{ base: 0, md: "1px" }}
           borderColor={dividerColor}
           mx={-6}
           px={6}

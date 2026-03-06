@@ -46,11 +46,11 @@ export const JobListingsGrid: React.FC<JobListingsGridProps> = ({ jobs }) => {
   return (
     <Box
       id="open-roles"
-      mt={12}
-      pt={10}
+      mt={6}
+      pt={6}
       mx={-6}
       px={6}
-      borderTopWidth="1px"
+      // borderTopWidth="1px"
       borderColor={dividerColor}
       sx={{
         borderColor: "gray.200 !important",
@@ -62,11 +62,12 @@ export const JobListingsGrid: React.FC<JobListingsGridProps> = ({ jobs }) => {
         size="md"
         color={headingColor}
         fontWeight="semibold"
-        mb={8}
+        mb={12}
         letterSpacing="tight"
       >
         Open roles
       </Heading>
+
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0}>
         {jobs.map((job, idx) => (
           <Box

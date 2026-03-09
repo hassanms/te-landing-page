@@ -10,6 +10,7 @@ const Sitemap = () => {
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const baseUrl = "https://techemulsion.com";
   const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
+  // Only include published content to avoid 404/401 in Search Console
 
   const serviceSlugs = getAllServiceSlugs();
   const servicePages = serviceSlugs.map((slug) => ({
@@ -31,6 +32,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { path: "/portfolio", changefreq: "weekly", priority: "0.9" },
     { path: "/contact", changefreq: "monthly", priority: "0.8" },
     { path: "/our-story", changefreq: "monthly", priority: "0.7" },
+    { path: "/engagement-models", changefreq: "monthly", priority: "0.8" },
     { path: "/blog", changefreq: "weekly", priority: "0.8" },
     { path: "/careers", changefreq: "weekly", priority: "0.7" },
     { path: "/privacy-policy", changefreq: "yearly", priority: "0.3" },
@@ -42,7 +44,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { path: "/portfolio/bipcards", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/contentcompass", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/billboardiq", changefreq: "monthly", priority: "0.7" },
-    { path: "/portfolio/dadssalesreborn", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/farmin", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/macromascot", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/genai", changefreq: "monthly", priority: "0.7" },
@@ -53,6 +54,11 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     { path: "/portfolio/popcard", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/rackroom", changefreq: "monthly", priority: "0.7" },
     { path: "/portfolio/superheart", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/autosync-intelligence", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/avl-copilot", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/packassist", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/staffup", changefreq: "monthly", priority: "0.7" },
+    { path: "/portfolio/meatery", changefreq: "monthly", priority: "0.7" },
   ];
 
   // Fetch blog posts dynamically

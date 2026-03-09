@@ -28,9 +28,11 @@ const TermsOfService = () => {
     <Box id="services">
       <Head>
         <title>Terms of Service - Tech Emulsion</title>
+        <link rel="canonical" href="https://techemulsion.com/terms-of-service" />
+        <meta name="robots" content="index, follow" />
         <meta
           name="description"
-          content="Get in touch with Tech Emulsion for your next project. We specialize in web development, SaaS solutions, Chrome extensions, QA testing, cloud services, and artificial intelligence."
+          content="Tech Emulsion terms of service. Terms and conditions for using our website and services."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"

@@ -28,9 +28,11 @@ const PrivacyPolicy = () => {
     <Box id="services">
       <Head>
         <title>Privacy Policy - Tech Emulsion</title>
+        <link rel="canonical" href="https://techemulsion.com/privacy-policy" />
+        <meta name="robots" content="index, follow" />
         <meta
           name="description"
-          content="Get in touch with Tech Emulsion for your next project. We specialize in web development, SaaS solutions, Chrome extensions, QA testing, cloud services, and artificial intelligence."
+          content="Tech Emulsion privacy policy. How we collect, use, and protect your data when you use our services and website."
         />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"

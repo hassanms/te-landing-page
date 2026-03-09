@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
+import { identifyUser } from "lib/analytics";
 
 // Phone validation helper function
 const validatePhone = (phone: string) => {
@@ -179,6 +180,12 @@ const Contact = () => {
     try {
       await contactSchema.validate(formData, { abortEarly: false });
       await axios.post("/api/sendEmail", formData);
+      identifyUser({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+      });
       setFormData({
         name: "",
         company: "",

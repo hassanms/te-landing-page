@@ -38,6 +38,17 @@ CREATE INDEX IF NOT EXISTS idx_visitor_events_platform_created ON visitor_events
 ALTER TABLE visitor_events ENABLE ROW LEVEL SECURITY;
 ```
 
+Then run the second migration for geography (country, city):
+
+**File:** `supabase/migrations/20250309100000_visitor_events_geo_and_page_leave.sql`
+
+```sql
+ALTER TABLE visitor_events ADD COLUMN IF NOT EXISTS country TEXT;
+ALTER TABLE visitor_events ADD COLUMN IF NOT EXISTS city TEXT;
+CREATE INDEX IF NOT EXISTS idx_visitor_events_country ON visitor_events(country);
+CREATE INDEX IF NOT EXISTS idx_visitor_events_city ON visitor_events(city);
+```
+
 ## 2. Environment variables
 
 No new env vars are required. The app uses:
@@ -51,18 +62,24 @@ Optional:
 
 ## 3. Event types stored
 
-| event_type           | Description                          |
-|----------------------|--------------------------------------|
-| `page_view`          | First page load / route (with source) |
-| `link_click`         | User clicked a link or button        |
-| `element_hover`      | Hover duration on tracked element    |
-| `session_end`        | Tab close or navigate away           |
+| event_type           | Description                                              |
+|----------------------|----------------------------------------------------------|
+| `page_view`          | Page load / route (with source, country, city)           |
+| `page_leave`         | User left a page (with time spent on that page in sec)   |
+| `link_click`         | User clicked a link or button                            |
+| `element_hover`      | Hover duration on tracked element                        |
+| `session_end`        | Tab close or navigate away (with time on last page)      |
+| `user_identified`    | Name, email, phone (and optional company) from contact/career form submit; links the session to a person for admin readability. |
+
+Country and city are resolved client-side via a geo API (ip-api.com) and stored with each event. When a visitor submits the contact form or a career application, the session is associated with their name, email, and phone so the admin Sessions tab shows them instead of only the Session ID.
 
 ## 4. Viewing data in admin
 
-- **Admin → Visitor Analytics** shows:
-  - Traffic by platform (Google, LinkedIn, Direct, etc.)
-  - Top pages, top link clicks, recent events
-  - Time range filter (7 / 30 / 90 days)
+- **Admin → Visitor Analytics** (GA-style):
+  - **Visitors:** Full list of all visitors (up to 500 per period): Name, Email, Phone, Company (when they submitted contact/career form), Location (country, city – collected automatically for every visit), Source, First visit, Last seen, Time on site, Events count. Click **View** for full activity. Data is collected automatically (location, source, pages, time); name/email/phone appear when the visitor submits a form.
+  - **Overview:** Sessions, total events, avg session duration, top country, events-over-time chart, traffic by source (pie), top countries.
+  - **Traffic sources:** Where visitors come from (Google, LinkedIn, Facebook, direct URL, etc.) with bar chart and table.
+  - **Geography:** By country and by city tables.
+  - **Sessions:** Per-visitor sessions with User/Session ID, source, country, city, first page, arrived/left time, total duration. Click **View** to open session detail: time per page, full event timeline (page views, clicks, when they left).
 
 Data is written by the public site to `POST /api/events`; the API inserts into `visitor_events` using the Supabase service role.

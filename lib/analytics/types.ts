@@ -10,6 +10,8 @@ export interface Attribution {
   referrer: string;
   first_landing_page: string;
   first_visit_at: string;
+  country: string | null;
+  city: string | null;
 }
 
 export interface VisitorEventPayload {
@@ -26,4 +28,6 @@ export interface VisitorEventPayload {
   utm_content?: string | null;
   referrer?: string;
   user_agent?: string;
+  country?: string | null;
+  city?: string | null;
 }

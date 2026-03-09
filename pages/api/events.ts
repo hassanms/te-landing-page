@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getSupabaseAdmin } from "lib/supabase/server";
 
 const MAX_PAYLOAD_SIZE = 8000;
-const ALLOWED_EVENT_TYPES = ["page_view", "link_click", "element_hover", "session_end"];
+const ALLOWED_EVENT_TYPES = ["page_view", "page_leave", "link_click", "element_hover", "session_end", "user_identified"];
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,6 +28,8 @@ export default async function handler(
       utm_content?: string | null;
       referrer?: string;
       user_agent?: string;
+      country?: string | null;
+      city?: string | null;
     };
     if (typeof req.body === "object" && req.body !== null) {
       body = req.body as typeof body;
@@ -61,6 +63,8 @@ export default async function handler(
       utm_content: body.utm_content ?? null,
       referrer: body.referrer ?? null,
       user_agent: body.user_agent ?? null,
+      country: body.country ?? null,
+      city: body.city ?? null,
     });
 
     if (error) {

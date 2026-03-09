@@ -129,6 +129,8 @@ export function getAttribution(): Attribution | null {
       referrer: "",
       first_landing_page: "",
       first_visit_at: "",
+      country: storage.getItem(STORAGE_KEYS.COUNTRY),
+      city: storage.getItem(STORAGE_KEYS.CITY),
     };
   }
 
@@ -142,5 +144,28 @@ export function getAttribution(): Attribution | null {
     referrer: storage.getItem(STORAGE_KEYS.REFERRER) || "",
     first_landing_page: storage.getItem(STORAGE_KEYS.FIRST_LANDING_PAGE) || "",
     first_visit_at: storage.getItem(STORAGE_KEYS.FIRST_VISIT_AT) || "",
+    country: storage.getItem(STORAGE_KEYS.COUNTRY),
+    city: storage.getItem(STORAGE_KEYS.CITY),
   };
+}
+
+const GEO_API = "https://ip-api.com/json/?fields=country,city,regionName";
+
+/**
+ * Fetch country/city from public geo API and persist to sessionStorage.
+ * Call once per session; safe to call multiple times (no-op if already set).
+ */
+export function fetchAndPersistGeo(): void {
+  const storage = safeSessionStorage();
+  if (!storage || storage.getItem(STORAGE_KEYS.COUNTRY)) return;
+
+  fetch(GEO_API, { method: "GET" })
+    .then((r) => r.json())
+    .then((data: { country?: string; city?: string }) => {
+      const storage2 = safeSessionStorage();
+      if (!storage2) return;
+      if (data.country) storage2.setItem(STORAGE_KEYS.COUNTRY, data.country);
+      if (data.city) storage2.setItem(STORAGE_KEYS.CITY, data.city);
+    })
+    .catch(() => {});
 }

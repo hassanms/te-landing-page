@@ -1,9 +1,14 @@
 import { EVENT_NAMES } from "./constants";
-import { getAttribution, getOrCreateSessionId, captureAndPersistAttribution } from "./source";
+import { getAttribution, getOrCreateSessionId, captureAndPersistAttribution, fetchAndPersistGeo } from "./source";
 import type { VisitorEventPayload } from "./types";
 
 const API_EVENTS_URL = "/api/events";
 const MAX_PAYLOAD_SIZE = 8000;
+
+// Guard so tracker is only initialized once per page load.
+// In React 18 dev mode, effects can run twice; without this we would
+// attach duplicate listeners and send duplicate events.
+let trackerInitialized = false;
 
 declare global {
   interface Window {
@@ -48,6 +53,8 @@ function buildPayload(
     payload.utm_term = attribution.utm_term;
     payload.utm_content = attribution.utm_content;
     payload.referrer = attribution.referrer || undefined;
+    payload.country = attribution.country ?? undefined;
+    payload.city = attribution.city ?? undefined;
   }
 
   return payload;
@@ -58,7 +65,10 @@ export function sendToApi(payload: VisitorEventPayload): void {
     const body = JSON.stringify(payload);
     if (body.length > MAX_PAYLOAD_SIZE) return;
 
-    if (navigator.sendBeacon && payload.event_type === EVENT_NAMES.SESSION_END) {
+    if (
+      navigator.sendBeacon &&
+      (payload.event_type === EVENT_NAMES.SESSION_END || payload.event_type === EVENT_NAMES.PAGE_LEAVE)
+    ) {
       navigator.sendBeacon(API_EVENTS_URL, body);
       return;
     }
@@ -105,10 +115,55 @@ export function trackEvent(
 
 let pageEnteredAt: number = 0;
 
+export function getPageEnteredAt(): number {
+  return pageEnteredAt;
+}
+
+export function setPageEnteredAt(ts: number): void {
+  pageEnteredAt = ts;
+}
+
+/**
+ * Associate the current session with a user (name, email, phone).
+ * Call after contact form submit or any form that collects this info.
+ * Admin will show this instead of/in addition to Session ID for readability.
+ */
+export function identifyUser(
+  data: { name?: string; email?: string; phone?: string; company?: string },
+  gaMeasurementId?: string | null
+): void {
+  const payload: Record<string, string> = {};
+  if (data.name) payload.name = data.name.slice(0, 200);
+  if (data.email) payload.email = data.email.slice(0, 320);
+  if (data.phone) payload.phone = data.phone.slice(0, 32);
+  if (data.company) payload.company = data.company.slice(0, 200);
+  if (Object.keys(payload).length === 0) return;
+  trackEvent(EVENT_NAMES.USER_IDENTIFIED, "user_identified", payload, gaMeasurementId);
+}
+
+/** Call when user leaves current page (e.g. route change); sends page_leave with time on page. */
+export function trackPageLeave(
+  pagePath: string,
+  durationSec: number,
+  gaMeasurementId?: string | null
+): void {
+  if (durationSec < 0) return;
+  trackEvent(
+    EVENT_NAMES.PAGE_LEAVE,
+    "page_leave",
+    { page_path: pagePath, duration_sec: durationSec },
+    gaMeasurementId
+  );
+  pageEnteredAt = Date.now();
+}
+
 export function initTracker(gaMeasurementId: string | null): void {
   if (typeof window === "undefined") return;
+  if (trackerInitialized) return;
+  trackerInitialized = true;
 
   captureAndPersistAttribution();
+  fetchAndPersistGeo();
   pageEnteredAt = Date.now();
 
   const path = getPagePath();
@@ -184,6 +239,15 @@ export function initTracker(gaMeasurementId: string | null): void {
     if (sessionEndSent) return;
     sessionEndSent = true;
     const timeOnPageSec = Math.round((Date.now() - pageEnteredAt) / 1000);
+    const currentPath = getPagePath();
+    if (timeOnPageSec > 0 && currentPath) {
+      trackEvent(
+        EVENT_NAMES.PAGE_LEAVE,
+        "page_leave",
+        { page_path: currentPath, duration_sec: timeOnPageSec },
+        gaMeasurementId
+      );
+    }
     trackEvent(
       EVENT_NAMES.SESSION_END,
       "session_end",

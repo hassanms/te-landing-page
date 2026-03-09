@@ -3,7 +3,13 @@
 import React, { useEffect } from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
-import { initTracker, captureAndPersistAttribution } from "lib/analytics";
+import {
+  initTracker,
+  captureAndPersistAttribution,
+  getPageEnteredAt,
+  trackPageLeave,
+  setPageEnteredAt,
+} from "lib/analytics";
 
 const DEFAULT_GA_ID = "G-DJFC9CERLF";
 const GA_ID =
@@ -19,6 +25,24 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     if (typeof window === "undefined") return;
     captureAndPersistAttribution();
   }, [router.pathname]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setPageEnteredAt(Date.now());
+  }, [router.pathname]);
+
+  useEffect(() => {
+    const handleRouteChangeStart = (url: string) => {
+      const path = typeof window !== "undefined" ? window.location.pathname : "";
+      const enteredAt = getPageEnteredAt();
+      const durationSec = Math.round((Date.now() - enteredAt) / 1000);
+      if (path && durationSec > 0) {
+        trackPageLeave(path, durationSec, GA_ID);
+      }
+    };
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+    return () => router.events.off("routeChangeStart", handleRouteChangeStart);
+  }, [router.events]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;

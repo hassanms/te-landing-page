@@ -12,13 +12,17 @@ export const STORAGE_KEYS = {
   FIRST_LANDING_PAGE: "te_first_landing_page",
   FIRST_VISIT_AT: "te_first_visit_at",
   SESSION_ID: "te_session_id",
+  COUNTRY: "te_country",
+  CITY: "te_city",
 } as const;
 
 export const EVENT_NAMES = {
   PAGE_VIEW: "page_view",
+  PAGE_LEAVE: "page_leave",
   LINK_CLICK: "link_click",
   ELEMENT_HOVER: "element_hover",
   SESSION_END: "session_end",
+  USER_IDENTIFIED: "user_identified",
 } as const;
 
 export const PLATFORM_VALUES = [

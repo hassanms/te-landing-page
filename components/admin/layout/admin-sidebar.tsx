@@ -18,6 +18,7 @@ import {
   FiMenu,
   FiBarChart2,
   FiEdit3,
+  FiTrendingUp,
 } from "react-icons/fi";
 import { Logo } from "data/logo";
 import { useAdminLayout } from "./admin-layout";
@@ -54,6 +55,11 @@ const navItems: NavItem[] = [
     label: "Applications Analytics",
     icon: FiBarChart2,
     href: "/admin/analytics",
+  },
+  {
+    label: "Visitor Analytics",
+    icon: FiTrendingUp,
+    href: "/admin/visitor-analytics",
   },
 ];
 

@@ -6,6 +6,7 @@ import { SaasProvider } from "@saas-ui/react";
 import { Layout } from "components/layout";
 import { AuthProvider } from "contexts/auth-context";
 import { ColorModeInit } from "components/color-mode-init";
+import { AnalyticsProvider } from "components/analytics/analytics-provider";
 
 import theme from "../theme";
 import { Toaster } from "components/Toaster";
@@ -28,14 +29,16 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Component {...pageProps} />
             </AuthProvider>
           ) : (
-            // Regular pages use the main layout with header and footer
-            <Layout
-              announcementProps={announcement}
-              headerProps={header}
-              footerProps={footer}
-            >
-              <Component {...pageProps} />
-            </Layout>
+            // Regular pages: analytics + main layout
+            <AnalyticsProvider>
+              <Layout
+                announcementProps={announcement}
+                headerProps={header}
+                footerProps={footer}
+              >
+                <Component {...pageProps} />
+              </Layout>
+            </AnalyticsProvider>
           )}
         <Toaster />
       </SaasAuthProvider>

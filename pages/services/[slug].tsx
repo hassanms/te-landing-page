@@ -118,10 +118,6 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
         }}
       />
       <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
-      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {
@@ -134,12 +130,6 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
 
       {/* Hero Section - portfolio style */}
       <Box

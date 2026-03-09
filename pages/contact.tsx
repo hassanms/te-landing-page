@@ -61,9 +61,6 @@ const Contacts = () => {
         }}
       />
       <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
-      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {
@@ -76,13 +73,6 @@ const Contacts = () => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
       <Box position="relative" minH="100vh" color={headingColor}>
         {/* Full-page gradient - same as portfolio, blog, services, careers */}
         <Box

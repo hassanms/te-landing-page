@@ -76,7 +76,7 @@ const CaseStudyAVLCoPilotV3 = () => {
         title="Case Study: AVL Copilot - AI-Powered RAG SaaS for Professional AV Industry - Tech Emulsion"
         description="Built a production-grade AI SaaS for the Professional AV industry using FastAPI, OpenAI, LangGraph, and Pinecone. Designed a scalable RAG architecture with vector search, intent routing, real-time manual ingestion, and multimodal image analysis. Reduced troubleshooting time by 40–60% and deployed a multi-tenant platform with billing, guardrails, cost controls, and cloud infrastructure on Google Cloud."
         pageType="portfolio"
-        canonicalUrl="https://techemulsion.com/portfolio/avl-copilot-v3"
+        canonicalUrl="https://techemulsion.com/portfolio/avl-copilot"
       />
       <Script
         async

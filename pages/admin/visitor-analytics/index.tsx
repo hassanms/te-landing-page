@@ -44,6 +44,11 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
 } from "@chakra-ui/react";
 import {
   LineChart,
@@ -83,6 +88,8 @@ interface SessionSummary {
   user_email: string | null;
   user_phone: string | null;
   user_company: string | null;
+  page_view_count: number;
+  link_click_count: number;
 }
 
 interface SessionDetail {
@@ -146,6 +153,41 @@ function sessionDisplayLabel(s: SessionSummary): string {
   return shortSessionId(s.session_id);
 }
 
+function getSessionQualityBadges(s: SessionSummary): { label: string; color: string }[] {
+  const badges: { label: string; color: string }[] = [];
+
+  const isHighIntent =
+    !!(s.user_name && s.user_name.trim()) ||
+    !!(s.user_email && s.user_email.trim()) ||
+    !!(s.user_phone && s.user_phone.trim()) ||
+    (s.first_landing_page.includes("/contact") ||
+      s.first_landing_page.includes("/careers") ||
+      s.first_landing_page.includes("/careers-apply"));
+
+  const isBounce =
+    s.page_view_count <= 1 &&
+    s.link_click_count === 0 &&
+    s.total_duration_sec <= 10;
+
+  const hasClicks = s.link_click_count > 0;
+
+  if (isHighIntent) {
+    badges.push({ label: "High intent", color: "green" });
+  }
+  if (hasClicks && !isHighIntent) {
+    badges.push({ label: "Scrolled & clicked", color: "purple" });
+  }
+  if (isBounce) {
+    badges.push({ label: "Bounced", color: "red" });
+  }
+
+  if (badges.length === 0) {
+    badges.push({ label: "Neutral", color: "gray" });
+  }
+
+  return badges;
+}
+
 function formatEventDetail(e: SessionDetail["events"][number]): string {
   if (e.event_type === "link_click" && e.payload && typeof e.payload === "object") {
     const p = e.payload as { link_url?: string; element_id?: string; link_text?: string };
@@ -167,6 +209,26 @@ function formatEventDetail(e: SessionDetail["events"][number]): string {
   }
 
   return "—";
+}
+
+function getFunnelStatus(events: SessionDetail["events"]): {
+  home: boolean;
+  services: boolean;
+  contact: boolean;
+} {
+  const paths = events
+    .filter((e) => e.event_type === "page_view" || e.event_type === "page_leave")
+    .map((e) => e.page_path || "");
+
+  const home = paths.some((p) => p === "/" || p.startsWith("/?"));
+  const services = paths.some((p) =>
+    p.startsWith("/services") || p.includes("/services/"),
+  );
+  const contact = paths.some((p) =>
+    p.startsWith("/contact") || p.includes("/contact"),
+  );
+
+  return { home, services, contact };
 }
 
 const AdminVisitorAnalyticsPage = () => {
@@ -602,6 +664,7 @@ const AdminVisitorAnalyticsPage = () => {
                           <Th color={tableHeadingColor}>Arrived</Th>
                           <Th color={tableHeadingColor}>Left</Th>
                           <Th color={tableHeadingColor}>Duration</Th>
+                          <Th color={tableHeadingColor}>Quality</Th>
                           <Th color={tableHeadingColor}></Th>
                         </Tr>
                       </Thead>
@@ -625,6 +688,15 @@ const AdminVisitorAnalyticsPage = () => {
                             <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.first_visit_at).toLocaleString()}</Td>
                             <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.last_at).toLocaleString()}</Td>
                             <Td fontSize="xs">{formatDuration(s.total_duration_sec)}</Td>
+                            <Td>
+                              <HStack spacing={1} flexWrap="wrap">
+                                {getSessionQualityBadges(s).map((b) => (
+                                  <Badge key={b.label} colorScheme={b.color} fontSize="0.65rem">
+                                    {b.label}
+                                  </Badge>
+                                ))}
+                              </HStack>
+                            </Td>
                             <Td>
                               <Tooltip label="View session detail">
                                 <IconButton
@@ -778,8 +850,48 @@ const AdminVisitorAnalyticsPage = () => {
                     <Text color={textColor}>Left:</Text>
                     <Text>{new Date(sessionDetail.last_at).toLocaleString()}</Text>
                     <Text color={textColor}>Total time on site:</Text>
-                    <Text fontWeight="semibold">{formatDuration(sessionDetail.total_duration_sec)}</Text>
+                <Text fontWeight="semibold">{formatDuration(sessionDetail.total_duration_sec)}</Text>
+                <Text color={textColor}>Pages visited:</Text>
+                <Text>{sessionDetail.page_durations?.length || "—"}</Text>
+                <Text color={textColor}>Total link clicks:</Text>
+                <Text>
+                  {sessionDetail.events.filter((e) => e.event_type === "link_click").length}
+                </Text>
                   </SimpleGrid>
+              {/* Simple funnel: Home → Services → Contact */}
+              <Box mt={4}>
+                <Heading size="xs" mb={1} textTransform="uppercase" color={textColor}>
+                  Funnel: Home → Services → Contact
+                </Heading>
+                {(() => {
+                  const f = getFunnelStatus(sessionDetail.events);
+                  const steps: { key: keyof typeof f; label: string }[] = [
+                    { key: "home", label: "Home" },
+                    { key: "services", label: "Services" },
+                    { key: "contact", label: "Contact" },
+                  ];
+                  return (
+                    <HStack spacing={3} fontSize="xs" mt={1} flexWrap="wrap">
+                      {steps.map((step, index) => (
+                        <HStack key={step.key} spacing={1}>
+                          <Badge
+                            variant={f[step.key] ? "solid" : "subtle"}
+                            colorScheme={f[step.key] ? "green" : "gray"}
+                            fontSize="0.7rem"
+                          >
+                            {f[step.key] ? "✓" : "○"} {step.label}
+                          </Badge>
+                          {index < steps.length - 1 && (
+                            <Text color={textColor} mx={1}>
+                              →
+                            </Text>
+                          )}
+                        </HStack>
+                      ))}
+                    </HStack>
+                  );
+                })()}
+              </Box>
                   {sessionDetail.page_durations && sessionDetail.page_durations.length > 0 && (
                     <>
                       <Divider />
@@ -800,29 +912,76 @@ const AdminVisitorAnalyticsPage = () => {
                     </>
                   )}
                   <Divider />
-                  <Heading size="sm">Event timeline</Heading>
-                  <Box overflowX="auto" maxH="300px" overflowY="auto">
-                    <Table size="sm">
-                      <Thead>
-                        <Tr>
-                          <Th color={tableHeadingColor}>Time</Th>
-                          <Th color={tableHeadingColor}>Event</Th>
-                          <Th color={tableHeadingColor}>Page / detail</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        {sessionDetail.events.map((e) => (
-                          <Tr key={e.id}>
-                            <Td fontSize="xs" whiteSpace="nowrap">{new Date(e.created_at).toLocaleTimeString()}</Td>
-                            <Td><Badge size="sm" colorScheme="blue">{e.event_type}</Badge></Td>
-                            <Td fontSize="xs" noOfLines={1} maxW="260px">
-                              {formatEventDetail(e)}
-                            </Td>
-                          </Tr>
-                        ))}
-                      </Tbody>
-                    </Table>
-                  </Box>
+                  <Heading size="sm" mb={2}>
+                    Event timeline (grouped by page)
+                  </Heading>
+                  <Accordion allowMultiple defaultIndex={[0]}>
+                    {Array.from(
+                      sessionDetail.events.reduce((acc, e) => {
+                        const key = e.page_path || "(no page)";
+                        if (!acc.has(key)) acc.set(key, []);
+                        acc.get(key)!.push(e);
+                        return acc;
+                      }, new Map<string, SessionDetail["events"][number][]>())
+                    ).map(([pagePath, events]) => {
+                      const durationForPage =
+                        sessionDetail.page_durations?.find((pd) => pd.page_path === pagePath)
+                          ?.duration_sec ?? null;
+
+                      return (
+                        <AccordionItem key={pagePath}>
+                          <h2>
+                            <AccordionButton>
+                              <Box as="span" flex="1" textAlign="left" fontSize="sm">
+                                {pagePath}{" "}
+                                {durationForPage != null && (
+                                  <Text as="span" fontSize="xs" color={textColor}>
+                                    · {formatDuration(durationForPage)}
+                                  </Text>
+                                )}
+                              </Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel px={0} pt={2}>
+                            <Box overflowX="auto" maxH="260px" overflowY="auto">
+                              <Table size="sm">
+                                <Thead>
+                                  <Tr>
+                                    <Th color={tableHeadingColor}>Time</Th>
+                                    <Th color={tableHeadingColor}>Event</Th>
+                                    <Th color={tableHeadingColor}>Detail</Th>
+                                  </Tr>
+                                </Thead>
+                                <Tbody>
+                                  {events.map((e) => (
+                                    <Tr key={e.id}>
+                                      <Td fontSize="xs" whiteSpace="nowrap">
+                                        {new Date(e.created_at).toLocaleTimeString()}
+                                      </Td>
+                                      <Td>
+                                        <Badge size="sm" colorScheme="blue">
+                                          {e.event_type}
+                                        </Badge>
+                                      </Td>
+                                      <Td
+                                        fontSize="xs"
+                                        maxW="260px"
+                                        whiteSpace="normal"
+                                        wordBreak="break-word"
+                                      >
+                                        {formatEventDetail(e)}
+                                      </Td>
+                                    </Tr>
+                                  ))}
+                                </Tbody>
+                              </Table>
+                            </Box>
+                          </AccordionPanel>
+                        </AccordionItem>
+                      );
+                    })}
+                  </Accordion>
                 </VStack>
               ) : selectedSessionId && !sessionDetailLoading ? (
                 <Text color={textColor}>Could not load session.</Text>

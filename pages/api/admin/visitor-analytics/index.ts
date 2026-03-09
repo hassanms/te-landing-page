@@ -35,6 +35,8 @@ function computeSessions(events: VisitorEventRow[]) {
       user_email: string | null;
       user_phone: string | null;
       user_company: string | null;
+      page_view_count: number;
+      link_click_count: number;
     }
   >();
 
@@ -62,6 +64,8 @@ function computeSessions(events: VisitorEventRow[]) {
         user_email: null,
         user_phone: null,
         user_company: null,
+        page_view_count: 0,
+        link_click_count: 0,
       };
       bySession.set(e.session_id, s);
     }
@@ -81,6 +85,13 @@ function computeSessions(events: VisitorEventRow[]) {
       payload: e.payload || {},
       created_at: e.created_at,
     });
+
+    if (e.event_type === "page_view") {
+      s.page_view_count += 1;
+    }
+    if (e.event_type === "link_click") {
+      s.link_click_count += 1;
+    }
 
     if (e.event_type === "page_leave" && e.payload && typeof e.payload === "object") {
       const p = e.payload as { page_path?: string; duration_sec?: number };
@@ -220,6 +231,8 @@ export default async function handler(
         user_email: s.user_email,
         user_phone: s.user_phone,
         user_company: s.user_company,
+        page_view_count: s.page_view_count,
+        link_click_count: s.link_click_count,
       }))
       .sort((a, b) => new Date(b.first_visit_at).getTime() - new Date(a.first_visit_at).getTime())
       .slice(0, sessionsLimit);

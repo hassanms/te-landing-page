@@ -76,10 +76,11 @@ Country and city are resolved client-side via a geo API (ip-api.com) and stored 
 ## 4. Viewing data in admin
 
 - **Admin → Visitor Analytics** (GA-style):
-  - **Visitors:** Full list of all visitors (up to 500 per period): Name, Email, Phone, Company (when they submitted contact/career form), Location (country, city – collected automatically for every visit), Source, First visit, Last seen, Time on site, Events count. Click **View** for full activity. Data is collected automatically (location, source, pages, time); name/email/phone appear when the visitor submits a form.
   - **Overview:** Sessions, total events, avg session duration, top country, events-over-time chart, traffic by source (pie), top countries.
+  - **Visitors:** Full list of all visitors (up to 500 per period): Name, Email, Phone, Company (when they submitted contact/career form), Location (country, city – collected automatically for every visit), Source, First visit, Last seen, Time on site, Events count. Click **View** for full activity. Data is collected automatically (location, source, pages, time); name/email/phone appear when the visitor submits a form.
   - **Traffic sources:** Where visitors come from (Google, LinkedIn, Facebook, direct URL, etc.) with bar chart and table.
   - **Geography:** By country and by city tables.
-  - **Sessions:** Per-visitor sessions with User/Session ID, source, country, city, first page, arrived/left time, total duration. Click **View** to open session detail: time per page, full event timeline (page views, clicks, when they left).
+  - **Sessions:** Per-visitor sessions with User/Session ID, source, country, city, first page, arrived/left time, total duration. Click **View** to open session detail: time per page, full event timeline (page views, clicks, when they left, and which links/buttons they clicked).
+  - **Settings:** Admin controls for visitor analytics. You can clear analytics older than 90 days while keeping recent data, or clear all analytics (danger zone) which truncates the `visitor_events` table.
 
-Data is written by the public site to `POST /api/events`; the API inserts into `visitor_events` using the Supabase service role.
+Data is written by the public site to `POST /api/events`; the API inserts into `visitor_events` using the Supabase service role. The settings tab calls `POST /api/admin/visitor-analytics/clear` with appropriate scope (`all` or `older_than_days`) to delete analytics data when needed.

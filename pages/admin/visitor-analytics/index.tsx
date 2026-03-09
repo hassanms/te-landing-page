@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Heading,
@@ -37,6 +37,13 @@ import {
   Divider,
   IconButton,
   Tooltip,
+  Button,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import {
   LineChart,
@@ -57,6 +64,7 @@ import apiClient from "lib/api-client";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
 import { FiEye } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 const CHART_COLORS = ["#0D9488", "#2DD4BF", "#14B8A6", "#5EEAD4", "#99F6E4", "#CCFBF1", "#2D3748", "#4A5568"];
 
@@ -170,6 +178,14 @@ const AdminVisitorAnalyticsPage = () => {
   const [sessionDetail, setSessionDetail] = useState<SessionDetail | null>(null);
   const [sessionDetailLoading, setSessionDetailLoading] = useState(false);
   const { isOpen: isSessionModalOpen, onOpen: onSessionModalOpen, onClose: onSessionModalClose } = useDisclosure();
+  const {
+    isOpen: isClearOpen,
+    onOpen: onClearOpen,
+    onClose: onClearClose,
+  } = useDisclosure();
+  const [clearMode, setClearMode] = useState<"all" | "old90" | null>(null);
+  const [isClearing, setIsClearing] = useState(false);
+  const cancelClearRef = useRef<HTMLButtonElement | null>(null);
 
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
@@ -213,6 +229,48 @@ const AdminVisitorAnalyticsPage = () => {
     onSessionModalClose();
     setSelectedSessionId(null);
     setSessionDetail(null);
+  };
+
+  const openClearAllConfirm = () => {
+    setClearMode("all");
+    onClearOpen();
+  };
+
+  const openClearOldConfirm = () => {
+    setClearMode("old90");
+    onClearOpen();
+  };
+
+  const handleConfirmClear = async () => {
+    if (!clearMode) return;
+    setIsClearing(true);
+    try {
+      if (clearMode === "all") {
+        await apiClient.post("/api/admin/visitor-analytics/clear", { scope: "all" });
+        toast.success("All visitor analytics have been cleared.");
+      } else {
+        await apiClient.post("/api/admin/visitor-analytics/clear", {
+          scope: "older_than_days",
+          days: 90,
+        });
+        toast.success("Visitor analytics older than 90 days have been cleared.");
+      }
+      onClearClose();
+      setClearMode(null);
+      fetchData();
+    } catch (err: any) {
+      console.error("Error clearing visitor analytics:", err);
+      toast.error(
+        err?.response?.data?.error || "Failed to clear visitor analytics. Please try again.",
+      );
+    } finally {
+      setIsClearing(false);
+    }
+  };
+
+  const handleCancelClear = () => {
+    onClearClose();
+    setClearMode(null);
   };
 
   if (loading) {
@@ -281,6 +339,7 @@ const AdminVisitorAnalyticsPage = () => {
             <Tab fontWeight="semibold">Traffic sources</Tab>
             <Tab fontWeight="semibold">Geography</Tab>
             <Tab fontWeight="semibold">Sessions</Tab>
+            <Tab fontWeight="semibold">Settings</Tab>
           </TabList>
 
           <TabPanels pt={4}>
@@ -588,6 +647,94 @@ const AdminVisitorAnalyticsPage = () => {
                 )}
               </Box>
             </TabPanel>
+
+            {/* Settings */}
+            <TabPanel px={0}>
+              <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
+                <Box
+                  bg={cardBg}
+                  p={6}
+                  borderRadius="xl"
+                  border="1px solid"
+                  borderColor={borderColor}
+                  boxShadow="sm"
+                >
+                  <Heading size="md" mb={2}>
+                    Analytics settings
+                  </Heading>
+                  <Text fontSize="sm" color={textColor} mb={4}>
+                    These controls apply only to visitor analytics data stored in Supabase
+                    (<code>visitor_events</code> table). Clearing data will not affect other
+                    parts of the admin (jobs, applications, blog, etc.).
+                  </Text>
+                  <VStack align="flex-start" spacing={2} fontSize="sm">
+                    <Text color={textColor}>
+                      • Events are stored with full detail (source, location, events, timeline)
+                      so you can understand who visited and what they did.
+                    </Text>
+                    <Text color={textColor}>
+                      • Use the options on the right to clear analytics data completely or
+                      to keep only recent activity.
+                    </Text>
+                  </VStack>
+                </Box>
+
+                <Box
+                  bg={useColorModeValue("white", "red.900")}
+                  p={6}
+                  borderRadius="xl"
+                  border="1px solid"
+                  borderColor={useColorModeValue("red.200", "red.700")}
+                  boxShadow="sm"
+                >
+                  <Heading size="md" mb={2} color={useColorModeValue("red.700", "red.100")}>
+                    Danger zone
+                  </Heading>
+                  <Text fontSize="sm" color={textColor} mb={4}>
+                    Clearing analytics is permanent and cannot be undone. Consider exporting
+                    data or narrowing to a shorter time range before deleting.
+                  </Text>
+                  <VStack align="flex-start" spacing={4}>
+                    <Box>
+                      <Heading size="sm" mb={1}>
+                        Clear analytics older than 90 days
+                      </Heading>
+                      <Text fontSize="sm" color={textColor} mb={2}>
+                        Remove historical events older than 90 days while keeping recent
+                        visitor data for ongoing analysis.
+                      </Text>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        colorScheme="red"
+                        onClick={openClearOldConfirm}
+                      >
+                        Clear analytics &gt; 90 days old
+                      </Button>
+                    </Box>
+
+                    <Divider />
+
+                    <Box>
+                      <Heading size="sm" mb={1}>
+                        Clear all visitor analytics
+                      </Heading>
+                      <Text fontSize="sm" color={textColor} mb={2}>
+                        Delete all records in <code>visitor_events</code> for this project.
+                        This will reset the Visitors, Overview, Traffic, and Sessions tabs.
+                      </Text>
+                      <Button
+                        size="sm"
+                        colorScheme="red"
+                        onClick={openClearAllConfirm}
+                      >
+                        Clear all visitor analytics
+                      </Button>
+                    </Box>
+                  </VStack>
+                </Box>
+              </SimpleGrid>
+            </TabPanel>
           </TabPanels>
         </Tabs>
 
@@ -683,6 +830,52 @@ const AdminVisitorAnalyticsPage = () => {
             </ModalBody>
           </ModalContent>
         </Modal>
+
+        {/* Clear analytics confirmation */}
+        <AlertDialog
+          isOpen={isClearOpen}
+          leastDestructiveRef={cancelClearRef}
+          onClose={handleCancelClear}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                {clearMode === "all"
+                  ? "Clear all visitor analytics"
+                  : "Clear analytics older than 90 days"}
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                {clearMode === "all" ? (
+                  <>
+                    This will permanently delete <strong>all</strong> visitor analytics
+                    records from the database. This includes all visitors, events,
+                    timelines, and history.
+                  </>
+                ) : (
+                  <>
+                    This will permanently delete visitor analytics records older than{" "}
+                    <strong>90 days</strong>. Recent data (last 90 days) will be kept.
+                  </>
+                )}
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelClearRef} onClick={handleCancelClear}>
+                  Cancel
+                </Button>
+                <Button
+                  colorScheme="red"
+                  onClick={handleConfirmClear}
+                  ml={3}
+                  isLoading={isClearing}
+                >
+                  Confirm
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
       </Box>
     </AdminLayout>
   );

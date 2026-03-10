@@ -10,7 +10,6 @@ import { JobDetailHeader } from "components/careers/job-detail-header";
 import { JobDescription } from "components/careers/job-description";
 import { JobInformationSidebar } from "components/careers/job-information-sidebar";
 import { ShareJobCard } from "components/careers/share-job-card";
-import axios from "axios";
 
 interface JobDetailPageProps {
   job: Job | null;
@@ -147,46 +146,75 @@ const JobDetailPage: React.FC<JobDetailPageProps> = ({ job, error }) => {
   );
 };
 
+// Fetch job server-side so crawlers get full HTML (no dependency on API self-call)
 export const getServerSideProps: GetServerSideProps<JobDetailPageProps> = async (
   context,
 ) => {
   const jobId = context.params?.jobId as string;
+  if (!jobId) return { notFound: true };
+
+  function stripHtml(html: string): string {
+    if (!html) return "";
+    return html
+      .replace(/<[^>]*>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
-      (context.req.headers.host 
-        ? `http${context.req.headers.host.includes('localhost') ? '' : 's'}://${context.req.headers.host}`
-        : 'http://localhost:3000');
-    
-    const response = await axios.get(`${baseUrl}/api/jobs/${jobId}`);
-    const job = response.data;
+    const { getSupabaseAdmin } = await import("lib/supabase/server");
+    const supabase = getSupabaseAdmin();
 
-    if (!job) {
-      return {
-        notFound: true,
-      };
+    let { data: row, error } = await supabase
+      .from("jobs")
+      .select("*")
+      .eq("slug", jobId)
+      .single();
+
+    if (error || !row) {
+      const res = await supabase.from("jobs").select("*").eq("id", jobId).single();
+      row = res.data;
+      error = res.error;
     }
 
-    return {
-      props: {
-        job,
-      },
-    };
-  } catch (error: any) {
-    console.error("Error fetching job:", error);
-    
-    if (error.response?.status === 404) {
-      return {
-        notFound: true,
-      };
+    if (error || !row) {
+      return { notFound: true };
     }
 
-    return {
-      props: {
-        job: null,
-        error: "Failed to load job details. Please try again later.",
-      },
+    const desc = stripHtml((row.description as string) || "");
+    const shortDesc = desc.length > 150 ? desc.slice(0, 150) + "..." : desc;
+    const job: Job = {
+      id: row.id,
+      slug: row.slug,
+      title: row.title,
+      company: "Tech Emulsion",
+      employmentType: (row.employment_type as Job["employmentType"]) || "Full-time",
+      department: (row.department as string) || "",
+      locations: [row.location as string] || [],
+      region: "APAC",
+      country: "Pakistan",
+      industry: "Technology",
+      shortDescription: shortDesc,
+      description: (row.description as string) || "",
+      requirements: (row.requirements as string[]) || [],
+      responsibilities: [],
+      experienceLevel: "Mid-level",
+      skills: [],
+      benefits: [],
+      postedDate: (row.created_at as string) || "",
+      applicationDeadline: null,
+      status: (row.status as Job["status"]) || "open",
+      totalPositions: (row.total_positions as number | null) ?? null,
     };
+
+    return { props: { job } };
+  } catch (e) {
+    console.error("Error in getServerSideProps for /careers/[jobId]:", e);
+    return { notFound: true };
   }
 };
 

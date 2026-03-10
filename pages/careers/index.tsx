@@ -1,3 +1,4 @@
+import type { GetServerSideProps } from "next";
 import { Box, Container, Stack, Text, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
@@ -7,15 +8,20 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Job } from "data/jobs/types";
 
-const CareersPage = () => {
+interface CareersPageProps {
+  initialJobs: Job[];
+}
+
+const CareersPage = ({ initialJobs }: CareersPageProps) => {
   const textColor = useColorModeValue("gray.600", "gray.100");
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [jobs, setJobs] = useState<Job[]>(initialJobs);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (initialJobs.length > 0) return;
     fetchJobs();
-  }, []);
+  }, [initialJobs.length]);
 
   const fetchJobs = async () => {
     try {
@@ -26,7 +32,6 @@ const CareersPage = () => {
     } catch (err) {
       console.error("Error fetching jobs:", err);
       setError("Failed to load jobs. Please try again later.");
-      // Fallback to empty array
       setJobs([]);
     } finally {
       setLoading(false);
@@ -68,7 +73,7 @@ const CareersPage = () => {
         <CareersHeroSection />
 
         <Stack spacing={16}>
-          {loading ? (
+          {loading && jobs.length === 0 ? (
             <Box textAlign="center" py={10}>
               <Box color="teal.500" display="inline-block">
                 <Spinner size="xl" />
@@ -86,6 +91,69 @@ const CareersPage = () => {
       </Container>
     </Box>
   );
+};
+
+// Fetch jobs server-side so crawlers and LLMs get full job list in HTML
+export const getServerSideProps: GetServerSideProps<CareersPageProps> = async () => {
+  function stripHtml(html: string): string {
+    if (!html) return "";
+    return html
+      .replace(/<[^>]*>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  try {
+    const { getSupabaseAdmin } = await import("lib/supabase/server");
+    const supabase = getSupabaseAdmin();
+    const { data, error } = await supabase
+      .from("jobs")
+      .select("*")
+      .eq("status", "open")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Careers getServerSideProps Supabase error:", error);
+      return { props: { initialJobs: [] } };
+    }
+
+    const initialJobs: Job[] = (data || []).map((job: Record<string, unknown>) => {
+      const desc = stripHtml((job.description as string) || "");
+      const shortDesc = desc.length > 150 ? desc.slice(0, 150) + "..." : desc;
+      return {
+        id: job.id as string,
+        slug: job.slug as string,
+        title: job.title as string,
+        company: "Tech Emulsion",
+        employmentType: (job.employment_type as Job["employmentType"]) || "Full-time",
+        department: (job.department as string) || "",
+        locations: [job.location as string] || [],
+        region: "APAC",
+        country: "Pakistan",
+        industry: "Technology",
+        shortDescription: shortDesc,
+        description: (job.description as string) || "",
+        requirements: (job.requirements as string[]) || [],
+        responsibilities: [],
+        experienceLevel: "Mid-level",
+        skills: [],
+        benefits: [],
+        postedDate: (job.created_at as string) || "",
+        applicationDeadline: null,
+        status: (job.status as Job["status"]) || "open",
+        totalPositions: (job.total_positions as number | null) ?? null,
+      };
+    });
+
+    return { props: { initialJobs } };
+  } catch (e) {
+    console.error("Error in getServerSideProps for /careers:", e);
+    return { props: { initialJobs: [] } };
+  }
 };
 
 export default CareersPage;

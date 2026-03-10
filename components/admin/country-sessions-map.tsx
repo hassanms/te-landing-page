@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+const DEFAULT_WIDTH = 640;
+const ASPECT_RATIO = 320 / 640;
 
 /** Match API country name to map geography name (e.g. United States <-> United States of America) */
 function getSessionsForGeo(
@@ -42,9 +45,26 @@ interface CountrySessionsMapProps {
 
 export function CountrySessionsMap({
   countrySessions,
-  width = 640,
-  height = 320,
+  width: widthProp,
+  height: heightProp,
 }: CountrySessionsMapProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(DEFAULT_WIDTH);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      setContainerWidth(el.clientWidth || DEFAULT_WIDTH);
+    });
+    ro.observe(el);
+    setContainerWidth(el.clientWidth || DEFAULT_WIDTH);
+    return () => ro.disconnect();
+  }, []);
+
+  const width = widthProp ?? containerWidth;
+  const height = heightProp ?? Math.round(containerWidth * ASPECT_RATIO);
+
   const maxSessions = useMemo(() => {
     return countrySessions.length
       ? Math.max(...countrySessions.map((c) => c.sessions), 1)
@@ -52,7 +72,7 @@ export function CountrySessionsMap({
   }, [countrySessions]);
 
   return (
-    <>
+    <div ref={containerRef} style={{ width: "100%", minHeight: 200 }}>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{
@@ -93,6 +113,6 @@ export function CountrySessionsMap({
           Darker = more sessions (max {maxSessions} in period).
         </p>
       )}
-    </>
+    </div>
   );
 }

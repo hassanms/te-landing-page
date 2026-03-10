@@ -886,11 +886,9 @@ const AdminVisitorAnalyticsPage = () => {
                   Heatmap by unique sessions. Hover for country name and session count.
                 </Text>
                 {data.byCountry.length > 0 ? (
-                  <Box overflowX="auto" width="100%">
+                  <Box width="100%">
                     <CountrySessionsMap
                       countrySessions={data.byCountry.map(({ country, sessions }) => ({ country, sessions }))}
-                      width={640}
-                      height={320}
                     />
                   </Box>
                 ) : (
@@ -1184,7 +1182,7 @@ const AdminVisitorAnalyticsPage = () => {
                       </Text>
                     )}
                   </HStack>
-                  <SimpleGrid columns={2} spacing={2} fontSize="sm">
+                  <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} fontSize="sm">
                     <Text color={textColor}>First page:</Text>
                     <Text fontFamily="mono">{sessionDetail.first_landing_page}</Text>
                     <Text color={textColor}>Arrived:</Text>

@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useMemo } from "react";
 import {
   Box,
@@ -545,4 +543,9 @@ export default function Portfolio() {
       </Box>
     </>
   );
+}
+
+// SSG so crawlers get full HTML (no CSR-only shell)
+export async function getStaticProps() {
+  return { props: {} };
 }

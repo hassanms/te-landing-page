@@ -470,37 +470,36 @@ function PostCard({ post }: { post: BlogPost }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({
-  req,
-}) => {
+// Fetch blog data server-side so crawlers get full HTML (no dependency on API self-call)
+export const getServerSideProps: GetServerSideProps<BlogPageProps> = async () => {
   try {
-    const envBase = process.env.NEXT_PUBLIC_SITE_URL;
-    const hostBase =
-      (req.headers["x-forwarded-host"] as string) ||
-      (req.headers.host as string) ||
-      "localhost:3000";
-    const protocol =
-      (req.headers["x-forwarded-proto"] as string) ||
-      (hostBase.toString().includes("localhost") ? "http" : "https");
+    const { getSupabaseAdmin } = await import("lib/supabase/server");
+    const supabaseAdmin = getSupabaseAdmin();
 
-    const baseUrl = envBase || `${protocol}://${hostBase}`;
-
-    const [postsRes, categoriesRes] = await Promise.all([
-      fetch(`${baseUrl}/api/blog`),
-      fetch(`${baseUrl}/api/blog/categories`),
+    const [postsResult, categoriesResult] = await Promise.all([
+      supabaseAdmin
+        .from("blog_posts")
+        .select("id, slug, title, excerpt, featured_image, category, author_name, tags, is_featured, published_at, reading_time_minutes, view_count, show_on_homepage")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false })
+        .range(0, 19),
+      supabaseAdmin
+        .from("blog_categories")
+        .select("*")
+        .order("sort_order", { ascending: true }),
     ]);
 
-    if (!postsRes.ok || !categoriesRes.ok) {
-      throw new Error("Failed to fetch blog data");
-    }
-
-    const postsJson = await postsRes.json();
-    const categoriesJson = await categoriesRes.json();
+    const initialPosts = postsResult.data || [];
+    const initialCategories = (categoriesResult.data || []).map((c: { id: string; name: string; slug: string }) => ({
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+    }));
 
     return {
       props: {
-        initialPosts: postsJson.posts || [],
-        initialCategories: categoriesJson.categories || [],
+        initialPosts,
+        initialCategories,
       },
     };
   } catch (error) {

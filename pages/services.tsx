@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Box,
@@ -332,5 +330,10 @@ const Services = () => {
     </>
   );
 };
+
+// SSG so crawlers get full HTML and avoid server errors from client-only path
+export async function getStaticProps() {
+  return { props: {} };
+}
 
 export default Services;

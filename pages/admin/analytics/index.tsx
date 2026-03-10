@@ -249,7 +249,7 @@ const AdminAnalyticsPage = () => {
           <Heading size="md" mb={4}>
             Status Breakdown
           </Heading>
-          <SimpleGrid columns={{ base: 2, md: 3, lg: 7 }} spacing={4}>
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 7 }} spacing={4}>
             <Box
               p={4}
               borderRadius="lg"
@@ -352,6 +352,7 @@ const AdminAnalyticsPage = () => {
           </Heading>
           {analytics.applicationsByTitle &&
           Object.keys(analytics.applicationsByTitle).length > 0 ? (
+            <Box overflowX="auto">
             <Table variant="striped" colorScheme="blackAlpha" size="sm">
               <Thead>
                 <Tr>
@@ -374,6 +375,7 @@ const AdminAnalyticsPage = () => {
                   ))}
               </Tbody>
             </Table>
+            </Box>
           ) : (
             <Text color={textColor}>No data available</Text>
           )}

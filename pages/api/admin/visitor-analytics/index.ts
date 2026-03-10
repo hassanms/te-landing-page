@@ -232,14 +232,35 @@ export default async function handler(
       .map(([platform, count]) => ({ platform, count }))
       .sort((a, b) => b.count - a.count);
 
+    const sessionsByCountry = new Map<string, Set<string>>();
+    const sessionsByCity = new Map<string, Set<string>>();
+    for (const s of sessions) {
+      if (s.country) {
+        if (!sessionsByCountry.has(s.country)) sessionsByCountry.set(s.country, new Set());
+        sessionsByCountry.get(s.country)!.add(s.session_id);
+      }
+      if (s.city) {
+        if (!sessionsByCity.has(s.city)) sessionsByCity.set(s.city, new Set());
+        sessionsByCity.get(s.city)!.add(s.session_id);
+      }
+    }
+
     const countryList = Object.entries(byCountry)
-      .map(([country, count]) => ({ country, count }))
-      .sort((a, b) => b.count - a.count)
+      .map(([country, count]) => ({
+        country,
+        count,
+        sessions: sessionsByCountry.get(country)?.size ?? 0,
+      }))
+      .sort((a, b) => b.sessions - a.sessions)
       .slice(0, 30);
 
     const cityList = Object.entries(byCity)
-      .map(([city, count]) => ({ city, count }))
-      .sort((a, b) => b.count - a.count)
+      .map(([city, count]) => ({
+        city,
+        count,
+        sessions: sessionsByCity.get(city)?.size ?? 0,
+      }))
+      .sort((a, b) => b.sessions - a.sessions)
       .slice(0, 30);
 
     const topPages = Object.entries(byPage)

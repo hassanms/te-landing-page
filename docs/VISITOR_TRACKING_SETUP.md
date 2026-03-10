@@ -88,8 +88,8 @@ Country and city are resolved client-side via a geo API (ip-api.com) and stored 
   - **Overview:** Sessions, total events, avg session duration, top country; events-over-time chart, traffic by source (pie), top countries, top pages, most clicked.
   - **Visitors:** Bounce rate, conversion rate, new vs returning visitors (by persistent visitor_id); then full list of all visitors (up to 500 per period): Name, Email, Phone, Company (when they submitted contact/career form), Location (country, city – collected automatically for every visit), Source, First visit, Last seen, Time on site, Events count. Click **View** for full activity. Data is collected automatically (location, source, pages, time); name/email/phone appear when the visitor submits a form.
   - **Traffic sources:** Where visitors come from (Google, LinkedIn, Facebook, direct URL, etc.) with bar chart and table.
-  - **Geography:** By country and by city tables.
+  - **Geography:** Country heatmap (sessions by country); by-country and by-city tables with unique **sessions** and event counts.
   - **Sessions:** Per-visitor sessions with User/Session ID, source, country, city, first page, arrived/left time, total duration. Click **View** to open session detail: time per page, full event timeline (page views, clicks, when they left, and which links/buttons they clicked).
-  - **Settings:** Admin controls for visitor analytics. You can clear analytics older than 90 days while keeping recent data, or clear all analytics (danger zone) which truncates the `visitor_events` table.
+  - **Settings:** Export current data as CSV (sessions for the selected period) before clearing; configurable retention (30, 60, 90, 180, 365 days) to clear analytics older than X days, or clear all (danger zone).
 
 Data is written by the public site to `POST /api/events`; the API inserts into `visitor_events` using the Supabase service role. The settings tab calls `POST /api/admin/visitor-analytics/clear` with appropriate scope (`all` or `older_than_days`) to delete analytics data when needed.

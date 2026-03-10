@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import {
   Box,
   Heading,
@@ -71,6 +72,11 @@ import { AdminLayout } from "components/admin/layout/admin-layout";
 import { FiEye } from "react-icons/fi";
 import toast from "react-hot-toast";
 
+const CountrySessionsMap = dynamic(
+  () => import("components/admin/country-sessions-map").then((m) => m.CountrySessionsMap),
+  { ssr: false }
+);
+
 const CHART_COLORS = ["#0D9488", "#2DD4BF", "#14B8A6", "#5EEAD4", "#99F6E4", "#CCFBF1", "#2D3748", "#4A5568"];
 
 interface SessionSummary {
@@ -126,8 +132,8 @@ interface VisitorAnalyticsData {
   };
   eventsByDay: { date: string; count: number }[];
   byPlatform: { platform: string; count: number }[];
-  byCountry: { country: string; count: number }[];
-  byCity: { city: string; count: number }[];
+  byCountry: { country: string; count: number; sessions: number }[];
+  byCity: { city: string; count: number; sessions: number }[];
   topPages: { page_path: string; count: number }[];
   topClicks: { label: string; count: number }[];
   sessions: SessionSummary[];
@@ -219,6 +225,53 @@ function formatEventDetail(e: SessionDetail["events"][number]): string {
   return "—";
 }
 
+function escapeCsvCell(value: string | number | null | undefined): string {
+  if (value == null) return "";
+  const s = String(value);
+  if (s.includes('"') || s.includes(",") || s.includes("\n") || s.includes("\r")) {
+    return `"${s.replace(/"/g, '""')}"`;
+  }
+  return s;
+}
+
+function buildSessionsCsv(sessions: SessionSummary[], period: number): string {
+  const headers = [
+    "Name",
+    "Email",
+    "Phone",
+    "Company",
+    "Country",
+    "City",
+    "Source",
+    "First visit",
+    "Last seen",
+    "Time on site (sec)",
+    "Events count",
+    "Page views",
+    "Link clicks",
+    "First landing page",
+    "Session ID",
+  ];
+  const rows = sessions.map((s) => [
+    escapeCsvCell(s.user_name),
+    escapeCsvCell(s.user_email),
+    escapeCsvCell(s.user_phone),
+    escapeCsvCell(s.user_company),
+    escapeCsvCell(s.country),
+    escapeCsvCell(s.city),
+    escapeCsvCell(s.platform ?? "direct"),
+    escapeCsvCell(new Date(s.first_visit_at).toISOString()),
+    escapeCsvCell(new Date(s.last_at).toISOString()),
+    escapeCsvCell(s.total_duration_sec),
+    escapeCsvCell(s.events_count),
+    escapeCsvCell(s.page_view_count),
+    escapeCsvCell(s.link_click_count),
+    escapeCsvCell(s.first_landing_page),
+    escapeCsvCell(s.session_id),
+  ]);
+  return [headers.join(","), ...rows.map((r) => r.join(","))].join("\r\n");
+}
+
 function getFunnelStatus(events: SessionDetail["events"]): {
   home: boolean;
   services: boolean;
@@ -253,9 +306,13 @@ const AdminVisitorAnalyticsPage = () => {
     onOpen: onClearOpen,
     onClose: onClearClose,
   } = useDisclosure();
-  const [clearMode, setClearMode] = useState<"all" | "old90" | null>(null);
+  const [clearMode, setClearMode] = useState<"all" | "older_than_days" | null>(null);
+  const [retentionDays, setRetentionDays] = useState(90);
   const [isClearing, setIsClearing] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   const cancelClearRef = useRef<HTMLButtonElement | null>(null);
+
+  const RETENTION_OPTIONS = [30, 60, 90, 180, 365];
 
   const cardBg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
@@ -307,8 +364,32 @@ const AdminVisitorAnalyticsPage = () => {
   };
 
   const openClearOldConfirm = () => {
-    setClearMode("old90");
+    setClearMode("older_than_days");
     onClearOpen();
+  };
+
+  const handleExportCsv = () => {
+    if (!data?.sessions?.length) {
+      toast.error("No data to export.");
+      return;
+    }
+    setIsExporting(true);
+    try {
+      const csv = buildSessionsCsv(data.sessions, data.period);
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `visitor-analytics-${data.period}d-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast.success("CSV downloaded.");
+    } catch (err) {
+      console.error("Export CSV error:", err);
+      toast.error("Failed to export CSV.");
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   const handleConfirmClear = async () => {
@@ -319,11 +400,12 @@ const AdminVisitorAnalyticsPage = () => {
         await apiClient.post("/api/admin/visitor-analytics/clear", { scope: "all" });
         toast.success("All visitor analytics have been cleared.");
       } else {
+        const days = RETENTION_OPTIONS.includes(retentionDays) ? retentionDays : Math.max(1, Math.min(3650, retentionDays));
         await apiClient.post("/api/admin/visitor-analytics/clear", {
           scope: "older_than_days",
-          days: 90,
+          days,
         });
-        toast.success("Visitor analytics older than 90 days have been cleared.");
+        toast.success(`Visitor analytics older than ${days} days have been cleared.`);
       }
       onClearClose();
       setClearMode(null);
@@ -706,17 +788,44 @@ const AdminVisitorAnalyticsPage = () => {
 
             {/* Geography */}
             <TabPanel px={0}>
+              <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} mb={6}>
+                <Heading size="md" mb={2}>Sessions by country (map)</Heading>
+                <Text fontSize="sm" color={textColor} mb={4}>
+                  Heatmap by unique sessions. Hover for country name and session count.
+                </Text>
+                {data.byCountry.length > 0 ? (
+                  <Box overflowX="auto" width="100%">
+                    <CountrySessionsMap
+                      countrySessions={data.byCountry.map(({ country, sessions }) => ({ country, sessions }))}
+                      width={640}
+                      height={320}
+                    />
+                  </Box>
+                ) : (
+                  <Text color={textColor} fontSize="sm">No country data yet.</Text>
+                )}
+              </Box>
+
               <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
                 <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
                   <Heading size="md" mb={4}>By country</Heading>
+                  <Text fontSize="xs" color={textColor} mb={2}>Unique sessions and event counts.</Text>
                   {data.byCountry.length > 0 ? (
                     <Table variant="simple" size="sm">
                       <Thead>
-                        <Tr><Th color={tableHeadingColor}>Country</Th><Th color={tableHeadingColor} isNumeric>Events</Th></Tr>
+                        <Tr>
+                          <Th color={tableHeadingColor}>Country</Th>
+                          <Th color={tableHeadingColor} isNumeric>Sessions</Th>
+                          <Th color={tableHeadingColor} isNumeric>Events</Th>
+                        </Tr>
                       </Thead>
                       <Tbody>
-                        {data.byCountry.map(({ country, count }) => (
-                          <Tr key={country}><Td>{country}</Td><Td isNumeric>{count}</Td></Tr>
+                        {data.byCountry.map(({ country, count, sessions }) => (
+                          <Tr key={country}>
+                            <Td>{country}</Td>
+                            <Td isNumeric>{sessions}</Td>
+                            <Td isNumeric>{count}</Td>
+                          </Tr>
                         ))}
                       </Tbody>
                     </Table>
@@ -726,14 +835,23 @@ const AdminVisitorAnalyticsPage = () => {
                 </Box>
                 <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
                   <Heading size="md" mb={4}>By city</Heading>
+                  <Text fontSize="xs" color={textColor} mb={2}>Unique sessions and event counts.</Text>
                   {data.byCity.length > 0 ? (
                     <Table variant="simple" size="sm">
                       <Thead>
-                        <Tr><Th color={tableHeadingColor}>City</Th><Th color={tableHeadingColor} isNumeric>Events</Th></Tr>
+                        <Tr>
+                          <Th color={tableHeadingColor}>City</Th>
+                          <Th color={tableHeadingColor} isNumeric>Sessions</Th>
+                          <Th color={tableHeadingColor} isNumeric>Events</Th>
+                        </Tr>
                       </Thead>
                       <Tbody>
-                        {data.byCity.map(({ city, count }) => (
-                          <Tr key={city}><Td>{city}</Td><Td isNumeric>{count}</Td></Tr>
+                        {data.byCity.map(({ city, count, sessions }) => (
+                          <Tr key={city}>
+                            <Td>{city}</Td>
+                            <Td isNumeric>{sessions}</Td>
+                            <Td isNumeric>{count}</Td>
+                          </Tr>
                         ))}
                       </Tbody>
                     </Table>
@@ -845,10 +963,27 @@ const AdminVisitorAnalyticsPage = () => {
                       so you can understand who visited and what they did.
                     </Text>
                     <Text color={textColor}>
-                      • Use the options on the right to clear analytics data completely or
-                      to keep only recent activity.
+                      • Export a CSV of the current period before clearing, then use the
+                      danger zone to clear by retention or clear all.
                     </Text>
                   </VStack>
+                  <Button
+                    size="sm"
+                    colorScheme="teal"
+                    variant="outline"
+                    mt={4}
+                    isLoading={isExporting}
+                    loadingText="Exporting…"
+                    onClick={handleExportCsv}
+                    isDisabled={!data?.sessions?.length}
+                  >
+                    Export CSV (current period)
+                  </Button>
+                  {data?.sessions?.length != null && data.sessions.length > 0 && (
+                    <Text fontSize="xs" color={textColor}>
+                      Downloads {data.sessions.length} session(s) for the last {data.period} days.
+                    </Text>
+                  )}
                 </Box>
 
                 <Box
@@ -869,20 +1004,35 @@ const AdminVisitorAnalyticsPage = () => {
                   <VStack align="flex-start" spacing={4}>
                     <Box>
                       <Heading size="sm" mb={1}>
-                        Clear analytics older than 90 days
+                        Clear analytics older than X days
                       </Heading>
                       <Text fontSize="sm" color={textColor} mb={2}>
-                        Remove historical events older than 90 days while keeping recent
-                        visitor data for ongoing analysis.
+                        Remove historical events older than the selected number of days
+                        while keeping recent visitor data.
                       </Text>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        colorScheme="red"
-                        onClick={openClearOldConfirm}
-                      >
-                        Clear analytics &gt; 90 days old
-                      </Button>
+                      <HStack spacing={3} flexWrap="wrap">
+                        <Select
+                          value={String(retentionDays)}
+                          onChange={(e) => setRetentionDays(Number(e.target.value))}
+                          maxW="120px"
+                          size="sm"
+                          bg={cardBg}
+                        >
+                          {RETENTION_OPTIONS.map((d) => (
+                            <option key={d} value={d}>
+                              {d} days
+                            </option>
+                          ))}
+                        </Select>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          colorScheme="red"
+                          onClick={openClearOldConfirm}
+                        >
+                          Clear analytics &gt; {retentionDays} days old
+                        </Button>
+                      </HStack>
                     </Box>
 
                     <Divider />
@@ -1101,7 +1251,7 @@ const AdminVisitorAnalyticsPage = () => {
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
                 {clearMode === "all"
                   ? "Clear all visitor analytics"
-                  : "Clear analytics older than 90 days"}
+                  : `Clear analytics older than ${retentionDays} days`}
               </AlertDialogHeader>
 
               <AlertDialogBody>
@@ -1114,7 +1264,8 @@ const AdminVisitorAnalyticsPage = () => {
                 ) : (
                   <>
                     This will permanently delete visitor analytics records older than{" "}
-                    <strong>90 days</strong>. Recent data (last 90 days) will be kept.
+                    <strong>{retentionDays} days</strong>. Recent data (last {retentionDays}{" "}
+                    days) will be kept.
                   </>
                 )}
               </AlertDialogBody>

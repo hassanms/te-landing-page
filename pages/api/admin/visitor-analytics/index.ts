@@ -14,13 +14,17 @@ interface VisitorEventRow {
   city: string | null;
   referrer: string | null;
   created_at: string;
+  visitor_id: string | null;
 }
+
+const BOUNCE_DURATION_SEC = 10;
 
 function computeSessions(events: VisitorEventRow[]) {
   const bySession = new Map<
     string,
     {
       session_id: string;
+      visitor_id: string | null;
       platform: string | null;
       referrer: string | null;
       country: string | null;
@@ -37,6 +41,7 @@ function computeSessions(events: VisitorEventRow[]) {
       user_company: string | null;
       page_view_count: number;
       link_click_count: number;
+      reached_contact: boolean;
     }
   >();
 
@@ -50,6 +55,7 @@ function computeSessions(events: VisitorEventRow[]) {
       const firstPage = e.event_type === "page_view" ? (e.page_path || "/") : "/";
       s = {
         session_id: e.session_id,
+        visitor_id: e.visitor_id ?? null,
         platform: e.platform,
         referrer: e.referrer,
         country: e.country,
@@ -66,10 +72,12 @@ function computeSessions(events: VisitorEventRow[]) {
         user_company: null,
         page_view_count: 0,
         link_click_count: 0,
+        reached_contact: false,
       };
       bySession.set(e.session_id, s);
     }
     s.last_at = e.created_at;
+    if (e.visitor_id) s.visitor_id = e.visitor_id;
     if (e.event_type === "page_view" && s.events.filter((x) => x.event_type === "page_view").length === 0) {
       s.first_landing_page = e.page_path || "/";
       s.first_visit_at = e.created_at;
@@ -113,6 +121,9 @@ function computeSessions(events: VisitorEventRow[]) {
       if (p.phone) s.user_phone = String(p.phone).slice(0, 32);
       if (p.company) s.user_company = String(p.company).slice(0, 200);
     }
+    if (e.page_path && e.page_path.includes("contact")) {
+      s.reached_contact = true;
+    }
   }
 
   return Array.from(bySession.values());
@@ -143,7 +154,7 @@ export default async function handler(
 
     const { data: events, error: eventsError } = await supabase
       .from("visitor_events")
-      .select("id, session_id, event_type, event_name, page_path, payload, platform, country, city, referrer, created_at")
+      .select("id, session_id, event_type, event_name, page_path, payload, platform, country, city, referrer, created_at, visitor_id")
       .gte("created_at", startISO)
       .order("created_at", { ascending: false });
 
@@ -180,6 +191,32 @@ export default async function handler(
     const sessions = computeSessions(list);
     const totalDurationSec = sessions.reduce((sum, s) => sum + s.total_duration_sec, 0);
     const avgSessionDurationSec = sessions.length > 0 ? Math.round(totalDurationSec / sessions.length) : 0;
+
+    const bouncedCount = sessions.filter(
+      (s) =>
+        s.page_view_count <= 1 &&
+        s.link_click_count === 0 &&
+        s.total_duration_sec <= BOUNCE_DURATION_SEC
+    ).length;
+    const bounceRate = sessions.length > 0 ? Math.round((bouncedCount / sessions.length) * 100) : 0;
+
+    const convertedCount = sessions.filter(
+      (s) =>
+        !!(s.user_name || s.user_email || s.user_phone) || s.reached_contact
+    ).length;
+    const conversionRate = sessions.length > 0 ? Math.round((convertedCount / sessions.length) * 100) : 0;
+
+    const sessionsByVisitorId = new Map<string, number>();
+    for (const s of sessions) {
+      const vid = s.visitor_id || `anon_${s.session_id}`;
+      sessionsByVisitorId.set(vid, (sessionsByVisitorId.get(vid) || 0) + 1);
+    }
+    let newVisitors = 0;
+    let returningVisitors = 0;
+    sessionsByVisitorId.forEach((count) => {
+      if (count === 1) newVisitors += 1;
+      else returningVisitors += 1;
+    });
 
     const eventsByDay: Record<string, number> = {};
     list.forEach((e) => {
@@ -244,6 +281,10 @@ export default async function handler(
         totalEvents: list.length,
         uniqueSessions: sessionsSet.size,
         avgSessionDurationSec,
+        bounceRate,
+        conversionRate,
+        newVisitors,
+        returningVisitors,
       },
       eventsByDay: eventsByDayList,
       byPlatform: platformList,

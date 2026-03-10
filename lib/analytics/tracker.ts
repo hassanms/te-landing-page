@@ -1,5 +1,5 @@
 import { EVENT_NAMES } from "./constants";
-import { getAttribution, getOrCreateSessionId, captureAndPersistAttribution, fetchAndPersistGeo } from "./source";
+import { getAttribution, getOrCreateSessionId, getOrCreateVisitorId, captureAndPersistAttribution, fetchAndPersistGeo } from "./source";
 import type { VisitorEventPayload } from "./types";
 
 const API_EVENTS_URL = "/api/events";
@@ -56,6 +56,9 @@ function buildPayload(
     payload.country = attribution.country ?? undefined;
     payload.city = attribution.city ?? undefined;
   }
+
+  const visitorId = getOrCreateVisitorId();
+  if (visitorId) payload.visitor_id = visitorId;
 
   return payload;
 }

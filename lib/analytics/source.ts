@@ -50,6 +50,34 @@ function safeSessionStorage(): Storage | null {
   }
 }
 
+function safeLocalStorage(): Storage | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Generate or retrieve persistent visitor ID (localStorage).
+ * Used for "new vs returning" in analytics; survives browser close.
+ */
+export function getOrCreateVisitorId(): string | null {
+  const storage = safeLocalStorage();
+  if (!storage) return null;
+  let vid = storage.getItem(STORAGE_KEYS.VISITOR_ID);
+  if (!vid) {
+    vid = `v_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
+    try {
+      storage.setItem(STORAGE_KEYS.VISITOR_ID, vid);
+    } catch {
+      return null;
+    }
+  }
+  return vid;
+}
+
 /**
  * Parse current URL for UTM params and read document.referrer; derive platform and persist to sessionStorage.
  * Call on first load (and optionally on route change for SPA).

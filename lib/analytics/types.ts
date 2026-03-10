@@ -30,4 +30,6 @@ export interface VisitorEventPayload {
   user_agent?: string;
   country?: string | null;
   city?: string | null;
+  /** Persistent ID for new vs returning (localStorage) */
+  visitor_id?: string | null;
 }

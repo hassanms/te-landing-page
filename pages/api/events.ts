@@ -30,6 +30,7 @@ export default async function handler(
       user_agent?: string;
       country?: string | null;
       city?: string | null;
+      visitor_id?: string | null;
     };
     if (typeof req.body === "object" && req.body !== null) {
       body = req.body as typeof body;
@@ -65,6 +66,7 @@ export default async function handler(
       user_agent: body.user_agent ?? null,
       country: body.country ?? null,
       city: body.city ?? null,
+      visitor_id: body.visitor_id ?? null,
     });
 
     if (error) {

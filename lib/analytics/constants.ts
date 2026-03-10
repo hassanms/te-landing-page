@@ -14,6 +14,8 @@ export const STORAGE_KEYS = {
   SESSION_ID: "te_session_id",
   COUNTRY: "te_country",
   CITY: "te_city",
+  /** Persistent visitor ID (localStorage) for new vs returning */
+  VISITOR_ID: "te_visitor_id",
 } as const;
 
 export const EVENT_NAMES = {

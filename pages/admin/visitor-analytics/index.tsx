@@ -115,7 +115,15 @@ interface SessionDetail {
 interface VisitorAnalyticsData {
   period: number;
   startDate: string;
-  summary: { totalEvents: number; uniqueSessions: number; avgSessionDurationSec: number };
+  summary: {
+    totalEvents: number;
+    uniqueSessions: number;
+    avgSessionDurationSec: number;
+    bounceRate?: number;
+    conversionRate?: number;
+    newVisitors?: number;
+    returningVisitors?: number;
+  };
   eventsByDay: { date: string; count: number }[];
   byPlatform: { platform: string; count: number }[];
   byCountry: { country: string; count: number }[];
@@ -496,10 +504,102 @@ const AdminVisitorAnalyticsPage = () => {
                   )}
                 </Box>
               </SimpleGrid>
+
+              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mt={6}>
+                <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
+                  <Heading size="sm" mb={3}>Top pages</Heading>
+                  {data.topPages && data.topPages.length > 0 ? (
+                    <Table size="sm">
+                      <Thead>
+                        <Tr>
+                          <Th color={tableHeadingColor}>Page</Th>
+                          <Th color={tableHeadingColor} isNumeric>Views</Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {data.topPages.slice(0, 10).map(({ page_path, count }) => (
+                          <Tr key={page_path}>
+                            <Td fontFamily="mono" fontSize="xs" noOfLines={1} maxW="240px" title={page_path}>
+                              {page_path || "/"}
+                            </Td>
+                            <Td isNumeric>{count}</Td>
+                          </Tr>
+                        ))}
+                      </Tbody>
+                    </Table>
+                  ) : (
+                    <Text color={textColor} fontSize="sm">No page data yet.</Text>
+                  )}
+                </Box>
+                <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
+                  <Heading size="sm" mb={3}>Most clicked</Heading>
+                  {data.topClicks && data.topClicks.length > 0 ? (
+                    <Box overflowX="auto">
+                      <Table size="sm">
+                        <Thead>
+                          <Tr>
+                            <Th color={tableHeadingColor}>Link / button</Th>
+                            <Th color={tableHeadingColor} isNumeric>Clicks</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {data.topClicks.slice(0, 10).map(({ label, count }, i) => (
+                            <Tr key={i}>
+                              <Td
+                                fontSize="xs"
+                                maxW="280px"
+                                whiteSpace="normal"
+                                wordBreak="break-word"
+                                title={label}
+                              >
+                                {label && label.length > 60 ? `${label.slice(0, 60)}…` : label || "—"}
+                              </Td>
+                              <Td isNumeric>{count}</Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+                    </Box>
+                  ) : (
+                    <Text color={textColor} fontSize="sm">No click data yet.</Text>
+                  )}
+                </Box>
+              </SimpleGrid>
             </TabPanel>
 
             {/* Visitors: all visitors with name, email, phone, location, source, activity */}
             <TabPanel px={0}>
+              <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={4} mb={6}>
+                <Stat bg={cardBg} p={5} borderRadius="xl" border="1px solid" borderColor={borderColor} boxShadow="sm">
+                  <StatLabel textTransform="uppercase" fontSize="xs" color={textColor}>Bounce rate</StatLabel>
+                  <StatNumber fontSize="2xl">
+                    {typeof data.summary.bounceRate === "number" ? `${data.summary.bounceRate}%` : "—"}
+                  </StatNumber>
+                  <StatHelpText>≤1 page, no clicks, ≤10s</StatHelpText>
+                </Stat>
+                <Stat bg={cardBg} p={5} borderRadius="xl" border="1px solid" borderColor={borderColor} boxShadow="sm">
+                  <StatLabel textTransform="uppercase" fontSize="xs" color={textColor}>Conversion rate</StatLabel>
+                  <StatNumber fontSize="2xl" color="teal.500">
+                    {typeof data.summary.conversionRate === "number" ? `${data.summary.conversionRate}%` : "—"}
+                  </StatNumber>
+                  <StatHelpText>Reached contact or submitted form</StatHelpText>
+                </Stat>
+                <Stat bg={cardBg} p={5} borderRadius="xl" border="1px solid" borderColor={borderColor} boxShadow="sm">
+                  <StatLabel textTransform="uppercase" fontSize="xs" color={textColor}>New visitors</StatLabel>
+                  <StatNumber fontSize="2xl">
+                    {typeof data.summary.newVisitors === "number" ? data.summary.newVisitors : "—"}
+                  </StatNumber>
+                  <StatHelpText>1 session in period</StatHelpText>
+                </Stat>
+                <Stat bg={cardBg} p={5} borderRadius="xl" border="1px solid" borderColor={borderColor} boxShadow="sm">
+                  <StatLabel textTransform="uppercase" fontSize="xs" color={textColor}>Returning visitors</StatLabel>
+                  <StatNumber fontSize="2xl">
+                    {typeof data.summary.returningVisitors === "number" ? data.summary.returningVisitors : "—"}
+                  </StatNumber>
+                  <StatHelpText>2+ sessions in period</StatHelpText>
+                </Stat>
+              </SimpleGrid>
+
               <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} mb={6}>
                 <Heading size="md" mb={2}>All visitors</Heading>
                 <Text fontSize="sm" color={textColor} mb={4}>

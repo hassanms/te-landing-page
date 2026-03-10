@@ -49,6 +49,15 @@ CREATE INDEX IF NOT EXISTS idx_visitor_events_country ON visitor_events(country)
 CREATE INDEX IF NOT EXISTS idx_visitor_events_city ON visitor_events(city);
 ```
 
+Then run the third migration for new vs returning (persistent visitor ID):
+
+**File:** `supabase/migrations/20250309200000_visitor_events_visitor_id.sql`
+
+```sql
+ALTER TABLE visitor_events ADD COLUMN IF NOT EXISTS visitor_id TEXT;
+CREATE INDEX IF NOT EXISTS idx_visitor_events_visitor_id ON visitor_events(visitor_id);
+```
+
 ## 2. Environment variables
 
 No new env vars are required. The app uses:
@@ -71,13 +80,13 @@ Optional:
 | `session_end`        | Tab close or navigate away (with time on last page)      |
 | `user_identified`    | Name, email, phone (and optional company) from contact/career form submit; links the session to a person for admin readability. |
 
-Country and city are resolved client-side via a geo API (ip-api.com) and stored with each event. When a visitor submits the contact form or a career application, the session is associated with their name, email, and phone so the admin Sessions tab shows them instead of only the Session ID.
+Country and city are resolved client-side via a geo API (ip-api.com) and stored with each event. A persistent **visitor_id** (localStorage) is used for "new vs returning" in the Overview; when absent, events still store normally. When a visitor submits the contact form or a career application, the session is associated with their name, email, and phone so the admin Sessions tab shows them instead of only the Session ID.
 
 ## 4. Viewing data in admin
 
 - **Admin → Visitor Analytics** (GA-style):
-  - **Overview:** Sessions, total events, avg session duration, top country, events-over-time chart, traffic by source (pie), top countries.
-  - **Visitors:** Full list of all visitors (up to 500 per period): Name, Email, Phone, Company (when they submitted contact/career form), Location (country, city – collected automatically for every visit), Source, First visit, Last seen, Time on site, Events count. Click **View** for full activity. Data is collected automatically (location, source, pages, time); name/email/phone appear when the visitor submits a form.
+  - **Overview:** Sessions, total events, avg session duration, top country; events-over-time chart, traffic by source (pie), top countries, top pages, most clicked.
+  - **Visitors:** Bounce rate, conversion rate, new vs returning visitors (by persistent visitor_id); then full list of all visitors (up to 500 per period): Name, Email, Phone, Company (when they submitted contact/career form), Location (country, city – collected automatically for every visit), Source, First visit, Last seen, Time on site, Events count. Click **View** for full activity. Data is collected automatically (location, source, pages, time); name/email/phone appear when the visitor submits a form.
   - **Traffic sources:** Where visitors come from (Google, LinkedIn, Facebook, direct URL, etc.) with bar chart and table.
   - **Geography:** By country and by city tables.
   - **Sessions:** Per-visitor sessions with User/Session ID, source, country, city, first page, arrived/left time, total duration. Click **View** to open session detail: time per page, full event timeline (page views, clicks, when they left, and which links/buttons they clicked).

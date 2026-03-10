@@ -1,5 +1,5 @@
-import { STORAGE_KEYS, PLATFORM_VALUES } from "./constants";
-import type { Attribution, Platform } from "./types";
+import { STORAGE_KEYS, PLATFORM_VALUES, type Platform } from "./constants";
+import type { Attribution } from "./types";
 
 const PLATFORM_DOMAINS: Record<string, Platform> = {
   "google.com": "google",

@@ -62,9 +62,6 @@ const OurStory: React.FC = () => {
         }}
       />
       <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
-      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {
@@ -77,13 +74,6 @@ const OurStory: React.FC = () => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
       <Container maxW="container.xl" pt={{ base: 40, md: 40, lg: 20 }} pb="20">
         <BackgroundGradient height="100%" zIndex="-1" />{" "}
         <Flex

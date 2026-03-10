@@ -580,53 +580,46 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
 
 export default BlogPostPage;
 
-export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async ({ params, req }) => {
+// Fetch post server-side so crawlers get full HTML (no dependency on API self-call)
+export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async ({ params }) => {
   const slug = params?.slug as string | undefined;
 
   if (!slug) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
   try {
-    // Prefer absolute URL from env; fall back to current host
-    const envBase = process.env.NEXT_PUBLIC_SITE_URL;
-    const hostBase =
-      req.headers["x-forwarded-host"] ||
-      req.headers.host ||
-      "localhost:3000";
-    const protocol =
-      req.headers["x-forwarded-proto"] ||
-      (hostBase.toString().includes("localhost") ? "http" : "https");
+    const { getSupabaseAdmin } = await import("lib/supabase/server");
+    const supabase = getSupabaseAdmin();
 
-    const baseUrl = envBase || `${protocol}://${hostBase}`;
+    const { data: post, error } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .eq("slug", slug)
+      .eq("is_published", true)
+      .single();
 
-    const res = await fetch(`${baseUrl}/api/blog/${slug}`);
-
-    if (res.status === 404) {
+    if (error || !post) {
       return { notFound: true };
     }
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch blog post: ${res.status}`);
-    }
-
-    const data = await res.json();
+    const { data: relatedPosts } = await supabase
+      .from("blog_posts")
+      .select("id, slug, title, excerpt, featured_image, category, published_at, reading_time_minutes")
+      .eq("is_published", true)
+      .eq("category", post.category)
+      .neq("id", post.id)
+      .order("published_at", { ascending: false })
+      .limit(3);
 
     return {
       props: {
-        post: data.post || null,
-        relatedPosts: data.relatedPosts || [],
+        post,
+        relatedPosts: relatedPosts || [],
       },
     };
   } catch (error) {
     console.error("Error in getServerSideProps for /blog/[slug]:", error);
-    return {
-      props: {
-        post: null,
-        relatedPosts: [],
-      },
-    };
+    return { notFound: true };
   }
 };

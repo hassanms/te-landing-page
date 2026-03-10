@@ -24,6 +24,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { FaChevronRight } from "react-icons/fa";
+import { identifyUser } from "lib/analytics";
 
 const validatePhone = (phone: string) => {
   const cleaned = phone.replace(/[^\d+]/g, "");
@@ -260,6 +261,7 @@ const CareersApply = () => {
         role: roleFromQuery,
       });
 
+      identifyUser({ name: formData.name, email: formData.email, phone: formData.phone });
       toast.success("Application submitted successfully");
       setFormData({
         name: "",

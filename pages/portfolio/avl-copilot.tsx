@@ -79,10 +79,6 @@ const CaseStudyAVLCoPilotV3 = () => {
         canonicalUrl="https://techemulsion.com/portfolio/avl-copilot"
       />
       <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
-      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {
@@ -95,12 +91,6 @@ const CaseStudyAVLCoPilotV3 = () => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
 
       {/* Hero Section */}
       <Box

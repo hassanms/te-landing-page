@@ -68,6 +68,26 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
     content?.sdlcPhases?.[0]?.number ?? null
   );
 
+  const engagementImageSrc: Record<string, string> = {
+    "ai-enabled-teams":
+      "/assets/engagement-models/AI-enabled%20development%20teams.jpg",
+    "staff-augmentation":
+      "/assets/engagement-models/Staff%20augmentation.jpg",
+    "dedicated-teams":
+      "/assets/engagement-models/Dedicated%20teams.jpg",
+    "project-outsourcing":
+      "/assets/engagement-models/Project-outsourcing.jpg",
+    "solutions-for-startups":
+      "/assets/engagement-models/Solutions%20for%20startups.jpg",
+    "solutions-for-enterprises":
+      "/assets/engagement-models/Solutions%20for%20enterprises.jpg",
+    "solutions-for-ai-companies":
+      "/assets/engagement-models/Solutions-for-AI-companies.jpg",
+  };
+
+  const engagementImage = engagementImageSrc[model.slug] ??
+    "/assets/engagement-models/safe-empowered-section.jpg";
+
   const subtlePattern = useColorModeValue(
     "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
     "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)"
@@ -409,8 +429,8 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
                   h={{ base: "auto", md: "100%" }}
                 >
                   <Image
-                    src="/assets/engagement-models/safe-empowered-section.jpg"
-                    alt="Team collaborating on AI and delivery"
+                    src={engagementImage}
+                    alt={`${heroTitle} – team collaborating`}
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 100vw, 45vw"

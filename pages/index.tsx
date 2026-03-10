@@ -113,10 +113,6 @@ const MotionCard = motion(Box);
 const Home: NextPage = () => {
   return (
     <Box>
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
-
       {/* Calendly CSS - kept separate as it's required for widget functionality */}
       <Head>
         <link
@@ -137,13 +133,6 @@ const Home: NextPage = () => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
 
       <EnhancedSEO
         title="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"

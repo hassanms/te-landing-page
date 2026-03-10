@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Box,
@@ -102,10 +100,6 @@ const Services = () => {
         }}
       />
       <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"
-      />
-      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {
@@ -118,12 +112,6 @@ const Services = () => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
 
       <Box position="relative" minH="100vh" color={headingColor}>
         <Box
@@ -342,5 +330,10 @@ const Services = () => {
     </>
   );
 };
+
+// SSG so crawlers get full HTML and avoid server errors from client-only path
+export async function getStaticProps() {
+  return { props: {} };
+}
 
 export default Services;

@@ -40,9 +40,6 @@ const TermsOfService = () => {
         />
       </Head>
       <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-DJFC9CERLF"></Script>
-      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {
@@ -55,13 +52,6 @@ const TermsOfService = () => {
           });
         }}
       />
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DJFC9CERLF')`}
-      </Script>
       <Container maxW="container.xl" py="20">
         <BackgroundGradient height="100%" zIndex="-1" />
         <Box

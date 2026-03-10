@@ -194,7 +194,7 @@ export const getServerSideProps: GetServerSideProps<JobDetailPageProps> = async 
       company: "Tech Emulsion",
       employmentType: (row.employment_type as Job["employmentType"]) || "Full-time",
       department: (row.department as string) || "",
-      locations: [row.location as string] || [],
+      locations: row.location ? [row.location as string] : [],
       region: "APAC",
       country: "Pakistan",
       industry: "Technology",

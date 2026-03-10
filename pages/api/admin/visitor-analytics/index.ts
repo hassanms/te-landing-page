@@ -13,6 +13,9 @@ interface VisitorEventRow {
   country: string | null;
   city: string | null;
   referrer: string | null;
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
   created_at: string;
   visitor_id: string | null;
 }
@@ -154,7 +157,7 @@ export default async function handler(
 
     const { data: events, error: eventsError } = await supabase
       .from("visitor_events")
-      .select("id, session_id, event_type, event_name, page_path, payload, platform, country, city, referrer, created_at, visitor_id")
+      .select("id, session_id, event_type, event_name, page_path, payload, platform, country, city, referrer, utm_source, utm_medium, utm_campaign, created_at, visitor_id")
       .gte("created_at", startISO)
       .order("created_at", { ascending: false });
 
@@ -170,6 +173,9 @@ export default async function handler(
     const byClick: Record<string, number> = {};
     const byCountry: Record<string, number> = {};
     const byCity: Record<string, number> = {};
+    const byUtmSource: Record<string, number> = {};
+    const byUtmMedium: Record<string, number> = {};
+    const byUtmCampaign: Record<string, number> = {};
     const sessionsSet = new Set<string>();
 
     list.forEach((e) => {
@@ -178,6 +184,15 @@ export default async function handler(
       byPlatform[platform] = (byPlatform[platform] || 0) + 1;
       if (e.country) byCountry[e.country] = (byCountry[e.country] || 0) + 1;
       if (e.city) byCity[e.city] = (byCity[e.city] || 0) + 1;
+      if (e.utm_source) {
+        byUtmSource[e.utm_source] = (byUtmSource[e.utm_source] || 0) + 1;
+      }
+      if (e.utm_medium) {
+        byUtmMedium[e.utm_medium] = (byUtmMedium[e.utm_medium] || 0) + 1;
+      }
+      if (e.utm_campaign) {
+        byUtmCampaign[e.utm_campaign] = (byUtmCampaign[e.utm_campaign] || 0) + 1;
+      }
       if (e.page_path) {
         byPage[e.page_path] = (byPage[e.page_path] || 0) + 1;
       }
@@ -228,9 +243,19 @@ export default async function handler(
       .sort((a, b) => a.date.localeCompare(b.date))
       .slice(-30);
 
+    const sessionsByPlatform = new Map<string, number>();
+    for (const s of sessions) {
+      const key = s.platform || "direct";
+      sessionsByPlatform.set(key, (sessionsByPlatform.get(key) || 0) + 1);
+    }
+
     const platformList = Object.entries(byPlatform)
-      .map(([platform, count]) => ({ platform, count }))
-      .sort((a, b) => b.count - a.count);
+      .map(([platform, count]) => ({
+        platform,
+        count,
+        sessions: sessionsByPlatform.get(platform) ?? 0,
+      }))
+      .sort((a, b) => b.sessions - a.sessions);
 
     const sessionsByCountry = new Map<string, Set<string>>();
     const sessionsByCity = new Map<string, Set<string>>();
@@ -262,6 +287,51 @@ export default async function handler(
       }))
       .sort((a, b) => b.sessions - a.sessions)
       .slice(0, 30);
+
+    const sessionsByUtmSource = new Map<string, Set<string>>();
+    const sessionsByUtmMedium = new Map<string, Set<string>>();
+    const sessionsByUtmCampaign = new Map<string, Set<string>>();
+    list.forEach((e) => {
+      if (e.utm_source) {
+        if (!sessionsByUtmSource.has(e.utm_source)) sessionsByUtmSource.set(e.utm_source, new Set());
+        sessionsByUtmSource.get(e.utm_source)!.add(e.session_id);
+      }
+      if (e.utm_medium) {
+        if (!sessionsByUtmMedium.has(e.utm_medium)) sessionsByUtmMedium.set(e.utm_medium, new Set());
+        sessionsByUtmMedium.get(e.utm_medium)!.add(e.session_id);
+      }
+      if (e.utm_campaign) {
+        if (!sessionsByUtmCampaign.has(e.utm_campaign)) sessionsByUtmCampaign.set(e.utm_campaign, new Set());
+        sessionsByUtmCampaign.get(e.utm_campaign)!.add(e.session_id);
+      }
+    });
+
+    const utmSourceList = Object.entries(byUtmSource)
+      .map(([utm_source, count]) => ({
+        utm_source,
+        count,
+        sessions: sessionsByUtmSource.get(utm_source)?.size ?? 0,
+      }))
+      .sort((a, b) => b.sessions - a.sessions)
+      .slice(0, 50);
+
+    const utmMediumList = Object.entries(byUtmMedium)
+      .map(([utm_medium, count]) => ({
+        utm_medium,
+        count,
+        sessions: sessionsByUtmMedium.get(utm_medium)?.size ?? 0,
+      }))
+      .sort((a, b) => b.sessions - a.sessions)
+      .slice(0, 50);
+
+    const utmCampaignList = Object.entries(byUtmCampaign)
+      .map(([utm_campaign, count]) => ({
+        utm_campaign,
+        count,
+        sessions: sessionsByUtmCampaign.get(utm_campaign)?.size ?? 0,
+      }))
+      .sort((a, b) => b.sessions - a.sessions)
+      .slice(0, 50);
 
     const topPages = Object.entries(byPage)
       .map(([page_path, count]) => ({ page_path, count }))
@@ -311,6 +381,9 @@ export default async function handler(
       byPlatform: platformList,
       byCountry: countryList,
       byCity: cityList,
+      utmBySource: utmSourceList,
+      utmByMedium: utmMediumList,
+      utmByCampaign: utmCampaignList,
       topPages,
       topClicks,
       sessions: sessionsSummary,

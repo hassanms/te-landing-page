@@ -131,9 +131,12 @@ interface VisitorAnalyticsData {
     returningVisitors?: number;
   };
   eventsByDay: { date: string; count: number }[];
-  byPlatform: { platform: string; count: number }[];
+  byPlatform: { platform: string; count: number; sessions: number }[];
   byCountry: { country: string; count: number; sessions: number }[];
   byCity: { city: string; count: number; sessions: number }[];
+  utmBySource?: { utm_source: string; count: number; sessions: number }[];
+  utmByMedium?: { utm_medium: string; count: number; sessions: number }[];
+  utmByCampaign?: { utm_campaign: string; count: number; sessions: number }[];
   topPages: { page_path: string; count: number }[];
   topClicks: { label: string; count: number }[];
   sessions: SessionSummary[];
@@ -548,12 +551,12 @@ const AdminVisitorAnalyticsPage = () => {
                         <PieChart>
                           <Pie
                             data={data.byPlatform}
-                            dataKey="count"
+                            dataKey="sessions"
                             nameKey="platform"
                             cx="50%"
                             cy="50%"
                             outerRadius={70}
-                            label={({ platform, count }) => `${platform} (${count})`}
+                            label={({ platform, sessions }) => `${platform} (${sessions})`}
                           >
                             {data.byPlatform.map((_, i) => (
                               <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
@@ -759,7 +762,7 @@ const AdminVisitorAnalyticsPage = () => {
                           <XAxis type="number" />
                           <YAxis type="category" dataKey="platform" width={80} tick={{ fontSize: 12 }} />
                           <RechartsTooltip />
-                          <Bar dataKey="count" fill="#0D9488" name="Events" radius={[0, 4, 4, 0]} />
+                          <Bar dataKey="sessions" fill="#0D9488" name="Sessions" radius={[0, 4, 4, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
                     </Box>
@@ -767,13 +770,15 @@ const AdminVisitorAnalyticsPage = () => {
                       <Thead>
                         <Tr>
                           <Th color={tableHeadingColor}>Source / platform</Th>
+                          <Th color={tableHeadingColor} isNumeric>Sessions</Th>
                           <Th color={tableHeadingColor} isNumeric>Events</Th>
                         </Tr>
                       </Thead>
                       <Tbody>
-                        {data.byPlatform.map(({ platform, count }) => (
+                        {data.byPlatform.map(({ platform, count, sessions }) => (
                           <Tr key={platform}>
                             <Td><Badge colorScheme="teal" variant="subtle" borderRadius="md" px={2}>{platform}</Badge></Td>
+                            <Td isNumeric>{sessions}</Td>
                             <Td isNumeric>{count}</Td>
                           </Tr>
                         ))}
@@ -784,6 +789,93 @@ const AdminVisitorAnalyticsPage = () => {
                   <Text color={textColor}>No traffic source data in this period.</Text>
                 )}
               </Box>
+
+              <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={6}>
+                <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
+                  <Heading size="sm" mb={2}>UTM source</Heading>
+                  <Text fontSize="xs" color={textColor} mb={2}>
+                    Unique sessions and event counts grouped by <code>utm_source</code>.
+                  </Text>
+                  {data.utmBySource && data.utmBySource.length > 0 ? (
+                    <Table variant="simple" size="sm">
+                      <Thead>
+                        <Tr>
+                          <Th color={tableHeadingColor}>utm_source</Th>
+                          <Th color={tableHeadingColor} isNumeric>Sessions</Th>
+                          <Th color={tableHeadingColor} isNumeric>Events</Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {data.utmBySource.map(({ utm_source, sessions, count }) => (
+                          <Tr key={utm_source}>
+                            <Td>{utm_source || "(blank)"}</Td>
+                            <Td isNumeric>{sessions}</Td>
+                            <Td isNumeric>{count}</Td>
+                          </Tr>
+                        ))}
+                      </Tbody>
+                    </Table>
+                  ) : (
+                    <Text fontSize="sm" color={textColor}>No utm_source data in this period.</Text>
+                  )}
+                </Box>
+                <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
+                  <Heading size="sm" mb={2}>UTM medium</Heading>
+                  <Text fontSize="xs" color={textColor} mb={2}>
+                    Grouped by <code>utm_medium</code> (e.g. cpc, email, social).
+                  </Text>
+                  {data.utmByMedium && data.utmByMedium.length > 0 ? (
+                    <Table variant="simple" size="sm">
+                      <Thead>
+                        <Tr>
+                          <Th color={tableHeadingColor}>utm_medium</Th>
+                          <Th color={tableHeadingColor} isNumeric>Sessions</Th>
+                          <Th color={tableHeadingColor} isNumeric>Events</Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {data.utmByMedium.map(({ utm_medium, sessions, count }) => (
+                          <Tr key={utm_medium}>
+                            <Td>{utm_medium || "(blank)"}</Td>
+                            <Td isNumeric>{sessions}</Td>
+                            <Td isNumeric>{count}</Td>
+                          </Tr>
+                        ))}
+                      </Tbody>
+                    </Table>
+                  ) : (
+                    <Text fontSize="sm" color={textColor}>No utm_medium data in this period.</Text>
+                  )}
+                </Box>
+                <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
+                  <Heading size="sm" mb={2}>UTM campaign</Heading>
+                  <Text fontSize="xs" color={textColor} mb={2}>
+                    Campaign performance by sessions and events.
+                  </Text>
+                  {data.utmByCampaign && data.utmByCampaign.length > 0 ? (
+                    <Table variant="simple" size="sm">
+                      <Thead>
+                        <Tr>
+                          <Th color={tableHeadingColor}>utm_campaign</Th>
+                          <Th color={tableHeadingColor} isNumeric>Sessions</Th>
+                          <Th color={tableHeadingColor} isNumeric>Events</Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {data.utmByCampaign.map(({ utm_campaign, sessions, count }) => (
+                          <Tr key={utm_campaign}>
+                            <Td>{utm_campaign || "(blank)"}</Td>
+                            <Td isNumeric>{sessions}</Td>
+                            <Td isNumeric>{count}</Td>
+                          </Tr>
+                        ))}
+                      </Tbody>
+                    </Table>
+                  ) : (
+                    <Text fontSize="sm" color={textColor}>No utm_campaign data in this period.</Text>
+                  )}
+                </Box>
+              </SimpleGrid>
             </TabPanel>
 
             {/* Geography */}

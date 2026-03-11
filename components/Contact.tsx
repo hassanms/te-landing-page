@@ -167,6 +167,21 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!formData.name.trim()) {
+      setErrors((prev: any) => ({ ...prev, name: "Name is required" }));
+      toast.error("Name is required");
+      setFocusedField("name");
+      const nameElement = document.querySelector('[name="name"]');
+      if (nameElement) {
+        (nameElement as HTMLElement).scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        (nameElement as HTMLElement).focus();
+      }
+      return;
+    }
+
     if (!formData.email.trim()) {
       setErrors((prev: any) => ({ ...prev, email: "Email is required" }));
       toast.error("Email is required");

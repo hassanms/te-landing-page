@@ -80,7 +80,7 @@ Optional:
 | `session_end`        | Tab close or navigate away (with time on last page)      |
 | `user_identified`    | Name, email, phone (and optional company) from contact/career form submit; links the session to a person for admin readability. |
 
-Country and city are resolved client-side via a geo API (ip-api.com) and stored with each event. A persistent **visitor_id** (localStorage) is used for "new vs returning" in the Overview; when absent, events still store normally. When a visitor submits the contact form or a career application, the session is associated with their name, email, and phone so the admin Sessions tab shows them instead of only the Session ID.
+Country and city are resolved client-side via a geo API (ip-api.com) and stored with each event. The tracker waits for the geo response (up to ~2.5s) before sending the first `page_view`, so the Geography tab in admin receives country/city data. A persistent **visitor_id** (localStorage) is used for "new vs returning" in the Overview; when absent, events still store normally. When a visitor submits the contact form or a career application, the session is associated with their name, email, and phone so the admin Sessions tab shows them instead of only the Session ID.
 
 ## 4. Viewing data in admin
 
@@ -93,3 +93,19 @@ Country and city are resolved client-side via a geo API (ip-api.com) and stored 
   - **Settings:** Export current data as CSV (sessions for the selected period) before clearing; configurable retention (30, 60, 90, 180, 365 days) to clear analytics older than X days, or clear all (danger zone).
 
 Data is written by the public site to `POST /api/events`; the API inserts into `visitor_events` using the Supabase service role. The settings tab calls `POST /api/admin/visitor-analytics/clear` with appropriate scope (`all` or `older_than_days`) to delete analytics data when needed.
+
+## 5. LinkedIn (and other referrer-stripping sources)
+
+LinkedIn does **not** send a referrer when users click your website link (`Referrer-Policy: no-referrer`). So traffic from your LinkedIn company page would otherwise appear as **direct**.
+
+To attribute LinkedIn traffic correctly:
+
+1. **Use the tracking URL as your LinkedIn company “Website”**  
+   Set the website on your LinkedIn company page to:
+   - **`https://techemulsion.com/linkedin`** (or `https://yourdomain.com/linkedin`)
+
+2. The app redirects `/linkedin` → `/?utm_source=linkedin&utm_medium=social`, so the first page view is stored with source **linkedin** and shows under **Traffic sources** and **Sessions**.
+
+3. Optional: the same works for **`/r/linkedin`** if you prefer that path.
+
+If you keep the plain domain (e.g. `https://techemulsion.com`) on LinkedIn, visits will continue to show as direct because the browser never sends a referrer from LinkedIn.

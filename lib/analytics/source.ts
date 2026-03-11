@@ -5,6 +5,7 @@ const PLATFORM_DOMAINS: Record<string, Platform> = {
   "google.com": "google",
   "google.": "google",
   "linkedin.com": "linkedin",
+  "lnkd.in": "linkedin", // LinkedIn link shortener; main linkedin.com often sends no referrer (Referrer-Policy: no-referrer)
   "facebook.com": "facebook",
   "fb.com": "facebook",
   "twitter.com": "twitter",
@@ -15,6 +16,13 @@ const PLATFORM_DOMAINS: Record<string, Platform> = {
   "outlook": "email",
   "gmail": "email",
   "yahoo": "email",
+};
+
+/** Paths that imply traffic source when referrer is stripped (e.g. LinkedIn). Use these in the platform's "Website" URL. */
+const SOURCE_PATHS: Record<string, Platform> = {
+  "/linkedin": "linkedin",
+  "/r/linkedin": "linkedin",
+  "/from/linkedin": "linkedin",
 };
 
 function getPlatformFromReferrer(referrer: string): Platform {
@@ -39,6 +47,11 @@ function getPlatformFromUtmSource(utmSource: string): Platform {
   if (s.includes("youtube")) return "youtube";
   if (s.includes("email") || s.includes("newsletter")) return "email";
   return "unknown";
+}
+
+function getPlatformFromPath(path: string): Platform | null {
+  const normalized = path.replace(/\/$/, "") || "/";
+  return SOURCE_PATHS[normalized] ?? null;
 }
 
 function safeSessionStorage(): Storage | null {
@@ -108,6 +121,10 @@ export function captureAndPersistAttribution(): void {
     platform = getPlatformFromUtmSource(utm_source);
   } else if (referrer) {
     platform = getPlatformFromReferrer(referrer);
+  } else {
+    // LinkedIn (and some others) often send no referrer; path-based fallback when user lands on e.g. /linkedin
+    const pathPlatform = getPlatformFromPath(path);
+    if (pathPlatform) platform = pathPlatform;
   }
 
   // First-touch: only set if not already set this session
@@ -182,12 +199,16 @@ const GEO_API = "https://ip-api.com/json/?fields=country,city,regionName";
 /**
  * Fetch country/city from public geo API and persist to sessionStorage.
  * Call once per session; safe to call multiple times (no-op if already set).
+ * Returns a Promise that resolves when geo is already set, or when the fetch
+ * completes (success or failure). Used so the first page_view can wait for
+ * geography before sending.
  */
-export function fetchAndPersistGeo(): void {
+export function fetchAndPersistGeo(): Promise<void> {
   const storage = safeSessionStorage();
-  if (!storage || storage.getItem(STORAGE_KEYS.COUNTRY)) return;
+  if (!storage) return Promise.resolve();
+  if (storage.getItem(STORAGE_KEYS.COUNTRY)) return Promise.resolve();
 
-  fetch(GEO_API, { method: "GET" })
+  return fetch(GEO_API, { method: "GET" })
     .then((r) => r.json())
     .then((data: { country?: string; city?: string }) => {
       const storage2 = safeSessionStorage();
@@ -195,5 +216,6 @@ export function fetchAndPersistGeo(): void {
       if (data.country) storage2.setItem(STORAGE_KEYS.COUNTRY, data.country);
       if (data.city) storage2.setItem(STORAGE_KEYS.CITY, data.city);
     })
-    .catch(() => {});
+    .catch(() => {})
+    .then(() => undefined);
 }

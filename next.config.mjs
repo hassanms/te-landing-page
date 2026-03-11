@@ -4,6 +4,17 @@ const nextConfig = {
   // Canonical host and redirects for SEO: avoid duplicate content (www vs non-www, trailing slash)
   async redirects() {
     return [
+      // LinkedIn (and other) traffic: use this URL as "Website" on LinkedIn so we can attribute (LinkedIn strips referrer)
+      {
+        source: '/linkedin',
+        destination: '/?utm_source=linkedin&utm_medium=social',
+        permanent: false,
+      },
+      {
+        source: '/r/linkedin',
+        destination: '/?utm_source=linkedin&utm_medium=social',
+        permanent: false,
+      },
       // Prefer non-www; redirect www to non-www (adjust if your canonical is www)
       {
         source: '/:path*',

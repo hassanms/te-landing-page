@@ -160,17 +160,26 @@ export function trackPageLeave(
   pageEnteredAt = Date.now();
 }
 
+const GEO_WAIT_MS = 2500;
+
 export function initTracker(gaMeasurementId: string | null): void {
   if (typeof window === "undefined") return;
   if (trackerInitialized) return;
   trackerInitialized = true;
 
   captureAndPersistAttribution();
-  fetchAndPersistGeo();
   pageEnteredAt = Date.now();
 
+  // Wait for geo (with timeout) so the first page_view includes country/city.
+  // Otherwise Geography in admin stays empty because events are sent before ip-api responds.
   const path = getPagePath();
-  trackEvent(EVENT_NAMES.PAGE_VIEW, "page_view", { page_path: path }, gaMeasurementId);
+  const sendFirstPageView = () => {
+    trackEvent(EVENT_NAMES.PAGE_VIEW, "page_view", { page_path: path }, gaMeasurementId);
+  };
+  Promise.race([
+    fetchAndPersistGeo(),
+    new Promise<void>((r) => setTimeout(r, GEO_WAIT_MS)),
+  ]).then(sendFirstPageView);
 
   // Global click delegation
   document.addEventListener(

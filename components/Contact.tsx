@@ -40,32 +40,36 @@ const validatePhone = (phone: string) => {
   }
 };
 
-// Updated validation schema
+// Relaxed validation schema - all fields optional, basic format checks only
 const contactSchema = Yup.object().shape({
-  name: Yup.string()
-    .matches(/^[a-zA-Z0-9 ]*$/, "Name cannot contain special characters")
-    .required("Name is required"),
-  company: Yup.string()
-    .matches(/^[a-zA-Z0-9 ]*$/, "Company cannot contain special characters")
-    .required("Company is required"),
+  name: Yup.string().matches(
+    /^[a-zA-Z0-9 ]*$/,
+    "Name cannot contain special characters",
+  ),
+  company: Yup.string().matches(
+    /^[a-zA-Z0-9 ]*$/,
+    "Company cannot contain special characters",
+  ),
   email: Yup.string()
     .email("Invalid email address")
-    .required("Email is required")
     .matches(
       /^[^@]+@[^@]+\.[^@]+$/,
       "Email must contain a dot (.) after the @",
-    ),
+    )
+    .nullable()
+    .optional(),
   phone: Yup.string()
-    .required("Phone number is required")
     .test(
       "phone-format",
       "Please enter a valid phone number (7-15 digits). International format: +1234567890",
       (value) => {
-        if (!value) return false;
+        if (!value) return true;
         return validatePhone(value);
-      }
-    ),
-  message: Yup.string().required("Message is required"),
+      },
+    )
+    .nullable()
+    .optional(),
+  message: Yup.string(),
 });
 
 const Contact = () => {
@@ -137,12 +141,8 @@ const Contact = () => {
       }
       
       setFormData({ ...formData, [name]: cleaned });
-      try {
-        await contactSchema.validateAt(name, { ...formData, [name]: cleaned });
-        setErrors((prev: any) => ({ ...prev, [name]: "" }));
-      } catch (err: any) {
-        setErrors((prev: any) => ({ ...prev, [name]: err.message }));
-      }
+      // No per-field validation errors for optional phone
+      setErrors((prev: any) => ({ ...prev, [name]: "" }));
       return;
     }
 
@@ -150,24 +150,15 @@ const Contact = () => {
     if (name === "name" || name === "company") {
       const filtered = value.replace(/[^a-zA-Z0-9 ]/g, "");
       setFormData({ ...formData, [name]: filtered });
-      try {
-        await contactSchema.validateAt(name, { ...formData, [name]: filtered });
-        setErrors((prev: any) => ({ ...prev, [name]: "" }));
-      } catch (err: any) {
-        setErrors((prev: any) => ({ ...prev, [name]: err.message }));
-      }
+      // No per-field validation errors for optional name/company
+      setErrors((prev: any) => ({ ...prev, [name]: "" }));
       return;
     }
 
     setFormData({ ...formData, [name]: value });
 
-    // Validate field on change
-    try {
-      await contactSchema.validateAt(name, { ...formData, [name]: value });
-      setErrors((prev: any) => ({ ...prev, [name]: "" }));
-    } catch (err: any) {
-      setErrors((prev: any) => ({ ...prev, [name]: err.message }));
-    }
+    // Clear any existing error when user types
+    setErrors((prev: any) => ({ ...prev, [name]: "" }));
   };
 
   const handleFocus = (field: string) => setFocusedField(field);
@@ -175,10 +166,23 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.email.trim()) {
+      setErrors((prev: any) => ({ ...prev, email: "Email is required" }));
+      toast.error("Email is required");
+      setFocusedField("email");
+      const element = document.querySelector('[name="email"]');
+      if (element) {
+        (element as HTMLElement).scrollIntoView({ behavior: "smooth", block: "center" });
+        (element as HTMLElement).focus();
+      }
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await contactSchema.validate(formData, { abortEarly: false });
+      // Skip strict validation to make it easy to submit
       await axios.post("/api/sendEmail", formData);
       identifyUser({
         name: formData.name,
@@ -196,54 +200,7 @@ const Contact = () => {
       setErrors({});
       toast.success("Message sent successfully");
     } catch (err: any) {
-      if (err instanceof Yup.ValidationError) {
-        const validationErrors: any = {};
-        const errorMessages: string[] = [];
-        
-        err.inner.forEach((error: any) => {
-          if (error.path) {
-            validationErrors[error.path] = error.message;
-            // Create user-friendly field names
-            const fieldName = error.path.charAt(0).toUpperCase() + error.path.slice(1);
-            errorMessages.push(`${fieldName}: ${error.message}`);
-          }
-        });
-        
-        setErrors(validationErrors);
-        
-        // Show specific error messages
-        if (errorMessages.length > 0) {
-          // Show first error in toast, and set focus to first error field
-          toast.error(errorMessages[0], {
-            duration: 5000,
-          });
-          
-          // If there are multiple errors, show them all after a short delay
-          if (errorMessages.length > 1) {
-            setTimeout(() => {
-              errorMessages.slice(1).forEach((msg, index) => {
-                setTimeout(() => {
-                  toast.error(msg, { duration: 4000 });
-                }, (index + 1) * 500);
-              });
-            }, 1000);
-          }
-          
-          // Focus on the first field with error
-          const firstErrorField = err.inner[0]?.path;
-          if (firstErrorField) {
-            setFocusedField(firstErrorField);
-            // Scroll to first error field
-            setTimeout(() => {
-              const element = document.querySelector(`[name="${firstErrorField}"]`);
-              if (element) {
-                (element as HTMLElement).scrollIntoView({ behavior: "smooth", block: "center" });
-                (element as HTMLElement).focus();
-              }
-            }, 100);
-          }
-        }
-      } else if (
+      if (
         err.response &&
         err.response.data &&
         err.response.data.message

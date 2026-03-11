@@ -1,5 +1,5 @@
 import { EVENT_NAMES } from "./constants";
-import { getAttribution, getOrCreateSessionId, getOrCreateVisitorId, captureAndPersistAttribution, fetchAndPersistGeo } from "./source";
+import { getAttribution, getAttributionFromCurrentUrl, getOrCreateSessionId, getOrCreateVisitorId, captureAndPersistAttribution, persistAttributionFromCurrentUrlIfBetter, fetchAndPersistGeo } from "./source";
 import type { VisitorEventPayload } from "./types";
 
 const API_EVENTS_URL = "/api/events";
@@ -33,7 +33,15 @@ function buildPayload(
   extraPayload?: Record<string, unknown>
 ): VisitorEventPayload {
   const sessionId = getOrCreateSessionId();
+  // If storage says "direct" but current URL has utm_source or source path (e.g. /linkedin), use URL so LinkedIn etc. are attributed
+  persistAttributionFromCurrentUrlIfBetter();
   const attribution = getAttribution();
+  const fromUrl = getAttributionFromCurrentUrl();
+  const effective =
+    attribution?.platform === "direct" && fromUrl?.platform !== "direct"
+      ? fromUrl
+      : attribution;
+
   const pagePath = getPagePath();
 
   const payload: VisitorEventPayload = {
@@ -45,16 +53,16 @@ function buildPayload(
     user_agent: getUserAgent(),
   };
 
-  if (attribution) {
-    payload.platform = attribution.platform;
-    payload.utm_source = attribution.utm_source;
-    payload.utm_medium = attribution.utm_medium;
-    payload.utm_campaign = attribution.utm_campaign;
-    payload.utm_term = attribution.utm_term;
-    payload.utm_content = attribution.utm_content;
-    payload.referrer = attribution.referrer || undefined;
-    payload.country = attribution.country ?? undefined;
-    payload.city = attribution.city ?? undefined;
+  if (effective) {
+    payload.platform = effective.platform;
+    payload.utm_source = effective.utm_source;
+    payload.utm_medium = effective.utm_medium;
+    payload.utm_campaign = effective.utm_campaign;
+    payload.utm_term = effective.utm_term;
+    payload.utm_content = effective.utm_content;
+    payload.referrer = effective.referrer || undefined;
+    payload.country = effective.country ?? undefined;
+    payload.city = effective.city ?? undefined;
   }
 
   const visitorId = getOrCreateVisitorId();

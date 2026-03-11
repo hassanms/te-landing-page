@@ -54,6 +54,65 @@ function getPlatformFromPath(path: string): Platform | null {
   return SOURCE_PATHS[normalized] ?? null;
 }
 
+/**
+ * Derive platform (and UTM) from current window URL and referrer only.
+ * Used when storage says "direct" but the URL has utm_source or a source path (e.g. /linkedin)
+ * so we still attribute correctly (fixes race where first run saw wrong URL).
+ */
+export function getAttributionFromCurrentUrl(): Attribution | null {
+  if (typeof window === "undefined" || typeof document === "undefined") return null;
+  const referrer = document.referrer || "";
+  const params = new URLSearchParams(window.location.search);
+  const utm_source = params.get("utm_source") || "";
+  const path = window.location.pathname || "";
+  let platform: Platform = "direct";
+  if (utm_source) {
+    platform = getPlatformFromUtmSource(utm_source);
+  } else if (referrer) {
+    platform = getPlatformFromReferrer(referrer);
+  } else {
+    const pathPlatform = getPlatformFromPath(path);
+    if (pathPlatform) platform = pathPlatform;
+  }
+  const storage = safeSessionStorage();
+  return {
+    platform,
+    utm_source: params.get("utm_source") || null,
+    utm_medium: params.get("utm_medium") || null,
+    utm_campaign: params.get("utm_campaign") || null,
+    utm_term: params.get("utm_term") || null,
+    utm_content: params.get("utm_content") || null,
+    referrer,
+    first_landing_page: path,
+    first_visit_at: storage?.getItem(STORAGE_KEYS.FIRST_VISIT_AT) || "",
+    country: storage?.getItem(STORAGE_KEYS.COUNTRY) || null,
+    city: storage?.getItem(STORAGE_KEYS.CITY) || null,
+  };
+}
+
+/**
+ * If current URL indicates a source (e.g. utm_source=linkedin or path /linkedin) but storage
+ * has "direct", persist from current URL so this session is attributed correctly.
+ */
+export function persistAttributionFromCurrentUrlIfBetter(): void {
+  const storage = safeSessionStorage();
+  if (!storage) return;
+  const storedPlatform = storage.getItem(STORAGE_KEYS.PLATFORM) as Platform | null;
+  if (storedPlatform && storedPlatform !== "direct") return; // already have a source
+  const current = getAttributionFromCurrentUrl();
+  if (!current || current.platform === "direct") return;
+  const now = new Date().toISOString();
+  storage.setItem(STORAGE_KEYS.PLATFORM, current.platform);
+  if (current.utm_source) storage.setItem(STORAGE_KEYS.UTM_SOURCE, current.utm_source);
+  if (current.utm_medium) storage.setItem(STORAGE_KEYS.UTM_MEDIUM, current.utm_medium);
+  if (current.utm_campaign) storage.setItem(STORAGE_KEYS.UTM_CAMPAIGN, current.utm_campaign);
+  if (current.utm_term) storage.setItem(STORAGE_KEYS.UTM_TERM, current.utm_term);
+  if (current.utm_content) storage.setItem(STORAGE_KEYS.UTM_CONTENT, current.utm_content);
+  storage.setItem(STORAGE_KEYS.REFERRER, current.referrer || "");
+  storage.setItem(STORAGE_KEYS.FIRST_LANDING_PAGE, current.first_landing_page || "/");
+  if (!storage.getItem(STORAGE_KEYS.FIRST_VISIT_AT)) storage.setItem(STORAGE_KEYS.FIRST_VISIT_AT, now);
+}
+
 function safeSessionStorage(): Storage | null {
   if (typeof window === "undefined") return null;
   try {

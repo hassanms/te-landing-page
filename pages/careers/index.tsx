@@ -1,11 +1,10 @@
-import type { GetServerSideProps } from "next";
+import type { GetStaticProps } from "next";
 import { Box, Container, Stack, Text, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { CareersHeroSection } from "components/careers/hero-section";
 import { JobListingsGrid } from "components/careers/job-listings-grid";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Job } from "data/jobs/types";
 
 interface CareersPageProps {
@@ -15,28 +14,8 @@ interface CareersPageProps {
 const CareersPage = ({ initialJobs }: CareersPageProps) => {
   const textColor = useColorModeValue("gray.600", "gray.100");
   const [jobs, setJobs] = useState<Job[]>(initialJobs);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (initialJobs.length > 0) return;
-    fetchJobs();
-  }, [initialJobs.length]);
-
-  const fetchJobs = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get("/api/jobs");
-      setJobs(response.data.jobs || []);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching jobs:", err);
-      setError("Failed to load jobs. Please try again later.");
-      setJobs([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
 
   return (
     <Box position="relative" minH="100vh" overflow="hidden">
@@ -84,6 +63,10 @@ const CareersPage = ({ initialJobs }: CareersPageProps) => {
             <Box textAlign="center" py={10}>
               <Text color="red.500">{error}</Text>
             </Box>
+          ) : jobs.length === 0 ? (
+            <Box textAlign="center" py={10}>
+              <Text color={textColor}>No open positions</Text>
+            </Box>
           ) : (
             <JobListingsGrid jobs={jobs} />
           )}
@@ -93,8 +76,8 @@ const CareersPage = ({ initialJobs }: CareersPageProps) => {
   );
 };
 
-// Fetch jobs server-side so crawlers and LLMs get full job list in HTML
-export const getServerSideProps: GetServerSideProps<CareersPageProps> = async () => {
+// Pre-render job listings for crawlability (ISR keeps it fresh).
+export const getStaticProps: GetStaticProps<CareersPageProps> = async () => {
   function stripHtml(html: string): string {
     if (!html) return "";
     return html
@@ -117,8 +100,8 @@ export const getServerSideProps: GetServerSideProps<CareersPageProps> = async ()
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("Careers getServerSideProps Supabase error:", error);
-      return { props: { initialJobs: [] } };
+      console.error("Careers getStaticProps Supabase error:", error);
+      return { props: { initialJobs: [] }, revalidate: 900 };
     }
 
     const initialJobs: Job[] = (data || []).map((job: Record<string, unknown>) => {
@@ -149,10 +132,10 @@ export const getServerSideProps: GetServerSideProps<CareersPageProps> = async ()
       };
     });
 
-    return { props: { initialJobs } };
+    return { props: { initialJobs }, revalidate: 900 };
   } catch (e) {
-    console.error("Error in getServerSideProps for /careers:", e);
-    return { props: { initialJobs: [] } };
+    console.error("Error in getStaticProps for /careers:", e);
+    return { props: { initialJobs: [] }, revalidate: 900 };
   }
 };
 

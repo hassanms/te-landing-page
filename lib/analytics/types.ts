@@ -20,6 +20,10 @@ export interface VisitorEventPayload {
   event_name?: string;
   page_path?: string;
   payload?: Record<string, unknown>;
+  /**
+   * Traffic source. For known sources it's one of the canonical platform values
+   * (google/linkedin/facebook/direct/...). For unknown UTM or referrer domains it can be a raw string.
+   */
   platform?: Platform;
   utm_source?: string | null;
   utm_medium?: string | null;

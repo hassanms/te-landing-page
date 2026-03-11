@@ -230,7 +230,7 @@ const CaseStudyStaffUp = () => {
         onMouseEnter={() => setIsGalleryPaused(true)}
         onMouseLeave={() => setIsGalleryPaused(false)}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
-          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="" fill style={{ objectFit: "cover" }} />
+          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="StaffUp — case study gallery background" fill style={{ objectFit: "cover" }} />
           <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
         </Box>
         <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>

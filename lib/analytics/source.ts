@@ -1,4 +1,4 @@
-import { STORAGE_KEYS, PLATFORM_VALUES, type Platform } from "./constants";
+import { STORAGE_KEYS, type Platform } from "./constants";
 import type { Attribution } from "./types";
 
 const PLATFORM_DOMAINS: Record<string, Platform> = {
@@ -32,21 +32,25 @@ function getPlatformFromReferrer(referrer: string): Platform {
     for (const [domain, platform] of Object.entries(PLATFORM_DOMAINS)) {
       if (host.includes(domain)) return platform;
     }
-    return "unknown";
+    // Step 2 requirement: for unknown referrers, store the domain as the source
+    return host;
   } catch {
     return "unknown";
   }
 }
 
 function getPlatformFromUtmSource(utmSource: string): Platform {
-  const s = utmSource.toLowerCase();
-  if (s.includes("google")) return "google";
-  if (s.includes("linkedin")) return "linkedin";
-  if (s.includes("facebook") || s.includes("fb")) return "facebook";
+  // Step 1 requirement: map known utm_source values; store others as-is
+  const s = utmSource.trim().toLowerCase();
+  if (!s) return "direct";
+  if (s === "linkedin") return "linkedin";
+  if (s === "facebook" || s === "fb") return "facebook";
+  if (s === "google") return "google";
+  // keep existing mappings without breaking legacy UTMs
   if (s.includes("twitter") || s.includes("x.com")) return "twitter";
   if (s.includes("youtube")) return "youtube";
   if (s.includes("email") || s.includes("newsletter")) return "email";
-  return "unknown";
+  return utmSource; // as-is
 }
 
 function getPlatformFromPath(path: string): Platform | null {
@@ -158,43 +162,50 @@ export function captureAndPersistAttribution(): void {
   const storage = safeSessionStorage();
   if (!storage) return;
 
-  const url =
-    typeof window !== "undefined" ? window.location.href : "";
   const referrer =
     typeof document !== "undefined" ? document.referrer || "" : "";
 
-  const params = new URLSearchParams(
-    typeof window !== "undefined" ? window.location.search : ""
-  );
-  const utm_source = params.get("utm_source") || "";
-  const utm_medium = params.get("utm_medium") || "";
-  const utm_campaign = params.get("utm_campaign") || "";
-  const utm_term = params.get("utm_term") || "";
-  const utm_content = params.get("utm_content") || "";
+  // Additional requirement: On every page, prefer existing sessionStorage UTM before re-reading URL.
+  const storedUtmSource = storage.getItem(STORAGE_KEYS.UTM_SOURCE) || "";
+  const storedUtmMedium = storage.getItem(STORAGE_KEYS.UTM_MEDIUM) || "";
+  const storedUtmCampaign = storage.getItem(STORAGE_KEYS.UTM_CAMPAIGN) || "";
+  const storedUtmTerm = storage.getItem(STORAGE_KEYS.UTM_TERM) || "";
+  const storedUtmContent = storage.getItem(STORAGE_KEYS.UTM_CONTENT) || "";
+
+  const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+  const utm_source = storedUtmSource || params.get("utm_source") || "";
+  const utm_medium = storedUtmMedium || params.get("utm_medium") || "";
+  const utm_campaign = storedUtmCampaign || params.get("utm_campaign") || "";
+  const utm_term = storedUtmTerm || params.get("utm_term") || "";
+  const utm_content = storedUtmContent || params.get("utm_content") || "";
 
   const path = typeof window !== "undefined" ? window.location.pathname : "";
   const now = new Date().toISOString();
 
+  // Step 1 → Step 2 → Step 3 priority
   let platform: Platform = "direct";
   if (utm_source) {
     platform = getPlatformFromUtmSource(utm_source);
   } else if (referrer) {
     platform = getPlatformFromReferrer(referrer);
   } else {
-    // LinkedIn (and some others) often send no referrer; path-based fallback when user lands on e.g. /linkedin
     const pathPlatform = getPlatformFromPath(path);
     if (pathPlatform) platform = pathPlatform;
   }
 
-  // First-touch: only set if not already set this session
+  // Persist UTM parameters in sessionStorage (don't lose them on navigation)
+  if (utm_source && !storedUtmSource) storage.setItem(STORAGE_KEYS.UTM_SOURCE, utm_source);
+  if (utm_medium && !storedUtmMedium) storage.setItem(STORAGE_KEYS.UTM_MEDIUM, utm_medium);
+  if (utm_campaign && !storedUtmCampaign) storage.setItem(STORAGE_KEYS.UTM_CAMPAIGN, utm_campaign);
+  if (utm_term && !storedUtmTerm) storage.setItem(STORAGE_KEYS.UTM_TERM, utm_term);
+  if (utm_content && !storedUtmContent) storage.setItem(STORAGE_KEYS.UTM_CONTENT, utm_content);
+
+  // Store referrer and platform (first-touch for landing page + time; platform can be updated from direct → better source)
+  if (!storage.getItem(STORAGE_KEYS.REFERRER)) storage.setItem(STORAGE_KEYS.REFERRER, referrer);
+  const storedPlatform = storage.getItem(STORAGE_KEYS.PLATFORM);
+  if (!storedPlatform || storedPlatform === "direct") storage.setItem(STORAGE_KEYS.PLATFORM, String(platform));
+
   if (!storage.getItem(STORAGE_KEYS.FIRST_VISIT_AT)) {
-    if (utm_source) storage.setItem(STORAGE_KEYS.UTM_SOURCE, utm_source);
-    if (utm_medium) storage.setItem(STORAGE_KEYS.UTM_MEDIUM, utm_medium);
-    if (utm_campaign) storage.setItem(STORAGE_KEYS.UTM_CAMPAIGN, utm_campaign);
-    if (utm_term) storage.setItem(STORAGE_KEYS.UTM_TERM, utm_term);
-    if (utm_content) storage.setItem(STORAGE_KEYS.UTM_CONTENT, utm_content);
-    storage.setItem(STORAGE_KEYS.REFERRER, referrer);
-    storage.setItem(STORAGE_KEYS.PLATFORM, platform);
     storage.setItem(STORAGE_KEYS.FIRST_LANDING_PAGE, path);
     storage.setItem(STORAGE_KEYS.FIRST_VISIT_AT, now);
   }
@@ -221,23 +232,7 @@ export function getAttribution(): Attribution | null {
   const storage = safeSessionStorage();
   if (!storage) return null;
 
-  const platform = storage.getItem(STORAGE_KEYS.PLATFORM) as Platform | null;
-  if (!platform || !PLATFORM_VALUES.includes(platform)) {
-    return {
-      platform: "direct",
-      utm_source: null,
-      utm_medium: null,
-      utm_campaign: null,
-      utm_term: null,
-      utm_content: null,
-      referrer: "",
-      first_landing_page: "",
-      first_visit_at: "",
-      country: storage.getItem(STORAGE_KEYS.COUNTRY),
-      city: storage.getItem(STORAGE_KEYS.CITY),
-    };
-  }
-
+  const platform = (storage.getItem(STORAGE_KEYS.PLATFORM) as Platform | null) || "direct";
   return {
     platform,
     utm_source: storage.getItem(STORAGE_KEYS.UTM_SOURCE),

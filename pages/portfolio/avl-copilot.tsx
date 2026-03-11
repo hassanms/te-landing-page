@@ -318,7 +318,7 @@ const CaseStudyAVLCoPilotV3 = () => {
           zIndex={0}>
           <Image
             src="/assets/portfolio/New/banner of case studies.webp"
-            alt=""
+            alt="AVL Copilot — case study gallery background"
             fill
             style={{ objectFit: "cover" }}
           />

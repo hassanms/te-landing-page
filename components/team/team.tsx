@@ -40,7 +40,7 @@ const Teams = ({ image, name, role }) => {
         }}
       >
         <Image
-          alt="Jackie Sanders"
+          alt={`${name}, ${role} at Tech Emulsion`}
           className="w-full object-cover object-center"
           style={{
             position: "absolute",

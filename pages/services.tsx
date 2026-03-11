@@ -99,6 +99,18 @@ const Services = () => {
           ],
         }}
       />
+      <Script id="services-itemlist-jsonld" type="application/ld+json" strategy="beforeInteractive">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: servicesData.map((service, idx) => ({
+            "@type": "ListItem",
+            position: idx + 1,
+            name: service.title,
+            url: `https://techemulsion.com/services/${service.slug}`,
+          })),
+        })}
+      </Script>
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"

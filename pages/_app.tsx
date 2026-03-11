@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import Script from "next/script";
 
 import { AuthProvider as SaasAuthProvider } from "@saas-ui/auth";
 import { SaasProvider } from "@saas-ui/react";
@@ -22,6 +23,35 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SaasProvider theme={theme}>
       <SaasAuthProvider>
+        <Script
+          id="org-jsonld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Tech Emulsion",
+            url: "https://techemulsion.com",
+            logo: "https://techemulsion.com/assets/logo/logo-light.png",
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+1-850-930-7798",
+              contactType: "customer service",
+              email: "contact@techemulsion.com",
+            },
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "3rd Floor, Afzal Towers, University Road",
+              addressLocality: "Peshawar",
+              addressCountry: "PK",
+            },
+            sameAs: [
+              "https://www.linkedin.com/company/tech-emulsion/",
+              "https://github.com/Tech-Emulsion",
+            ],
+          })}
+        </Script>
         <ColorModeInit />
         {isAdminPage ? (
             // Admin pages use Supabase auth and their own layout

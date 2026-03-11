@@ -7,12 +7,6 @@ export default async function handler(
   if (req.method === "POST") {
     const { name, company, email, phone, message } = req.body;
 
-    if (!name || !email || !phone || !message) {
-      return res.status(422).json({
-        message: "Invalid input. Please fill in all fields.",
-      });
-    }
-
     const port = Number(process.env.SMTP_PORT);
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,

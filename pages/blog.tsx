@@ -1,8 +1,8 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { NextPage, GetStaticProps } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Box,
   Container,
@@ -470,8 +470,8 @@ function PostCard({ post }: { post: BlogPost }) {
   );
 }
 
-// Fetch blog data server-side so crawlers get full HTML (no dependency on API self-call)
-export const getServerSideProps: GetServerSideProps<BlogPageProps> = async () => {
+// Pre-render blog listings for crawlability (ISR keeps it fresh).
+export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   try {
     const { getSupabaseAdmin } = await import("lib/supabase/server");
     const supabaseAdmin = getSupabaseAdmin();
@@ -501,14 +501,16 @@ export const getServerSideProps: GetServerSideProps<BlogPageProps> = async () =>
         initialPosts,
         initialCategories,
       },
+      revalidate: 900,
     };
   } catch (error) {
-    console.error("Error in getServerSideProps for /blog:", error);
+    console.error("Error in getStaticProps for /blog:", error);
     return {
       props: {
         initialPosts: [],
         initialCategories: [],
       },
+      revalidate: 900,
     };
   }
 };

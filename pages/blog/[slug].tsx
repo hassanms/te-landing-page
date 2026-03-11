@@ -1,4 +1,4 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { useState, useEffect } from "react";
 import {
@@ -28,6 +28,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
+import Script from "next/script";
 
 export interface BlogPost {
   id: string;
@@ -215,6 +216,22 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
             url: post.canonical_url || `https://techemulsion.com/blog/${post.slug}`,
           }}
         />
+      )}
+      {post && (
+        <Script id="article-jsonld" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.meta_title || post.title,
+            author: {
+              "@type": "Person",
+              name: post.author_name,
+            },
+            datePublished: post.published_at,
+            description: post.meta_description || post.excerpt,
+            mainEntityOfPage: post.canonical_url || `https://techemulsion.com/blog/${post.slug}`,
+          })}
+        </Script>
       )}
 
       <Container maxW="container.xl" py="10">
@@ -580,12 +597,34 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
 
 export default BlogPostPage;
 
-// Fetch post server-side so crawlers get full HTML (no dependency on API self-call)
-export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const { getSupabaseAdmin } = await import("lib/supabase/server");
+    const supabase = getSupabaseAdmin();
+    const { data } = await supabase
+      .from("blog_posts")
+      .select("slug")
+      .eq("is_published", true)
+      .order("published_at", { ascending: false })
+      .limit(200);
+
+    const paths = (data || [])
+      .map((row: { slug?: string | null }) => row.slug)
+      .filter((s): s is string => typeof s === "string" && s.length > 0)
+      .map((s) => ({ params: { slug: s } }));
+
+    return { paths, fallback: "blocking" };
+  } catch (e) {
+    console.error("Error in getStaticPaths for /blog/[slug]:", e);
+    return { paths: [], fallback: "blocking" };
+  }
+};
+
+export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({ params }) => {
   const slug = params?.slug as string | undefined;
 
   if (!slug) {
-    return { notFound: true };
+    return { notFound: true, revalidate: 900 };
   }
 
   try {
@@ -600,7 +639,7 @@ export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async (
       .single();
 
     if (error || !post) {
-      return { notFound: true };
+      return { notFound: true, revalidate: 900 };
     }
 
     const { data: relatedPosts } = await supabase
@@ -617,9 +656,10 @@ export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async (
         post,
         relatedPosts: relatedPosts || [],
       },
+      revalidate: 900,
     };
   } catch (error) {
-    console.error("Error in getServerSideProps for /blog/[slug]:", error);
-    return { notFound: true };
+    console.error("Error in getStaticProps for /blog/[slug]:", error);
+    return { notFound: true, revalidate: 900 };
   }
 };

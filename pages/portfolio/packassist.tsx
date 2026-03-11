@@ -389,7 +389,7 @@ const CaseStudyPackAssist = () => {
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
             src="/assets/portfolio/New/banner of case studies.webp"
-            alt=""
+            alt="PackAssist — case study gallery background"
             fill
             style={{ objectFit: "cover" }}
           />

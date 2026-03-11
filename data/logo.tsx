@@ -32,7 +32,7 @@ export const Logo: React.FC<LogoProps> = (props) => {
             ? "/assets/logo/logo-light.png"
             : "/assets/logo/logo-dark.png"
         }
-        alt="Logo"
+        alt="Tech Emulsion logo"
         loading="eager"
         width={100}
         height={30}

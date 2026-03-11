@@ -38,4 +38,11 @@ export const PLATFORM_VALUES = [
   "unknown",
 ] as const;
 
-export type Platform = (typeof PLATFORM_VALUES)[number];
+/**
+ * Traffic source label stored on each event.
+ *
+ * Historically this was limited to `PLATFORM_VALUES`, but some sources (e.g. custom UTM sources,
+ * or non-mapped referrer domains) should be stored as-is. Keep the known values list for UI/logic,
+ * but allow arbitrary strings.
+ */
+export type Platform = (typeof PLATFORM_VALUES)[number] | (string & {});

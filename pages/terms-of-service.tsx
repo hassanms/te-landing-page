@@ -212,7 +212,9 @@ const TermsOfService = () => {
                     >
                       {String(index + 1).padStart(2, "0")}.
                     </Text>
-                    <Text {...bodyTextProps}>{item}</Text>
+                    <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                      {item}
+                    </Text>
                   </HStack>
                 </Box>
               ))}

@@ -169,7 +169,7 @@ const PrivacyPolicy = () => {
           <Text mb={5} sx={{ whiteSpace: "pre-wrap" }} {...bodyTextProps}>
             We may collect the following types of information:
           </Text>
-          <Text mb={5} sx={{ whiteSpace: "pre-wrap" }} {...bodyTextProps} fontWeight="bold">
+          <Text mb={5} sx={{ whiteSpace: "pre-wrap" }} {...bodyTextProps} fontWeight="bold" color={headingColor}>
             Personal Information
           </Text>
           <VStack align="start" spacing={0} mb={10}>
@@ -185,12 +185,14 @@ const PrivacyPolicy = () => {
                   >
                     {String(index + 1).padStart(2, "0")}.
                   </Text>
-                  <Text {...bodyTextProps}>{item}</Text>
+                  <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                    {item}
+                  </Text>
                 </HStack>
               </Box>
             ))}
           </VStack>
-          <Text mb={5} sx={{ whiteSpace: "pre-wrap" }} {...bodyTextProps} fontWeight="bold">
+          <Text mb={5} sx={{ whiteSpace: "pre-wrap" }} {...bodyTextProps} fontWeight="bold" color={headingColor}>
             Technical Information
           </Text>
           <VStack align="start" spacing={0} mb={10}>
@@ -207,7 +209,9 @@ const PrivacyPolicy = () => {
                     >
                       {String(index + 1).padStart(2, "0")}.
                     </Text>
-                    <Text {...bodyTextProps}>{item}</Text>
+                    <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                      {item}
+                    </Text>
                   </HStack>
                 </Box>
               )
@@ -244,7 +248,9 @@ const PrivacyPolicy = () => {
                   >
                     {String(index + 1).padStart(2, "0")}.
                   </Text>
-                  <Text {...bodyTextProps}>{item}</Text>
+                  <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                    {item}
+                  </Text>
                 </HStack>
               </Box>
             ))}
@@ -281,7 +287,9 @@ const PrivacyPolicy = () => {
                   >
                     {String(index + 1).padStart(2, "0")}.
                   </Text>
-                  <Text {...bodyTextProps}>{item}</Text>
+                  <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                    {item}
+                  </Text>
                 </HStack>
               </Box>
             ))}
@@ -317,7 +325,9 @@ const PrivacyPolicy = () => {
                   >
                     {String(index + 1).padStart(2, "0")}.
                   </Text>
-                  <Text {...bodyTextProps}>{item}</Text>
+                  <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                    {item}
+                  </Text>
                 </HStack>
               </Box>
             ))}
@@ -404,7 +414,9 @@ const PrivacyPolicy = () => {
                     >
                       {String(index + 1).padStart(2, "0")}.
                     </Text>
-                    <Text {...bodyTextProps}>{item}</Text>
+                    <Text {...bodyTextProps} fontWeight="medium" color={headingColor}>
+                      {item}
+                    </Text>
                   </HStack>
                 </Box>
               ))}

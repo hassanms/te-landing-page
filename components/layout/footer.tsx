@@ -350,7 +350,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             px="20px"
             pt="20px"
             pb="10px"
-            display="flex"
+            display={{ base: "none", md: "flex" }}
             justifyContent="center">
             <Text
               fontFamily={`"Helvetica Neue", Helvetica, Arial, sans-serif`}

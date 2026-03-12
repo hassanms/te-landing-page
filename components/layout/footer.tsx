@@ -343,7 +343,31 @@ export const Footer: React.FC<FooterProps> = (props) => {
             </Stack>
           </Stack>
         </SimpleGrid>
-        <Stack spacing="8" alignItems="flex-start">
+        <Stack spacing="4" alignItems="flex-start">
+          <Box
+            width="100%"
+            overflow="hidden"
+            px="20px"
+            pt="20px"
+            pb="10px"
+            display="flex"
+            justifyContent="center">
+            <Text
+              fontFamily={`"Helvetica Neue", Helvetica, Arial, sans-serif`}
+              fontSize="clamp(120px, 20vw, 280px)"
+              lineHeight="1"
+              fontWeight="700"
+              letterSpacing="-0.02em"
+              color="transparent"
+              textAlign="center"
+              sx={{
+                WebkitTextStroke: "2px rgba(255, 255, 255, 0.6)",
+                textStroke: "2px rgba(255, 255, 255, 0.6)",
+                whiteSpace: "nowrap",
+              }}>
+              Emulsion
+            </Text>
+          </Box>
           <Divider
             orientation="horizontal"
             color="white"

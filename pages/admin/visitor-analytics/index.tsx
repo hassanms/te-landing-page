@@ -76,7 +76,7 @@ import toast from "react-hot-toast";
 
 // Platform brand colors for Traffic by source chart
 const PLATFORM_BRAND_COLORS: Record<string, string> = {
-  direct: "#64748B",       // slate (neutral)
+  direct: "#008080",       // brand teal (primary)
   google: "#4285F4",       // Google blue
   linkedin: "#0A66C2",    // LinkedIn blue
   facebook: "#1877F2",    // Facebook blue

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   Box,
   Heading,
@@ -49,6 +49,9 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Input,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
 import {
   LineChart,
@@ -68,7 +71,7 @@ import {
 import apiClient from "lib/api-client";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { AdminLayout } from "components/admin/layout/admin-layout";
-import { FiEye } from "react-icons/fi";
+import { FiEye, FiSearch } from "react-icons/fi";
 import toast from "react-hot-toast";
 
 // Platform brand colors for Traffic by source chart
@@ -196,6 +199,33 @@ function sessionDisplayLabel(s: SessionSummary): string {
   if (s.user_email?.trim()) return s.user_email.trim();
   if (s.user_phone?.trim()) return s.user_phone.trim();
   return shortSessionId(s.session_id);
+}
+
+function filterSessions(
+  sessions: SessionSummary[],
+  search: string,
+  sourceFilter: string
+): SessionSummary[] {
+  const q = search.trim().toLowerCase();
+  const bySource =
+    !sourceFilter || sourceFilter === "all"
+      ? sessions
+      : sessions.filter((s) => (s.platform || "direct").toLowerCase() === sourceFilter.toLowerCase());
+  if (!q) return bySource;
+  return bySource.filter((s) => {
+    const name = (s.user_name ?? "").toLowerCase();
+    const email = (s.user_email ?? "").toLowerCase();
+    const phone = (s.user_phone ?? "").toLowerCase();
+    const company = (s.user_company ?? "").toLowerCase();
+    const sid = (s.session_id ?? "").toLowerCase();
+    return (
+      name.includes(q) ||
+      email.includes(q) ||
+      phone.includes(q) ||
+      company.includes(q) ||
+      sid.includes(q)
+    );
+  });
 }
 
 function getSessionQualityBadges(s: SessionSummary): { label: string; color: string }[] {
@@ -343,6 +373,17 @@ const AdminVisitorAnalyticsPage = () => {
   const [isExporting, setIsExporting] = useState(false);
   const cancelClearRef = useRef<HTMLButtonElement | null>(null);
 
+  // Visitors table pagination & filters
+  const [visitorsPage, setVisitorsPage] = useState(1);
+  const [visitorsPageSize, setVisitorsPageSize] = useState(10);
+  const [visitorsSearch, setVisitorsSearch] = useState("");
+  const [visitorsSourceFilter, setVisitorsSourceFilter] = useState("all");
+  // Sessions table pagination & filters
+  const [sessionsPage, setSessionsPage] = useState(1);
+  const [sessionsPageSize, setSessionsPageSize] = useState(10);
+  const [sessionsSearch, setSessionsSearch] = useState("");
+  const [sessionsSourceFilter, setSessionsSourceFilter] = useState("all");
+
   const RETENTION_OPTIONS = [30, 60, 90, 180, 365];
 
   const cardBg = useColorModeValue("white", "gray.700");
@@ -350,6 +391,7 @@ const AdminVisitorAnalyticsPage = () => {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const tableHeadingColor = useColorModeValue("gray.600", "gray.100");
   const chartGridStroke = useColorModeValue("transparent", "gray.600");
+  const inputBg = useColorModeValue("gray.50", "gray.800");
 
   const fetchData = async () => {
     try {
@@ -357,6 +399,8 @@ const AdminVisitorAnalyticsPage = () => {
       const res = await apiClient.get("/api/admin/visitor-analytics", { params: { period } });
       setData(res.data);
       setError(null);
+      setVisitorsPage(1);
+      setSessionsPage(1);
     } catch (err: unknown) {
       console.error("Visitor analytics error:", err);
       setError("Failed to load visitor analytics.");
@@ -368,6 +412,42 @@ const AdminVisitorAnalyticsPage = () => {
   useEffect(() => {
     fetchData();
   }, [period]);
+
+  const sessionsList = data?.sessions ?? [];
+  const sourceOptions = useMemo(
+    () => (data?.byPlatform ? ["all", ...data.byPlatform.map((p) => p.platform)] : ["all"]),
+    [data?.byPlatform]
+  );
+
+  const filteredVisitors = useMemo(
+    () => filterSessions(sessionsList, visitorsSearch, visitorsSourceFilter),
+    [sessionsList, visitorsSearch, visitorsSourceFilter]
+  );
+  const visitorsTotal = filteredVisitors.length;
+  const visitorsPageCount = Math.max(1, Math.ceil(visitorsTotal / visitorsPageSize));
+  const paginatedVisitors = useMemo(
+    () =>
+      filteredVisitors.slice(
+        (visitorsPage - 1) * visitorsPageSize,
+        visitorsPage * visitorsPageSize
+      ),
+    [filteredVisitors, visitorsPage, visitorsPageSize]
+  );
+
+  const filteredSessions = useMemo(
+    () => filterSessions(sessionsList, sessionsSearch, sessionsSourceFilter),
+    [sessionsList, sessionsSearch, sessionsSourceFilter]
+  );
+  const sessionsTotal = filteredSessions.length;
+  const sessionsPageCount = Math.max(1, Math.ceil(sessionsTotal / sessionsPageSize));
+  const paginatedSessions = useMemo(
+    () =>
+      filteredSessions.slice(
+        (sessionsPage - 1) * sessionsPageSize,
+        sessionsPage * sessionsPageSize
+      ),
+    [filteredSessions, sessionsPage, sessionsPageSize]
+  );
 
   const openSessionDetail = async (sessionId: string) => {
     setSelectedSessionId(sessionId);
@@ -553,57 +633,68 @@ const AdminVisitorAnalyticsPage = () => {
                 </Stat>
               </SimpleGrid>
 
-              {data.eventsByDay && data.eventsByDay.length > 0 && (
-                <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} mb={6}>
-                  <Heading size="sm" mb={4}>Events over time</Heading>
-                  <Box height="240px">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={data.eventsByDay} margin={{ top: 8, right: 8, left: 0, bottom: 8 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke={chartGridStroke} />
-                        <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(v) => v.slice(5)} />
-                        <YAxis allowDecimals={false} tick={{ fontSize: 10 }} />
-                        <RechartsTooltip labelFormatter={(v) => v} />
-                        <Line type="monotone" dataKey="count" stroke="#0D9488" strokeWidth={2} dot={{ r: 2 }} name="Events" />
-                      </LineChart>
-                    </ResponsiveContainer>
+              <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6} mb={6} alignItems="stretch">
+                {data.eventsByDay && data.eventsByDay.length > 0 ? (
+                  <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} minH={{ base: "auto", lg: "320px" }} display="flex" flexDirection="column">
+                    <Heading size="sm" mb={4}>Events over time</Heading>
+                    <Box flex={1} minH="240px" height="240px">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={data.eventsByDay} margin={{ top: 8, right: 8, left: 0, bottom: 8 }}>
+                          <CartesianGrid strokeDasharray="3 3" stroke={chartGridStroke} />
+                          <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(v) => v.slice(5)} />
+                          <YAxis allowDecimals={false} tick={{ fontSize: 10 }} />
+                          <RechartsTooltip labelFormatter={(v) => v} />
+                          <Line type="monotone" dataKey="count" stroke="#0D9488" strokeWidth={2} dot={{ r: 2 }} name="Events" />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </Box>
                   </Box>
+                ) : null}
+                <Box
+                  bg={cardBg}
+                  p={6}
+                  borderRadius="xl"
+                  border="1px solid"
+                  borderColor={borderColor}
+                  minH={{ base: "auto", lg: "320px" }}
+                  display="flex"
+                  flexDirection="column"
+                  gridColumn={!(data.eventsByDay && data.eventsByDay.length) ? { base: 1, lg: "1 / -1" } : undefined}
+                >
+                  <Heading size="sm" mb={1}>Traffic by source</Heading>
+                  <Text fontSize="xs" color={textColor} mb={4}>
+                    Sessions by where visitors came from (direct, search, social, etc.).
+                  </Text>
+                  {data.byPlatform.length > 0 ? (
+                    <Box flex={1} minH="260px" height={{ base: "280px", lg: "260px" }} w="100%">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+                          <Pie
+                            data={data.byPlatform}
+                            dataKey="sessions"
+                            nameKey="platform"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={88}
+                            innerRadius={0}
+                            paddingAngle={1}
+                            label={({ platform, sessions }) => `${formatSourceLabel(platform)} (${sessions})`}
+                            labelLine={{ strokeWidth: 1 }}
+                          >
+                            {data.byPlatform.map((d, i) => (
+                              <Cell key={d.platform} fill={getPlatformChartColor(d.platform, i)} />
+                            ))}
+                          </Pie>
+                          <RechartsTooltip />
+                          <Legend formatter={(value) => formatSourceLabel(value)} wrapperStyle={{ paddingTop: "8px" }} />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </Box>
+                  ) : (
+                    <Text color={textColor} fontSize="sm">No traffic data yet.</Text>
+                  )}
                 </Box>
-              )}
-
-              <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} mb={6}>
-                <Heading size="sm" mb={1}>Traffic by source</Heading>
-                <Text fontSize="xs" color={textColor} mb={4}>
-                  Sessions by where visitors came from (direct, search, social, etc.).
-                </Text>
-                {data.byPlatform.length > 0 ? (
-                  <Box height="340px" w="100%">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
-                        <Pie
-                          data={data.byPlatform}
-                          dataKey="sessions"
-                          nameKey="platform"
-                          cx="50%"
-                          cy="50%"
-                          outerRadius={88}
-                          innerRadius={0}
-                          paddingAngle={1}
-                          label={({ platform, sessions }) => `${formatSourceLabel(platform)} (${sessions})`}
-                          labelLine={{ strokeWidth: 1 }}
-                        >
-                          {data.byPlatform.map((d, i) => (
-                            <Cell key={d.platform} fill={getPlatformChartColor(d.platform, i)} />
-                          ))}
-                        </Pie>
-                        <RechartsTooltip />
-                        <Legend formatter={(value) => formatSourceLabel(value)} wrapperStyle={{ paddingTop: "8px" }} />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </Box>
-                ) : (
-                  <Text color={textColor} fontSize="sm">No traffic data yet.</Text>
-                )}
-              </Box>
+              </SimpleGrid>
 
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mt={6}>
                 <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
@@ -700,57 +791,154 @@ const AdminVisitorAnalyticsPage = () => {
                 </Stat>
               </SimpleGrid>
 
-              <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} mb={6}>
+              <Box mb={6}>
                 <Heading size="md" mb={2}>All visitors</Heading>
                 <Text fontSize="sm" color={textColor} mb={4}>
                   Every visitor in the selected period. Name, email, and phone appear when they submit the contact or career form; source is collected automatically for all visits. Click View to see full activity (pages, clicks, time on site).
                 </Text>
-                {data.sessions.length > 0 ? (
-                  <Box overflowX="auto">
-                    <Table variant="unstyled" size="sm">
-                      <Thead>
-                        <Tr>
-                          <Th color={tableHeadingColor}>Name</Th>
-                          <Th color={tableHeadingColor}>Email</Th>
-                          <Th color={tableHeadingColor}>Phone</Th>
-                          <Th color={tableHeadingColor}>Company</Th>
-                          <Th color={tableHeadingColor}>Source</Th>
-                          <Th color={tableHeadingColor}>First visit</Th>
-                          <Th color={tableHeadingColor}>Last seen</Th>
-                          <Th color={tableHeadingColor}>Time on site</Th>
-                          <Th color={tableHeadingColor}>Events</Th>
-                          <Th color={tableHeadingColor}></Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        {data.sessions.map((s) => (
-                          <Tr key={s.session_id}>
-                            <Td fontSize="sm">{s.user_name ?? "—"}</Td>
-                            <Td fontSize="sm" noOfLines={1} maxW="180px">{s.user_email ?? "—"}</Td>
-                            <Td fontSize="sm" whiteSpace="nowrap">{s.user_phone ?? "—"}</Td>
-                            <Td fontSize="sm" noOfLines={1} maxW="120px">{s.user_company ?? "—"}</Td>
-                            <Td><Badge size="sm" colorScheme="teal" variant="subtle">{s.platform ?? "direct"}</Badge></Td>
-                            <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.first_visit_at).toLocaleString()}</Td>
-                            <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.last_at).toLocaleString()}</Td>
-                            <Td fontSize="sm">{formatDuration(s.total_duration_sec)}</Td>
-                            <Td isNumeric>{s.events_count}</Td>
-                            <Td>
-                              <Tooltip label="View full activity">
-                                <IconButton
-                                  aria-label="View visitor"
-                                  size="xs"
-                                  icon={<FiEye />}
-                                  colorScheme="teal"
-                                  variant="ghost"
-                                  onClick={() => openSessionDetail(s.session_id)}
-                                />
-                              </Tooltip>
-                            </Td>
-                          </Tr>
+                {sessionsList.length > 0 ? (
+                  <>
+                    <HStack spacing={4} mb={4} align="center" flexWrap="wrap">
+                      <InputGroup maxW={{ base: "100%", sm: "280px" }} size="sm">
+                        <InputLeftElement pointerEvents="none">
+                          <FiSearch color="var(--chakra-colors-gray-400)" />
+                        </InputLeftElement>
+                        <Input
+                          placeholder="Search by name, email, phone, or company…"
+                          value={visitorsSearch}
+                          onChange={(e) => {
+                            setVisitorsSearch(e.target.value);
+                            setVisitorsPage(1);
+                          }}
+                          bg={inputBg}
+                          borderColor={borderColor}
+                        />
+                      </InputGroup>
+                      <Select
+                        size="sm"
+                        maxW="160px"
+                        value={visitorsSourceFilter}
+                        onChange={(e) => {
+                          setVisitorsSourceFilter(e.target.value);
+                          setVisitorsPage(1);
+                        }}
+                        bg={inputBg}
+                        borderColor={borderColor}
+                      >
+                        <option value="all">All sources</option>
+                        {sourceOptions.filter((o) => o !== "all").map((p) => (
+                          <option key={p} value={p}>{formatSourceLabel(p)}</option>
                         ))}
-                      </Tbody>
-                    </Table>
-                  </Box>
+                      </Select>
+                      <HStack spacing={2} ml="auto" fontSize="xs" color={textColor}>
+                        <Text>Rows per page:</Text>
+                        <Select
+                          value={visitorsPageSize}
+                          onChange={(e) => {
+                            setVisitorsPageSize(Number(e.target.value));
+                            setVisitorsPage(1);
+                          }}
+                          size="xs"
+                          w="auto"
+                          minW="70px"
+                          bg={inputBg}
+                          borderColor={borderColor}
+                        >
+                          <option value={10}>10</option>
+                          <option value={25}>25</option>
+                          <option value={50}>50</option>
+                        </Select>
+                      </HStack>
+                    </HStack>
+                    <Box
+                      bg={cardBg}
+                      borderRadius="lg"
+                      border="1px solid"
+                      borderColor={borderColor}
+                      overflow="hidden"
+                      overflowX="auto"
+                    >
+                      <Table variant="striped" colorScheme="blackAlpha" size="sm" sx={{ "thead th, tbody td": { verticalAlign: "middle" } }}>
+                        <Thead>
+                          <Tr>
+                            <Th color={tableHeadingColor}>Name</Th>
+                            <Th color={tableHeadingColor}>Email</Th>
+                            <Th color={tableHeadingColor}>Phone</Th>
+                            <Th color={tableHeadingColor}>Company</Th>
+                            <Th color={tableHeadingColor}>Source</Th>
+                            <Th color={tableHeadingColor}>First visit</Th>
+                            <Th color={tableHeadingColor}>Last seen</Th>
+                            <Th color={tableHeadingColor}>Time on site</Th>
+                            <Th color={tableHeadingColor}>Events</Th>
+                            <Th color={tableHeadingColor}>Actions</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {paginatedVisitors.map((s) => (
+                            <Tr key={s.session_id}>
+                              <Td fontSize="sm" whiteSpace="nowrap">{s.user_name ?? "—"}</Td>
+                              <Td fontSize="sm" maxW="180px" title={s.user_email ?? undefined}>{s.user_email ?? "—"}</Td>
+                              <Td fontSize="sm" whiteSpace="nowrap">{s.user_phone ?? "—"}</Td>
+                              <Td fontSize="sm" maxW="120px" title={s.user_company ?? undefined}>{s.user_company ?? "—"}</Td>
+                              <Td whiteSpace="nowrap"><Badge size="sm" colorScheme="teal" variant="subtle">{s.platform ?? "direct"}</Badge></Td>
+                              <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.first_visit_at).toLocaleString()}</Td>
+                              <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.last_at).toLocaleString()}</Td>
+                              <Td fontSize="sm" whiteSpace="nowrap">{formatDuration(s.total_duration_sec)}</Td>
+                              <Td isNumeric whiteSpace="nowrap">{s.events_count}</Td>
+                              <Td whiteSpace="nowrap">
+                                <Tooltip label="View full activity">
+                                  <IconButton
+                                    aria-label="View visitor"
+                                    size="sm"
+                                    icon={<FiEye />}
+                                    colorScheme="teal"
+                                    variant="ghost"
+                                    onClick={() => openSessionDetail(s.session_id)}
+                                  />
+                                </Tooltip>
+                              </Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+                    </Box>
+                    {filteredVisitors.length > 0 && (
+                      <HStack mt={4} justify="space-between" align="center" fontSize="xs" color={textColor} flexWrap="wrap">
+                        <Text>
+                          Showing{" "}
+                          <strong>
+                            {(visitorsPage - 1) * visitorsPageSize + 1}–
+                            {Math.min(visitorsPage * visitorsPageSize, visitorsTotal)}
+                          </strong>{" "}
+                          of <strong>{visitorsTotal}</strong>
+                          {visitorsTotal !== sessionsList.length ? ` (${sessionsList.length} total)` : ""}
+                        </Text>
+                        <HStack spacing={2}>
+                          <Button
+                            size="xs"
+                            variant="outline"
+                            colorScheme="teal"
+                            isDisabled={visitorsPage <= 1}
+                            onClick={() => setVisitorsPage((p) => Math.max(1, p - 1))}
+                          >
+                            Previous
+                          </Button>
+                          <Text>
+                            Page <strong>{visitorsPage}</strong> of <strong>{visitorsPageCount}</strong>
+                          </Text>
+                          <Button
+                            size="xs"
+                            variant="outline"
+                            colorScheme="teal"
+                            isDisabled={visitorsPage >= visitorsPageCount}
+                            onClick={() => setVisitorsPage((p) => Math.min(visitorsPageCount, p + 1))}
+                          >
+                            Next
+                          </Button>
+                        </HStack>
+                      </HStack>
+                    )}
+                  </>
                 ) : (
                   <Text color={textColor}>No visitors in this period.</Text>
                 )}
@@ -804,70 +992,167 @@ const AdminVisitorAnalyticsPage = () => {
 
             {/* Sessions (per-user) */}
             <TabPanel px={0}>
-              <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor}>
+              <Box mb={6}>
                 <Heading size="md" mb={2}>Sessions (per visitor)</Heading>
                 <Text fontSize="sm" color={textColor} mb={4}>
                   Shows name, email, or phone when the visitor submitted the contact form; otherwise Session ID. Click View for full timeline.
                 </Text>
-                {data.sessions.length > 0 ? (
-                  <Box overflowX="auto">
-                    <Table variant="unstyled" size="sm">
-                      <Thead>
-                        <Tr>
-                          <Th color={tableHeadingColor}>User / Session</Th>
-                          <Th color={tableHeadingColor}>Source</Th>
-                          <Th color={tableHeadingColor}>First page</Th>
-                          <Th color={tableHeadingColor}>Arrived</Th>
-                          <Th color={tableHeadingColor}>Left</Th>
-                          <Th color={tableHeadingColor}>Duration</Th>
-                          <Th color={tableHeadingColor}>Quality</Th>
-                          <Th color={tableHeadingColor}></Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        {data.sessions.map((s) => (
-                          <Tr key={s.session_id}>
-                            <Td>
-                              <VStack align="flex-start" spacing={0}>
-                                <Text fontWeight={s.user_name || s.user_email || s.user_phone ? "medium" : "normal"} fontSize="sm" noOfLines={1} title={s.session_id}>
-                                  {sessionDisplayLabel(s)}
-                                </Text>
-                                {(s.user_name || s.user_email || s.user_phone) && (
-                                  <Text fontFamily="mono" fontSize="xs" color={textColor}>{shortSessionId(s.session_id)}</Text>
-                                )}
-                              </VStack>
-                            </Td>
-                            <Td><Badge size="sm" colorScheme="teal" variant="subtle">{s.platform ?? "direct"}</Badge></Td>
-                            <Td fontSize="xs" noOfLines={1} maxW="120px">{s.first_landing_page || "/"}</Td>
-                            <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.first_visit_at).toLocaleString()}</Td>
-                            <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.last_at).toLocaleString()}</Td>
-                            <Td fontSize="xs">{formatDuration(s.total_duration_sec)}</Td>
-                            <Td>
-                              <HStack spacing={1} flexWrap="wrap">
-                                {getSessionQualityBadges(s).map((b) => (
-                                  <Badge key={b.label} colorScheme={b.color} fontSize="0.65rem">
-                                    {b.label}
-                                  </Badge>
-                                ))}
-                              </HStack>
-                            </Td>
-                            <Td>
-                              <Tooltip label="View session detail">
-                                <IconButton
-                                  aria-label="View session"
-                                  size="xs"
-                                  icon={<FiEye />}
-                                  colorScheme="teal"
-                                  variant="ghost"
-                                  onClick={() => openSessionDetail(s.session_id)}
-                                />
-                              </Tooltip>
-                            </Td>
-                          </Tr>
+                {sessionsList.length > 0 ? (
+                  <>
+                    <HStack spacing={4} mb={4} align="center" flexWrap="wrap">
+                      <InputGroup maxW={{ base: "100%", sm: "280px" }} size="sm">
+                        <InputLeftElement pointerEvents="none">
+                          <FiSearch color="var(--chakra-colors-gray-400)" />
+                        </InputLeftElement>
+                        <Input
+                          placeholder="Search by user or session ID…"
+                          value={sessionsSearch}
+                          onChange={(e) => {
+                            setSessionsSearch(e.target.value);
+                            setSessionsPage(1);
+                          }}
+                          bg={inputBg}
+                          borderColor={borderColor}
+                        />
+                      </InputGroup>
+                      <Select
+                        size="sm"
+                        maxW="160px"
+                        value={sessionsSourceFilter}
+                        onChange={(e) => {
+                          setSessionsSourceFilter(e.target.value);
+                          setSessionsPage(1);
+                        }}
+                        bg={inputBg}
+                        borderColor={borderColor}
+                      >
+                        <option value="all">All sources</option>
+                        {sourceOptions.filter((o) => o !== "all").map((p) => (
+                          <option key={p} value={p}>{formatSourceLabel(p)}</option>
                         ))}
-                      </Tbody>
-                    </Table>
-                  </Box>
+                      </Select>
+                      <HStack spacing={2} ml="auto" fontSize="xs" color={textColor}>
+                        <Text>Rows per page:</Text>
+                        <Select
+                          value={sessionsPageSize}
+                          onChange={(e) => {
+                            setSessionsPageSize(Number(e.target.value));
+                            setSessionsPage(1);
+                          }}
+                          size="xs"
+                          w="auto"
+                          minW="70px"
+                          bg={inputBg}
+                          borderColor={borderColor}
+                        >
+                          <option value={10}>10</option>
+                          <option value={25}>25</option>
+                          <option value={50}>50</option>
+                        </Select>
+                      </HStack>
+                    </HStack>
+                    <Box
+                      bg={cardBg}
+                      borderRadius="lg"
+                      border="1px solid"
+                      borderColor={borderColor}
+                      overflow="hidden"
+                      overflowX="auto"
+                    >
+                      <Table variant="striped" colorScheme="blackAlpha" size="sm" sx={{ "thead th, tbody td": { verticalAlign: "middle" } }}>
+                        <Thead>
+                          <Tr>
+                            <Th color={tableHeadingColor}>User / Session</Th>
+                            <Th color={tableHeadingColor}>Source</Th>
+                            <Th color={tableHeadingColor}>First page</Th>
+                            <Th color={tableHeadingColor}>Arrived</Th>
+                            <Th color={tableHeadingColor}>Left</Th>
+                            <Th color={tableHeadingColor}>Duration</Th>
+                            <Th color={tableHeadingColor}>Quality</Th>
+                            <Th color={tableHeadingColor}>Actions</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {paginatedSessions.map((s) => (
+                            <Tr key={s.session_id}>
+                              <Td>
+                                <VStack align="flex-start" spacing={0} py={1}>
+                                  <Text fontWeight={s.user_name || s.user_email || s.user_phone ? "medium" : "normal"} fontSize="sm" noOfLines={1} title={s.session_id}>
+                                    {sessionDisplayLabel(s)}
+                                  </Text>
+                                  {(s.user_name || s.user_email || s.user_phone) && (
+                                    <Text fontFamily="mono" fontSize="xs" color={textColor}>{shortSessionId(s.session_id)}</Text>
+                                  )}
+                                </VStack>
+                              </Td>
+                              <Td whiteSpace="nowrap"><Badge size="sm" colorScheme="teal" variant="subtle">{s.platform ?? "direct"}</Badge></Td>
+                              <Td fontSize="xs" maxW="120px" title={s.first_landing_page || "/"}>{s.first_landing_page || "/"}</Td>
+                              <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.first_visit_at).toLocaleString()}</Td>
+                              <Td fontSize="xs" whiteSpace="nowrap">{new Date(s.last_at).toLocaleString()}</Td>
+                              <Td fontSize="xs" whiteSpace="nowrap">{formatDuration(s.total_duration_sec)}</Td>
+                              <Td>
+                                <HStack spacing={1} flexWrap="wrap" py={1}>
+                                  {getSessionQualityBadges(s).map((b) => (
+                                    <Badge key={b.label} colorScheme={b.color} fontSize="0.65rem">
+                                      {b.label}
+                                    </Badge>
+                                  ))}
+                                </HStack>
+                              </Td>
+                              <Td whiteSpace="nowrap">
+                                <Tooltip label="View session detail">
+                                  <IconButton
+                                    aria-label="View session"
+                                    size="sm"
+                                    icon={<FiEye />}
+                                    colorScheme="teal"
+                                    variant="ghost"
+                                    onClick={() => openSessionDetail(s.session_id)}
+                                  />
+                                </Tooltip>
+                              </Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+                    </Box>
+                    {filteredSessions.length > 0 && (
+                      <HStack mt={4} justify="space-between" align="center" fontSize="xs" color={textColor} flexWrap="wrap">
+                        <Text>
+                          Showing{" "}
+                          <strong>
+                            {(sessionsPage - 1) * sessionsPageSize + 1}–
+                            {Math.min(sessionsPage * sessionsPageSize, sessionsTotal)}
+                          </strong>{" "}
+                          of <strong>{sessionsTotal}</strong>
+                          {sessionsTotal !== sessionsList.length ? ` (${sessionsList.length} total)` : ""}
+                        </Text>
+                        <HStack spacing={2}>
+                          <Button
+                            size="xs"
+                            variant="outline"
+                            colorScheme="teal"
+                            isDisabled={sessionsPage <= 1}
+                            onClick={() => setSessionsPage((p) => Math.max(1, p - 1))}
+                          >
+                            Previous
+                          </Button>
+                          <Text>
+                            Page <strong>{sessionsPage}</strong> of <strong>{sessionsPageCount}</strong>
+                          </Text>
+                          <Button
+                            size="xs"
+                            variant="outline"
+                            colorScheme="teal"
+                            isDisabled={sessionsPage >= sessionsPageCount}
+                            onClick={() => setSessionsPage((p) => Math.min(sessionsPageCount, p + 1))}
+                          >
+                            Next
+                          </Button>
+                        </HStack>
+                      </HStack>
+                    )}
+                  </>
                 ) : (
                   <Text color={textColor}>No sessions in this period.</Text>
                 )}

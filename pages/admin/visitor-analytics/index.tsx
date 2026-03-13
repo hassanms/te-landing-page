@@ -1321,13 +1321,17 @@ const AdminVisitorAnalyticsPage = () => {
                     <Text color={textColor}>Left:</Text>
                     <Text>{new Date(sessionDetail.last_at).toLocaleString()}</Text>
                     <Text color={textColor}>Total time on site:</Text>
-                <Text fontWeight="semibold">{formatDuration(sessionDetail.total_duration_sec)}</Text>
-                <Text color={textColor}>Pages visited:</Text>
-                <Text>{sessionDetail.page_durations?.length || "—"}</Text>
-                <Text color={textColor}>Total link clicks:</Text>
-                <Text>
-                  {sessionDetail.events.filter((e) => e.event_type === "link_click").length}
-                </Text>
+                    <Text fontWeight="semibold">{formatDuration(sessionDetail.total_duration_sec)}</Text>
+                    <Text color={textColor}>Pages visited:</Text>
+                    <Text>{sessionDetail.page_durations?.length || "—"}</Text>
+                    <Text color={textColor}>Total link clicks:</Text>
+                    <Text>
+                      {sessionDetail.events.filter((e) => e.event_type === "link_click").length}
+                    </Text>
+                    <Text color={textColor}>Session ID:</Text>
+                    <Text fontFamily="mono" fontSize="xs" wordBreak="break-all">
+                      {sessionDetail.session_id}
+                    </Text>
                   </SimpleGrid>
               {/* Simple funnel: Home → Services → Contact */}
               <Box mt={4}>

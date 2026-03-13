@@ -42,7 +42,9 @@ const FeedbackPage = () => {
   const textColor = useColorModeValue("gray.600", "gray.100");
   const dividerColor = useColorModeValue("gray.200", "gray.600");
 
-  const [feedbackType, setFeedbackType] = useState<FeedbackType | "">("");
+  const [feedbackType, setFeedbackType] = useState<FeedbackType | "">(
+    "Honest Feedback",
+  );
   const [isAnonymous, setIsAnonymous] = useState<boolean>(true);
   const [name, setName] = useState<string>("");
   const [priority, setPriority] = useState<string>("");
@@ -245,7 +247,10 @@ const FeedbackPage = () => {
                         bg={isSelected ? "teal.500" : "transparent"}
                         color={isSelected ? "white" : textColor}
                         _hover={{
-                          bg: isSelected ? "teal.600" : "teal.50",
+                          bg: isSelected
+                            ? "teal.600"
+                            : "rgba(0, 76, 76, 0.12)",
+                          color: isSelected ? "white" : headingColor,
                         }}
                       >
                         {type}
@@ -267,7 +272,7 @@ const FeedbackPage = () => {
                 />
               </FormControl>
 
-              <Collapse in={!isAnonymous} animateOpacity>
+              <Collapse in={!isAnonymous} animateOpacity style={{ overflow: "visible" }}>
                 <FormControl>
                   <FormLabel fontWeight="semibold" color={headingColor}>
                     Name

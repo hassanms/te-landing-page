@@ -1,6 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Container,
@@ -86,6 +86,16 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
   // Generate table of contents from content
   const [tocItems, setTocItems] = useState<{ id: string; label: string }[]>([]);
   const [activeSection, setActiveSection] = useState("");
+
+  // Record a view when the post is displayed (whether from getStaticProps or client fetch)
+  const viewRecordedRef = useRef(false);
+  useEffect(() => {
+    if (!post?.id || !slug || typeof slug !== "string" || viewRecordedRef.current) return;
+    viewRecordedRef.current = true;
+    fetch(`/api/blog/${slug}/view`, { method: "GET" }).catch((err) =>
+      console.error("Failed to record blog view:", err)
+    );
+  }, [post?.id, slug]);
 
   // Optionally refetch on client if navigated without SSR data
   useEffect(() => {

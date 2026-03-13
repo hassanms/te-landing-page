@@ -6,6 +6,7 @@ const PLATFORM_DOMAINS: Record<string, Platform> = {
   "google.": "google",
   "linkedin.com": "linkedin",
   "lnkd.in": "linkedin", // LinkedIn link shortener; main linkedin.com often sends no referrer (Referrer-Policy: no-referrer)
+  "linkedin.android": "linkedin", // LinkedIn in-app browser (e.g. com.linkedin.android)
   "facebook.com": "facebook",
   "fb.com": "facebook",
   "twitter.com": "twitter",
@@ -29,10 +30,17 @@ function getPlatformFromReferrer(referrer: string): Platform {
   if (!referrer) return "direct";
   try {
     const host = new URL(referrer).hostname.toLowerCase();
+    // Same-site referrer counts as direct; localhost is kept separate for dev traffic
+    if (host === "127.0.0.1") return "localhost";
+    if (typeof window !== "undefined" && window.location?.hostname) {
+      const siteHost = window.location.hostname.toLowerCase();
+      if (host === siteHost || host.endsWith("." + siteHost) || siteHost.endsWith("." + host)) return "direct";
+    }
+    if (host === "localhost") return "localhost";
     for (const [domain, platform] of Object.entries(PLATFORM_DOMAINS)) {
       if (host.includes(domain)) return platform;
     }
-    // Step 2 requirement: for unknown referrers, store the domain as the source
+    // For unknown referrers, store the domain as the source
     return host;
   } catch {
     return "unknown";

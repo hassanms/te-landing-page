@@ -22,6 +22,16 @@ interface VisitorEventRow {
 
 const BOUNCE_DURATION_SEC = 10;
 
+/** Normalize platform for display so same-site and app referrers group correctly. Localhost is kept separate. */
+function normalizePlatformForDisplay(platform: string | null): string {
+  const p = (platform || "direct").trim().toLowerCase();
+  if (!p) return "direct";
+  if (p === "127.0.0.1") return "localhost";
+  if (p.includes("techemulsion.com")) return "direct";
+  if (p.includes("linkedin.android") || p === ".com.linkedin.android") return "linkedin";
+  return p;
+}
+
 function computeSessions(events: VisitorEventRow[]) {
   const bySession = new Map<
     string,
@@ -180,7 +190,7 @@ export default async function handler(
 
     list.forEach((e) => {
       sessionsSet.add(e.session_id);
-      const platform = e.platform || "direct";
+      const platform = normalizePlatformForDisplay(e.platform);
       byPlatform[platform] = (byPlatform[platform] || 0) + 1;
       if (e.country) byCountry[e.country] = (byCountry[e.country] || 0) + 1;
       if (e.city) byCity[e.city] = (byCity[e.city] || 0) + 1;
@@ -245,7 +255,7 @@ export default async function handler(
 
     const sessionsByPlatform = new Map<string, number>();
     for (const s of sessions) {
-      const key = s.platform || "direct";
+      const key = normalizePlatformForDisplay(s.platform);
       sessionsByPlatform.set(key, (sessionsByPlatform.get(key) || 0) + 1);
     }
 

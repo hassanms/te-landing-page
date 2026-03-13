@@ -71,7 +71,24 @@ import { AdminLayout } from "components/admin/layout/admin-layout";
 import { FiEye } from "react-icons/fi";
 import toast from "react-hot-toast";
 
-const CHART_COLORS = ["#0D9488", "#2DD4BF", "#14B8A6", "#5EEAD4", "#99F6E4", "#CCFBF1", "#2D3748", "#4A5568"];
+// Platform brand colors for Traffic by source chart
+const PLATFORM_BRAND_COLORS: Record<string, string> = {
+  direct: "#64748B",       // slate (neutral)
+  google: "#4285F4",       // Google blue
+  linkedin: "#0A66C2",    // LinkedIn blue
+  facebook: "#1877F2",    // Facebook blue
+  twitter: "#1DA1F2",     // Twitter/X blue
+  youtube: "#FF0000",      // YouTube red
+  email: "#EA4335",       // Gmail red
+  localhost: "#7C3AED",   // violet (dev)
+  unknown: "#6B7280",      // gray
+};
+const FALLBACK_CHART_COLORS = ["#0D9488", "#8B5CF6", "#F59E0B", "#EC4899", "#14B8A6", "#6366F1"];
+
+function getPlatformChartColor(platform: string, index: number): string {
+  const key = (platform || "direct").trim().toLowerCase();
+  return PLATFORM_BRAND_COLORS[key] ?? FALLBACK_CHART_COLORS[index % FALLBACK_CHART_COLORS.length];
+}
 
 interface SessionSummary {
   session_id: string;
@@ -151,6 +168,23 @@ function formatDuration(sec: number): string {
   const m = Math.floor(sec / 60);
   const s = sec % 60;
   return s ? `${m}m ${s}s` : `${m}m`;
+}
+
+function formatSourceLabel(platform: string): string {
+  const p = (platform || "direct").trim().toLowerCase();
+  if (p === "direct") return "Direct";
+  if (p === "localhost") return "Localhost";
+  const known: Record<string, string> = {
+    google: "Google",
+    linkedin: "LinkedIn",
+    facebook: "Facebook",
+    twitter: "Twitter",
+    youtube: "YouTube",
+    email: "Email",
+    unknown: "Other",
+  };
+  if (known[p]) return known[p];
+  return p.charAt(0).toUpperCase() + p.slice(1);
 }
 
 function shortSessionId(sessionId: string): string {
@@ -537,26 +571,32 @@ const AdminVisitorAnalyticsPage = () => {
               )}
 
               <Box bg={cardBg} p={6} borderRadius="xl" border="1px solid" borderColor={borderColor} mb={6}>
-                <Heading size="sm" mb={3}>Traffic by source</Heading>
+                <Heading size="sm" mb={1}>Traffic by source</Heading>
+                <Text fontSize="xs" color={textColor} mb={4}>
+                  Sessions by where visitors came from (direct, search, social, etc.).
+                </Text>
                 {data.byPlatform.length > 0 ? (
-                  <Box height="220px">
+                  <Box height="340px" w="100%">
                     <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
+                      <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
                         <Pie
                           data={data.byPlatform}
                           dataKey="sessions"
                           nameKey="platform"
                           cx="50%"
                           cy="50%"
-                          outerRadius={70}
-                          label={({ platform, sessions }) => `${platform} (${sessions})`}
+                          outerRadius={88}
+                          innerRadius={0}
+                          paddingAngle={1}
+                          label={({ platform, sessions }) => `${formatSourceLabel(platform)} (${sessions})`}
+                          labelLine={{ strokeWidth: 1 }}
                         >
-                          {data.byPlatform.map((_, i) => (
-                            <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                          {data.byPlatform.map((d, i) => (
+                            <Cell key={d.platform} fill={getPlatformChartColor(d.platform, i)} />
                           ))}
                         </Pie>
                         <RechartsTooltip />
-                        <Legend />
+                        <Legend formatter={(value) => formatSourceLabel(value)} wrapperStyle={{ paddingTop: "8px" }} />
                       </PieChart>
                     </ResponsiveContainer>
                   </Box>

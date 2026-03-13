@@ -127,7 +127,7 @@ const Home: NextPage = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Sales",
+            text: "Talk to Us",
             color: "#008080",
             textColor: "#ffffff",
           });

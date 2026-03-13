@@ -76,7 +76,7 @@ const CaseStudyMeatery = () => {
           // @ts-ignore
           Calendly.initBadgeWidget({
             url: "https://calendly.com/hassanms/discovery-call",
-            text: "Talk to Sales",
+            text: "Talk to Us",
             color: "#004c4c",
             textColor: "#ffffff",
           });

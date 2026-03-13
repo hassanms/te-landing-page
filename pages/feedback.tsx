@@ -67,11 +67,6 @@ const FeedbackPage = () => {
       return;
     }
 
-    if (!priority) {
-      toast.error("Please select a priority level.");
-      return;
-    }
-
     if (!subject.trim()) {
       toast.error("Subject is required.");
       return;
@@ -111,7 +106,7 @@ const FeedbackPage = () => {
       <EnhancedSEO
         title="Voice of Our Team - Employee Feedback"
         description="Share your thoughts, ideas, and concerns with leadership. Your feedback shapes our company."
-        pageType="page"
+        pageType="contact"
         canonicalUrl="https://techemulsion.com/feedback"
         breadcrumbData={{
           items: [
@@ -287,7 +282,7 @@ const FeedbackPage = () => {
                 </FormControl>
               </Collapse>
 
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel fontWeight="semibold" color={headingColor}>
                   Priority Level
                 </FormLabel>
@@ -324,7 +319,6 @@ const FeedbackPage = () => {
                 </FormLabel>
                 <Textarea
                   placeholder="Share as much detail as you feel comfortable. Examples, context, and suggestions are very helpful."
-                  minRows={3}
                   rows={6}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -332,7 +326,7 @@ const FeedbackPage = () => {
                 />
               </FormControl>
 
-              <Box>
+              <Box textAlign="center">
                 <Button
                   type="submit"
                   size="lg"

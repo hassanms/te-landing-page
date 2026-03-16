@@ -1,9 +1,11 @@
+import { ColorModeScript } from "@chakra-ui/react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import theme from "../theme";
 
 export default class Document extends NextDocument {
   render() {
     return (
-      <Html lang="en" data-theme="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>
+      <Html lang="en">
         <Head>
           {/* Standard favicon for all browsers */}
           <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
@@ -158,7 +160,8 @@ export default class Document extends NextDocument {
             data-version="062024"
           ></script>
         </Head>
-        <body className="chakra-ui-dark">
+        <body>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>

@@ -184,7 +184,7 @@ const Services = () => {
               }}
             >
               <Heading
-                as="h1"
+                as="h2"
                 fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                 fontWeight="bold"
                 color={headingColor}
@@ -238,7 +238,7 @@ const Services = () => {
                 How We
               </Heading>
               <Heading
-                as="h1"
+                as="h2"
                 mt={2}
                 color={mainHeadingColor}
                 fontSize={{ base: "2rem", md: "2.5rem" }}

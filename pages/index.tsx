@@ -1483,9 +1483,8 @@ const Portfolio: React.FC = () => {
               mt="1"
               width={{ base: "100%", md: "60%" }}
               textAlign="left">
-              {`Explore our creative portfolio showcasing a selection of recent works. From innovative designs to cutting-edge solutions, each
-            project highlights our dedication to quality and creativity.
-            Discover how we've transformed ideas into impactful digital experiences for businesses like yours.`}
+              {`Explore our creative portfolio showcasing a selection of recent works. Each project highlights measurable improvements in engagement, revenue, or efficiency for our clients.
+            Discover how we've transformed ideas into products that ship faster, convert better, and scale with your business.`}
             </Text>
             <ButtonGroup
               spacing={4}

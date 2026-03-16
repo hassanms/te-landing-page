@@ -79,8 +79,8 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
   return (
     <Box position="relative" minH="100vh" color={headingColor}>
       <EnhancedSEO
-        title="Insights - Tech Emulsion"
-        description="Read the latest articles, insights, and updates from Tech Emulsion about digital transformation, AI solutions, custom software development, and technology trends."
+        title="Blog | Tech Emulsion — AI & Software Development Insights"
+        description="Explore Tech Emulsion's blog for insights on AI development, SaaS building, DevOps, and software engineering best practices."
         pageType="blog"
         canonicalUrl="https://techemulsion.com/blog"
         breadcrumbData={{
@@ -501,7 +501,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
         initialPosts,
         initialCategories,
       },
-      revalidate: 900,
+      revalidate: 60,
     };
   } catch (error) {
     console.error("Error in getStaticProps for /blog:", error);
@@ -510,7 +510,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
         initialPosts: [],
         initialCategories: [],
       },
-      revalidate: 900,
+      revalidate: 60,
     };
   }
 };

@@ -51,7 +51,7 @@ These are the main keyword clusters the site should rank for. All on-page and co
 
 - [ ] **Meta title:**  
   - Max **60 characters**.  
-  - Example: `Tech Emulsion | AI Software Development Agency`
+  - Example: `Tech Emulsion | Generative ai development company`
 - [ ] **Meta description:**  
   - Max **155 characters**.  
   - Example: `We build AI agents, SaaS platforms, and custom software. 50+ projects shipped. Get a free estimate.`

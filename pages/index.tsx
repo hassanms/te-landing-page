@@ -135,8 +135,8 @@ const Home: NextPage = () => {
       />
 
       <EnhancedSEO
-        title="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
-        description="Transform your business with cutting-edge SaaS platforms, mobile applications, and AI agents. Tech Emulsion specializes in SaaS development services, AI agent development, and custom software solutions. We provide generative AI solutions, workflow automation services, DevOps services, QA testing services, and Next.js website development to drive digital transformation."
+        title="Tech Emulsion | Generative AI development company"
+        description="We are a generative AI development company that builds AI agents, SaaS platforms, and custom software. 50+ projects shipped. Get a free estimate."
         pageType="home"
         canonicalUrl="https://techemulsion.com"
         ogImage="https://techemulsion.com/static/favicons/android-chrome-512x512.png"

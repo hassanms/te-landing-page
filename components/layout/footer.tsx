@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from "react";
 import {
   VisuallyHidden,
   Box,
@@ -38,6 +39,46 @@ interface LinkProps {
 export const Footer: React.FC<FooterProps> = (props) => {
   const { columns = 2, ...rest } = props;
   const { colorMode } = useColorMode();
+  const svgRef = useRef<SVGSVGElement | null>(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    const gradient = svg.querySelector<SVGGradientElement>("#hoverGradient");
+    const innerStop = gradient?.querySelector<SVGStopElement>("stop[offset='0%']");
+    if (!gradient || !innerStop) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = svg.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      gradient.setAttribute("cx", `${x}%`);
+      gradient.setAttribute("cy", `${y}%`);
+    };
+
+    const handleMouseEnter = () => {
+      innerStop.setAttribute("stop-opacity", "1");
+    };
+
+    const handleMouseLeave = () => {
+      innerStop.setAttribute("stop-opacity", "0");
+    };
+
+    svg.addEventListener("mousemove", handleMouseMove);
+    svg.addEventListener("mouseenter", handleMouseEnter);
+    svg.addEventListener("mouseleave", handleMouseLeave);
+    // initial state: no fill
+    handleMouseLeave();
+
+    return () => {
+      svg.removeEventListener("mousemove", handleMouseMove);
+      svg.removeEventListener("mouseenter", handleMouseEnter);
+      svg.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
   return (
     <Box
       bg="evergreen.500"
@@ -343,30 +384,47 @@ export const Footer: React.FC<FooterProps> = (props) => {
             </Stack>
           </Stack>
         </SimpleGrid>
-        <Stack spacing="4" alignItems="flex-start">
+        <Stack spacing="2" alignItems="flex-start">
           <Box
             width="100%"
-            overflow="hidden"
             px="20px"
-            pt="0px"
-            pb="10px"
+            pt="12"
+            pb="0"
+            minH="240px"
             display={{ base: "none", md: "flex" }}
-            justifyContent="center">
-            <Text
-              fontFamily={`"Helvetica Neue", Helvetica, Arial, sans-serif`}
-              fontSize="clamp(120px, 20vw, 280px)"
-              lineHeight="1"
-              fontWeight="700"
-              letterSpacing="-0.02em"
-              color="transparent"
-              textAlign="center"
-              sx={{
-                WebkitTextStroke: "2px rgba(255, 255, 255, 0.6)",
-                textStroke: "2px rgba(255, 255, 255, 0.6)",
-                whiteSpace: "nowrap",
-              }}>
-              Emulsion
-            </Text>
+            justifyContent="center"
+            alignItems="center">
+            <Box
+              as="svg"
+              ref={svgRef}
+              viewBox="0 0 1200 260"
+              preserveAspectRatio="xMidYMid meet"
+              width="100%">
+              <defs>
+                <radialGradient id="hoverGradient" cx="50%" cy="50%" r="18%">
+                  <stop offset="0%" stopColor="#bbbbbb" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#bbbbbb" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                style={{
+                  fontFamily: `"Helvetica Neue", Helvetica, Arial, sans-serif`,
+                  fontSize: "clamp(120px, 20vw, 280px)",
+                  lineHeight: 1,
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  fill: "url(#hoverGradient)",
+                  stroke: "#bbbbbb",
+                  strokeWidth: 2.5,
+                  whiteSpace: "nowrap",
+                }}>
+                Emulsion
+              </text>
+            </Box>
           </Box>
           <Divider
             orientation="horizontal"

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        /* background: black; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      svg {
+        width: 900px;
+      }
+
+      text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 160px;
+        fill: url(#hoverGradient);
+        stroke: #777;
+        stroke-width: 2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg viewBox="0 0 900 200">
+      <defs>
+        <radialGradient id="hoverGradient" cx="50%" cy="50%" r="30%">
+          <stop offset="0%" stop-color="#777" />
+          <stop offset="100%" stop-color="white" />
+        </radialGradient>
+      </defs>
+
+      <text id="text" x="50%" y="65%" text-anchor="middle">Emulsion</text>
+    </svg>
+
+    <script>
+      const svg = document.querySelector("svg");
+      const gradient = document.querySelector("#hoverGradient");
+
+      svg.addEventListener("mousemove", (e) => {
+        const rect = svg.getBoundingClientRect();
+
+        let x = ((e.clientX - rect.left) / rect.width) * 100;
+        let y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        gradient.setAttribute("cx", x + "%");
+        gradient.setAttribute("cy", y + "%");
+      });
+    </script>
+  </body>
+</html>

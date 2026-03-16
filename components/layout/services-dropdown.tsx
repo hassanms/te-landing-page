@@ -117,7 +117,7 @@ export const ServicesDropdown: React.FC<ServicesDropdownProps> = ({
               borderColor={dividerColor}
             >
               <ServiceItem
-                title={service.title}
+                title={service.displayTitle || service.title}
                 href={`/services/${service.slug}`}
                 isAccent={false}
                 cardText={cardText}

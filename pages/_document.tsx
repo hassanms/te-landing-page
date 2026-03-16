@@ -1,9 +1,11 @@
+import { ColorModeScript } from "@chakra-ui/react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import theme from "../theme";
 
 export default class Document extends NextDocument {
   render() {
     return (
-      <Html lang="en" data-theme="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>
+      <Html lang="en">
         <Head>
           {/* Standard favicon for all browsers */}
           <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
@@ -64,14 +66,14 @@ export default class Document extends NextDocument {
             content="/static/favicons/mstile-150x150.png"
           />
 
-          {/* Standard Meta Tags for SEO */}
+          {/* Standard Meta Tags for SEO (homepage values are refined by page-level SEO) */}
           <meta
             name="description"
-            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+            content="We are a generative AI development company that builds AI agents, SaaS platforms, and custom software. 50+ projects shipped. Get a free estimate."
           />
           <meta
             name="keywords"
-            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+            content="generative ai development company, generative ai development services, ai agent development services"
           />
           <meta name="author" content="Tech Emulsion" />
           <meta name="robots" content="index, follow" />
@@ -84,11 +86,11 @@ export default class Document extends NextDocument {
           <meta property="og:type" content="website" />
           <meta
             property="og:title"
-            content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+            content="Tech Emulsion | Generative AI development company"
           />
           <meta
             property="og:description"
-            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business."
+            content="We are a generative AI development company that builds AI agents, SaaS platforms, and custom software. 50+ projects shipped. Get a free estimate."
           />
           <meta property="og:url" content="https://techemulsion.com" />
           <meta property="og:site_name" content="Tech Emulsion" />
@@ -108,11 +110,11 @@ export default class Document extends NextDocument {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:title"
-            content="Tech Emulsion | Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business"
+            content="Tech Emulsion | Generative AI development company"
           />
           <meta
             name="twitter:description"
-            content="Imagineer breakthrough SaaS, Mobile Apps, and AI Agents for your business."
+            content="We are a generative AI development company that builds AI agents, SaaS platforms, and custom software. 50+ projects shipped. Get a free estimate."
           />
           <meta name="twitter:site" content="@techemulsion" />
           <meta name="twitter:creator" content="@techemulsion" />
@@ -158,7 +160,8 @@ export default class Document extends NextDocument {
             data-version="062024"
           ></script>
         </Head>
-        <body className="chakra-ui-dark">
+        <body>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>

@@ -20,6 +20,19 @@
 
 ---
 
+## Target Keyword Sets (from `SEO_TARGET_KEYWORDS.md`)
+
+These are the main keyword clusters the site should rank for. All on-page and content work below should use them **naturally**, not as keyword stuffing.
+
+- **Core AI / agentic:** generative ai development company, generative ai development services, ai agent development services, agentic ai web development, developing an agentic ai system, generative ai integration services, ai and gpt integration services, ai automation service, ai visibility solutions with best generative engine optimization, best rated ai generative expand solutions, ai-native agency.
+- **SaaS:** saas development services, saas application development services, saas product development services, custom saas development.
+- **Automation:** business automation solutions, workflow automation services, automated customer service workflows utilizing process builder.
+- **DevOps & QA:** devops as a service, devops managed services, qa and testing services, qa automation testing services.
+- **Chrome extension:** develop chrome extension, how to develop chrome extension.
+- **Web / Next.js:** custom website development company, custom ecommerce website development, next.js website development agency, next js website development agency.
+
+---
+
 ## Phase 1: Critical (Week 1) — On-Page & Headline Foundation
 
 **Goal:** Fix structure and hero so the page is technically correct and instantly clear.  
@@ -67,7 +80,7 @@
 - [ ] **Perspective shift:** Rewrite sections from "We" to "You" (e.g. "You get", "Your team gets", "Your product ships").
 - [ ] **Remove buzzwords:** Replace "cutting-edge solutions", "innovative designs", "impactful digital experiences" with concrete outcomes and proof.
 - [ ] **Add specifics:** Where relevant, add engagement hints: pricing ranges or "from $X", typical timelines (e.g. "weeks not months"), team size (e.g. "dedicated pod of 3–5").
-- [ ] **Service copy:** Rewrite keyword-stuffed lines (e.g. "Best rated AI generative expand solutions") into clear, grammatical, benefit-led descriptions.
+- [ ] **Service copy:** Rewrite keyword-stuffed lines (e.g. "Best rated AI generative expand solutions") into clear, grammatical, benefit-led descriptions that **naturally include priority keywords** from the relevant cluster (AI/agentic, SaaS, automation, DevOps/QA, Chrome extension, web/Next.js).
 
 ### 2.2 Social Proof & Trust (→ 10/10)
 
@@ -99,16 +112,16 @@
 
 ### 3.1 Dedicated Service Pages
 
-- [ ] Create **dedicated service pages** (e.g. `/services/ai-engineering`, `/services/saas-development`, `/services/mobile-apps`) with **1,500+ words** each.
-- [ ] Each page: one H1, clear H2/H3 structure, benefit-led copy, and a single primary CTA (e.g. "Get a Free Estimate").
+- [ ] Create **dedicated service pages** (e.g. `/services/ai-engineering`, `/services/saas-development`, `/services/automation`, `/services/devops`, `/services/qa-testing`, `/services/chrome-extensions`, `/services/nextjs-web-development`) with **1,500+ words** each, each mapped to a **specific keyword cluster** from `SEO_TARGET_KEYWORDS.md`.
+- [ ] Each page: one H1, clear H2/H3 structure, benefit-led copy, and a single primary CTA (e.g. "Get a Free Estimate"), plus **1–2 primary target keywords** and 3–5 supporting variations from its cluster woven into headings, intro, FAQs, and body copy.
 - [ ] Add **Service** schema on each service page.
 - [ ] Move detailed service copy from homepage to these pages to fix **keyword cannibalization** and target distinct keywords per page.
 
 ### 3.2 Blog & Long-Tail Strategy
 
-- [ ] **Cadence:** Publish **2–4 posts per month** targeting long-tail keywords (e.g. "how to build an AI agent for customer support", "SaaS MVP development timeline").
+- [ ] **Cadence:** Publish **2–4 posts per month** targeting long-tail keywords built from the clusters in `SEO_TARGET_KEYWORDS.md` (e.g. \"how to develop chrome extension for SaaS dashboards\", \"workflow automation services for B2B support\", \"agentic ai web development for ecommerce\").
 - [ ] **Internal linking:** Link from blog posts to relevant service pages and homepage; link from service pages to related posts.
-- [ ] **Content themes:** Align with service pillars (AI agents, SaaS, mobile, custom software) to build topical authority.
+- [ ] **Content themes:** Align with service pillars (AI agents / agentic AI, generative AI development, SaaS, automation, DevOps/QA, Chrome extensions, Next.js/web) to build topical authority around the keyword clusters.
 
 ### 3.3 Backlinks & Authority
 

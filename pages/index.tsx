@@ -323,26 +323,19 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Imagineer breakthrough <Br />
+                We build the{" "}
                 <Em style={{ color: "var(--chakra-colors-pearlAqua-500)" }}>
-                  SaaS, Mobile Apps, and AI Agents{" "}
-                </Em>
-                <Br /> for your business
+                  AI-powered software
+                </Em>{" "}
+                that scales your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  Tech Emulsion designs, builds, and scales{" "}
-                  <Em
-                    style={{
-                      color: "var(--chakra-colors-pearlAqua-500)",
-                      fontWeight: "900",
-                    }}>
-                    SaaS, mobile experiences, and AI agents
-                  </Em>{" "}
-                  that streamline operations, delight users, and unlock new
-                  growth.
+                  From AI agents to full SaaS platforms, we take your product
+                  from idea to launch in weeks, not months. 50+ projects
+                  shipped.
                 </Em>
               </FallInPlace>
             }>
@@ -984,7 +977,7 @@ const AboutUsSection: React.FC = () => {
               About us
             </Heading>
             <Heading
-              as="h1"
+              as="h2"
               mt="2"
               sx={{
                 fontSize: { base: "2rem", md: "2.5rem" },
@@ -1001,7 +994,7 @@ const AboutUsSection: React.FC = () => {
           </Box>
           <Box flex="1">
             <Heading
-              as="h1"
+              as="h2"
               fontWeight={600}
               sx={{
                 fontSize: { base: "2rem", md: "2.5rem" },
@@ -1270,7 +1263,7 @@ const HighlightsSection: React.FC = () => {
               What We Do
             </Heading>
             <Heading
-              as="h1"
+              as="h2"
               mt="2"
               sx={{
                 fontSize: { base: "2rem", md: "2.5rem" },
@@ -1471,7 +1464,7 @@ const Portfolio: React.FC = () => {
               Creative Portfolio
             </Heading>
             <Heading
-              as="h1"
+              as="h2"
               mt="2"
               sx={{
                 fontSize: { base: "2rem", md: "2.5rem" },
@@ -1655,7 +1648,7 @@ const SocialProofSection: React.FC = () => {
           alignItems="center"
           gap="4">
           <Heading
-            as="h1"
+            as="h2"
             mt="2"
             sx={{
               display: "flex",
@@ -2434,7 +2427,7 @@ const TestimonialsSection: React.FC = () => {
             TESTIMONIALS
           </Heading>
           <Heading
-            as="h1"
+            as="h2"
             mt={3}
             color={colorMode === "dark" ? "white" : "gray.800"}
             fontSize={{ base: "2rem", md: "2.5rem" }}
@@ -2525,7 +2518,7 @@ const TestimonialsSection: React.FC = () => {
             Reason behind our success
           </Heading>
           <Heading
-            as="h1"
+            as="h2"
             mt="5"
             sx={{
               display: "flex",

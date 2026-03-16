@@ -36,6 +36,8 @@ export interface ServiceData {
   id: number;
   slug: string;
   title: string;
+  /** Human-friendly label for nav/listing; H1 uses `title` */
+  displayTitle?: string;
   shortDescription: string;
   fullDescription: string;
   image: string;
@@ -207,7 +209,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 1,
     slug: "agentic-ai-engineering",
-    title: "Agentic AI Engineering",
+    title: "Developing an Agentic AI System",
+    displayTitle: "Agentic AI Engineering",
     shortDescription:
       "Generative AI development services from a generative AI development company that builds autonomous AI agents to handle real work—from sales qualification chatbots to RAG-powered knowledge systems. Proven with Pack Assist, Farmin, and Content Compass.",
     fullDescription:
@@ -215,11 +218,11 @@ export const servicesData: ServiceData[] = [
     image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
     tags: ["AI", "Automation", "Agents"],
     seoKeywords: [
+      "developing an agentic ai system",
       "generative ai development services",
       "generative ai development company",
       "ai agent development services",
       "agentic ai web development",
-      "developing an agentic ai system",
     ],
     whatIs:
       "Agentic AI engineering is the practice of building autonomous AI systems that can plan, reason, and execute multi-step tasks with minimal human intervention. Tech Emulsion provides generative AI development services as a generative AI development company, delivering agentic AI agents that integrate with your APIs, databases, and tools.",
@@ -315,7 +318,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 2,
     slug: "next-gen-saas",
-    title: "Next-Gen SaaS Development",
+    title: "SaaS Development Services",
+    displayTitle: "Next-Gen SaaS Development",
     shortDescription:
       "SaaS development services and custom SaaS development from MVP to enterprise—proven with Atarim ($500K funded), Rack Room, Farmin, and Podcast Beacon. Cloud-native, subscription billing, and integrations built in.",
     fullDescription:
@@ -416,7 +420,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 3,
     slug: "website-development",
-    title: "Innovative Website Development",
+    title: "Custom Website Development Company",
+    displayTitle: "Innovative Website Development",
     shortDescription:
       "A custom website development company and Next.js website development agency. High-performance, SEO-friendly websites and custom ecommerce website development. Marketing sites, portfolios, and conversion-focused pages that drive growth.",
     fullDescription:
@@ -517,7 +522,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 4,
     slug: "chrome-extensions",
-    title: "Custom Chrome Extensions",
+    title: "Develop Chrome Extension",
+    displayTitle: "Custom Chrome Extensions",
     shortDescription:
       "We develop Chrome extensions that extend your SaaS or workflow—like Atarim's extension for visual feedback on any website. How to develop Chrome extension: we handle design, build, and Web Store publishing. Manifest V3 compliant.",
     fullDescription:
@@ -613,7 +619,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 5,
     slug: "devops-solutions",
-    title: "Expert DevOps Solutions",
+    title: "DevOps as a Service",
+    displayTitle: "Expert DevOps Solutions",
     shortDescription:
       "DevOps as a service and devops managed services—we scale and secure your infrastructure with AWS, region-based load balancing, auto-scaling, and CI/CD. Proven with Atarim, Farmin, and Rack Room.",
     fullDescription:
@@ -709,7 +716,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 6,
     slug: "generative-ai-integration",
-    title: "Generative AI Integration",
+    title: "Generative AI Integration Services",
+    displayTitle: "Generative AI Integration",
     shortDescription:
       "Generative AI integration services and AI and GPT integration services. We deliver AI visibility solutions with best generative engine optimization—LLMs, RAG, and AI-powered workflows that make your product easier to discover and more useful for users.",
     fullDescription:
@@ -717,10 +725,10 @@ export const servicesData: ServiceData[] = [
     image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
     tags: ["AI", "LLM", "Automation"],
     seoKeywords: [
-      "generative ai development services",
-      "generative ai development company",
       "generative ai integration services",
       "ai and gpt integration services",
+      "generative ai development services",
+      "generative ai development company",
       "ai visibility solutions with best generative engine optimization",
       "best rated ai generative expand solutions",
     ],
@@ -818,7 +826,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 7,
     slug: "qa-testing-automation",
-    title: "QA Testing & Automation",
+    title: "QA and Testing Services",
+    displayTitle: "QA Testing & Automation",
     shortDescription:
       "QA and testing services and QA automation testing services. We ensure your software is bug-free and production-ready—functional, performance, and security testing, plus automated test suites in CI/CD for every project we deliver.",
     fullDescription:
@@ -914,7 +923,8 @@ export const servicesData: ServiceData[] = [
   {
     id: 8,
     slug: "automation-solutions",
-    title: "Automation Solutions",
+    title: "Workflow Automation Services",
+    displayTitle: "Automation Solutions",
     shortDescription:
       "Business automation solutions and workflow automation services. We automate workflows and integrate your systems—Slack, Jira, Asana, Twilio—including automated customer service workflows utilizing process builder. AI automation service for intelligent, error-free operations.",
     fullDescription:
@@ -922,8 +932,8 @@ export const servicesData: ServiceData[] = [
     image: "/assets/whatWeDo/automation.png",
     tags: ["Automation", "Workflows", "Integration"],
     seoKeywords: [
-      "business automation solutions",
       "workflow automation services",
+      "business automation solutions",
       "automated customer service workflows utilizing process builder",
       "ai automation service",
     ],

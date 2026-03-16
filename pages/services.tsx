@@ -312,7 +312,7 @@ const Services = () => {
                   >
                     <ServiceCard
                       slug={service.slug}
-                      title={service.title}
+                      title={service.displayTitle || service.title}
                       shortDescription={service.shortDescription}
                       image={service.image}
                       compact

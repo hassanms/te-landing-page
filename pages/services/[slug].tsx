@@ -241,7 +241,7 @@ const ServiceSubpage = ({ service }: ServicePageProps) => {
               fontWeight="bold"
               boxShadow="xl"
             >
-              Schedule a Discovery Call
+              Get a Free Estimate
             </Button>
           </VStack>
         </Container>

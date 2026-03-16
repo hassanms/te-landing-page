@@ -89,7 +89,7 @@ These are the main keyword clusters the site should rank for. All on-page and co
 - [ ] **Portfolio:** Add quantified results to case studies (timeline, funding, users, revenue impact, etc.).
 - [ ] **External proof:** Get listed on **Clutch.co** and embed the Clutch widget; add link to **Upwork** profile and highlight JSS + review count.
 
-### 2.3 Technical SEO (→ 10/10)
+### 2.3 Technical SEO (→ 10/10) done
 
 - [ ] **Schema:**  
   - Keep Organization schema.  

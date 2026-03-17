@@ -25,7 +25,6 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
-import { getSupabaseAdmin } from "lib/supabase/server";
 
 export interface BlogPost {
   id: string;
@@ -478,6 +477,7 @@ function PostCard({ post }: { post: BlogPost }) {
 // Pre-render blog listings for crawlability (ISR keeps it fresh).
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   try {
+    const { getSupabaseAdmin } = await import("lib/supabase/server");
     const supabaseAdmin = getSupabaseAdmin();
 
     const [postsResult, categoriesResult] = await Promise.all([

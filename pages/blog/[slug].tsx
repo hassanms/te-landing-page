@@ -212,6 +212,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
           pageType="blog"
           canonicalUrl={post.canonical_url || `https://techemulsion.com/blog/${post.slug}`}
           ogImage={post.og_image || post.featured_image || undefined}
+          ogType="article"
           breadcrumbData={{
             items: [
               { name: "Home", url: "https://techemulsion.com" },

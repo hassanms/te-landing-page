@@ -41,6 +41,7 @@ const Services = () => {
         title="Software Development & AI Services | Tech Emulsion"
         description="Explore Tech Emulsion's services: AI agents, SaaS development, DevOps, QA automation, Chrome extensions, and workflow automation. 50+ projects delivered globally."
         pageType="services"
+        canonicalUrl="https://techemulsion.com/services"
         keywords={[
           "generative ai development services",
           "generative ai development company",

@@ -203,7 +203,11 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
 
         {/* Body Content */}
         <Box mt={8}>
-        {loading ? (
+        {posts.length === 0 && !loading ? (
+          <Box textAlign="center" py={16}>
+            <Text color={textColor}>No posts found.</Text>
+          </Box>
+        ) : loading ? (
           <Box textAlign="center" py={16}>
             <Box color="teal.500" display="inline-block">
               <Spinner size="xl" />

@@ -308,8 +308,8 @@ export default function Portfolio() {
   return (
     <>
       <EnhancedSEO
-        title="Our Portfolio - Tech Emulsion"
-        description="Explore Tech Emulsion's diverse portfolio of successful projects including AI-powered tools, SaaS platforms, mobile apps, and custom software development."
+        title="Our Work & Portfolio | Tech Emulsion"
+        description="Browse 19+ projects by Tech Emulsion — AI agents, SaaS platforms, mobile apps across healthcare, retail, agritech, media, and enterprise. See what we've built."
         pageType="portfolio"
         canonicalUrl="https://techemulsion.com/portfolio"
       />

@@ -136,7 +136,7 @@ const Home: NextPage = () => {
 
       <EnhancedSEO
         title="Tech Emulsion | Generative AI development company"
-        description="We are a generative AI development company that builds AI agents, SaaS platforms, and custom software. 50+ projects shipped. Get a free estimate."
+        description="Tech Emulsion builds AI agents, SaaS platforms, and custom software from MVP to enterprise. 50+ projects shipped. US & Pakistan-based generative AI development company."
         pageType="home"
         canonicalUrl="https://techemulsion.com"
         ogImage="https://techemulsion.com/static/favicons/android-chrome-512x512.png"

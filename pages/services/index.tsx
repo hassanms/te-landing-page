@@ -38,9 +38,10 @@ const Services = () => {
   return (
     <>
       <EnhancedSEO
-        title="Services - Tech Emulsion"
-        description="Generative AI development services and a leading generative AI development company. Tech Emulsion provides SaaS development services, AI agent development, custom software, workflow automation, DevOps, QA testing, Chrome extensions, and Next.js website development."
+        title="Software Development & AI Services | Tech Emulsion"
+        description="Explore Tech Emulsion's services: AI agents, SaaS development, DevOps, QA automation, Chrome extensions, and workflow automation. 50+ projects delivered globally."
         pageType="services"
+        canonicalUrl="https://techemulsion.com/services"
         keywords={[
           "generative ai development services",
           "generative ai development company",

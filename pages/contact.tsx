@@ -30,8 +30,8 @@ const Contacts = () => {
         />
       </Head>
       <EnhancedSEO
-        title="Contact Us - Tech Emulsion"
-        description="Get in touch with Tech Emulsion for your next project. We specialize in web development, SaaS solutions, Chrome extensions, QA testing, cloud services, and artificial intelligence."
+        title="Contact Tech Emulsion | Get a Free Discovery Call"
+        description="Get in touch with Tech Emulsion for AI development, SaaS, and software outsourcing. US and Pakistan teams available. Book a free discovery call today."
         pageType="contact"
         canonicalUrl="https://techemulsion.com/contact"
         breadcrumbData={{

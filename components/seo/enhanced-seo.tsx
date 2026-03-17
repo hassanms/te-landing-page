@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { NextSeo, NextSeoProps } from "next-seo";
 import { StructuredData } from "./structured-data";
 import siteConfig from "data/config";
@@ -60,6 +61,8 @@ export interface EnhancedSEOProps extends NextSeoProps {
   };
   canonicalUrl?: string;
   ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
 }
 
 export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
@@ -76,6 +79,8 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   reviewData,
   canonicalUrl,
   ogImage,
+  ogType,
+  twitterCard,
   ...props
 }) => {
   const keywordsContent =
@@ -184,26 +189,64 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
     return defaultCanonicals[pageType] || "https://techemulsion.com";
   };
 
-  // Get OG Image
-  const getOGImage = () => {
+  // Get OG Image URL (full URL string for meta tags)
+  const getOGImageUrl = () => {
     if (ogImage) {
-      return {
-        url: ogImage.startsWith("http") ? ogImage : `https://techemulsion.com${ogImage}`,
-        width: 1200,
-        height: 630,
-        alt: title || "Tech Emulsion",
-      };
+      return ogImage.startsWith("http")
+        ? ogImage
+        : `https://techemulsion.com${ogImage}`;
     }
+    return "https://techemulsion.com/assets/og-default.png";
+  };
+
+  // Get OG Image (object for NextSeo)
+  const getOGImage = () => {
     return {
-      url: "https://techemulsion.com/static/favicons/android-chrome-512x512.png",
-      width: 512,
-      height: 512,
-      alt: "Tech Emulsion Logo",
+      url: getOGImageUrl(),
+      width: 1200,
+      height: 630,
+      alt: title || "Tech Emulsion",
     };
   };
 
   return (
     <>
+      {/* TODO: Replace /assets/og-default.png with a real 1200x630 branded image showing Tech Emulsion logo + tagline on dark background */}
+      <Head>
+        {/* ── Open Graph ── */}
+        <meta property="og:site_name" content="Tech Emulsion" />
+        <meta property="og:type" content={ogType || "website"} />
+        <meta
+          property="og:title"
+          content={title || "Tech Emulsion | Generative AI Development Company"}
+        />
+        {description && (
+          <meta property="og:description" content={description} />
+        )}
+        {canonicalUrl && (
+          <meta property="og:url" content={canonicalUrl} />
+        )}
+        <meta property="og:image" content={getOGImageUrl()} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={title || "Tech Emulsion"} />
+
+        {/* ── Twitter / X Card ── */}
+        <meta
+          name="twitter:card"
+          content={twitterCard || "summary_large_image"}
+        />
+        <meta name="twitter:site" content="@TechEmulsion" />
+        <meta
+          name="twitter:title"
+          content={title || "Tech Emulsion | Generative AI Development Company"}
+        />
+        {description && (
+          <meta name="twitter:description" content={description} />
+        )}
+        <meta name="twitter:image" content={getOGImageUrl()} />
+        <meta name="twitter:image:alt" content={title || "Tech Emulsion"} />
+      </Head>
       <NextSeo
         title={title}
         description={getEnhancedDescription()}
@@ -212,7 +255,7 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
           ...siteConfig.seo.openGraph,
           title,
           description: getEnhancedDescription(),
-          type: "website",
+          type: (ogType as "website" | "article") || "website",
           site_name: "Tech Emulsion",
           url: getCanonicalUrl(),
           images: [getOGImage()],
@@ -220,8 +263,8 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
         titleTemplate={siteConfig.seo.titleTemplate}
         twitter={{
           ...siteConfig.seo.twitter,
-          cardType: "summary_large_image",
-          site: "@techemulsion",
+          cardType: (twitterCard as "summary_large_image") || "summary_large_image",
+          site: "@TechEmulsion",
         }}
         additionalMetaTags={[
           {

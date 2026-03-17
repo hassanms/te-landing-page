@@ -203,10 +203,16 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
       {post && (
         <EnhancedSEO
           title={post.meta_title || `${post.title} - Tech Emulsion`}
-          description={post.meta_description || post.excerpt}
+          description={
+            (() => {
+              const d = post.meta_description || post.excerpt || "";
+              return d.length > 157 ? d.slice(0, 157).trimEnd() + "..." : d;
+            })()
+          }
           pageType="blog"
           canonicalUrl={post.canonical_url || `https://techemulsion.com/blog/${post.slug}`}
           ogImage={post.og_image || post.featured_image || undefined}
+          ogType="article"
           breadcrumbData={{
             items: [
               { name: "Home", url: "https://techemulsion.com" },
@@ -410,26 +416,50 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
                 </Heading>
                 <VStack align="stretch" spacing="3">
                   {[
-                    "Agentic AI Engineering",
-                    "Next-Gen SaaS Development",
-                    "Innovative Website Development",
-                    "Custom Chrome Extensions",
-                    "Expert DevOps Solutions",
-                    "Generative AI Integration",
-                    "QA Testing & Automation",
-                    "Automation Solutions",
+                    {
+                      name: "Agentic AI Engineering",
+                      href: "/services/agentic-ai-engineering",
+                    },
+                    {
+                      name: "Next-Gen SaaS Development",
+                      href: "/services/next-gen-saas",
+                    },
+                    {
+                      name: "Innovative Website Development",
+                      href: "/services/website-development",
+                    },
+                    {
+                      name: "Custom Chrome Extensions",
+                      href: "/services/chrome-extensions",
+                    },
+                    {
+                      name: "Expert DevOps Solutions",
+                      href: "/services/devops-solutions",
+                    },
+                    {
+                      name: "Generative AI Integration",
+                      href: "/services/generative-ai-integration",
+                    },
+                    {
+                      name: "QA Testing & Automation",
+                      href: "/services/qa-testing-automation",
+                    },
+                    {
+                      name: "Automation Solutions",
+                      href: "/services/automation-solutions",
+                    },
                   ].map((service, idx) => (
                     <Link
                       key={idx}
                       as={NextLink}
-                      href="/services"
+                      href={service.href}
                       color={textColor}
                       fontSize="sm"
                       _hover={{
                         color: "teal.500",
                         textDecoration: "none",
                       }}>
-                      {service}
+                      {service.name}
                     </Link>
                   ))}
                 </VStack>

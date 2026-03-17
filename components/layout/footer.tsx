@@ -393,7 +393,9 @@ export const Footer: React.FC<FooterProps> = (props) => {
             minH="240px"
             display={{ base: "none", md: "flex" }}
             justifyContent="center"
-            alignItems="center">
+            alignItems="center"
+            cursor="default"
+            sx={{ userSelect: "none" }}>
             <Box
               as="svg"
               ref={svgRef}

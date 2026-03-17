@@ -11,6 +11,7 @@ const Layout = () => {
         position: "absolute",
         right: "1rem",
         top: "1rem",
+        cursor: "default", // Use normal arrow cursor instead of text (I-beam)
       }}
     >
       <svg

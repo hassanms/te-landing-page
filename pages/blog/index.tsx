@@ -80,7 +80,7 @@ const Blog: NextPage<BlogPageProps> = ({ initialPosts, initialCategories }) => {
     <Box position="relative" minH="100vh" color={headingColor}>
       <EnhancedSEO
         title="Blog | Tech Emulsion — AI & Software Development Insights"
-        description="Explore Tech Emulsion's blog for insights on AI development, SaaS building, DevOps, and software engineering best practices."
+        description="Explore Tech Emulsion's blog — practical insights on AI development, SaaS building, DevOps, automation, and software engineering for ambitious teams."
         pageType="blog"
         canonicalUrl="https://techemulsion.com/blog"
         breadcrumbData={{

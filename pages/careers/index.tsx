@@ -20,8 +20,8 @@ const CareersPage = ({ initialJobs }: CareersPageProps) => {
   return (
     <Box position="relative" minH="100vh" overflow="hidden">
       <EnhancedSEO
-        title="Careers - Tech Emulsion"
-        description="Explore career opportunities at Tech Emulsion. Discover open roles and apply to join our team."
+        title="Careers at Tech Emulsion | Join Our AI & Software Team"
+        description="Join Tech Emulsion — a fast-growing AI and software development company in the US and Pakistan. View open engineering, design, and product roles."
         pageType="about"
         canonicalUrl="https://techemulsion.com/careers"
         breadcrumbData={{

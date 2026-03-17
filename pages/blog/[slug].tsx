@@ -203,7 +203,12 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post: initialPost, relatedP
       {post && (
         <EnhancedSEO
           title={post.meta_title || `${post.title} - Tech Emulsion`}
-          description={post.meta_description || post.excerpt}
+          description={
+            (() => {
+              const d = post.meta_description || post.excerpt || "";
+              return d.length > 157 ? d.slice(0, 157).trimEnd() + "..." : d;
+            })()
+          }
           pageType="blog"
           canonicalUrl={post.canonical_url || `https://techemulsion.com/blog/${post.slug}`}
           ogImage={post.og_image || post.featured_image || undefined}

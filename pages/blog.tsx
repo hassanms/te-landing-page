@@ -25,6 +25,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { FaChevronRight } from "react-icons/fa";
 import { ButtonLink } from "components/button-link/button-link";
 import { BackgroundGradient } from "components/gradients/background-gradient";
+import { getSupabaseAdmin } from "lib/supabase/server";
 
 export interface BlogPost {
   id: string;
@@ -477,13 +478,14 @@ function PostCard({ post }: { post: BlogPost }) {
 // Pre-render blog listings for crawlability (ISR keeps it fresh).
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   try {
-    const { getSupabaseAdmin } = await import("lib/supabase/server");
     const supabaseAdmin = getSupabaseAdmin();
 
     const [postsResult, categoriesResult] = await Promise.all([
       supabaseAdmin
         .from("blog_posts")
-        .select("id, slug, title, excerpt, featured_image, category, author_name, tags, is_featured, published_at, reading_time_minutes, view_count, show_on_homepage")
+        .select(
+          "id, slug, title, excerpt, featured_image, category, author_name, is_featured, published_at, reading_time_minutes",
+        )
         .eq("is_published", true)
         .order("published_at", { ascending: false })
         .range(0, 19),
@@ -493,12 +495,28 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
         .order("sort_order", { ascending: true }),
     ]);
 
+    if (postsResult.error) {
+      console.error("Supabase posts error (/blog):", postsResult.error);
+    }
+    if (categoriesResult.error) {
+      console.error("Supabase categories error (/blog):", categoriesResult.error);
+    }
+
     const initialPosts = postsResult.data || [];
-    const initialCategories = (categoriesResult.data || []).map((c: { id: string; name: string; slug: string }) => ({
-      id: c.id,
-      name: c.name,
-      slug: c.slug,
-    }));
+    const initialCategories = (categoriesResult.data || []).map(
+      (c: { id: string; name: string; slug: string }) => ({
+        id: c.id,
+        name: c.name,
+        slug: c.slug,
+      }),
+    );
+
+    console.log(
+      "[getStaticProps /blog] posts:",
+      initialPosts.length,
+      "| categories:",
+      initialCategories.length,
+    );
 
     return {
       props: {
@@ -508,7 +526,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
       revalidate: 60,
     };
   } catch (error) {
-    console.error("Error in getStaticProps for /blog:", error);
+    console.error("[getStaticProps /blog] FATAL ERROR:", error);
     return {
       props: {
         initialPosts: [],

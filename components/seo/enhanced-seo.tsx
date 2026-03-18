@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { NextSeo, NextSeoProps } from "next-seo";
 import { StructuredData } from "./structured-data";
 import siteConfig from "data/config";
@@ -90,26 +89,13 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       : Array.isArray(keywords)
         ? keywords.join(", ")
         : keywords;
-  // Enhanced description with semantic keywords for AI engines (keep meta description ~150–160 chars when possible)
   const getEnhancedDescription = () => {
-    const baseDescription = description || siteConfig.seo.description || "";
-    if (baseDescription.length >= 155) return baseDescription;
-
-    const semanticKeywords = [
-      "generative AI development services",
-      "generative AI development company",
-      "AI agent development services",
-      "SaaS development services",
-      "custom SaaS development",
-      "workflow automation services",
-      "DevOps services",
-      "QA testing services",
-      "Next.js website development",
-      "AI automation services",
-    ];
-    const suffix = ` We specialize in ${semanticKeywords.slice(0, 4).join(", ")} and more.`;
-    const combined = baseDescription + suffix;
-    return combined.length <= 160 ? combined : baseDescription;
+    // If a description was explicitly passed, always use it as-is
+    if (description && description.trim().length > 0) {
+      return description.trim().slice(0, 160);
+    }
+    // Fall back to siteConfig default
+    return siteConfig.seo.description || "";
   };
 
   // Generate FAQ schema if FAQ data is provided
@@ -213,41 +199,6 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   return (
     <>
       {/* TODO: Replace /assets/og-default.png with a real 1200x630 branded image showing Tech Emulsion logo + tagline on dark background */}
-      <Head>
-        {/* ── Open Graph ── */}
-        <meta property="og:site_name" content="Tech Emulsion" />
-        <meta property="og:type" content={ogType || "website"} />
-        <meta
-          property="og:title"
-          content={title || "Tech Emulsion | Generative AI Development Company"}
-        />
-        {description && (
-          <meta property="og:description" content={description} />
-        )}
-        {canonicalUrl && (
-          <meta property="og:url" content={canonicalUrl} />
-        )}
-        <meta property="og:image" content={getOGImageUrl()} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={title || "Tech Emulsion"} />
-
-        {/* ── Twitter / X Card ── */}
-        <meta
-          name="twitter:card"
-          content={twitterCard || "summary_large_image"}
-        />
-        <meta name="twitter:site" content="@TechEmulsion" />
-        <meta
-          name="twitter:title"
-          content={title || "Tech Emulsion | Generative AI Development Company"}
-        />
-        {description && (
-          <meta name="twitter:description" content={description} />
-        )}
-        <meta name="twitter:image" content={getOGImageUrl()} />
-        <meta name="twitter:image:alt" content={title || "Tech Emulsion"} />
-      </Head>
       <NextSeo
         title={title}
         description={getEnhancedDescription()}
@@ -268,6 +219,10 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
           site: "@TechEmulsion",
         }}
         additionalMetaTags={[
+          {
+            name: "description",
+            content: getEnhancedDescription(),
+          },
           {
             name: "author",
             content: "Tech Emulsion",

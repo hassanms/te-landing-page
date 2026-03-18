@@ -321,6 +321,7 @@ const HeroSection: React.FC = () => {
             id="home"
             justifyContent="flex-start"
             px="0"
+            as="h1"
             title={
               <FallInPlace>
                 We build the{" "}
@@ -618,26 +619,19 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Imagineer breakthrough <Br />
+                We build the{" "}
                 <Em style={{ color: "var(--chakra-colors-teal-500)" }}>
-                  SaaS, Mobile Apps, and AI Agents{" "}
-                </Em>
-                <Br /> for your business
+                  AI-powered software
+                </Em>{" "}
+                that scales your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  Tech Emulsion designs, builds, and scales{" "}
-                  <Em
-                    style={{
-                      color: "var(--chakra-colors-teal-500)",
-                      fontWeight: "900",
-                    }}>
-                    SaaS, mobile experiences, and AI agents
-                  </Em>{" "}
-                  that streamline operations, delight users, and unlock new
-                  growth.
+                  From AI agents to full SaaS platforms, we take your product
+                  from idea to launch in weeks, not months. 50+ projects
+                  shipped.
                 </Em>
               </FallInPlace>
             }>
@@ -3134,7 +3128,7 @@ const TechnologySection: React.FC = () => {
             Tech Stack
           </Heading>
           <Heading
-            as="h1"
+            as="h2"
             mt="5"
             sx={{
               display: "flex",
@@ -3334,7 +3328,7 @@ const BlogSection: React.FC = () => {
               Insights From Our Blog
             </Heading>
             <Heading
-              as="h1"
+              as="h2"
               mt="2"
               sx={{
                 fontSize: { base: "2rem", md: "2.5rem" },

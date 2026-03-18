@@ -25,6 +25,7 @@ import { EnhancedSEO } from "components/seo/enhanced-seo";
 import { BackgroundGradient } from "components/gradients/background-gradient";
 import { ButtonLink } from "components/button-link";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 // Tech Emulsion portfolio data - use platforms array for items with multiple platform tags
 const portfolioItems: Array<{
@@ -36,25 +37,25 @@ const portfolioItems: Array<{
   image: string;
   href: string;
 }> = [
-  { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Professional Audiovisual (Pro AV)", image: "/assets/portfolio/New/AVL-CoPilot-hero.png", href: "/portfolio/avl-copilot" },
-  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: "/assets/portfolio/New/List Images/BillboardIQ.jpg", href: "/portfolio/billboardiq" },
-  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: "/assets/portfolio/New/List Images/The Meatery.jpg", href: "/portfolio/meatery" },
-  { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/Macromascot.jpg", href: "/portfolio/macromascot" },
-  { id: 4, title: "AutoCar Intelligence", platform: "SaaS Platform", industry: "Automotive", image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg", href: "/portfolio/autosync-intelligence" },
-  { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: "/assets/portfolio/New/List Images/PackAssist.jpg", href: "/portfolio/packassist" },
-  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: "/assets/portfolio/New/List Images/StaffUp.png", href: "/portfolio/staffup" },
-  { id: 7, title: "SuperHeart", platform: "Mobile App", industry: "Healthcare", image: "/assets/portfolio/New/List Images/SuperHeart.jpg", href: "/portfolio/superheart" },
-  { id: 8, title: "Podcast Beacon", platform: "SaaS Platform", industry: "Media", image: "/assets/portfolio/mic.jpg", href: "/portfolio/podcastbeacon" },
-  { id: 9, title: "Rack Room", platform: "SaaS Platform", industry: "Retail", image: "/assets/portfolio/download.jpg", href: "/portfolio/rackroom" },
-  { id: 10, title: "Content Compass", platform: "AI Solution", industry: "Marketing", image: "/assets/portfolio/linkedin.jpg", href: "/portfolio/contentcompass" },
-  { id: 11, title: "Atarim", platform: "SaaS Platform", industry: "Design & Development", image: "/assets/portfolio/atarim.png", href: "/portfolio/atarim" },
-  { id: 12, title: "JarvisReach", platform: "SaaS Platform", industry: "Sales & Marketing", image: "/assets/portfolio/jarvis.png", href: "/portfolio/jarvisreach" },
-  { id: 13, title: "Levellup", platform: "AI Solution", industry: "Gaming", image: "/assets/portfolio/level.png", href: "/portfolio/levellup" },
-  { id: 14, title: "Farmin", platform: "AI Solution", industry: "Agriculture", image: "/assets/portfolio/farmin.avif", href: "/portfolio/farmin" },
-  { id: 15, title: "Bipcards", platform: "SaaS Platform", industry: "Business", image: "/assets/portfolio/bipcards.png", href: "/portfolio/bipcards" },
-  { id: 16, title: "Popcard", platform: "SaaS Platform", industry: "Business", image: "/assets/portfolio/popcard.png", href: "/portfolio/popcard" },
-  { id: 17, title: "Artis", platform: "Blockchain", industry: "NFT & Digital Art", image: "/assets/portfolio/Artis.png", href: "/portfolio/artis" },
-  { id: 18, title: "Alifa App", platform: "AI Solution", industry: "AI & Automation", image: "/assets/portfolio/file.jpg", href: "/portfolio/alifa" },
+  { id: 1, title: "AVL Copilot", platform: "AI Solution", platforms: ["AI Solution", "SaaS Platform"], industry: "Professional Audiovisual (Pro AV)", image: getImageUrl("assets/portfolio/New/AVL-CoPilot-hero.png"), href: "/portfolio/avl-copilot" },
+  { id: 2, title: "BillboardIQ", platform: "SaaS Platform", industry: "Advertising", image: getImageUrl("assets/portfolio/New/List Images/BillboardIQ.jpg"), href: "/portfolio/billboardiq" },
+  { id: 6, title: "The Meatery", platform: "AI Solution", industry: "E-commerce", image: getImageUrl("assets/portfolio/New/List Images/The Meatery.jpg"), href: "/portfolio/meatery" },
+  { id: 3, title: "Macromascot", platform: "Mobile App", industry: "Healthcare", image: getImageUrl("assets/portfolio/New/List Images/Macromascot.jpg"), href: "/portfolio/macromascot" },
+  { id: 4, title: "AutoCar Intelligence", platform: "SaaS Platform", industry: "Automotive", image: getImageUrl("assets/portfolio/New/List Images/AutoCar Intelligence.jpg"), href: "/portfolio/autosync-intelligence" },
+  { id: 5, title: "Pack Assist", platform: "AI Solution", industry: "Packaging", image: getImageUrl("assets/portfolio/New/List Images/PackAssist.jpg"), href: "/portfolio/packassist" },
+  { id: 19, title: "StaffUp", platform: "SaaS Platform", platforms: ["AI Solution", "SaaS Platform"], industry: "Recruitment", image: getImageUrl("assets/portfolio/New/List Images/StaffUp.png"), href: "/portfolio/staffup" },
+  { id: 7, title: "SuperHeart", platform: "Mobile App", industry: "Healthcare", image: getImageUrl("assets/portfolio/New/List Images/SuperHeart.jpg"), href: "/portfolio/superheart" },
+  { id: 8, title: "Podcast Beacon", platform: "SaaS Platform", industry: "Media", image: getImageUrl("assets/portfolio/mic.jpg"), href: "/portfolio/podcastbeacon" },
+  { id: 9, title: "Rack Room", platform: "SaaS Platform", industry: "Retail", image: getImageUrl("assets/portfolio/download.jpg"), href: "/portfolio/rackroom" },
+  { id: 10, title: "Content Compass", platform: "AI Solution", industry: "Marketing", image: getImageUrl("assets/portfolio/linkedin.jpg"), href: "/portfolio/contentcompass" },
+  { id: 11, title: "Atarim", platform: "SaaS Platform", industry: "Design & Development", image: getImageUrl("assets/portfolio/atarim.png"), href: "/portfolio/atarim" },
+  { id: 12, title: "JarvisReach", platform: "SaaS Platform", industry: "Sales & Marketing", image: getImageUrl("assets/portfolio/jarvis.png"), href: "/portfolio/jarvisreach" },
+  { id: 13, title: "Levellup", platform: "AI Solution", industry: "Gaming", image: getImageUrl("assets/portfolio/level.png"), href: "/portfolio/levellup" },
+  { id: 14, title: "Farmin", platform: "AI Solution", industry: "Agriculture", image: getImageUrl("assets/portfolio/farmin.avif"), href: "/portfolio/farmin" },
+  { id: 15, title: "Bipcards", platform: "SaaS Platform", industry: "Business", image: getImageUrl("assets/portfolio/bipcards.png"), href: "/portfolio/bipcards" },
+  { id: 16, title: "Popcard", platform: "SaaS Platform", industry: "Business", image: getImageUrl("assets/portfolio/popcard.png"), href: "/portfolio/popcard" },
+  { id: 17, title: "Artis", platform: "Blockchain", industry: "NFT & Digital Art", image: getImageUrl("assets/portfolio/Artis.png"), href: "/portfolio/artis" },
+  { id: 18, title: "Alifa App", platform: "AI Solution", industry: "AI & Automation", image: getImageUrl("assets/portfolio/file.jpg"), href: "/portfolio/alifa" },
 ];
 
 const technologies = ["All", "AI Solution", "SaaS Platform", "Mobile App", "Blockchain"];

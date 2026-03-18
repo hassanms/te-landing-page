@@ -22,6 +22,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyRackroom = () => {
   const { colorMode } = useColorMode();
@@ -58,7 +59,7 @@ const CaseStudyRackroom = () => {
           description:
             "Rackroom is a secure, scalable application built for a single owner to manage business resources. It supports complex booking management, client and engineer tracking, financial calculations, automated Twilio SMS notifications, and Gantt chart dashboards for visibility and control.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/download.jpg",
+          image: getImageUrl("assets/portfolio/download.jpg"),
           url: "https://techemulsion.com/portfolio/rackroom",
           genre: "Custom Software, Resource Management",
           keywords: [
@@ -129,7 +130,7 @@ const CaseStudyRackroom = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/download.jpg"
+            src={getImageUrl("assets/portfolio/download.jpg")}
             alt="Rack Room - Business Resource Management System"
             fill
             style={{ objectFit: "cover" }}

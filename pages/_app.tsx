@@ -11,6 +11,7 @@ import { AnalyticsProvider } from "components/analytics/analytics-provider";
 
 import theme from "../theme";
 import { Toaster } from "components/Toaster";
+import { getImageUrl } from "lib/supabase-storage";
 import "./global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -33,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             "@type": "Organization",
             name: "Tech Emulsion",
             url: "https://techemulsion.com",
-            logo: "https://techemulsion.com/assets/logo/logo-light.png",
+            logo: getImageUrl("assets/logo/logo-light.png"),
             contactPoint: {
               "@type": "ContactPoint",
               telephone: "+1-850-930-7798",

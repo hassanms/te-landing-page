@@ -29,7 +29,7 @@ const EngagementModelsPage = () => {
   return (
     <Box position="relative" minH="100vh" color={headingColor}>
       <EnhancedSEO
-        title="Flexible Engagement Models | Tech Emulsion"
+        title="Engagement Models | Tech Emulsion"
         description="Choose from AI-enabled teams, staff augmentation, dedicated squads, or project outsourcing. Tech Emulsion scales with your roadmap — startups to enterprises."
         pageType="about"
         canonicalUrl="https://techemulsion.com/engagement-models"

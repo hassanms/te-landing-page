@@ -14,6 +14,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Script from "next/script";
+import { getImageUrl } from "lib/supabase-storage";
 
 const OurStory: React.FC = () => {
   const isSmallScreen = useBreakpointValue({
@@ -219,19 +220,19 @@ const OurStory: React.FC = () => {
             alignItems="center"
             gap={4}>
             <Image
-              src="/assets/whatWeDo/automation.png"
+              src={getImageUrl("assets/whatWeDo/automation.png")}
               alt="Agency Management Image"
               borderRadius="md"
               mb={4}
             />
             <Image
-              src="/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg"
+              src={getImageUrl("assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg")}
               alt="Agency Management Image"
               borderRadius="md"
               mb={4}
             />
             <Image
-              src="/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg"
+              src={getImageUrl("assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg")}
               alt="Agency Management Image"
               borderRadius="md"
               mb={4}

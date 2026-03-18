@@ -5,6 +5,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import { getImageUrl } from "lib/supabase-storage";
 
 export interface LogoProps extends HTMLChakraProps<"svg"> {
   useLightLogo?: boolean;
@@ -29,8 +30,8 @@ export const Logo: React.FC<LogoProps> = (props) => {
       <Image
         src={
           useLight
-            ? "/assets/logo/logo-light.png"
-            : "/assets/logo/logo-dark.png"
+            ? getImageUrl("assets/logo/logo-light.png")
+            : getImageUrl("assets/logo/logo-dark.png")
         }
         alt="Tech Emulsion logo"
         loading="eager"

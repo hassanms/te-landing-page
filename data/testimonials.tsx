@@ -1,3 +1,5 @@
+import { getImageUrl } from "lib/supabase-storage";
+
 export default {
   title: "Loved by tech people",
   items: [
@@ -12,7 +14,7 @@ export default {
       ),
       name: "Martin Kuner",
       description: "",
-      avatar: "/assets/clients/images/martin.jpg",
+      avatar: getImageUrl("assets/clients/images/martin.jpg"),
     },
 
     {
@@ -155,7 +157,7 @@ export default {
       company: "", // Company name
       name: "Luke Cook",
       description: "",
-      avatar: "/assets/clients/images/look.jpg",
+      avatar: getImageUrl("assets/clients/images/look.jpg"),
       children: (
         <>
           “Tech Emulsion is a team of champs and an A+++ team. It's a no-brainer
@@ -168,7 +170,7 @@ export default {
       company: "", // Company name
       name: "Shah Mohiuddin",
       description: "",
-      avatar: "/assets/clients/images/shah.jpg",
+      avatar: getImageUrl("assets/clients/images/shah.jpg"),
       children: (
         <>
           “Very impressive work, good vision and understanding of the full
@@ -180,7 +182,7 @@ export default {
       company: "", // Company name
       name: "ALi AlHammadi",
       description: "",
-      avatar: "/assets/clients/images/hammadi.jpg",
+      avatar: getImageUrl("assets/clients/images/hammadi.jpg"),
       children: (
         <>
           “Tech Emulsion can work on different application technologies and is
@@ -192,7 +194,7 @@ export default {
       company: "", // Company name
       name: "Anum Sheraz",
       description: "",
-      avatar: "/assets/clients/images/sheraz.jpg",
+      avatar: getImageUrl("assets/clients/images/sheraz.jpg"),
       children: (
         <>
           “Tech Emulsion is an excellent development team. Highly skilled and

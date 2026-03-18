@@ -41,6 +41,7 @@ import { getEngagementModelContent } from "data/engagement-model-content";
 import { TableOfContents } from "components/engagement-models/table-of-contents";
 import NextLink from "next/link";
 import Image from "next/image";
+import { getImageUrl } from "lib/supabase-storage";
 
 interface EngagementModelPageProps {
   model: EngagementModelItem;
@@ -70,23 +71,23 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
 
   const engagementImageSrc: Record<string, string> = {
     "ai-enabled-teams":
-      "/assets/engagement-models/AI-enabled%20development%20teams.jpg",
+      getImageUrl("assets/engagement-models/AI-enabled development teams.jpg"),
     "staff-augmentation":
-      "/assets/engagement-models/Staff%20augmentation.jpg",
+      getImageUrl("assets/engagement-models/Staff augmentation.jpg"),
     "dedicated-teams":
-      "/assets/engagement-models/Dedicated%20teams.jpg",
+      getImageUrl("assets/engagement-models/Dedicated teams.jpg"),
     "project-outsourcing":
-      "/assets/engagement-models/Project-outsourcing.jpg",
+      getImageUrl("assets/engagement-models/Project-outsourcing.jpg"),
     "solutions-for-startups":
-      "/assets/engagement-models/Solutions%20for%20startups.jpg",
+      getImageUrl("assets/engagement-models/Solutions for startups.jpg"),
     "solutions-for-enterprises":
-      "/assets/engagement-models/Solutions%20for%20enterprises.jpg",
+      getImageUrl("assets/engagement-models/Solutions for enterprises.jpg"),
     "solutions-for-ai-companies":
-      "/assets/engagement-models/Solutions-for-AI-companies.jpg",
+      getImageUrl("assets/engagement-models/Solutions-for-AI-companies.jpg"),
   };
 
   const engagementImage = engagementImageSrc[model.slug] ??
-    "/assets/engagement-models/safe-empowered-section.jpg";
+    getImageUrl("assets/engagement-models/safe-empowered-section.jpg");
 
   const subtlePattern = useColorModeValue(
     "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
@@ -1005,7 +1006,7 @@ const EngagementModelPage = ({ model }: EngagementModelPageProps) => {
             <Box
               position="absolute"
               inset={0}
-              bgImage="url(/assets/engagement-models/Why%20Tech%20Emulsion%20Image.jpg)"
+              bgImage={`url(${getImageUrl("assets/engagement-models/Why Tech Emulsion Image.jpg")})`}
               bgSize="cover"
               bgPosition="center"
               bgRepeat="no-repeat"

@@ -3,6 +3,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
+import { getImageUrl } from "lib/supabase-storage";
 import Script from "next/script";
 import React from "react";
 
@@ -26,7 +27,7 @@ const CaseStudyRagGenai = () => {
           description:
             "This end-to-end RAG application lets users upload PDF documents and ask natural language questions. It uses OpenAI LLMs, embeddings, and a vector database to retrieve relevant content and generate accurate, context-aware answers, including support for graphical content.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/raggenai.png",
+          image: getImageUrl("assets/portfolio/raggenai.png"),
           url: "https://techemulsion.com/portfolio/genai",
           genre: "AI, RAG, Document Intelligence",
           keywords: [
@@ -94,8 +95,8 @@ const CaseStudyRagGenai = () => {
               width: "100%",
               backgroundImage:
                 colorMode === "dark"
-                  ? "url('/assets/background/pattern.jpg')"
-                  : "url('/assets/background/light-pattern.jpg')",
+                  ? `url(${getImageUrl("assets/background/pattern.jpg")})`
+                  : `url(${getImageUrl("assets/background/light-pattern.jpg")})`,
               height: "350px",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -110,7 +111,7 @@ const CaseStudyRagGenai = () => {
             }}>
             <Box>
               <Image
-                src="/assets/portfolio/raggenai.png"
+                src={getImageUrl("assets/portfolio/raggenai.png")}
                 alt="RAG Based Customized ChatBot"
                 width={502}
                 height={300}

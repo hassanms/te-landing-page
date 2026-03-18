@@ -19,6 +19,7 @@ import LayoutBottom from "components/FooterLayout/LayoutBottom";
 import Image from "next/image";
 
 import siteConfig from "data/config";
+import { getImageUrl } from "lib/supabase-storage";
 import Link from "next/link";
 import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -97,7 +98,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             <Stack alignItems="flex-start">
               <Flex>
                 <Image
-                  src="/assets/logo/logo-light.png"
+                  src={getImageUrl("assets/logo/logo-light.png")}
                   alt="Tech Emulsion Logo"
                   width={100}
                   height={30}

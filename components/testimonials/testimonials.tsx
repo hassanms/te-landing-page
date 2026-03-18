@@ -39,7 +39,7 @@ export const Testimonials: React.FC<TestimonialsProps> = (props) => {
         TESTIMONIALS
       </Heading>
       <Heading
-        as="h1"
+        as="h2"
         mt="5"
         sx={{
           display: "flex",

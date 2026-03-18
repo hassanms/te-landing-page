@@ -27,19 +27,20 @@ import Image from "next/image";
 import Script from "next/script";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const BILLBOARDIQ_CASE_STUDY_IMAGES = [
-  { src: "/assets/portfolio/New/BillboardIQ/DashBoard.png", alt: "BillboardIQ Dashboard - Booked Media & Budget Analytics", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/1.png", alt: "BillboardIQ - Screen 1", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/2.png", alt: "BillboardIQ - Screen 2", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/3.png", alt: "BillboardIQ - Screen 3", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/4.png", alt: "BillboardIQ - Screen 4", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/5.png", alt: "BillboardIQ - Screen 5", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/6.png", alt: "BillboardIQ - Screen 6", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/7.png", alt: "BillboardIQ - Screen 7", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/8.png", alt: "BillboardIQ - Screen 8", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/9.png", alt: "BillboardIQ - Screen 9", isPortrait: false },
-  { src: "/assets/portfolio/New/BillboardIQ/10.png", alt: "BillboardIQ - Screen 10", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/DashBoard.png"), alt: "BillboardIQ Dashboard - Booked Media & Budget Analytics", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/1.png"), alt: "BillboardIQ - Screen 1", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/2.png"), alt: "BillboardIQ - Screen 2", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/3.png"), alt: "BillboardIQ - Screen 3", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/4.png"), alt: "BillboardIQ - Screen 4", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/5.png"), alt: "BillboardIQ - Screen 5", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/6.png"), alt: "BillboardIQ - Screen 6", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/7.png"), alt: "BillboardIQ - Screen 7", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/8.png"), alt: "BillboardIQ - Screen 8", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/9.png"), alt: "BillboardIQ - Screen 9", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/BillboardIQ/10.png"), alt: "BillboardIQ - Screen 10", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -99,7 +100,7 @@ const CaseStudyCampaignOS = () => {
         minH={{ base: "500px", md: "600px" }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/BillboardIQ.jpg"
+            src={getImageUrl("assets/portfolio/New/List Images/BillboardIQ.jpg")}
             alt="BillboardIQ - OOH Advertising Management Platform"
             fill
             style={{ objectFit: "cover" }}
@@ -175,7 +176,7 @@ const CaseStudyCampaignOS = () => {
             </VStack>
             <Box flexShrink={0} w={{ base: "100%", lg: "40%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/BillboardIQ/BillboardIQ Show Case Screen Image white.png"
+                src={getImageUrl("assets/portfolio/New/BillboardIQ/BillboardIQ Show Case Screen Image white.png")}
                 alt="BillboardIQ - Dashboard Showcase"
                 width={500}
                 height={500}
@@ -232,7 +233,7 @@ const CaseStudyCampaignOS = () => {
         onMouseEnter={() => setIsGalleryPaused(true)}
         onMouseLeave={() => setIsGalleryPaused(false)}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
-          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="BillboardIQ — case study gallery background" fill style={{ objectFit: "cover" }} />
+          <Image src={getImageUrl("assets/portfolio/New/banner of case studies.webp")} alt="BillboardIQ — case study gallery background" fill style={{ objectFit: "cover" }} />
           <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
         </Box>
         <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>

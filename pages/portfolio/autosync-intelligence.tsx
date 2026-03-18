@@ -28,14 +28,15 @@ import Image from "next/image";
 import Script from "next/script";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const AUTO_CAR_CASE_STUDY_IMAGES = [
-  { src: "/assets/portfolio/New/AutoCar Intelligence/01-dashboard (1).png", alt: "AutoCar Intelligence - Company Dashboard", isPortrait: false },
-  { src: "/assets/portfolio/New/AutoCar Intelligence/02-historical-performance top.png", alt: "AutoCar Intelligence - Historical Performance Top", isPortrait: false },
-  { src: "/assets/portfolio/New/AutoCar Intelligence/02-historical-performance b.png", alt: "AutoCar Intelligence - Historical Performance Bottom", isPortrait: false },
-  { src: "/assets/portfolio/New/AutoCar Intelligence/03-agging-work-in-progress top.png", alt: "AutoCar Intelligence - Aging Work In Progress", isPortrait: false },
-  { src: "/assets/portfolio/New/AutoCar Intelligence/05-wicked-file-page-1.png", alt: "AutoCar Intelligence - Risk File Page 1", isPortrait: false },
-  { src: "/assets/portfolio/New/AutoCar Intelligence/06-wicked-file-page.png", alt: "AutoCar Intelligence - Risk File Page 2", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AutoCar Intelligence/01-dashboard (1).png"), alt: "AutoCar Intelligence - Company Dashboard", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AutoCar Intelligence/02-historical-performance top.png"), alt: "AutoCar Intelligence - Historical Performance Top", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AutoCar Intelligence/02-historical-performance b.png"), alt: "AutoCar Intelligence - Historical Performance Bottom", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AutoCar Intelligence/03-agging-work-in-progress top.png"), alt: "AutoCar Intelligence - Aging Work In Progress", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AutoCar Intelligence/05-wicked-file-page-1.png"), alt: "AutoCar Intelligence - Risk File Page 1", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AutoCar Intelligence/06-wicked-file-page.png"), alt: "AutoCar Intelligence - Risk File Page 2", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -96,7 +97,7 @@ const CaseStudyAutoSyncIntelligence = () => {
       >
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/AutoCar Intelligence.jpg"
+            src={getImageUrl("assets/portfolio/New/List Images/AutoCar Intelligence.jpg")}
             alt="AutoCar Intelligence - Multi-Location Automotive Intelligence"
             fill
             style={{ objectFit: "cover" }}
@@ -197,7 +198,7 @@ const CaseStudyAutoSyncIntelligence = () => {
               alignSelf={{ base: "center", lg: "flex-end" }}
             >
               <Image
-                src="/assets/portfolio/New/AutoCar Intelligence/AutoCar Intelligence Show Case Screen Image.png"
+                src={getImageUrl("assets/portfolio/New/AutoCar Intelligence/AutoCar Intelligence Show Case Screen Image.png")}
                 alt="AutoCar Intelligence - Dashboard Showcase"
                 width={500}
                 height={400}
@@ -294,7 +295,7 @@ const CaseStudyAutoSyncIntelligence = () => {
         onMouseLeave={() => setIsGalleryPaused(false)}
       >
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
-          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="AutoSync Intelligence — case study gallery background" fill style={{ objectFit: "cover" }} />
+          <Image src={getImageUrl("assets/portfolio/New/banner of case studies.webp")} alt="AutoSync Intelligence — case study gallery background" fill style={{ objectFit: "cover" }} />
           <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
         </Box>
         <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>

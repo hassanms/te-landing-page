@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyMacromascot = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyMacromascot = () => {
           description:
             "A comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Features AI-powered meal logging, gamified avatar system, intermittent fasting module, social interactions, and agile monetization infrastructure.",
           dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/New/List Images/Macromascot.jpg",
+          image: getImageUrl("assets/portfolio/New/List Images/Macromascot.jpg"),
           url: "https://techemulsion.com/portfolio/macromascot",
           genre: "Mobile Health App, Gamification, AI-Powered Nutrition",
           keywords: [
@@ -122,7 +123,7 @@ const CaseStudyMacromascot = () => {
         minH={{ base: "500px", md: "600px" }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/Macromascot.jpg"
+            src={getImageUrl("assets/portfolio/New/List Images/Macromascot.jpg")}
             alt="Macromascot - Mobile Health App"
             fill
             style={{ objectFit: "cover" }}

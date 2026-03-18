@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyFarmin = () => {
   const { colorMode } = useColorMode();
@@ -54,7 +55,7 @@ const CaseStudyFarmin = () => {
           description:
             "Tech Emulsion built Farmin, an AI-powered SaaS for satellite image analysis. Using Mapbox, YOLO models, and OpenCV, it detects objects like cars, ships, and oil spills and provides change detection and annotation tools on AWS.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/farmin.avif",
+          image: getImageUrl("assets/portfolio/farmin.avif"),
           url: "https://techemulsion.com/portfolio/farmin",
           genre: "AI SaaS, Remote Sensing",
           keywords: [
@@ -124,7 +125,7 @@ const CaseStudyFarmin = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/farmin.avif"
+            src={getImageUrl("assets/portfolio/farmin.avif")}
             alt="Farmin - AI-Powered Satellite Image Detection SaaS"
             fill
             style={{ objectFit: "cover" }}

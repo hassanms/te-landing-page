@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyArtis = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyArtis = () => {
           description:
             "Artis is an AI-driven platform that functions as a personalised creative support team, analysing an artist's style and preferences to offer tailored advice, marketing strategies, and suggestions for showcasing and selling their work. Utilising blockchain technology, Artis ensures ownership protection by creating tamper-proof digital certificates and unique fingerprints for each creation, safeguarding intellectual property while simplifying copyright and patent processes. The platform also boosts creators' reach and revenue by connecting them with audiences, facilitating secure sales, and enhancing their personal brand. Artis caters to artists, musicians, writers, inventors, collectors, and businesses, aiming to make creativity secure, accessible, and profitable.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/Artis.png",
+          image: getImageUrl("assets/portfolio/Artis.png"),
           url: "https://techemulsion.com/portfolio/artis",
           genre: "AI, Blockchain, Creator Tools",
           keywords: [
@@ -122,7 +123,7 @@ const CaseStudyArtis = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/Artis.png"
+            src={getImageUrl("assets/portfolio/Artis.png")}
             alt="Artis - AI-Driven Creative Support Platform"
             fill
             style={{ objectFit: "cover" }}

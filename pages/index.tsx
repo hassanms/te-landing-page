@@ -87,6 +87,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
+import { getImageUrl } from "lib/supabase-storage";
 
 const Player = dynamic(
   () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
@@ -135,88 +136,42 @@ const Home: NextPage = () => {
       />
 
       <EnhancedSEO
-        title="Tech Emulsion | Generative AI development company"
+        title="Tech Emulsion | Generative AI Development Company"
         description="Tech Emulsion builds AI agents, SaaS platforms, and custom software from MVP to enterprise. 50+ projects shipped. US & Pakistan-based generative AI development company."
         pageType="home"
         canonicalUrl="https://techemulsion.com"
-        ogImage="https://techemulsion.com/static/favicons/android-chrome-512x512.png"
+        ogImage={getImageUrl("static/favicons old/android-chrome-512x512.png")}
         faqData={{
           questions: [
             {
-              question:
-                "What is digital transformation and how can Tech Emulsion help?",
-              answer:
-                "Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers. Tech Emulsion specializes in imagineering digital transformation through AI-powered solutions, custom software development, and innovative technology services. We help businesses modernize their operations, improve efficiency, and gain competitive advantages through strategic technology implementation. Our approach combines cutting-edge technologies like artificial intelligence, machine learning, and cloud computing to create scalable, future-proof solutions tailored to your specific business needs.",
-            },
-            {
-              question: "What AI solutions does Tech Emulsion provide?",
-              answer:
-                "Tech Emulsion offers comprehensive AI solutions including custom AI applications, intelligent chatbots, machine learning models, natural language processing systems, computer vision applications, and predictive analytics. We develop AI agents that automate business processes, enhance customer experiences, and provide intelligent insights. Our AI solutions range from conversational AI for customer support to advanced machine learning models for data analysis and prediction. We also specialize in RAG (Retrieval-Augmented Generation) systems for document querying, AI-powered content analysis tools, and generative AI integration for creative and operational tasks. Through our agentic AI development services, we create autonomous AI systems that can make decisions and perform complex tasks independently. Our AI agent development services help businesses build intelligent agents tailored to their specific needs, while our AI integration services ensure seamless incorporation of AI technologies into existing systems. Additionally, we offer AI automation services that combine artificial intelligence with automation for intelligent, self-learning systems.",
-            },
-            {
-              question: "How much does custom software development cost?",
-              answer:
-                "The cost of custom software development varies based on project complexity, features, timeline, and specific requirements. Tech Emulsion provides transparent pricing with detailed project estimates and flexible engagement models. Factors that influence cost include the scope of features, technology stack, integration requirements, scalability needs, and timeline. We offer various engagement models including fixed-price projects, time and materials, and dedicated team arrangements. During our free discovery call, we analyze your requirements and provide a detailed proposal with transparent pricing. Our goal is to deliver maximum value while working within your budget constraints.",
-            },
-            {
               question: "What services does Tech Emulsion offer?",
               answer:
-                "Tech Emulsion offers a comprehensive range of services including custom software development, SaaS platform development, mobile app development (iOS and Android), AI and machine learning solutions, web development, cloud services and DevOps, QA testing and automation, Chrome extension development, and digital transformation consulting. We specialize in building scalable SaaS platforms with subscription management, multi-tenancy, and advanced analytics. Our SaaS development services encompass custom SaaS development tailored to businesses of all sizes. For mobile applications, we provide both native and cross-platform solutions using React Native. In the AI domain, we offer agentic AI development and AI agent development services to create intelligent, autonomous systems. Our generative AI solutions help businesses automate tasks and enhance creativity, while our AI integration services ensure seamless incorporation of AI technologies into existing systems. For process optimization, we provide business automation solutions and workflow automation services that streamline operations and improve efficiency. Our DevOps services support continuous integration and deployment, while our QA testing services and test automation services ensure software quality and reliability. We also specialize in Chrome extension development for enhanced productivity, and offer custom website development including Next.js website development for high-performance, SEO-friendly websites. Additionally, our AI automation services combine artificial intelligence with automation for intelligent, self-learning systems. All our services are backed by comprehensive project management, quality assurance, and ongoing support.",
+                "Tech Emulsion offers software development services across four engagement models: project outsourcing, staff augmentation, dedicated teams, and offshore contractors. Our core service areas include Agentic AI Engineering, SaaS Development, Website Development, Chrome Extension Development, DevOps Solutions, Generative AI Integration, QA Testing & Automation, and Workflow Automation.",
             },
             {
-              question: "Where is Tech Emulsion located?",
+              question: "Does Tech Emulsion offer a free consultation?",
               answer:
-                "Tech Emulsion is based in Peshawar, Khyber Pakhtunkhwa, Pakistan, and serves clients worldwide. We work with businesses globally, providing remote development services and digital transformation solutions. Our distributed team model allows us to work across different time zones, ensuring efficient collaboration with clients in North America, Europe, Asia, and beyond. We have successfully delivered projects for clients in the United States, United Kingdom, Canada, Australia, and various other countries. Our remote-first approach enables us to provide cost-effective solutions while maintaining high-quality standards and effective communication throughout the project lifecycle.",
+                "Yes, we offer a free discovery call to discuss your project and determine the best fit for your needs. You can book a call directly through our website to speak with our team about your project requirements.",
+            },
+            {
+              question: "Does Tech Emulsion sign NDA?",
+              answer:
+                "Yes, we take confidentiality seriously and will sign a Non-Disclosure Agreement (NDA) to protect your intellectual property. Your project details, business logic, and proprietary information are fully protected.",
+            },
+            {
+              question: "How does Tech Emulsion approach challenging projects?",
+              answer:
+                "We have a team of highly skilled developers capable of handling complex projects across AI, SaaS, and full-stack development. We follow a proven delivery process with clear milestones, regular communication, and a track record of delivering projects on time and within budget across 50+ shipped projects.",
+            },
+            {
+              question: "How do you determine the best fit for a project?",
+              answer:
+                "We take the time to understand your business, goals, and technical requirements through a discovery call. We then recommend the engagement model and team structure that best fits your project stage, timeline, and budget — whether that is project outsourcing, staff augmentation, or a dedicated team.",
             },
             {
               question: "What industries does Tech Emulsion serve?",
               answer:
-                "Tech Emulsion serves a diverse range of industries including healthcare, finance, e-commerce, education, real estate, marketing and advertising, entertainment, logistics, and technology startups. We have experience building solutions for SaaS companies, healthcare platforms, financial technology applications, e-commerce platforms, content management systems, project management tools, and AI-powered applications. Our portfolio includes projects for businesses of all sizes, from startups to established enterprises. We adapt our development approach and technology stack to meet the specific regulatory, security, and operational requirements of each industry.",
-            },
-            {
-              question: "How long does it take to develop a custom software solution?",
-              answer:
-                "Development timelines vary significantly based on project scope, complexity, and requirements. A simple web application might take 2-4 months, while a comprehensive SaaS platform with multiple features could take 6-12 months or more. Mobile applications typically require 3-6 months for initial development, and AI-powered solutions may take 4-8 months depending on the complexity of AI integration. We follow agile development methodologies, allowing for iterative development and early delivery of core features. During the discovery phase, we provide detailed project timelines with milestones. Our development process includes regular updates, demos, and feedback cycles to ensure alignment with your vision and requirements.",
-            },
-            {
-              question: "What is agentic AI development and how can it benefit my business?",
-              answer:
-                "Agentic AI development involves creating AI systems that can operate autonomously, make decisions, and perform complex tasks without constant human intervention. Our agentic AI development services focus on building intelligent agents that can understand context, learn from interactions, and adapt to changing conditions. These AI agents can automate business processes, provide intelligent customer support, analyze data in real-time, and integrate seamlessly with your existing systems. Agentic AI development is particularly valuable for businesses looking to automate complex workflows, enhance decision-making processes, and create more intelligent, responsive systems that can operate independently while maintaining alignment with business objectives.",
-            },
-            {
-              question: "What are your AI agent development services?",
-              answer:
-                "Our AI agent development services include creating intelligent, autonomous AI agents tailored to your specific business needs. We develop AI agents that can automate business processes, provide intelligent customer support, analyze data, and integrate seamlessly with your existing systems. Our AI agent development services cover conversational AI agents for customer service, task automation agents for workflow optimization, data analysis agents for business intelligence, and custom AI agent solutions designed for your unique requirements. We specialize in building AI agents that can understand natural language, make decisions, learn from interactions, and operate autonomously while maintaining human oversight and control.",
-            },
-            {
-              question: "Do you offer SaaS development services?",
-              answer:
-                "Yes, we provide comprehensive SaaS development services including custom SaaS development for businesses of all sizes. Our SaaS development services encompass building scalable, multi-tenant SaaS platforms with subscription management, user authentication, payment processing, analytics dashboards, and API integrations. We specialize in creating SaaS solutions that are secure, scalable, and user-friendly. Our custom SaaS development approach ensures that your SaaS platform is tailored to your specific business model, industry requirements, and user needs. We handle everything from initial architecture design to deployment, maintenance, and ongoing support for your SaaS platform.",
-            },
-            {
-              question: "What workflow automation services do you provide?",
-              answer:
-                "We offer comprehensive workflow automation services that help streamline your business processes and improve efficiency. Our workflow automation services include analyzing your current workflows, identifying automation opportunities, designing automated workflows, and implementing solutions that reduce manual errors and save time. We also provide business automation solutions that encompass end-to-end process automation, integration with existing systems, and continuous optimization. Our workflow automation services can automate repetitive tasks, streamline approval processes, synchronize data across systems, and create intelligent workflows that adapt to changing conditions. We work with various automation platforms and can integrate with your existing tools and systems.",
-            },
-            {
-              question: "What QA testing services and test automation services do you offer?",
-              answer:
-                "We provide comprehensive QA testing services including functional testing, performance testing, security testing, usability testing, and compatibility testing. Our QA testing services ensure your software is bug-free, reliable, and ready for market. Additionally, we offer test automation services that help you maintain quality while accelerating your development cycles. Our test automation services include creating automated test suites, implementing continuous testing integration, setting up test frameworks, and providing comprehensive test coverage. We use industry-standard testing tools and frameworks to ensure efficient and effective test automation. Our QA testing services and test automation services help reduce testing time, improve test coverage, catch bugs early, and ensure consistent quality across releases.",
-            },
-            {
-              question: "Can you help with Next.js website development?",
-              answer:
-                "Absolutely! We specialize in Next.js website development, creating high-performance, SEO-friendly websites using the Next.js framework. Our Next.js website development services include custom website development, responsive design, server-side rendering, static site generation, API integration, and performance optimization. We also provide custom website development services for businesses looking for unique, tailored web solutions. Our Next.js website development approach ensures fast page loads, excellent SEO performance, mobile responsiveness, and seamless user experiences. We leverage Next.js features like automatic code splitting, image optimization, and built-in API routes to create websites that are both fast and feature-rich.",
-            },
-            {
-              question: "What AI integration services do you provide?",
-              answer:
-                "Our AI integration services help businesses seamlessly integrate artificial intelligence into their existing systems and workflows. We provide AI integration services for various AI technologies including generative AI solutions, machine learning models, natural language processing, computer vision, and predictive analytics. Our AI integration services ensure smooth integration with minimal disruption to existing operations. We handle API integrations, data pipeline setup, model deployment, and system integration to ensure that AI technologies work seamlessly with your current infrastructure. Our AI integration services also include training your team, providing documentation, and offering ongoing support to ensure successful AI adoption.",
-            },
-            {
-              question: "Do you provide AI automation services?",
-              answer:
-                "Yes, we offer comprehensive AI automation services that combine artificial intelligence with automation to create intelligent, self-learning automated systems. Our AI automation services include intelligent process automation, AI-powered decision-making systems, automated data analysis, intelligent document processing, and AI-driven workflow optimization. These services help businesses achieve higher levels of automation while maintaining flexibility and adaptability. Our AI automation services can automate complex tasks that require decision-making, learning, and adaptation, going beyond traditional automation to create systems that can improve over time and handle edge cases intelligently.",
+                "Tech Emulsion has experience working with clients across a wide range of industries including SaaS, project management, internet businesses, industrial automation, healthcare, retail, agriculture, media, gaming, and more. Our team adapts to domain-specific requirements and has shipped 50+ projects across these verticals.",
             },
           ],
         }}
@@ -292,8 +247,8 @@ const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const pensaImage = useColorModeValue(
-    "/assets/clients/Pensa.webp",
-    "/assets/clients/Pensa-white.png"
+    getImageUrl("assets/clients/Pensa.webp"),
+    getImageUrl("assets/clients/Pensa-white.png")
   );
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
 
@@ -321,6 +276,7 @@ const HeroSection: React.FC = () => {
             id="home"
             justifyContent="flex-start"
             px="0"
+            as="h1"
             title={
               <FallInPlace>
                 We build the{" "}
@@ -398,7 +354,7 @@ const HeroSection: React.FC = () => {
                   }}>
                   <>
                     <Image
-                      src="/assets/clients/Bubble.1.png"
+                      src={getImageUrl("assets/clients/Bubble.1.png")}
                       width={110}
                       height={100}
                       alt="Bubble logo"
@@ -419,7 +375,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/atarim-white.svg"
+                      src={getImageUrl("assets/clients/atarim-white.svg")}
                       width={100}
                       height={100}
                       alt="Atarim logo"
@@ -428,7 +384,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/nearshore.png"
+                      src={getImageUrl("assets/clients/nearshore.png")}
                       width={140}
                       height={100}
                       alt="NearShore logo"
@@ -458,7 +414,7 @@ const HeroSection: React.FC = () => {
                     animation={`${heroScrollAnimation} 30s infinite linear`}>
                     <>
                       <Image
-                        src="/assets/clients/Bubble.1.png"
+                        src={getImageUrl("assets/clients/Bubble.1.png")}
                         width={110}
                         height={100}
                         alt="Bubble logo"
@@ -479,7 +435,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/atarim-white.svg"
+                        src={getImageUrl("assets/clients/atarim-white.svg")}
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -488,7 +444,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/nearshore.png"
+                        src={getImageUrl("assets/clients/nearshore.png")}
                         width={140}
                         height={100}
                         alt="NearShore logo"
@@ -499,7 +455,7 @@ const HeroSection: React.FC = () => {
                       />
                       {/* Duplicate logos for seamless loop */}
                     <Image
-                      src="/assets/clients/Bubble.1.png"
+                      src={getImageUrl("assets/clients/Bubble.1.png")}
                       width={110}
                       height={100}
                       alt="Bubble logo"
@@ -510,7 +466,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Pensa.webp"
+                      src={getImageUrl("assets/clients/Pensa.webp")}
                       width={100}
                       height={100}
                       alt="Pensa logo"
@@ -520,7 +476,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/atarim-white.svg"
+                      src={getImageUrl("assets/clients/atarim-white.svg")}
                       width={100}
                       height={100}
                       alt="Atarim logo"
@@ -529,7 +485,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/nearshore.png"
+                      src={getImageUrl("assets/clients/nearshore.png")}
                       width={140}
                       height={100}
                       alt="NearShore logo"
@@ -618,26 +574,19 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Imagineer breakthrough <Br />
+                We build the{" "}
                 <Em style={{ color: "var(--chakra-colors-teal-500)" }}>
-                  SaaS, Mobile Apps, and AI Agents{" "}
-                </Em>
-                <Br /> for your business
+                  AI-powered software
+                </Em>{" "}
+                that scales your business
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
                 <Em>
-                  Tech Emulsion designs, builds, and scales{" "}
-                  <Em
-                    style={{
-                      color: "var(--chakra-colors-teal-500)",
-                      fontWeight: "900",
-                    }}>
-                    SaaS, mobile experiences, and AI agents
-                  </Em>{" "}
-                  that streamline operations, delight users, and unlock new
-                  growth.
+                  From AI agents to full SaaS platforms, we take your product
+                  from idea to launch in weeks, not months. 50+ projects
+                  shipped.
                 </Em>
               </FallInPlace>
             }>
@@ -700,7 +649,7 @@ const HeroSection: React.FC = () => {
                   }}>
                   <>
                     <Image
-                      src="/assets/clients/Bubble.1.png"
+                      src={getImageUrl("assets/clients/Bubble.1.png")}
                       width={110}
                       height={100}
                       alt="bubble logo"
@@ -711,7 +660,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Pensa.webp"
+                      src={getImageUrl("assets/clients/Pensa.webp")}
                       width={100}
                       height={100}
                       alt="Pensa logo"
@@ -722,7 +671,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Atarim.svg"
+                      src={getImageUrl("assets/clients/Atarim.svg")}
                       width={100}
                       height={100}
                       alt="Atarim logo"
@@ -732,7 +681,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/nearshore.png"
+                      src={getImageUrl("assets/clients/nearshore.png")}
                       width={140}
                       height={100}
                       alt="Nearshore logo"
@@ -764,7 +713,7 @@ const HeroSection: React.FC = () => {
                     animation={`${heroScrollAnimation} 30s infinite linear`}>
                     <>
                       <Image
-                        src="/assets/clients/Bubble.1.png"
+                        src={getImageUrl("assets/clients/Bubble.1.png")}
                         width={110}
                         height={100}
                         alt="bubble logo"
@@ -775,7 +724,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Pensa.webp"
+                        src={getImageUrl("assets/clients/Pensa.webp")}
                         width={100}
                         height={100}
                         alt="Pensa logo"
@@ -786,7 +735,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Atarim.svg"
+                        src={getImageUrl("assets/clients/Atarim.svg")}
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -796,7 +745,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/nearshore.png"
+                        src={getImageUrl("assets/clients/nearshore.png")}
                         width={140}
                         height={100}
                         alt="Nearshore logo"
@@ -809,7 +758,7 @@ const HeroSection: React.FC = () => {
                       />
                       {/* Duplicate logos for seamless loop */}
                       <Image
-                        src="/assets/clients/Bubble.1.png"
+                        src={getImageUrl("assets/clients/Bubble.1.png")}
                         width={110}
                         height={100}
                         alt="bubble logo"
@@ -820,7 +769,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Pensa.webp"
+                        src={getImageUrl("assets/clients/Pensa.webp")}
                         width={100}
                         height={100}
                         alt="Pensa logo"
@@ -831,7 +780,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Atarim.svg"
+                        src={getImageUrl("assets/clients/Atarim.svg")}
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -841,7 +790,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/nearshore.png"
+                        src={getImageUrl("assets/clients/nearshore.png")}
                         width={140}
                         height={100}
                         alt="Nearshore logo"
@@ -918,7 +867,7 @@ const cardData = [
     id: 1,
     name: "Zain Ul Abideen",
     designation: "Co-Founder & CTO",
-    avatar: "/assets/zain.png",
+    avatar: getImageUrl("assets/zain.png"),
     gradient: ["pink.200", "purple.500"],
     company: "",
     description:
@@ -928,7 +877,7 @@ const cardData = [
     id: 2,
     name: "Hassan M. Saddique",
     designation: "Co-Founder & CEO",
-    avatar: "/assets/hassan.png",
+    avatar: getImageUrl("assets/hassan.png"),
     gradient: ["pink.200", "purple.500"],
     company: "",
     description:
@@ -1348,35 +1297,35 @@ const Portfolio: React.FC = () => {
       title: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
       description:
         "BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
-      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
+      image: getImageUrl("assets/portfolio/New/Campaign_Porfolio.jpg"),
       alt: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
     {
       title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
       description:
         "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
-      image: "/assets/portfolio/New/Health_app.jpg",
+      image: getImageUrl("assets/portfolio/New/Health_app.jpg"),
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
     {
       title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
       description:
         "AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
-      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
+      image: getImageUrl("assets/portfolio/New/DADS_Sales_Reborn.jpg"),
       alt: "AutoCar Intelligence – Multi-Location Automotive Intelligence Platform",
     },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
-      image: "/assets/portfolio/New/Pack Assist.png",
+      image: getImageUrl("assets/portfolio/New/Pack Assist.png"),
       alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
     },
     {
       title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
       description:
         "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
-      image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
+      image: getImageUrl("assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg"),
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
   ];
@@ -1388,21 +1337,21 @@ const Portfolio: React.FC = () => {
       industry: "Professional Audiovisual (Pro AV)",
       platform: "AI Solution",
       platforms: ["AI Solution", "SaaS Platform"],
-      image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
+      image: getImageUrl("assets/portfolio/New/AVL-CoPilot-hero.png"),
       href: "/portfolio/avl-copilot",
     },
     {
       title: "BillboardIQ",
       industry: "Advertising",
       platform: "SaaS Platform",
-      image: "/assets/portfolio/New/List Images/BillboardIQ.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/BillboardIQ.jpg"),
       href: "/portfolio/billboardiq",
     },
     {
       title: "The Meatery",
       industry: "E-commerce",
       platform: "AI Solution",
-      image: "/assets/portfolio/New/List Images/The Meatery.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/The Meatery.jpg"),
       href: "/portfolio/meatery",
     },
     {
@@ -1410,21 +1359,21 @@ const Portfolio: React.FC = () => {
       industry: "Recruitment",
       platform: "SaaS Platform",
       platforms: ["AI Solution", "SaaS Platform"],
-      image: "/assets/portfolio/New/List Images/StaffUp.png",
+      image: getImageUrl("assets/portfolio/New/List Images/StaffUp.png"),
       href: "/portfolio/staffup",
     },
     {
       title: "AutoCar Intelligence",
       industry: "Automotive",
       platform: "SaaS Platform",
-      image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/AutoCar Intelligence.jpg"),
       href: "/portfolio/autosync-intelligence",
     },
     {
       title: "Pack Assist",
       industry: "Packaging",
       platform: "AI Solution",
-      image: "/assets/portfolio/New/List Images/PackAssist.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/PackAssist.jpg"),
       href: "/portfolio/packassist",
     },
   ];
@@ -1691,7 +1640,7 @@ const SocialProofSection: React.FC = () => {
           animation={`${scrollAnimation} 75s infinite linear`}>
           <Tooltip label="Teadit" hasArrow>
             <Image
-              src="/assets/clients/teadit.png"
+              src={getImageUrl("assets/clients/teadit.png")}
               alt="teadit"
               width={160}
               height={60}
@@ -1709,7 +1658,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Artis" hasArrow>
             <Image
-              src="/assets/clients/Artis-lab.png"
+              src={getImageUrl("assets/clients/Artis-lab.png")}
               alt="Artis"
               width={100}
               height={100}
@@ -1728,7 +1677,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sonara" hasArrow>
             <Image
-              src="/assets/clients/sonara.svg"
+              src={getImageUrl("assets/clients/sonara.svg")}
               alt="Sonara"
               width={100}
               height={80}
@@ -1746,7 +1695,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Popcard" hasArrow>
             <Image
-              src="/assets/clients/POPCARD_4.png"
+              src={getImageUrl("assets/clients/POPCARD_4.png")}
               alt="POPCARD"
               width={80}
               height={80}
@@ -1764,7 +1713,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Nearshore" hasArrow>
             <Image
-              src="/assets/clients/nearshore.png"
+              src={getImageUrl("assets/clients/nearshore.png")}
               alt="Pensa"
               width={140}
               height={180}
@@ -1782,7 +1731,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sprintzeal" hasArrow>
             <Image
-              src="/assets/clients/Sprintzeal_Logo.webp"
+              src={getImageUrl("assets/clients/Sprintzeal_Logo.webp")}
               alt="Sprintzeal"
               width={80}
               height={80}
@@ -1800,7 +1749,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Bai" hasArrow>
             <Image
-              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              src={getImageUrl("assets/clients/bai_logo_colored.46fc5d5b219c.svg")}
               alt="Bai"
               width={80}
               height={80}
@@ -1817,7 +1766,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball_white.png"
+              src={getImageUrl("assets/clients/crystal_ball_white.png")}
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -1834,7 +1783,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Farmin" hasArrow>
             <Image
-              src="/assets/clients/farmin-white.png"
+              src={getImageUrl("assets/clients/farmin-white.png")}
               alt="Farmin"
               width={80}
               height={80}
@@ -1851,7 +1800,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Jarvis" hasArrow>
             <Image
-              src="/assets/clients/jarvis-logo.png"
+              src={getImageUrl("assets/clients/jarvis-logo.png")}
               alt="Jarvis"
               width={120}
               height={120}
@@ -1869,7 +1818,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Ibatu" hasArrow>
             <Image
-              src="/assets/clients/ibatu.png"
+              src={getImageUrl("assets/clients/ibatu.png")}
               alt="Ibatu"
               width={80}
               height={80}
@@ -1886,7 +1835,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Krypto Labs" hasArrow>
             <Image
-              src="/assets/clients/krypto-labs.png"
+              src={getImageUrl("assets/clients/krypto-labs.png")}
               alt="Krypto Labs"
               width={180} // Increased width
               height={120} // Increased height
@@ -1905,7 +1854,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
-              src="/assets/clients/Podcast-Beacon.png"
+              src={getImageUrl("assets/clients/Podcast-Beacon.png")}
               alt="Podcast-Beacon"
               width={150}
               height={150}
@@ -1924,7 +1873,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Pensa" hasArrow>
             <Image
-              src="/assets/clients/Pensa.webp"
+              src={getImageUrl("assets/clients/Pensa.webp")}
               alt="Pensa"
               width={120}
               height={120}
@@ -1941,7 +1890,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Logo Black" hasArrow>
             <Image
-              src="/assets/clients/logo-black-small.png"
+              src={getImageUrl("assets/clients/logo-black-small.png")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -1958,7 +1907,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="IPG" hasArrow>
             <Image
-              src="/assets/clients/Logo_IPG.jpg"
+              src={getImageUrl("assets/clients/Logo_IPG.jpg")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -1975,7 +1924,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Atarim" hasArrow>
             <Image
-              src="/assets/clients/atarim-white.svg"
+              src={getImageUrl("assets/clients/atarim-white.svg")}
               alt="Atarim"
               width={130}
               height={40}
@@ -1992,7 +1941,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Republic Power" hasArrow>
             <Image
-              src="/assets/clients/republic_power_logo.jpeg"
+              src={getImageUrl("assets/clients/republic_power_logo.jpeg")}
               alt="Republic Power"
               width={200}
               height={80}
@@ -2009,7 +1958,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Alifa" hasArrow>
             <Image
-              src="/assets/clients/alifa.PNG"
+              src={getImageUrl("assets/clients/alifa.PNG")}
               alt="Republic Power"
               width={80}
               height={80}
@@ -2039,7 +1988,7 @@ const SocialProofSection: React.FC = () => {
           animation={`${scrollAnimation} 75s infinite linear`}>
           <Tooltip label="Teadit" hasArrow>
             <Image
-              src="/assets/clients/teadit.png"
+              src={getImageUrl("assets/clients/teadit.png")}
               alt="teadit"
               width={160}
               height={60}
@@ -2057,7 +2006,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Artis" hasArrow>
             <Image
-              src="/assets/clients/Artis-lab.png"
+              src={getImageUrl("assets/clients/Artis-lab.png")}
               alt="Artis"
               width={100}
               height={100}
@@ -2076,7 +2025,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sonara" hasArrow>
             <Image
-              src="/assets/clients/sonara.svg"
+              src={getImageUrl("assets/clients/sonara.svg")}
               alt="Sonara"
               width={100}
               height={80}
@@ -2094,7 +2043,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Popcard" hasArrow>
             <Image
-              src="/assets/clients/POPCARD_4.png"
+              src={getImageUrl("assets/clients/POPCARD_4.png")}
               alt="POPCARD"
               width={80}
               height={80}
@@ -2112,7 +2061,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Nearshore" hasArrow>
             <Image
-              src="/assets/clients/nearshore.png"
+              src={getImageUrl("assets/clients/nearshore.png")}
               alt="Pensa"
               width={140}
               height={180}
@@ -2130,7 +2079,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sprintzeal" hasArrow>
             <Image
-              src="/assets/clients/Sprintzeal_Logo.webp"
+              src={getImageUrl("assets/clients/Sprintzeal_Logo.webp")}
               alt="Sprintzeal"
               width={80}
               height={80}
@@ -2148,7 +2097,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Bai" hasArrow>
             <Image
-              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              src={getImageUrl("assets/clients/bai_logo_colored.46fc5d5b219c.svg")}
               alt="Bai"
               width={80}
               height={80}
@@ -2165,7 +2114,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball_white.png"
+              src={getImageUrl("assets/clients/crystal_ball_white.png")}
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -2182,7 +2131,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Farmin" hasArrow>
             <Image
-              src="/assets/clients/farmin-white.png"
+              src={getImageUrl("assets/clients/farmin-white.png")}
               alt="Farmin"
               width={80}
               height={80}
@@ -2199,7 +2148,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Jarvis" hasArrow>
             <Image
-              src="/assets/clients/jarvis-logo.png"
+              src={getImageUrl("assets/clients/jarvis-logo.png")}
               alt="Jarvis"
               width={120}
               height={120}
@@ -2217,7 +2166,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Ibatu" hasArrow>
             <Image
-              src="/assets/clients/ibatu.png"
+              src={getImageUrl("assets/clients/ibatu.png")}
               alt="Ibatu"
               width={80}
               height={80}
@@ -2234,7 +2183,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Krypto Labs" hasArrow>
             <Image
-              src="/assets/clients/krypto-labs.png"
+              src={getImageUrl("assets/clients/krypto-labs.png")}
               alt="Krypto Labs"
               width={180}
               height={120}
@@ -2253,7 +2202,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
-              src="/assets/clients/Podcast-Beacon.png"
+              src={getImageUrl("assets/clients/Podcast-Beacon.png")}
               alt="Podcast-Beacon"
               width={150}
               height={150}
@@ -2272,7 +2221,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Pensa" hasArrow>
             <Image
-              src="/assets/clients/Pensa.webp"
+              src={getImageUrl("assets/clients/Pensa.webp")}
               alt="Pensa"
               width={120}
               height={120}
@@ -2289,7 +2238,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Logo Black" hasArrow>
             <Image
-              src="/assets/clients/logo-black-small.png"
+              src={getImageUrl("assets/clients/logo-black-small.png")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -2306,7 +2255,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="IPG" hasArrow>
             <Image
-              src="/assets/clients/Logo_IPG.jpg"
+              src={getImageUrl("assets/clients/Logo_IPG.jpg")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -2323,7 +2272,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Atarim" hasArrow>
             <Image
-              src="/assets/clients/atarim-white.svg"
+              src={getImageUrl("assets/clients/atarim-white.svg")}
               alt="Atarim"
               width={130}
               height={40}
@@ -2340,7 +2289,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Republic Power" hasArrow>
             <Image
-              src="/assets/clients/republic_power_logo.jpeg"
+              src={getImageUrl("assets/clients/republic_power_logo.jpeg")}
               alt="Republic Power"
               width={200}
               height={80}
@@ -2357,7 +2306,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Alifa" hasArrow>
             <Image
-              src="/assets/clients/alifa.PNG"
+              src={getImageUrl("assets/clients/alifa.PNG")}
               alt="Republic Power"
               width={80}
               height={80}
@@ -2614,7 +2563,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="React" placement="top">
                   <Image
-                    src="/assets/tech/react.png"
+                    src={getImageUrl("assets/tech/react.png")}
                     alt="React"
                     width={100}
                     height={100}
@@ -2624,8 +2573,8 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src={
                       colorMode === "dark"
-                        ? "/assets/tech/next.png"
-                        : "/assets/tech/nextjs-white.png"
+                        ? getImageUrl("assets/tech/next.png")
+                        : getImageUrl("assets/tech/nextjs-white.png")
                     }
                     alt="Next.js"
                     width={colorMode === "dark" ? 120 : 100}
@@ -2634,7 +2583,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Redux" placement="top">
                   <Image
-                    src="/assets/tech/redux.png"
+                    src={getImageUrl("assets/tech/redux.png")}
                     alt="Redux"
                     width={100}
                     height={100}
@@ -2642,7 +2591,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Material UI" placement="top">
                   <Image
-                    src="/assets/tech/mui.png"
+                    src={getImageUrl("assets/tech/mui.png")}
                     alt="Material UI"
                     width={100}
                     height={100}
@@ -2650,7 +2599,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="TypeScript" placement="top">
                   <Image
-                    src="/assets/tech/typescript.png"
+                    src={getImageUrl("assets/tech/typescript.png")}
                     alt="TypeScript"
                     width={100}
                     height={100}
@@ -2658,7 +2607,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="GraphQL" placement="top">
                   <Image
-                    src="/assets/tech/graphql.png"
+                    src={getImageUrl("assets/tech/graphql.png")}
                     alt="GraphQL"
                     width={100}
                     height={100}
@@ -2666,7 +2615,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="JavaScript" placement="top">
                   <Image
-                    src="/assets/tech/javascript.png"
+                    src={getImageUrl("assets/tech/javascript.png")}
                     alt="JavaScript"
                     width={100}
                     height={100}
@@ -2674,7 +2623,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Tailwind CSS" placement="top">
                   <Image
-                    src="/assets/tech/tailwind.png"
+                    src={getImageUrl("assets/tech/tailwind.png")}
                     alt="Tailwind CSS"
                     width={100}
                     height={100}
@@ -2717,7 +2666,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="Node.js" placement="top">
                   <Image
-                    src="/assets/tech/nodejs.png"
+                    src={getImageUrl("assets/tech/nodejs.png")}
                     alt="Node.js"
                     width={100}
                     height={100}
@@ -2725,7 +2674,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Express" placement="top">
                   <Image
-                    src="/assets/tech/express.png"
+                    src={getImageUrl("assets/tech/express.png")}
                     alt="Express"
                     width={100}
                     height={100}
@@ -2733,7 +2682,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="MongoDB" placement="top">
                   <Image
-                    src="/assets/tech/mongo.png"
+                    src={getImageUrl("assets/tech/mongo.png")}
                     alt="MongoDB"
                     width={100}
                     height={100}
@@ -2741,7 +2690,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="PostgreSQL" placement="top">
                   <Image
-                    src="/assets/tech/postgresql.png"
+                    src={getImageUrl("assets/tech/postgresql.png")}
                     alt="postgresql"
                     width={100}
                     height={100}
@@ -2749,7 +2698,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="MySQL" placement="top">
                   <Image
-                    src="/assets/tech/mysql.png"
+                    src={getImageUrl("assets/tech/mysql.png")}
                     alt="MySQL"
                     width={100}
                     height={100}
@@ -2757,7 +2706,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Django" placement="top">
                   <Image
-                    src="/assets/tech/django.png"
+                    src={getImageUrl("assets/tech/django.png")}
                     alt="Django"
                     width={100}
                     height={80}
@@ -2765,7 +2714,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Rails" placement="top">
                   <Image
-                    src="/assets/tech/rails.png"
+                    src={getImageUrl("assets/tech/rails.png")}
                     alt="Rails"
                     width={100}
                     height={100}
@@ -2773,7 +2722,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Ruby" placement="top">
                   <Image
-                    src="/assets/tech/ruby.png"
+                    src={getImageUrl("assets/tech/ruby.png")}
                     alt="Ruby"
                     width={100}
                     height={100}
@@ -2781,7 +2730,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Nest" placement="top">
                   <Image
-                    src="/assets/tech/nest.png"
+                    src={getImageUrl("assets/tech/nest.png")}
                     alt="Nest"
                     width={100}
                     height={100}
@@ -2789,7 +2738,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Python" placement="top">
                   <Image
-                    src="/assets/tech/python.png"
+                    src={getImageUrl("assets/tech/python.png")}
                     alt="Python"
                     width={100}
                     height={100}
@@ -2797,7 +2746,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Elasticsearch" placement="top">
                   <Image
-                    src="/assets/tech/elasticsearch_logo.png"
+                    src={getImageUrl("assets/tech/elasticsearch_logo.png")}
                     alt="Elasticsearch"
                     width={100}
                     height={100}
@@ -2805,7 +2754,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Redis" placement="top">
                   <Image
-                    src="/assets/tech/redis_logo.png"
+                    src={getImageUrl("assets/tech/redis_logo.png")}
                     alt="Redis"
                     width={100}
                     height={100}
@@ -2813,7 +2762,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Fast API" placement="top">
                   <Image
-                    src="/assets/tech/fastapi.png"
+                    src={getImageUrl("assets/tech/fastapi.png")}
                     alt="Fast API"
                     width={100}
                     height={100}
@@ -2856,7 +2805,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="Docker" placement="top">
                   <Image
-                    src="/assets/tech/docker.png"
+                    src={getImageUrl("assets/tech/docker.png")}
                     alt="Docker"
                     width={100}
                     height={100}
@@ -2864,7 +2813,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="AWS" placement="top">
                   <Image
-                    src="/assets/tech/aws.png"
+                    src={getImageUrl("assets/tech/aws.png")}
                     alt="AWS"
                     width={100}
                     height={100}
@@ -2872,7 +2821,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="GitLab" placement="top">
                   <Image
-                    src="/assets/tech/gitlab.png"
+                    src={getImageUrl("assets/tech/gitlab.png")}
                     alt="GitLab"
                     width={100}
                     height={100}
@@ -2880,7 +2829,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="GitHub" placement="top">
                   <Image
-                    src="/assets/tech/github.png"
+                    src={getImageUrl("assets/tech/github.png")}
                     alt="GitHub"
                     width={100}
                     height={100}
@@ -2923,7 +2872,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="TensorFlow" placement="top">
                   <Image
-                    src="/assets/tech/tensorflow.png"
+                    src={getImageUrl("assets/tech/tensorflow.png")}
                     alt="TensorFlow"
                     width={100}
                     height={100}
@@ -2931,7 +2880,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="PyTorch" placement="top">
                   <Image
-                    src="/assets/tech/pytorch.png"
+                    src={getImageUrl("assets/tech/pytorch.png")}
                     alt="PyTorch"
                     width={100}
                     height={100}
@@ -2939,7 +2888,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="OpenAI" placement="top">
                   <Image
-                    src="/assets/tech/openai.png"
+                    src={getImageUrl("assets/tech/openai.png")}
                     alt="OpenAI"
                     width={100}
                     height={100}
@@ -2947,7 +2896,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Keras" placement="top">
                   <Image
-                    src="/assets/tech/keras.png"
+                    src={getImageUrl("assets/tech/keras.png")}
                     alt="Keras"
                     width={100}
                     height={100}
@@ -2955,7 +2904,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Huggingface" placement="top">
                   <Image
-                    src="/assets/tech/huggingface_logo.png"
+                    src={getImageUrl("assets/tech/huggingface_logo.png")}
                     alt="Huggingface"
                     width={100}
                     height={100}
@@ -2963,7 +2912,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Crew" placement="top">
                   <Image
-                    src="/assets/tech/crew_logo.png"
+                    src={getImageUrl("assets/tech/crew_logo.png")}
                     alt="Crew"
                     width={100}
                     height={100}
@@ -2971,7 +2920,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="LangChain" placement="top">
                   <Image
-                    src="/assets/tech/langchain_logo.png"
+                    src={getImageUrl("assets/tech/langchain_logo.png")}
                     alt="LangChain"
                     width={100}
                     height={100}
@@ -2979,7 +2928,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="LangGraph" placement="top">
                   <Image
-                    src="/assets/tech/langgrapg.PNG"
+                    src={getImageUrl("assets/tech/langgrapg.PNG")}
                     alt="LangGraph"
                     width={100}
                     height={100}
@@ -2987,7 +2936,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Pinecone" placement="top">
                   <Image
-                    src="/assets/tech/pinecorn.PNG"
+                    src={getImageUrl("assets/tech/pinecorn.PNG")}
                     alt="Pinecone"
                     width={100}
                     height={100}
@@ -2995,7 +2944,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="LangSmith" placement="top">
                   <Image
-                    src="/assets/tech/langsmith.PNG"
+                    src={getImageUrl("assets/tech/langsmith.PNG")}
                     alt="LangSmith"
                     width={100}
                     height={100}
@@ -3003,7 +2952,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Chroma" placement="top">
                   <Image
-                    src="/assets/tech/chroma_logo.png"
+                    src={getImageUrl("assets/tech/chroma_logo.png")}
                     alt="Chroma"
                     width={100}
                     height={100}
@@ -3011,7 +2960,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Meta LLaMA" placement="top">
                   <Image
-                    src="/assets/tech/meta_llma.png"
+                    src={getImageUrl("assets/tech/meta_llma.png")}
                     alt="Meta LLaMA"
                     width={100}
                     height={100}
@@ -3019,7 +2968,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Anthropic" placement="top">
                   <Image
-                    src="/assets/tech/Anthropic_logo.png"
+                    src={getImageUrl("assets/tech/Anthropic_logo.png")}
                     alt="Anthropic"
                     width={100}
                     height={100}
@@ -3027,7 +2976,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="UI Path" placement="top">
                   <Image
-                    src="/assets/tech/uipath_logo.png"
+                    src={getImageUrl("assets/tech/uipath_logo.png")}
                     alt="UI Path"
                     width={100}
                     height={100}
@@ -3070,7 +3019,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="Make" placement="top">
                   <Image
-                    src="/assets/tech/make_logo.jpg"
+                    src={getImageUrl("assets/tech/make_logo.jpg")}
                     alt="Make"
                     width={100}
                     height={100}
@@ -3078,7 +3027,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Zapier" placement="top">
                   <Image
-                    src="/assets/tech/zapier_logo.png"
+                    src={getImageUrl("assets/tech/zapier_logo.png")}
                     alt="Zapier"
                     width={100}
                     height={100}
@@ -3086,7 +3035,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="n8n" placement="top">
                   <Image
-                    src="/assets/tech/n8n_logo.jpg"
+                    src={getImageUrl("assets/tech/n8n_logo.jpg")}
                     alt="n8n"
                     width={100}
                     height={100}
@@ -3094,7 +3043,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Framer" placement="top">
                   <Image
-                    src="/assets/tech/framer_logo.png"
+                    src={getImageUrl("assets/tech/framer_logo.png")}
                     alt="Framer"
                     width={100}
                     height={100}
@@ -3134,7 +3083,7 @@ const TechnologySection: React.FC = () => {
             Tech Stack
           </Heading>
           <Heading
-            as="h1"
+            as="h2"
             mt="5"
             sx={{
               display: "flex",
@@ -3334,7 +3283,7 @@ const BlogSection: React.FC = () => {
               Insights From Our Blog
             </Heading>
             <Heading
-              as="h1"
+              as="h2"
               mt="2"
               sx={{
                 fontSize: { base: "2rem", md: "2.5rem" },

@@ -27,13 +27,14 @@ import Image from "next/image";
 import Script from "next/script";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const MEATERY_CASE_STUDY_IMAGES = [
-  { src: "/assets/portfolio/New/Meatery/Dashboard.png", alt: "The Meatery Dashboard", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/02.jpeg", alt: "The Meatery - Screen 1", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/03.jpeg", alt: "The Meatery - Screen 2", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/04.jpeg", alt: "The Meatery - Screen 3", isPortrait: false },
-  { src: "/assets/portfolio/New/Meatery/screencapture-localhost-3001-crm-reports-2026-02-13-12_43_49.png", alt: "The Meatery - CRM Reports", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Meatery/Dashboard.png"), alt: "The Meatery Dashboard", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Meatery/02.jpeg"), alt: "The Meatery - Screen 1", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Meatery/03.jpeg"), alt: "The Meatery - Screen 2", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Meatery/04.jpeg"), alt: "The Meatery - Screen 3", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Meatery/screencapture-localhost-3001-crm-reports-2026-02-13-12_43_49.png"), alt: "The Meatery - CRM Reports", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -93,7 +94,7 @@ const CaseStudyMeatery = () => {
         minH={{ base: "500px", md: "600px" }}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/The Meatery.jpg"
+            src={getImageUrl("assets/portfolio/New/List Images/The Meatery.jpg")}
             alt="The Meatery - AI-Driven Voice CRM"
             fill
             style={{ objectFit: "cover" }}
@@ -170,7 +171,7 @@ const CaseStudyMeatery = () => {
             </VStack>
             <Box flexShrink={0} w={{ base: "100%", lg: "45%" }} maxW={{ lg: "500px" }} position="relative" alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/Meatery/The Meatrey Show case screen image.png"
+                src={getImageUrl("assets/portfolio/New/Meatery/The Meatrey Show case screen image.png")}
                 alt="The Meatery - Voice CRM Showcase"
                 width={500}
                 height={400}
@@ -227,7 +228,7 @@ const CaseStudyMeatery = () => {
         onMouseEnter={() => setIsGalleryPaused(true)}
         onMouseLeave={() => setIsGalleryPaused(false)}>
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
-          <Image src="/assets/portfolio/New/banner of case studies.webp" alt="Meatery — case study gallery background" fill style={{ objectFit: "cover" }} />
+          <Image src={getImageUrl("assets/portfolio/New/banner of case studies.webp")} alt="Meatery — case study gallery background" fill style={{ objectFit: "cover" }} />
           <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="blackAlpha.6" _dark={{ bg: "blackAlpha.5" }} />
         </Box>
         <Box position="relative" zIndex={1} overflow="hidden" w="100%" py={4}>

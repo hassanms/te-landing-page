@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyContentCompass = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyContentCompass = () => {
           description:
             "A high-performance analytics platform designed to empower creators and businesses with data-driven LinkedIn strategies. By leveraging automated scraping, multimodal AI analysis, and real-time data visualization, the platform transforms raw social data into actionable insights.",
           dateCreated: "2024",
-          image: "https://techemulsion.com/assets/portfolio/linkedin.jpg",
+          image: getImageUrl("assets/portfolio/linkedin.jpg"),
           url: "https://techemulsion.com/portfolio/contentcompass",
           genre: "AI Solution, LinkedIn Analytics, Marketing",
           keywords: [
@@ -127,7 +128,7 @@ const CaseStudyContentCompass = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/linkedin.jpg"
+            src={getImageUrl("assets/portfolio/linkedin.jpg")}
             alt="Content Compass - LinkedIn Content Analytics"
             fill
             style={{ objectFit: "cover" }}

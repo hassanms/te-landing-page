@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyBipcards = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyBipcards = () => {
           description:
             "Tech Emulsion developed a SaaS platform for Bipcards.com, enabling businesses to collect customer reviews via programmable NFC cards and QR codes. Customers benefit from flexible subscriptions, real-time analytics, and easy card programming, while sales reps streamline onboarding and engagement.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/bipcards.png",
+          image: getImageUrl("assets/portfolio/bipcards.png"),
           url: "https://techemulsion.com/portfolio/bipcards",
           genre: "SaaS, Reviews Management",
           keywords: [
@@ -127,7 +128,7 @@ const CaseStudyBipcards = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/bipcards.png"
+            src={getImageUrl("assets/portfolio/bipcards.png")}
             alt="Bipcards - SaaS Platform for Customer Reviews"
             fill
             style={{ objectFit: "cover" }}

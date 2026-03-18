@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyAlifa = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyAlifa = () => {
           description:
             "Tech Emulsion developed Alifa, a comprehensive client engagement and AI-driven sales SaaS platform that streamlines client interactions through advanced AI capabilities, multi-agent architectures, and seamless integrations.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/file.jpg",
+          image: getImageUrl("assets/portfolio/file.jpg"),
           url: "https://techemulsion.com/portfolio/alifa",
           genre: "AI SaaS, Sales Automation",
           keywords: [
@@ -124,7 +125,7 @@ const CaseStudyAlifa = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/file.jpg"
+            src={getImageUrl("assets/portfolio/file.jpg")}
             alt="Alifa - AI-Driven Sales SaaS Platform"
             fill
             style={{ objectFit: "cover" }}

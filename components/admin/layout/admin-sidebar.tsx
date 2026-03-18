@@ -23,6 +23,7 @@ import {
 import { Logo } from "data/logo";
 import { useAdminLayout } from "./admin-layout";
 import Image from "next/image";
+import { getImageUrl } from "lib/supabase-storage";
 
 interface NavItem {
   label: string;
@@ -147,7 +148,7 @@ export const AdminSidebar: React.FC = () => {
                 minH="40px"
               >
                 <Image
-                  src="/assets/icons/logo-icon.svg"
+                  src={getImageUrl("assets/icons/logo-icon.svg")}
                   alt="Tech Emulsion Icon"
                   width={32}
                   height={32}

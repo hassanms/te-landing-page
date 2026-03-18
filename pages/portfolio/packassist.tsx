@@ -28,38 +28,15 @@ import Image from "next/image";
 import Script from "next/script";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const PACK_ASSIST_CASE_STUDY_IMAGES = [
-  {
-    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Main Page.png",
-    alt: "Pack Assist - Main Chatbot Page",
-    isPortrait: false,
-  },
-  {
-    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Websites Allow List.png",
-    alt: "Pack Assist - Websites Allow List Configuration",
-    isPortrait: false,
-  },
-  {
-    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Knowledgebase.png",
-    alt: "Pack Assist - Knowledgebase Management",
-    isPortrait: false,
-  },
-  {
-    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/CSR Management.PNG",
-    alt: "Pack Assist - CSR Management Dashboard",
-    isPortrait: false,
-  },
-  {
-    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Human in Loop.PNG",
-    alt: "Pack Assist - Human in the Loop Controls",
-    isPortrait: false,
-  },
-  {
-    src: "/assets/portfolio/New/Pack Assist Case Study Gallery/Visitor - CSR Flow (1).PNG",
-    alt: "Pack Assist - Visitor to CSR Flow",
-    isPortrait: false,
-  },
+  { src: getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/Main Page.png"), alt: "Pack Assist - Main Chatbot Page", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/Websites Allow List.png"), alt: "Pack Assist - Websites Allow List Configuration", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/Knowledgebase.png"), alt: "Pack Assist - Knowledgebase Management", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/CSR Management.PNG"), alt: "Pack Assist - CSR Management Dashboard", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/Human in Loop.PNG"), alt: "Pack Assist - Human in the Loop Controls", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/Visitor - CSR Flow (1).PNG"), alt: "Pack Assist - Visitor to CSR Flow", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -120,7 +97,7 @@ const CaseStudyPackAssist = () => {
       >
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/PackAssist.jpg"
+            src={getImageUrl("assets/portfolio/New/List Images/PackAssist.jpg")}
             alt="Pack Assist - AI Sales Qualification Platform"
             fill
             style={{ objectFit: "cover" }}
@@ -231,7 +208,7 @@ const CaseStudyPackAssist = () => {
               alignSelf={{ base: "center", lg: "flex-end" }}
             >
               <Image
-                src="/assets/portfolio/New/Pack Assist Case Study Gallery/Pack Assist Show Case Screen Image.png"
+                src={getImageUrl("assets/portfolio/New/Pack Assist Case Study Gallery/Pack Assist Show Case Screen Image.png")}
                 alt="Pack Assist - Dashboard Showcase"
                 width={500}
                 height={400}
@@ -388,7 +365,7 @@ const CaseStudyPackAssist = () => {
       >
         <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
           <Image
-            src="/assets/portfolio/New/banner of case studies.webp"
+            src={getImageUrl("assets/portfolio/New/banner of case studies.webp")}
             alt="PackAssist — case study gallery background"
             fill
             style={{ objectFit: "cover" }}

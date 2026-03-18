@@ -3,6 +3,7 @@ import Head from "next/head";
 import { NextSeo, NextSeoProps } from "next-seo";
 import { StructuredData } from "./structured-data";
 import siteConfig from "data/config";
+import { getImageUrl } from "lib/supabase-storage";
 
 export interface EnhancedSEOProps extends NextSeoProps {
   pageType?: "home" | "services" | "portfolio" | "about" | "contact" | "blog";
@@ -196,7 +197,7 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
         ? ogImage
         : `https://techemulsion.com${ogImage}`;
     }
-    return "https://techemulsion.com/assets/og-default.png";
+    return getImageUrl("assets/og-default.png");
   };
 
   // Get OG Image (object for NextSeo)

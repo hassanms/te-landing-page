@@ -3,6 +3,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { EnhancedSEO } from "components/seo/enhanced-seo";
 import Head from "next/head";
 import Image from "next/image";
+import { getImageUrl } from "lib/supabase-storage";
 import Script from "next/script";
 import React from "react";
 
@@ -26,7 +27,7 @@ const CaseStudyMoodtube = () => {
           description:
             "MoodTube allows users to search YouTube videos by mood using AI tools like LangChain and vector embeddings. It extracts YouTube transcripts, converts them into embeddings, and uses semantic search to recommend videos that match the selected mood.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/moodtube.png",
+          image: getImageUrl("assets/portfolio/moodtube.png"),
           url: "https://techemulsion.com/portfolio/moodtube",
           genre: "AI, Browser Extension",
           keywords: [
@@ -94,8 +95,8 @@ const CaseStudyMoodtube = () => {
               width: "100%",
               backgroundImage:
                 colorMode === "dark"
-                  ? "url('/assets/background/pattern.jpg')"
-                  : "url('/assets/background/light-pattern.jpg')",
+                  ? `url(${getImageUrl("assets/background/pattern.jpg")})`
+                  : `url(${getImageUrl("assets/background/light-pattern.jpg")})`,
               height: "350px",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -110,7 +111,7 @@ const CaseStudyMoodtube = () => {
             }}>
             <Box>
               <Image
-                src="/assets/portfolio/moodtube.png"
+                src={getImageUrl("assets/portfolio/moodtube.png")}
                 alt="Moodtube"
                 width={502}
                 height={300}

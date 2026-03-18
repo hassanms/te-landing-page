@@ -1,5 +1,6 @@
 import React from "react";
 import Script from "next/script";
+import { getImageUrl } from "lib/supabase-storage";
 
 interface StructuredDataProps {
   type:
@@ -27,7 +28,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           "@type": "Organization",
           name: "Tech Emulsion",
           url: "https://techemulsion.com",
-          logo: "https://techemulsion.com/static/favicons/android-chrome-192x192.png",
+          logo: getImageUrl("static/favicons old/android-chrome-192x192.png"),
           description:
             "Tech Emulsion specializes in imagineering digital transformation for businesses through AI-powered solutions, custom software development, and innovative technology services.",
           foundingDate: "2020",

@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyAtarim = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyAtarim = () => {
           description:
             "Tech Emulsion developed and scaled Atarim's SaaS platform with AWS cloud infrastructure, region-based load balancing, and auto-scaling capabilities.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/atarim.jpg",
+          image: getImageUrl("assets/portfolio/atarim.jpg"),
           url: "https://techemulsion.com/portfolio/atarim",
           genre: "SaaS Development, Cloud Infrastructure",
           keywords: [
@@ -124,7 +125,7 @@ const CaseStudyAtarim = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/atarim.png"
+            src={getImageUrl("assets/portfolio/atarim.png")}
             alt="Atarim - SaaS Platform & Cloud Infrastructure"
             fill
             style={{ objectFit: "cover" }}

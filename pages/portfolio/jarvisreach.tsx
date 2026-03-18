@@ -20,6 +20,7 @@ import Head from "next/head";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyJarvisreach = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyJarvisreach = () => {
           description:
             "Tech Emulsion developed JarvisReach, a SaaS platform for LinkedIn prospecting that supports data extraction, advanced filtering, automated email outreach, flexible subscriptions, team leaderboards, and admin analytics to streamline lead management.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/jarvis.png",
+          image: getImageUrl("assets/portfolio/jarvis.png"),
           url: "https://techemulsion.com/portfolio/jarvisreach",
           genre: "SaaS, Sales Automation",
           keywords: [

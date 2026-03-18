@@ -1,6 +1,7 @@
 import { ColorModeScript } from "@chakra-ui/react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import theme from "../theme";
+import { getImageUrl } from "lib/supabase-storage";
 
 export default class Document extends NextDocument {
   render() {
@@ -8,14 +9,11 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           {/* Standard favicon for all browsers */}
-          <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
-          <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
-          <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
-          <link rel="manifest" href="/static/favicons/site.webmanifest" />
-
-          {/* Web App Manifest */}
-          <link rel="manifest" href="/static/favicons/manifest.json" />
+          <link rel="icon" type="image/png" href={getImageUrl("static/favicons/favicon-96x96.png")} sizes="96x96" />
+          <link rel="icon" type="image/svg+xml" href={getImageUrl("static/favicons/favicon.svg")} />
+          <link rel="shortcut icon" href={getImageUrl("static/favicons/favicon.ico")} />
+          <link rel="apple-touch-icon" sizes="180x180" href={getImageUrl("static/favicons/apple-touch-icon.png")} />
+          <link rel="manifest" href={getImageUrl("static/favicons/site.webmanifest")} />
           <link
             rel="stylesheet"
             href="https://assets.calendly.com/assets/external/widget.css"
@@ -53,7 +51,7 @@ export default class Document extends NextDocument {
           <meta name="mobile-web-app-capable" content="yes" />
           <meta
             name="msapplication-config"
-            content="/static/favicons/browserconfig.xml"
+            content={getImageUrl("static/favicons/browserconfig.xml")}
           />
           <meta name="msapplication-TileColor" content="#008080" />
           <meta name="msapplication-tap-highlight" content="no" />
@@ -63,7 +61,7 @@ export default class Document extends NextDocument {
           <meta name="msapplication-TileColor" content="#008080" />
           <meta
             name="msapplication-TileImage"
-            content="/static/favicons/mstile-150x150.png"
+            content={getImageUrl("static/favicons/mstile-150x150.png")}
           />
 
           {/* Standard Meta Tags for SEO (homepage values are refined by page-level SEO) */}
@@ -96,7 +94,7 @@ export default class Document extends NextDocument {
           <meta property="og:site_name" content="Tech Emulsion" />
           <meta
             property="og:image"
-            content="/static/favicons/android-chrome-512x512.png"
+            content={getImageUrl("static/favicons old/android-chrome-512x512.png")}
           />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
@@ -120,7 +118,7 @@ export default class Document extends NextDocument {
           <meta name="twitter:creator" content="@techemulsion" />
           <meta
             name="twitter:image"
-            content="/static/favicons/android-chrome-512x512.png"
+            content={getImageUrl("static/favicons old/android-chrome-512x512.png")}
           />
           <meta
             name="twitter:image:alt"

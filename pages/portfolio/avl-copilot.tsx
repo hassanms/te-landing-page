@@ -28,17 +28,18 @@ import Image from "next/image";
 import Script from "next/script";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const AVL_CASE_STUDY_IMAGES = [
-  { src: "/assets/portfolio/New/AVL-Copilot/Main Screen.png", alt: "AVL Copilot Main Screen", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Sign In.png", alt: "AVL Copilot Sign In", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Chat Interface.png", alt: "AVL Copilot Chat Interface", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Image Analysis.png", alt: "AVL Copilot Image Analysis", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Live Google Maps Finder.png", alt: "AVL Copilot Live Google Maps Finder", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Streaming Response.png", alt: "AVL Copilot Streaming Response", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Total Usage.png", alt: "AVL Copilot Total Usage", isPortrait: true },
-  { src: "/assets/portfolio/New/AVL-Copilot/User Profile.png", alt: "AVL Copilot User Profile", isPortrait: false },
-  { src: "/assets/portfolio/New/AVL-Copilot/Web Search.png", alt: "AVL Copilot Web Search", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Main Screen.png"), alt: "AVL Copilot Main Screen", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Sign In.png"), alt: "AVL Copilot Sign In", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Chat Interface.png"), alt: "AVL Copilot Chat Interface", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Image Analysis.png"), alt: "AVL Copilot Image Analysis", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Live Google Maps Finder.png"), alt: "AVL Copilot Live Google Maps Finder", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Streaming Response.png"), alt: "AVL Copilot Streaming Response", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Total Usage.png"), alt: "AVL Copilot Total Usage", isPortrait: true },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/User Profile.png"), alt: "AVL Copilot User Profile", isPortrait: false },
+  { src: getImageUrl("assets/portfolio/New/AVL-Copilot/Web Search.png"), alt: "AVL Copilot Web Search", isPortrait: false },
 ];
 
 const scrollRightToLeft = keyframes`
@@ -109,7 +110,7 @@ const CaseStudyAVLCoPilotV3 = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/New/AVL-CoPilot-hero.png"
+            src={getImageUrl("assets/portfolio/New/AVL-CoPilot-hero.png")}
             alt="AVL Copilot - Professional AV Industry AI Platform"
             fill
             style={{ objectFit: "cover" }}
@@ -215,7 +216,7 @@ const CaseStudyAVLCoPilotV3 = () => {
               position="relative"
               alignSelf={{ base: "center", lg: "flex-end" }}>
               <Image
-                src="/assets/portfolio/New/AVL-Copilot/showcase image.png"
+                src={getImageUrl("assets/portfolio/New/AVL-Copilot/showcase image.png")}
                 alt="AVL Copilot - Desktop, tablet, and mobile showcase"
                 width={500}
                 height={400}
@@ -317,7 +318,7 @@ const CaseStudyAVLCoPilotV3 = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/New/banner of case studies.webp"
+            src={getImageUrl("assets/portfolio/New/banner of case studies.webp")}
             alt="AVL Copilot — case study gallery background"
             fill
             style={{ objectFit: "cover" }}

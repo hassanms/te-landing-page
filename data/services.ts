@@ -2,6 +2,7 @@
  * Tech Emulsion Services Data
  * Shared across main services page, home page, and service subpages
  */
+import { getImageUrl } from "lib/supabase-storage";
 
 export interface ValueProp {
   title: string;
@@ -159,26 +160,26 @@ export const resultsCopy = [
   { stat: "24/7", label: "Support Available" },
 ];
 
-// Client logos for "Trusted by" strip (paths relative to public)
+// Client logos for "Trusted by" strip (URLs from Supabase Storage)
 // Light mode: black, dark mode: white. keepOriginal: no filter (IPG only)
 export const trustedByLogos = [
-  { src: "/assets/clients/teadit.png", alt: "Teadit" },
-  { src: "/assets/clients/Artis-lab.png", alt: "Artis" },
-  { src: "/assets/clients/sonara.svg", alt: "Sonara" },
-  { src: "/assets/clients/POPCARD_4.png", alt: "Popcard" },
-  { src: "/assets/clients/nearshore.png", alt: "Nearshore" },
-  { src: "/assets/clients/Sprintzeal_Logo.webp", alt: "Sprintzeal" },
-  { src: "/assets/clients/farmin-white.png", alt: "Farmin" },
-  { src: "/assets/clients/jarvis-logo.png", alt: "Jarvis" },
-  { src: "/assets/clients/ibatu.png", alt: "Ibatu" },
-  { src: "/assets/clients/Podcast-Beacon.png", alt: "Podcast-Beacon" },
-  { src: "/assets/clients/Pensa.webp", alt: "Pensa" },
-  { src: "/assets/clients/logo-black-small.png", alt: "Logo" },
-  { src: "/assets/clients/Logo_IPG.jpg", alt: "IPG", keepOriginal: true },
-  { src: "/assets/clients/atarim-white.svg", alt: "Atarim" },
-  { src: "/assets/clients/republic_power_logo.jpeg", alt: "Republic Power" },
-  { src: "/assets/clients/alifa.PNG", alt: "Alifa" },
-  { src: "/assets/clients/Bubble.1.png", alt: "Bubble" },
+  { src: getImageUrl("assets/clients/teadit.png"), alt: "Teadit" },
+  { src: getImageUrl("assets/clients/Artis-lab.png"), alt: "Artis" },
+  { src: getImageUrl("assets/clients/sonara.svg"), alt: "Sonara" },
+  { src: getImageUrl("assets/clients/POPCARD_4.png"), alt: "Popcard" },
+  { src: getImageUrl("assets/clients/nearshore.png"), alt: "Nearshore" },
+  { src: getImageUrl("assets/clients/Sprintzeal_Logo.webp"), alt: "Sprintzeal" },
+  { src: getImageUrl("assets/clients/farmin-white.png"), alt: "Farmin" },
+  { src: getImageUrl("assets/clients/jarvis-logo.png"), alt: "Jarvis" },
+  { src: getImageUrl("assets/clients/ibatu.png"), alt: "Ibatu" },
+  { src: getImageUrl("assets/clients/Podcast-Beacon.png"), alt: "Podcast-Beacon" },
+  { src: getImageUrl("assets/clients/Pensa.webp"), alt: "Pensa" },
+  { src: getImageUrl("assets/clients/logo-black-small.png"), alt: "Logo" },
+  { src: getImageUrl("assets/clients/Logo_IPG.jpg"), alt: "IPG", keepOriginal: true },
+  { src: getImageUrl("assets/clients/atarim-white.svg"), alt: "Atarim" },
+  { src: getImageUrl("assets/clients/republic_power_logo.jpeg"), alt: "Republic Power" },
+  { src: getImageUrl("assets/clients/alifa.PNG"), alt: "Alifa" },
+  { src: getImageUrl("assets/clients/Bubble.1.png"), alt: "Bubble" },
 ];
 
 // Main value propositions for the services landing page
@@ -215,7 +216,7 @@ export const servicesData: ServiceData[] = [
       "Generative AI development services from a generative AI development company that builds autonomous AI agents to handle real work—from sales qualification chatbots to RAG-powered knowledge systems. Proven with Pack Assist, Farmin, and Content Compass.",
     fullDescription:
       "Tech Emulsion is a generative AI development company offering generative AI development services through agentic AI engineering. You get autonomous AI systems that perform complex tasks with minimal human intervention. Examples include cost-optimized AI sales agents (Pack Assist) with hybrid qualification flows and RAG-based fact-checking, object detection platforms (Farmin) using YOLO and satellite imagery, and multimodal analytics (Content Compass) with OpenAI and Twelve Labs. Our agents use LangGraph, LangChain, and custom frameworks—integrating with your APIs, databases, and tools so your workflows scale instead of your headcount.",
-    image: "/assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/arseny-togulev-MECKPoKJYjM-unsplash.jpg"),
     tags: ["AI", "Automation", "Agents"],
     seoKeywords: [
       "developing an agentic ai system",
@@ -324,7 +325,7 @@ export const servicesData: ServiceData[] = [
       "SaaS development services and custom SaaS development from MVP to enterprise—proven with Atarim ($500K funded), Rack Room, Farmin, and Podcast Beacon. Cloud-native, subscription billing, and integrations built in.",
     fullDescription:
       "Tech Emulsion provides SaaS development services and custom SaaS development for scalable, cloud-native platforms. We transformed Atarim from a WordPress plugin into a universal visual collaboration SaaS with AWS, region-based load balancing, and auto-scaling. We built Rack Room for complex booking management, Twilio SMS, and Gantt dashboards. Farmin combines AI and SaaS for satellite image analysis. Our stack: Next.js, React, Supabase, AWS, Stripe—with multi-tenancy, billing, and analytics from day one.",
-    image: "/assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg"),
     tags: ["SaaS", "Cloud", "Scalable"],
     seoKeywords: [
       "saas development services",
@@ -426,7 +427,7 @@ export const servicesData: ServiceData[] = [
       "A custom website development company and Next.js website development agency. High-performance, SEO-friendly websites and custom ecommerce website development. Marketing sites, portfolios, and conversion-focused pages that drive growth.",
     fullDescription:
       "Tech Emulsion is a custom website development company and Next.js website development agency. We deliver fast, SEO-optimized websites using Next.js, React, and modern design principles—including custom ecommerce website development. We build marketing sites, landing pages, portfolios, and web applications with server-side rendering, optimized images, and Core Web Vitals in mind. Our portfolio includes client sites, campaign pages, and the Tech Emulsion site itself.",
-    image: "/assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg"),
     tags: ["Web", "Next.js", "SEO"],
     seoKeywords: [
       "custom website development company",
@@ -528,7 +529,7 @@ export const servicesData: ServiceData[] = [
       "We develop Chrome extensions that extend your SaaS or workflow—like Atarim's extension for visual feedback on any website. How to develop Chrome extension: we handle design, build, and Web Store publishing. Manifest V3 compliant.",
     fullDescription:
       "Tech Emulsion helps you develop Chrome extensions that extend your product into the browser. We built Atarim's Chrome extension to enable visual feedback on any website—not just WordPress. Whether you need to develop a Chrome extension for productivity, data capture, or SaaS companions, we deliver Manifest V3–compliant extensions and Chrome Web Store publishing.",
-    image: "/assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg"),
     tags: ["Chrome", "Productivity", "Extensions"],
     seoKeywords: ["develop chrome extension", "how to develop chrome extension"],
     whatIs:
@@ -625,7 +626,7 @@ export const servicesData: ServiceData[] = [
       "DevOps as a service and devops managed services—we scale and secure your infrastructure with AWS, region-based load balancing, auto-scaling, and CI/CD. Proven with Atarim, Farmin, and Rack Room.",
     fullDescription:
       "Tech Emulsion offers DevOps as a service and devops managed services to modernize your infrastructure and delivery pipeline. We scaled Atarim on AWS with region-based load balancing and auto-scaling. We deployed Farmin for satellite image processing and Content Compass on Supabase Edge Functions. We implement CI/CD, containerization, cloud migration, and monitoring so your team can ship faster and with confidence.",
-    image: "/assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg"),
     tags: ["DevOps", "CI/CD", "Cloud"],
     seoKeywords: ["devops as a service", "devops managed services"],
     whatIs:
@@ -722,7 +723,7 @@ export const servicesData: ServiceData[] = [
       "Generative AI integration services and AI and GPT integration services. We deliver AI visibility solutions with best generative engine optimization—LLMs, RAG, and AI-powered workflows that make your product easier to discover and more useful for users.",
     fullDescription:
       "Tech Emulsion provides generative AI integration services and AI and GPT integration services. We bring LLMs, image generation, and AI-powered features into your products and workflows—with AI visibility solutions and best generative engine optimization so your product surfaces correctly in AI search and assistants. As a generative AI development company we offer best rated AI generative expand solutions that focus on clear business outcomes: OpenAI, Anthropic, open-source models, RAG, and custom fine-tuned integrations.",
-    image: "/assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg"),
     tags: ["AI", "LLM", "Automation"],
     seoKeywords: [
       "generative ai integration services",
@@ -832,7 +833,7 @@ export const servicesData: ServiceData[] = [
       "QA and testing services and QA automation testing services. We ensure your software is bug-free and production-ready—functional, performance, and security testing, plus automated test suites in CI/CD for every project we deliver.",
     fullDescription:
       "Tech Emulsion provides QA and testing services and QA automation testing services. We ensure your software meets quality standards before and after release. We integrate testing into every project—from Pack Assist and Atarim to Rack Room and Content Compass. We deliver functional testing, performance testing, security testing, and automated test suites (Cypress, Playwright, Jest) that run in your CI/CD pipeline.",
-    image: "/assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg",
+    image: getImageUrl("assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg"),
     tags: ["QA", "Testing", "Automation"],
     seoKeywords: ["qa and testing services", "qa automation testing services"],
     whatIs:
@@ -929,7 +930,7 @@ export const servicesData: ServiceData[] = [
       "Business automation solutions and workflow automation services. We automate workflows and integrate your systems—Slack, Jira, Asana, Twilio—including automated customer service workflows utilizing process builder. AI automation service for intelligent, error-free operations.",
     fullDescription:
       "Tech Emulsion delivers business automation solutions and workflow automation services. We transform manual, repetitive processes into efficient, error-free workflows—including automated customer service workflows utilizing process builder. Our AI automation service combines AI with automation for intelligent document processing and decision-making. We built Atarim's integrations with Slack, Jira, and Asana; Rack Room's Twilio SMS automation; and Content Compass's scraping pipelines. We analyze your operations, identify automation opportunities, and implement solutions that save time and reduce costs.",
-    image: "/assets/whatWeDo/automation.png",
+    image: getImageUrl("assets/whatWeDo/automation.png"),
     tags: ["Automation", "Workflows", "Integration"],
     seoKeywords: [
       "workflow automation services",

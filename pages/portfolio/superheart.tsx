@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudySuperheart = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudySuperheart = () => {
           description:
             "SuperHeart is a food coach in your pocket that helps users choose heart-healthy meals, log food via photos or text, and track macros and daily targets. Built with React Native and Supabase, it includes dashboards, reminders, and progress tracking.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/New/List Images/SuperHeart.jpg",
+          image: getImageUrl("assets/portfolio/New/List Images/SuperHeart.jpg"),
           url: "https://techemulsion.com/portfolio/superheart",
           genre: "Mobile App, HealthTech",
           keywords: [
@@ -127,7 +128,7 @@ const CaseStudySuperheart = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/New/List Images/SuperHeart.jpg"
+            src={getImageUrl("assets/portfolio/New/List Images/SuperHeart.jpg")}
             alt="SuperHeart - AI-Powered Nutrition Tracking"
             fill
             style={{ objectFit: "cover" }}

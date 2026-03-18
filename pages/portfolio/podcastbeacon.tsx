@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyPodcastBeacon = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyPodcastBeacon = () => {
           description:
             "Tech Emulsion built Podcast Beacon so podcasters can gather every important link on one branded page. Users launch multiple landing pages, showcase episodes, merch and services, and accept payments through a built-in checkout with a secure admin panel.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/mic.jpg",
+          image: getImageUrl("assets/portfolio/mic.jpg"),
           url: "https://techemulsion.com/portfolio/podcastbeacon",
           genre: "SaaS, Creator Tools",
           keywords: [
@@ -127,7 +128,7 @@ const CaseStudyPodcastBeacon = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/mic.jpg"
+            src={getImageUrl("assets/portfolio/mic.jpg")}
             alt="Podcast Beacon - Link-in-Bio SaaS Hub"
             fill
             style={{ objectFit: "cover" }}

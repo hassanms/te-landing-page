@@ -3,7 +3,22 @@ const nextConfig = {
   reactStrictMode: true,
   // Canonical host and redirects for SEO: avoid duplicate content (www vs non-www, trailing slash)
   async redirects() {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+    const bucket = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || 'public-assets';
+    const storageBase = `${supabaseUrl}/storage/v1/object/public/${bucket}`;
+
     return [
+      // Old public image paths → Supabase Storage (301 for SEO)
+      {
+        source: '/assets/:path*',
+        destination: `${storageBase}/assets/:path*`,
+        permanent: true,
+      },
+      {
+        source: '/static/:path*',
+        destination: `${storageBase}/static/:path*`,
+        permanent: true,
+      },
       // LinkedIn (and other) traffic: use this URL as "Website" on LinkedIn so we can attribute (LinkedIn strips referrer)
       {
         source: '/linkedin',
@@ -40,6 +55,17 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    ...(process.env.NEXT_PUBLIC_SUPABASE_URL && {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname,
+          pathname: '/storage/v1/object/public/**',
+          port: '',
+          search: '',
+        },
+      ],
+    }),
   },
   webpack(config) {
     config.module.rules.push({

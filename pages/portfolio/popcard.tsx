@@ -21,6 +21,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaQuoteLeft } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyPopcard = () => {
   const { colorMode } = useColorMode();
@@ -55,7 +56,7 @@ const CaseStudyPopcard = () => {
           description:
             "Tech Emulsion developed a SaaS for PopCard.io, enabling businesses to manage locations, teams, and customer reviews via NFC cards and QR codes with secure authentication, analytics, leaderboards, and Stripe subscriptions.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/popcard.png",
+          image: getImageUrl("assets/portfolio/popcard.png"),
           url: "https://techemulsion.com/portfolio/popcard",
           genre: "SaaS, Reviews Management",
           keywords: [
@@ -127,7 +128,7 @@ const CaseStudyPopcard = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/popcard.png"
+            src={getImageUrl("assets/portfolio/popcard.png")}
             alt="Popcard - SaaS Platform for Digital Business Cards"
             fill
             style={{ objectFit: "cover" }}

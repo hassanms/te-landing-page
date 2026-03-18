@@ -22,6 +22,7 @@ import Image from "next/image";
 import Script from "next/script";
 import React from "react";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
+import { getImageUrl } from "lib/supabase-storage";
 
 const CaseStudyLevellup = () => {
   const { colorMode } = useColorMode();
@@ -58,7 +59,7 @@ const CaseStudyLevellup = () => {
           description:
             "LevellUp is an AI-powered sales training platform for SaaS and B2B revenue teams. Reps practice with lifelike AI buyer personas, receive automatic scoring against sales frameworks, and get targeted coaching suggestions with progress tracked in dashboards.",
           dateCreated: "2023",
-          image: "https://techemulsion.com/assets/portfolio/level.png",
+          image: getImageUrl("assets/portfolio/level.png"),
           url: "https://techemulsion.com/portfolio/levellup",
           genre: "AI, Sales Training",
           keywords: [
@@ -129,7 +130,7 @@ const CaseStudyLevellup = () => {
           bottom={0}
           zIndex={0}>
           <Image
-            src="/assets/portfolio/level.png"
+            src={getImageUrl("assets/portfolio/level.png")}
             alt="LevellUp - AI-Driven Sales Training Simulator"
             fill
             style={{ objectFit: "cover" }}

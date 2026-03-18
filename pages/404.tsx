@@ -16,6 +16,7 @@ import { BackgroundGradient } from "components/gradients/background-gradient";
 import { useColorMode } from "@chakra-ui/react";
 import { FiHome, FiArrowLeft } from "react-icons/fi";
 import Head from "next/head";
+import { getImageUrl } from "lib/supabase-storage";
 
 const MotionBox = motion(Box);
 const MotionVStack = motion(VStack);
@@ -79,7 +80,7 @@ const Custom404 = () => {
                 },
               }}>
               <Image
-                src="/assets/404/page-not-found.svg"
+                src={getImageUrl("assets/404/page-not-found.svg")}
                 alt="404 Page Not Found Illustration"
                 fill
                 style={{

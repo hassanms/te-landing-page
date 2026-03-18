@@ -87,6 +87,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import Head from "next/head";
 import Script from "next/script";
+import { getImageUrl } from "lib/supabase-storage";
 
 const Player = dynamic(
   () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
@@ -139,7 +140,7 @@ const Home: NextPage = () => {
         description="Tech Emulsion builds AI agents, SaaS platforms, and custom software from MVP to enterprise. 50+ projects shipped. US & Pakistan-based generative AI development company."
         pageType="home"
         canonicalUrl="https://techemulsion.com"
-        ogImage="https://techemulsion.com/static/favicons/android-chrome-512x512.png"
+        ogImage={getImageUrl("static/favicons old/android-chrome-512x512.png")}
         faqData={{
           questions: [
             {
@@ -292,8 +293,8 @@ const HeroSection: React.FC = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("gray.600", "lightGrey.400");
   const pensaImage = useColorModeValue(
-    "/assets/clients/Pensa.webp",
-    "/assets/clients/Pensa-white.png"
+    getImageUrl("assets/clients/Pensa.webp"),
+    getImageUrl("assets/clients/Pensa-white.png")
   );
   const isSmall = useBreakpointValue({ base: true, md: true, lg: false });
 
@@ -399,7 +400,7 @@ const HeroSection: React.FC = () => {
                   }}>
                   <>
                     <Image
-                      src="/assets/clients/Bubble.1.png"
+                      src={getImageUrl("assets/clients/Bubble.1.png")}
                       width={110}
                       height={100}
                       alt="Bubble logo"
@@ -420,7 +421,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/atarim-white.svg"
+                      src={getImageUrl("assets/clients/atarim-white.svg")}
                       width={100}
                       height={100}
                       alt="Atarim logo"
@@ -429,7 +430,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/nearshore.png"
+                      src={getImageUrl("assets/clients/nearshore.png")}
                       width={140}
                       height={100}
                       alt="NearShore logo"
@@ -459,7 +460,7 @@ const HeroSection: React.FC = () => {
                     animation={`${heroScrollAnimation} 30s infinite linear`}>
                     <>
                       <Image
-                        src="/assets/clients/Bubble.1.png"
+                        src={getImageUrl("assets/clients/Bubble.1.png")}
                         width={110}
                         height={100}
                         alt="Bubble logo"
@@ -480,7 +481,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/atarim-white.svg"
+                        src={getImageUrl("assets/clients/atarim-white.svg")}
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -489,7 +490,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/nearshore.png"
+                        src={getImageUrl("assets/clients/nearshore.png")}
                         width={140}
                         height={100}
                         alt="NearShore logo"
@@ -500,7 +501,7 @@ const HeroSection: React.FC = () => {
                       />
                       {/* Duplicate logos for seamless loop */}
                     <Image
-                      src="/assets/clients/Bubble.1.png"
+                      src={getImageUrl("assets/clients/Bubble.1.png")}
                       width={110}
                       height={100}
                       alt="Bubble logo"
@@ -511,7 +512,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Pensa.webp"
+                      src={getImageUrl("assets/clients/Pensa.webp")}
                       width={100}
                       height={100}
                       alt="Pensa logo"
@@ -521,7 +522,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/atarim-white.svg"
+                      src={getImageUrl("assets/clients/atarim-white.svg")}
                       width={100}
                       height={100}
                       alt="Atarim logo"
@@ -530,7 +531,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/nearshore.png"
+                      src={getImageUrl("assets/clients/nearshore.png")}
                       width={140}
                       height={100}
                       alt="NearShore logo"
@@ -694,7 +695,7 @@ const HeroSection: React.FC = () => {
                   }}>
                   <>
                     <Image
-                      src="/assets/clients/Bubble.1.png"
+                      src={getImageUrl("assets/clients/Bubble.1.png")}
                       width={110}
                       height={100}
                       alt="bubble logo"
@@ -705,7 +706,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Pensa.webp"
+                      src={getImageUrl("assets/clients/Pensa.webp")}
                       width={100}
                       height={100}
                       alt="Pensa logo"
@@ -716,7 +717,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/Atarim.svg"
+                      src={getImageUrl("assets/clients/Atarim.svg")}
                       width={100}
                       height={100}
                       alt="Atarim logo"
@@ -726,7 +727,7 @@ const HeroSection: React.FC = () => {
                       }}
                     />
                     <Image
-                      src="/assets/clients/nearshore.png"
+                      src={getImageUrl("assets/clients/nearshore.png")}
                       width={140}
                       height={100}
                       alt="Nearshore logo"
@@ -758,7 +759,7 @@ const HeroSection: React.FC = () => {
                     animation={`${heroScrollAnimation} 30s infinite linear`}>
                     <>
                       <Image
-                        src="/assets/clients/Bubble.1.png"
+                        src={getImageUrl("assets/clients/Bubble.1.png")}
                         width={110}
                         height={100}
                         alt="bubble logo"
@@ -769,7 +770,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Pensa.webp"
+                        src={getImageUrl("assets/clients/Pensa.webp")}
                         width={100}
                         height={100}
                         alt="Pensa logo"
@@ -780,7 +781,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Atarim.svg"
+                        src={getImageUrl("assets/clients/Atarim.svg")}
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -790,7 +791,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/nearshore.png"
+                        src={getImageUrl("assets/clients/nearshore.png")}
                         width={140}
                         height={100}
                         alt="Nearshore logo"
@@ -803,7 +804,7 @@ const HeroSection: React.FC = () => {
                       />
                       {/* Duplicate logos for seamless loop */}
                       <Image
-                        src="/assets/clients/Bubble.1.png"
+                        src={getImageUrl("assets/clients/Bubble.1.png")}
                         width={110}
                         height={100}
                         alt="bubble logo"
@@ -814,7 +815,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Pensa.webp"
+                        src={getImageUrl("assets/clients/Pensa.webp")}
                         width={100}
                         height={100}
                         alt="Pensa logo"
@@ -825,7 +826,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/Atarim.svg"
+                        src={getImageUrl("assets/clients/Atarim.svg")}
                         width={100}
                         height={100}
                         alt="Atarim logo"
@@ -835,7 +836,7 @@ const HeroSection: React.FC = () => {
                         }}
                       />
                       <Image
-                        src="/assets/clients/nearshore.png"
+                        src={getImageUrl("assets/clients/nearshore.png")}
                         width={140}
                         height={100}
                         alt="Nearshore logo"
@@ -912,7 +913,7 @@ const cardData = [
     id: 1,
     name: "Zain Ul Abideen",
     designation: "Co-Founder & CTO",
-    avatar: "/assets/zain.png",
+    avatar: getImageUrl("assets/zain.png"),
     gradient: ["pink.200", "purple.500"],
     company: "",
     description:
@@ -922,7 +923,7 @@ const cardData = [
     id: 2,
     name: "Hassan M. Saddique",
     designation: "Co-Founder & CEO",
-    avatar: "/assets/hassan.png",
+    avatar: getImageUrl("assets/hassan.png"),
     gradient: ["pink.200", "purple.500"],
     company: "",
     description:
@@ -1342,35 +1343,35 @@ const Portfolio: React.FC = () => {
       title: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
       description:
         "BillboardIQ is a comprehensive, end-to-end management platform designed specifically for the Out-of-Home (OOH) advertising industry. Built with React and Supabase, it handles the entire campaign lifecycle from initial briefing and inventory site selection to real-time availability tracking and multi-format financial reporting.",
-      image: "/assets/portfolio/New/Campaign_Porfolio.jpg",
+      image: getImageUrl("assets/portfolio/New/Campaign_Porfolio.jpg"),
       alt: "BillboardIQ – A Precision-Engineered Management Ecosystem for Out-of-Home Advertising",
     },
     {
       title: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
       description:
         "Macromascot is a comprehensive mobile health application designed to transform weight management by merging rigorous utility with gamification. Unlike traditional trackers, the platform utilizes an AI-powered meal logging system and an engaging Tamagotchi-style avatar system to drive user retention. By linking health consistency directly to the evolution of a digital companion, the app turns routine tracking into an emotional investment.",
-      image: "/assets/portfolio/New/Health_app.jpg",
+      image: getImageUrl("assets/portfolio/New/Health_app.jpg"),
       alt: "Macromascot – Gamifying Health Consistency with AI and Digital Companions",
     },
     {
       title: "AutoCar Intelligence – Rebuilding Multi-Location Automotive Intelligence from Broken SaaS Data",
       description:
         "AutoCar Intelligence is a centralized operational intelligence platform built for a multi-location automotive repair business operating across multiple US states. We rebuilt an unreliable prototype into a scalable data aggregation and analytics system, capable of handling incomplete APIs, inconsistent data, and real-world automotive edge cases. The system consolidates sales, repair orders, inspections, work-in-progress, and profitability signals into one executive dashboard.",
-      image: "/assets/portfolio/New/DADS_Sales_Reborn.jpg",
+      image: getImageUrl("assets/portfolio/New/DADS_Sales_Reborn.jpg"),
       alt: "AutoCar Intelligence – Multi-Location Automotive Intelligence Platform",
     },
     {
       title: "Pack Assist – Revolutionizing Packaging Sales with a Cost-Optimized AI Agent",
       description:
         "Pack Assist is an advanced AI-Assisted Sales Qualification Chatbot for the packaging industry. We upgraded the system to a Python FastAPI backend, implemented a cost-saving hybrid architecture (static qualification before AI), a Zendesk-style agent dashboard, RAG-based fact-checking to eliminate AI hallucinations, and weekend automation—delivered in 8 weeks.",
-      image: "/assets/portfolio/New/Pack Assist.png",
+      image: getImageUrl("assets/portfolio/New/Pack Assist.png"),
       alt: "Pack Assist – AI-Assisted Sales Qualification Chatbot for Packaging",
     },
     {
       title: "The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency",
       description:
         "The Meatery is a proprietary e-commerce CRM and Voice AI platform for a premium meat distributor. We evolved it into a Multi-Tenant Agency Model with human-like voice agents, DNC Gatekeeper compliance, Shopify integration for smart agent context, n8n-based AI Judge for prompt iteration, and real-time draft orders—enabling abandoned checkout recovery and rapid inventory campaigns.",
-      image: "/assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg",
+      image: getImageUrl("assets/portfolio/New/The Meatery – Scaling an AI-Driven Voice CRM into a Multi-Tenant Agency.jpg"),
       alt: "The Meatery – AI-Driven Voice CRM Multi-Tenant Agency",
     },
   ];
@@ -1382,21 +1383,21 @@ const Portfolio: React.FC = () => {
       industry: "Professional Audiovisual (Pro AV)",
       platform: "AI Solution",
       platforms: ["AI Solution", "SaaS Platform"],
-      image: "/assets/portfolio/New/AVL-CoPilot-hero.png",
+      image: getImageUrl("assets/portfolio/New/AVL-CoPilot-hero.png"),
       href: "/portfolio/avl-copilot",
     },
     {
       title: "BillboardIQ",
       industry: "Advertising",
       platform: "SaaS Platform",
-      image: "/assets/portfolio/New/List Images/BillboardIQ.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/BillboardIQ.jpg"),
       href: "/portfolio/billboardiq",
     },
     {
       title: "The Meatery",
       industry: "E-commerce",
       platform: "AI Solution",
-      image: "/assets/portfolio/New/List Images/The Meatery.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/The Meatery.jpg"),
       href: "/portfolio/meatery",
     },
     {
@@ -1404,21 +1405,21 @@ const Portfolio: React.FC = () => {
       industry: "Recruitment",
       platform: "SaaS Platform",
       platforms: ["AI Solution", "SaaS Platform"],
-      image: "/assets/portfolio/New/List Images/StaffUp.png",
+      image: getImageUrl("assets/portfolio/New/List Images/StaffUp.png"),
       href: "/portfolio/staffup",
     },
     {
       title: "AutoCar Intelligence",
       industry: "Automotive",
       platform: "SaaS Platform",
-      image: "/assets/portfolio/New/List Images/AutoCar Intelligence.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/AutoCar Intelligence.jpg"),
       href: "/portfolio/autosync-intelligence",
     },
     {
       title: "Pack Assist",
       industry: "Packaging",
       platform: "AI Solution",
-      image: "/assets/portfolio/New/List Images/PackAssist.jpg",
+      image: getImageUrl("assets/portfolio/New/List Images/PackAssist.jpg"),
       href: "/portfolio/packassist",
     },
   ];
@@ -1685,7 +1686,7 @@ const SocialProofSection: React.FC = () => {
           animation={`${scrollAnimation} 75s infinite linear`}>
           <Tooltip label="Teadit" hasArrow>
             <Image
-              src="/assets/clients/teadit.png"
+              src={getImageUrl("assets/clients/teadit.png")}
               alt="teadit"
               width={160}
               height={60}
@@ -1703,7 +1704,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Artis" hasArrow>
             <Image
-              src="/assets/clients/Artis-lab.png"
+              src={getImageUrl("assets/clients/Artis-lab.png")}
               alt="Artis"
               width={100}
               height={100}
@@ -1722,7 +1723,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sonara" hasArrow>
             <Image
-              src="/assets/clients/sonara.svg"
+              src={getImageUrl("assets/clients/sonara.svg")}
               alt="Sonara"
               width={100}
               height={80}
@@ -1740,7 +1741,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Popcard" hasArrow>
             <Image
-              src="/assets/clients/POPCARD_4.png"
+              src={getImageUrl("assets/clients/POPCARD_4.png")}
               alt="POPCARD"
               width={80}
               height={80}
@@ -1758,7 +1759,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Nearshore" hasArrow>
             <Image
-              src="/assets/clients/nearshore.png"
+              src={getImageUrl("assets/clients/nearshore.png")}
               alt="Pensa"
               width={140}
               height={180}
@@ -1776,7 +1777,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sprintzeal" hasArrow>
             <Image
-              src="/assets/clients/Sprintzeal_Logo.webp"
+              src={getImageUrl("assets/clients/Sprintzeal_Logo.webp")}
               alt="Sprintzeal"
               width={80}
               height={80}
@@ -1794,7 +1795,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Bai" hasArrow>
             <Image
-              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              src={getImageUrl("assets/clients/bai_logo_colored.46fc5d5b219c.svg")}
               alt="Bai"
               width={80}
               height={80}
@@ -1811,7 +1812,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball_white.png"
+              src={getImageUrl("assets/clients/crystal_ball_white.png")}
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -1828,7 +1829,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Farmin" hasArrow>
             <Image
-              src="/assets/clients/farmin-white.png"
+              src={getImageUrl("assets/clients/farmin-white.png")}
               alt="Farmin"
               width={80}
               height={80}
@@ -1845,7 +1846,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Jarvis" hasArrow>
             <Image
-              src="/assets/clients/jarvis-logo.png"
+              src={getImageUrl("assets/clients/jarvis-logo.png")}
               alt="Jarvis"
               width={120}
               height={120}
@@ -1863,7 +1864,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Ibatu" hasArrow>
             <Image
-              src="/assets/clients/ibatu.png"
+              src={getImageUrl("assets/clients/ibatu.png")}
               alt="Ibatu"
               width={80}
               height={80}
@@ -1880,7 +1881,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Krypto Labs" hasArrow>
             <Image
-              src="/assets/clients/krypto-labs.png"
+              src={getImageUrl("assets/clients/krypto-labs.png")}
               alt="Krypto Labs"
               width={180} // Increased width
               height={120} // Increased height
@@ -1899,7 +1900,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
-              src="/assets/clients/Podcast-Beacon.png"
+              src={getImageUrl("assets/clients/Podcast-Beacon.png")}
               alt="Podcast-Beacon"
               width={150}
               height={150}
@@ -1918,7 +1919,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Pensa" hasArrow>
             <Image
-              src="/assets/clients/Pensa.webp"
+              src={getImageUrl("assets/clients/Pensa.webp")}
               alt="Pensa"
               width={120}
               height={120}
@@ -1935,7 +1936,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Logo Black" hasArrow>
             <Image
-              src="/assets/clients/logo-black-small.png"
+              src={getImageUrl("assets/clients/logo-black-small.png")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -1952,7 +1953,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="IPG" hasArrow>
             <Image
-              src="/assets/clients/Logo_IPG.jpg"
+              src={getImageUrl("assets/clients/Logo_IPG.jpg")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -1969,7 +1970,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Atarim" hasArrow>
             <Image
-              src="/assets/clients/atarim-white.svg"
+              src={getImageUrl("assets/clients/atarim-white.svg")}
               alt="Atarim"
               width={130}
               height={40}
@@ -1986,7 +1987,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Republic Power" hasArrow>
             <Image
-              src="/assets/clients/republic_power_logo.jpeg"
+              src={getImageUrl("assets/clients/republic_power_logo.jpeg")}
               alt="Republic Power"
               width={200}
               height={80}
@@ -2003,7 +2004,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Alifa" hasArrow>
             <Image
-              src="/assets/clients/alifa.PNG"
+              src={getImageUrl("assets/clients/alifa.PNG")}
               alt="Republic Power"
               width={80}
               height={80}
@@ -2033,7 +2034,7 @@ const SocialProofSection: React.FC = () => {
           animation={`${scrollAnimation} 75s infinite linear`}>
           <Tooltip label="Teadit" hasArrow>
             <Image
-              src="/assets/clients/teadit.png"
+              src={getImageUrl("assets/clients/teadit.png")}
               alt="teadit"
               width={160}
               height={60}
@@ -2051,7 +2052,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Artis" hasArrow>
             <Image
-              src="/assets/clients/Artis-lab.png"
+              src={getImageUrl("assets/clients/Artis-lab.png")}
               alt="Artis"
               width={100}
               height={100}
@@ -2070,7 +2071,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sonara" hasArrow>
             <Image
-              src="/assets/clients/sonara.svg"
+              src={getImageUrl("assets/clients/sonara.svg")}
               alt="Sonara"
               width={100}
               height={80}
@@ -2088,7 +2089,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Popcard" hasArrow>
             <Image
-              src="/assets/clients/POPCARD_4.png"
+              src={getImageUrl("assets/clients/POPCARD_4.png")}
               alt="POPCARD"
               width={80}
               height={80}
@@ -2106,7 +2107,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Nearshore" hasArrow>
             <Image
-              src="/assets/clients/nearshore.png"
+              src={getImageUrl("assets/clients/nearshore.png")}
               alt="Pensa"
               width={140}
               height={180}
@@ -2124,7 +2125,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Sprintzeal" hasArrow>
             <Image
-              src="/assets/clients/Sprintzeal_Logo.webp"
+              src={getImageUrl("assets/clients/Sprintzeal_Logo.webp")}
               alt="Sprintzeal"
               width={80}
               height={80}
@@ -2142,7 +2143,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Bai" hasArrow>
             <Image
-              src="/assets/clients/bai_logo_colored.46fc5d5b219c.svg"
+              src={getImageUrl("assets/clients/bai_logo_colored.46fc5d5b219c.svg")}
               alt="Bai"
               width={80}
               height={80}
@@ -2159,7 +2160,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Crystal Ball" hasArrow>
             <Image
-              src="/assets/clients/crystal_ball_white.png"
+              src={getImageUrl("assets/clients/crystal_ball_white.png")}
               alt="Crystal Ball"
               width={80}
               height={80}
@@ -2176,7 +2177,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Farmin" hasArrow>
             <Image
-              src="/assets/clients/farmin-white.png"
+              src={getImageUrl("assets/clients/farmin-white.png")}
               alt="Farmin"
               width={80}
               height={80}
@@ -2193,7 +2194,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Jarvis" hasArrow>
             <Image
-              src="/assets/clients/jarvis-logo.png"
+              src={getImageUrl("assets/clients/jarvis-logo.png")}
               alt="Jarvis"
               width={120}
               height={120}
@@ -2211,7 +2212,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Ibatu" hasArrow>
             <Image
-              src="/assets/clients/ibatu.png"
+              src={getImageUrl("assets/clients/ibatu.png")}
               alt="Ibatu"
               width={80}
               height={80}
@@ -2228,7 +2229,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Krypto Labs" hasArrow>
             <Image
-              src="/assets/clients/krypto-labs.png"
+              src={getImageUrl("assets/clients/krypto-labs.png")}
               alt="Krypto Labs"
               width={180}
               height={120}
@@ -2247,7 +2248,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Podcast-Beacon" hasArrow>
             <Image
-              src="/assets/clients/Podcast-Beacon.png"
+              src={getImageUrl("assets/clients/Podcast-Beacon.png")}
               alt="Podcast-Beacon"
               width={150}
               height={150}
@@ -2266,7 +2267,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Pensa" hasArrow>
             <Image
-              src="/assets/clients/Pensa.webp"
+              src={getImageUrl("assets/clients/Pensa.webp")}
               alt="Pensa"
               width={120}
               height={120}
@@ -2283,7 +2284,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Logo Black" hasArrow>
             <Image
-              src="/assets/clients/logo-black-small.png"
+              src={getImageUrl("assets/clients/logo-black-small.png")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -2300,7 +2301,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="IPG" hasArrow>
             <Image
-              src="/assets/clients/Logo_IPG.jpg"
+              src={getImageUrl("assets/clients/Logo_IPG.jpg")}
               alt="Logo Black"
               width={80}
               height={80}
@@ -2317,7 +2318,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Atarim" hasArrow>
             <Image
-              src="/assets/clients/atarim-white.svg"
+              src={getImageUrl("assets/clients/atarim-white.svg")}
               alt="Atarim"
               width={130}
               height={40}
@@ -2334,7 +2335,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Republic Power" hasArrow>
             <Image
-              src="/assets/clients/republic_power_logo.jpeg"
+              src={getImageUrl("assets/clients/republic_power_logo.jpeg")}
               alt="Republic Power"
               width={200}
               height={80}
@@ -2351,7 +2352,7 @@ const SocialProofSection: React.FC = () => {
           </Tooltip>
           <Tooltip label="Alifa" hasArrow>
             <Image
-              src="/assets/clients/alifa.PNG"
+              src={getImageUrl("assets/clients/alifa.PNG")}
               alt="Republic Power"
               width={80}
               height={80}
@@ -2608,7 +2609,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="React" placement="top">
                   <Image
-                    src="/assets/tech/react.png"
+                    src={getImageUrl("assets/tech/react.png")}
                     alt="React"
                     width={100}
                     height={100}
@@ -2618,8 +2619,8 @@ const TechnologySection: React.FC = () => {
                   <Image
                     src={
                       colorMode === "dark"
-                        ? "/assets/tech/next.png"
-                        : "/assets/tech/nextjs-white.png"
+                        ? getImageUrl("assets/tech/next.png")
+                        : getImageUrl("assets/tech/nextjs-white.png")
                     }
                     alt="Next.js"
                     width={colorMode === "dark" ? 120 : 100}
@@ -2628,7 +2629,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Redux" placement="top">
                   <Image
-                    src="/assets/tech/redux.png"
+                    src={getImageUrl("assets/tech/redux.png")}
                     alt="Redux"
                     width={100}
                     height={100}
@@ -2636,7 +2637,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Material UI" placement="top">
                   <Image
-                    src="/assets/tech/mui.png"
+                    src={getImageUrl("assets/tech/mui.png")}
                     alt="Material UI"
                     width={100}
                     height={100}
@@ -2644,7 +2645,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="TypeScript" placement="top">
                   <Image
-                    src="/assets/tech/typescript.png"
+                    src={getImageUrl("assets/tech/typescript.png")}
                     alt="TypeScript"
                     width={100}
                     height={100}
@@ -2652,7 +2653,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="GraphQL" placement="top">
                   <Image
-                    src="/assets/tech/graphql.png"
+                    src={getImageUrl("assets/tech/graphql.png")}
                     alt="GraphQL"
                     width={100}
                     height={100}
@@ -2660,7 +2661,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="JavaScript" placement="top">
                   <Image
-                    src="/assets/tech/javascript.png"
+                    src={getImageUrl("assets/tech/javascript.png")}
                     alt="JavaScript"
                     width={100}
                     height={100}
@@ -2668,7 +2669,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Tailwind CSS" placement="top">
                   <Image
-                    src="/assets/tech/tailwind.png"
+                    src={getImageUrl("assets/tech/tailwind.png")}
                     alt="Tailwind CSS"
                     width={100}
                     height={100}
@@ -2711,7 +2712,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="Node.js" placement="top">
                   <Image
-                    src="/assets/tech/nodejs.png"
+                    src={getImageUrl("assets/tech/nodejs.png")}
                     alt="Node.js"
                     width={100}
                     height={100}
@@ -2719,7 +2720,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Express" placement="top">
                   <Image
-                    src="/assets/tech/express.png"
+                    src={getImageUrl("assets/tech/express.png")}
                     alt="Express"
                     width={100}
                     height={100}
@@ -2727,7 +2728,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="MongoDB" placement="top">
                   <Image
-                    src="/assets/tech/mongo.png"
+                    src={getImageUrl("assets/tech/mongo.png")}
                     alt="MongoDB"
                     width={100}
                     height={100}
@@ -2735,7 +2736,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="PostgreSQL" placement="top">
                   <Image
-                    src="/assets/tech/postgresql.png"
+                    src={getImageUrl("assets/tech/postgresql.png")}
                     alt="postgresql"
                     width={100}
                     height={100}
@@ -2743,7 +2744,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="MySQL" placement="top">
                   <Image
-                    src="/assets/tech/mysql.png"
+                    src={getImageUrl("assets/tech/mysql.png")}
                     alt="MySQL"
                     width={100}
                     height={100}
@@ -2751,7 +2752,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Django" placement="top">
                   <Image
-                    src="/assets/tech/django.png"
+                    src={getImageUrl("assets/tech/django.png")}
                     alt="Django"
                     width={100}
                     height={80}
@@ -2759,7 +2760,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Rails" placement="top">
                   <Image
-                    src="/assets/tech/rails.png"
+                    src={getImageUrl("assets/tech/rails.png")}
                     alt="Rails"
                     width={100}
                     height={100}
@@ -2767,7 +2768,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Ruby" placement="top">
                   <Image
-                    src="/assets/tech/ruby.png"
+                    src={getImageUrl("assets/tech/ruby.png")}
                     alt="Ruby"
                     width={100}
                     height={100}
@@ -2775,7 +2776,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Nest" placement="top">
                   <Image
-                    src="/assets/tech/nest.png"
+                    src={getImageUrl("assets/tech/nest.png")}
                     alt="Nest"
                     width={100}
                     height={100}
@@ -2783,7 +2784,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Python" placement="top">
                   <Image
-                    src="/assets/tech/python.png"
+                    src={getImageUrl("assets/tech/python.png")}
                     alt="Python"
                     width={100}
                     height={100}
@@ -2791,7 +2792,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Elasticsearch" placement="top">
                   <Image
-                    src="/assets/tech/elasticsearch_logo.png"
+                    src={getImageUrl("assets/tech/elasticsearch_logo.png")}
                     alt="Elasticsearch"
                     width={100}
                     height={100}
@@ -2799,7 +2800,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Redis" placement="top">
                   <Image
-                    src="/assets/tech/redis_logo.png"
+                    src={getImageUrl("assets/tech/redis_logo.png")}
                     alt="Redis"
                     width={100}
                     height={100}
@@ -2807,7 +2808,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Fast API" placement="top">
                   <Image
-                    src="/assets/tech/fastapi.png"
+                    src={getImageUrl("assets/tech/fastapi.png")}
                     alt="Fast API"
                     width={100}
                     height={100}
@@ -2850,7 +2851,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="Docker" placement="top">
                   <Image
-                    src="/assets/tech/docker.png"
+                    src={getImageUrl("assets/tech/docker.png")}
                     alt="Docker"
                     width={100}
                     height={100}
@@ -2858,7 +2859,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="AWS" placement="top">
                   <Image
-                    src="/assets/tech/aws.png"
+                    src={getImageUrl("assets/tech/aws.png")}
                     alt="AWS"
                     width={100}
                     height={100}
@@ -2866,7 +2867,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="GitLab" placement="top">
                   <Image
-                    src="/assets/tech/gitlab.png"
+                    src={getImageUrl("assets/tech/gitlab.png")}
                     alt="GitLab"
                     width={100}
                     height={100}
@@ -2874,7 +2875,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="GitHub" placement="top">
                   <Image
-                    src="/assets/tech/github.png"
+                    src={getImageUrl("assets/tech/github.png")}
                     alt="GitHub"
                     width={100}
                     height={100}
@@ -2917,7 +2918,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="TensorFlow" placement="top">
                   <Image
-                    src="/assets/tech/tensorflow.png"
+                    src={getImageUrl("assets/tech/tensorflow.png")}
                     alt="TensorFlow"
                     width={100}
                     height={100}
@@ -2925,7 +2926,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="PyTorch" placement="top">
                   <Image
-                    src="/assets/tech/pytorch.png"
+                    src={getImageUrl("assets/tech/pytorch.png")}
                     alt="PyTorch"
                     width={100}
                     height={100}
@@ -2933,7 +2934,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="OpenAI" placement="top">
                   <Image
-                    src="/assets/tech/openai.png"
+                    src={getImageUrl("assets/tech/openai.png")}
                     alt="OpenAI"
                     width={100}
                     height={100}
@@ -2941,7 +2942,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Keras" placement="top">
                   <Image
-                    src="/assets/tech/keras.png"
+                    src={getImageUrl("assets/tech/keras.png")}
                     alt="Keras"
                     width={100}
                     height={100}
@@ -2949,7 +2950,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Huggingface" placement="top">
                   <Image
-                    src="/assets/tech/huggingface_logo.png"
+                    src={getImageUrl("assets/tech/huggingface_logo.png")}
                     alt="Huggingface"
                     width={100}
                     height={100}
@@ -2957,7 +2958,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Crew" placement="top">
                   <Image
-                    src="/assets/tech/crew_logo.png"
+                    src={getImageUrl("assets/tech/crew_logo.png")}
                     alt="Crew"
                     width={100}
                     height={100}
@@ -2965,7 +2966,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="LangChain" placement="top">
                   <Image
-                    src="/assets/tech/langchain_logo.png"
+                    src={getImageUrl("assets/tech/langchain_logo.png")}
                     alt="LangChain"
                     width={100}
                     height={100}
@@ -2973,7 +2974,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="LangGraph" placement="top">
                   <Image
-                    src="/assets/tech/langgrapg.PNG"
+                    src={getImageUrl("assets/tech/langgrapg.PNG")}
                     alt="LangGraph"
                     width={100}
                     height={100}
@@ -2981,7 +2982,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Pinecone" placement="top">
                   <Image
-                    src="/assets/tech/pinecorn.PNG"
+                    src={getImageUrl("assets/tech/pinecorn.PNG")}
                     alt="Pinecone"
                     width={100}
                     height={100}
@@ -2989,7 +2990,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="LangSmith" placement="top">
                   <Image
-                    src="/assets/tech/langsmith.PNG"
+                    src={getImageUrl("assets/tech/langsmith.PNG")}
                     alt="LangSmith"
                     width={100}
                     height={100}
@@ -2997,7 +2998,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Chroma" placement="top">
                   <Image
-                    src="/assets/tech/chroma_logo.png"
+                    src={getImageUrl("assets/tech/chroma_logo.png")}
                     alt="Chroma"
                     width={100}
                     height={100}
@@ -3005,7 +3006,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Meta LLaMA" placement="top">
                   <Image
-                    src="/assets/tech/meta_llma.png"
+                    src={getImageUrl("assets/tech/meta_llma.png")}
                     alt="Meta LLaMA"
                     width={100}
                     height={100}
@@ -3013,7 +3014,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Anthropic" placement="top">
                   <Image
-                    src="/assets/tech/Anthropic_logo.png"
+                    src={getImageUrl("assets/tech/Anthropic_logo.png")}
                     alt="Anthropic"
                     width={100}
                     height={100}
@@ -3021,7 +3022,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="UI Path" placement="top">
                   <Image
-                    src="/assets/tech/uipath_logo.png"
+                    src={getImageUrl("assets/tech/uipath_logo.png")}
                     alt="UI Path"
                     width={100}
                     height={100}
@@ -3064,7 +3065,7 @@ const TechnologySection: React.FC = () => {
                 width="100%">
                 <Tooltip label="Make" placement="top">
                   <Image
-                    src="/assets/tech/make_logo.jpg"
+                    src={getImageUrl("assets/tech/make_logo.jpg")}
                     alt="Make"
                     width={100}
                     height={100}
@@ -3072,7 +3073,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Zapier" placement="top">
                   <Image
-                    src="/assets/tech/zapier_logo.png"
+                    src={getImageUrl("assets/tech/zapier_logo.png")}
                     alt="Zapier"
                     width={100}
                     height={100}
@@ -3080,7 +3081,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="n8n" placement="top">
                   <Image
-                    src="/assets/tech/n8n_logo.jpg"
+                    src={getImageUrl("assets/tech/n8n_logo.jpg")}
                     alt="n8n"
                     width={100}
                     height={100}
@@ -3088,7 +3089,7 @@ const TechnologySection: React.FC = () => {
                 </Tooltip>
                 <Tooltip label="Framer" placement="top">
                   <Image
-                    src="/assets/tech/framer_logo.png"
+                    src={getImageUrl("assets/tech/framer_logo.png")}
                     alt="Framer"
                     width={100}
                     height={100}

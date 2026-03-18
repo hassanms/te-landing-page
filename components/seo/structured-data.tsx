@@ -1,6 +1,5 @@
 import React from "react";
 import Script from "next/script";
-import { getImageUrl } from "lib/supabase-storage";
 
 interface StructuredDataProps {
   type:
@@ -28,47 +27,99 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           "@type": "Organization",
           name: "Tech Emulsion",
           url: "https://techemulsion.com",
-          logo: getImageUrl("static/favicons old/android-chrome-192x192.png"),
+          logo: {
+            "@type": "ImageObject",
+            url: "https://techemulsion.com/assets/logo/logo-light.png",
+            width: 256,
+            height: 64,
+          },
           description:
-            "Tech Emulsion specializes in imagineering digital transformation for businesses through AI-powered solutions, custom software development, and innovative technology services.",
-          foundingDate: "2020",
+            "Tech Emulsion is a generative AI development company that builds AI agents, SaaS platforms, and custom software from MVP to enterprise. 50+ projects shipped.",
+          foundingDate: "2021",
+          numberOfEmployees: {
+            "@type": "QuantitativeValue",
+            value: 20,
+          },
           address: {
             "@type": "PostalAddress",
+            streetAddress: "3rd Floor, Afzal Towers, University Road",
             addressLocality: "Peshawar",
-            addressRegion: "Khyber Pakhtunkhwa",
-            postalCode: "25120",
             addressCountry: "PK",
-            streetAddress: "Arbab road, Peshawar",
           },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: 33.6844,
-            longitude: 73.0479,
-          },
-          contactPoint: {
-            "@type": "ContactPoint",
-            contactType: "customer service",
-            email: "info@techemulsion.com",
-            availableLanguage: "English",
-          },
-          sameAs: [
-            "https://www.facebook.com/emulsiontech/",
-            "https://www.linkedin.com/company/tech-emulsion/",
-            "https://github.com/hassanms",
-            "https://www.youtube.com/@TechEmulsion",
-            "https://twitter.com/techemulsion",
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              telephone: "+1-850-930-7798",
+              contactType: "customer service",
+              areaServed: "US",
+              availableLanguage: "English",
+            },
+            {
+              "@type": "ContactPoint",
+              telephone: "+92-334-555-9140",
+              contactType: "customer service",
+              areaServed: "PK",
+              availableLanguage: ["English", "Urdu"],
+            },
           ],
-          serviceArea: {
-            "@type": "GeoCircle",
-            geoMidpoint: {
-              "@type": "GeoCoordinates",
-              latitude: 33.6844,
-              longitude: 73.0479,
-            },
-            geoRadius: {
-              "@type": "Distance",
-              value: 50000,
-            },
+          email: "contact@techemulsion.com",
+          areaServed: ["United States", "Pakistan", "Worldwide"],
+          sameAs: [
+            "https://www.linkedin.com/company/tech-emulsion/",
+            "https://www.upwork.com/agencies/techemulsion/",
+            "https://www.youtube.com/@TechEmulsion",
+            "https://github.com/Tech-Emulsion",
+            "https://www.facebook.com/profile.php?id=100092936174663",
+          ],
+          knowsAbout: [
+            "Generative AI Development",
+            "SaaS Development",
+            "AI Agent Engineering",
+            "DevOps",
+            "QA Automation",
+            "Next.js Development",
+            "Workflow Automation",
+          ],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Software Development Services",
+            itemListElement: [
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "Agentic AI Engineering" },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "SaaS Development" },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "Website Development" },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "DevOps Solutions" },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "Generative AI Integration" },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "QA Testing & Automation" },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Chrome Extension Development",
+                },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: "Workflow Automation" },
+              },
+            ],
           },
         };
       case "faq":

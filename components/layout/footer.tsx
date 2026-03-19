@@ -182,11 +182,10 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         style={{ marginRight: "2px", color: "#D9D9D9" }}
                       />
                       <Text color="lightGrey.400" fontSize="lg">
-                        3rd Floor, Afzal Tower, University Road, Peshawar.
-                        <br />
+                        <span>3rd Floor, Afzal Tower, University Road, Peshawar.</span>
+                        <span style={{ opacity: 0, position: "absolute" }}>1021 E Lincolnway, Unit #1373, Cheyenne, WY 82001, USA</span>
                       </Text>
                     </HStack>
-                        <span style={{ opacity: 0, position: "absolute" }}>1021 E Lincolnway, Unit #1373, Cheyenne, WY 82001, USA</span>
                   </ListItem>
                 </List>
               </HStack>

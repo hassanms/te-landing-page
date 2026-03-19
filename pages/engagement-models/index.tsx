@@ -26,6 +26,23 @@ const EngagementModelsPage = () => {
   const cardBg = useColorModeValue("white", "gray.800");
   const accentColor = useColorModeValue("teal.500", "pearlAqua.500");
 
+  const descriptionOverrides: Record<string, string> = {
+    "ai-enabled-teams":
+      "Boost your team's output by 15%+ with AI-augmented engineers who ship faster using Cursor, Claude, and automated testing pipelines — without changing your existing workflow.",
+    "staff-augmentation":
+      "Add pre-vetted senior engineers to your team in days. No hiring overhead, no onboarding delays. Scale headcount up or down as your roadmap shifts.",
+    "dedicated-teams":
+      "A cross-functional squad — PM, engineers, QA — embedded in your product for the long term. Full ownership, aligned incentives, zero context switching.",
+    "project-outsourcing":
+      "Hand us a defined scope and walk away. We manage delivery end-to-end — architecture, build, testing, and launch — on time and within budget.",
+    "solutions-for-startups":
+      "Move from idea to shipped MVP in weeks. We've taken 15+ startups from zero to launch — bringing structure to ambiguity without slowing you down.",
+    "solutions-for-enterprises":
+      "Scale securely with enterprise-grade reliability. We integrate with your existing stack, meet compliance requirements, and deliver across distributed teams.",
+    "solutions-for-ai-companies":
+      "From data pipelines to model deployment, we handle the engineering layer so your AI team focuses on research and product — not infrastructure.",
+  };
+
   return (
     <Box position="relative" minH="100vh" color={headingColor}>
       <EnhancedSEO
@@ -278,8 +295,7 @@ const EngagementModelsPage = () => {
                       transition="color 0.3s"
                       _groupHover={{ color: "white" }}
                     >
-                      Tech Emulsion delivers {model.title.toLowerCase()} to help you
-                      scale engineering capacity, move faster, and reduce delivery risk.
+                      {descriptionOverrides[model.slug]}
                     </Text>
                   </Box>
                 </Box>

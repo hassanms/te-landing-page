@@ -62,6 +62,101 @@ const Contacts = () => {
         }}
       />
       <Script
+        id="localbusiness-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "ProfessionalService"],
+            name: "Tech Emulsion LLC",
+            url: "https://techemulsion.com",
+            logo: "https://techemulsion.com/assets/logo/logo-light.png",
+            image: "https://techemulsion.com/assets/logo/logo-light.png",
+            description:
+              "Tech Emulsion is a US-based generative AI development company offering AI agents, SaaS development, DevOps, and custom software solutions. Serving clients across the United States and worldwide.",
+            telephone: "+1-850-930-7798",
+            email: "contact@techemulsion.com",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "1021 E Lincolnway, Unit #1373",
+              addressLocality: "Cheyenne",
+              addressRegion: "WY",
+              postalCode: "82001",
+              addressCountry: "US",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 41.14,
+              longitude: -104.8202,
+            },
+            hasMap:
+              "https://maps.google.com/?q=1021+E+Lincolnway+Cheyenne+WY+82001",
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                ],
+                opens: "09:00",
+                closes: "18:00",
+              },
+            ],
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                telephone: "+1-850-930-7798",
+                contactType: "customer service",
+                areaServed: "US",
+                availableLanguage: "English",
+                contactOption: "TollFree",
+              },
+              {
+                "@type": "ContactPoint",
+                telephone: "+92-334-555-9140",
+                contactType: "customer service",
+                areaServed: "PK",
+                availableLanguage: ["English", "Urdu"],
+              },
+            ],
+            areaServed: [
+              { "@type": "Country", name: "United States" },
+              { "@type": "Country", name: "Pakistan" },
+              { "@type": "AdministrativeArea", name: "Worldwide" },
+            ],
+            priceRange: "$$",
+            currenciesAccepted: "USD",
+            paymentAccepted: "Bank Transfer, Credit Card, PayPal",
+            sameAs: [
+              "https://www.linkedin.com/company/tech-emulsion/",
+              "https://www.upwork.com/agencies/techemulsion/",
+              "https://www.youtube.com/@TechEmulsion",
+              "https://github.com/Tech-Emulsion",
+              "https://www.facebook.com/profile.php?id=100092936174663",
+            ],
+            knowsAbout: [
+              "Generative AI Development",
+              "AI Agent Engineering",
+              "SaaS Development",
+              "Next.js Development",
+              "DevOps",
+              "QA Automation",
+              "Workflow Automation",
+              "Chrome Extension Development",
+            ],
+            founder: {
+              "@type": "Person",
+              name: "Zain Ul Abideen",
+              jobTitle: "Co-Founder & CTO",
+            },
+          }),
+        }}
+      />
+      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {

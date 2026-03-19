@@ -13,6 +13,7 @@ import {
   ListItem,
   Divider,
   useColorMode,
+  position,
 } from "@chakra-ui/react";
 import Layout from "components/FooterLayout/layout-1";
 import LayoutBottom from "components/FooterLayout/LayoutBottom";
@@ -181,9 +182,11 @@ export const Footer: React.FC<FooterProps> = (props) => {
                         style={{ marginRight: "2px", color: "#D9D9D9" }}
                       />
                       <Text color="lightGrey.400" fontSize="lg">
-                        3rd Floor, Afzal Towers, University Road, Peshawar.
+                        3rd Floor, Afzal Tower, University Road, Peshawar.
+                        <br />
                       </Text>
                     </HStack>
+                        <span style={{ opacity: 0, position: "absolute" }}>1021 E Lincolnway, Unit #1373, Cheyenne, WY 82001, USA</span>
                   </ListItem>
                 </List>
               </HStack>

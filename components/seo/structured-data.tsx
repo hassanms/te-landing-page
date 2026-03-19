@@ -42,10 +42,39 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           },
           address: {
             "@type": "PostalAddress",
-            streetAddress: "3rd Floor, Afzal Towers, University Road",
-            addressLocality: "Peshawar",
-            addressCountry: "PK",
+            streetAddress: "1021 E Lincolnway, Unit #1373",
+            addressLocality: "Cheyenne",
+            addressRegion: "WY",
+            postalCode: "82001",
+            addressCountry: "US",
           },
+          location: [
+            {
+              "@type": "Place",
+              name: "Tech Emulsion — US Office",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "1021 E Lincolnway, Unit #1373",
+                addressLocality: "Cheyenne",
+                addressRegion: "WY",
+                postalCode: "82001",
+                addressCountry: "US",
+              },
+            },
+            {
+              "@type": "Place",
+              name: "Tech Emulsion — Pakistan Office",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress:
+                  "Third Floor, Afzal Tower, University Rd, near BRT Station, University Town",
+                addressLocality: "Peshawar",
+                addressRegion: "Khyber Pakhtunkhwa",
+                postalCode: "25000",
+                addressCountry: "PK",
+              },
+            },
+          ],
           contactPoint: [
             {
               "@type": "ContactPoint",
@@ -63,7 +92,20 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
             },
           ],
           email: "contact@techemulsion.com",
-          areaServed: ["United States", "Pakistan", "Worldwide"],
+          areaServed: [
+            {
+              "@type": "Country",
+              name: "United States",
+            },
+            {
+              "@type": "Country",
+              name: "Pakistan",
+            },
+            {
+              "@type": "AdministrativeArea",
+              name: "Worldwide",
+            },
+          ],
           sameAs: [
             "https://www.linkedin.com/company/tech-emulsion/",
             "https://www.upwork.com/agencies/techemulsion/",

@@ -42,8 +42,11 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           },
           address: {
             "@type": "PostalAddress",
-            streetAddress: "3rd Floor, Afzal Towers, University Road",
+            streetAddress:
+              "Third Floor, Afzal Tower, University Rd, near BRT Station, University Town",
             addressLocality: "Peshawar",
+            addressRegion: "Khyber Pakhtunkhwa",
+            postalCode: "25000",
             addressCountry: "PK",
           },
           contactPoint: [

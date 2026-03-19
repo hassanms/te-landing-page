@@ -62,6 +62,106 @@ const Contacts = () => {
         }}
       />
       <Script
+        id="localbusiness-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "ProfessionalService"],
+            name: "Tech Emulsion",
+            url: "https://techemulsion.com",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://techemulsion.com/assets/logo/logo-light.png",
+              width: 256,
+              height: 64,
+            },
+            image: "https://techemulsion.com/assets/logo/logo-light.png",
+            description:
+              "Tech Emulsion is a generative AI development company offering AI agents, SaaS development, DevOps, and custom software solutions. Serving clients in the US, Pakistan, and worldwide.",
+            telephone: ["+1-850-930-7798", "+92-334-555-9140"],
+            email: "contact@techemulsion.com",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress:
+                "Third Floor, Afzal Tower, University Rd, near BRT Station, University Town",
+              addressLocality: "Peshawar",
+              addressRegion: "Khyber Pakhtunkhwa",
+              postalCode: "25000",
+              addressCountry: "PK",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 34.0112,
+              longitude: 71.5248,
+            },
+            hasMap: "https://maps.google.com/?q=34.0112,71.5248",
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                ],
+                opens: "09:00",
+                closes: "18:00",
+              },
+            ],
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                telephone: "+1-850-930-7798",
+                contactType: "customer service",
+                areaServed: "US",
+                availableLanguage: "English",
+                contactOption: "TollFree",
+              },
+              {
+                "@type": "ContactPoint",
+                telephone: "+92-334-555-9140",
+                contactType: "customer service",
+                areaServed: "PK",
+                availableLanguage: ["English", "Urdu"],
+              },
+            ],
+            areaServed: [
+              { "@type": "Country", name: "United States" },
+              { "@type": "Country", name: "Pakistan" },
+              { "@type": "AdministrativeArea", name: "Worldwide" },
+            ],
+            priceRange: "$$",
+            currenciesAccepted: "USD, PKR",
+            paymentAccepted: "Bank Transfer, Credit Card, PayPal",
+            sameAs: [
+              "https://www.linkedin.com/company/tech-emulsion/",
+              "https://www.upwork.com/agencies/techemulsion/",
+              "https://www.youtube.com/@TechEmulsion",
+              "https://github.com/Tech-Emulsion",
+              "https://www.facebook.com/profile.php?id=100092936174663",
+            ],
+            knowsAbout: [
+              "Generative AI Development",
+              "AI Agent Engineering",
+              "SaaS Development",
+              "Next.js Development",
+              "DevOps",
+              "QA Automation",
+              "Workflow Automation",
+              "Chrome Extension Development",
+            ],
+            founder: {
+              "@type": "Person",
+              name: "Zain Ul Abideen",
+              jobTitle: "Co-Founder & CTO",
+            },
+          }),
+        }}
+      />
+      <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="lazyOnload"
         onLoad={() => {

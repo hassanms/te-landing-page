@@ -322,7 +322,7 @@ export const servicesData: ServiceData[] = [
     title: "SaaS Development Services",
     displayTitle: "Next-Gen SaaS Development",
     shortDescription:
-      "Cloud-native SaaS platforms from MVP to enterprise — with subscription billing, multi-tenancy, and integrations built in. Proven with Atarim ($500K funded), Rack Room, and Farmin.",
+      "Cloud-native SaaS platforms from MVP to enterprise — subscription billing, multi-tenancy, and third-party integrations built in from day one. Proven with Atarim ($500K funded), Rack Room, and Farmin.",
     fullDescription:
       "Tech Emulsion provides SaaS development services and custom SaaS development for scalable, cloud-native platforms. We transformed Atarim from a WordPress plugin into a universal visual collaboration SaaS with AWS, region-based load balancing, and auto-scaling. We built Rack Room for complex booking management, Twilio SMS, and Gantt dashboards. Farmin combines AI and SaaS for satellite image analysis. Our stack: Next.js, React, Supabase, AWS, Stripe—with multi-tenancy, billing, and analytics from day one.",
     image: getImageUrl("assets/whatWeDo/carlos-muza-hpjSkU2UYSU-unsplash.jpg"),
@@ -424,7 +424,7 @@ export const servicesData: ServiceData[] = [
     title: "Custom Website Development Company",
     displayTitle: "Innovative Website Development",
     shortDescription:
-      "High-performance, SEO-friendly websites and custom ecommerce builds — marketing sites, portfolios, and conversion-focused pages that load fast and rank well.",
+      "High-performance, SEO-friendly websites and custom ecommerce builds — marketing sites, portfolios, and conversion-focused pages that load fast, rank well, and turn visitors into leads.",
     fullDescription:
       "Tech Emulsion is a custom website development company and Next.js website development agency. We deliver fast, SEO-optimized websites using Next.js, React, and modern design principles—including custom ecommerce website development. We build marketing sites, landing pages, portfolios, and web applications with server-side rendering, optimized images, and Core Web Vitals in mind. Our portfolio includes client sites, campaign pages, and the Tech Emulsion site itself.",
     image: getImageUrl("assets/whatWeDo/fotis-fotopoulos-LJ9KY8pIH3E-unsplash.jpg"),
@@ -526,7 +526,7 @@ export const servicesData: ServiceData[] = [
     title: "Develop Chrome Extension",
     displayTitle: "Custom Chrome Extensions",
     shortDescription:
-      "We build Chrome extensions that extend your SaaS or workflow — handling design, build, and Web Store publishing end-to-end. Manifest V3 compliant. Proven with Atarim.",
+      "We build Chrome extensions that extend your SaaS or automate your workflow — from design and build to Web Store publishing. Manifest V3 compliant. Proven with Atarim's visual feedback extension.",
     fullDescription:
       "Tech Emulsion helps you develop Chrome extensions that extend your product into the browser. We built Atarim's Chrome extension to enable visual feedback on any website—not just WordPress. Whether you need to develop a Chrome extension for productivity, data capture, or SaaS companions, we deliver Manifest V3–compliant extensions and Chrome Web Store publishing.",
     image: getImageUrl("assets/whatWeDo/growtika-fiao0RcVWBE-unsplash.jpg"),
@@ -623,7 +623,7 @@ export const servicesData: ServiceData[] = [
     title: "DevOps as a Service",
     displayTitle: "Expert DevOps Solutions",
     shortDescription:
-      "We scale and secure your infrastructure with AWS, region-based load balancing, auto-scaling, and CI/CD pipelines — so your product ships faster and stays reliable. Proven with Atarim, Farmin, and Rack Room.",
+      "We set up and manage your cloud infrastructure on AWS — auto-scaling, CI/CD pipelines, region-based load balancing, and security hardening — so your product ships faster and stays reliable under load.",
     fullDescription:
       "Tech Emulsion offers DevOps as a service and devops managed services to modernize your infrastructure and delivery pipeline. We scaled Atarim on AWS with region-based load balancing and auto-scaling. We deployed Farmin for satellite image processing and Content Compass on Supabase Edge Functions. We implement CI/CD, containerization, cloud migration, and monitoring so your team can ship faster and with confidence.",
     image: getImageUrl("assets/whatWeDo/growtika-72dRZHuYJWE-unsplash.jpg"),
@@ -720,7 +720,7 @@ export const servicesData: ServiceData[] = [
     title: "Generative AI Integration Services",
     displayTitle: "Generative AI Integration",
     shortDescription:
-      "We connect LLMs, RAG pipelines, and AI workflows directly into your product — making it smarter, easier to discover, and more valuable for your users. Includes generative engine optimisation.",
+      "We connect LLMs, RAG pipelines, and AI workflows directly into your product — making it smarter, more useful, and easier for customers to discover. Includes generative engine optimisation for AI search visibility.",
     fullDescription:
       "Tech Emulsion provides generative AI integration services and AI and GPT integration services. We bring LLMs, image generation, and AI-powered features into your products and workflows—with AI visibility solutions and best generative engine optimization so your product surfaces correctly in AI search and assistants. As a generative AI development company we offer best rated AI generative expand solutions that focus on clear business outcomes: OpenAI, Anthropic, open-source models, RAG, and custom fine-tuned integrations.",
     image: getImageUrl("assets/whatWeDo/randa-marzouk-ilwI-AIAQr4-unsplash.jpg"),
@@ -830,7 +830,7 @@ export const servicesData: ServiceData[] = [
     title: "QA and Testing Services",
     displayTitle: "QA Testing & Automation",
     shortDescription:
-      "We ensure your software is bug-free and production-ready — functional, performance, and security testing plus automated test suites in CI/CD for every project we deliver.",
+      "We make your software production-ready with functional, performance, and security testing — plus automated test suites in your CI/CD pipeline that catch bugs before they reach users.",
     fullDescription:
       "Tech Emulsion provides QA and testing services and QA automation testing services. We ensure your software meets quality standards before and after release. We integrate testing into every project—from Pack Assist and Atarim to Rack Room and Content Compass. We deliver functional testing, performance testing, security testing, and automated test suites (Cypress, Playwright, Jest) that run in your CI/CD pipeline.",
     image: getImageUrl("assets/whatWeDo/growtika-Am6pBe2FpJw-unsplash.jpg"),
@@ -927,7 +927,7 @@ export const servicesData: ServiceData[] = [
     title: "Workflow Automation Services",
     displayTitle: "Automation Solutions",
     shortDescription:
-      "We automate workflows and integrate your systems — Slack, Jira, Asana, Twilio — so your team stops doing manual work and starts focusing on what actually moves the business forward.",
+      "We automate your manual workflows and connect your tools — Slack, Jira, Asana, Twilio, HubSpot — so your team spends time on decisions that move the business forward, not on repetitive operational tasks.",
     fullDescription:
       "Tech Emulsion delivers business automation solutions and workflow automation services. We transform manual, repetitive processes into efficient, error-free workflows—including automated customer service workflows utilizing process builder. Our AI automation service combines AI with automation for intelligent document processing and decision-making. We built Atarim's integrations with Slack, Jira, and Asana; Rack Room's Twilio SMS automation; and Content Compass's scraping pipelines. We analyze your operations, identify automation opportunities, and implement solutions that save time and reduce costs.",
     image: getImageUrl("assets/whatWeDo/automation.png"),

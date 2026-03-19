@@ -69,34 +69,29 @@ const Contacts = () => {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": ["LocalBusiness", "ProfessionalService"],
-            name: "Tech Emulsion",
+            name: "Tech Emulsion LLC",
             url: "https://techemulsion.com",
-            logo: {
-              "@type": "ImageObject",
-              url: "https://techemulsion.com/assets/logo/logo-light.png",
-              width: 256,
-              height: 64,
-            },
+            logo: "https://techemulsion.com/assets/logo/logo-light.png",
             image: "https://techemulsion.com/assets/logo/logo-light.png",
             description:
-              "Tech Emulsion is a generative AI development company offering AI agents, SaaS development, DevOps, and custom software solutions. Serving clients in the US, Pakistan, and worldwide.",
-            telephone: ["+1-850-930-7798", "+92-334-555-9140"],
+              "Tech Emulsion is a US-based generative AI development company offering AI agents, SaaS development, DevOps, and custom software solutions. Serving clients across the United States and worldwide.",
+            telephone: "+1-850-930-7798",
             email: "contact@techemulsion.com",
             address: {
               "@type": "PostalAddress",
-              streetAddress:
-                "Third Floor, Afzal Tower, University Rd, near BRT Station, University Town",
-              addressLocality: "Peshawar",
-              addressRegion: "Khyber Pakhtunkhwa",
-              postalCode: "25000",
-              addressCountry: "PK",
+              streetAddress: "1021 E Lincolnway, Unit #1373",
+              addressLocality: "Cheyenne",
+              addressRegion: "WY",
+              postalCode: "82001",
+              addressCountry: "US",
             },
             geo: {
               "@type": "GeoCoordinates",
-              latitude: 34.0112,
-              longitude: 71.5248,
+              latitude: 41.14,
+              longitude: -104.8202,
             },
-            hasMap: "https://maps.google.com/?q=34.0112,71.5248",
+            hasMap:
+              "https://maps.google.com/?q=1021+E+Lincolnway+Cheyenne+WY+82001",
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",
@@ -134,7 +129,7 @@ const Contacts = () => {
               { "@type": "AdministrativeArea", name: "Worldwide" },
             ],
             priceRange: "$$",
-            currenciesAccepted: "USD, PKR",
+            currenciesAccepted: "USD",
             paymentAccepted: "Bank Transfer, Credit Card, PayPal",
             sameAs: [
               "https://www.linkedin.com/company/tech-emulsion/",

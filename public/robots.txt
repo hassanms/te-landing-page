@@ -9,6 +9,7 @@ Disallow: /private/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /static/
+Allow: /static/favicons/
 
 # Sitemap (canonical)
 Sitemap: https://techemulsion.com/sitemap.xml

@@ -15,9 +15,15 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/static/:path*',
-        destination: `${storageBase}/static/:path*`,
+        source: '/static/:path((?!favicons/).*)',
+        destination: `${storageBase}/static/:path`,
         permanent: true,
+      },
+      // Keep favicons served locally from /public/static/favicons
+      {
+        source: '/favicon.ico',
+        destination: '/static/favicons/favicon.ico',
+        permanent: false,
       },
       // LinkedIn (and other) traffic: use this URL as "Website" on LinkedIn so we can attribute (LinkedIn strips referrer)
       {

@@ -664,7 +664,7 @@ export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({ params
   const slug = params?.slug as string | undefined;
 
   if (!slug) {
-    return { notFound: true, revalidate: 60 };
+    return { notFound: true, revalidate: 1 };
   }
 
   try {
@@ -679,7 +679,7 @@ export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({ params
       .single();
 
     if (error || !post) {
-      return { notFound: true, revalidate: 60 };
+      return { notFound: true, revalidate: 1 };
     }
 
     const { data: relatedPosts } = await supabase
@@ -696,10 +696,10 @@ export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({ params
         post,
         relatedPosts: relatedPosts || [],
       },
-      revalidate: 60,
+      revalidate: 1,
     };
   } catch (error) {
     console.error("Error in getStaticProps for /blog/[slug]:", error);
-    return { notFound: true, revalidate: 60 };
+    return { notFound: true, revalidate: 1 };
   }
 };

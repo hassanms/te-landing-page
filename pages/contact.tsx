@@ -34,6 +34,7 @@ const Contacts = () => {
         description="Get in touch with Tech Emulsion for AI development, SaaS, and software outsourcing. US and Pakistan teams available. Book a free discovery call today."
         pageType="contact"
         canonicalUrl="https://techemulsion.com/contact"
+        ogImage="/assets/logo/logo-light.png"
         breadcrumbData={{
           items: [
             { name: "Home", url: "https://techemulsion.com" },

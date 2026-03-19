@@ -220,7 +220,7 @@ export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
         }}
         additionalMetaTags={[
           {
-            name: "description",
+            name: "description" as const,
             content: getEnhancedDescription(),
           },
           {
